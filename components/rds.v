@@ -1,0 +1,6 @@
+
+module rds(
+	   // ?
+	   );
+
+endmodule // rds
