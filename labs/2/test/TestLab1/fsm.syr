@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Reading design: fsm.prj
@@ -88,7 +88,7 @@ Equivalent register Removal        : YES
 Optimization Goal                  : Speed
 Optimization Effort                : 1
 Power Reduction                    : NO
-Keep Hierarchy                     : Yes
+Keep Hierarchy                     : Soft
 Netlist Hierarchy                  : As_Optimized
 RTL Output                         : Yes
 Global Optimization                : AllClockNets
@@ -138,37 +138,54 @@ Performing bidirectional port resolution...
 
 Synthesizing Unit <fsm>.
     Related source file is "fsm.v".
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 39 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 41 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
    	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
    	- use the attribute 'signal_encoding user' to avoid onehot optimization
    	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-    Using one-hot encoding for signal <state>.
-    Found 4-bit register for signal <state>.
+    Found finite state machine <FSM_0> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 8                                              |
+    | Inputs             | 1                                              |
+    | Outputs            | 4                                              |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | GPIO_SW_E                 (positive)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 00                                             |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
     Summary:
-	inferred   4 D-type flip-flop(s).
+	inferred   1 Finite State Machine(s).
 Unit <fsm> synthesized.
 
 
 =========================================================================
 HDL Synthesis Report
 
-Macro Statistics
-# Registers                                            : 1
- 4-bit register                                        : 1
-
+Found no macro
 =========================================================================
 
 =========================================================================
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <state/FSM> on signal <state[1:2]> with gray encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00    | 00
+ 01    | 01
+ 10    | 11
+ 11    | 10
+-------------------
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Registers                                            : 4
- Flip-Flops                                            : 4
+# FSMs                                                 : 1
 
 =========================================================================
 
@@ -188,8 +205,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 4
- Flip-Flops                                            : 4
+# Registers                                            : 2
+ Flip-Flops                                            : 2
 
 =========================================================================
 
@@ -212,20 +229,22 @@ RTL Top Level Output File Name     : fsm.ngr
 Top Level Output File Name         : fsm
 Output Format                      : NGC
 Optimization Goal                  : Speed
-Keep Hierarchy                     : Yes
+Keep Hierarchy                     : Soft
 
 Design Statistics
-# IOs                              : 7
+# IOs                              : 8
 
 Cell Usage :
-# BELS                             : 1
+# BELS                             : 6
 #      GND                         : 1
-# FlipFlops/Latches                : 4
-#      FDE                         : 4
+#      INV                         : 1
+#      LUT2                        : 4
+# FlipFlops/Latches                : 2
+#      FDRE                        : 2
 # Clock Buffers                    : 1
 #      BUFGP                       : 1
-# IO Buffers                       : 6
-#      IBUF                        : 1
+# IO Buffers                       : 7
+#      IBUF                        : 2
 #      OBUF                        : 5
 =========================================================================
 
@@ -236,18 +255,20 @@ Selected Device : 5vlx110tff1136-1
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:               4  out of  69120     0%  
+ Number of Slice Registers:               2  out of  69120     0%  
+ Number of Slice LUTs:                    5  out of  69120     0%  
+    Number used as Logic:                 5  out of  69120     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:      4
-   Number with an unused Flip Flop:       0  out of      4     0%  
-   Number with an unused LUT:             4  out of      4   100%  
-   Number of fully used LUT-FF pairs:     0  out of      4     0%  
+ Number of LUT Flip Flop pairs used:      7
+   Number with an unused Flip Flop:       5  out of      7    71%  
+   Number with an unused LUT:             2  out of      7    28%  
+   Number of fully used LUT-FF pairs:     0  out of      7     0%  
    Number of unique control sets:         1
 
 IO Utilization: 
- Number of IOs:                           7
- Number of bonded IOBs:                   7  out of    640     1%  
+ Number of IOs:                           8
+ Number of bonded IOBs:                   8  out of    640     1%  
 
 Specific Feature Utilization:
  Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
@@ -273,7 +294,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-USER_CLK                           | BUFGP                  | 4     |
+USER_CLK                           | BUFGP                  | 2     |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -284,9 +305,9 @@ Timing Summary:
 ---------------
 Speed Grade: -1
 
-   Minimum period: 0.812ns (Maximum Frequency: 1231.527MHz)
-   Minimum input arrival time before clock: 1.383ns
-   Maximum output required time after clock: 3.264ns
+   Minimum period: 1.403ns (Maximum Frequency: 712.758MHz)
+   Minimum input arrival time before clock: 1.732ns
+   Maximum output required time after clock: 3.951ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -295,73 +316,75 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'USER_CLK'
-  Clock period: 0.812ns (frequency: 1231.527MHz)
-  Total number of paths / destination ports: 4 / 4
+  Clock period: 1.403ns (frequency: 712.758MHz)
+  Total number of paths / destination ports: 2 / 2
 -------------------------------------------------------------------------
-Delay:               0.812ns (Levels of Logic = 0)
-  Source:            state_3 (FF)
-  Destination:       state_0 (FF)
+Delay:               1.403ns (Levels of Logic = 1)
+  Source:            state_FSM_FFd1 (FF)
+  Destination:       state_FSM_FFd2 (FF)
   Source Clock:      USER_CLK rising
   Destination Clock: USER_CLK rising
 
-  Data Path: state_3 to state_0
+  Data Path: state_FSM_FFd1 to state_FSM_FFd2
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              2   0.471   0.341  state_3 (state_3)
-     FDE:D                    -0.018          state_0
+     FDRE:C->Q             5   0.471   0.358  state_FSM_FFd1 (state_FSM_FFd1)
+     INV:I->O              1   0.238   0.336  state_FSM_FFd2-In11_INV_0 (state_FSM_FFd2-In1)
+     FDRE:D                   -0.018          state_FSM_FFd2
     ----------------------------------------
-    Total                      0.812ns (0.471ns logic, 0.341ns route)
-                                       (58.0% logic, 42.0% route)
+    Total                      1.403ns (0.709ns logic, 0.694ns route)
+                                       (50.5% logic, 49.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'USER_CLK'
   Total number of paths / destination ports: 4 / 4
 -------------------------------------------------------------------------
-Offset:              1.383ns (Levels of Logic = 1)
-  Source:            GPIO_SW_C (PAD)
-  Destination:       state_0 (FF)
+Offset:              1.732ns (Levels of Logic = 1)
+  Source:            GPIO_SW_E (PAD)
+  Destination:       state_FSM_FFd1 (FF)
   Destination Clock: USER_CLK rising
 
-  Data Path: GPIO_SW_C to state_0
+  Data Path: GPIO_SW_E to state_FSM_FFd1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             4   0.818   0.352  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
-     FDE:CE                    0.213          state_0
+     IBUF:I->O             2   0.818   0.341  GPIO_SW_E_IBUF (GPIO_SW_E_IBUF)
+     FDRE:R                    0.573          state_FSM_FFd1
     ----------------------------------------
-    Total                      1.383ns (1.031ns logic, 0.352ns route)
-                                       (74.5% logic, 25.5% route)
+    Total                      1.732ns (1.391ns logic, 0.341ns route)
+                                       (80.3% logic, 19.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'USER_CLK'
-  Total number of paths / destination ports: 4 / 4
+  Total number of paths / destination ports: 8 / 4
 -------------------------------------------------------------------------
-Offset:              3.264ns (Levels of Logic = 1)
-  Source:            state_0 (FF)
+Offset:              3.951ns (Levels of Logic = 2)
+  Source:            state_FSM_FFd2 (FF)
   Destination:       GPIO_LED_0 (PAD)
   Source Clock:      USER_CLK rising
 
-  Data Path: state_0 to GPIO_LED_0
+  Data Path: state_FSM_FFd2 to GPIO_LED_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              2   0.471   0.341  state_0 (state_0)
-     OBUF:I->O                 2.452          GPIO_LED_0_OBUF (GPIO_LED_0)
+     FDRE:C->Q             5   0.471   0.598  state_FSM_FFd2 (state_FSM_FFd2)
+     LUT2:I0->O            1   0.094   0.336  state_FSM_Out31 (GPIO_LED_3_OBUF)
+     OBUF:I->O                 2.452          GPIO_LED_3_OBUF (GPIO_LED_3)
     ----------------------------------------
-    Total                      3.264ns (2.923ns logic, 0.341ns route)
-                                       (89.6% logic, 10.4% route)
+    Total                      3.951ns (3.017ns logic, 0.934ns route)
+                                       (76.4% logic, 23.6% route)
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 4.00 secs
-Total CPU time to Xst completion: 4.07 secs
+Total CPU time to Xst completion: 4.13 secs
  
 --> 
 
 
-Total memory usage is 640484 kilobytes
+Total memory usage is 641152 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)

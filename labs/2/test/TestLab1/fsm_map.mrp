@@ -10,25 +10,38 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Thu Sep 18 16:49:48 2014
+Mapped Date    : Thu Sep 18 18:25:31 2014
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:    0
+Number of warnings:    1
 Slice Logic Utilization:
-  Number of Slice Registers:                     4 out of  69,120    1%
-    Number used as Flip Flops:                   4
+  Number of Slice Registers:                   249 out of  69,120    1%
+    Number used as Flip Flops:                 248
+    Number used as Latches:                      1
+  Number of Slice LUTs:                        222 out of  69,120    1%
+    Number used as logic:                      151 out of  69,120    1%
+      Number using O6 output only:             107
+      Number using O5 output only:              44
+    Number used as Memory:                      63 out of  17,920    1%
+      Number used as Shift Register:            63
+        Number using O6 output only:            57
+        Number using O5 output only:             1
+        Number using O5 and O6:                  5
+    Number used as exclusive route-thru:         8
+  Number of route-thrus:                        51
+    Number using O6 output only:                51
 
 Slice Logic Distribution:
-  Number of occupied Slices:                     1 out of  17,280    1%
-  Number of LUT Flip Flop pairs used:            4
-    Number with an unused Flip Flop:             0 out of       4    0%
-    Number with an unused LUT:                   4 out of       4  100%
-    Number of fully used LUT-FF pairs:           0 out of       4    0%
-    Number of unique control sets:               1
+  Number of occupied Slices:                   160 out of  17,280    1%
+  Number of LUT Flip Flop pairs used:          352
+    Number with an unused Flip Flop:           103 out of     352   29%
+    Number with an unused LUT:                 130 out of     352   36%
+    Number of fully used LUT-FF pairs:         119 out of     352   33%
+    Number of unique control sets:              59
     Number of slice register sites lost
-      to control set restrictions:               0 out of  69,120    0%
+      to control set restrictions:             119 out of  69,120    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -39,18 +52,25 @@ Slice Logic Distribution:
   over-mapped for a non-BRAM resource or if placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                         7 out of     640    1%
-    Number of LOCed IOBs:                        7 out of       7  100%
+  Number of bonded IOBs:                         8 out of     640    1%
+    Number of LOCed IOBs:                        8 out of       8  100%
 
 Specific Feature Utilization:
-  Number of BUFG/BUFGCTRLs:                      1 out of      32    3%
-    Number used as BUFGs:                        1
+  Number of BlockRAM/FIFO:                       1 out of     148    1%
+    Number using BlockRAM only:                  1
+    Total primitives used:
+      Number of 18k BlockRAM used:               1
+    Total Memory used (KB):                     18 out of   5,328    1%
+  Number of BUFG/BUFGCTRLs:                      2 out of      32    6%
+    Number used as BUFGs:                        2
+  Number of BSCANs:                              1 out of       4   25%
 
-Average Fanout of Non-Clock Nets:                2.17
+  Number of RPM macros:           10
+Average Fanout of Non-Clock Nets:                2.80
 
-Peak Memory Usage:  983 MB
-Total REAL time to MAP completion:  10 secs 
-Total CPU time to MAP completion:   10 secs 
+Peak Memory Usage:  995 MB
+Total REAL time to MAP completion:  19 secs 
+Total CPU time to MAP completion:   19 secs 
 
 Table of Contents
 -----------------
@@ -73,9 +93,21 @@ Section 1 - Errors
 
 Section 2 - Warnings
 --------------------
+WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
 
 Section 3 - Informational
 -------------------------
+INFO:LIT:243 - Logical network icon_control0<10> has no load.
+INFO:LIT:395 - The above info message is repeated 22 more times for the
+   following (max. 5 shown):
+   icon_control0<11>,
+   icon_control0<15>,
+   icon_control0<16>,
+   icon_control0<22>,
+   icon_control0<17>
+   To see the details of these info messages, please use the -detail switch.
 INFO:MapLib:562 - No environment variables are currently set.
 INFO:LIT:244 - All of the single ended outputs in this design are using slew
    rate limited output drivers. The delay on speed critical single ended outputs
@@ -90,14 +122,205 @@ INFO:Pack:1650 - Map created a placed design.
 
 Section 4 - Removed Logic Summary
 ---------------------------------
-   1 block(s) optimized away
+  44 block(s) removed
+  23 block(s) optimized away
+  29 signal(s) removed
 
 Section 5 - Removed Logic
 -------------------------
 
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[10].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[11].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[12].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[13].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[14].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[1].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[2].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[3].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[4].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[5].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[6].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[7].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[8].U_LUT" (ROM)
+removed.
+Loadless block "U_icon_pro/U0/U_ICON/U_CMD/U_CORE_ID_SEL/I4.FI[9].U_LUT" (ROM)
+removed.
+Loadless block "U_ila_pro_0/U0/I_NO_D.U_ILA/U_STAT/U_DSR" (ROM) removed.
+Loadless block "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TC/I_STORAGE_QUAL.U_CAP_B"
+(ROM) removed.
+The signal "icon_control0<10>" is sourceless and has been removed.
+The signal "icon_control0<11>" is sourceless and has been removed.
+The signal "icon_control0<15>" is sourceless and has been removed.
+The signal "icon_control0<16>" is sourceless and has been removed.
+The signal "icon_control0<22>" is sourceless and has been removed.
+The signal "icon_control0<17>" is sourceless and has been removed.
+The signal "icon_control0<23>" is sourceless and has been removed.
+The signal "icon_control0<18>" is sourceless and has been removed.
+The signal "icon_control0<24>" is sourceless and has been removed.
+The signal "icon_control0<30>" is sourceless and has been removed.
+The signal "icon_control0<25>" is sourceless and has been removed.
+The signal "icon_control0<31>" is sourceless and has been removed.
+The signal "icon_control0<26>" is sourceless and has been removed.
+The signal "icon_control0<32>" is sourceless and has been removed.
+The signal "icon_control0<7>" is sourceless and has been removed.
+The signal "icon_control0<27>" is sourceless and has been removed.
+The signal "icon_control0<33>" is sourceless and has been removed.
+The signal "icon_control0<28>" is sourceless and has been removed.
+The signal "icon_control0<29>" is sourceless and has been removed.
+The signal "icon_control0<34>" is sourceless and has been removed.
+The signal "icon_control0<35>" is sourceless and has been removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<3>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[3].U_HCE" (ROM)
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[3].U_LCE" (ROM)
+removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<6>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[6].U_HCE" (ROM)
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[6].U_LCE" (ROM)
+removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<7>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[7].U_HCE" (ROM)
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[7].U_LCE" (ROM)
+removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<11>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[11].U_HCE"
+(ROM) removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[11].U_LCE"
+(ROM) removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<12>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[12].U_HCE"
+(ROM) removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[12].U_LCE"
+(ROM) removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<13>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[13].U_HCE"
+(ROM) removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[13].U_LCE"
+(ROM) removed.
+The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<14>" is sourceless and has been
+removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[14].U_HCE"
+(ROM) removed.
+ Sourceless block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[14].U_LCE"
+(ROM) removed.
+The signal
+"U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[1].U_M/U_MU/I_MUT_GANDX.U_match/I
+_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U
+_GAND_SRL_SET/SRL_Q_O" is sourceless and has been removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[11].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[12].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[13].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[14].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[3].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[6].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CMD/U_COMMAND_SEL/I4.FI[7].U_LUT" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[10].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[15].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[2].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[4].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[5].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[8].U_HCE" (ROM)
+removed.
+Unused block "U_icon_pro/U0/U_ICON/U_CTRL_OUT/F_NCP[0].F_CMD[9].U_HCE" (ROM)
+removed.
+
 Optimized Block(s):
 TYPE 		BLOCK
+GND 		U_icon_pro/XST_GND
+VCC 		U_icon_pro/XST_VCC
+GND
+		U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/U_SCNT_CMP/I_CS_GA
+ND.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET/I_PARTIAL_SL
+ICE.U_GAND_SRL_SLICE/XST_GND
+VCC
+		U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/U_SCNT_CMP/I_CS_GA
+ND.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET/I_PARTIAL_SL
+ICE.U_GAND_SRL_SLICE/XST_VCC
+VCC
+		U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/U_SCNT_CMP/I_CS_GA
+ND.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET/XST_VCC
+GND
+		U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/U_WCNT_HCMP/I_CS_G
+AND.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET/I_PARTIAL_S
+LICE.U_GAND_SRL_SLICE/XST_GND
+VCC
+		U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/U_WCNT_HCMP/I_CS_G
+AND.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET/I_PARTIAL_S
+LICE.U_GAND_SRL_SLICE/XST_VCC
+VCC
+		U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/U_WCNT_HCMP/I_CS_G
+AND.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET/XST_VCC
+GND
+		U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/U_WCNT_LCMP/I_CS_G
+AND.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET/I_PARTIAL_S
+LICE.U_GAND_SRL_SLICE/XST_GND
+VCC
+		U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/U_WCNT_LCMP/I_CS_G
+AND.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET/I_PARTIAL_S
+LICE.U_GAND_SRL_SLICE/XST_VCC
+VCC
+		U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/U_WCNT_LCMP/I_CS_G
+AND.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET/XST_VCC
+GND
+		U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[1].U_M/U_MU/I_MUT_GANDX.U_match/
+I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/U_CS_GAND_SRL_V5/I_USE_RPM_NE0.
+U_GAND_SRL_SET/I_WHOLE_SLICE.G_SLICE_IDX[0].U_GAND_SRL_SLICE/XST_GND
+VCC
+		U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[1].U_M/U_MU/I_MUT_GANDX.U_match/
+I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/U_CS_GAND_SRL_V5/I_USE_RPM_NE0.
+U_GAND_SRL_SET/I_WHOLE_SLICE.G_SLICE_IDX[0].U_GAND_SRL_SLICE/XST_VCC
+VCC
+		U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[1].U_M/U_MU/I_MUT_GANDX.U_match/
+I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/U_CS_GAND_SRL_V5/I_USE_RPM_NE0.
+U_GAND_SRL_SET/XST_VCC
+GND 		U_ila_pro_0/XST_GND
+VCC 		U_ila_pro_0/XST_VCC
 GND 		XST_GND
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
 
 Section 6 - IOB Properties
 --------------------------
@@ -112,11 +335,31 @@ Section 6 - IOB Properties
 | GPIO_LED_3                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
 | GPIO_LED_4                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
 | GPIO_SW_C                          | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_SW_E                          | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
 | USER_CLK                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Section 7 - RPMs
 ----------------
+U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/U_SCNT_CMP/I_CS_GAND
+.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET/U_SCNT_CMP/I_C
+S_GAND.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET_MSET
+U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/U_WCNT_HCMP/I_CS_GAN
+D.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET/U_WCNT_HCMP/I
+_CS_GAND.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET_MSET
+U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/U_WCNT_LCMP/I_CS_GAN
+D.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET/U_WCNT_LCMP/I
+_CS_GAND.U_CS_GAND_SRL/I_V5.U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET_MSET
+U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[1].U_M/U_MU/I_MUT_GANDX.U_match/I_
+CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_
+GAND_SRL_SET/U_CS_GAND_SRL_V5/I_USE_RPM_NE0.U_GAND_SRL_SET_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_CDONE_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_CMPRESET_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_NS0_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_NS1_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL_I_SRLT_NE_1.U_SCRST_MSET
+U_ila_pro_0/U0_I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_VARX.U_match/I_S
+RL32.U_VARX_SRL32/U_G_MSET
 
 Section 8 - Guide Report
 ------------------------

@@ -1,5 +1,5 @@
 The following files were generated for 'ila_pro_0' in directory
-/afs/ece.cmu.edu/usr/pmbrown/Documents/test/TestLab1/_ngo/cs_ila_pro_0/
+/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/2/test/TestLab1/_ngo/cs_ila_pro_0/
 
 XCO file generator:
    Generate an XCO file for compatibility with legacy flows.

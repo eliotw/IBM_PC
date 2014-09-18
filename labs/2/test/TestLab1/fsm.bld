@@ -4,11 +4,11 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 Command Line:
 /afs/ece.cmu.edu/support/xilinx/xilinx.release/14.2/ISE_DS/ISE/bin/lin64/unwrapp
 ed/ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc fsm.ucf -p
-xc5vlx110t-ff1136-1 fsm.ngc fsm.ngd
+xc5vlx110t-ff1136-1 fsm_cs.ngc fsm.ngd
 
 Reading NGO file
-"/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/2/test/TestLab1/fsm.ngc"
-...
+"/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/2/test/TestLab1/fsm_cs.ngc
+" ...
 Gathering constraint information from source properties...
 Done.
 
@@ -18,6 +18,10 @@ Checking Constraint Associations...
 Done...
 
 Checking expanded design ...
+WARNING:NgdBuild:486 - Attribute "INIT_FILE" is not allowed on symbol
+   "U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I_V5.U_CS_BR
+   AM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B18KGT0.u_ramb16/U_RAMB16" of type
+   "RAMB16".  This attribute will be ignored.
 
 Partition Implementation Status
 -------------------------------
@@ -28,12 +32,12 @@ Partition Implementation Status
 
 NGDBUILD Design Results Summary:
   Number of errors:     0
-  Number of warnings:   0
+  Number of warnings:   1
 
-Total memory usage is 504268 kilobytes
+Total memory usage is 523784 kilobytes
 
 Writing NGD file "fsm.ngd" ...
-Total REAL time to NGDBUILD completion:  2 sec
-Total CPU time to NGDBUILD completion:   2 sec
+Total REAL time to NGDBUILD completion:  3 sec
+Total CPU time to NGDBUILD completion:   3 sec
 
 Writing NGDBUILD log file "fsm.bld"...

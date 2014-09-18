@@ -1,7 +1,7 @@
 Release 14.2 par P.28xd (lin64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-ahtanum.ece.cmu.edu::  Thu Sep 18 16:50:01 2014
+ahtanum.ece.cmu.edu::  Thu Sep 18 18:25:54 2014
 
 par -w -intstyle ise -ol high -mt off fsm_map.ncd fsm.ncd fsm.pcf 
 
@@ -14,11 +14,6 @@ Loading device for application Rf_Device from file '5vlx110t.nph' in environment
 Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000 Celsius)
 Initializing voltage to 0.950 Volts. (default - Range: 0.950 to 1.050 Volts)
 
-INFO:Par:282 - No user timing constraints were detected or you have set the option to ignore timing constraints ("par
-   -x"). Place and Route will run in "Performance Evaluation Mode" to automatically improve the performance of all
-   internal clocks in this design. Because there are not defined timing requirements, a timing score will not be
-   reported in the PAR report in this mode. The PAR timing summary will list the performance achieved for each clock.
-   Note: For the fastest runtime, set the effort level to "std".  For best performance, set the effort level to "high".
 
 Device speed data version:  "PRODUCTION 1.73 2012-07-09".
 
@@ -26,18 +21,20 @@ Device speed data version:  "PRODUCTION 1.73 2012-07-09".
 
 Device Utilization Summary:
 
-   Number of BUFGs                           1 out of 32      3%
-   Number of External IOBs                   7 out of 640     1%
-      Number of LOCed IOBs                   7 out of 7     100%
+   Number of BSCANs                          1 out of 4      25%
+   Number of BUFGs                           2 out of 32      6%
+   Number of External IOBs                   8 out of 640     1%
+      Number of LOCed IOBs                   8 out of 8     100%
 
-   Number of Slices                          1 out of 17280   1%
-   Number of Slice Registers                 4 out of 69120   1%
-      Number used as Flip Flops              4
-      Number used as Latches                 0
+   Number of RAMB18X2s                       1 out of 148     1%
+   Number of Slices                        160 out of 17280   1%
+   Number of Slice Registers               249 out of 69120   1%
+      Number used as Flip Flops            248
+      Number used as Latches                 1
       Number used as LatchThrus              0
 
-   Number of Slice LUTS                      0 out of 69120   0%
-   Number of Slice LUT-Flip Flop pairs       4 out of 69120   1%
+   Number of Slice LUTS                    222 out of 69120   1%
+   Number of Slice LUT-Flip Flop pairs     352 out of 69120   1%
 
 
 Overall effort level (-ol):   High 
@@ -49,28 +46,28 @@ Finished initial Timing Analysis.  REAL time: 7 secs
 Starting Router
 
 
-Phase  1  : 12 unrouted;      REAL time: 8 secs 
+Phase  1  : 1457 unrouted;      REAL time: 8 secs 
 
-Phase  2  : 10 unrouted;      REAL time: 8 secs 
+Phase  2  : 1030 unrouted;      REAL time: 8 secs 
 
-Phase  3  : 2 unrouted;      REAL time: 8 secs 
+Phase  3  : 194 unrouted;      REAL time: 9 secs 
 
-Phase  4  : 2 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
+Phase  4  : 194 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 13 secs 
 
 Updating file: fsm.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
+Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
 
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
+Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
 
-Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
+Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
 
-Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
+Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
 
-Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
+Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
 
-Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
-Total REAL time to Router completion: 13 secs 
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
+Total REAL time to Router completion: 14 secs 
 Total CPU time to Router completion: 13 secs 
 
 Partition Implementation Status
@@ -81,8 +78,35 @@ Partition Implementation Status
 -------------------------------
 
 Generating "PAR" statistics.
-INFO:Par:459 - The Clock Report is not displayed in the non timing-driven mode.
-Timing Score: 0 (Setup: 0, Hold: 0)
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|    icon_control0<0> |BUFGCTRL_X0Y31| No   |   62 |  0.313     |  1.858      |
++---------------------+--------------+------+------+------------+-------------+
+|      USER_CLK_BUFGP | BUFGCTRL_X0Y0| No   |   78 |  0.330     |  1.858      |
++---------------------+--------------+------+------+------------+-------------+
+|   icon_control0<13> |         Local|      |    5 |  0.000     |  1.052      |
++---------------------+--------------+------+------+------------+-------------+
+|U_icon_pro/U0/iUPDAT |              |      |      |            |             |
+|               E_OUT |         Local|      |    1 |  0.000     |  0.674      |
++---------------------+--------------+------+------+------------+-------------+
+
+* Net Skew is the difference between the minimum and maximum routing
+only delays for the net. Note this is different from Clock Skew which
+is reported in TRCE timing report. Clock Skew is the difference between
+the minimum and maximum path delays which includes logic delays.
+
+* The fanout is the number of component pins not the individual BEL loads,
+for example SLICE loads not FF loads.
+
+Timing Score: 0 (Setup: 0, Hold: 0, Component Switching Limit: 0)
+
+Number of Timing Constraints that were not applied: 2
 
 Asterisk (*) preceding a constraint indicates it was not met.
    This may be due to a setup or hold violation.
@@ -91,8 +115,26 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net USE | SETUP       |         N/A|     0.971ns|     N/A|           0
-  R_CLK_BUFGP                               | HOLD        |     0.469ns|            |       0|           0
+  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    12.110ns|     2.890ns|       0|           0
+   TO TIMEGRP "J_CLK" 15 ns                 | HOLD        |     2.123ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    14.108ns|     0.892ns|       0|           0
+   TO TIMEGRP "U_CLK" 15 ns                 | HOLD        |     0.568ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    24.694ns|     5.306ns|       0|           0
+  IGH 50%                                   | HOLD        |     0.335ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_D2_TO_T2_path" TIG               | SETUP       |         N/A|     3.021ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J2_TO_D2_path" TIG               | N/A         |         N/A|         N/A|     N/A|         N/A
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J3_TO_D2_path" TIG               | N/A         |         N/A|         N/A|     N/A|         N/A
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J4_TO_D2_path" TIG               | MAXDELAY    |         N/A|     4.469ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J_TO_D_path" TIG                 | SETUP       |         N/A|     3.483ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_D_TO_J_path" TIG                 | SETUP       |         N/A|     3.881ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -108,17 +150,18 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-Total REAL time to PAR completion: 17 secs 
-Total CPU time to PAR completion: 17 secs 
+Total REAL time to PAR completion: 18 secs 
+Total CPU time to PAR completion: 18 secs 
 
-Peak Memory Usage:  785 MB
+Peak Memory Usage:  742 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.
+Timing: Completed - No errors found.
 
 Number of error messages: 0
 Number of warning messages: 0
-Number of info messages: 2
+Number of info messages: 0
 
 Writing design to file fsm.ncd
 
