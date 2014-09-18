@@ -1,0 +1,120 @@
+--------------------------------------------------------------------------------
+Release 14.2 Trace  (lin64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+/afs/ece.cmu.edu/support/xilinx/xilinx.release/14.2/ISE_DS/ISE/bin/lin64/unwrapped/trce
+-intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml lcd_top.twx lcd_top.ncd -o
+lcd_top.twr lcd_top.pcf -ucf ml505board.ucf
+
+Design file:              lcd_top.ncd
+Physical constraint file: lcd_top.pcf
+Device,package,speed:     xc5vlx110t,ff1136,-1 (PRODUCTION 1.73 2012-07-09, STEPPING level 0)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2698 - No timing constraints found, doing default enumeration.
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Setup/Hold to clock USER_CLK
+------------+------------+------------+------------------+--------+
+            |Max Setup to|Max Hold to |                  | Clock  |
+Source      | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
+------------+------------+------------+------------------+--------+
+GPIO_DIP_SW1|    5.019(R)|   -1.990(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW2|    5.408(R)|   -1.859(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW3|    5.422(R)|   -0.917(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW4|    5.840(R)|   -0.604(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW5|    4.924(R)|   -0.802(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW6|    6.107(R)|   -1.789(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW7|    6.275(R)|   -0.976(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW8|    5.956(R)|   -1.134(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_SW_C   |    2.689(R)|    0.965(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_SW_E   |    2.349(R)|    0.652(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_SW_S   |    1.725(R)|    0.875(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_SW_W   |    0.997(R)|    1.677(R)|USER_CLK_BUFGP    |   0.000|
+------------+------------+------------+------------------+--------+
+
+Clock USER_CLK to Pad
+------------+------------+------------------+--------+
+            | clk (edge) |                  | Clock  |
+Destination |   to PAD   |Internal Clock(s) | Phase  |
+------------+------------+------------------+--------+
+LCD_FPGA_DB4|   10.006(R)|USER_CLK_BUFGP    |   0.000|
+LCD_FPGA_DB5|   10.069(R)|USER_CLK_BUFGP    |   0.000|
+LCD_FPGA_DB6|   10.300(R)|USER_CLK_BUFGP    |   0.000|
+LCD_FPGA_DB7|    9.769(R)|USER_CLK_BUFGP    |   0.000|
+LCD_FPGA_E  |   13.914(R)|USER_CLK_BUFGP    |   0.000|
+LCD_FPGA_RS |   12.166(R)|USER_CLK_BUFGP    |   0.000|
+------------+------------+------------------+--------+
+
+Clock to Setup on destination clock USER_CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+USER_CLK       |    4.312|         |         |         |
+---------------+---------+---------+---------+---------+
+
+Pad to Pad
+---------------+---------------+---------+
+Source Pad     |Destination Pad|  Delay  |
+---------------+---------------+---------+
+GPIO_DIP_SW1   |GPIO_LED_0     |   10.798|
+GPIO_DIP_SW1   |GPIO_LED_1     |   10.071|
+GPIO_DIP_SW2   |GPIO_LED_0     |   10.203|
+GPIO_DIP_SW2   |GPIO_LED_1     |   11.033|
+GPIO_DIP_SW2   |GPIO_LED_2     |   10.155|
+GPIO_DIP_SW3   |GPIO_LED_0     |   10.217|
+GPIO_DIP_SW3   |GPIO_LED_1     |   11.047|
+GPIO_DIP_SW3   |GPIO_LED_2     |   10.059|
+GPIO_DIP_SW3   |GPIO_LED_3     |    6.488|
+GPIO_DIP_SW4   |GPIO_LED_0     |   10.411|
+GPIO_DIP_SW4   |GPIO_LED_1     |   11.241|
+GPIO_DIP_SW4   |GPIO_LED_2     |   10.017|
+GPIO_DIP_SW4   |GPIO_LED_3     |    6.751|
+GPIO_DIP_SW4   |GPIO_LED_4     |    9.997|
+GPIO_DIP_SW5   |GPIO_LED_0     |   10.703|
+GPIO_DIP_SW5   |GPIO_LED_1     |   10.146|
+GPIO_DIP_SW6   |GPIO_LED_0     |   10.902|
+GPIO_DIP_SW6   |GPIO_LED_1     |   11.732|
+GPIO_DIP_SW6   |GPIO_LED_2     |    9.909|
+GPIO_DIP_SW7   |GPIO_LED_0     |   11.070|
+GPIO_DIP_SW7   |GPIO_LED_1     |   11.900|
+GPIO_DIP_SW7   |GPIO_LED_2     |    9.657|
+GPIO_DIP_SW7   |GPIO_LED_3     |    7.504|
+GPIO_DIP_SW8   |GPIO_LED_0     |   10.751|
+GPIO_DIP_SW8   |GPIO_LED_1     |   11.581|
+GPIO_DIP_SW8   |GPIO_LED_2     |    9.746|
+GPIO_DIP_SW8   |GPIO_LED_3     |    7.540|
+GPIO_DIP_SW8   |GPIO_LED_4     |    9.421|
+---------------+---------------+---------+
+
+
+Analysis completed Thu Sep 18 16:33:45 2014 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 602 MB
+
+
+

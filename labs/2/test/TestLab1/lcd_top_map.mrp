@@ -1,0 +1,237 @@
+Release 14.2 Map P.28xd (lin64)
+Xilinx Mapping Report File for Design 'lcd_top'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol
+high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr
+off -lc off -power off -o lcd_top_map.ncd lcd_top.ngd lcd_top.pcf 
+Target Device  : xc5vlx110t
+Target Package : ff1136
+Target Speed   : -1
+Mapper Version : virtex5 -- $Revision: 1.55 $
+Mapped Date    : Thu Sep 18 16:32:55 2014
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    0
+Slice Logic Utilization:
+  Number of Slice Registers:                    91 out of  69,120    1%
+    Number used as Flip Flops:                  91
+  Number of Slice LUTs:                        162 out of  69,120    1%
+    Number used as logic:                      161 out of  69,120    1%
+      Number using O6 output only:             127
+      Number using O5 output only:              23
+      Number using O5 and O6:                   11
+    Number used as exclusive route-thru:         1
+  Number of route-thrus:                        24
+    Number using O6 output only:                24
+
+Slice Logic Distribution:
+  Number of occupied Slices:                    72 out of  17,280    1%
+  Number of LUT Flip Flop pairs used:          169
+    Number with an unused Flip Flop:            78 out of     169   46%
+    Number with an unused LUT:                   7 out of     169    4%
+    Number of fully used LUT-FF pairs:          84 out of     169   49%
+    Number of unique control sets:              16
+    Number of slice register sites lost
+      to control set restrictions:              45 out of  69,120    1%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  OVERMAPPING of BRAM resources should be ignored if the design is
+  over-mapped for a non-BRAM resource or if placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                        25 out of     640    3%
+    Number of LOCed IOBs:                       25 out of      25  100%
+
+Specific Feature Utilization:
+  Number of BUFG/BUFGCTRLs:                      1 out of      32    3%
+    Number used as BUFGs:                        1
+
+Average Fanout of Non-Clock Nets:                3.17
+
+Peak Memory Usage:  986 MB
+Total REAL time to MAP completion:  20 secs 
+Total CPU time to MAP completion:   16 secs 
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+
+Section 3 - Informational
+-------------------------
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 0.950 Volts. (default - Range: 0.950 to
+   1.050 Volts)
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+INFO:Pack:1650 - Map created a placed design.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+  22 block(s) removed
+   3 block(s) optimized away
+   1 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lut<0>2" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lut<0>4" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lut<0>5" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lut<1>1" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lut<1>2" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lut<1>4" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lut<1>5" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lut<2>1" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lut<2>2" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lut<2>5" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lut<3>1" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lutdi10" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lutdi11" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lutdi12" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lutdi13" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lutdi2" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lutdi3" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lutdi4" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lutdi5" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lutdi6" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lutdi7" (ROM) removed.
+Loadless block "lcd/Mcompar_control_cmp_gt0000_lutdi9" (ROM) removed.
+
+The trimmed logic reported below is either:
+   1. part of a cycle
+   2. part of disabled logic
+   3. a side-effect of other trimmed logic
+
+The signal "data<6>" is unused and has been removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		lcd/XST_GND
+VCC 		lcd/XST_VCC
+GND 		myTestFsm/XST_GND
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| GPIO_DIP_SW1                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW2                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW3                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW4                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW5                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW6                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW7                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW8                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_LED_0                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| GPIO_LED_1                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| GPIO_LED_2                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| GPIO_LED_3                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| GPIO_LED_4                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| GPIO_SW_C                          | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_SW_E                          | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_SW_S                          | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_SW_W                          | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| LCD_FPGA_DB4                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| LCD_FPGA_DB5                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| LCD_FPGA_DB6                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| LCD_FPGA_DB7                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| LCD_FPGA_E                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| LCD_FPGA_RS                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| LCD_FPGA_RW                        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| USER_CLK                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Timing Report
+--------------------------
+A logic-level (pre-route) timing report can be generated by using Xilinx static
+timing analysis tools, Timing Analyzer (GUI) or TRCE (command line), with the
+mapped NCD and PCF files. Please note that this timing report will be generated
+using estimated delay information. For accurate numbers, please generate a
+timing report with the post Place and Route NCD file.
+
+For more information about the Timing Analyzer, consult the Xilinx Timing
+Analyzer Reference Manual; for more information about TRCE, consult the Xilinx
+Command Line Tools User Guide "TRACE" chapter.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 12 - Control Set Information
+------------------------------------
+Use the "-detail" map option to print out Control Set Information.
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
+Use the "-detail" map option to print out the Utilization by Hierarchy section.
