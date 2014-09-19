@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_vvICpc_1.db \
+	_VCSgd_s5e6Kb_1.db \
+
+
+
+_VCSgd_vvICpc_1.db :	75477.v 
+		${VLOGAN}  -work work 75477.v
+
+
+_VCSgd_s5e6Kb_1.db :	test_75477.v 
+		${VLOGAN}  -work work test_75477.v
+
+
