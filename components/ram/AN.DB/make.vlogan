@@ -1,13 +1,21 @@
 
 VLOGAN	= vlogan
 
-all :		_VCSgd_zdcfZc_1.db \
+all :		_VCSgd_gmFszc_1.db \
+	_VCSgd_cTVyvd_1.db \
+	_VCSgd_zdcfZc_1.db \
 	_VCSgd_5mJCYd_1.db \
 	_VCSgd_knPwzc_1.db \
 	_VCSgd_rarKOe_1.db \
-	_VCSgd_gmFszc_1.db \
-	_VCSgd_cTVyvd_1.db \
 
+
+
+_VCSgd_gmFszc_1.db :	ram.v 
+		${VLOGAN}  -work work ram.v
+
+
+_VCSgd_cTVyvd_1.db :	test_ram.v 
+		${VLOGAN}  -work work test_ram.v
 
 
 _VCSgd_zdcfZc_1.db :	rds.v 
@@ -24,13 +32,5 @@ _VCSgd_knPwzc_1.db :	ls280.v
 
 _VCSgd_rarKOe_1.db :	test_ls280.v 
 		${VLOGAN}  -work work test_ls280.v
-
-
-_VCSgd_gmFszc_1.db :	ram.v 
-		${VLOGAN}  -work work ram.v
-
-
-_VCSgd_cTVyvd_1.db :	test_ram.v 
-		${VLOGAN}  -work work test_ram.v
 
 
