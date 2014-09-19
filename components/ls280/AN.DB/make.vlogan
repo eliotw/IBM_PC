@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_knPwzc_1.db \
+	_VCSgd_rarKOe_1.db \
+
+
+
+_VCSgd_knPwzc_1.db :	ls280.v 
+		${VLOGAN}  -work work ls280.v
+
+
+_VCSgd_rarKOe_1.db :	test_ls280.v 
+		${VLOGAN}  -work work test_ls280.v
+
+
