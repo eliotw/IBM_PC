@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_OmxnUb_1.db \
+	_VCSgd_zKFNN_1.db \
+
+
+
+_VCSgd_OmxnUb_1.db :	ls138.v 
+		${VLOGAN}  -work work ls138.v
+
+
+_VCSgd_zKFNN_1.db :	test_ls138.v 
+		${VLOGAN}  -work work test_ls138.v
+
+
