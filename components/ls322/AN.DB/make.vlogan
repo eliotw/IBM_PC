@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_eMOr7c_1.db \
+	_VCSgd_1EUQce_1.db \
+
+
+
+_VCSgd_eMOr7c_1.db :	ls322.v 
+		${VLOGAN}  -work work ls322.v
+
+
+_VCSgd_1EUQce_1.db :	test_ls322.v 
+		${VLOGAN}  -work work test_ls322.v
+
+
