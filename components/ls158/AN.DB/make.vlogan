@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_qP31zd_1.db \
+	_VCSgd_ftZnOd_1.db \
+
+
+
+_VCSgd_qP31zd_1.db :	ls158.v 
+		${VLOGAN}  -work work ls158.v
+
+
+_VCSgd_ftZnOd_1.db :	test_ls158.v 
+		${VLOGAN}  -work work test_ls158.v
+
+
