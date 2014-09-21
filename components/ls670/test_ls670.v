@@ -1,42 +1,38 @@
 /*
- * test_ls322:
- * Tests the ls322 module by checking its output
+ * test_ls670:
+ * Tests the ls670 module by checking its output
  */
-module test_ls322;
+module test_ls670;
 
    // signals
-   wire [7:0] q;
-   reg [7:0]  qin;
-   wire       qh1;
-   reg 	      oe_n, d0, d1, clr_n, se_n, clock, ds, sp_n, g_n;
+   reg [3:0] d;
+   wire [3:0] q;
+   reg [1:0]  r, w;
+   wire       ra, rb, wa, wb;
+   reg 	      read, write;
    integer   i, errors;
    
-   // ls280 under test
-   ls322 billy(
-               .q(q),
-               .qh1(qh1),
-               .oe_n(oe_n),
-               .d0(d0),
-               .d1(d1),
-               .clr_n(clr_n),
-               .clock(clock),
-               .se_n(se_n),
-               .ds(ds),
-               .sp_n(sp_n),
-               .g_n(g_n)
+   // ls670 under test
+   ls670 billy(
+               .d(d),
+	       .q(q),
+	       .ra(ra),
+	       .rb(rb),
+	       .read(read),
+	       .wa(wa),
+	       .wb(wb),
+	       .write(write)
 	       );
 
-   // Set Up Clock
-   always begin
-      #5 clock = ~clock;
-   end
-
-   // Run Bus
-   assign q = (oe_n === 1'b1) ? qin : 8'bzzzzzzzz;
+   // Set Up Signals
+   assign rb = r[1];
+   assign ra = r[0];
+   assign wb = w[1];
+   assign wa = w[0];
 
    // Bus monitor
-   always @(q or qh1) begin
-      $display($time," Monitor: %b %b",q,qh1);
+   always @(q) begin
+      $display($time," Monitor: %b",q);
    end
    
    // Run Tests
@@ -46,258 +42,113 @@ module test_ls322;
       $display ("Setting Up Test");
       $display ("***************");
       #1;
-      qin = 8'b0;
-      oe_n = 1'b0;
-      d0 = 1'b0;
-      d1 = 1'b0;
-      clr_n = 1'b1;
-      se_n = 1'b1;
-      clock = 1'b0;
-      ds = 1'b0;
-      sp_n = 1'b1;
-      g_n = 1'b1;
+      r = 2'b00;
+      w = 2'b00;
+      d = 4'b0000;
+      read = 1'b0;
+      write = 1'b0;
       i = 0;
       errors = 0;
       #1;
-      @(posedge clock);
       
-      // Run Clear Test
-      $display ("**************");
-      $display ("Run Clear Test");
-      $display ("**************");
-      @(posedge clock);
-      clr_n = 1'b0;
-      @(posedge clock);
-      clr_n = 1'b1;
-      @(posedge clock);
-      if(q !== 8'b00000000) begin
-	 $display("FAILURE: %b %b",q,qh1);
+      // Run Z Test
+      $display ("**********");
+      $display ("Run Z Test");
+      $display ("**********");
+      #1;
+      if(q !== 4'bzzzz) begin
+	 $display("FAILURE: %b",q);
 	 errors = errors + 1;
       end
       else begin
-	 $display("SUCCESS: %b %b",q,qh1);
+	 $display("SUCCESS: %b",q);
       end
-      @(posedge clock);
+      #1;
       
       // Run Load Test
-      $display ("*************");
-      $display ("Run Load Test");
-      $display ("*************");
-      @(posedge clock);
-      qin = 8'b11111111;
-      oe_n = 1'b1;
-      g_n = 1'b0;
-      sp_n = 1'b0;
-      @(posedge clock);
-      @(posedge clock);
-      oe_n = 1'b0;
-      g_n = 1'b1;
-      sp_n = 1'b1;
-      @(posedge clock);
-      if(q !== 8'b11111111) begin
-	 $display("FAILURE: %b %b",q,qh1);
+      $display ("**************");
+      $display ("Run Write Test");
+      $display ("**************");
+      #1;
+      w = 2'b00;
+      d = 4'b1110;
+      write = 1'b1;
+      #1;
+      write = 1'b0;
+      #1;
+      w = 2'b01;
+      d = 4'b1101;
+      write = 1'b1;
+      #1;
+      write = 1'b0;
+      #1;
+      w = 2'b10;
+      d = 4'b1011;
+      write = 1'b1;
+      #1;
+      write = 1'b0;
+      #1;
+      w = 2'b11;
+      d = 4'b0111;
+      write = 1'b1;
+      #1;
+      write = 1'b0;
+      #1;
+      r = 2'b00;
+      read = 1'b1;
+      #1;
+      if(q !== 4'b1110) begin
+	 $display("FAILURE: %b",q);
 	 errors = errors + 1;
       end
       else begin
-	 $display("SUCCESS: %b %b",q,qh1);
+	 $display("SUCCESS: %b",q);
       end
-      @(posedge clock);
+      #1;
+      r = 2'b01;
+      #1;
+      if(q !== 4'b1101) begin
+	 $display("FAILURE: %b",q);
+	 errors = errors + 1;
+      end
+      else begin
+	 $display("SUCCESS: %b",q);
+      end
+      #1;
+      r = 2'b10;
+      #1;
+      if(q !== 4'b1011) begin
+	 $display("FAILURE: %b",q);
+	 errors = errors + 1;
+      end
+      else begin
+	 $display("SUCCESS: %b",q);
+      end
+      #1;
+      r = 2'b11;
+      #1;
+      if(q !== 4'b0111) begin
+	 $display("FAILURE: %b",q);
+	 errors = errors + 1;
+      end
+      else begin
+	 $display("SUCCESS: %b",q);
+      end
+      #1;
+      read = 1'b0;
+      #1;
 
-      // Run Hold Test
-      $display ("*************");
-      $display ("Run Hold Test");
-      $display ("*************");
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      if(q !== 8'b11111111) begin
-	 $display("FAILURE: %b %b",q,qh1);
-	 errors = errors + 1;
-      end
-      else begin
-	 $display("SUCCESS: %b %b",q,qh1);
-      end
-      @(posedge clock);
-      
-      // Run Shift Test with 0
-      $display ("****************");
-      $display ("Run Shift Test 0");
-      $display ("****************");
-      @(posedge clock);
-      d1 = 1'b1;
-      d0 = 1'b0;
-      ds = 1'b0;
-      g_n = 1'b0;
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      g_n = 1'b1;
-      @(posedge clock);
-      if(q !== 8'b00000000) begin
-	 $display("FAILURE: %b %b",q,qh1);
-	 errors = errors + 1;
-      end
-      else begin
-	 $display("SUCCESS: %b %b",q,qh1);
-      end
-      @(posedge clock);
-
-      // Run Shift Test with 1
-      $display ("****************");
-      $display ("Run Shift Test 1");
-      $display ("****************");
-      @(posedge clock);
-      d1 = 1'b1;
-      d0 = 1'b0;
-      ds = 1'b1;
-      g_n = 1'b0;
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      g_n = 1'b1;
-      ds = 1'b0;
-      @(posedge clock);
-      if(q !== 8'b11111111) begin
-	 $display("FAILURE: %b %b",q,qh1);
-	 errors = errors + 1;
-      end
-      else begin
-	 $display("SUCCESS: %b %b",q,qh1);
-      end
-      @(posedge clock);
-
-      // Run Load Test Again
-      $display ("*******************");
-      $display ("Run Load Test Again");
-      $display ("*******************");
-      @(posedge clock);
-      qin = 8'b10000000;
-      oe_n = 1'b1;
-      g_n = 1'b0;
-      sp_n = 1'b0;
-      @(posedge clock);
-      @(posedge clock);
-      oe_n = 1'b0;
-      g_n = 1'b1;
-      sp_n = 1'b1;
-      @(posedge clock);
-            if(q !== 8'b10000000) begin
-	       $display("FAILURE: %b %b",q,qh1);
-	       errors = errors + 1;
-	    end
-            else begin
-	       $display("SUCCESS: %b %b",q,qh1);
-	    end
-      @(posedge clock);
-
-      // Run Sign Extend Test with 1
-      $display ("**********************");
-      $display ("Run Sign Extend Test 1");
-      $display ("**********************");
-      @(posedge clock);
-      se_n = 1'b0;
-      g_n = 1'b0;
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      se_n = 1'b1;
-      g_n = 1'b1;
-      @(posedge clock);
-      if(q !== 8'b11111111) begin
-	 $display("FAILURE: %b %b",q,qh1);
-	 errors = errors + 1;
-      end
-      else begin
-	 $display("SUCCESS: %b %b",q,qh1);
-      end
-      @(posedge clock);
-
-      // Run Load Test Again
-      $display ("*******************");
-      $display ("Run Load Test Again");
-      $display ("*******************");
-      @(posedge clock);
-      qin = 8'b01111111;
-      oe_n = 1'b1;
-      g_n = 1'b0;
-      sp_n = 1'b0;
-      @(posedge clock);
-      @(posedge clock);
-      oe_n = 1'b0;
-      g_n = 1'b1;
-      sp_n = 1'b1;
-      @(posedge clock);
-      if(q !== 8'b01111111) begin
-	 $display("FAILURE: %b %b",q,qh1);
-	 errors = errors + 1;
-      end
-      else begin
-	 $display("SUCCESS: %b %b",q,qh1);
-      end
-      @(posedge clock);
-      
-      // Run Sign Extend Test with 0
-      $display ("**********************");
-      $display ("Run Sign Extend Test 0");
-      $display ("**********************");
-      @(posedge clock);
-      se_n = 1'b0;
-      g_n = 1'b0;
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      @(posedge clock);
-      se_n = 1'b1;
-      g_n = 1'b1;
-      @(posedge clock);
-      if(q !== 8'b00000000) begin
-	 $display("FAILURE: %b %b",q,qh1);
-	 errors = errors + 1;
-      end
-      else begin
-	 $display("SUCCESS: %b %b",q,qh1);
-      end
-      @(posedge clock);
-
-      // Run Some Tests
+      // Finish Tests
       $display ("**********************");
       $display ("Finished Running Tests");
       $display ("**********************");
       if(errors > 0) begin
-	 $display("LS322 TEST FAILURE WITH %d ERRORS",errors);
+	 $display("LS670 TEST FAILURE WITH %d ERRORS",errors);
       end
       else begin
-	 $display("LS322 TEST SUCCESS");
+	 $display("LS670 TEST SUCCESS");
       end
       $finish();
    end // initial begin
    
-endmodule
+endmodule // test_ls670

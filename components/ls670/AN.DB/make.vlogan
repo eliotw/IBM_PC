@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_iQvldb_1.db \
+	_VCSgd_fk6hqb_1.db \
+
+
+
+_VCSgd_iQvldb_1.db :	ls670.v 
+		${VLOGAN}  -work work ls670.v
+
+
+_VCSgd_fk6hqb_1.db :	test_ls670.v 
+		${VLOGAN}  -work work test_ls670.v
+
+
