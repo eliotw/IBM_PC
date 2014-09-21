@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_zdcfZc_1.db \
+	_VCSgd_5mJCYd_1.db \
+
+
+
+_VCSgd_zdcfZc_1.db :	rds.v 
+		${VLOGAN}  -work work rds.v
+
+
+_VCSgd_5mJCYd_1.db :	test_rds.v 
+		${VLOGAN}  -work work test_rds.v
+
+
