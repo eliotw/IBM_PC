@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_atwNPe_1.db \
+	_VCSgd_ZzqAqe_1.db \
+
+
+
+_VCSgd_atwNPe_1.db :	timedelay.v 
+		${VLOGAN}  -work work timedelay.v
+
+
+_VCSgd_ZzqAqe_1.db :	test_timedelay.v 
+		${VLOGAN}  -work work test_timedelay.v
+
+
