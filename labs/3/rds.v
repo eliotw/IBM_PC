@@ -69,6 +69,45 @@ module ctrl(
    wire [15:0] memdata; // Data from memory
    reg 	       csel; // Select cool or alright
    wire        cbutton, abutton; // Button inputs
+   reg [2:0]   state; // FSM current state
+   reg [2:0]   nextstate; // FSM next state
+   wire [0:255] outarray; // Array of bits to be sent
+   reg 		s1v,s2v,s3v,s4v,s5v,s6v,s7v,s8v,s9v; // valid bits
+   reg 		s10v,s11v,s12v; // More valid bits
+   reg [19:0] 	s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12; // slot bits
+   reg 		counta, countc; // Signals for when count reaches end
+   
+   // Parameters
+   parameter ALRIGHT = 76194;
+   parameter COOL = 90384;
+   
+   // FSM State List
+   `define idle 3'b000
+   `define rsta 3'b001
+   `define mvla 3'b010
+   `define snda 3'b011
+   `define rstb 3'b100
+   `define mvlb 3'b101
+   `define sndb 3'b110
+   `define drdr 3'b111
+
+   // Hard assign some valid and slot bits
+   assign s5v = 1'b0; assign s5 = 20'b0;
+   assign s6v = 1'b0; assign s6 = 20'b0;
+   assign s7v = 1'b0; assign s7 = 20'b0;
+   assign s8v = 1'b0; assign s8 = 20'b0;
+   assign s9v = 1'b0; assign s9 = 20'b0;
+   assign s10v = 1'b0; assign s10 = 20'b0;
+   assign s11v = 1'b0; assign s11 = 20'b0;
+   assign s12v = 1'b0; assign s12 = 20'b0;
+
+   // Assign PCM data
+   assign s3 = s3v ? memdata : 20'b0;
+   assign s4 = s4v ? memdata : 20'b0;
+
+   // Assign counter goals
+   assign counta = (addrreg === (ALRIGHT-2));
+   assign countc = (addrreg === (COOL-2));
    
    // Assign cool button to west
    assign cbutton = GPIO_SW_W;
