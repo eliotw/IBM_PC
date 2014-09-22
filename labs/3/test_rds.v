@@ -6,7 +6,7 @@ module test_rds;
 
    // signals
    reg [17:0] a;
-   wire [7:0] d;
+   wire [7:0] d,e;
    reg        c;
    integer   i, errors;
 
@@ -25,7 +25,7 @@ module test_rds;
    end
    
    // rds under test
-   rds rds0(.a(a),.d(d),.c(c));
+   rds rds0(.a(a),.d(d),.e(e),.c(c));
    
    // sts
    initial begin
@@ -47,11 +47,18 @@ module test_rds;
 	 a = i;
 	 #1;
 	 if(d !== malright[i]) begin
-	    $display("NO: %b %b",malright[i],d);
+	    $display("D NO: %b %b",malright[i],d);
 	    errors = errors + 1;
 	 end
 	 else begin
-	    $display("OK: %b %b",malright[i],d);
+	    $display("D OK: %b %b",malright[i],d);
+	 end
+	 if((i < (ALRIGHT-1)) && (e !== malright[i+1])) begin
+	    $display("E NO: %b %b",malright[i+1],e);
+	    errors = errors + 1;
+	 end
+	 else begin
+	    $display("E OK: %b %b",malright[i+1],e);
 	 end
       end // for (i=0; i<256; i=i+1)
       #1;
@@ -62,11 +69,18 @@ module test_rds;
 	 a = i;
 	 #1;
 	 if(d !== mcool[i]) begin
-	    $display("NO: %b %b",mcool[i],d);
+	    $display("D NO: %b %b",mcool[i],d);
 	    errors = errors + 1;
 	 end
 	 else begin
-	    $display("OK: %b %b",mcool[i],d);
+	    $display("D OK: %b %b",mcool[i],d);
+	 end
+	 if((i < (COOL-1)) && (e !== mcool[i+1])) begin
+	    $display("E NO: %b %b",mcool[i+1],e);
+	    errors = errors + 1;
+	 end
+	 else begin
+	    $display("E OK: %b %b",mcool[i+1],e);
 	 end
       end // for (i=0; i<256; i=i+1)
       if(errors > 0) begin
