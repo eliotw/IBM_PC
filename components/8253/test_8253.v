@@ -6,6 +6,73 @@
 `define D        {D7,D6,D5,D4,D3,D2,D1,D0}
 
 /*
+ * test_8253:
+ * Updated test bench for intel 8253 made by VCS
+ */
+module test_8253;
+
+   // Registers for Data
+   reg 	     rd_n, wr_n, cs_n, a0, a1, clk, gate;
+   reg [7:0] d;
+   wire [2:0] out;
+   
+   // Intel 8253 Under Test
+   intel8253 i8(
+		.gate({gate,1'b1,1'b1}), // gate 0 and 1 are +5 V
+		.clk({clk,clk,clk}), // clock is same
+		.rd_n(rd_n), 
+		.wr_n(wr_n),
+		.cs_n(cs_n), 
+		.a0(a0),
+		.a1(a1),
+		.d(d),
+		.out(out)
+		);
+
+   // Set up the CLOCK
+   always begin
+      #500 clk = ~clk;
+   end
+   
+   // Task for writing to a register
+   task write;
+      input [1:0] register;
+      input [7:0] data;
+      begin
+	 a1 = register[1];
+	 a0 = register[0];
+	 cs_n = 0;
+         #50
+	   d = data;
+         #100
+	   wr_n = 0;
+         #400
+	   wr_n = 1;
+         #50
+	   cs_n = 1;
+   end
+   endtask // write
+   
+   // Set timer 1 LSB Mode 2 with 54H
+   // Set initial timer 1 count to 0 (not 0, 18)
+   // set timer 0 to LSB MSB Mode 3 with 36h
+   // set initial timer count to 0
+   // Set timer 2 LSB MSB mode 3 with b6h
+   // set initial timer count to 0533h 
+   /*
+    The 16-bit COUNT registers of channels 0, 1, and 2 are located at I/O ports 40h, 41h, and 43h, resp. Each COUNT register must be loaded according to the mode selected in the CONTROL byte for that channel; single-byte loads leave the other byte 0. The COUNT register may be read "on the fly" by latching the current count from the downcounter into the COUNT register while the downcounter continues counting.
+    
+    In the PC all three channels use a 1.19318 MHz signal as clock input. GATE0 and GATE1 are permanently tied to 1, so the outputs of Channels 0 and 1 are continuous. The channels are programmed during the BIOS power-up initialization sequence as follows:
+    
+    The CONTROL byte for Channel 0 is 00110110b Channel 0, 2-byte count value, mode 3 (continuous symmetrical square wave), count in binary. The COUNT value for Channel 0 is 0000h, i.e., 65536 counts, so the frequency of OUT0 is 1.1931817 Mhz/65536 ≈ 18.2 Hz. Channel 0's output is connected to the IRQ0 Interrupt Request line of the 8259 Interrupt Controller; hence an interrupt 08h will occur at a 18.2 Hz rate, or once every 55 msec. The interrupt 08h handler maintains the PC's time-of-day clock and performs other internal timing functions. To simplify the use of the timer interrupt for user applications (and to minimize interactions with the internal timing functions), the interrupt 08h handler issues a software interrupt 1Ch which is vectored during initialization to the "default interrupt handler" (an IRET).
+    
+    The CONTROL byte for Channel 1 is 01010100b Channel 1, 1-byte (LSB) count value, mode 2 (rate generator), count in binary. The COUNT value for Channel 1 is (00)12h = 18, so the frequency of OUT1 is 1.1931817 Mhz/18 ≈ 66 kHz. Channel 1 controls the refresh timing of the memory.
+    
+    The CONTROL byte for Channel 2 is 10110110b Channel 2, 2-byte count value, mode 3 (symmetrical square wave, continuous provided OUT2 = 1), count in binary. The COUNT value for Channel 2 is 0533h = 1331, so the frequency of OUT2 is 1.1931817 MHz/1331 ≈ 896 Hz. Channel 2 is used to produce a beep from the built-in speaker. More details on controlling the speaker are given below.
+    */
+endmodule // test_8253
+
+/*
  * test:
  * The original test for the intel 8253 made by VCS
  */
@@ -45,7 +112,6 @@ module test;
   task write;
     input [1:0] register;
     input [7:0] data;
-
     begin
       A1  = register[1];
       A0  = register[0];
@@ -59,7 +125,6 @@ module test;
       #50
       CS_ = 1;
     end
-
   endtask
 
   initial
