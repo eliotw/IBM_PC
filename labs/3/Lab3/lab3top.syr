@@ -1,0 +1,493 @@
+Release 14.2 - xst P.28xd (lin64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> 
+Reading design: lab3top.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "lab3top.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "lab3top"
+Output Format                      : NGC
+Target Device                      : xc5vlx110t-1-ff1136
+
+---- Source Options
+Top Module Name                    : lab3top
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Off
+Reduce Control Sets                : Off
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+Cores Search Directories           : {"ipcore_dir"  }
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "ipcore_dir/cool.v" in library work
+Compiling verilog file "ipcore_dir/alright.v" in library work
+Module <cool> compiled
+Compiling verilog file "lab3top.v" in library work
+Module <alright> compiled
+Module <rds> compiled
+Module <lab3top> compiled
+Module <ACLink> compiled
+No errors in compilation
+Analysis of file <"lab3top.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <lab3top> in library <work> with parameters.
+	ALRIGHT = "00000000000000010010100110100010"
+	COOL = "00000000000000010110000100010000"
+
+Analyzing hierarchy for module <rds> in library <work> with parameters.
+	ALRIGHT = "00000000000000010010100110100010"
+	COOL = "00000000000000010110000100010000"
+
+Analyzing hierarchy for module <ACLink> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <lab3top>.
+	ALRIGHT = 32'sb00000000000000010010100110100010
+	COOL = 32'sb00000000000000010110000100010000
+WARNING:Xst:1464 - "lab3top.v" line 136: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 137: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 184: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 187: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 197: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 197: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 201: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 201: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 212: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 212: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 216: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 216: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 230: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 230: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 233: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 233: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 244: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 244: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 248: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 248: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 259: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 259: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 263: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 263: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 277: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 277: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 280: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 280: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "lab3top.v" line 295: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+Module <lab3top> is correct for synthesis.
+ 
+Analyzing module <rds> in library <work>.
+	ALRIGHT = 32'sb00000000000000010010100110100010
+	COOL = 32'sb00000000000000010110000100010000
+WARNING:Xst:1464 - "lab3top.v" line 62: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:905 - "lab3top.v" line 61: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <mcool>, <malright>
+WARNING:Xst:2211 - "ipcore_dir/alright.v" line 45: Instantiating black box module <alright>.
+WARNING:Xst:2211 - "ipcore_dir/cool.v" line 53: Instantiating black box module <cool>.
+Module <rds> is correct for synthesis.
+ 
+Analyzing module <ACLink> in library <work>.
+Module <ACLink> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+INFO:Xst:2679 - Register <addrreg> in unit <lab3top> has a constant value of 000000000000000010 during circuit operation. The register is replaced by logic.
+
+Synthesizing Unit <ACLink>.
+    Related source file is "lab3top.v".
+WARNING:Xst:646 - Signal <latched_inbits> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit 256-to-1 multiplexer for signal <ac97_sdata_out>.
+    Found 8-bit comparator less for signal <ac97_sync$cmp_lt0000> created at line 321.
+    Found 8-bit up counter for signal <curbit>.
+    Found 256-bit register for signal <inbits>.
+INFO:Xst:738 - HDL ADVISOR - 256 flip-flops were inferred for signal <inbits>. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.
+    Summary:
+	inferred   1 Counter(s).
+	inferred 256 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+	inferred   1 Multiplexer(s).
+Unit <ACLink> synthesized.
+
+
+Synthesizing Unit <rds>.
+    Related source file is "lab3top.v".
+WARNING:Xst:647 - Input <a<17:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <rds> synthesized.
+
+
+Synthesizing Unit <lab3top>.
+    Related source file is "lab3top.v".
+WARNING:Xst:646 - Signal <flag> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <countc> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 180 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Using one-hot encoding for signal <addrreg>.
+    Using one-hot encoding for signal <state>.
+    Found 8-bit register for signal <state>.
+    Summary:
+	inferred   8 D-type flip-flop(s).
+Unit <lab3top> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Counters                                             : 1
+ 8-bit up counter                                      : 1
+# Registers                                            : 257
+ 1-bit register                                        : 256
+ 8-bit register                                        : 1
+# Comparators                                          : 1
+ 8-bit comparator less                                 : 1
+# Multiplexers                                         : 1
+ 1-bit 256-to-1 multiplexer                            : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Reading core <ipcore_dir/alright.ngc>.
+Reading core <ipcore_dir/cool.ngc>.
+Loading core <alright> for timing and area information for instance <billy_bob>.
+Loading core <cool> for timing and area information for instance <billy>.
+WARNING:Xst:1710 - FF/Latch <state_0> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_2> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_3> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_5> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_6> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_7> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <state_1> of sequential type is unconnected in block <lab3top>.
+WARNING:Xst:2677 - Node <state_4> of sequential type is unconnected in block <lab3top>.
+WARNING:Xst:2404 -  FFs/Latches <state<7:7>> (without init value) have a constant value of 0 in block <lab3top>.
+WARNING:Xst:2677 - Node <state_1> of sequential type is unconnected in block <lab3top>.
+WARNING:Xst:2677 - Node <state_4> of sequential type is unconnected in block <lab3top>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Counters                                             : 1
+ 8-bit up counter                                      : 1
+# Registers                                            : 5
+ Flip-Flops                                            : 5
+# Comparators                                          : 1
+ 8-bit comparator less                                 : 1
+# Multiplexers                                         : 1
+ 1-bit 256-to-1 multiplexer                            : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <state_0> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_2> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_3> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_5> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_6> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1899 - Due to constant pushing, all outputs of the instance <rds0> of the block <rds> are unconnected in block <lab3top>.
+   This instance will be removed from the design along with all underlying logic
+
+Optimizing unit <lab3top> ...
+
+Optimizing unit <rds> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block lab3top, actual ratio is 0.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 8
+ Flip-Flops                                            : 8
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : lab3top.ngr
+Top Level Output File Name         : lab3top
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 7
+
+Cell Usage :
+# BELS                             : 29
+#      GND                         : 1
+#      INV                         : 1
+#      LUT1                        : 7
+#      LUT4                        : 2
+#      LUT5                        : 2
+#      MUXCY                       : 7
+#      VCC                         : 1
+#      XORCY                       : 8
+# FlipFlops/Latches                : 8
+#      FD                          : 8
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 3
+#      OBUF                        : 3
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 5vlx110tff1136-1 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:               8  out of  69120     0%  
+ Number of Slice LUTs:                   12  out of  69120     0%  
+    Number used as Logic:                12  out of  69120     0%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:     12
+   Number with an unused Flip Flop:       4  out of     12    33%  
+   Number with an unused LUT:             0  out of     12     0%  
+   Number of fully used LUT-FF pairs:     8  out of     12    66%  
+   Number of unique control sets:         1
+
+IO Utilization: 
+ Number of IOs:                           7
+ Number of bonded IOBs:                   4  out of    640     0%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+AUDIO_BIT_CLK                      | BUFGP                  | 8     |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: 1.941ns (Maximum Frequency: 515.198MHz)
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: 4.823ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'AUDIO_BIT_CLK'
+  Clock period: 1.941ns (frequency: 515.198MHz)
+  Total number of paths / destination ports: 36 / 8
+-------------------------------------------------------------------------
+Delay:               1.941ns (Levels of Logic = 9)
+  Source:            billy/curbit_0 (FF)
+  Destination:       billy/curbit_7 (FF)
+  Source Clock:      AUDIO_BIT_CLK rising
+  Destination Clock: AUDIO_BIT_CLK rising
+
+  Data Path: billy/curbit_0 to billy/curbit_7
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               3   0.471   0.347  billy/curbit_0 (billy/curbit_0)
+     INV:I->O              1   0.238   0.000  billy/Mcount_curbit_lut<0>_INV_0 (billy/Mcount_curbit_lut<0>)
+     MUXCY:S->O            1   0.372   0.000  billy/Mcount_curbit_cy<0> (billy/Mcount_curbit_cy<0>)
+     MUXCY:CI->O           1   0.026   0.000  billy/Mcount_curbit_cy<1> (billy/Mcount_curbit_cy<1>)
+     MUXCY:CI->O           1   0.026   0.000  billy/Mcount_curbit_cy<2> (billy/Mcount_curbit_cy<2>)
+     MUXCY:CI->O           1   0.026   0.000  billy/Mcount_curbit_cy<3> (billy/Mcount_curbit_cy<3>)
+     MUXCY:CI->O           1   0.026   0.000  billy/Mcount_curbit_cy<4> (billy/Mcount_curbit_cy<4>)
+     MUXCY:CI->O           1   0.026   0.000  billy/Mcount_curbit_cy<5> (billy/Mcount_curbit_cy<5>)
+     MUXCY:CI->O           0   0.026   0.000  billy/Mcount_curbit_cy<6> (billy/Mcount_curbit_cy<6>)
+     XORCY:CI->O           1   0.357   0.000  billy/Mcount_curbit_xor<7> (Result<7>)
+     FD:D                     -0.018          billy/curbit_7
+    ----------------------------------------
+    Total                      1.941ns (1.594ns logic, 0.347ns route)
+                                       (82.1% logic, 17.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'AUDIO_BIT_CLK'
+  Total number of paths / destination ports: 16 / 2
+-------------------------------------------------------------------------
+Offset:              4.823ns (Levels of Logic = 3)
+  Source:            billy/curbit_4 (FF)
+  Destination:       AUDIO_SDATA_OUT (PAD)
+  Source Clock:      AUDIO_BIT_CLK rising
+
+  Data Path: billy/curbit_4 to AUDIO_SDATA_OUT
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               3   0.471   0.800  billy/curbit_4 (billy/curbit_4)
+     LUT4:I0->O            1   0.094   0.576  billy/ac97_sync21 (N2)
+     LUT5:I3->O            1   0.094   0.336  billy/Mmux_ac97_sdata_out11 (AUDIO_SDATA_OUT_OBUF)
+     OBUF:I->O                 2.452          AUDIO_SDATA_OUT_OBUF (AUDIO_SDATA_OUT)
+    ----------------------------------------
+    Total                      4.823ns (3.111ns logic, 1.712ns route)
+                                       (64.5% logic, 35.5% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 13.00 secs
+Total CPU time to Xst completion: 11.96 secs
+ 
+--> 
+
+
+Total memory usage is 679076 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   56 (   0 filtered)
+Number of infos    :    3 (   0 filtered)
+

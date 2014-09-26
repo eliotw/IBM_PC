@@ -1,0 +1,18 @@
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/labs/3/Lab3/lab3top.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc ucffile.ucf -p xc5vlx110t-ff1136-1 lab3top.ngc lab3top.ngd  
+map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr off -lc off -power off -o lab3top_map.ncd lab3top.ngd lab3top.pcf 
+par -w -intstyle ise -ol high -mt off lab3top_map.ncd lab3top.ncd lab3top.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml lab3top.twx lab3top.ncd -o lab3top.twr lab3top.pcf -ucf ucffile.ucf 
+bitgen -intstyle ise -f lab3top.ut lab3top.ncd 
