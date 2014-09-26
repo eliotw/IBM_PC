@@ -1,7 +1,11 @@
+// Definition of D from VCS
+`define D {D7,D6,D5,D4,D3,D2,D1,D0}
+
 /*
  * intel8253:
  * This module is a verilog description of the intel 8253
  * programmable interval timer
+ * It is essentially a wrapper for the VCS version of the 8253
  */
 module intel8253(
 	      gate,
@@ -20,186 +24,38 @@ module intel8253(
    input [7:0] d;
    output [2:0] out;
 
+   i8253 vcs(
+	     .A0(a0), 
+	     .A1(a1), 
+	     .RD_(rd_n), 
+	     .WR_(wr_n), 
+	     .CS_(cs_n), 
+	     .D7(d[7]), 
+	     .D6(d[6]), 
+	     .D5(d[5]), 
+	     .D4(d[4]), 
+	     .D3(d[3]), 
+	     .D2(d[2]),
+	     .D1(d[1]),
+	     .D0(d[0]),
+	     .CLK0(clk[0]), 
+	     .CLK1(clk[1]), 
+	     .CLK2(clk[2]), 
+	     .GATE0(gate[0]), 
+	     .GATE1(gate[1]), 
+	     .GATE2(gate[2]), 
+	     .OUT0(out[0]), 
+	     .OUT1(out[1]), 
+	     .OUT2(out[2])
+	     );
+   
 endmodule // intel8253
 
 /*
- * count4:
- * This module is a 4-bit down counter with bcd and binary modes
+ * cntreg:
+ * This module is a 16-bit down counter for the 8253
+ * This module has been copied from the VCS installation folder
  */
-module count4(decin,numin,bcd,zero,numout,decout,load,clk);
-
-   input decin, bcd, load, clk;
-   output decout, zero;
-   input [3:0] numin;
-   output [3:0] numout;
-
-   // Counter registers
-   reg [3:0] 	numout,nextnum;
-   reg 		decout, zero;
-   
-   // Counter logic
-   always @(clk or numout or decin or numin or bcd or load) begin
-      zero = 1'b0;
-      decout = 1'b0;
-      nextnum = nextnum;
-      
-      case(numout)
-	4'h0: begin
-	   zero = 1'b1;
-	   if(decin === 1'b1) begin
-	      decout = 1'b1;
-	      if(bcd === 1'b1) begin
-		 nextnum = 4'h9;
-	      end
-	      else begin
-		 nextnum = 4'hf;
-	      end
-	   end
-	   else begin
-	      decout = 1'b0;
-	      nextnum = 4'h0;
-	   end // else: !if(decin === 1'b1)
-	end // case: 4'h0
-	4'h1: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'h0;
-	   end
-	   else nextnum = 4'h1;
-	end
-	4'h2: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'h1;
-	   end
-	   else nextnum = 4'h2;
-	end
-	4'h3: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'h2;
-	   end
-	   else nextnum = 4'h3;
-	end
-	4'h4: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'h3;
-	   end
-	   else nextnum = 4'h4;
-	end
-	4'h5: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'h4;
-	   end
-	   else nextnum = 4'h5;
-	end
-	4'h6: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'h5;
-	   end
-	   else nextnum = 4'h6;
-	end
-	4'h7: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'h6;
-	   end
-	   else nextnum = 4'h7;
-	end
-	4'h8: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'h7;
-	   end
-	   else nextnum = 4'h8;
-	end
-	4'h9: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'h8;
-	   end
-	   else nextnum = 4'h9;
-	end
-	4'ha: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'h9;
-	   end
-	   else nextnum = 4'ha;
-	end
-	4'hb: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'ha;
-	   end
-	   else nextnum = 4'hb;
-	end
-	4'hc: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'hb;
-	   end
-	   else nextnum = 4'hc;
-	end
-	4'hd: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'hc;
-	   end
-	   else nextnum = 4'hd;
-	end
-	4'he: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'hd;
-	   end
-	   else nextnum = 4'he;
-	end
-	4'hf: begin
-	   zero = 1'b0;
-	   decout = 1'b0;
-	   if(decin === 1'b1) begin
-	      nextnum = 4'he;
-	   end
-	   else nextnum = 4'hf;
-	end
-	default: begin
-	   zero = 1'b0;
-	   nextnum = 4'h0;
-	   decout = 1'b0;
-	end
-      endcase // case (numout)
-   end
-
-   // Counter FSM
-   always @(posedge clk) begin
-      if(load === 1'b1) begin
-	 numout <= numin;
-      end
-      else begin
-	 numout <= nextnum;
-      end
-   end
-   
-endmodule // count4
-
 module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
 
   input        SEL,
@@ -232,63 +88,39 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
     if (SEL & RD_)
       case (MODE[5:4])
         'b01 : begin
-
                  // Write LSB
-
                  COUNTLSB = D;
-
                  // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
-
                  if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
                    LOAD = 'b1;
-
                  // Enable Output
-
                  OUTEN = 'b1;
-
                end
         'b10 : begin
-
                  // Write MSB
-
                  COUNTMSB = D;
-
                  // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
-
                  if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
                    LOAD = 'b1;
-
                  // Enable Output
-
                  OUTEN = 'b1;
-
                end
         'b11 : if (LOADLSB)
                  begin
-                   
                    // Write LSB First
- 
                    COUNTLSB = D;
                    CLRLOADLSB = 'b1;
- 
                  end
                else
                  begin
-
                    // Write MSB Only After LSB Loaded
-
                    COUNTMSB = D;
                    SETLOADLSB = 'b1;
-
                    // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
-
                    if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
                      LOAD = 'b1;
-
                    // Enable Output
-
                    OUTEN = 'b1;
-
                  end
       endcase
 
@@ -296,7 +128,6 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
     LOAD = 'b0;
 
   // Flag LOADLSB Is Set When In 2 Byte Mode And LSB Has Not Been Read Yet
-
   always @(SETLOADLSB or MODEWRITE)
     if (SETLOADLSB || MODEWRITE)
       begin
@@ -307,14 +138,17 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
       end
 
   // Flag LOADLSB Is Cleared When In 2 Byte Mode And LSB Has Been Read
-
   always @(CLRLOADLSB)
     if (CLRLOADLSB)
       LOADLSB = 'b0;
 
 endmodule
 
-
+/*
+ * downcntr:
+ * A 16-bit down counter for the 8253
+ * This module is from the VCS installation folder
+ */
 module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
 
   input         CLK,
@@ -333,68 +167,46 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
 
   function [15:0] BCDDOWN;
     input [1:0] VALUE;
-
     begin
-
       BCDDOWN = COUNT;
-
       if (COUNT[3:0] < VALUE)
         begin
-
           BCDDOWN[3:0] = COUNT[3:0] + 10 - VALUE;
-
           if (!COUNT[7:4])
             begin
-
               BCDDOWN[7:4] = 9;
-
               if (!COUNT[11:8])
                 begin
-
                   BCDDOWN[11:8] = 9;
-
                   if (!COUNT[15:12])
                     BCDDOWN[15:12] = 9;
                   else
                     BCDDOWN[15:12] = COUNT[15:12] - 1;
-
                 end
               else
                 BCDDOWN[11:8] = COUNT[11:8] - 1;
-
             end
           else
             BCDDOWN[7:4] = COUNT[7:4] - 1;
-
         end
       else
         BCDDOWN[3:0] = COUNT[3:0] - VALUE;
-
     end
-
   endfunction
 
   // Counter
-
   always @(posedge CLK)
     if (GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5))
       if (LOAD)
         begin
-
           // Load Counter From Count Register
-
           COUNT = {COUNTMSB,COUNTLSB};
-
           // Clear Load Flag
-
           CLRLOAD = 1;
-
         end
       else
         begin
-
           // Decrement Counter
-
           if (MODE[3:1] == 3)
             if (MODE[0])
               if (OUT)
@@ -414,15 +226,11 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
               COUNT = BCDDOWN(1);
             else
               COUNT = COUNT - 1;
-
           // Allow Counter To Be Loaded
-
           CLRLOAD = 0;
- 
         end
 
   // Reload Counter On Rising GATE In Modes 1, 2 and 5
-
   always @(posedge GATE)
     if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
       LOAD = 'b1;
@@ -430,7 +238,6 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
       LOAD = 'b0;
  
   // Set LOAD Until Cleared By Next Rising Clock Edge
-
   always @(LOADCNT)
     if (LOADCNT)
       begin
@@ -451,10 +258,11 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
 
 endmodule
 
-`define D {D7,D6,D5,D4,D3,D2,D1,D0}
-
-//`timescale 1ns / 1ns
-
+/*
+ * i8253:
+ * Module emulating the intel 8253
+ * Core acquired from VCS installation folder
+ */
 module i8253(A0, A1, RD_, WR_, CS_, D7, D6, D5, D4, D3, D2, D1, D0,
              CLK0, CLK1, CLK2, GATE0, GATE1, GATE2, OUT0, OUT1, OUT2);
 
@@ -498,7 +306,10 @@ module i8253(A0, A1, RD_, WR_, CS_, D7, D6, D5, D4, D3, D2, D1, D0,
 
 endmodule
 
-
+/*
+ * COUNT:
+ * Module for one of the 8253 counters
+ */
 module COUNT(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT);
 
   input       WR_,
@@ -558,6 +369,10 @@ module COUNT(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT);
 
 endmodule
 
+/*
+ * modereg:
+ * Module for the 8253 mode register
+ */
 module modereg(D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCNT);
 
   input        RD_,
@@ -587,49 +402,39 @@ module modereg(D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCN
   always @(posedge WR_)
     if (SELMODE & RD_)
       begin
-
         // Write Mode Register
-
         MODE = D;
-
       end
 
   always @(SELMODE or RD_ or WR_)
     begin
-
       SETOUT_ = 'b1;
       CLROUT_ = 'b1;
-
       MODETRIG = 'b0;
-
       MODEWRITE = 'b0;
-
       if (SELMODE & RD_ & ~WR_)
         if (D[5:4])
            begin
-
              // Set Output High For All Modes Except 0
-
              if (D[3:1])
                SETOUT_ = 'b0;
              else
                CLROUT_ = 'b0;
-
              // Set Software Trigger In Mode 4
-
              if (D[3:1] == 4)
                MODETRIG = 'b1;
-
              MODEWRITE = 'b1;
-
            end
          else 
            LATCHCNT = 'b1;                      // Counter Latch Command
-
     end
 
 endmodule
 
+/*
+ * outctrl:
+ * Module for out control for intel 8253
+ */
 module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROUT_,
                RELOAD, OUT);
 
@@ -654,108 +459,68 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
 
   always @(negedge CLK)
     begin
-
       // Clear Counter Reload Flag
- 
       RELOAD = 'b0;
-
       // Clear Trigger Flag
-
       CLRTRIG = 'b0;
-
       if ((GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5)) && OUTENABLE)
         case (MODE[3:1])
           0 : if (!COUNT)
                 begin
-
                   // Set Out High On Terminal Count
-
                   OUT = 'b1;
-
                 end
           1 : if (COUNT)
                 begin
-
                   if (TRIG & ~LOAD)
                     OUT = 'b0;
-
                 end
               else
                 begin
-
                   // Set Out High When Counter Hits 0
-
                   OUT = 'b1;
-
                   // Do Not Retrigger
-
                   CLRTRIG = 'b1;
-
                 end
           2 : if (COUNT == 16'b1)
                 begin
-
                   // Set Out Low When Counter Reaches 1 
-
                   OUT = 'b0;
-
                   // Reload New Count
-
                   RELOAD = 'b1;
-
                 end
               else
                 begin
-
                   // Set Out High When Counter Is Not 1 
-
                   OUT = 'b1;
-
                 end
           3 : if (COUNT == 16'h2)
                 begin
-
                   // Toggle Out When Counter Reaches 2
-
                   OUT = ~OUT;
-
                   // Reload New Count
-
                   RELOAD = 'b1;
-
                 end
           4 ,
           5 : if (COUNT)
                 begin
-
                   // Set Out High When Counter Is Not 0
-
                   OUT = 'b1;
- 
                 end
               else
                 if (TRIG)
                   begin
-
                     // Set Out Low When Counter Hits 0 And Was Triggered
-  
                     OUT = 'b0;
-
                     CLRTRIG = 'b1;
-
                   end
         endcase
-
     end
-
   // Set OUT High Immediately When GATE Goes Low In Modes 2 and 3
-
   always @(negedge GATE)
     if ((MODE[3:1] == 2) || (MODE[3:1] == 3))
       OUT = 'b1;
-
   // Retrigger When GATE Goes High In Modes 1, 2 and 5
-
   always @(posedge GATE)
     if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
       RETRIG = 'b1;
@@ -763,7 +528,6 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
       RETRIG = 'b0;
 
   // Set or Clear OUT After A Mode Write
-
   always @(SETOUT_)
     if (!SETOUT_)
       assign OUT = 'b1;
@@ -788,6 +552,10 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
  
 endmodule
 
+/*
+ * outlatch:
+ * Output latch for intel 8253
+ */
 module outlatch(COUNT, LATCHLSB, LATCHMSB, LATCHCNT);
 
   input         LATCHCNT;
@@ -810,6 +578,10 @@ module outlatch(COUNT, LATCHLSB, LATCHMSB, LATCHCNT);
 
 endmodule
 
+/*
+ * read:
+ * Read module for intel 8253
+ */
 module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
 
   input       SEL,
@@ -833,69 +605,45 @@ module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
   assign D = (SEL & ~RD_ & WR_) ? DREG : 8'bz;
 
   // Read Output Latch 
-
   always @(SEL or RD_ or WR_)
     if (SEL & ~RD_ & WR_)
       case (MODE[5:4])
         'b01 : begin
- 
                  // Read LSB
- 
                  assign DREG = LATCHLSB;
-
                  // Reset Latch Command
-
                  CLRLATCH = 'b1;
- 
                end
         'b10 : begin
- 
                  // Read MSB
- 
                  assign DREG = LATCHMSB;
- 
                  // Reset Latch Command
- 
                  CLRLATCH = 'b1;
-  
                end
         'b11 : if (READLSB)
                  begin
- 
                    // Read LSB First
- 
                    assign DREG = LATCHLSB;
                    CLRREADLSB = 'b1;
- 
                  end
                else
                  begin
- 
                    // Read MSB Only After LSB Is Read 
- 
                    assign DREG = LATCHMSB;
                    SETREADLSB = 'b1;
- 
                    // Reset Latch Command
- 
                    CLRLATCH = 'b1;
-  
                  end
       endcase
     else
       begin
-
         deassign DREG;
-
         CLRLATCH = 'b0;
-
         CLRREADLSB = 'b0;
         SETREADLSB = 'b0;
-
       end
 
   // Flag READLSB Is Set When In 2 Byte Mode And LSB Has Not Been Read Yet
-
   always @(SETREADLSB or MODEWRITE)
     if (SETREADLSB || MODEWRITE)
       READLSB = 'b1;
