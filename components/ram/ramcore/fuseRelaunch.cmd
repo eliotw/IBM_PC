@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/ram/ramcore/test_ram_bank_isim_beh.exe" -prj "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/ram/ramcore/test_ram_bank_beh.prj" "work.test_ram_bank" "work.glbl" 

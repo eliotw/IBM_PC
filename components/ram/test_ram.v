@@ -20,7 +20,7 @@ module test_ram_bank;
    assign we_n = ~we;
 
    // Ram Bank
-   ram_bank billy(
+   ram_bank uut(
 	          .clk(clk), // clock
 	          .rst(rst), // reset
 	          .md(md), // memory data
@@ -127,6 +127,7 @@ endmodule // test_ram_bank
  * test_ram_slice:
  * Tests the ram_slice module by writing data to and from a slice
  */
+ /*
 module test_ram_slice;
 
    // Signals
@@ -254,5 +255,5 @@ module test_ram_slice;
    end // initial begin
    
 endmodule // test_ram_slice
-
+*/
 

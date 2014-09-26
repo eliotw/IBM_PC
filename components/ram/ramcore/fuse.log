@@ -1,0 +1,29 @@
+Running: /afs/ece.cmu.edu/support/xilinx/xilinx.release/14.2/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o /afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/ram/ramcore/test_ram_bank_isim_beh.exe -prj /afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/ram/ramcore/test_ram_bank_beh.prj work.test_ram_bank work.glbl 
+ISim P.28xd (signature 0x54af6ca1)
+Number of CPUs detected in this system: 8
+Turning on mult-threading, number of parallel sub-compilation jobs: 16 
+Determining compilation order of HDL files
+Analyzing Verilog file "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/ram/ramcore/ipcore_dir/ramcore.v" into library work
+Analyzing Verilog file "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/ram/ramcore/../ram.v" into library work
+Analyzing Verilog file "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/ram/ramcore/../test_ram.v" into library work
+Analyzing Verilog file "/afs/ece.cmu.edu/support/xilinx/xilinx.release/14.2/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+Completed static elaboration
+Fuse Memory Usage: 95456 KB
+Fuse CPU Usage: 870 ms
+Compiling module BLK_MEM_GEN_V7_2_output_stage(C_...
+Compiling module BLK_MEM_GEN_V7_2_softecc_output_...
+Compiling module BLK_MEM_GEN_V7_2_mem_module(C_CO...
+Compiling module BLK_MEM_GEN_V7_2(C_FAMILY="virte...
+Compiling module ramcore
+Compiling module ram_core_slice
+Compiling module ram_bank
+Compiling module test_ram_bank
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 9 Verilog Units
+Built simulation executable /afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/ram/ramcore/test_ram_bank_isim_beh.exe
+Fuse Memory Usage: 132116 KB
+Fuse CPU Usage: 970 ms
+GCC CPU Usage: 1080 ms
