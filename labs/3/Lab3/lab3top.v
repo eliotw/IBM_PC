@@ -23,26 +23,22 @@
  * rds:
  * A module to hold our audio data
  */
-module rds(a,d,e,c,clk);
+module rds(a,d,c,clk);
 
    // inputs and outputs
    input [17:0] a;
-   output [7:0] d,e;
+   output [15:0] d;
    input 	c,clk;
 
    // output register
-   reg [7:0] 	d,e;
+   reg [15:0] 	d;
 
-   // Parameters
-   parameter ALRIGHT = 76194;
-   parameter COOL = 90384;
- 
    // memories
    wire [15:0] 	malright;
    wire [15:0] 	mcool;
  
    // Preload Memory
-	alright billy_bob (
+	alright mem_alright (
 	.clka(clk), // input clka
 	.wea(1'b0), // input [0 : 0] wea
 	.addra(a), // input [15 : 0] addra
@@ -50,7 +46,7 @@ module rds(a,d,e,c,clk);
 	.douta(malright) // output [15 : 0] douta
 	);
 
-	cool billy (
+	cool mem_cool (
 	.clka(clk), // input clka
 	.wea(1'b0), // input [0 : 0] wea
 	.addra(a), // input [15 : 0] addra
@@ -58,14 +54,12 @@ module rds(a,d,e,c,clk);
 	.douta(mcool) // output [15 : 0] douta
 	);
 
-   always @(a or c) begin
-      if(c === 1'b1) begin
-			d = mcool[7:0];
-			e = mcool[15:8];
+   always @(a or c or mcool or malright) begin
+      if(c == 1'b1) begin
+			d = mcool;
       end
       else begin
-			d = malright[7:0];
-			e = malright[15:8];
+			d = malright;
       end
    end // always @ (a)
 
@@ -82,7 +76,15 @@ module lab3top(
 	    AUDIO_SYNC,
 	    FLASH_AUDIO_RESET_B,
 	    GPIO_SW_W,
-	    GPIO_SW_E 
+	    GPIO_SW_E,
+		 GPIO_LED_0,
+		 GPIO_LED_1,
+		 GPIO_LED_2,
+		 GPIO_LED_3,
+		 GPIO_LED_4,
+		 GPIO_LED_5,
+		 GPIO_LED_6,
+		 GPIO_LED_7
 	    );
 
    input GPIO_SW_W, GPIO_SW_E; // For song selection
@@ -91,6 +93,7 @@ module lab3top(
    output AUDIO_SDATA_OUT; // Data we are sending to AC97 module
    output AUDIO_SYNC; // Sync signal that we send to AC97 module
    output FLASH_AUDIO_RESET_B; // Don't use this
+	output GPIO_LED_0, GPIO_LED_1, GPIO_LED_2, GPIO_LED_3, GPIO_LED_4, GPIO_LED_5, GPIO_LED_6, GPIO_LED_7;
 
    // Wires and Registers
    reg [17:0]  addrreg; // Address of song data
@@ -105,11 +108,11 @@ module lab3top(
    reg 		counta, countc; // Signals for when count reaches end
 	reg		increg; // Increment the addrreg
 	wire 		strobe; // strobe
-	reg 		flag; // flag bit
+	reg		rstreg; // Reset register
    
    // Parameters
-   parameter ALRIGHT = 76194;
-   parameter COOL = 90384;
+   parameter ALRIGHT = 38097;
+   parameter COOL = 45192;
    
    // FSM State List
    `define idle 3'b000
@@ -121,20 +124,30 @@ module lab3top(
    `define sndc 3'b110
    `define drdr 3'b111
 
+	// LED Assign
+	assign GPIO_LED_0 = (state == `idle);
+	assign GPIO_LED_1 = (state == `rsta);
+	assign GPIO_LED_2 = (state == `mvla);
+	assign GPIO_LED_3 = (state == `snda);
+	assign GPIO_LED_4 = (state == `rstc);
+	assign GPIO_LED_5 = (state == `mvlc);
+	assign GPIO_LED_6 = (state == `sndc);
+	assign GPIO_LED_7 = (state == `drdr);
+	
    // Hard assign some valid and slot bits
-	assign outarray = {1'b1,s1v,s2v,s3v,s4v,8'b0,3'b000,
+	assign outarray [0:255] = {1'b1,s1v,s2v,s3v,s4v,8'b0,3'b000,
 		s1,s2,s3,s4,160'h0};
 
    // Assign PCM data
 	always @(s3v or s4v or memdata) begin
-		s3 = s3v ? {memdata,4'b0} : 20'b0;
-		s4 = s4v ? {memdata,4'b0} : 20'b0;
+		s3 = s3v ? {memdata[7:0],memdata[15:8],4'b0} : 20'b0;
+		s4 = s4v ? {memdata[7:0],memdata[15:8],4'b0} : 20'b0;
 	end
 
    // Assign counter goals
 	always @(addrreg) begin
-		counta = (addrreg === (ALRIGHT-2));
-		countc = (addrreg === (COOL-2));
+		counta = (addrreg == (ALRIGHT-2));
+		countc = (addrreg == (COOL-2));
 	end
    
    // Assign cool button to west
@@ -143,19 +156,37 @@ module lab3top(
    // Assign alright button to east
    assign abutton = GPIO_SW_E;
    
-   // Assign reset to 0
-   //assign FLASH_AUDIO_RESET_B = 1'b0;
+	// Initial try
+	initial begin
+		state = `idle;
+	end
+		
+	
+   // Assign state
+   always @(posedge AUDIO_BIT_CLK) begin
+		if(strobe == 1'b1) begin
+			state <= nextstate;
+		end
+		if(rstreg == 1'b1) begin
+			addrreg <= 18'b0;
+		end
+		else if(increg == 1'b1) begin
+			addrreg <= addrreg + 1;
+		end
+		else begin
+			addrreg <= addrreg;
+		end
+	end
 
    // Song Memory Module
    rds rds0(
 	    .a(addrreg),
-	    .d(memdata[7:0]),
-	    .e(memdata[15:8]),
+	    .d(memdata),
 	    .c(csel),
 		 .clk(AUDIO_BIT_CLK)
 	    );
 	
-	ACLink billy(
+	ACLink linkmod(
 		.ac97_bitclk(AUDIO_BIT_CLK),
 		.ac97_sdata_in(AUDIO_SDATA_IN),
 		.ac97_sdata_out(AUDIO_SDATA_OUT),
@@ -167,24 +198,23 @@ module lab3top(
 	
 	// Song FSM
 	always @(state or abutton or cbutton or counta or countc or strobe) begin
-		s1v = 1'b1;
-		s2v = 1'b1;
-		s3v = 1'b0;
-		s4v = 1'b0;
-		s1 = 20'b0;
-		s2 = 20'b0;
-		addrreg = 18'b0;
-		increg = 1'b0;
-		csel = 1'b0;
-		flag = 1'b0;
+		
+		//nextstate <= `idle;
 		case(state)
 			`idle: begin
 				s1v = 1'b0;
 				s2v = 1'b0;
-				if(abutton === 1'b1) begin
+				s3v = 1'b0;
+				s4v = 1'b0;
+				s1 = 20'b0;
+				s2 = 20'b0;
+				rstreg = 1'b1;
+				increg = 1'b0;
+				csel = 1'b0;
+				if((abutton == 1'b1) && (strobe == 1'b1)) begin
 					nextstate <= `rsta;
 				end
-				else if(cbutton === 1'b1) begin
+				else if((cbutton == 1'b1) && (strobe == 1'b1)) begin
 					nextstate <= `rstc;
 				end
 				else begin
@@ -192,110 +222,145 @@ module lab3top(
 				end
 			end	
 			`rsta: begin
+				s1v = 1'b1;
+				s2v = 1'b1;
+				s3v = 1'b0;
+				s4v = 1'b0;
 				s1 = {1'b0 /* write */, 7'h00 /* reset */, 12'b0 /* reserved */};
 				s2 = {16'h0, 4'h0};
-				if((strobe === 1'b1) && (flag === 1'b1)) begin
+				rstreg = 1'b0;
+				increg = 1'b0;
+				csel = 1'b0;
+				if(strobe == 1'b1) begin
 					nextstate <= `mvla;
-					flag = 1'b0;
-				end
-				else if ((strobe === 1'b1) && (flag === 1'b0)) begin
-					nextstate <= `rsta;
-					flag = 1'b1;
 				end
 				else begin
 					nextstate <= `rsta;
 				end
 			end
 			`mvla: begin
+				s1v = 1'b1;
+				s2v = 1'b1;
+				s3v = 1'b0;
+				s4v = 1'b0;
 				s1 = {1'b0 /* write */, 7'h02 /* master volume */, 12'b0 /* reserved */};
 				s2 = {16'h0 /* unmuted, full volume */, 4'h0};
-				if((strobe === 1'b1) && (flag === 1'b1)) begin
+				rstreg = 1'b0;
+				increg = 1'b0;
+				csel = 1'b0;
+				if(strobe == 1'b1) begin
 					nextstate <= `snda;
-					flag = 1'b0;
-				end
-				else if ((strobe === 1'b1) && (flag === 1'b0)) begin
-					nextstate <= `mvla;
-					flag = 1'b1;
 				end
 				else begin
 					nextstate <= `mvla;
 				end
 			end
 			`snda: begin
-				s1 = {1'b0 /* write */, 7'h18 /* pcm volume */, 12'b0 /* reserved */};
-				s2 = {16'h0808 /* unmuted, 0dB */, 4'h0};
+				s1v = 1'b1;
+				s2v = 1'b1;
 				s3v = 1'b1;
 				s4v = 1'b1;
+				s1 = {1'b0 /* write */, 7'h18 /* pcm volume */, 12'b0 /* reserved */};
+				s2 = {16'h0808 /* unmuted, 0dB */, 4'h0};
+				rstreg = 1'b0;
 				csel = 1'b0;
-				if((strobe === 1'b1) && (counta === 1'b1)) begin
+				if((strobe == 1'b1) && (counta == 1'b1)) begin
 					nextstate <= `idle;
+					increg = 1'b0;
 				end
-				else if ((strobe === 1'b1) && (counta === 1'b0)) begin
+				else if ((strobe == 1'b1) && (counta == 1'b0)) begin
 					nextstate <= `snda;
 					increg = 1'b1;
 				end
 				else begin
 					nextstate <= `snda;
+					increg = 1'b0;
 				end
 			end
 			`rstc: begin
+				s1v = 1'b1;
+				s2v = 1'b1;
+				s3v = 1'b0;
+				s4v = 1'b0;
 				s1 = {1'b0 /* write */, 7'h00 /* reset */, 12'b0 /* reserved */};
 				s2 = {16'h0, 4'h0};
-				if((strobe === 1'b1) && (flag === 1'b1)) begin
+				rstreg = 1'b0;
+				csel = 1'b1;
+				increg = 1'b0;
+				if(strobe == 1'b1) begin
 					nextstate <= `mvlc;
-					flag = 1'b0;
-				end
-				else if ((strobe === 1'b1) && (flag === 1'b0)) begin
-					nextstate <= `rstc;
-					flag = 1'b1;
 				end
 				else begin
 					nextstate <= `rstc;
 				end
 			end
 			`mvlc: begin
+				s1v = 1'b1;
+				s2v = 1'b1;
+				s3v = 1'b0;
+				s4v = 1'b0;
 				s1 = {1'b0 /* write */, 7'h02 /* master volume */, 12'b0 /* reserved */};
 				s2 = {16'h0 /* unmuted, full volume */, 4'h0};
-				if((strobe === 1'b1) && (flag === 1'b1)) begin
+				rstreg = 1'b0;
+				csel = 1'b1;
+				increg = 1'b0;
+				if(strobe == 1'b1) begin
 					nextstate <= `sndc;
-					flag = 1'b0;
-				end
-				else if ((strobe === 1'b1) && (flag === 1'b0)) begin
-					nextstate <= `mvlc;
-					flag = 1'b1;
 				end
 				else begin
 					nextstate <= `mvlc;
 				end
 			end
 			`sndc: begin
-				s1 = {1'b0 /* write */, 7'h18 /* pcm volume */, 12'b0 /* reserved */};
-				s2 = {16'h0808 /* unmuted, 0dB */, 4'h0};
+				s1v = 1'b1;
+				s2v = 1'b1;
 				s3v = 1'b1;
 				s4v = 1'b1;
+				s1 = {1'b0 /* write */, 7'h18 /* pcm volume */, 12'b0 /* reserved */};
+				s2 = {16'h0808 /* unmuted, 0dB */, 4'h0};
+				rstreg = 1'b0;
 				csel = 1'b1;
-				if((strobe === 1'b1) && (counta === 1'b1)) begin
+				if((strobe == 1'b1) && (countc == 1'b1)) begin
 					nextstate <= `idle;
+					increg = 1'b0;
 				end
-				else if ((strobe === 1'b1) && (counta === 1'b0)) begin
+				else if ((strobe == 1'b1) && (countc == 1'b0)) begin
 					nextstate <= `sndc;
 					increg = 1'b1;
 				end
 				else begin
 					nextstate <= `sndc;
+					increg = 1'b0;
 				end
 			end
-			`drdr: nextstate <= `idle;
-			default: nextstate <= `idle;
+			`drdr: begin
+				nextstate <= `idle;
+				s1v = 1'b1;
+				s2v = 1'b1;
+				s3v = 1'b0;
+				s4v = 1'b0;
+				s1 = 20'b0;
+				s2 = 20'b0;
+				rstreg = 1'b0;
+				increg = 1'b0;
+				csel = 1'b0;
+			end
+			default: begin
+				nextstate <= `idle;
+				s1v = 1'b1;
+				s2v = 1'b1;
+				s3v = 1'b0;
+				s4v = 1'b0;
+				s1 = 20'b0;
+				s2 = 20'b0;
+				rstreg = 1'b0;
+				increg = 1'b0;
+				csel = 1'b0;
+			end
 		endcase
 	end
 	
-	always @(posedge AUDIO_BIT_CLK) begin
-		state <= nextstate;
-		if(increg === 1'b1) begin
-			addrreg <= addrreg + 2;
-		end
-	end
+
 	
 endmodule // ctrl
 
@@ -306,14 +371,14 @@ module ACLink(
 	output wire ac97_sync,
 	output wire ac97_reset_b,
 	output wire ac97_strobe,
-	input [255:0] data
+	input [0:255] data
 	);
 	
 	assign ac97_reset_b = 1;
 	// We may want to make this into a state machine eventually.
 	reg [7:0] curbit = 8'h0;	// Contains the bit currently on the bus.
-	reg [255:0] inbits = 256'h0;
-	reg [255:0] latched_inbits;
+	//reg [255:0] inbits = 256'h0;
+	//reg [255:0] latched_inbits;
 	/* Spec sez: rising edge should be in the middle of the final bit of
 	* the last slot, and the falling edge should be in the middle of
 	* the final bit of the TAG slot.
@@ -340,14 +405,14 @@ module ACLink(
 	* the rising edge that still contains bit FF.
 	*/
 	always @(posedge ac97_bitclk) begin
-		if (curbit == 8'hFF) begin
-		latched_inbits <= inbits;
-		end
+		//if (curbit == 8'hFF) begin
+		//latched_inbits <= inbits;
+		//end
 		curbit <= curbit + 1;
 	end
 	
-	always @(negedge ac97_bitclk)
-		inbits[curbit] <= ac97_sdata_in;
+	//always @(negedge ac97_bitclk)
+	//	inbits[curbit] <= ac97_sdata_in;
 		
 	/* Bit order is reversed; msb of tag sent first. */
 	wire [0:255] outbits = data;

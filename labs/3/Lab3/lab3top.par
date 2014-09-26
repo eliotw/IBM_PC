@@ -1,7 +1,7 @@
 Release 14.2 par P.28xd (lin64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-ahtanum.ece.cmu.edu::  Wed Sep 24 17:43:18 2014
+ahtanum.ece.cmu.edu::  Fri Sep 26 17:43:38 2014
 
 par -w -intstyle ise -ol high -mt off lab3top_map.ncd lab3top.ncd lab3top.pcf 
 
@@ -14,11 +14,6 @@ Loading device for application Rf_Device from file '5vlx110t.nph' in environment
 Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000 Celsius)
 Initializing voltage to 0.950 Volts. (default - Range: 0.950 to 1.050 Volts)
 
-INFO:Par:282 - No user timing constraints were detected or you have set the option to ignore timing constraints ("par
-   -x"). Place and Route will run in "Performance Evaluation Mode" to automatically improve the performance of all
-   internal clocks in this design. Because there are not defined timing requirements, a timing score will not be
-   reported in the PAR report in this mode. The PAR timing summary will list the performance achieved for each clock.
-   Note: For the fastest runtime, set the effort level to "std".  For best performance, set the effort level to "high".
 
 Device speed data version:  "PRODUCTION 1.73 2012-07-09".
 
@@ -26,55 +21,56 @@ Device speed data version:  "PRODUCTION 1.73 2012-07-09".
 
 Device Utilization Summary:
 
-   Number of BUFGs                           1 out of 32      3%
-   Number of External IOBs                   7 out of 640     1%
-      Number of LOCed IOBs                   7 out of 7     100%
+   Number of BSCANs                          1 out of 4      25%
+   Number of BUFGs                           2 out of 32      6%
+   Number of External IOBs                  15 out of 640     2%
+      Number of LOCed IOBs                  15 out of 15    100%
 
-   Number of Slices                          4 out of 17280   1%
-   Number of Slice Registers                 8 out of 69120   1%
-      Number used as Flip Flops              8
-      Number used as Latches                 0
+   Number of RAMB18X2s                       4 out of 148     2%
+   Number of RAMB36_EXPs                    39 out of 148    26%
+   Number of Slices                        307 out of 17280   1%
+   Number of Slice Registers               343 out of 69120   1%
+      Number used as Flip Flops            342
+      Number used as Latches                 1
       Number used as LatchThrus              0
 
-   Number of Slice LUTS                     12 out of 69120   1%
-   Number of Slice LUT-Flip Flop pairs      12 out of 69120   1%
+   Number of Slice LUTS                    453 out of 69120   1%
+   Number of Slice LUT-Flip Flop pairs     627 out of 69120   1%
 
 
 Overall effort level (-ol):   High 
 Router effort level (-rl):    High 
 
-Starting initial Timing Analysis.  REAL time: 7 secs 
-Finished initial Timing Analysis.  REAL time: 7 secs 
+Starting initial Timing Analysis.  REAL time: 8 secs 
+Finished initial Timing Analysis.  REAL time: 8 secs 
 
-WARNING:Par:288 - The signal GPIO_SW_E_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal GPIO_SW_W_IBUF has no load.  PAR will not attempt to route this signal.
 WARNING:Par:288 - The signal AUDIO_SDATA_IN_IBUF has no load.  PAR will not attempt to route this signal.
 Starting Router
 
 
-Phase  1  : 40 unrouted;      REAL time: 8 secs 
+Phase  1  : 7240 unrouted;      REAL time: 9 secs 
 
-Phase  2  : 29 unrouted;      REAL time: 8 secs 
+Phase  2  : 3247 unrouted;      REAL time: 9 secs 
 
-Phase  3  : 6 unrouted;      REAL time: 8 secs 
+Phase  3  : 712 unrouted;      REAL time: 11 secs 
 
-Phase  4  : 6 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
+Phase  4  : 712 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 16 secs 
 
 Updating file: lab3top.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
+Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 17 secs 
 
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
+Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 17 secs 
 
-Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
+Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 17 secs 
 
-Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
+Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 17 secs 
 
-Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
+Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 17 secs 
 
-Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
-Total REAL time to Router completion: 13 secs 
-Total CPU time to Router completion: 13 secs 
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 18 secs 
+Total REAL time to Router completion: 18 secs 
+Total CPU time to Router completion: 17 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -84,8 +80,35 @@ Partition Implementation Status
 -------------------------------
 
 Generating "PAR" statistics.
-INFO:Par:459 - The Clock Report is not displayed in the non timing-driven mode.
-Timing Score: 0 (Setup: 0, Hold: 0)
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+| AUDIO_BIT_CLK_BUFGP | BUFGCTRL_X0Y0| No   |  196 |  0.596     |  2.129      |
++---------------------+--------------+------+------+------------+-------------+
+|    icon_control0<0> |BUFGCTRL_X0Y31| No   |   65 |  0.325     |  1.860      |
++---------------------+--------------+------+------+------------+-------------+
+|   icon_control0<13> |         Local|      |    5 |  0.000     |  0.780      |
++---------------------+--------------+------+------+------------+-------------+
+|U_icon_pro/U0/iUPDAT |              |      |      |            |             |
+|               E_OUT |         Local|      |    1 |  0.000     |  0.695      |
++---------------------+--------------+------+------+------------+-------------+
+
+* Net Skew is the difference between the minimum and maximum routing
+only delays for the net. Note this is different from Clock Skew which
+is reported in TRCE timing report. Clock Skew is the difference between
+the minimum and maximum path delays which includes logic delays.
+
+* The fanout is the number of component pins not the individual BEL loads,
+for example SLICE loads not FF loads.
+
+Timing Score: 0 (Setup: 0, Hold: 0, Component Switching Limit: 0)
+
+Number of Timing Constraints that were not applied: 2
 
 Asterisk (*) preceding a constraint indicates it was not met.
    This may be due to a setup or hold violation.
@@ -94,8 +117,29 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net AUD | SETUP       |         N/A|     1.571ns|     N/A|           0
-  IO_BIT_CLK_BUFGP                          | HOLD        |     0.626ns|            |       0|           0
+  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    12.371ns|     2.629ns|       0|           0
+   TO TIMEGRP "J_CLK" 15 ns                 | HOLD        |     1.488ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    14.097ns|     0.903ns|       0|           0
+   TO TIMEGRP "U_CLK" 15 ns                 | HOLD        |     0.578ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    23.045ns|     6.955ns|       0|           0
+  IGH 50%                                   | HOLD        |     0.395ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_ac97_bitclk = PERIOD TIMEGRP "AUDIO_BI | SETUP       |    69.945ns|    11.435ns|       0|           0
+  T_CLK" 12.288 MHz HIGH 50%                | HOLD        |     0.278ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_D2_TO_T2_path" TIG               | SETUP       |         N/A|     3.045ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J2_TO_D2_path" TIG               | N/A         |         N/A|         N/A|     N/A|         N/A
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J3_TO_D2_path" TIG               | N/A         |         N/A|         N/A|     N/A|         N/A
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J4_TO_D2_path" TIG               | MAXDELAY    |         N/A|     3.233ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J_TO_D_path" TIG                 | SETUP       |         N/A|     3.400ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_D_TO_J_path" TIG                 | SETUP       |         N/A|     3.229ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -111,19 +155,20 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-WARNING:Par:283 - There are 3 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
+WARNING:Par:283 - There are 1 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
-Total REAL time to PAR completion: 17 secs 
-Total CPU time to PAR completion: 17 secs 
+Total REAL time to PAR completion: 22 secs 
+Total CPU time to PAR completion: 22 secs 
 
-Peak Memory Usage:  784 MB
+Peak Memory Usage:  754 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.
+Timing: Completed - No errors found.
 
 Number of error messages: 0
-Number of warning messages: 5
-Number of info messages: 2
+Number of warning messages: 3
+Number of info messages: 0
 
 Writing design to file lab3top.ncd
 

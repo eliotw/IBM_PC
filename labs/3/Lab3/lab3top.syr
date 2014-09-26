@@ -130,12 +130,10 @@ Analysis of file <"lab3top.prj"> succeeded.
 *                     Design Hierarchy Analysis                         *
 =========================================================================
 Analyzing hierarchy for module <lab3top> in library <work> with parameters.
-	ALRIGHT = "00000000000000010010100110100010"
-	COOL = "00000000000000010110000100010000"
+	ALRIGHT = "00000000000000001001010011010001"
+	COOL = "00000000000000001011000010001000"
 
-Analyzing hierarchy for module <rds> in library <work> with parameters.
-	ALRIGHT = "00000000000000010010100110100010"
-	COOL = "00000000000000010110000100010000"
+Analyzing hierarchy for module <rds> in library <work>.
 
 Analyzing hierarchy for module <ACLink> in library <work>.
 
@@ -144,47 +142,13 @@ Analyzing hierarchy for module <ACLink> in library <work>.
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing top module <lab3top>.
-	ALRIGHT = 32'sb00000000000000010010100110100010
-	COOL = 32'sb00000000000000010110000100010000
-WARNING:Xst:1464 - "lab3top.v" line 136: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 137: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 184: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 187: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 197: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 197: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 201: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 201: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 212: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 212: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 216: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 216: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 230: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 230: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 233: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 233: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 244: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 244: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 248: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 248: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 259: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 259: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 263: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 263: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 277: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 277: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 280: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 280: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "lab3top.v" line 295: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+	ALRIGHT = 32'sb00000000000000001001010011010001
+	COOL = 32'sb00000000000000001011000010001000
 Module <lab3top> is correct for synthesis.
  
 Analyzing module <rds> in library <work>.
-	ALRIGHT = 32'sb00000000000000010010100110100010
-	COOL = 32'sb00000000000000010110000100010000
-WARNING:Xst:1464 - "lab3top.v" line 62: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:905 - "lab3top.v" line 61: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <mcool>, <malright>
-WARNING:Xst:2211 - "ipcore_dir/alright.v" line 45: Instantiating black box module <alright>.
-WARNING:Xst:2211 - "ipcore_dir/cool.v" line 53: Instantiating black box module <cool>.
+WARNING:Xst:2211 - "ipcore_dir/alright.v" line 41: Instantiating black box module <alright>.
+WARNING:Xst:2211 - "ipcore_dir/cool.v" line 49: Instantiating black box module <cool>.
 Module <rds> is correct for synthesis.
  
 Analyzing module <ACLink> in library <work>.
@@ -196,19 +160,15 @@ Module <ACLink> is correct for synthesis.
 =========================================================================
 
 Performing bidirectional port resolution...
-INFO:Xst:2679 - Register <addrreg> in unit <lab3top> has a constant value of 000000000000000010 during circuit operation. The register is replaced by logic.
 
 Synthesizing Unit <ACLink>.
     Related source file is "lab3top.v".
-WARNING:Xst:646 - Signal <latched_inbits> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:647 - Input <ac97_sdata_in> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 1-bit 256-to-1 multiplexer for signal <ac97_sdata_out>.
-    Found 8-bit comparator less for signal <ac97_sync$cmp_lt0000> created at line 321.
+    Found 8-bit comparator less for signal <ac97_sync$cmp_lt0000> created at line 386.
     Found 8-bit up counter for signal <curbit>.
-    Found 256-bit register for signal <inbits>.
-INFO:Xst:738 - HDL ADVISOR - 256 flip-flops were inferred for signal <inbits>. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.
     Summary:
 	inferred   1 Counter(s).
-	inferred 256 D-type flip-flop(s).
 	inferred   1 Comparator(s).
 	inferred   1 Multiplexer(s).
 Unit <ACLink> synthesized.
@@ -222,17 +182,23 @@ Unit <rds> synthesized.
 
 Synthesizing Unit <lab3top>.
     Related source file is "lab3top.v".
-WARNING:Xst:646 - Signal <flag> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <countc> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 180 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-    Using one-hot encoding for signal <addrreg>.
-    Using one-hot encoding for signal <state>.
-    Found 8-bit register for signal <state>.
+INFO:Xst:1799 - State 111 is never reached in FSM <state>.
+    Found finite state machine <FSM_0> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 7                                              |
+    | Transitions        | 18                                             |
+    | Inputs             | 5                                              |
+    | Outputs            | 7                                              |
+    | Clock              | AUDIO_BIT_CLK             (rising_edge)        |
+    | Clock enable       | strobe                    (positive)           |
+    | Power Up State     | 000                                            |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 18-bit up counter for signal <addrreg>.
     Summary:
-	inferred   8 D-type flip-flop(s).
+	inferred   1 Finite State Machine(s).
+	inferred   1 Counter(s).
 Unit <lab3top> synthesized.
 
 
@@ -240,11 +206,9 @@ Unit <lab3top> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Counters                                             : 1
+# Counters                                             : 2
+ 18-bit up counter                                     : 1
  8-bit up counter                                      : 1
-# Registers                                            : 257
- 1-bit register                                        : 256
- 8-bit register                                        : 1
 # Comparators                                          : 1
  8-bit comparator less                                 : 1
 # Multiplexers                                         : 1
@@ -256,30 +220,33 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <state/FSM> on signal <state[1:3]> with sequential encoding.
+-------------------
+ State | Encoding
+-------------------
+ 000   | 000
+ 001   | 001
+ 010   | 011
+ 011   | 100
+ 100   | 010
+ 101   | 101
+ 110   | 110
+ 111   | unreached
+-------------------
 Reading core <ipcore_dir/alright.ngc>.
 Reading core <ipcore_dir/cool.ngc>.
-Loading core <alright> for timing and area information for instance <billy_bob>.
-Loading core <cool> for timing and area information for instance <billy>.
-WARNING:Xst:1710 - FF/Latch <state_0> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_2> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_3> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_5> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_6> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_7> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:2677 - Node <state_1> of sequential type is unconnected in block <lab3top>.
-WARNING:Xst:2677 - Node <state_4> of sequential type is unconnected in block <lab3top>.
-WARNING:Xst:2404 -  FFs/Latches <state<7:7>> (without init value) have a constant value of 0 in block <lab3top>.
-WARNING:Xst:2677 - Node <state_1> of sequential type is unconnected in block <lab3top>.
-WARNING:Xst:2677 - Node <state_4> of sequential type is unconnected in block <lab3top>.
+Loading core <alright> for timing and area information for instance <mem_alright>.
+Loading core <cool> for timing and area information for instance <mem_cool>.
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Counters                                             : 1
+# FSMs                                                 : 1
+# Counters                                             : 2
+ 18-bit up counter                                     : 1
  8-bit up counter                                      : 1
-# Registers                                            : 5
- Flip-Flops                                            : 5
 # Comparators                                          : 1
  8-bit comparator less                                 : 1
 # Multiplexers                                         : 1
@@ -290,13 +257,6 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-WARNING:Xst:1710 - FF/Latch <state_0> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_2> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_3> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_5> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <state_6> (without init value) has a constant value of 0 in block <lab3top>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1899 - Due to constant pushing, all outputs of the instance <rds0> of the block <rds> are unconnected in block <lab3top>.
-   This instance will be removed from the design along with all underlying logic
 
 Optimizing unit <lab3top> ...
 
@@ -305,6 +265,8 @@ Optimizing unit <rds> ...
 Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block lab3top, actual ratio is 0.
+FlipFlop addrreg_14 has been replicated 1 time(s)
+FlipFlop addrreg_2 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -312,8 +274,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 8
- Flip-Flops                                            : 8
+# Registers                                            : 31
+ Flip-Flops                                            : 31
 
 =========================================================================
 
@@ -339,24 +301,34 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 7
+# IOs                              : 15
 
 Cell Usage :
-# BELS                             : 29
-#      GND                         : 1
-#      INV                         : 1
-#      LUT1                        : 7
-#      LUT4                        : 2
-#      LUT5                        : 2
-#      MUXCY                       : 7
-#      VCC                         : 1
-#      XORCY                       : 8
-# FlipFlops/Latches                : 8
+# BELS                             : 282
+#      GND                         : 3
+#      INV                         : 4
+#      LUT1                        : 24
+#      LUT2                        : 8
+#      LUT3                        : 29
+#      LUT4                        : 45
+#      LUT5                        : 42
+#      LUT6                        : 68
+#      MUXCY                       : 24
+#      MUXF7                       : 6
+#      VCC                         : 3
+#      XORCY                       : 26
+# FlipFlops/Latches                : 41
 #      FD                          : 8
+#      FDE                         : 13
+#      FDR                         : 20
+# RAMS                             : 43
+#      RAMB18                      : 5
+#      RAMB36_EXP                  : 38
 # Clock Buffers                    : 1
 #      BUFGP                       : 1
-# IO Buffers                       : 3
-#      OBUF                        : 3
+# IO Buffers                       : 13
+#      IBUF                        : 2
+#      OBUF                        : 11
 =========================================================================
 
 Device utilization summary:
@@ -366,22 +338,24 @@ Selected Device : 5vlx110tff1136-1
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:               8  out of  69120     0%  
- Number of Slice LUTs:                   12  out of  69120     0%  
-    Number used as Logic:                12  out of  69120     0%  
+ Number of Slice Registers:              41  out of  69120     0%  
+ Number of Slice LUTs:                  220  out of  69120     0%  
+    Number used as Logic:               220  out of  69120     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:     12
-   Number with an unused Flip Flop:       4  out of     12    33%  
-   Number with an unused LUT:             0  out of     12     0%  
-   Number of fully used LUT-FF pairs:     8  out of     12    66%  
-   Number of unique control sets:         1
+ Number of LUT Flip Flop pairs used:    232
+   Number with an unused Flip Flop:     191  out of    232    82%  
+   Number with an unused LUT:            12  out of    232     5%  
+   Number of fully used LUT-FF pairs:    29  out of    232    12%  
+   Number of unique control sets:         5
 
 IO Utilization: 
- Number of IOs:                           7
- Number of bonded IOBs:                   4  out of    640     0%  
+ Number of IOs:                          15
+ Number of bonded IOBs:                  14  out of    640     2%  
 
 Specific Feature Utilization:
+ Number of Block RAM/FIFO:               41  out of    148    27%  
+    Number using Block RAM only:         41
  Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
 
 ---------------------------
@@ -402,23 +376,31 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
------------------------------------+------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)  | Load  |
------------------------------------+------------------------+-------+
-AUDIO_BIT_CLK                      | BUFGP                  | 8     |
------------------------------------+------------------------+-------+
+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)                                                                                                                    | Load  |
+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-------+
+AUDIO_BIT_CLK                      | BUFGP                                                                                                                                    | 84    |
+rds0/mem_cool/N1                   | NONE(rds0/mem_cool/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)   | 23    |
+rds0/mem_alright/N1                | NONE(rds0/mem_alright/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)| 20    |
+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
 Asynchronous Control Signals Information:
 ----------------------------------------
-No asynchronous control signals found in this design
+-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-------+
+Control Signal                                 | Buffer(FF name)                                                                                                                          | Load  |
+-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-------+
+rds0/mem_cool/N1(rds0/mem_cool/XST_GND:G)      | NONE(rds0/mem_cool/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)   | 168   |
+rds0/mem_alright/N1(rds0/mem_alright/XST_GND:G)| NONE(rds0/mem_alright/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)| 136   |
+-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -1
 
-   Minimum period: 1.941ns (Maximum Frequency: 515.198MHz)
-   Minimum input arrival time before clock: No path found
-   Maximum output required time after clock: 4.823ns
+   Minimum period: 3.668ns (Maximum Frequency: 272.628MHz)
+   Minimum input arrival time before clock: 2.656ns
+   Maximum output required time after clock: 11.240ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -427,67 +409,91 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'AUDIO_BIT_CLK'
-  Clock period: 1.941ns (frequency: 515.198MHz)
-  Total number of paths / destination ports: 36 / 8
+  Clock period: 3.668ns (frequency: 272.628MHz)
+  Total number of paths / destination ports: 2662 / 1218
 -------------------------------------------------------------------------
-Delay:               1.941ns (Levels of Logic = 9)
-  Source:            billy/curbit_0 (FF)
-  Destination:       billy/curbit_7 (FF)
+Delay:               3.668ns (Levels of Logic = 4)
+  Source:            addrreg_16 (FF)
+  Destination:       addrreg_0 (FF)
   Source Clock:      AUDIO_BIT_CLK rising
   Destination Clock: AUDIO_BIT_CLK rising
 
-  Data Path: billy/curbit_0 to billy/curbit_7
+  Data Path: addrreg_16 to addrreg_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               3   0.471   0.347  billy/curbit_0 (billy/curbit_0)
-     INV:I->O              1   0.238   0.000  billy/Mcount_curbit_lut<0>_INV_0 (billy/Mcount_curbit_lut<0>)
-     MUXCY:S->O            1   0.372   0.000  billy/Mcount_curbit_cy<0> (billy/Mcount_curbit_cy<0>)
-     MUXCY:CI->O           1   0.026   0.000  billy/Mcount_curbit_cy<1> (billy/Mcount_curbit_cy<1>)
-     MUXCY:CI->O           1   0.026   0.000  billy/Mcount_curbit_cy<2> (billy/Mcount_curbit_cy<2>)
-     MUXCY:CI->O           1   0.026   0.000  billy/Mcount_curbit_cy<3> (billy/Mcount_curbit_cy<3>)
-     MUXCY:CI->O           1   0.026   0.000  billy/Mcount_curbit_cy<4> (billy/Mcount_curbit_cy<4>)
-     MUXCY:CI->O           1   0.026   0.000  billy/Mcount_curbit_cy<5> (billy/Mcount_curbit_cy<5>)
-     MUXCY:CI->O           0   0.026   0.000  billy/Mcount_curbit_cy<6> (billy/Mcount_curbit_cy<6>)
-     XORCY:CI->O           1   0.357   0.000  billy/Mcount_curbit_xor<7> (Result<7>)
-     FD:D                     -0.018          billy/curbit_7
+     FDR:C->Q              3   0.471   1.080  addrreg_16 (addrreg_16)
+     LUT6:I0->O            2   0.094   0.581  counta150 (counta150)
+     LUT6:I4->O            3   0.094   0.587  countc1 (countc)
+     LUT6:I4->O           18   0.094   0.573  increg1 (increg)
+     LUT3:I2->O            1   0.094   0.000  addrreg_0_rstpot (addrreg_0_rstpot)
+     FDR:D                    -0.018          addrreg_0
     ----------------------------------------
-    Total                      1.941ns (1.594ns logic, 0.347ns route)
-                                       (82.1% logic, 17.9% route)
+    Total                      3.668ns (0.847ns logic, 2.821ns route)
+                                       (23.1% logic, 76.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'AUDIO_BIT_CLK'
+  Total number of paths / destination ports: 3 / 2
+-------------------------------------------------------------------------
+Offset:              2.656ns (Levels of Logic = 3)
+  Source:            GPIO_SW_E (PAD)
+  Destination:       state_FSM_FFd2 (FF)
+  Destination Clock: AUDIO_BIT_CLK rising
+
+  Data Path: GPIO_SW_E to state_FSM_FFd2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             2   0.818   0.581  GPIO_SW_E_IBUF (GPIO_SW_E_IBUF)
+     LUT2:I0->O            1   0.094   1.069  state_FSM_FFd2-In_SW0 (N41)
+     LUT6:I0->O            1   0.094   0.000  state_FSM_FFd2-In (state_FSM_FFd2-In)
+     FDE:D                    -0.018          state_FSM_FFd2
+    ----------------------------------------
+    Total                      2.656ns (1.006ns logic, 1.650ns route)
+                                       (37.9% logic, 62.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'AUDIO_BIT_CLK'
-  Total number of paths / destination ports: 16 / 2
+  Total number of paths / destination ports: 1104 / 9
 -------------------------------------------------------------------------
-Offset:              4.823ns (Levels of Logic = 3)
-  Source:            billy/curbit_4 (FF)
+Offset:              11.240ns (Levels of Logic = 11)
+  Source:            rds0/mem_cool/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP (RAM)
   Destination:       AUDIO_SDATA_OUT (PAD)
   Source Clock:      AUDIO_BIT_CLK rising
 
-  Data Path: billy/curbit_4 to AUDIO_SDATA_OUT
+  Data Path: rds0/mem_cool/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP to AUDIO_SDATA_OUT
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               3   0.471   0.800  billy/curbit_4 (billy/curbit_4)
-     LUT4:I0->O            1   0.094   0.576  billy/ac97_sync21 (N2)
-     LUT5:I3->O            1   0.094   0.336  billy/Mmux_ac97_sdata_out11 (AUDIO_SDATA_OUT_OBUF)
+     RAMB36_EXP:REGCLKAU->DOA1    1   2.180   0.789  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP (U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.ram_douta<1>)
+     LUT6:I2->O            1   0.094   0.576  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/Mmux_dout_mux132 (U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/Mmux_dout_mux131)
+     LUT4:I2->O            1   0.094   0.480  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/Mmux_dout_mux133 (U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/Mmux_dout_mux132)
+     LUT5:I4->O            1   0.094   1.069  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/Mmux_dout_mux135 (douta<2>)
+     end scope: 'rds0/mem_cool'
+     LUT6:I0->O            2   0.094   0.485  linkmod/curbit<1>633 (linkmod/curbit<1>633)
+     LUT6:I5->O            1   0.094   0.000  linkmod/curbit<1>6127_G (N31)
+     MUXF7:I1->O           2   0.254   0.581  linkmod/curbit<1>6127 (linkmod/curbit<1>_mmx_out2)
+     LUT6:I4->O            1   0.094   0.576  linkmod/Mmux_ac97_sdata_out1768 (linkmod/Mmux_ac97_sdata_out1768)
+     LUT6:I4->O            1   0.094   0.710  linkmod/Mmux_ac97_sdata_out17432_SW0 (N22)
+     LUT5:I2->O            1   0.094   0.336  linkmod/Mmux_ac97_sdata_out17432 (AUDIO_SDATA_OUT_OBUF)
      OBUF:I->O                 2.452          AUDIO_SDATA_OUT_OBUF (AUDIO_SDATA_OUT)
     ----------------------------------------
-    Total                      4.823ns (3.111ns logic, 1.712ns route)
-                                       (64.5% logic, 35.5% route)
+    Total                     11.240ns (5.638ns logic, 5.602ns route)
+                                       (50.2% logic, 49.8% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 13.00 secs
-Total CPU time to Xst completion: 11.96 secs
+Total REAL time to Xst completion: 16.00 secs
+Total CPU time to Xst completion: 16.04 secs
  
 --> 
 
 
-Total memory usage is 679076 kilobytes
+Total memory usage is 669876 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   56 (   0 filtered)
-Number of infos    :    3 (   0 filtered)
+Number of warnings :    6 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
 
