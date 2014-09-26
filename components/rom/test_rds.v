@@ -11,21 +11,28 @@ module test_rds;
    wire [7:0] d;
    integer   i, j, errors, memaddr;
    reg [7:0] mem [65535:0];
+	reg clk;
    
+   // CS Setup
    assign cs_n = ~cs;
 
-   initial
-     $readmemh("bios.txt", mem, 0, 65535);
+   // BIOS Setup
+   initial begin
+      $readmemh("bios.txt", mem, 0, 65535);
+   end
+
+   // Clock Setup
+   always begin
+      #5 clk = ~clk;
+   end
    
-   // ls280 under test
-   rds #(0) rds0(.a(a),.d(d),.cs_n(cs_n[0]));
-   rds #(1) rds1(.a(a),.d(d),.cs_n(cs_n[1]));
-   rds #(2) rds2(.a(a),.d(d),.cs_n(cs_n[2]));
-   rds #(3) rds3(.a(a),.d(d),.cs_n(cs_n[3]));
-   rds #(4) rds4(.a(a),.d(d),.cs_n(cs_n[4]));
-   rds #(5) rds5(.a(a),.d(d),.cs_n(cs_n[5]));
-   rds #(6) rds6(.a(a),.d(d),.cs_n(cs_n[6]));
-   rds #(7) rds7(.a(a),.d(d),.cs_n(cs_n[7]));
+   // ROM module under test
+   rom rm97(
+	    .a(a),
+	    .d(d),
+	    .cs_n(cs_n),
+	    .clk(clk)
+	    );
    
    // sts
    initial begin
@@ -33,18 +40,19 @@ module test_rds;
       $display ("***************");
       $display ("Setting Up Test");
       $display ("***************");
-      #1;
+      clk = 1'b0;
+      @(posedge clk);
       cs = 8'b0;
       a = 13'b0;
       errors = 0;
-      #1;
+      @(posedge clk);
       // Run Some Tests
       $display ("**************");
       $display ("Run Some Tests");
       $display ("**************");
       for (i=0; i<8; i=i+1) begin
 	 for(j=0; j<8192; j=j+1) begin
-	    #1;
+	    @(posedge clk);
 	    a = j;
 	    memaddr = j + i*(8192);
 	    case(i)
@@ -58,13 +66,14 @@ module test_rds;
 	      7: cs = 8'b10000000;
 	      default: cs = 8'b00000000;
 	    endcase // case (i)
-	    #1;
+	    @(posedge clk);
+		 @(posedge clk);
 	    if(d !== mem[memaddr]) begin
-	       $display("NO: %b %b",mem[memaddr],d);
+	       $display("NO: %h %b %b",memaddr,mem[memaddr],d);
 	       errors = errors + 1;
 	    end
 	    else begin
-	       $display("OK: %b %b",mem[memaddr],d);
+	       $display("OK: %h %b %b",memaddr,mem[memaddr],d);
 	    end
 	 end // for (j=0; j<8192; j=j+1
       end // for (i=0; i<256; i=i+1)
@@ -76,5 +85,7 @@ module test_rds;
       end
       $finish();
    end // initial begin
-   
-endmodule
+	
+endmodule // rom
+
+
