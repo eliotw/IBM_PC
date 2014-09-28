@@ -15,6 +15,12 @@ module test_8253;
    reg 	     rd_n, wr_n, cs_n, a0, a1, clk, gate;
    reg [7:0] d;
    wire [2:0] out;
+   integer    i, errors;
+
+   // Display output
+   always @(out) begin
+      $display("%d: OUT - %b",$time,out);
+   end
    
    // Intel 8253 Under Test
    intel8253 i8(
@@ -41,17 +47,130 @@ module test_8253;
       begin
 	 a1 = register[1];
 	 a0 = register[0];
-	 cs_n = 0;
-         #50
-	   d = data;
-         #100
-	   wr_n = 0;
-         #400
-	   wr_n = 1;
-         #50
-	   cs_n = 1;
+	 cs_n = 1'b0;
+	 d = data;
+	 #10;
+	 wr_n = 1'b0;
+	 @(posedge clk);
+	 #10;
+	 wr_n = 1'b1;
+	 cs_n = 1'b1;
    end
    endtask // write
+
+   initial begin
+      // Set Up Initial Conditions
+      $display ("***********");
+      $display ("Set Up 8253");
+      $display ("***********");
+      gate = 1'b0;
+      clk = 1'b0;
+      rd_n = 1'b1;
+      wr_n = 1'b1;
+      cs_n = 1'b1;
+      a0 = 1'b0;
+      a1 = 1'b0;
+      d = 8'b0;
+      i = 0;
+      errors = 0;
+      @(posedge clk);
+
+      // Start Test of Timer 0
+      // This involves setting timer 0 to LSB MSB Mode 3 by inputting 36h.
+      // The initial timer count is set to 0, which means that a square
+      // wave will be generated every 65536 counts
+      @(posedge clk);
+      $display ("************");
+      $display ("Test Timer 0");
+      $display ("************");
+
+      write(2'b11,8'h36);
+      write(2'b00,8'h00);
+      write(2'b00,8'h00);
+      
+      /*
+      a1 = 1'b1;
+      a0 = 1'b1;
+      cs_n = 1'b0;
+      d = 8'h36;
+      #10;
+      wr_n = 1'b0;
+      @(posedge clk);
+      #10;
+      wr_n = 1'b1;
+      
+      a1 = 1'b0;
+      a0 = 1'b0;
+      cs_n = 1'b0;
+      d = 8'h00;
+      #10;
+      wr_n = 1'b0;
+      @(posedge clk);
+      #10;
+      wr_n = 1'b1;
+      
+      a1 = 1'b0;
+      a0 = 1'b0;
+      cs_n = 1'b0;
+      d = 8'h00;
+      #10;
+      wr_n = 1'b0;
+      @(posedge clk);
+      #10;
+      wr_n = 1'b1;
+      cs_n = 1'b1;
+      */
+      // Loop and be sure that our output is high
+      for(i=0; i<32768; i=i+1) begin
+	 @(posedge clk);
+	 cs_n = 1'b1;
+	 wr_n = 1'b1;
+	 if(out[0] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[0]);
+	    errors = errors + 1;
+	 end
+      end
+      // Loop and be sure that our output is low
+      for(i=0; i<32768; i=i+1) begin
+	 @(posedge clk);
+	 cs_n = 1'b1;
+	 wr_n = 1'b1;
+	 if(out[0] !== 1'b0) begin
+	    $display("ERR OUT NOT 0, %b",out[0]);
+	    errors = errors + 1;
+	 end
+      end // for (i=0; i<32768; i++)
+      // Loop and be sure that our output is high
+      for(i=0; i<32768; i=i+1) begin
+	 @(posedge clk);
+	 cs_n = 1'b1;
+	 wr_n = 1'b1;
+	 if(out[0] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[0]);
+	    errors = errors + 1;
+	 end
+      end // for (i=0; i<32768; i++)
+      // Loop and be sure that our output is low
+      for(i=0; i<32768; i=i+1) begin
+	 @(posedge clk);
+	 cs_n = 1'b1;
+	 wr_n = 1'b1;
+	 if(out[0] !== 1'b0) begin
+	    $display("ERR OUT NOT 0, %b",out[0]);
+	    errors = errors + 1;
+	 end
+      end 
+
+      // Conclude Test
+      @(posedge clk);
+      if(errors > 0) begin
+	 $display("8253 TEST FAILURE WITH %d ERRORS",errors);
+      end
+      else begin
+         $display("8253 TEST SUCCESS");
+      end
+      $finish();
+   end
    
    // Set timer 1 LSB Mode 2 with 54H
    // Set initial timer 1 count to 0 (not 0, 18)
@@ -138,14 +257,18 @@ module test;
     if ($test$plusargs("waves"))
       begin
 
-        $gr_waves("CS_", CS_, "RD_", RD_, "WR_", WR_, "A1", A1, "A0", A0, "D", `D,
-                  "CLK0", CLK0, "GATE0", GATE0, "OUT0", OUT0, "CNT0", U.C0.COUNT,
+        $gr_waves("CS_",CS_,"RD_",RD_,"WR_",WR_,"A1", A1, "A0", A0, "D", `D,
+                  "CLK0", CLK0, "GATE0", GATE0,"OUT0",OUT0, "CNT0", U.C0.COUNT,
                   "SETOUT_", U.C0.SETOUT_, "CLROUT_", U.C0.CLROUT_,
-                  "LOAD", U.C0.LOAD, "RELOAD", U.C0.RELOAD, "LOADCNT", U.C0.LOADCNT,
-                  "CLK1", CLK1, "GATE1", GATE1, "OUT1", OUT1, "CNT1", U.C1.COUNT,
-                  "CLK2", CLK2, "GATE2", GATE2, "OUT2", OUT2, "CNT2", U.C2.COUNT);
+                  "LOAD",U.C0.LOAD,"RELOAD",U.C0.RELOAD,"LOADCNT",U.C0.LOADCNT,
+                  "CLK1",CLK1,"GATE1", GATE1,"OUT1", OUT1, "CNT1", U.C1.COUNT,
+                  "CLK2", CLK2,"GATE2",GATE2,"OUT2", OUT2, "CNT2", U.C2.COUNT);
       end
 
+  always @(OUT0 or OUT1 or OUT2) begin
+     $display("OUT: %b%b%b at %d",OUT2,OUT1,OUT0,$time);
+  end
+   
   initial
     if ($test$plusargs("monitor"))
       begin : monitor
@@ -369,7 +492,14 @@ module test;
       GATE0 = 0;
       #50
       GATE0 = 1;
-      #1000 
+       @(posedge CLK0);
+       
+       $display("time: %d",$time);
+      #10000
+       //#10000000;
+      // $display("...");
+       //#10000000;
+       
       $finish;
     end
 

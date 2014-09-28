@@ -81,7 +81,13 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
  
   reg    [7:0] COUNTLSB,
                COUNTMSB;
- 
+
+   // Witchcraft!
+   always @(COUNTMSB or COUNTLSB) begin
+      //$display("count: %b%b",COUNTMSB,COUNTLSB);
+   end
+   
+   
   // Count Register
 
   always @(posedge WR_)
@@ -110,12 +116,16 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
                    // Write LSB First
                    COUNTLSB = D;
                    CLRLOADLSB = 'b1;
+		    //$display("fajita: %b",D);
+		    
                  end
                else
                  begin
                    // Write MSB Only After LSB Loaded
                    COUNTMSB = D;
-                   SETLOADLSB = 'b1;
+                   //SETLOADLSB = 'b1;
+		    //$display("fujita: %b",D);
+		    
                    // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
                    if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
                      LOAD = 'b1;
@@ -164,7 +174,7 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
   reg           LOAD,
                 CLRLOAD;
   reg    [15:0] COUNT;
-
+   
   function [15:0] BCDDOWN;
     input [1:0] VALUE;
     begin
@@ -216,7 +226,7 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
             else
               if (COUNT[0])
                 if (OUT)
-                  COUNT = COUNT - 1;
+                  COUNT = COUNT - 1; // was 1
                 else
                   COUNT = COUNT - 3;
               else 
@@ -299,10 +309,9 @@ module i8253(A0, A1, RD_, WR_, CS_, D7, D6, D5, D4, D3, D2, D1, D0,
   wire SEL1 = ~CS_ & (~A1 & A0);
   wire SEL2 = ~CS_ & (A1 & ~A0);
 
-  COUNT
-    C0(WR_,RD_,SEL0,SELMODE0,D7,D6,D5,D4,D3,D2,D1,D0,CLK0,GATE0,OUT0),
-    C1(WR_,RD_,SEL1,SELMODE1,D7,D6,D5,D4,D3,D2,D1,D0,CLK1,GATE1,OUT1),
-    C2(WR_,RD_,SEL2,SELMODE2,D7,D6,D5,D4,D3,D2,D1,D0,CLK2,GATE2,OUT2);
+   COUNT #0 C0(WR_,RD_,SEL0,SELMODE0,D7,D6,D5,D4,D3,D2,D1,D0,CLK0,GATE0,OUT0);
+   COUNT #1 C1(WR_,RD_,SEL1,SELMODE1,D7,D6,D5,D4,D3,D2,D1,D0,CLK1,GATE1,OUT1);
+   COUNT #2 C2(WR_,RD_,SEL2,SELMODE2,D7,D6,D5,D4,D3,D2,D1,D0,CLK2,GATE2,OUT2);
 
 endmodule
 
@@ -330,6 +339,8 @@ module COUNT(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT);
 
   output      OUT;
 
+   parameter CNTVAL = 0;
+   
   wire        LOAD,
               RELOAD,
               SETOUT_,
@@ -349,6 +360,12 @@ module COUNT(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT);
 
   wire LOADCNT = LOAD | RELOAD;
 
+   always @(COUNT) begin
+      if(CNTVAL == 0) begin
+	 //$display("cnt: %b",COUNT);
+      end
+   end
+   
   read
     READ(`D,LATCHLSB,LATCHMSB,MODE[5:4],SEL,RD_,WR_,MODEWRITE,CLRLATCH);
 
@@ -494,7 +511,7 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
                   // Set Out High When Counter Is Not 1 
                   OUT = 'b1;
                 end
-          3 : if (COUNT == 16'h2)
+          3 : if (COUNT == 16'h4) // was originally 2
                 begin
                   // Toggle Out When Counter Reaches 2
                   OUT = ~OUT;
@@ -502,18 +519,25 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
                   RELOAD = 'b1;
                 end
           4 ,
-          5 : if (COUNT)
-                begin
+          5 : begin
+	     if (COUNT)
+               begin
                   // Set Out High When Counter Is Not 0
                   OUT = 'b1;
-                end
-              else
-                if (TRIG)
-                  begin
-                    // Set Out Low When Counter Hits 0 And Was Triggered
-                    OUT = 'b0;
-                    CLRTRIG = 'b1;
-                  end
+               end
+             else
+	       begin
+		  //$display("ZERO TRIG: %b",TRIG);
+		  
+                  if (TRIG)
+                    begin
+                       // Set Out Low When Counter Hits 0 And Was Triggered
+                       OUT = 'b0;
+                       CLRTRIG = 'b1;
+                    end
+	       end // else: !if(COUNT)
+	  end // case: 4 ,...
+	  
         endcase
     end
   // Set OUT High Immediately When GATE Goes Low In Modes 2 and 3
@@ -523,16 +547,21 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
   // Retrigger When GATE Goes High In Modes 1, 2 and 5
   always @(posedge GATE)
     if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
-      RETRIG = 'b1;
+      begin
+	 RETRIG = 'b1;
+	 //$display("retrig: %b",RETRIG);
+      end
     else
       RETRIG = 'b0;
 
   // Set or Clear OUT After A Mode Write
-  always @(SETOUT_)
-    if (!SETOUT_)
-      assign OUT = 'b1;
-    else
-      deassign OUT;
+  always @(SETOUT_) begin
+     if (!SETOUT_)
+       assign OUT = 'b1;
+     else
+       deassign OUT;
+  end
+   
 
   always @(CLROUT_)
     if (!CLROUT_)
@@ -541,10 +570,16 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
       deassign OUT;
 
   // Counter Trigger Flag
-
-  always @(RETRIG or MODETRIG)
-    if (RETRIG || MODETRIG)
-      TRIG = 'b1;
+  always @(RETRIG or MODETRIG) begin
+     //$display("retrig %b modetrig %b",RETRIG,MODETRIG);
+     
+     if (RETRIG || MODETRIG) begin
+	TRIG = 'b1;
+	RETRIG = 1'b0;
+	
+	//$display("retrig to trig 1");
+     end
+  end	
  
   always @(CLRTRIG)
     if (CLRTRIG)
