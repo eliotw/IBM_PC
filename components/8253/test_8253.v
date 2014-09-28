@@ -88,43 +88,9 @@ module test_8253;
       write(2'b00,8'h00);
       write(2'b00,8'h00);
       
-      /*
-      a1 = 1'b1;
-      a0 = 1'b1;
-      cs_n = 1'b0;
-      d = 8'h36;
-      #10;
-      wr_n = 1'b0;
-      @(posedge clk);
-      #10;
-      wr_n = 1'b1;
-      
-      a1 = 1'b0;
-      a0 = 1'b0;
-      cs_n = 1'b0;
-      d = 8'h00;
-      #10;
-      wr_n = 1'b0;
-      @(posedge clk);
-      #10;
-      wr_n = 1'b1;
-      
-      a1 = 1'b0;
-      a0 = 1'b0;
-      cs_n = 1'b0;
-      d = 8'h00;
-      #10;
-      wr_n = 1'b0;
-      @(posedge clk);
-      #10;
-      wr_n = 1'b1;
-      cs_n = 1'b1;
-      */
       // Loop and be sure that our output is high
       for(i=0; i<32768; i=i+1) begin
 	 @(posedge clk);
-	 cs_n = 1'b1;
-	 wr_n = 1'b1;
 	 if(out[0] !== 1'b1) begin
 	    $display("ERR OUT NOT 1, %b",out[0]);
 	    errors = errors + 1;
@@ -133,8 +99,6 @@ module test_8253;
       // Loop and be sure that our output is low
       for(i=0; i<32768; i=i+1) begin
 	 @(posedge clk);
-	 cs_n = 1'b1;
-	 wr_n = 1'b1;
 	 if(out[0] !== 1'b0) begin
 	    $display("ERR OUT NOT 0, %b",out[0]);
 	    errors = errors + 1;
@@ -143,8 +107,6 @@ module test_8253;
       // Loop and be sure that our output is high
       for(i=0; i<32768; i=i+1) begin
 	 @(posedge clk);
-	 cs_n = 1'b1;
-	 wr_n = 1'b1;
 	 if(out[0] !== 1'b1) begin
 	    $display("ERR OUT NOT 1, %b",out[0]);
 	    errors = errors + 1;
@@ -153,14 +115,69 @@ module test_8253;
       // Loop and be sure that our output is low
       for(i=0; i<32768; i=i+1) begin
 	 @(posedge clk);
-	 cs_n = 1'b1;
-	 wr_n = 1'b1;
 	 if(out[0] !== 1'b0) begin
 	    $display("ERR OUT NOT 0, %b",out[0]);
 	    errors = errors + 1;
 	 end
       end 
 
+      // Start Test of Timer 1
+      // This involves setting timer 1 to LSB Mode 2 by inputting 54h.
+      // The initial timer count is set to 12h, which means that a rate
+      // will be generated every 18 counts to refresh memory
+      @(posedge clk);
+      $display ("************");
+      $display ("Test Timer 1");
+      $display ("************");
+
+      write(2'b11,8'h54);
+      write(2'b01,8'h12);
+      /*
+      // Loop and be sure that our output is low
+      for(i=0; i<1800; i=i+1) begin
+	 @(posedge clk);
+      end // for (i=0; i<32768; i=i+1)
+      */
+      @(posedge clk);
+      for(i=0; i<17; i=i+1) begin
+	 @(posedge clk);
+	 if(out[1] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[1]);
+	    errors = errors + 1;
+	 end
+      end // for (i=0; i<32768; i=i+1)
+      @(posedge clk);
+      if(out[1] !== 1'b0) begin
+	 $display("ERR OUT NOT 0, %b",out[1]);
+	 errors = errors + 1;
+      end
+      // Loop and be sure that our output is low
+      for(i=0; i<17; i=i+1) begin
+	 @(posedge clk);
+	 if(out[1] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[1]);
+	    errors = errors + 1;
+	 end
+      end // for (i=0; i<32768; i++)
+      @(posedge clk);
+      if(out[1] !== 1'b0) begin
+	 $display("ERR OUT NOT 0, %b",out[1]);
+	 errors = errors + 1;
+      end
+      // Loop and be sure that our output is low
+      for(i=0; i<17; i=i+1) begin
+         @(posedge clk);
+         if(out[1] !== 1'b1) begin
+            $display("ERR OUT NOT 1, %b",out[1]);
+            errors = errors + 1;
+         end
+      end // for (i=0; i<32768; i++)
+      @(posedge clk);
+      if(out[1] !== 1'b0) begin
+         $display("ERR OUT NOT 0, %b",out[1]);
+         errors = errors + 1;
+      end
+       
       // Conclude Test
       @(posedge clk);
       if(errors > 0) begin
@@ -174,16 +191,10 @@ module test_8253;
    
    // Set timer 1 LSB Mode 2 with 54H
    // Set initial timer 1 count to 0 (not 0, 18)
-   // set timer 0 to LSB MSB Mode 3 with 36h
-   // set initial timer count to 0
+   
    // Set timer 2 LSB MSB mode 3 with b6h
    // set initial timer count to 0533h 
    /*
-    The 16-bit COUNT registers of channels 0, 1, and 2 are located at I/O ports 40h, 41h, and 43h, resp. Each COUNT register must be loaded according to the mode selected in the CONTROL byte for that channel; single-byte loads leave the other byte 0. The COUNT register may be read "on the fly" by latching the current count from the downcounter into the COUNT register while the downcounter continues counting.
-    
-    In the PC all three channels use a 1.19318 MHz signal as clock input. GATE0 and GATE1 are permanently tied to 1, so the outputs of Channels 0 and 1 are continuous. The channels are programmed during the BIOS power-up initialization sequence as follows:
-    
-    The CONTROL byte for Channel 0 is 00110110b Channel 0, 2-byte count value, mode 3 (continuous symmetrical square wave), count in binary. The COUNT value for Channel 0 is 0000h, i.e., 65536 counts, so the frequency of OUT0 is 1.1931817 Mhz/65536 ≈ 18.2 Hz. Channel 0's output is connected to the IRQ0 Interrupt Request line of the 8259 Interrupt Controller; hence an interrupt 08h will occur at a 18.2 Hz rate, or once every 55 msec. The interrupt 08h handler maintains the PC's time-of-day clock and performs other internal timing functions. To simplify the use of the timer interrupt for user applications (and to minimize interactions with the internal timing functions), the interrupt 08h handler issues a software interrupt 1Ch which is vectored during initialization to the "default interrupt handler" (an IRET).
     
     The CONTROL byte for Channel 1 is 01010100b Channel 1, 1-byte (LSB) count value, mode 2 (rate generator), count in binary. The COUNT value for Channel 1 is (00)12h = 18, so the frequency of OUT1 is 1.1931817 Mhz/18 ≈ 66 kHz. Channel 1 controls the refresh timing of the memory.
     

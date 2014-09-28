@@ -499,7 +499,7 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
                   // Do Not Retrigger
                   CLRTRIG = 'b1;
                 end
-          2 : if (COUNT == 16'b1)
+          2 : if (COUNT == 16'h2) // was originally 1
                 begin
                   // Set Out Low When Counter Reaches 1 
                   OUT = 'b0;
