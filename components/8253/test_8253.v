@@ -132,12 +132,7 @@ module test_8253;
 
       write(2'b11,8'h54);
       write(2'b01,8'h12);
-      /*
-      // Loop and be sure that our output is low
-      for(i=0; i<1800; i=i+1) begin
-	 @(posedge clk);
-      end // for (i=0; i<32768; i=i+1)
-      */
+      
       @(posedge clk);
       for(i=0; i<17; i=i+1) begin
 	 @(posedge clk);
@@ -177,7 +172,133 @@ module test_8253;
          $display("ERR OUT NOT 0, %b",out[1]);
          errors = errors + 1;
       end
-       
+
+      // Start Test of Timer 2
+      // This involves setting timer 2 to LSB MSB Mode 3 by inputting b6h.
+      // The initial timer count is set to 0533h, which means that a clock
+      // of 1331 for the speaker beep
+      @(posedge clk);
+      $display ("*****************");
+      $display ("Test Timer 2 Gate");
+      $display ("*****************");
+
+      write(2'b11,8'hb6);
+      write(2'b10,8'h33);
+      write(2'b10,8'h05);
+      gate = 1'b1;
+      
+      // Loop and be sure that our output is high
+      for(i=0; i<666; i=i+1) begin
+	 @(posedge clk);
+	 if(out[2] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[2]);
+	    errors = errors + 1;
+	 end
+      end
+      // Loop and be sure that our output is low
+      for(i=0; i<665; i=i+1) begin
+	 @(posedge clk);
+	 if(out[2] !== 1'b0) begin
+	    $display("ERR OUT NOT 0, %b",out[2]);
+	    errors = errors + 1;
+	 end
+      end
+      // Loop and be sure that our output is high
+      for(i=0; i<666; i=i+1) begin
+	 @(posedge clk);
+	 if(out[2] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[2]);
+	    errors = errors + 1;
+	 end
+      end
+      // Loop and be sure that our output is low
+      for(i=0; i<665; i=i+1) begin
+	 @(posedge clk);
+	 if(out[2] !== 1'b0) begin
+	    $display("ERR OUT NOT 0, %b",out[2]);
+	    errors = errors + 1;
+	 end
+      end
+      @(posedge clk);
+      $display ("********************");
+      $display ("Test Timer 2 No Gate");
+      $display ("********************");
+      // Remove gate control
+      gate = 1'b0;
+      // Loop and be sure that our output is high
+      for(i=0; i<666; i=i+1) begin
+	 @(posedge clk);
+	 if(out[2] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[2]);
+	    errors = errors + 1;
+	 end
+      end
+      // Loop and be sure that our output is high
+      for(i=0; i<665; i=i+1) begin
+	 @(posedge clk);
+	 if(out[2] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[2]);
+	    errors = errors + 1;
+	 end
+      end
+      // Loop and be sure that our output is high
+      for(i=0; i<666; i=i+1) begin
+	 @(posedge clk);
+	 if(out[2] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[2]);
+	    errors = errors + 1;
+	 end
+      end
+      // Loop and be sure that our output is high
+      for(i=0; i<665; i=i+1) begin
+	 @(posedge clk);
+	 if(out[2] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[2]);
+	    errors = errors + 1;
+	 end
+      end
+      @(posedge clk);
+      $display ("********************");
+      $display ("Test Timer 2 Re-Gate");
+      $display ("********************");
+      // Re-add gate control
+      write(2'b11,8'hb6);
+      write(2'b10,8'h33);
+      write(2'b10,8'h05);
+      gate = 1'b1;
+      // Loop and be sure that our output is high
+      for(i=0; i<666; i=i+1) begin
+	 @(posedge clk);
+	 if(out[2] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[2]);
+	    errors = errors + 1;
+	 end
+      end
+      // Loop and be sure that our output is low
+      for(i=0; i<665; i=i+1) begin
+	 @(posedge clk);
+	 if(out[2] !== 1'b0) begin
+	    $display("ERR OUT NOT 0, %b",out[2]);
+	    errors = errors + 1;
+	 end
+      end
+      // Loop and be sure that our output is high
+      for(i=0; i<666; i=i+1) begin
+	 @(posedge clk);
+	 if(out[2] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[2]);
+	    errors = errors + 1;
+	 end
+      end
+      // Loop and be sure that our output is low
+      for(i=0; i<665; i=i+1) begin
+	 @(posedge clk);
+	 if(out[2] !== 1'b0) begin
+	    $display("ERR OUT NOT 0, %b",out[2]);
+	    errors = errors + 1;
+	 end
+      end
+      
       // Conclude Test
       @(posedge clk);
       if(errors > 0) begin
@@ -189,8 +310,6 @@ module test_8253;
       $finish();
    end
    
-   // Set timer 1 LSB Mode 2 with 54H
-   // Set initial timer 1 count to 0 (not 0, 18)
    
    // Set timer 2 LSB MSB mode 3 with b6h
    // set initial timer count to 0533h 

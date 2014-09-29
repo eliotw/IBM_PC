@@ -113,18 +113,19 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
                end
         'b11 : if (LOADLSB)
                  begin
-                   // Write LSB First
-                   COUNTLSB = D;
-                   CLRLOADLSB = 'b1;
-		    //$display("fajita: %b",D);
+                    // Write LSB First
+                    COUNTLSB = D;
+                    CLRLOADLSB = 1'b1;
+		    //$display("fajita: %b %b",D,CLRLOADLSB);
 		    
                  end
                else
                  begin
-                   // Write MSB Only After LSB Loaded
-                   COUNTMSB = D;
-                   //SETLOADLSB = 'b1;
-		    //$display("fujita: %b",D);
+                    // Write MSB Only After LSB Loaded
+                    COUNTMSB = D;
+                    //SETLOADLSB =  'b1;
+		    CLRLOADLSB = 1'b0;
+		    //$display("fujita: %b %b",D,CLRLOADLSB);
 		    
                    // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
                    if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
@@ -148,9 +149,12 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
       end
 
   // Flag LOADLSB Is Cleared When In 2 Byte Mode And LSB Has Been Read
-  always @(CLRLOADLSB)
-    if (CLRLOADLSB)
-      LOADLSB = 'b0;
+  always @(CLRLOADLSB) begin
+     //$display("CLEARLOADLSB");
+     if (CLRLOADLSB)
+       LOADLSB = 'b0;
+  end
+   
 
 endmodule
 
@@ -213,6 +217,8 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
           COUNT = {COUNTMSB,COUNTLSB};
           // Clear Load Flag
           CLRLOAD = 1;
+	   //$display("reload count: %h", COUNT);
+	   
         end
       else
         begin
@@ -512,12 +518,18 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
                   OUT = 'b1;
                 end
           3 : if (COUNT == 16'h4) // was originally 2
-                begin
-                  // Toggle Out When Counter Reaches 2
+            begin
+	       if(LOAD == 1'b1) begin
+		  OUT = 1'b1;
+		  RELOAD = 1'b0;
+	       end
+	       else begin
+		  // Toggle Out When Counter Reaches 2
                   OUT = ~OUT;
                   // Reload New Count
-                  RELOAD = 'b1;
-                end
+                  RELOAD = 1'b1;
+	       end   
+            end
           4 ,
           5 : begin
 	     if (COUNT)
