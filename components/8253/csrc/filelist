@@ -24,7 +24,11 @@ _vcsobj_1_1.o : _vcsobj_1_1.a
 	fi
 
 
-VCS_INCR_OBJS=
+VCS_INCR_OBJS=pre_vcsobj_0_1.o 
+
+pre_vcsobj_0_1.o : pre_vcsobj_0_1.a
+	@$(AR) -s $<
+	ld -r -m elf_i386 -o $@ --whole-archive $< --no-whole-archive
 
 
 

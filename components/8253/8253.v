@@ -21,7 +21,7 @@ module intel8253(
 
    input [2:0] gate, clk;
    input       rd_n, wr_n, cs_n, a0, a1;
-   input [7:0] d;
+   inout [7:0] d;
    output [2:0] out;
 
    i8253 vcs(
@@ -93,6 +93,7 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
   always @(posedge WR_)
     if (SEL & RD_)
       case (MODE[5:4])
+	
         'b01 : begin
                  // Write LSB
                  COUNTLSB = D;
@@ -367,7 +368,7 @@ module COUNT(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT);
   wire LOADCNT = LOAD | RELOAD;
 
    always @(COUNT) begin
-      if(CNTVAL == 0) begin
+      if(CNTVAL == 0) begin	 
 	 //$display("cnt: %b",COUNT);
       end
    end
@@ -488,7 +489,7 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
       CLRTRIG = 'b0;
       if ((GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5)) && OUTENABLE)
         case (MODE[3:1])
-          0 : if (!COUNT)
+          0 : if (COUNT == 16'h2)
                 begin
                   // Set Out High On Terminal Count
                   OUT = 'b1;
@@ -611,9 +612,9 @@ module outlatch(COUNT, LATCHLSB, LATCHMSB, LATCHCNT);
   output [ 7:0] LATCHLSB,
                 LATCHMSB;
 
-  reg    [ 7:0] LATCHLSB,
-                LATCHMSB;
-
+//  reg    [ 7:0] LATCHLSB,
+  //              LATCHMSB;
+/*
   always @(LATCHCNT)
     if (LATCHCNT)
       begin
@@ -622,7 +623,10 @@ module outlatch(COUNT, LATCHLSB, LATCHMSB, LATCHCNT);
       end
     else
       assign {LATCHMSB,LATCHLSB} = COUNT;    // Follow Counter If Not Latched 
-
+*/
+  
+   assign {LATCHMSB,LATCHLSB} = COUNT;
+    
 endmodule
 
 /*
@@ -636,8 +640,8 @@ module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
               WR_,
               MODEWRITE;
   input [5:4] MODE;
-  input [7:0] D,
-              LATCHLSB,
+   inout [7:0] D;
+   input [7:0] LATCHLSB,
               LATCHMSB;
 
   output      CLRLATCH;
@@ -650,46 +654,63 @@ module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
   reg   [7:0] DREG;
 
   assign D = (SEL & ~RD_ & WR_) ? DREG : 8'bz;
-
+   /*
+   always @((SEL & ~RD_ & WR_)) begin
+      $display("dreg %b",DREG);
+   end
+   */
   // Read Output Latch 
   always @(SEL or RD_ or WR_)
-    if (SEL & ~RD_ & WR_)
+    if (SEL & ~RD_ & WR_)         
       case (MODE[5:4])
         'b01 : begin
-                 // Read LSB
-                 assign DREG = LATCHLSB;
-                 // Reset Latch Command
-                 CLRLATCH = 'b1;
+           // Read LSB
+           DREG = LATCHLSB;
+           // Reset Latch Command
+           CLRLATCH = 1'b1;
+	   CLRREADLSB = 1'b0;
+	   
                end
         'b10 : begin
                  // Read MSB
-                 assign DREG = LATCHMSB;
+                 DREG = LATCHMSB;
+	   CLRREADLSB = 1'b0;
+	   
                  // Reset Latch Command
-                 CLRLATCH = 'b1;
+                 CLRLATCH = 1'b1;
                end
         'b11 : if (READLSB)
                  begin
                    // Read LSB First
-                   assign DREG = LATCHLSB;
-                   CLRREADLSB = 'b1;
+		    CLRLATCH = 1'b0;
+//		    $display("dddddddddddddddddd");
+ 
+                   DREG = LATCHLSB;
+                   CLRREADLSB = 1'b1;
                  end
                else
                  begin
                    // Read MSB Only After LSB Is Read 
-                   assign DREG = LATCHMSB;
-                   SETREADLSB = 'b1;
+                   DREG = LATCHMSB;
+                   CLRREADLSB = 1'b0;
+		    //SETREADLSB = 'b1;
+//		    $display("fasdfadsf");    
                    // Reset Latch Command
                    CLRLATCH = 'b1;
                  end
       endcase
     else
       begin
-        deassign DREG;
+        DREG = 8'b0;
         CLRLATCH = 'b0;
         CLRREADLSB = 'b0;
         SETREADLSB = 'b0;
       end
 
+   always @((SEL & ~RD_ & WR_)) begin
+  //    $display("dreg %b",DREG);
+   end
+   
   // Flag READLSB Is Set When In 2 Byte Mode And LSB Has Not Been Read Yet
   always @(SETREADLSB or MODEWRITE)
     if (SETREADLSB || MODEWRITE)
@@ -698,7 +719,9 @@ module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
   // Flag READLSB Is Cleared When In 2 Byte Mode And LSB Has Been Read
 
   always @(CLRREADLSB)
-    if (CLRREADLSB)
-      READLSB = 'b0;
-
+    begin
+//       $display("clr read lsb %b",CLRREADLSB);   
+       if (CLRREADLSB)
+	 READLSB = 1'b0;
+    end
 endmodule

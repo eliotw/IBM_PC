@@ -1,6 +1,6 @@
 Chronologic VCS simulator copyright 1991-2012
 Contains Synopsys proprietary information.
-Compiler version F-2011.12-SP1; Runtime version F-2011.12-SP1;  Sep 28 20:34 2014
+Compiler version F-2011.12-SP1; Runtime version F-2011.12-SP1;  Sep 28 22:53 2014
 ***********
 Set Up 8253
 ***********
@@ -928,10 +928,27 @@ Test Timer 2 Re-Gate
            139126000: OUT - 001
            139127000: OUT - 011
            139130000: OUT - 111
-8253 TEST SUCCESS
-$finish called from file "test_8253.v", line 310.
-$finish at simulation time            139130500
+***************
+Test Timer Test
+***************
+           139130510: OUT - 110
+           139144000: OUT - 100
+           139145000: OUT - 110
+           139155000: OUT - 111
+           139162000: OUT - 101
+           139163000: OUT - 111
+           139180000: OUT - 101
+           139181000: OUT - 111
+           139198000: OUT - 101
+           139199000: OUT - 111
+           139205510: OUT - 110
+read: 00110000
+read: 00110000
+Count wrong: 3030
+8253 TEST FAILURE WITH           1 ERRORS
+$finish called from file "test_8253.v", line 386.
+$finish at simulation time            139209500
            V C S   S i m u l a t i o n   R e p o r t 
-Time: 139130500
+Time: 139209500
 CPU Time:      0.390 seconds;       Data structure size:   0.0Mb
-Sun Sep 28 20:34:16 2014
+Sun Sep 28 22:53:17 2014

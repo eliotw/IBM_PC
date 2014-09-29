@@ -1442,21 +1442,22 @@ extern void CallMhdlCoercedPort(void*, UP);
 extern "C" {
 #endif
 void  hsF_0_0_0_(UB  * I655, vec32  * I656, U  I677);
-void  hsF_0_0_6_(UB  * I655, scalar  val, U  I694);
-void  hsF_0_0_7_(UB  * I655, vec32  * I818, U  I694, U  I829);
-void  hsF_0_0_9_(UB  * I655, vec32  * I656);
-void  hsF_0_1_0_(UB  * I655, scalar  val);
-void  hsC_0_2_0_(UB  * I655, scalar  val);
+void  hsF_0_1_0_(UB  * I655, vec32  * I656, U  I677);
+void  hsF_0_1_6_(UB  * I655, scalar  val, U  I694);
+void  hsF_0_1_7_(UB  * I655, vec32  * I818, U  I694, U  I829);
+void  hsF_0_1_9_(UB  * I655, vec32  * I656);
+void  hsF_0_2_0_(UB  * I655, scalar  val);
+void  hsF_0_2_8_(UB  * I655, scalar  val);
 void  hsF_0_3_0_(UB  * I655, scalar  val);
+void  hsF_0_3_8_(UB  * I655, scalar  val);
 void  hsF_0_4_0_(UB  * I655, scalar  val);
-void  hsF_0_5_0_(UB  * I655, scalar  val);
-void  hsF_0_5_8_(UB  * I655, scalar  val);
+void  hsC_0_5_0_(UB  * I655, scalar  val);
 void  hsF_0_6_0_(UB  * I655, scalar  val);
-void  hsF_0_6_8_(UB  * I655, scalar  val);
-void  hsC_0_7_0_(UB  * I655, scalar  val);
+void  hsF_0_7_0_(UB  * I655, scalar  val);
 void  hsC_0_8_0_(UB  * I655, scalar  val);
 void  hsC_0_9_0_(UB  * I655, scalar  val);
-void  hsC_0_9_5_(UB  * I655, UB  val);
+void  hsC_0_10_0_(UB  * I655, scalar  val);
+void  hsC_0_10_5_(UB  * I655, UB  val);
 void  schedNewEvent(struct dummyq_struct * I748, EBLK  * I749, U  I556);
 U   bsfFun(U  I760);
 #ifdef __cplusplus

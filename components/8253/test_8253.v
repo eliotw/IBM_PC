@@ -12,8 +12,10 @@
 module test_8253;
 
    // Registers for Data
-   reg 	     rd_n, wr_n, cs_n, a0, a1, clk, gate;
+   reg 	     rd_n, wr_n, cs_n, a0, a1, clk, gate,actin;
    reg [7:0] d;
+   reg [15:0] datao;
+   wire [7:0] din;
    wire [2:0] out;
    integer    i, errors;
 
@@ -21,6 +23,9 @@ module test_8253;
    always @(out) begin
       $display("%d: OUT - %b",$time,out);
    end
+
+   // Activate input
+   assign din = (actin === 1'b1) ? d : 8'bzzzzzzzz;
    
    // Intel 8253 Under Test
    intel8253 i8(
@@ -31,7 +36,7 @@ module test_8253;
 		.cs_n(cs_n), 
 		.a0(a0),
 		.a1(a1),
-		.d(d),
+		.d(din),
 		.out(out)
 		);
 
@@ -58,11 +63,66 @@ module test_8253;
    end
    endtask // write
 
+   // Task for reading from a register
+   task read;
+      input [1:0] register;
+      input [7:0] data;
+      output [15:0] dataout;
+      begin
+	 write(2'b11,{register,6'b000000});
+	 actin = 1'b0;
+	 #10;
+	 
+	 $display("read: %b",din);
+	 actin = 1'b1;
+	 #10;
+	 
+	 write(2'b11,{register,6'b110000});
+	 actin = 1'b0;
+	 #10;
+	 
+	 $display("read: %b",din);
+	 actin = 1'b0;
+	 #10;
+	 
+	 a1 = register[1];
+	 a0 = register[0];
+	 cs_n = 1'b0;
+	 #10;
+	 rd_n = 1'b0;
+	 @(posedge clk);
+	 #10;
+	 actin = 1'b0;
+	 #10;
+	 $display("read: %b",din);
+	 dataout[7:0] = din;
+	 rd_n = 1'b1;
+	 cs_n = 1'b1;
+	 actin = 1'b1;
+	 
+	 a1 = register[1];
+	 a0 = register[0];
+	 cs_n = 1'b0;
+	 #10;
+	 rd_n = 1'b0;
+	 @(posedge clk);
+	 #10;
+	 actin = 1'b0;
+	 #10;
+	 $display("read: %b",din);
+	 dataout[15:8] = din;
+	 rd_n = 1'b1;
+	 cs_n = 1'b1;
+	 actin = 1'b1;
+      end
+   endtask // write
+   
    initial begin
       // Set Up Initial Conditions
       $display ("***********");
       $display ("Set Up 8253");
       $display ("***********");
+      actin = 1'b1;
       gate = 1'b0;
       clk = 1'b0;
       rd_n = 1'b1;
@@ -298,6 +358,40 @@ module test_8253;
 	    errors = errors + 1;
 	 end
       end
+
+      // Start Test of Timer Test
+      // This involves making sure that the time will pass the bios' test
+      @(posedge clk);
+      $display ("***************");
+      $display ("Test Timer Test");
+      $display ("***************");
+
+      write(2'b11,8'h10);
+      write(2'b00,8'h16);
+      
+      // Loop and be sure that our output is low
+      for(i=0; i<22; i=i+1) begin
+	 @(posedge clk);
+	 if(out[0] !== 1'b0) begin
+	    $display("ERR OUT NOT 0, %b",out[0]);
+	    errors = errors + 1;
+	 end
+      end
+      //actin = 1'b0;
+      
+      // Loop and be sure that our output is high
+      for(i=0; i<51; i=i+1) begin
+	 @(posedge clk);
+	 if(out[0] !== 1'b1) begin
+	    $display("ERR OUT NOT 1, %b",out[0]);
+	    errors = errors + 1;
+	 end
+      end
+      read(2'b00,8'h00,datao);
+      if(datao !== 16'b1111111111001101) begin
+	 $display("Count wrong: %h",datao);
+	 errors = errors + 1;
+      end
       
       // Conclude Test
       @(posedge clk);
@@ -310,15 +404,6 @@ module test_8253;
       $finish();
    end
    
-   
-   // Set timer 2 LSB MSB mode 3 with b6h
-   // set initial timer count to 0533h 
-   /*
-    
-    The CONTROL byte for Channel 1 is 01010100b Channel 1, 1-byte (LSB) count value, mode 2 (rate generator), count in binary. The COUNT value for Channel 1 is (00)12h = 18, so the frequency of OUT1 is 1.1931817 Mhz/18 ≈ 66 kHz. Channel 1 controls the refresh timing of the memory.
-    
-    The CONTROL byte for Channel 2 is 10110110b Channel 2, 2-byte count value, mode 3 (symmetrical square wave, continuous provided OUT2 = 1), count in binary. The COUNT value for Channel 2 is 0533h = 1331, so the frequency of OUT2 is 1.1931817 MHz/1331 ≈ 896 Hz. Channel 2 is used to produce a beep from the built-in speaker. More details on controlling the speaker are given below.
-    */
 endmodule // test_8253
 
 /*
