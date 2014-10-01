@@ -19,6 +19,186 @@ module intel8042(
 
    reg [7:0] udata; // Holds the current untranslated keyboard code
    wire [7:0] tdata; // Holds the current translated keyboard code
+   reg [7:0]  latch; // Tells which data to latch
+   reg [4:0]  state, nextstate; // fsm states
+
+   // FSM State Enum
+   parameter [4:0]
+		idle = 5'd09,
+		start = 5'd00,
+		b1 = 5'd01,
+		b2 = 5'd02,
+		b3 = 5'd03,
+		b4 = 5'd04,
+		b5 = 5'd05,
+		b6 = 5'd06,
+		b7 = 5'd07,
+		b8 = 5'd08,
+		s0 = 5'd10,
+		s1 = 5'd11,
+		s2 = 5'd12,
+		s3 = 5'd13,
+		s4 = 5'd14,
+		s5 = 5'd15,
+		s6 = 5'd16,
+		s7 = 5'd17,
+		finish = 5'd18;
+
+   // FSM Next State Logic
+   always @(KEYBOARD_DATA_0 or state or KBD_CLK) begin
+      case(state)
+	idle: begin
+	   if(KEYBOARD_DATA_0 == 1'b0) begin
+	      nextstate = start;
+	   end
+	   else begin
+	      nextstate = idle;
+	   end
+	   latch = 8'b0;
+	   KBD_DATA = 1'b1;
+	end
+	start: begin
+	   nextstate = b1;
+	   latch = 8'b00000001;
+	   KBD_DATA = 1'b1;
+	end
+	b1: begin
+	   nextstate = b2;
+	   latch = 8'b00000010;
+	   KBD_DATA = 1'b1;
+	end
+	b2: begin
+	   nextstate = b3;
+	   latch = 8'b00000100;
+	   KBD_DATA = 1'b1;
+	end
+	b3: begin
+	   nextstate = b4;
+	   latch = 8'b00001000;
+	   KBD_DATA = 1'b1;
+	end
+	b4: begin
+	   nextstate = b5;
+	   latch = 8'b00010000;
+	   KBD_DATA = 1'b1;
+	end
+	b5: begin
+	   nextstate = b6;
+	   latch = 8'b00100000;
+	   KBD_DATA = 1'b1;
+	end
+	b6: begin
+	   nextstate = b7;
+	   latch = 8'b01000000;
+	   KBD_DATA = 1'b1;
+	end
+	b7: begin
+	   nextstate = b8;
+	   latch = 8'b10000000;
+	   KBD_DATA = 1'b0;
+	end
+	b8: begin
+	   nextstate = s0;
+	   latch = 8'b0;
+	   KBD_DATA = 1'b0;
+	end
+	s0: begin
+	   nextstate = s1;
+	   latch = 8'b0;
+	   KBD_DATA = tdata[0];
+	end
+	s1: begin
+	   nextstate = s2;
+	   latch = 8'b0;
+	   KBD_DATA = tdata[1];
+	end
+	s2: begin
+	   nextstate = s3;
+	   latch = 8'b0;
+	   KBD_DATA = tdata[2];
+	end
+	s3: begin
+	   nextstate = s4;
+	   latch = 8'b0;
+	   KBD_DATA = tdata[3];
+	end
+	s4: begin
+	   nextstate = s5;
+	   latch = 8'b0;
+	   KBD_DATA = tdata[4];
+	end
+	s5: begin
+	   nextstate = s6;
+	   latch = 8'b0;
+	   KBD_DATA = tdata[5];
+	end
+	s6: begin
+	   nextstate = s7;
+	   latch = 8'b0;
+	   KBD_DATA = tdata[6];
+	end
+	s7: begin
+	   nextstate = finish;
+	   latch = 8'b0;
+	   KBD_DATA = tdata[7];
+	end
+	finish: begin
+	   nextstate = idle;
+	   latch = 8'b0;
+	   KBD_DATA = 1'b1;
+	end
+	default: begin
+	   nextstate = idle;
+	   latch = 8'b0;
+	   KBD_DATA = 1'b1;
+	end
+      endcase // case (state)
+   end // always @ (KEYBOARD_DATA_0 or state or KBD_CLK)
+
+   // FSM Current State Logic
+   always @(posedge KBD_CLK) begin
+      state = nextstate;
+   end
+   
+   // Data Latch 0
+   always @(posedge latch[0]) begin
+      udata[0] = KEYBOARD_DATA_0;
+   end
+   
+   // Data Latch 1
+   always @(posedge latch[1]) begin
+      udata[1] = KEYBOARD_DATA_0;
+   end
+   
+   // Data Latch 2
+   always @(posedge latch[2]) begin
+      udata[2] = KEYBOARD_DATA_0;
+   end
+   
+   // Data Latch 3
+   always @(posedge latch[3]) begin
+      udata[3] = KEYBOARD_DATA_0;
+   end
+   
+   // Data Latch 4
+   always @(posedge latch[4]) begin
+      udata[4] = KEYBOARD_DATA_0;
+   end
+   
+   // Data Latch 5
+   always @(posedge latch[5]) begin
+      udata[5] = KEYBOARD_DATA_0;
+   end
+   
+   // Data Latch 6
+   always @(posedge latch[6]) begin
+      udata[6] = KEYBOARD_DATA_0;
+   end
+   
+   // Data Latch 7
+   always @(posedge latch[7]) begin
+      udata[7] = KEYBOARD_DATA_0;
+   end
    
    // IBM PC clock to keyboard
    assign KEYBOARD_CLK_0 = KBD_CLK;

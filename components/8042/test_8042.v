@@ -5,65 +5,104 @@
 module test_ls138;
 
    // signals
-   reg [2:0] d,g;
-   wire      a,b,c,g2,g1,g2a,g2b;
-   wire [7:0] ty;
-   reg [7:0]  gy;
-   integer    errors, i, j;
-
-   // assign input vector
-   assign a = d[0];
-   assign b = d[1];
-   assign c = d[2];
-   assign g1 = g[0];
-   assign g2a = g[1];
-   assign g2b = g[2];
-   assign g2 = g2a | g2b;
+   reg clk,rst,din,actline;
+   wire clock,dout,d;
+   reg [7:0] dtr;
    
-   // ls138 under test
-   ls138 billy(
-	       .a(a), 
-	       .b(b),
-	       .c(c),
-	       .g2b(g2b),
-	       .g2a(g2a),
-	       .g1(g1),
-	       .y(ty)
-	       );
-      
-   // mock version of ls138
-   always @(d or g2 or g1) begin
-      if((g1 === 1'b1) && (g2 === 1'b0)) begin
-	 case(d)
-	   0: gy = 8'b11111110;
-	   1: gy = 8'b11111101;
-	   2: gy = 8'b11111011;
-	   3: gy = 8'b11110111;
-	   4: gy = 8'b11101111;
-	   5: gy = 8'b11011111;
-	   6: gy = 8'b10111111;
-	   7: gy = 8'b01111111;
-	   default: gy = 8'b11111111;
-	 endcase // case (d)
-      end
-      else begin
-	 gy = 8'b11111111;
-      end
+   integer    errors, i, j;
+   
+   // intel8042 under test
+   intel8042 kbrd(
+		  .KBD_CLK(clk),
+		  .KBD_DATA(d),
+		  .KBD_RESET_N(rst),
+		  .KEYBOARD_CLK_0(clock),
+		  .KEYBOARD_DATA_0(dout)
+		 );
+
+   // Clock
+   always begin
+      #5 clk = ~clk;
+   end
+   
+   // Send Line
+   assign d = (actline === 1'b1) ? din : 1'b1;
+   
+   // Receive Module
+   always @(negedge dout) begin
+      receivedata();
    end
 
-   // sts
+   // Receive Task
+   task receivedata;
+      begin
+	 @(posedge clk);
+	 @(posedge clk);
+	 dtr[0] = dout;
+	 @(posedge clk);
+	 dtr[1] = dout;
+	 @(posedge clk);
+	 dtr[2] = dout;
+	 @(posedge clk);
+	 dtr[3] = dout;
+	 @(posedge clk);
+	 dtr[4] = dout;
+	 @(posedge clk);
+	 dtr[5] = dout;
+	 @(posedge clk);
+	 dtr[6] = dout;
+	 @(posedge clk);
+	 dtr[7] = dout;
+      end
+   endtask // receivedata
+   
+   // Send Task
+   task senddata;
+      begin
+	 input [7:0] dts;
+	 din = 1'b1;
+	 actline = 1'b1;
+	 @(posedge clk);
+	 din = 1'b0;
+	 @(posedge clk);
+	 din = dts[0];
+	 @(posedge clk);
+	 din = dts[1];
+	 @(posedge clk);
+	 din = dts[2];
+	 @(posedge clk);
+	 din = dts[3];
+	 @(posedge clk);
+	 din = dts[4];
+	 @(posedge clk);
+	 din = dts[5];
+	 @(posedge clk);
+	 din = dts[6];
+	 @(posedge clk);
+	 din = dts[7];
+	 @(posedge clk);
+	 din = 1'b1;
+	 @(posedge clk);
+	 din = 1'b1;
+	 actline = 1'b0;
+      end
+   endtask // senddata
+   
+   // Test Suite
    initial begin
       // Set Up Test
       $display ("***************");
       $display ("Setting Up Test");
       $display ("***************");
-      #1;
-      g = 3'b000;
-      d = 3'b000;
+      actline = 1'b0;
+      clk = 1'b0;
+      rst = 1'b0;
+      din = 1'b1;
       i = 0;
       j = 0;
       errors = 0;
-      #1;
+      @(posedge clk);
+      // Actually DO THIS!
       // Run Some Tests
       $display ("**************");
       $display ("Run Some Tests");
