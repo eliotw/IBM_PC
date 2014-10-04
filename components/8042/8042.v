@@ -17,8 +17,9 @@ module intel8042(
    output KEYBOARD_CLK_0; // To Keyboard
    inout  KEYBOARD_DATA_0; // To/From Keyboard
 
+   reg 	  KBD_DATA;
    reg [7:0] udata; // Holds the current untranslated keyboard code
-   wire [7:0] tdata; // Holds the current translated keyboard code
+   reg [7:0] tdata; // Holds the current translated keyboard code
    reg [7:0]  latch; // Tells which data to latch
    reg [4:0]  state, nextstate; // fsm states
 
@@ -220,7 +221,7 @@ module intel8042(
 	8'h0a: tdata = 8'h42;
 	8'h0b: tdata = 8'h40;
 	8'h0c: tdata = 8'h3e;
-	8'h0d: tdata = 8'h64;
+	8'h0d: tdata = 8'h0f;
 	8'h0e: tdata = 8'h29;
 	8'h0f: tdata = 8'h59;
 	// Block 1
