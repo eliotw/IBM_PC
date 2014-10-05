@@ -17,12 +17,17 @@ module intel8042(
    output KEYBOARD_CLK_0; // To Keyboard
    inout  KEYBOARD_DATA_0; // To/From Keyboard
 
-   reg 	  KBD_DATA;
+   reg 	  KBD_DATA; // Data to IBM PC
    reg [7:0] udata; // Holds the current untranslated keyboard code
    reg [7:0] tdata; // Holds the current translated keyboard code
    reg [7:0]  latch; // Tells which data to latch
    reg [4:0]  state, nextstate; // fsm states
-
+   wire       isf; // Tells if the data received is 0xf0
+   reg 	      highbit; // If the last data received was 0xf0
+   
+   // Assign isf
+   assign isf = (udata == 8'hf0);
+   
    // FSM State Enum
    parameter [4:0]
 		idle = 5'd09,
@@ -43,7 +48,8 @@ module intel8042(
 		s5 = 5'd15,
 		s6 = 5'd16,
 		s7 = 5'd17,
-		finish = 5'd18;
+		extra = 5'd18,
+		finish = 5'd19;
 
    // FSM Next State Logic
    always @(KEYBOARD_DATA_0 or state or KBD_CLK) begin
@@ -55,6 +61,7 @@ module intel8042(
 	   else begin
 	      nextstate = idle;
 	   end
+	   highbit = highbit;
 	   latch = 8'b0;
 	   KBD_DATA = 1'b1;
 	end
@@ -62,96 +69,129 @@ module intel8042(
 	   nextstate = b1;
 	   latch = 8'b00000001;
 	   KBD_DATA = 1'b1;
+	   highbit = highbit;
 	end
 	b1: begin
 	   nextstate = b2;
 	   latch = 8'b00000010;
 	   KBD_DATA = 1'b1;
+	   highbit = highbit;
 	end
 	b2: begin
 	   nextstate = b3;
 	   latch = 8'b00000100;
 	   KBD_DATA = 1'b1;
+	   highbit = highbit;
 	end
 	b3: begin
 	   nextstate = b4;
 	   latch = 8'b00001000;
 	   KBD_DATA = 1'b1;
+	   highbit = highbit;
 	end
 	b4: begin
 	   nextstate = b5;
 	   latch = 8'b00010000;
 	   KBD_DATA = 1'b1;
+	   highbit = highbit;
 	end
 	b5: begin
 	   nextstate = b6;
 	   latch = 8'b00100000;
 	   KBD_DATA = 1'b1;
+	   highbit = highbit;
 	end
 	b6: begin
 	   nextstate = b7;
 	   latch = 8'b01000000;
 	   KBD_DATA = 1'b1;
+	   highbit = highbit;
 	end
 	b7: begin
-	   nextstate = b8;
+	   nextstate = extra;
 	   latch = 8'b10000000;
-	   KBD_DATA = 1'b0;
+	   KBD_DATA = 1'b1;
+	   highbit = highbit;
+	end
+	extra: begin
+	   if(isf == 1'b1) begin
+	      nextstate = idle;
+	      latch = 8'b0;
+	      KBD_DATA = 1'b1;
+	      highbit = 1'b1;
+	   end
+	   else begin
+	      nextstate = b8;
+	      latch = 8'b0;
+	      KBD_DATA = 1'b0;
+	      highbit = highbit;
+	   end
 	end
 	b8: begin
 	   nextstate = s0;
 	   latch = 8'b0;
 	   KBD_DATA = 1'b0;
+	   highbit = highbit;
 	end
 	s0: begin
 	   nextstate = s1;
 	   latch = 8'b0;
 	   KBD_DATA = tdata[0];
+	   highbit = highbit;
 	end
 	s1: begin
 	   nextstate = s2;
 	   latch = 8'b0;
 	   KBD_DATA = tdata[1];
+	   highbit = highbit;
 	end
 	s2: begin
 	   nextstate = s3;
 	   latch = 8'b0;
 	   KBD_DATA = tdata[2];
+	   highbit = highbit;
 	end
 	s3: begin
 	   nextstate = s4;
 	   latch = 8'b0;
 	   KBD_DATA = tdata[3];
+	   highbit = highbit;
 	end
 	s4: begin
 	   nextstate = s5;
 	   latch = 8'b0;
 	   KBD_DATA = tdata[4];
+	   highbit = highbit;
 	end
 	s5: begin
 	   nextstate = s6;
 	   latch = 8'b0;
 	   KBD_DATA = tdata[5];
+	   highbit = highbit;
 	end
 	s6: begin
 	   nextstate = s7;
 	   latch = 8'b0;
 	   KBD_DATA = tdata[6];
+	   highbit = highbit;
 	end
 	s7: begin
 	   nextstate = finish;
 	   latch = 8'b0;
-	   KBD_DATA = tdata[7];
+	   KBD_DATA = tdata[7] | highbit;
+	   highbit = highbit;
 	end
 	finish: begin
 	   nextstate = idle;
 	   latch = 8'b0;
 	   KBD_DATA = 1'b1;
+	   highbit = 1'b0;
 	end
 	default: begin
 	   nextstate = idle;
 	   latch = 8'b0;
 	   KBD_DATA = 1'b1;
+	   highbit = 1'b0;
 	end
       endcase // case (state)
    end // always @ (KEYBOARD_DATA_0 or state or KBD_CLK)

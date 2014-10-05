@@ -152,22 +152,47 @@ module test_8042;
       j = 0;
       errors = 0;
       @(posedge clk);
-      // Run Some Tests
-      $display ("**************");
-      $display ("Run Some Tests");
-      $display ("**************");
+      
+      // Run Pressed Test
+      $display ("****************");
+      $display ("Run Pressed Test");
+      $display ("****************");
       for (i=0; i<256; i=i+1) begin
 	 if(i !== 240) begin
-	    $display("Testing %h",i);
 	    senddata(i);
 	    waitdata();
 	    waitdata();
-	    dto = matrix[4'b1111 & (i >> 4)][4'b1111 & i];
+	    dto = (matrix[4'b1111 & (i >> 4)][4'b1111 & i]);
 	    if(dto !== dtr) begin
 	       $display("NO i:%b transi:%b dtr: %b",i,dto,dtr);
 	       errors = errors + 1;
 	    end
 	 end
+	 @(posedge clk);
+      end // for (i=0; i<8; i=i+1)
+      @(posedge clk);
+
+      // Run Released Test
+      $display ("*****************");
+      $display ("Run Released Test");
+      $display ("*****************");
+      for (i=0; i<256; i=i+1) begin
+	 if(i !== 240) begin
+	    senddata(240);
+	    waitdata();
+	    waitdata();
+	    senddata(i);
+	    waitdata();
+	    waitdata();
+	    dto = (matrix[4'b1111 & (i >> 4)][4'b1111 & i])|(8'b10000000);
+	    if(dto !== dtr) begin
+	       $display("NO i:%b transi:%b dtr: %b",i,dto,dtr);
+	       errors = errors + 1;
+	    end
+	    else begin
+	       //$display("OK i:%b transi:%b dtr: %b",i,dto,dtr);
+	    end
+	 end // if (i !== 240)
 	 @(posedge clk);
       end // for (i=0; i<8; i=i+1)
       
