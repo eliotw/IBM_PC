@@ -157,21 +157,18 @@ module test_8042;
       $display ("Run Some Tests");
       $display ("**************");
       for (i=0; i<256; i=i+1) begin
-	 //dto = translate(i);
-	 senddata(i);
-	 waitdata();
-	 waitdata();
-	 dto = matrix[4'b1111 & (i >> 4)][4'b1111 & i];
-	 if(dto !== dtr) begin
-	    $display("NO i:%b transi:%b dtr: %b",i,dto,dtr);
-	    errors = errors + 1;
+	 if(i !== 240) begin
+	    $display("Testing %h",i);
+	    senddata(i);
+	    waitdata();
+	    waitdata();
+	    dto = matrix[4'b1111 & (i >> 4)][4'b1111 & i];
+	    if(dto !== dtr) begin
+	       $display("NO i:%b transi:%b dtr: %b",i,dto,dtr);
+	       errors = errors + 1;
+	    end
 	 end
-	 else begin
-	    //$display("OK g:%b d:%b gy:%b ty:%b",g,d,gy,ty);
-	 end
-	 #10;
 	 @(posedge clk);
-	 
       end // for (i=0; i<8; i=i+1)
       
       if(errors > 0) begin
