@@ -8,7 +8,7 @@ module test_8042;
    // Matrix Data
    reg [7:0] matrix [0:15][0:15];
    initial begin
-      $readmemh("in.txt",matrix);
+      //$readmemh("in.txt",matrix);
    end
    
    // signals
@@ -49,6 +49,7 @@ module test_8042;
    end
 
    // Translate Task
+	/*
    function translate;
       //input [7:0] indata;
       input indata;
@@ -64,7 +65,7 @@ module test_8042;
 	 translate <= matrix[r][c];
       end
    endfunction // translate
-   
+   */
    // Receive Task
    task receivedata;
       begin
@@ -264,7 +265,7 @@ module top_8042(
    always @(state or dout) begin
       case(state)
 	8'h00: begin
-	   if(dout === 1'b0) begin
+	   if(dout == 1'b0) begin
 	      nextstate = 8'h10;
 	      d = 8'h0;
 	   end

@@ -1,0 +1,850 @@
+Release 14.2 - xst P.28xd (lin64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> 
+Reading design: top_8042.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "top_8042.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "top_8042"
+Output Format                      : NGC
+Target Device                      : xc5vlx110t-1-ff1136
+
+---- Source Options
+Top Module Name                    : top_8042
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Off
+Reduce Control Sets                : Off
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "../8042.v" in library work
+Compiling verilog file "../test_8042.v" in library work
+Module <intel8042> compiled
+Module <test_8042> compiled
+Module <top_8042> compiled
+No errors in compilation
+Analysis of file <"top_8042.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <top_8042> in library <work>.
+
+Analyzing hierarchy for module <intel8042> in library <work> with parameters.
+	b1 = "00001"
+	b2 = "00010"
+	b3 = "00011"
+	b4 = "00100"
+	b5 = "00101"
+	b6 = "00110"
+	b7 = "00111"
+	b8 = "01000"
+	extra = "10010"
+	finish = "10011"
+	idle = "01001"
+	s0 = "01010"
+	s1 = "01011"
+	s2 = "01100"
+	s3 = "01101"
+	s4 = "01110"
+	s5 = "01111"
+	s6 = "10000"
+	s7 = "10001"
+	start = "00000"
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <top_8042>.
+Module <top_8042> is correct for synthesis.
+ 
+Analyzing module <intel8042> in library <work>.
+	b1 = 5'b00001
+	b2 = 5'b00010
+	b3 = 5'b00011
+	b4 = 5'b00100
+	b5 = 5'b00101
+	b6 = 5'b00110
+	b7 = 5'b00111
+	b8 = 5'b01000
+	extra = 5'b10010
+	finish = 5'b10011
+	idle = 5'b01001
+	s0 = 5'b01010
+	s1 = 5'b01011
+	s2 = 5'b01100
+	s3 = 5'b01101
+	s4 = 5'b01110
+	s5 = 5'b01111
+	s6 = 5'b10000
+	s7 = 5'b10001
+	start = 5'b00000
+Module <intel8042> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <intel8042>.
+    Related source file is "../8042.v".
+WARNING:Xst:647 - Input <KBD_RESET_N> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 56 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Using one-hot encoding for signal <state>.
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 56 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 56 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 56 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Found 256x8-bit ROM for signal <tdata>.
+WARNING:Xst:737 - Found 1-bit latch for signal <highbit>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+    Found 20-bit register for signal <state>.
+    Found 8-bit register for signal <udata>.
+    Summary:
+	inferred   1 ROM(s).
+	inferred  28 D-type flip-flop(s).
+Unit <intel8042> synthesized.
+
+
+Synthesizing Unit <top_8042>.
+    Related source file is "../test_8042.v".
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 266 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Using one-hot encoding for signal <state>.
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 266 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 266 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 266 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 266 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 266 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 266 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 266 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 266 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+WARNING:Xst:737 - Found 1-bit latch for signal <d_7>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <d_6>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <d_5>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <d_4>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <d_3>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <d_2>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <d_1>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <d_0>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+    Found 11-bit register for signal <state>.
+    Summary:
+	inferred  11 D-type flip-flop(s).
+Unit <top_8042> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 1
+ 256x8-bit ROM                                         : 1
+# Registers                                            : 10
+ 1-bit register                                        : 8
+ 11-bit register                                       : 1
+ 20-bit register                                       : 1
+# Latches                                              : 9
+ 1-bit latch                                           : 9
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 1
+ 256x8-bit ROM                                         : 1
+# Registers                                            : 39
+ Flip-Flops                                            : 39
+# Latches                                              : 9
+ 1-bit latch                                           : 9
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <top_8042> ...
+
+Optimizing unit <intel8042> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block top_8042, actual ratio is 0.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 39
+ Flip-Flops                                            : 39
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : top_8042.ngr
+Top Level Output File Name         : top_8042
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 11
+
+Cell Usage :
+# BELS                             : 69
+#      LUT1                        : 2
+#      LUT2                        : 10
+#      LUT3                        : 3
+#      LUT4                        : 5
+#      LUT5                        : 7
+#      LUT6                        : 31
+#      MUXF7                       : 7
+#      MUXF8                       : 3
+#      VCC                         : 1
+# FlipFlops/Latches                : 48
+#      FD                          : 36
+#      FDR                         : 1
+#      FDS                         : 2
+#      LD                          : 1
+#      LD_1                        : 8
+# Clock Buffers                    : 1
+#      BUFG                        : 1
+# IO Buffers                       : 11
+#      IBUF                        : 2
+#      OBUF                        : 9
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 5vlx110tff1136-1 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:              40  out of  69120     0%  
+ Number of Slice LUTs:                   58  out of  69120     0%  
+    Number used as Logic:                58  out of  69120     0%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:     73
+   Number with an unused Flip Flop:      33  out of     73    45%  
+   Number with an unused LUT:            15  out of     73    20%  
+   Number of fully used LUT-FF pairs:    25  out of     73    34%  
+   Number of unique control sets:        21
+
+IO Utilization: 
+ Number of IOs:                          11
+ Number of bonded IOBs:                  11  out of    640     1%  
+    IOB Flip Flops/Latches:               8
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------------------+------------------------+-------+
+Clock Signal                                   | Clock buffer(FF name)  | Load  |
+-----------------------------------------------+------------------------+-------+
+USER_CLK                                       | IBUF+BUFG              | 31    |
+d_0_or0000(d_0_or00001:O)                      | NONE(*)(d_0)           | 1     |
+d_1_or0000(d_1_or00001:O)                      | NONE(*)(d_1)           | 1     |
+d_2_or0000(d_2_or00001:O)                      | NONE(*)(d_2)           | 1     |
+d_3_or0000(d_3_or00001:O)                      | NONE(*)(d_3)           | 1     |
+d_4_or0000(d_4_or00001:O)                      | NONE(*)(d_4)           | 1     |
+d_5_or0000(d_5_or00001:O)                      | NONE(*)(d_5)           | 1     |
+d_6_or0000(d_6_or00001:O)                      | NONE(*)(d_6)           | 1     |
+d_7_or0000(d_7_or00001:O)                      | NONE(*)(d_7)           | 1     |
+kbrd/highbit_not0001(kbrd/highbit_not0001288:O)| NONE(*)(kbrd/highbit)  | 1     |
+kbrd/state_6                                   | NONE(kbrd/udata_6)     | 1     |
+kbrd/state_5                                   | NONE(kbrd/udata_5)     | 1     |
+kbrd/state_7                                   | NONE(kbrd/udata_7)     | 1     |
+kbrd/state_3                                   | NONE(kbrd/udata_3)     | 1     |
+kbrd/state_2                                   | NONE(kbrd/udata_2)     | 1     |
+kbrd/state_4                                   | NONE(kbrd/udata_4)     | 1     |
+kbrd/state_0                                   | NONE(kbrd/udata_0)     | 1     |
+kbrd/state_1                                   | NONE(kbrd/udata_1)     | 1     |
+-----------------------------------------------+------------------------+-------+
+(*) These 9 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: 2.864ns (Maximum Frequency: 349.162MHz)
+   Minimum input arrival time before clock: 1.776ns
+   Maximum output required time after clock: 3.520ns
+   Maximum combinational path delay: 3.606ns
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'USER_CLK'
+  Clock period: 2.864ns (frequency: 349.162MHz)
+  Total number of paths / destination ports: 72 / 33
+-------------------------------------------------------------------------
+Delay:               2.864ns (Levels of Logic = 3)
+  Source:            kbrd/state_0 (FF)
+  Destination:       state_0 (FF)
+  Source Clock:      USER_CLK rising
+  Destination Clock: USER_CLK rising
+
+  Data Path: kbrd/state_0 to state_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              4   0.471   1.085  kbrd/state_0 (kbrd/state_0)
+     LUT6:I0->O            1   0.094   0.480  kbrd/KBD_DATA41 (kbrd/KBD_DATA41)
+     LUT6:I5->O           13   0.094   0.546  kbrd/KBD_DATA90 (dout)
+     LUT2:I1->O            1   0.094   0.000  state_1_rstpot (state_1_rstpot)
+     FD:D                     -0.018          state_1
+    ----------------------------------------
+    Total                      2.864ns (0.753ns logic, 2.111ns route)
+                                       (26.3% logic, 73.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'kbrd/state_6'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.203ns (Levels of Logic = 1)
+  Source:            KEYBOARD_DATA (PAD)
+  Destination:       kbrd/udata_6 (FF)
+  Destination Clock: kbrd/state_6 rising
+
+  Data Path: KEYBOARD_DATA to kbrd/udata_6
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            10   0.818   0.385  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
+     FD:D                     -0.018          kbrd/udata_6
+    ----------------------------------------
+    Total                      1.203ns (0.818ns logic, 0.385ns route)
+                                       (68.0% logic, 32.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'kbrd/state_5'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.203ns (Levels of Logic = 1)
+  Source:            KEYBOARD_DATA (PAD)
+  Destination:       kbrd/udata_5 (FF)
+  Destination Clock: kbrd/state_5 rising
+
+  Data Path: KEYBOARD_DATA to kbrd/udata_5
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            10   0.818   0.385  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
+     FD:D                     -0.018          kbrd/udata_5
+    ----------------------------------------
+    Total                      1.203ns (0.818ns logic, 0.385ns route)
+                                       (68.0% logic, 32.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'kbrd/state_7'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.203ns (Levels of Logic = 1)
+  Source:            KEYBOARD_DATA (PAD)
+  Destination:       kbrd/udata_7 (FF)
+  Destination Clock: kbrd/state_7 rising
+
+  Data Path: KEYBOARD_DATA to kbrd/udata_7
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            10   0.818   0.385  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
+     FD:D                     -0.018          kbrd/udata_7
+    ----------------------------------------
+    Total                      1.203ns (0.818ns logic, 0.385ns route)
+                                       (68.0% logic, 32.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'kbrd/state_3'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.203ns (Levels of Logic = 1)
+  Source:            KEYBOARD_DATA (PAD)
+  Destination:       kbrd/udata_3 (FF)
+  Destination Clock: kbrd/state_3 rising
+
+  Data Path: KEYBOARD_DATA to kbrd/udata_3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            10   0.818   0.385  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
+     FD:D                     -0.018          kbrd/udata_3
+    ----------------------------------------
+    Total                      1.203ns (0.818ns logic, 0.385ns route)
+                                       (68.0% logic, 32.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'kbrd/state_2'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.203ns (Levels of Logic = 1)
+  Source:            KEYBOARD_DATA (PAD)
+  Destination:       kbrd/udata_2 (FF)
+  Destination Clock: kbrd/state_2 rising
+
+  Data Path: KEYBOARD_DATA to kbrd/udata_2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            10   0.818   0.385  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
+     FD:D                     -0.018          kbrd/udata_2
+    ----------------------------------------
+    Total                      1.203ns (0.818ns logic, 0.385ns route)
+                                       (68.0% logic, 32.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'kbrd/state_4'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.203ns (Levels of Logic = 1)
+  Source:            KEYBOARD_DATA (PAD)
+  Destination:       kbrd/udata_4 (FF)
+  Destination Clock: kbrd/state_4 rising
+
+  Data Path: KEYBOARD_DATA to kbrd/udata_4
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            10   0.818   0.385  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
+     FD:D                     -0.018          kbrd/udata_4
+    ----------------------------------------
+    Total                      1.203ns (0.818ns logic, 0.385ns route)
+                                       (68.0% logic, 32.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'kbrd/state_0'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.203ns (Levels of Logic = 1)
+  Source:            KEYBOARD_DATA (PAD)
+  Destination:       kbrd/udata_0 (FF)
+  Destination Clock: kbrd/state_0 rising
+
+  Data Path: KEYBOARD_DATA to kbrd/udata_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            10   0.818   0.385  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
+     FD:D                     -0.018          kbrd/udata_0
+    ----------------------------------------
+    Total                      1.203ns (0.818ns logic, 0.385ns route)
+                                       (68.0% logic, 32.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'kbrd/state_1'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.203ns (Levels of Logic = 1)
+  Source:            KEYBOARD_DATA (PAD)
+  Destination:       kbrd/udata_1 (FF)
+  Destination Clock: kbrd/state_1 rising
+
+  Data Path: KEYBOARD_DATA to kbrd/udata_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            10   0.818   0.385  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
+     FD:D                     -0.018          kbrd/udata_1
+    ----------------------------------------
+    Total                      1.203ns (0.818ns logic, 0.385ns route)
+                                       (68.0% logic, 32.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'USER_CLK'
+  Total number of paths / destination ports: 2 / 2
+-------------------------------------------------------------------------
+Offset:              1.776ns (Levels of Logic = 1)
+  Source:            KEYBOARD_DATA (PAD)
+  Destination:       kbrd/state_0 (FF)
+  Destination Clock: USER_CLK rising
+
+  Data Path: KEYBOARD_DATA to kbrd/state_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            10   0.818   0.385  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
+     FDR:R                     0.573          kbrd/state_0
+    ----------------------------------------
+    Total                      1.776ns (1.391ns logic, 0.385ns route)
+                                       (78.3% logic, 21.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'd_0_or0000'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.520ns (Levels of Logic = 1)
+  Source:            d_0 (LATCH)
+  Destination:       GPIO_LED_0 (PAD)
+  Source Clock:      d_0_or0000 rising
+
+  Data Path: d_0 to GPIO_LED_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD_1:G->Q             1   0.732   0.336  d_0 (d_0)
+     OBUF:I->O                 2.452          GPIO_LED_0_OBUF (GPIO_LED_0)
+    ----------------------------------------
+    Total                      3.520ns (3.184ns logic, 0.336ns route)
+                                       (90.5% logic, 9.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'd_1_or0000'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.520ns (Levels of Logic = 1)
+  Source:            d_1 (LATCH)
+  Destination:       GPIO_LED_1 (PAD)
+  Source Clock:      d_1_or0000 rising
+
+  Data Path: d_1 to GPIO_LED_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD_1:G->Q             1   0.732   0.336  d_1 (d_1)
+     OBUF:I->O                 2.452          GPIO_LED_1_OBUF (GPIO_LED_1)
+    ----------------------------------------
+    Total                      3.520ns (3.184ns logic, 0.336ns route)
+                                       (90.5% logic, 9.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'd_2_or0000'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.520ns (Levels of Logic = 1)
+  Source:            d_2 (LATCH)
+  Destination:       GPIO_LED_2 (PAD)
+  Source Clock:      d_2_or0000 rising
+
+  Data Path: d_2 to GPIO_LED_2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD_1:G->Q             1   0.732   0.336  d_2 (d_2)
+     OBUF:I->O                 2.452          GPIO_LED_2_OBUF (GPIO_LED_2)
+    ----------------------------------------
+    Total                      3.520ns (3.184ns logic, 0.336ns route)
+                                       (90.5% logic, 9.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'd_3_or0000'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.520ns (Levels of Logic = 1)
+  Source:            d_3 (LATCH)
+  Destination:       GPIO_LED_3 (PAD)
+  Source Clock:      d_3_or0000 rising
+
+  Data Path: d_3 to GPIO_LED_3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD_1:G->Q             1   0.732   0.336  d_3 (d_3)
+     OBUF:I->O                 2.452          GPIO_LED_3_OBUF (GPIO_LED_3)
+    ----------------------------------------
+    Total                      3.520ns (3.184ns logic, 0.336ns route)
+                                       (90.5% logic, 9.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'd_4_or0000'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.520ns (Levels of Logic = 1)
+  Source:            d_4 (LATCH)
+  Destination:       GPIO_LED_4 (PAD)
+  Source Clock:      d_4_or0000 rising
+
+  Data Path: d_4 to GPIO_LED_4
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD_1:G->Q             1   0.732   0.336  d_4 (d_4)
+     OBUF:I->O                 2.452          GPIO_LED_4_OBUF (GPIO_LED_4)
+    ----------------------------------------
+    Total                      3.520ns (3.184ns logic, 0.336ns route)
+                                       (90.5% logic, 9.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'd_5_or0000'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.520ns (Levels of Logic = 1)
+  Source:            d_5 (LATCH)
+  Destination:       GPIO_LED_5 (PAD)
+  Source Clock:      d_5_or0000 rising
+
+  Data Path: d_5 to GPIO_LED_5
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD_1:G->Q             1   0.732   0.336  d_5 (d_5)
+     OBUF:I->O                 2.452          GPIO_LED_5_OBUF (GPIO_LED_5)
+    ----------------------------------------
+    Total                      3.520ns (3.184ns logic, 0.336ns route)
+                                       (90.5% logic, 9.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'd_6_or0000'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.520ns (Levels of Logic = 1)
+  Source:            d_6 (LATCH)
+  Destination:       GPIO_LED_6 (PAD)
+  Source Clock:      d_6_or0000 rising
+
+  Data Path: d_6 to GPIO_LED_6
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD_1:G->Q             1   0.732   0.336  d_6 (d_6)
+     OBUF:I->O                 2.452          GPIO_LED_6_OBUF (GPIO_LED_6)
+    ----------------------------------------
+    Total                      3.520ns (3.184ns logic, 0.336ns route)
+                                       (90.5% logic, 9.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'd_7_or0000'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.520ns (Levels of Logic = 1)
+  Source:            d_7 (LATCH)
+  Destination:       GPIO_LED_7 (PAD)
+  Source Clock:      d_7_or0000 rising
+
+  Data Path: d_7 to GPIO_LED_7
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD_1:G->Q             1   0.732   0.336  d_7 (d_7)
+     OBUF:I->O                 2.452          GPIO_LED_7_OBUF (GPIO_LED_7)
+    ----------------------------------------
+    Total                      3.520ns (3.184ns logic, 0.336ns route)
+                                       (90.5% logic, 9.5% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Delay:               3.606ns (Levels of Logic = 2)
+  Source:            USER_CLK (PAD)
+  Destination:       KEYBOARD_CLK (PAD)
+
+  Data Path: USER_CLK to KEYBOARD_CLK
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             1   0.818   0.336  USER_CLK_IBUF (USER_CLK_IBUF1)
+     OBUF:I->O                 2.452          KEYBOARD_CLK_OBUF (KEYBOARD_CLK)
+    ----------------------------------------
+    Total                      3.606ns (3.270ns logic, 0.336ns route)
+                                       (90.7% logic, 9.3% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 7.03 secs
+ 
+--> 
+
+
+Total memory usage is 646548 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   10 (   0 filtered)
+Number of infos    :   23 (   0 filtered)
+

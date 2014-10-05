@@ -1,0 +1,11 @@
+NET  GPIO_LED_0           LOC="H18";
+NET  GPIO_LED_1           LOC="L18";
+NET  GPIO_LED_2           LOC="G15";
+NET  GPIO_LED_3           LOC="AD26";
+NET  GPIO_LED_4           LOC="G16";
+NET  GPIO_LED_5           LOC="AD25";
+NET  GPIO_LED_6           LOC="AD24";
+NET  GPIO_LED_7           LOC="AE24";
+NET  KEYBOARD_CLK         LOC="T26";
+NET  KEYBOARD_DATA        LOC="T25";
+NET  USER_CLK             LOC="AH15";

@@ -52,7 +52,7 @@ module intel8042(
 		finish = 5'd19;
 
    // FSM Next State Logic
-   always @(KEYBOARD_DATA_0 or state or KBD_CLK) begin
+   always @(KEYBOARD_DATA_0 or state or KBD_CLK or highbit or isf or tdata) begin
       case(state)
 	idle: begin
 	   if(KEYBOARD_DATA_0 == 1'b0) begin

@@ -1,0 +1,206 @@
+Release 14.2 par P.28xd (lin64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+ahtanum.ece.cmu.edu::  Sun Oct 05 17:00:51 2014
+
+par -w -intstyle ise -ol high -mt off top_8042_map.ncd top_8042.ncd
+top_8042.pcf 
+
+
+Constraints file: top_8042.pcf.
+Loading device for application Rf_Device from file '5vlx110t.nph' in environment
+/afs/ece.cmu.edu/support/xilinx/xilinx.release/14.2/ISE_DS/ISE/.
+   "top_8042" is an NCD, version 3.2, device xc5vlx110t, package ff1136, speed -1
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000 Celsius)
+Initializing voltage to 0.950 Volts. (default - Range: 0.950 to 1.050 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.73 2012-07-09".
+
+
+
+Device Utilization Summary:
+
+   Number of BSCANs                          1 out of 4      25%
+   Number of BUFGs                           2 out of 32      6%
+   Number of External IOBs                  11 out of 640     1%
+      Number of LOCed IOBs                  11 out of 11    100%
+
+   Number of RAMB18X2s                       1 out of 148     1%
+   Number of Slices                        203 out of 17280   1%
+   Number of Slice Registers               299 out of 69120   1%
+      Number used as Flip Flops            289
+      Number used as Latches                10
+      Number used as LatchThrus              0
+
+   Number of Slice LUTS                    271 out of 69120   1%
+   Number of Slice LUT-Flip Flop pairs     439 out of 69120   1%
+
+
+Overall effort level (-ol):   High 
+Router effort level (-rl):    High 
+
+Starting initial Timing Analysis.  REAL time: 7 secs 
+Finished initial Timing Analysis.  REAL time: 7 secs 
+
+Starting Router
+
+
+Phase  1  : 1809 unrouted;      REAL time: 8 secs 
+
+Phase  2  : 1332 unrouted;      REAL time: 8 secs 
+
+Phase  3  : 274 unrouted;      REAL time: 9 secs 
+
+Phase  4  : 274 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 13 secs 
+
+Updating file: top_8042.ncd with current fully routed design.
+
+Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
+
+Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
+
+Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
+
+Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
+
+Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
+
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 14 secs 
+Total REAL time to Router completion: 14 secs 
+Total CPU time to Router completion: 14 secs 
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Generating "PAR" statistics.
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|    icon_control0<0> |BUFGCTRL_X0Y31| No   |   61 |  0.333     |  1.944      |
++---------------------+--------------+------+------+------------+-------------+
+|       USER_CLK_IBUF | BUFGCTRL_X0Y0| No   |   92 |  0.302     |  1.944      |
++---------------------+--------------+------+------+------------+-------------+
+|U_icon_pro/U0/iUPDAT |              |      |      |            |             |
+|               E_OUT |         Local|      |    1 |  0.000     |  0.523      |
++---------------------+--------------+------+------+------------+-------------+
+|          d_0_or0000 |         Local|      |    1 |  0.000     |  0.777      |
++---------------------+--------------+------+------+------------+-------------+
+|          d_1_or0000 |         Local|      |    1 |  0.000     |  0.777      |
++---------------------+--------------+------+------+------------+-------------+
+|          d_2_or0000 |         Local|      |    1 |  0.000     |  0.897      |
++---------------------+--------------+------+------+------------+-------------+
+|          d_3_or0000 |         Local|      |    1 |  0.000     |  0.604      |
++---------------------+--------------+------+------+------------+-------------+
+|          d_4_or0000 |         Local|      |    3 |  0.000     |  0.620      |
++---------------------+--------------+------+------+------------+-------------+
+|          d_5_or0000 |         Local|      |    1 |  0.000     |  0.616      |
++---------------------+--------------+------+------+------------+-------------+
+|          d_6_or0000 |         Local|      |    1 |  0.000     |  0.440      |
++---------------------+--------------+------+------+------------+-------------+
+|          d_7_or0000 |         Local|      |    4 |  0.000     |  1.077      |
++---------------------+--------------+------+------+------------+-------------+
+|       kbrd/state<7> |         Local|      |    4 |  0.000     |  0.623      |
++---------------------+--------------+------+------+------------+-------------+
+|       kbrd/state<6> |         Local|      |    4 |  0.000     |  0.460      |
++---------------------+--------------+------+------+------------+-------------+
+|       kbrd/state<0> |         Local|      |    4 |  0.000     |  0.482      |
++---------------------+--------------+------+------+------------+-------------+
+|       kbrd/state<1> |         Local|      |    4 |  0.000     |  0.503      |
++---------------------+--------------+------+------+------------+-------------+
+|       kbrd/state<2> |         Local|      |    4 |  0.000     |  0.619      |
++---------------------+--------------+------+------+------------+-------------+
+|       kbrd/state<3> |         Local|      |    4 |  0.000     |  0.476      |
++---------------------+--------------+------+------+------------+-------------+
+|       kbrd/state<4> |         Local|      |    4 |  0.000     |  0.779      |
++---------------------+--------------+------+------+------------+-------------+
+|       kbrd/state<5> |         Local|      |    4 |  0.000     |  0.825      |
++---------------------+--------------+------+------+------------+-------------+
+|   icon_control0<13> |         Local|      |    5 |  0.000     |  0.631      |
++---------------------+--------------+------+------+------------+-------------+
+|kbrd/highbit_not0001 |              |      |      |            |             |
+|                     |         Local|      |    1 |  0.000     |  0.605      |
++---------------------+--------------+------+------+------------+-------------+
+
+* Net Skew is the difference between the minimum and maximum routing
+only delays for the net. Note this is different from Clock Skew which
+is reported in TRCE timing report. Clock Skew is the difference between
+the minimum and maximum path delays which includes logic delays.
+
+* The fanout is the number of component pins not the individual BEL loads,
+for example SLICE loads not FF loads.
+
+Timing Score: 0 (Setup: 0, Hold: 0, Component Switching Limit: 0)
+
+Number of Timing Constraints that were not applied: 2
+
+Asterisk (*) preceding a constraint indicates it was not met.
+   This may be due to a setup or hold violation.
+
+----------------------------------------------------------------------------------------------------------
+  Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
+                                            |             |    Slack   | Achievable | Errors |    Score   
+----------------------------------------------------------------------------------------------------------
+  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    12.608ns|     2.392ns|       0|           0
+   TO TIMEGRP "J_CLK" 15 ns                 | HOLD        |     1.463ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    14.103ns|     0.897ns|       0|           0
+   TO TIMEGRP "U_CLK" 15 ns                 | HOLD        |     0.568ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    23.436ns|     6.564ns|       0|           0
+  IGH 50%                                   | HOLD        |     0.333ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_D2_TO_T2_path" TIG               | SETUP       |         N/A|     3.143ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J2_TO_D2_path" TIG               | N/A         |         N/A|         N/A|     N/A|         N/A
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J3_TO_D2_path" TIG               | N/A         |         N/A|         N/A|     N/A|         N/A
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J4_TO_D2_path" TIG               | MAXDELAY    |         N/A|     3.563ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J_TO_D_path" TIG                 | SETUP       |         N/A|     3.456ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_D_TO_J_path" TIG                 | SETUP       |         N/A|     3.134ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+
+
+All constraints were met.
+INFO:Timing:2761 - N/A entries in the Constraints List may indicate that the 
+   constraint is not analyzed due to the following: No paths covered by this 
+   constraint; Other constraints intersect with this constraint; or This 
+   constraint was disabled by a Path Tracing Control. Please run the Timespec 
+   Interaction Report (TSI) via command line (trce tsi) or Timing Analyzer GUI.
+
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 18 secs 
+Total CPU time to PAR completion: 18 secs 
+
+Peak Memory Usage:  742 MB
+
+Placer: Placement generated during map.
+Routing: Completed - No errors found.
+Timing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 0
+
+Writing design to file top_8042.ncd
+
+
+
+PAR done!
