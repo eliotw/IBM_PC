@@ -21,47 +21,594 @@ module intel8042(
    reg [7:0] udata; // Holds the current untranslated keyboard code
    reg [7:0] tdata; // Holds the current translated keyboard code
    reg [7:0]  latch; // Tells which data to latch
-   reg [4:0]  state, nextstate; // fsm states
-   wire       isf; // Tells if the data received is 0xf0
-   reg 	      highbit; // If the last data received was 0xf0
+   reg [7:0]  state, nextstate; // fsm states
+   wire       reset; // Reset the keyboard unit
+   wire       din; // Data from keyboard
+   reg 	      actin; // Activate line
+   reg 	      dout; // Output to keyboard
    
-   // Assign isf
-   assign isf = (udata == 8'hf0);
+   // Assign reset
+   assign reset = ~KBD_RESET_N;
+
+   // Assign data in
+   assign din = (actin == 1'b1) ? 1'b1 : KEYBOARD_DATA_0;
+
+   // Assign keyboard data line
+   assign KEYBOARD_DATA_0 = (actin == 1'b1) ? dout : 1'bz;
    
    // FSM State Enum
-   parameter [4:0]
-		idle = 5'd09,
-		start = 5'd00,
-		b1 = 5'd01,
-		b2 = 5'd02,
-		b3 = 5'd03,
-		b4 = 5'd04,
-		b5 = 5'd05,
-		b6 = 5'd06,
-		b7 = 5'd07,
-		b8 = 5'd08,
-		s0 = 5'd10,
-		s1 = 5'd11,
-		s2 = 5'd12,
-		s3 = 5'd13,
-		s4 = 5'd14,
-		s5 = 5'd15,
-		s6 = 5'd16,
-		s7 = 5'd17,
-		extra = 5'd18,
-		finish = 5'd19;
+   parameter [7:0]
+		idle = 8'd09,
+		start = 8'd00,
+		b1 = 8'd01,
+		b2 = 8'd02,
+		b3 = 8'd03,
+		b4 = 8'd04,
+		b5 = 8'd05,
+		b6 = 8'd06,
+		b7 = 8'd07,
+		b8 = 8'd08,
+		s0 = 8'd10,
+		s1 = 8'd11,
+		s2 = 8'd12,
+		s3 = 8'd13,
+		s4 = 8'd14,
+		s5 = 8'd15,
+		s6 = 8'd16,
+		s7 = 8'd17,
+		extra = 8'd18,
+		finish = 8'd19,
+		r0 = 8'd20,
+		r1 = 8'd21,
+		r2 = 8'd22,
+		r3 = 8'd23,
+		r4 = 8'd24,
+		r5 = 8'd25,
+		r6 = 8'd26,
+		r7 = 8'd27,
+		r8 = 8'd28,
+		r9 = 8'd29,
+		r10 = 8'd30,
+		r11 = 8'd31,
+		r12 = 8'd32,
+		r13 = 8'd33,
+		r14 = 8'd34,
+		r15 = 8'd35,
+		r16 = 8'd36,
+		r17 = 8'd37,
+		r18 = 8'd38,
+		r19 = 8'd39,
+		r20 = 8'd40,
+		r21 = 8'd41,
+		r22 = 8'd42,
+		r23 = 8'd43,
+		r24 = 8'd44,
+		r25 = 8'd45,
+		r26 = 8'd46,
+		r27 = 8'd47,
+		r28 = 8'd48,
+		r29 = 8'd49,
+		r30 = 8'd50,
+                r31 = 8'd51,
+                r32 = 8'd52,
+                r33 = 8'd53,
+                r34 = 8'd54,
+                r35 = 8'd55,
+                r36 = 8'd56,
+                r37 = 8'd57,
+                r38 = 8'd58,
+                r39 = 8'd59,
+		r40 = 8'd60,
+                r41 = 8'd61,
+                r42 = 8'd62,
+                r43 = 8'd63,
+                r44 = 8'd64,
+                r45 = 8'd65,
+                r46 = 8'd66,
+                r47 = 8'd67,
+                r48 = 8'd68,
+                r49 = 8'd69,
+		r50 = 8'd70,
+		r51 = 8'd71,
+		r52 = 8'd72,
+		r53 = 8'd73,
+		r54 = 8'd74,
+		r55 = 8'd75,
+		r56 = 8'd76,
+		r57 = 8'd77,
+		r58 = 8'd78,
+		r59 = 8'd79,
+		r60 = 8'd80,
+		r61 = 8'd81;
 
    // FSM Next State Logic
-   always @(KEYBOARD_DATA_0 or state or KBD_CLK or highbit or isf or tdata) begin
+   always @(din or state or KBD_CLK or udata) begin
       case(state)
+	r0: begin
+	   nextstate = r1;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end
+	r1: begin
+	   nextstate = r2;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // start bit
+	end
+        r2: begin
+	   nextstate = r3;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // F4 (11110100) to bit 0, so send 0
+	end
+	r3: begin
+	   nextstate = r4;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // F4 (11110100) to bit 1, so send 0
+	end
+        r4: begin
+	   nextstate = r5;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b1; // F4 (11110100) to bit 2, so send 1
+	end
+	r5: begin
+	   nextstate = r6;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // F4 (11110100) to bit 3, so send 0
+	end
+	r6: begin
+	   nextstate = r7;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b1; // F4 (11110100) to bit 4, so send 1
+	end // case: r5
+	r7: begin
+	   nextstate = r8;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b1; // F4 (11110100) to bit 5, so send 1
+	end // case: r5
+	r8: begin
+	   nextstate = r9;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b1; // F4 (11110100) to bit 6, so send 1
+	end // case: r5
+	r9: begin
+	   nextstate = r10;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b1; // F4 (11110100) to bit 7, so send 1
+	end // case: r5
+	r10: begin
+	   nextstate = r11;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b1; // F4 (11110100) to parity, so send 1
+	end // case: r5
+	r11: begin
+	   nextstate = r12;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end
+	r12: begin
+	   if(din == 1'b0) begin
+	      nextstate = r13;
+	   end
+	   else begin
+	      nextstate = r12;
+	   end
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: r12
+	r13: begin
+	   nextstate = r14;
+	   latch = 8'b00000001;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: r13
+	r14: begin
+	   nextstate = r15;
+	   latch = 8'b00000010;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b1
+	r15: begin
+	   nextstate = r16;
+	   latch = 8'b00000100;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b2
+	r16: begin
+	   nextstate = r17;
+	   latch = 8'b00001000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b3
+	r17: begin
+	   nextstate = r18;
+	   latch = 8'b00010000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b4
+	r18: begin
+	   nextstate = r19;
+	   latch = 8'b00100000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b5
+	r19: begin
+	   nextstate = r20;
+	   latch = 8'b01000000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b6
+	r20: begin
+	   nextstate = r21;
+	   latch = 8'b10000000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b7
+	r21: begin
+	   if(udata != 8'hfa) begin
+	      nextstate = r0; // try to resend
+	      latch = 8'b0;
+	      KBD_DATA = 1'b1;
+	      actin = 1'b0;
+	      dout = 1'b0;
+	   end
+	   else begin
+	      nextstate = r22;
+	      KBD_DATA = 1'b1;
+	      latch = 8'b0;
+	      actin = 1'b1;
+	      dout = 1'b0; // start bit
+	   end // else: !if(udata != 8'hfa)
+	end // case: r21
+	r22: begin
+	   nextstate = r23;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // F0 (11110000) to bit 0, so send 0
+	end // case: r2
+	r23: begin
+	   nextstate = r24;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // F0 (11110000) to bit 1, so send 0
+	end // case: r3
+	r24: begin
+	   nextstate = r25;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // F0 (11110000) to bit 2, so send 0
+	end // case: r4
+	r25: begin
+	   nextstate = r26;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // F0 (11110000) to bit 3, so send 0
+	end // case: r5
+	r26: begin
+	   nextstate = r27;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b1; // F0 (11110000) to bit 4, so send 1
+	end // case: r5
+	r27: begin
+	   nextstate = r28;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b1; // F0 (11110000) to bit 5, so send 1
+	end // case: r27
+	r28: begin
+	   nextstate = r29;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b1; // F0 (11110000) to bit 6, so send 1
+	end
+	r29: begin
+	   nextstate = r30;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b1; // F0 (11110000) to bit 7, so send 1
+	end // case: r28
+	r30: begin
+	   nextstate = r31;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // F0 (11110000) to parity, so send 0
+	end // case: r5
+	r31: begin
+	   nextstate = r32;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: r11
+	r32: begin
+	   if(din == 1'b0) begin
+	      nextstate = r33;
+	   end
+	   else begin
+	      nextstate = r32;
+	   end
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: r12
+	r33: begin
+	   nextstate = r34;
+	   latch = 8'b00000001;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: r13
+	r34: begin
+	   nextstate = r35;
+	   latch = 8'b00000010;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b1
+	r35: begin
+	   nextstate = r36;
+	   latch = 8'b00000100;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b2
+	r36: begin
+	   nextstate = r37;
+	   latch = 8'b00001000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b3
+	r37: begin
+	   nextstate = r38;
+	   latch = 8'b00010000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b4
+	r38: begin
+	   nextstate = r39;
+	   latch = 8'b00100000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b5
+	r39: begin
+	   nextstate = r40;
+	   latch = 8'b01000000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b6
+	r40: begin
+	   nextstate = r41;
+	   latch = 8'b10000000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b7
+	r41: begin
+	   if(udata != 8'hfa) begin
+	      nextstate = r0; // try to resend
+	      latch = 8'b0;
+	      KBD_DATA = 1'b1;
+	      actin = 1'b0;
+	      dout = 1'b0;
+	   end // if (udata != 8'hfa)
+	   else begin
+	      nextstate = r42;
+	      KBD_DATA = 1'b1;
+	      latch = 8'b0;
+	      actin = 1'b1;
+	      dout = 1'b0; // start bit
+	   end // else: !if(udata != 8'hfa)
+	end // case: r21
+	r42: begin
+	   nextstate = r43;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b1; // 01 (00000001) to bit 0, so send 1
+	end // case: r2
+	r43: begin
+	   nextstate = r44;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // 01 (00000001) to bit 1, so send 0
+	end // case: r3
+	r44: begin
+	   nextstate = r45;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // 01 (00000001) to bit 2, so send 0
+	end // case: r4
+	r45: begin
+	   nextstate = r46;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // 01 (00000001) to bit 3, so send 0
+	end // case: r5
+	r46: begin
+	   nextstate = r47;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // 01 (00000001) to bit 4, so send 0
+	end // case: r5
+	r47: begin
+	   nextstate = r48;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // 01 (00000001) to bit 5, so send 0
+	end // case: r27
+	r48: begin
+	   nextstate = r49;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // 01 (00000001) to bit 6, so send 0
+	end
+	r49: begin
+	   nextstate = r50;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // 01 (00000001) to bit 7, so send 0
+	end // case: r49
+	r50: begin
+	   nextstate = r51;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b1; // 01 (00000001) to parity, so send 1
+	end // case: r50
+	r51: begin
+	   nextstate = r52;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: r11
+	r52: begin
+	   if(din == 1'b0) begin
+	      nextstate = r53;
+	   end
+	   else begin
+	      nextstate = r52;
+	   end
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: r12
+	r53: begin
+	   nextstate = r54;
+	   latch = 8'b00000001;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: r13
+	r54: begin
+	   nextstate = r55;
+	   latch = 8'b00000010;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b1
+	r55: begin
+	   nextstate = r56;
+	   latch = 8'b00000100;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b2
+	r56: begin
+	   nextstate = r57;
+	   latch = 8'b00001000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b3
+	r57: begin
+	   nextstate = r58;
+	   latch = 8'b00010000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b4
+	r58: begin
+	   nextstate = r59;
+	   latch = 8'b00100000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b5
+	r59: begin
+	   nextstate = r60;
+	   latch = 8'b01000000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b6
+	r60: begin
+	   nextstate = r61;
+	   latch = 8'b10000000;
+	   KBD_DATA = 1'b1;
+	   actin = 1'b0;
+	   dout = 1'b0;
+	end // case: b7
+	r61: begin
+	   if(udata != 8'hfa) begin
+	      nextstate = r0; // try to resend
+	      latch = 8'b0;
+	      KBD_DATA = 1'b1;
+	      actin = 1'b0;
+	      dout = 1'b0;
+	   end // if (udata != 8'hfa)
+	   else begin
+	      nextstate = idle; // return to idle
+	      KBD_DATA = 1'b1;
+	      latch = 8'b0;
+	      actin = 1'b0;
+	      dout = 1'b0;
+	   end // else: !if(udata != 8'hfa)
+	end // case: r21   
 	idle: begin
-	   if(KEYBOARD_DATA_0 == 1'b0) begin
+	   if(din == 1'b0) begin
 	      nextstate = start;
 	   end
 	   else begin
 	      nextstate = idle;
 	   end
-	   highbit = highbit;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	   latch = 8'b0;
 	   KBD_DATA = 1'b1;
 	end
@@ -69,136 +616,153 @@ module intel8042(
 	   nextstate = b1;
 	   latch = 8'b00000001;
 	   KBD_DATA = 1'b1;
-	   highbit = highbit;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	b1: begin
 	   nextstate = b2;
 	   latch = 8'b00000010;
 	   KBD_DATA = 1'b1;
-	   highbit = highbit;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	b2: begin
 	   nextstate = b3;
 	   latch = 8'b00000100;
 	   KBD_DATA = 1'b1;
-	   highbit = highbit;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	b3: begin
 	   nextstate = b4;
 	   latch = 8'b00001000;
 	   KBD_DATA = 1'b1;
-	   highbit = highbit;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	b4: begin
 	   nextstate = b5;
 	   latch = 8'b00010000;
 	   KBD_DATA = 1'b1;
-	   highbit = highbit;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	b5: begin
 	   nextstate = b6;
 	   latch = 8'b00100000;
 	   KBD_DATA = 1'b1;
-	   highbit = highbit;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	b6: begin
 	   nextstate = b7;
 	   latch = 8'b01000000;
 	   KBD_DATA = 1'b1;
-	   highbit = highbit;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	b7: begin
 	   nextstate = extra;
 	   latch = 8'b10000000;
 	   KBD_DATA = 1'b1;
-	   highbit = highbit;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	extra: begin
-	   if(isf == 1'b1) begin
-	      nextstate = idle;
-	      latch = 8'b0;
-	      KBD_DATA = 1'b1;
-	      highbit = 1'b1;
-	   end
-	   else begin
-	      nextstate = b8;
-	      latch = 8'b0;
-	      KBD_DATA = 1'b0;
-	      highbit = highbit;
-	   end
+	   nextstate = b8;
+	   latch = 8'b0;
+	   KBD_DATA = 1'b0;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	b8: begin
 	   nextstate = s0;
 	   latch = 8'b0;
 	   KBD_DATA = 1'b0;
-	   highbit = highbit;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	s0: begin
 	   nextstate = s1;
 	   latch = 8'b0;
-	   KBD_DATA = tdata[0];
-	   highbit = highbit;
+	   KBD_DATA = udata[0];
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	s1: begin
 	   nextstate = s2;
 	   latch = 8'b0;
-	   KBD_DATA = tdata[1];
-	   highbit = highbit;
+	   KBD_DATA = udata[1];
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	s2: begin
 	   nextstate = s3;
 	   latch = 8'b0;
-	   KBD_DATA = tdata[2];
-	   highbit = highbit;
+	   KBD_DATA = udata[2];
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	s3: begin
 	   nextstate = s4;
 	   latch = 8'b0;
-	   KBD_DATA = tdata[3];
-	   highbit = highbit;
+	   KBD_DATA = udata[3];
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	s4: begin
 	   nextstate = s5;
 	   latch = 8'b0;
-	   KBD_DATA = tdata[4];
-	   highbit = highbit;
+	   KBD_DATA = udata[4];
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	s5: begin
 	   nextstate = s6;
 	   latch = 8'b0;
-	   KBD_DATA = tdata[5];
-	   highbit = highbit;
+	   KBD_DATA = udata[5];
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	s6: begin
 	   nextstate = s7;
 	   latch = 8'b0;
-	   KBD_DATA = tdata[6];
-	   highbit = highbit;
+	   KBD_DATA = udata[6];
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	s7: begin
 	   nextstate = finish;
 	   latch = 8'b0;
-	   KBD_DATA = tdata[7] | highbit;
-	   highbit = highbit;
+	   KBD_DATA = udata[7];
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	finish: begin
 	   nextstate = idle;
 	   latch = 8'b0;
 	   KBD_DATA = 1'b1;
-	   highbit = 1'b0;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
 	default: begin
-	   nextstate = idle;
+	   nextstate = r0;
 	   latch = 8'b0;
 	   KBD_DATA = 1'b1;
-	   highbit = 1'b0;
+	   actin = 1'b0;
+	   dout = 1'b0;
 	end
       endcase // case (state)
    end // always @ (KEYBOARD_DATA_0 or state or KBD_CLK)
 
    // FSM Current State Logic
    always @(posedge KBD_CLK) begin
-      state = nextstate;
+      if(reset == 1'b1) begin
+	 state = r0;
+      end
+      else begin
+	 state = nextstate;
+      end
    end
    
    // Data Latch 0

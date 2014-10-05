@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_vjh6Dc_1.db \
+	_VCSgd_ZwPe_1.db \
+
+
+
+_VCSgd_vjh6Dc_1.db :	8042.v 
+		${VLOGAN}  +v2k -work work 8042.v
+
+
+_VCSgd_ZwPe_1.db :	test_8042.v 
+		${VLOGAN}  +v2k -work work test_8042.v
+
+
