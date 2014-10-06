@@ -119,7 +119,9 @@ module intel8042(
 		r58 = 8'd78,
 		r59 = 8'd79,
 		r60 = 8'd80,
-		r61 = 8'd81;
+		r61 = 8'd81,
+		r70 = 8'd130,
+		r71 = 8'd131;
 
    // FSM Next State Logic
    always @(din or state or KBD_CLK or udata) begin
@@ -285,13 +287,20 @@ module intel8042(
 	      dout = 1'b0;
 	   end
 	   else begin
-	      nextstate = r22;
+	      nextstate = r70;
 	      KBD_DATA = 1'b1;
 	      latch = 8'b0;
-	      actin = 1'b1;
-	      dout = 1'b0; // start bit
+	      actin = 1'b0;
+	      dout = 1'b0;
 	   end // else: !if(udata != 8'hfa)
 	end // case: r21
+	r70: begin
+	   nextstate = r22;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // start bit
+	end
 	r22: begin
 	   nextstate = r23;
 	   KBD_DATA = 1'b1;
@@ -439,13 +448,20 @@ module intel8042(
 	      dout = 1'b0;
 	   end // if (udata != 8'hfa)
 	   else begin
-	      nextstate = r42;
+	      nextstate = r71;
 	      KBD_DATA = 1'b1;
 	      latch = 8'b0;
-	      actin = 1'b1;
-	      dout = 1'b0; // start bit
+	      actin = 1'b0;
+	      dout = 1'b0;
 	   end // else: !if(udata != 8'hfa)
 	end // case: r21
+	r71: begin
+	   nextstate = r42;
+	   KBD_DATA = 1'b1;
+	   latch = 8'b0;
+	   actin = 1'b1;
+	   dout = 1'b0; // start bit
+	end // case: r71
 	r42: begin
 	   nextstate = r43;
 	   KBD_DATA = 1'b1;

@@ -12,9 +12,9 @@ module test_8042;
    end
    
    // signals
-   reg clk,rst,din,actline,flag;
-   wire clock,dout,d;
-   reg [7:0] dtr;
+   reg clk,rst,din,actline,flag,flagk;
+   wire clock,dout,d,dko;
+   reg [7:0] dtr,dtk;
    reg [7:0] dto;
    
    integer    errors;
@@ -34,7 +34,48 @@ module test_8042;
    end
    
    // Send Line
-   assign d = (actline === 1'b1) ? din : 1'b1;
+   assign d = (actline == 1'b1) ? din : 1'bz; // was 1'b1
+   assign dko = (actline == 1'b1) ? 1'b1 : d;
+   
+   // Keyboard Receive Module
+   always @(dko) begin
+      if(dko === 1'b0) begin
+	 //$display("keyboard data being received at %d",$time);
+	 if(flagk == 1'b0) begin
+	    flagk = 1'b1;
+	    receivekeyboarddata();
+	    flagk = 1'b0;
+	 end
+      end // if (dout === 1'b0)
+   end // always @ (dout)
+
+   // Receive Task for Keyboard
+   task receivekeyboarddata;
+      begin
+	 @(posedge clk);
+	 //@(posedge clk);
+	 @(posedge clk);
+	 dtk[0] = dko;
+	 @(posedge clk);
+	 dtk[1] = dko;
+	 @(posedge clk);
+	 dtk[2] = dko;
+	 @(posedge clk);
+	 dtk[3] = dko;
+	 @(posedge clk);
+	 dtk[4] = dko;
+	 @(posedge clk);
+	 dtk[5] = dko;
+	 @(posedge clk);
+	 dtk[6] = dko;
+	 @(posedge clk);
+	 dtk[7] = dko;
+	 @(posedge clk); // lol parity
+	 //$display("keyboard data finished being received at %d",$time);
+	 //$display("keyboard message: %b",dtk);
+      end
+   endtask // receivedata
+   
    
    // Receive Module
    always @(dout) begin
@@ -48,24 +89,6 @@ module test_8042;
       end
    end
 
-   // Translate Task
-	/*
-   function translate;
-      //input [7:0] indata;
-      input indata;
-      integer indata;
-      
-      reg [3:0]   r, c;
-      
-      //output [7:0] outdata;
-      begin
-	 r = 4'b1111 & (indata >> 4);
-	 c = 4'b1111 & indata;
-	 //$display("r %b c %b mat %b",r,c,matrix[r][c]);
-	 translate <= matrix[r][c];
-      end
-   endfunction // translate
-   */
    // Receive Task
    task receivedata;
       begin
@@ -146,24 +169,64 @@ module test_8042;
       $display ("***************");
       actline = 1'b0;
       clk = 1'b0;
-      rst = 1'b0;
+      rst = 1'b1;
       din = 1'b1;
       flag = 1'b0;
+      flagk = 1'b0;
       i = 0;
       j = 0;
       errors = 0;
       @(posedge clk);
+
+      // Reset Test
+      $display ("**********");
+      $display ("Reset Test");
+      $display ("**********");
+      @(posedge clk);
+      rst = 1'b0;
+      @(posedge clk);
+      rst = 1'b1;
+      waitdata();
+      waitdata();
+      waitdata();
+      if(dtk !== 8'b11110100) begin
+	 $display("NOT F4 ENABLE: %b",dtk);
+	 errors = errors + 1;
+      end
+      //$display("keyboard data being sent at %d",$time);
+      senddata(8'hfa);
+      waitdata();
+      waitdata();
+      waitdata();
+      if(dtk !== 8'b11110000) begin
+	 $display("NOT F0 SCAN SET: %b",dtk);
+	 errors = errors + 1;
+      end
+      //$display("keyboard data being sent at %d",$time);
+      senddata(8'hfa);
+      waitdata();
+      waitdata();
+      waitdata();
+      if(dtk !== 8'b00000001) begin
+	 $display("NOT 01 SCAN SET: %b",dtk);
+	 errors = errors + 1;
+      end
+      senddata(8'hfa);
+      waitdata();
+      waitdata();
+      waitdata();
       
       // Run Pressed Test
       $display ("****************");
       $display ("Run Pressed Test");
       $display ("****************");
       for (i=0; i<256; i=i+1) begin
-	 if(i !== 240) begin
+	 if(1 == 1) begin
 	    senddata(i);
 	    waitdata();
 	    waitdata();
-	    dto = (matrix[4'b1111 & (i >> 4)][4'b1111 & i]);
+	    dto = i;
+	    //dto = (matrix[4'b1111 & (i >> 4)][4'b1111 & i]);
 	    if(dto !== dtr) begin
 	       $display("NO i:%b transi:%b dtr: %b",i,dto,dtr);
 	       errors = errors + 1;
@@ -174,6 +237,7 @@ module test_8042;
       @(posedge clk);
 
       // Run Released Test
+      /*
       $display ("*****************");
       $display ("Run Released Test");
       $display ("*****************");
@@ -196,7 +260,7 @@ module test_8042;
 	 end // if (i !== 240)
 	 @(posedge clk);
       end // for (i=0; i<8; i=i+1)
-      
+      */
       if(errors > 0) begin
 	 $display("8042 TEST FAILURE WITH %d ERRORS",errors);
       end
@@ -218,6 +282,7 @@ module top_8042(
 		USER_CLK,
                 GPIO_LED_0,GPIO_LED_1,GPIO_LED_2,GPIO_LED_3,
 		GPIO_LED_4,GPIO_LED_5,GPIO_LED_6,GPIO_LED_7,
+		GPIO_SW_C,
                 KEYBOARD_CLK,
                 KEYBOARD_DATA
 		);
@@ -225,6 +290,7 @@ module top_8042(
    input USER_CLK;
    output GPIO_LED_0,GPIO_LED_1,GPIO_LED_2,GPIO_LED_3;
    output GPIO_LED_4,GPIO_LED_5,GPIO_LED_6,GPIO_LED_7;
+   input  GPIO_SW_C;
    output KEYBOARD_CLK;
    inout  KEYBOARD_DATA;
    
@@ -251,7 +317,7 @@ module top_8042(
    intel8042 kbrd(
                   .KBD_CLK(clk),
                   .KBD_DATA(dout),
-                  .KBD_RESET_N(1'b0),
+                  .KBD_RESET_N(GPIO_SW_C),
                   .KEYBOARD_CLK_0(KEYBOARD_CLK),
                   .KEYBOARD_DATA_0(KEYBOARD_DATA)
                   );
