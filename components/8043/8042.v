@@ -1,4 +1,100 @@
 /*
+ * keyin:
+ * This module takes in input from the keyboard and provides it for translation
+ */
+module keyin(
+		clk,
+		data,
+		dataout,
+		newdata
+		);
+
+	input clk; // keyboard clock
+	input data; // keyboard data
+   output [7:0] dataout; // keyboard data received
+	output newdata; // indicator that there is new data
+	
+	// Register File
+   reg [7:0] b; // current state
+	reg [7:0] dataout; // data out register
+	reg newdata; // New data register
+	
+	// FSM State Enum
+   parameter [7:0]
+		b1 = 8'd01,
+		b2 = 8'd02,
+		b3 = 8'd03,
+		b4 = 8'd04,
+		b5 = 8'd05,
+		b6 = 8'd06,
+		b7 = 8'd07,
+		b8 = 8'd08,
+		b9 = 8'd09,
+		b10 = 8'd10,
+		b11 = 8'd11;
+		
+	initial begin
+		b<=b1;
+		newdata<=1'b0;
+		dataout<=8'hf0;
+	end
+	
+	always @(negedge clk) begin
+		//Activating at negative edge of clock from keyboard
+		case(b)
+			b1: begin
+				b<=b2; //first bit
+			end
+			b2: begin
+				b<=b3;
+				dataout[0]<=data;
+			end
+			b3: begin
+				b<=b4;
+				dataout[1]<=data;
+			end
+			b4: begin
+				b<=b5;
+				dataout[2]<=data;
+			end
+			b5: begin
+				b<=b6;
+				dataout[3]<=data;
+			end
+			b6: begin
+				b<=b7;
+				dataout[4]<=data;
+			end
+			b7: begin
+				b<=b8;
+				dataout[5]<=data;
+			end
+			b8: begin
+				b<=b9;
+				dataout[6]<=data;
+			end
+			b9: begin
+				b<=b10;
+				dataout[7]<=data;
+			end
+			b10: begin
+				b<=b11;
+				newdata<=1'b1;
+			end
+			b11: begin
+				b<=b1;
+				newdata<=1'b0;
+			end
+			default: begin
+				b<=b1;
+				newdata<=1'b0;
+			end
+		endcase
+	end
+	
+endmodule
+
+/*
  * intel8042:
  * This module is not actually an intel 8042 keyboard controller
  * All it does is translate from one keyboard scan code type to another

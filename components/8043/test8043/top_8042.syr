@@ -1,0 +1,453 @@
+Release 14.2 - xst P.28xd (lin64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
+ 
+--> 
+Reading design: top_8042.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "top_8042.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "top_8042"
+Output Format                      : NGC
+Target Device                      : xc5vlx110t-1-ff1136
+
+---- Source Options
+Top Module Name                    : top_8042
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Off
+Reduce Control Sets                : Off
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "../8042.v" in library work
+Module <keyin> compiled
+Compiling verilog file "../test_8042.v" in library work
+Module <intel8042> compiled
+Module <test_8042> compiled
+Module <top_8042> compiled
+No errors in compilation
+Analysis of file <"top_8042.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <top_8042> in library <work>.
+
+Analyzing hierarchy for module <keyin> in library <work> with parameters.
+	b1 = "00000001"
+	b10 = "00001010"
+	b11 = "00001011"
+	b2 = "00000010"
+	b3 = "00000011"
+	b4 = "00000100"
+	b5 = "00000101"
+	b6 = "00000110"
+	b7 = "00000111"
+	b8 = "00001000"
+	b9 = "00001001"
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <top_8042>.
+Module <top_8042> is correct for synthesis.
+ 
+Analyzing module <keyin> in library <work>.
+	b1 = 8'b00000001
+	b10 = 8'b00001010
+	b11 = 8'b00001011
+	b2 = 8'b00000010
+	b3 = 8'b00000011
+	b4 = 8'b00000100
+	b5 = 8'b00000101
+	b6 = 8'b00000110
+	b7 = 8'b00000111
+	b8 = 8'b00001000
+	b9 = 8'b00001001
+Module <keyin> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <keyin>.
+    Related source file is "../8042.v".
+    Found finite state machine <FSM_0> for signal <b>.
+    -----------------------------------------------------------------------
+    | States             | 11                                             |
+    | Transitions        | 11                                             |
+    | Inputs             | 0                                              |
+    | Outputs            | 11                                             |
+    | Clock              | clk                       (falling_edge)       |
+    | Power Up State     | 00000001                                       |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 8-bit register for signal <dataout>.
+    Found 1-bit register for signal <newdata>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   9 D-type flip-flop(s).
+Unit <keyin> synthesized.
+
+
+Synthesizing Unit <top_8042>.
+    Related source file is "../test_8042.v".
+WARNING:Xst:647 - Input <USER_CLK> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <GPIO_SW_C> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <newdata> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+Unit <top_8042> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Registers                                            : 9
+ 1-bit register                                        : 9
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <k77/b/FSM> on signal <b[1:11]> with one-hot encoding.
+-------------------------
+ State    | Encoding
+-------------------------
+ 00000001 | 00000000001
+ 00000010 | 00000000010
+ 00000011 | 00000000100
+ 00000100 | 00000001000
+ 00000101 | 00000010000
+ 00000110 | 00000100000
+ 00000111 | 00001000000
+ 00001000 | 00010000000
+ 00001001 | 00100000000
+ 00001010 | 01000000000
+ 00001011 | 10000000000
+-------------------------
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 1
+# Registers                                            : 9
+ Flip-Flops                                            : 9
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <top_8042> ...
+
+Optimizing unit <keyin> ...
+WARNING:Xst:2677 - Node <k77/newdata> of sequential type is unconnected in block <top_8042>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block top_8042, actual ratio is 0.
+
+Final Macro Processing ...
+
+Processing Unit <top_8042> :
+	Found 4-bit shift register for signal <k77/b_FSM_FFd10>.
+Unit <top_8042> processed.
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 15
+ Flip-Flops                                            : 15
+# Shift Registers                                      : 1
+ 4-bit shift register                                  : 1
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : top_8042.ngr
+Top Level Output File Name         : top_8042
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 12
+
+Cell Usage :
+# BELS                             : 3
+#      GND                         : 1
+#      INV                         : 1
+#      VCC                         : 1
+# FlipFlops/Latches                : 16
+#      FD_1                        : 7
+#      FDE                         : 1
+#      FDE_1                       : 8
+# Shift Registers                  : 1
+#      SRLC16E                     : 1
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 9
+#      IBUF                        : 1
+#      OBUF                        : 8
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 5vlx110tff1136-1 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:              16  out of  69120     0%  
+ Number of Slice LUTs:                    2  out of  69120     0%  
+    Number used as Logic:                 1  out of  69120     0%  
+    Number used as Memory:                1  out of  17920     0%  
+       Number used as SRL:                1
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:     17
+   Number with an unused Flip Flop:       1  out of     17     5%  
+   Number with an unused LUT:            15  out of     17    88%  
+   Number of fully used LUT-FF pairs:     1  out of     17     5%  
+   Number of unique control sets:        10
+
+IO Utilization: 
+ Number of IOs:                          12
+ Number of bonded IOBs:                  10  out of    640     1%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+KEYBOARD_CLK                       | BUFGP                  | 17    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: 1.889ns (Maximum Frequency: 529.381MHz)
+   Minimum input arrival time before clock: 1.192ns
+   Maximum output required time after clock: 3.255ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'KEYBOARD_CLK'
+  Clock period: 1.889ns (frequency: 529.381MHz)
+  Total number of paths / destination ports: 17 / 17
+-------------------------------------------------------------------------
+Delay:               1.889ns (Levels of Logic = 0)
+  Source:            k77/Mshreg_b_FSM_FFd10 (FF)
+  Destination:       k77/b_FSM_FFd10 (FF)
+  Source Clock:      KEYBOARD_CLK falling
+  Destination Clock: KEYBOARD_CLK falling
+
+  Data Path: k77/Mshreg_b_FSM_FFd10 to k77/b_FSM_FFd10
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     SRLC16E:CLK->Q        1   1.889   0.000  k77/Mshreg_b_FSM_FFd10 (k77/Mshreg_b_FSM_FFd10)
+     FDE:D                    -0.018          k77/b_FSM_FFd10
+    ----------------------------------------
+    Total                      1.889ns (1.889ns logic, 0.000ns route)
+                                       (100.0% logic, 0.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'KEYBOARD_CLK'
+  Total number of paths / destination ports: 8 / 8
+-------------------------------------------------------------------------
+Offset:              1.192ns (Levels of Logic = 1)
+  Source:            KEYBOARD_DATA (PAD)
+  Destination:       k77/dataout_7 (FF)
+  Destination Clock: KEYBOARD_CLK falling
+
+  Data Path: KEYBOARD_DATA to k77/dataout_7
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             8   0.818   0.374  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
+     FDE_1:D                  -0.018          k77/dataout_1
+    ----------------------------------------
+    Total                      1.192ns (0.818ns logic, 0.374ns route)
+                                       (68.6% logic, 31.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'KEYBOARD_CLK'
+  Total number of paths / destination ports: 8 / 8
+-------------------------------------------------------------------------
+Offset:              3.255ns (Levels of Logic = 1)
+  Source:            k77/dataout_7 (FF)
+  Destination:       GPIO_LED_0 (PAD)
+  Source Clock:      KEYBOARD_CLK falling
+
+  Data Path: k77/dataout_7 to GPIO_LED_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE_1:C->Q            1   0.467   0.336  k77/dataout_7 (k77/dataout_7)
+     OBUF:I->O                 2.452          GPIO_LED_0_OBUF (GPIO_LED_0)
+    ----------------------------------------
+    Total                      3.255ns (2.919ns logic, 0.336ns route)
+                                       (89.7% logic, 10.3% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 5.00 secs
+Total CPU time to Xst completion: 4.18 secs
+ 
+--> 
+
+
+Total memory usage is 642424 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    4 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+
