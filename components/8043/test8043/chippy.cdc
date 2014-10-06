@@ -1,5 +1,5 @@
 #ChipScope Core Inserter Project File Version 3.0
-#Mon Oct 06 17:04:20 EDT 2014
+#Mon Oct 06 18:30:16 EDT 2014
 Project.device.designInputFile=/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/test8043/top_8042_cs.ngc
 Project.device.designOutputFile=/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/test8043/top_8042_cs.ngc
 Project.device.deviceFamily=14
@@ -24,14 +24,14 @@ Project.unit<0>.enableStorageQualification=true
 Project.unit<0>.enableTimestamps=false
 Project.unit<0>.timestampDepth=0
 Project.unit<0>.timestampWidth=0
-Project.unit<0>.triggerChannel<0><0>=kitty/state_FSM_FFd1
-Project.unit<0>.triggerChannel<0><1>=kitty/state_FSM_FFd2
-Project.unit<0>.triggerChannel<0><2>=kitty/state_FSM_FFd3
-Project.unit<0>.triggerChannel<0><3>=kitty/datain
-Project.unit<0>.triggerChannel<0><4>=kitty/dataout<0>
-Project.unit<0>.triggerChannel<0><5>=GPIO_SW_C_IBUF
-Project.unit<0>.triggerChannel<0><6>=kitty/send
-Project.unit<0>.triggerChannel<0><7>=kitty/keyoutmod/rts
+Project.unit<0>.triggerChannel<0><0>=KEYBOARD_CLK_BUFGP
+Project.unit<0>.triggerChannel<0><1>=KEYBOARD_DATA_IBUF
+Project.unit<0>.triggerChannel<0><2>=kitty/irq1
+Project.unit<0>.triggerChannel<0><3>=kitty/state
+Project.unit<0>.triggerChannel<0><4>=kitty/f0
+Project.unit<0>.triggerChannel<0><5>=kitty/keyinmod/newdata
+Project.unit<0>.triggerChannel<0><6>=GPIO_SW_C_IBUF
+Project.unit<0>.triggerChannel<0><7>=GPIO_SW_W_IBUF
 Project.unit<0>.triggerConditionCountWidth=0
 Project.unit<0>.triggerMatchCount<0>=1
 Project.unit<0>.triggerMatchCountWidth<0><0>=0

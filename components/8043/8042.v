@@ -29,36 +29,33 @@ module keyinterface(
 	wire newdata; // indicates that new keyboard data is available
 	wire datain; // data that is coming from the keyboard
 	wire reset; // reset wire
-	wire actin; // activates data being sent to ibm pc
-	wire rts; // tells if data can be sent
-	wire dout; // data to be sent
+	wire [7:0] fdata; // translated data with f0 check
 	
 	// Registers
 	reg [7:0] pa; // data that is visible to ibm pc
-	reg [2:0] state; // current state of fsm
-	reg send; // tells the send module to send
-	reg [7:0] dataout; // data out to the keyboard
+	reg state; // current state of fsm
+	reg f0; // detects if datakeyout is f0
+	reg irq1; // irq from keyboard
+	reg [7:0] tdata; // translated data
 	
 	// FSM State Enum
-   parameter [2:0]
-		idle = 3'd06,
-		data = 3'd07,
-		r0 = 3'd00,
-		r1 = 3'd01,
-		r2 = 3'd02,
-		r3 = 3'd03,
-		r4 = 3'd04,
-		r5 = 3'd05;
-		
+   parameter
+		idle = 1'b0,
+		data = 1'b1;
+	
 	// Assignment of data line
-	assign keyboard_data = (actin == 1'b1) ? dout : 1'bz;
-	assign datain = (actin == 1'b1) ? 1'b1 : keyboard_data;
+	assign datain = keyboard_data;
 	
 	// Assignment of reset
 	assign reset = ~reset_n;
 	
-	// Assignment of irq
-	assign irq1 = (state == data);
+	// Assign f0 check
+	//assign fdata[7] = tdata[7] | f0;
+	//assign fdata[6:0] = tdata[6:0];
+	
+	// Assign f0 check
+	assign fdata[7] = datakeyout[7];
+	assign fdata[6:0] = datakeyout[6:0];
 	
 	// Keyboard input module
 	keyin keyinmod(
@@ -68,43 +65,12 @@ module keyinterface(
 		.newdata(newdata)
 		);
 		
-	// Keyboard output module
-	keyout keyoutmod(
-		.senddata(dataout),
-		.send(send),
-		.rts(rts),
-		.actin(actin),
-		.dout(dout),
-		.kclk(keyboard_clock),
-		.pclk(pclk)
-		);
-	
-	// Output latch
-	always @(posedge pclk) begin
-		// If reset, set latch to 0
-		if(reset == 1'b1) begin
-			pa <= 8'b0;
-		end
-		// If clear irq happens, set latch to 0
-		else if(pb7 == 1'b1) begin
-			pa <= 8'b0;
-		end
-		// If new data is coming in, latch it
-		else if((newdata == 1'b1) && (state == idle)) begin
-			pa <= datakeyout;
-		end
-		// Otherwise, keep what you have
-		else begin
-			pa <= pa;
-		end
-	end
-	
 	// Initial state
 	initial begin
-		state<=r0;
-		send<=1'b0;
-		dataout<=8'b0;
+		state<=idle;
 		pa<=8'b0;
+		f0<=1'b0;
+		irq1<=1'b0;
 	end
 	
 	// FSM State Movement
@@ -113,123 +79,340 @@ module keyinterface(
 		case(state)
 			idle: begin
 				if(reset == 1'b1) begin
-					state<=r0;
+					state<=idle;
+					pa<=8'b0;
+					f0<=1'b0;
+					irq1<=1'b0;
 				end
 				else if(newdata == 1'b1) begin
 					state<=data;
+					pa<=fdata;
+					f0<=f0;
+					irq1<=1'b0;
 				end
 				else begin
 					state<=idle;
+					pa<=8'b0;
+					f0<=f0;
+					irq1<=1'b0;
 				end
-				send<=1'b0;
-				dataout<=8'b0;
 			end
 			data: begin
 				if(reset == 1'b1) begin
-					state<=r0;
+					state<=idle;
+					pa<=8'b0;
+					f0<=1'b0;
+					irq1<=1'b0;
 				end
+				/*
+				else if(datakeyout == 8'hf0) begin
+					state<=idle;
+					pa<=pa;
+					f0<=1'b1;
+					irq1<=1'b0;
+				end
+				*/
 				else if(pb7 == 1'b1) begin
 					state<=idle;
+					pa<=8'b0;
+					f0<=1'b0;
+					irq1<=1'b0;
 				end
 				else begin
 					state<=data;
-				end
-				send<=1'b0;
-				dataout<=8'b0;
-			end
-			r0: begin // have the send module start sending data
-				if(rts == 1'b1) begin
-					state<=r1;
-					send<=1'b1;
-					dataout<=8'hf0;
-				end
-				else begin
-					state<=r0;
-					send<=1'b0;
-					dataout<=8'hf0;
-				end
-			end
-			r1: begin // wait until data is sent
-				if(rts == 1'b1) begin
-					state<=r2;
-					send<=1'b0;
-					dataout<=8'h01;
-				end
-				else begin
-					state<=r1;
-					send<=1'b0;
-					dataout<=8'hf0;
-				end
-			end
-			r2: begin // wait for ack signal
-				if(newdata == 1'b1) begin
-					if(datakeyout == 8'hfa) begin // if ack, send next value
-						state<=r3;
-						send<=1'b0;
-						dataout<=8'h01;
-					end
-					else begin // if no ack, reset again
-						state<=r0;
-						send<=1'b0;
-						dataout<=8'b0;
-					end
-				end
-				else begin
-					state<=r2;
-					send<=1'b0;
-					dataout<=8'h01;
-				end
-			end
-			r3: begin // have the send module start sending data to indicate key scan code 1
-				if(rts == 1'b1) begin
-					state<=r4;
-					send<=1'b1;
-					dataout<=8'h01;
-				end
-				else begin
-					state<=r3;
-					send<=1'b0;
-					dataout<=8'h01;
-				end
-			end
-			r4: begin // wait until data is sent
-				if(rts == 1'b1) begin
-					state<=r5;
-					send<=1'b0;
-					dataout<=8'b0;
-				end
-				else begin
-					state<=r4;
-					send<=1'b0;
-					dataout<=8'b0;
-				end
-			end
-			r5: begin // wait for ack signal
-				if(newdata == 1'b1) begin
-					if(datakeyout == 8'hfa) begin // if ack, go back to idle
-						state<=idle;
-						send<=1'b0;
-						dataout<=8'b0;
-					end
-					else begin // if no ack, reset again
-						state<=r0;
-						send<=1'b0;
-						dataout<=8'b0;
-					end
-				end
-				else begin
-					state<=r5;
-					send<=1'b0;
-					dataout<=8'b0;
+					pa<=pa;
+					f0<=f0;
+					irq1<=1'b1;
 				end
 			end
 			default: begin
-				state<=r0;
-				send<=1'b0;
-				dataout<=8'b0;
+				state<=idle;
+				pa<=8'b0;
+				f0<=1'b0;
+				irq1<=1'b0;
 			end
 		endcase
 	end
+	
+	// Translate udata to tdata
+   always @(datakeyout) begin
+      case(datakeyout)
+			// Block 0
+			8'h00: tdata = 8'hff;
+			8'h01: tdata = 8'h43;
+			8'h02: tdata = 8'h41;
+			8'h03: tdata = 8'h3f;
+			8'h04: tdata = 8'h3d;
+			8'h05: tdata = 8'h3b;
+			8'h06: tdata = 8'h3c;
+			8'h07: tdata = 8'h58;
+			8'h08: tdata = 8'h64;
+			8'h09: tdata = 8'h44;
+			8'h0a: tdata = 8'h42;
+			8'h0b: tdata = 8'h40;
+			8'h0c: tdata = 8'h3e;
+			8'h0d: tdata = 8'h0f;
+			8'h0e: tdata = 8'h29;
+			8'h0f: tdata = 8'h59;
+			// Block 1
+			8'h10: tdata = 8'h65;
+			8'h11: tdata = 8'h38;
+			8'h12: tdata = 8'h2a;
+			8'h13: tdata = 8'h70;
+			8'h14: tdata = 8'h1d;
+			8'h15: tdata = 8'h10;
+			8'h16: tdata = 8'h02;
+			8'h17: tdata = 8'h5a;
+			8'h18: tdata = 8'h66;
+			8'h19: tdata = 8'h71;
+			8'h1a: tdata = 8'h2c;
+			8'h1b: tdata = 8'h1f;
+			8'h1c: tdata = 8'h1e;
+			8'h1d: tdata = 8'h11;
+			8'h1e: tdata = 8'h03;
+			8'h1f: tdata = 8'h5b;
+			// Block 2
+			8'h20: tdata = 8'h67;
+			8'h21: tdata = 8'h2e;
+			8'h22: tdata = 8'h2d;
+			8'h23: tdata = 8'h20;
+			8'h24: tdata = 8'h12;
+			8'h25: tdata = 8'h05;
+			8'h26: tdata = 8'h04;
+			8'h27: tdata = 8'h5c;
+			8'h28: tdata = 8'h68;
+			8'h29: tdata = 8'h39;
+			8'h2a: tdata = 8'h2f;
+			8'h2b: tdata = 8'h21;
+			8'h2c: tdata = 8'h14;
+			8'h2d: tdata = 8'h13;
+			8'h2e: tdata = 8'h06;
+			8'h2f: tdata = 8'h5d;
+			// Block 3
+			8'h30: tdata = 8'h69;
+			8'h31: tdata = 8'h31;
+			8'h32: tdata = 8'h30;
+			8'h33: tdata = 8'h23;
+			8'h34: tdata = 8'h22;
+			8'h35: tdata = 8'h15;
+			8'h36: tdata = 8'h07;
+			8'h37: tdata = 8'h5e;
+			8'h38: tdata = 8'h6a;
+			8'h39: tdata = 8'h72;
+			8'h3a: tdata = 8'h32;
+			8'h3b: tdata = 8'h24;
+			8'h3c: tdata = 8'h16;
+			8'h3d: tdata = 8'h08;
+			8'h3e: tdata = 8'h09;
+			8'h3f: tdata = 8'h5f;
+			// Block 4
+			8'h40: tdata = 8'h6b;
+			8'h41: tdata = 8'h33;
+			8'h42: tdata = 8'h25;
+			8'h43: tdata = 8'h17;
+			8'h44: tdata = 8'h18;
+			8'h45: tdata = 8'h0b;
+			8'h46: tdata = 8'h0a;
+			8'h47: tdata = 8'h60;
+			8'h48: tdata = 8'h6c;
+			8'h49: tdata = 8'h34;
+			8'h4a: tdata = 8'h35;
+			8'h4b: tdata = 8'h26;
+			8'h4c: tdata = 8'h27;
+			8'h4d: tdata = 8'h19;
+			8'h4e: tdata = 8'h0c;
+			8'h4f: tdata = 8'h61;
+			// Block 5
+			8'h50: tdata = 8'h6d;
+			8'h51: tdata = 8'h73;
+			8'h52: tdata = 8'h28;
+			8'h53: tdata = 8'h74;
+			8'h54: tdata = 8'h1a;
+			8'h55: tdata = 8'h0d;
+			8'h56: tdata = 8'h62;
+			8'h57: tdata = 8'h6e;
+			8'h58: tdata = 8'h3a;
+			8'h59: tdata = 8'h36;
+			8'h5a: tdata = 8'h1c;
+			8'h5b: tdata = 8'h1b;
+			8'h5c: tdata = 8'h75;
+			8'h5d: tdata = 8'h2b;
+			8'h5e: tdata = 8'h63;
+			8'h5f: tdata = 8'h76;
+			// Block 6
+			8'h60: tdata = 8'h55;
+			8'h61: tdata = 8'h56;
+			8'h62: tdata = 8'h77;
+			8'h63: tdata = 8'h78;
+			8'h64: tdata = 8'h79;
+			8'h65: tdata = 8'h7a;
+			8'h66: tdata = 8'h0e;
+			8'h67: tdata = 8'h7b;
+			8'h68: tdata = 8'h7c;
+			8'h69: tdata = 8'h4f;
+			8'h6a: tdata = 8'h7d;
+			8'h6b: tdata = 8'h4b;
+			8'h6c: tdata = 8'h47;
+			8'h6d: tdata = 8'h7e;
+			8'h6e: tdata = 8'h7f;
+			8'h6f: tdata = 8'h6f;
+			// Block 7
+			8'h70: tdata = 8'h52;
+			8'h71: tdata = 8'h53;
+			8'h72: tdata = 8'h50;
+			8'h73: tdata = 8'h4c;
+			8'h74: tdata = 8'h4d;
+			8'h75: tdata = 8'h48;
+			8'h76: tdata = 8'h01;
+			8'h77: tdata = 8'h45;
+			8'h78: tdata = 8'h57;
+			8'h79: tdata = 8'h4e;
+			8'h7a: tdata = 8'h51;
+			8'h7b: tdata = 8'h4a;
+			8'h7c: tdata = 8'h37;
+			8'h7d: tdata = 8'h49;
+			8'h7e: tdata = 8'h46;
+			8'h7f: tdata = 8'h54;
+			// Block 8
+			8'h80: tdata = 8'h80;
+			8'h81: tdata = 8'h81;
+			8'h82: tdata = 8'h82;
+			8'h83: tdata = 8'h41;
+			8'h84: tdata = 8'h54;
+			8'h85: tdata = 8'h85;
+			8'h86: tdata = 8'h86;
+			8'h87: tdata = 8'h87;
+			8'h88: tdata = 8'h88;
+			8'h89: tdata = 8'h89;
+			8'h8a: tdata = 8'h8a;
+			8'h8b: tdata = 8'h8b;
+			8'h8c: tdata = 8'h8c;
+			8'h8d: tdata = 8'h8d;
+			8'h8e: tdata = 8'h8e;
+			8'h8f: tdata = 8'h8f;
+			// Block 9
+			8'h90: tdata = 8'h90;
+			8'h91: tdata = 8'h91;
+			8'h92: tdata = 8'h92;
+			8'h93: tdata = 8'h93;
+			8'h94: tdata = 8'h94;
+			8'h95: tdata = 8'h95;
+			8'h96: tdata = 8'h96;
+			8'h97: tdata = 8'h97;
+			8'h98: tdata = 8'h98;
+			8'h99: tdata = 8'h99;
+			8'h9a: tdata = 8'h9a;
+			8'h9b: tdata = 8'h9b;
+			8'h9c: tdata = 8'h9c;
+			8'h9d: tdata = 8'h9d;
+			8'h9e: tdata = 8'h9e;
+			8'h9f: tdata = 8'h9f;
+			// Block A
+			8'ha0: tdata = 8'ha0;
+			8'ha1: tdata = 8'ha1;
+			8'ha2: tdata = 8'ha2;
+			8'ha3: tdata = 8'ha3;
+			8'ha4: tdata = 8'ha4;
+			8'ha5: tdata = 8'ha5;
+			8'ha6: tdata = 8'ha6;
+			8'ha7: tdata = 8'ha7;
+			8'ha8: tdata = 8'ha8;
+			8'ha9: tdata = 8'ha9;
+			8'haa: tdata = 8'haa;
+			8'hab: tdata = 8'hab;
+			8'hac: tdata = 8'hac;
+			8'had: tdata = 8'had;
+			8'hae: tdata = 8'hae;
+			8'haf: tdata = 8'haf;
+			// Block B
+			8'hb0: tdata = 8'hb0;
+			8'hb1: tdata = 8'hb1;
+			8'hb2: tdata = 8'hb2;
+			8'hb3: tdata = 8'hb3;
+			8'hb4: tdata = 8'hb4;
+			8'hb5: tdata = 8'hb5;
+			8'hb6: tdata = 8'hb6;
+			8'hb7: tdata = 8'hb7;
+			8'hb8: tdata = 8'hb8;
+			8'hb9: tdata = 8'hb9;
+			8'hba: tdata = 8'hba;
+			8'hbb: tdata = 8'hbb;
+			8'hbc: tdata = 8'hbc;
+			8'hbd: tdata = 8'hbd;
+			8'hbe: tdata = 8'hbe;
+			8'hbf: tdata = 8'hbf;
+			// Block C
+			8'hc0: tdata = 8'hc0;
+			8'hc1: tdata = 8'hc1;
+			8'hc2: tdata = 8'hc2;
+			8'hc3: tdata = 8'hc3;
+			8'hc4: tdata = 8'hc4;
+			8'hc5: tdata = 8'hc5;
+			8'hc6: tdata = 8'hc6;
+			8'hc7: tdata = 8'hc7;
+			8'hc8: tdata = 8'hc8;
+			8'hc9: tdata = 8'hc9;
+			8'hca: tdata = 8'hca;
+			8'hcb: tdata = 8'hcb;
+			8'hcc: tdata = 8'hcc;
+			8'hcd: tdata = 8'hcd;
+			8'hce: tdata = 8'hce;
+			8'hcf: tdata = 8'hcf;
+			// Block D
+			8'hd0: tdata = 8'hd0;
+			8'hd1: tdata = 8'hd1;
+			8'hd2: tdata = 8'hd2;
+			8'hd3: tdata = 8'hd3;
+			8'hd4: tdata = 8'hd4;
+			8'hd5: tdata = 8'hd5;
+			8'hd6: tdata = 8'hd6;
+			8'hd7: tdata = 8'hd7;
+			8'hd8: tdata = 8'hd8;
+			8'hd9: tdata = 8'hd9;
+			8'hda: tdata = 8'hda;
+			8'hdb: tdata = 8'hdb;
+			8'hdc: tdata = 8'hdc;
+			8'hdd: tdata = 8'hdd;
+			8'hde: tdata = 8'hde;
+			8'hdf: tdata = 8'hdf;
+			// Block E
+			8'he0: tdata = 8'he0;
+			8'he1: tdata = 8'he1;
+			8'he2: tdata = 8'he2;
+			8'he3: tdata = 8'he3;
+			8'he4: tdata = 8'he4;
+			8'he5: tdata = 8'he5;
+			8'he6: tdata = 8'he6;
+			8'he7: tdata = 8'he7;
+			8'he8: tdata = 8'he8;
+			8'he9: tdata = 8'he9;
+			8'hea: tdata = 8'hea;
+			8'heb: tdata = 8'heb;
+			8'hec: tdata = 8'hec;
+			8'hed: tdata = 8'hed;
+			8'hee: tdata = 8'hee;
+			8'hef: tdata = 8'hef;
+			// Block F
+			8'hf0: tdata = 8'hf0;
+			8'hf1: tdata = 8'hf1;
+			8'hf2: tdata = 8'hf2;
+			8'hf3: tdata = 8'hf3;
+			8'hf4: tdata = 8'hf4;
+			8'hf5: tdata = 8'hf5;
+			8'hf6: tdata = 8'hf6;
+			8'hf7: tdata = 8'hf7;
+			8'hf8: tdata = 8'hf8;
+			8'hf9: tdata = 8'hf9;
+			8'hfa: tdata = 8'hfa;
+			8'hfb: tdata = 8'hfb;
+			8'hfc: tdata = 8'hfc;
+			8'hfd: tdata = 8'hfd;
+			8'hfe: tdata = 8'hfe;
+			8'hff: tdata = 8'hff;
+			// Block G
+			default: tdata = 8'hff;
+      endcase // case (udata[7:4])
+   end // always @ (udata)
 endmodule
 
 /*
@@ -712,7 +895,7 @@ module keyin(
 	initial begin
 		b<=b1;
 		newdata<=1'b0;
-		dataout<=8'hf0;
+		dataout<=8'h00;
 	end
 	
 	always @(negedge clk) begin
