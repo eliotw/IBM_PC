@@ -1,4 +1,680 @@
 /*
+ * keyinterface:
+ * This module is the keyboard interface for the IBM PC
+ */
+module keyinterface(
+	pclk,
+	reset_n,
+	pa,
+	pb6,
+	pb7,
+	irq1,
+	keyboard_clock,
+	keyboard_data
+	// There is no keyboard_reset_n
+	);
+	
+	// Inputs, Outputs, and Inouts
+	input pclk; // pclk from ibm pc
+	input reset_n; // reset from ibm pc
+	output [7:0] pa; // keyboard output to ibm pc
+	input pb6; // clear keyboard clock, useless?
+	input pb7; // clear keyboard irq
+	output irq1; // irq from keyboard
+	inout keyboard_clock; // clock coming from keyboard
+	inout keyboard_data; // data going to and from keyboard
+
+	// Wires
+	wire [7:0] datakeyout; // data that has just come from keyboard
+	wire newdata; // indicates that new keyboard data is available
+	wire datain; // data that is coming from the keyboard
+	wire reset; // reset wire
+	wire actin; // activates data being sent to ibm pc
+	wire rts; // tells if data can be sent
+	wire dout; // data to be sent
+	
+	// Registers
+	reg [7:0] pa; // data that is visible to ibm pc
+	reg [2:0] state; // current state of fsm
+	reg send; // tells the send module to send
+	reg [7:0] dataout; // data out to the keyboard
+	
+	// FSM State Enum
+   parameter [2:0]
+		idle = 3'd06,
+		data = 3'd07,
+		r0 = 3'd00,
+		r1 = 3'd01,
+		r2 = 3'd02,
+		r3 = 3'd03,
+		r4 = 3'd04,
+		r5 = 3'd05;
+		
+	// Assignment of data line
+	assign keyboard_data = (actin == 1'b1) ? dout : 1'bz;
+	assign datain = (actin == 1'b1) ? 1'b1 : keyboard_data;
+	
+	// Assignment of reset
+	assign reset = ~reset_n;
+	
+	// Assignment of irq
+	assign irq1 = (state == data);
+	
+	// Keyboard input module
+	keyin keyinmod(
+		.clk(keyboard_clock),
+		.data(datain),
+		.dataout(datakeyout),
+		.newdata(newdata)
+		);
+		
+	// Keyboard output module
+	keyout keyoutmod(
+		.senddata(dataout),
+		.send(send),
+		.rts(rts),
+		.actin(actin),
+		.dout(dout),
+		.kclk(keyboard_clock),
+		.pclk(pclk)
+		);
+	
+	// Output latch
+	always @(posedge pclk) begin
+		// If reset, set latch to 0
+		if(reset == 1'b1) begin
+			pa <= 8'b0;
+		end
+		// If clear irq happens, set latch to 0
+		else if(pb7 == 1'b1) begin
+			pa <= 8'b0;
+		end
+		// If new data is coming in, latch it
+		else if((newdata == 1'b1) && (state == idle)) begin
+			pa <= datakeyout;
+		end
+		// Otherwise, keep what you have
+		else begin
+			pa <= pa;
+		end
+	end
+	
+	// Initial state
+	initial begin
+		state<=r0;
+		send<=1'b0;
+		dataout<=8'b0;
+		pa<=8'b0;
+	end
+	
+	// FSM State Movement
+	always @(posedge pclk) begin
+		//Activating at positive edge of clock
+		case(state)
+			idle: begin
+				if(reset == 1'b1) begin
+					state<=r0;
+				end
+				else if(newdata == 1'b1) begin
+					state<=data;
+				end
+				else begin
+					state<=idle;
+				end
+				send<=1'b0;
+				dataout<=8'b0;
+			end
+			data: begin
+				if(reset == 1'b1) begin
+					state<=r0;
+				end
+				else if(pb7 == 1'b1) begin
+					state<=idle;
+				end
+				else begin
+					state<=data;
+				end
+				send<=1'b0;
+				dataout<=8'b0;
+			end
+			r0: begin // have the send module start sending data
+				if(rts == 1'b1) begin
+					state<=r1;
+					send<=1'b1;
+					dataout<=8'hf0;
+				end
+				else begin
+					state<=r0;
+					send<=1'b0;
+					dataout<=8'hf0;
+				end
+			end
+			r1: begin // wait until data is sent
+				if(rts == 1'b1) begin
+					state<=r2;
+					send<=1'b0;
+					dataout<=8'h01;
+				end
+				else begin
+					state<=r1;
+					send<=1'b0;
+					dataout<=8'hf0;
+				end
+			end
+			r2: begin // wait for ack signal
+				if(newdata == 1'b1) begin
+					if(datakeyout == 8'hfa) begin // if ack, send next value
+						state<=r3;
+						send<=1'b0;
+						dataout<=8'h01;
+					end
+					else begin // if no ack, reset again
+						state<=r0;
+						send<=1'b0;
+						dataout<=8'b0;
+					end
+				end
+				else begin
+					state<=r2;
+					send<=1'b0;
+					dataout<=8'h01;
+				end
+			end
+			r3: begin // have the send module start sending data to indicate key scan code 1
+				if(rts == 1'b1) begin
+					state<=r4;
+					send<=1'b1;
+					dataout<=8'h01;
+				end
+				else begin
+					state<=r3;
+					send<=1'b0;
+					dataout<=8'h01;
+				end
+			end
+			r4: begin // wait until data is sent
+				if(rts == 1'b1) begin
+					state<=r5;
+					send<=1'b0;
+					dataout<=8'b0;
+				end
+				else begin
+					state<=r4;
+					send<=1'b0;
+					dataout<=8'b0;
+				end
+			end
+			r5: begin // wait for ack signal
+				if(newdata == 1'b1) begin
+					if(datakeyout == 8'hfa) begin // if ack, go back to idle
+						state<=idle;
+						send<=1'b0;
+						dataout<=8'b0;
+					end
+					else begin // if no ack, reset again
+						state<=r0;
+						send<=1'b0;
+						dataout<=8'b0;
+					end
+				end
+				else begin
+					state<=r5;
+					send<=1'b0;
+					dataout<=8'b0;
+				end
+			end
+			default: begin
+				state<=r0;
+				send<=1'b0;
+				dataout<=8'b0;
+			end
+		endcase
+	end
+endmodule
+
+/*
+ * keyout:
+ * This module outputs some data to the keyboard
+ */
+module keyout(
+	senddata,
+	send,
+	rts,
+	actin,
+	dout,
+	kclk,
+	pclk
+	);
+	
+	input [7:0] senddata; // data that needs to be sent
+	input send; // order to send data
+	output rts; // tells that data can be sent
+	output actin; // activates send line
+	output dout; // data output
+	inout kclk; // keyboard clock
+	input pclk; // pc clock
+	
+	// Wires
+	wire datap; // data parity
+	
+	// Registers
+	reg rts, actin, dout;
+	reg [7:0] data, state;
+	reg klow; // pulls the keyboard line low
+	
+	// FSM State Enum
+   parameter [7:0]
+		idle = 8'd26,
+		r0 = 8'd00,
+		r1 = 8'd01,
+		r2 = 8'd02,
+		r3 = 8'd03,
+		r4 = 8'd04,
+		r5 = 8'd05,
+		r6 = 8'd06,
+		r7 = 8'd07,
+		r8 = 8'd08,
+		r9 = 8'd09,
+		r10 = 8'd10,
+		r11 = 8'd11,
+		r12 = 8'd12,
+		r13 = 8'd13,
+		r14 = 8'd14,
+		r15 = 8'd15,
+		r16 = 8'd16,
+		r17 = 8'd17,
+		r18 = 8'd18,
+		r19 = 8'd19,
+		r20 = 8'd20,
+		r21 = 8'd21,
+		r22 = 8'd22,
+		r23 = 8'd23,
+		r24 = 8'd24,
+		r25 = 8'd25;
+	
+	// Initial state
+	initial begin
+		state<=idle;
+		data<=8'b0;
+		rts<=1'b0;
+		actin<=1'b0;
+		dout<=1'b1;
+		klow<=1'b0;
+	end
+	
+	// Assign data parity
+	assign datap = data[0] ^ data[1] ^ data[2] ^ data[3] ^ data[4] ^ data[5] ^ data[6] ^ data[7];
+	// Keyboard clock pull low - I HAVE NO CLUE IF THIS WILL WORK
+	assign kclk = (klow == 1'b1) ? 1'b0 : 1'bz;
+	
+	// FSM Logic
+	always @(posedge pclk) begin
+		case(state)
+			idle: begin // wait to send reset stuff
+				if(send == 1'b1) begin
+					state<=r0;
+					data<=senddata;
+					rts<=1'b0;
+					actin<=1'b0;
+					dout<=1'b1;
+					klow<=1'b0;
+				end
+				else begin
+					state<=idle;
+					data<=8'b0;
+					rts<=1'b1;
+					actin<=1'b0;
+					dout<=1'b1;
+					klow<=1'b0;
+				end
+			end
+			r0: begin // pull clk line low 4
+				state<=r1;
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b0;
+				dout<=1'b1;
+				klow<=1'b1;
+			end
+			r1: begin // pull clk line low 3
+				state<=r2;
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b0;
+				dout<=1'b1;
+				klow<=1'b1;
+			end
+			r2: begin // pull clk line low 2
+				state<=r3;
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b0;
+				dout<=1'b1;
+				klow<=1'b1;
+			end
+			r3: begin // pull clk line low 1
+				state<=r4;
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b0;
+				dout<=1'b1;
+				klow<=1'b1;
+			end
+			r4: begin // pull clk line low 0
+				state<=r5;
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b0;
+				dout<=1'b1;
+				klow<=1'b1;
+			end
+			r5: begin // pull data line low, keep clock line low
+				state<=r6;
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				dout<=1'b0;
+				klow<=1'b1;
+			end
+			r6: begin // pull data line low, release clock line
+				state<=r7;
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				dout<=1'b0;
+				klow<=1'b0;
+			end
+			
+			r7: begin // wait for device to bring clock line low
+				if(kclk == 1'b0) begin
+					state<=r8;
+					dout<=data[0];
+				end
+				else begin
+					state<=r7;
+					dout<=1'b0;
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			// BIT 0
+			r8: begin // wait for device to bring clock line high
+				if(kclk == 1'b1) begin
+					state<=r9;
+					dout<=data[0];
+				end
+				else begin
+					state<=r8;
+					dout<=data[0];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			r9: begin // wait for device to bring clock line low
+				if(kclk == 1'b0) begin
+					state<=r10;
+					dout<=data[1];
+				end
+				else begin
+					state<=r9;
+					dout<=data[0];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			// BIT 1
+			r10: begin // wait for device to bring clock line high
+				if(kclk == 1'b1) begin
+					state<=r11;
+					dout<=data[1];
+				end
+				else begin
+					state<=r10;
+					dout<=data[1];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			r11: begin // wait for device to bring clock line low
+				if(kclk == 1'b0) begin
+					state<=r12;
+					dout<=data[2];
+				end
+				else begin
+					state<=r11;
+					dout<=data[1];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			// BIT 2
+			r12: begin // wait for device to bring clock line high
+				if(kclk == 1'b1) begin
+					state<=r13;
+					dout<=data[2];
+				end
+				else begin
+					state<=r12;
+					dout<=data[2];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			r13: begin // wait for device to bring clock line low
+				if(kclk == 1'b0) begin
+					state<=r14;
+					dout<=data[3];
+				end
+				else begin
+					state<=r13;
+					dout<=data[2];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			// BIT 3
+			r14: begin // wait for device to bring clock line high
+				if(kclk == 1'b1) begin
+					state<=r15;
+					dout<=data[3];
+				end
+				else begin
+					state<=r14;
+					dout<=data[3];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			r15: begin // wait for device to bring clock line low
+				if(kclk == 1'b0) begin
+					state<=r16;
+					dout<=data[4];
+				end
+				else begin
+					state<=r15;
+					dout<=data[3];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			// BIT 4
+			r16: begin // wait for device to bring clock line high
+				if(kclk == 1'b1) begin
+					state<=r17;
+					dout<=data[4];
+				end
+				else begin
+					state<=r16;
+					dout<=data[4];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			r17: begin // wait for device to bring clock line low
+				if(kclk == 1'b0) begin
+					state<=r18;
+					dout<=data[5];
+				end
+				else begin
+					state<=r17;
+					dout<=data[4];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			// BIT 5
+			r18: begin // wait for device to bring clock line high
+				if(kclk == 1'b1) begin
+					state<=r19;
+					dout<=data[5];
+				end
+				else begin
+					state<=r18;
+					dout<=data[5];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			r19: begin // wait for device to bring clock line low
+				if(kclk == 1'b0) begin
+					state<=r20;
+					dout<=data[6];
+				end
+				else begin
+					state<=r19;
+					dout<=data[5];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			// BIT 6
+			r20: begin // wait for device to bring clock line high
+				if(kclk == 1'b1) begin
+					state<=r21;
+					dout<=data[6];
+				end
+				else begin
+					state<=r20;
+					dout<=data[6];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			r21: begin // wait for device to bring clock line low
+				if(kclk == 1'b0) begin
+					state<=r22;
+					dout<=data[7];
+				end
+				else begin
+					state<=r21;
+					dout<=data[6];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			// BIT 7
+			r22: begin // wait for device to bring clock line high
+				if(kclk == 1'b1) begin
+					state<=r23;
+					dout<=data[7];
+				end
+				else begin
+					state<=r22;
+					dout<=data[7];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			r23: begin // wait for device to bring clock line low
+				if(kclk == 1'b0) begin
+					state<=r24;
+					dout<=datap;
+				end
+				else begin
+					state<=r23;
+					dout<=data[7];
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			// BIT PARITY
+			r24: begin // wait for device to bring clock line high
+				if(kclk == 1'b1) begin
+					state<=r25;
+					dout<=datap;
+				end
+				else begin
+					state<=r24;
+					dout<=datap;
+				end
+				data<=data;
+				rts<=1'b0;
+				actin<=1'b1;
+				klow<=1'b0;
+			end
+			r25: begin // wait for device to bring clock line low
+				if(kclk == 1'b0) begin
+					state<=idle;
+					actin<=1'b0;
+					dout<=1'b0;
+				end
+				else begin
+					state<=r25;
+					actin<=1'b1;
+					dout<=datap;
+				end
+				data<=data;
+				rts<=1'b0;
+				klow<=1'b0;
+			end
+			default: begin
+				state<=idle;
+				data<=8'b0;
+				rts<=1'b0;
+				actin<=1'b0;
+				dout<=1'b1;
+				klow<=1'b0;
+			end
+		endcase
+	end
+	
+endmodule
+
+/*
  * keyin:
  * This module takes in input from the keyboard and provides it for translation
  */

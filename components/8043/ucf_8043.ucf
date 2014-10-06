@@ -6,7 +6,11 @@ NET  GPIO_LED_4           LOC="G16";
 NET  GPIO_LED_5           LOC="AD25";
 NET  GPIO_LED_6           LOC="AD24";
 NET  GPIO_LED_7           LOC="AE24";
+NET  GPIO_LED_C           LOC="E8";    # Bank 20, Vcco=3.3V, DCI using 49.9 ohm resistors
 NET  GPIO_SW_C            LOC="AJ6";
+NET  GPIO_SW_E            LOC="AK7";
+NET  GPIO_SW_W            LOC="AJ7";
 NET  KEYBOARD_CLK         LOC="T26"|CLOCK_DEDICATED_ROUTE=FALSE;
 NET  KEYBOARD_DATA        LOC="T25";
 NET  USER_CLK             LOC="AH15";
+TIMESPEC TS_USER_CLK = PERIOD "USER_CLK" 50MHz HIGH 50%;

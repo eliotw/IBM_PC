@@ -5,7 +5,7 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.07 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 Parameter xsthdpdir set to xst
@@ -112,6 +112,16 @@ Slice Utilization Ratio Delta      : 5
 *                          HDL Compilation                              *
 =========================================================================
 Compiling verilog file "../8042.v" in library work
+WARNING:HDLCompilers:298 - "../8042.v" line 44 Too many digits specified in decimal constant
+WARNING:HDLCompilers:298 - "../8042.v" line 45 Too many digits specified in decimal constant
+WARNING:HDLCompilers:298 - "../8042.v" line 46 Too many digits specified in decimal constant
+WARNING:HDLCompilers:298 - "../8042.v" line 47 Too many digits specified in decimal constant
+WARNING:HDLCompilers:298 - "../8042.v" line 48 Too many digits specified in decimal constant
+WARNING:HDLCompilers:298 - "../8042.v" line 49 Too many digits specified in decimal constant
+WARNING:HDLCompilers:298 - "../8042.v" line 50 Too many digits specified in decimal constant
+WARNING:HDLCompilers:298 - "../8042.v" line 51 Too many digits specified in decimal constant
+Module <keyinterface> compiled
+Module <keyout> compiled
 Module <keyin> compiled
 Compiling verilog file "../test_8042.v" in library work
 Module <intel8042> compiled
@@ -126,6 +136,16 @@ Analysis of file <"top_8042.prj"> succeeded.
 =========================================================================
 Analyzing hierarchy for module <top_8042> in library <work>.
 
+Analyzing hierarchy for module <keyinterface> in library <work> with parameters.
+	data = "111"
+	idle = "110"
+	r0 = "000"
+	r1 = "001"
+	r2 = "010"
+	r3 = "011"
+	r4 = "100"
+	r5 = "101"
+
 Analyzing hierarchy for module <keyin> in library <work> with parameters.
 	b1 = "00000001"
 	b10 = "00001010"
@@ -139,12 +159,52 @@ Analyzing hierarchy for module <keyin> in library <work> with parameters.
 	b8 = "00001000"
 	b9 = "00001001"
 
+Analyzing hierarchy for module <keyout> in library <work> with parameters.
+	idle = "00011010"
+	r0 = "00000000"
+	r1 = "00000001"
+	r10 = "00001010"
+	r11 = "00001011"
+	r12 = "00001100"
+	r13 = "00001101"
+	r14 = "00001110"
+	r15 = "00001111"
+	r16 = "00010000"
+	r17 = "00010001"
+	r18 = "00010010"
+	r19 = "00010011"
+	r2 = "00000010"
+	r20 = "00010100"
+	r21 = "00010101"
+	r22 = "00010110"
+	r23 = "00010111"
+	r24 = "00011000"
+	r25 = "00011001"
+	r3 = "00000011"
+	r4 = "00000100"
+	r5 = "00000101"
+	r6 = "00000110"
+	r7 = "00000111"
+	r8 = "00001000"
+	r9 = "00001001"
+
 
 =========================================================================
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing top module <top_8042>.
 Module <top_8042> is correct for synthesis.
+ 
+Analyzing module <keyinterface> in library <work>.
+	data = 3'b111
+	idle = 3'b110
+	r0 = 3'b000
+	r1 = 3'b001
+	r2 = 3'b010
+	r3 = 3'b011
+	r4 = 3'b100
+	r5 = 3'b101
+Module <keyinterface> is correct for synthesis.
  
 Analyzing module <keyin> in library <work>.
 	b1 = 8'b00000001
@@ -159,6 +219,36 @@ Analyzing module <keyin> in library <work>.
 	b8 = 8'b00001000
 	b9 = 8'b00001001
 Module <keyin> is correct for synthesis.
+ 
+Analyzing module <keyout> in library <work>.
+	idle = 8'b00011010
+	r0 = 8'b00000000
+	r1 = 8'b00000001
+	r10 = 8'b00001010
+	r11 = 8'b00001011
+	r12 = 8'b00001100
+	r13 = 8'b00001101
+	r14 = 8'b00001110
+	r15 = 8'b00001111
+	r16 = 8'b00010000
+	r17 = 8'b00010001
+	r18 = 8'b00010010
+	r19 = 8'b00010011
+	r2 = 8'b00000010
+	r20 = 8'b00010100
+	r21 = 8'b00010101
+	r22 = 8'b00010110
+	r23 = 8'b00010111
+	r24 = 8'b00011000
+	r25 = 8'b00011001
+	r3 = 8'b00000011
+	r4 = 8'b00000100
+	r5 = 8'b00000101
+	r6 = 8'b00000110
+	r7 = 8'b00000111
+	r8 = 8'b00001000
+	r9 = 8'b00001001
+Module <keyout> is correct for synthesis.
  
 
 =========================================================================
@@ -188,11 +278,61 @@ Synthesizing Unit <keyin>.
 Unit <keyin> synthesized.
 
 
+Synthesizing Unit <keyout>.
+    Related source file is "../8042.v".
+    Found finite state machine <FSM_1> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 27                                             |
+    | Transitions        | 47                                             |
+    | Inputs             | 2                                              |
+    | Outputs            | 28                                             |
+    | Clock              | pclk                      (rising_edge)        |
+    | Power Up State     | 00011010                                       |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 1-bit register for signal <actin>.
+    Found 1-bit register for signal <rts>.
+    Found 1-bit tristate buffer for signal <kclk>.
+    Found 1-bit register for signal <dout>.
+    Found 8-bit register for signal <data>.
+    Found 1-bit xor8 for signal <datap>.
+    Found 1-bit register for signal <klow>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  12 D-type flip-flop(s).
+	inferred   1 Xor(s).
+	inferred   1 Tristate(s).
+Unit <keyout> synthesized.
+
+
+Synthesizing Unit <keyinterface>.
+    Related source file is "../8042.v".
+WARNING:Xst:647 - Input <pb6> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found finite state machine <FSM_2> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 8                                              |
+    | Transitions        | 20                                             |
+    | Inputs             | 5                                              |
+    | Outputs            | 8                                              |
+    | Clock              | pclk                      (rising_edge)        |
+    | Power Up State     | 000                                            |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 8-bit register for signal <pa>.
+    Found 1-bit tristate buffer for signal <keyboard_data>.
+    Found 8-bit register for signal <dataout>.
+    Found 1-bit register for signal <send>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  17 D-type flip-flop(s).
+	inferred   1 Tristate(s).
+Unit <keyinterface> synthesized.
+
+
 Synthesizing Unit <top_8042>.
     Related source file is "../test_8042.v".
-WARNING:Xst:647 - Input <USER_CLK> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <GPIO_SW_C> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:646 - Signal <newdata> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <top_8042> synthesized.
 
 
@@ -200,8 +340,13 @@ Unit <top_8042> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Registers                                            : 9
- 1-bit register                                        : 9
+# Registers                                            : 17
+ 1-bit register                                        : 14
+ 8-bit register                                        : 3
+# Tristates                                            : 2
+ 1-bit tristate buffer                                 : 2
+# Xors                                                 : 1
+ 1-bit xor8                                            : 1
 
 =========================================================================
 
@@ -209,8 +354,55 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
+Analyzing FSM <FSM_2> for best encoding.
+Optimizing FSM <kitty/state/FSM> on signal <state[1:3]> with gray encoding.
+-------------------
+ State | Encoding
+-------------------
+ 000   | 000
+ 001   | 010
+ 010   | 110
+ 011   | 111
+ 100   | 101
+ 101   | 100
+ 110   | 011
+ 111   | 001
+-------------------
+Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <kitty/keyoutmod/state/FSM> on signal <state[1:27]> with one-hot encoding.
+-----------------------------------------
+ State    | Encoding
+-----------------------------------------
+ 00000000 | 000000000000000000000000010
+ 00000001 | 000000000000000000000000100
+ 00000010 | 000000000000000000000001000
+ 00000011 | 000000000000000000000010000
+ 00000100 | 000000000000000000000100000
+ 00000101 | 000000000000000000001000000
+ 00000110 | 000000000000000000010000000
+ 00000111 | 000000000000000000100000000
+ 00001000 | 000000000000000001000000000
+ 00001001 | 000000000000000010000000000
+ 00001010 | 000000000000000100000000000
+ 00001011 | 000000000000001000000000000
+ 00001100 | 000000000000010000000000000
+ 00001101 | 000000000000100000000000000
+ 00001110 | 000000000001000000000000000
+ 00001111 | 000000000010000000000000000
+ 00010000 | 000000000100000000000000000
+ 00010001 | 000000001000000000000000000
+ 00010010 | 000000010000000000000000000
+ 00010011 | 000000100000000000000000000
+ 00010100 | 000001000000000000000000000
+ 00010101 | 000010000000000000000000000
+ 00010110 | 000100000000000000000000000
+ 00010111 | 001000000000000000000000000
+ 00011000 | 010000000000000000000000000
+ 00011001 | 100000000000000000000000000
+ 00011010 | 000000000000000000000000001
+-----------------------------------------
 Analyzing FSM <FSM_0> for best encoding.
-Optimizing FSM <k77/b/FSM> on signal <b[1:11]> with one-hot encoding.
+Optimizing FSM <kitty/keyinmod/b/FSM> on signal <b[1:11]> with one-hot encoding.
 -------------------------
  State    | Encoding
 -------------------------
@@ -226,25 +418,38 @@ Optimizing FSM <k77/b/FSM> on signal <b[1:11]> with one-hot encoding.
  00001010 | 01000000000
  00001011 | 10000000000
 -------------------------
+INFO:Xst:2261 - The FF/Latch <dataout_1> in Unit <kitty> is equivalent to the following 2 FFs/Latches, which will be removed : <dataout_2> <dataout_3> 
+WARNING:Xst:1293 - FF/Latch <data_1> has a constant value of 0 in block <keyoutmod>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <data_2> has a constant value of 0 in block <keyoutmod>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <data_3> has a constant value of 0 in block <keyoutmod>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dataout_1> has a constant value of 0 in block <kitty>. This FF/Latch will be trimmed during the optimization process.
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# FSMs                                                 : 1
-# Registers                                            : 9
- Flip-Flops                                            : 9
+# FSMs                                                 : 3
+# Registers                                            : 38
+ Flip-Flops                                            : 38
+# Xors                                                 : 1
+ 1-bit xor8                                            : 1
 
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
+WARNING:Xst:1293 - FF/Latch <dataout_1> has a constant value of 0 in block <keyinterface>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <dataout_2> has a constant value of 0 in block <keyinterface>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <dataout_3> has a constant value of 0 in block <keyinterface>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <dataout_4> in Unit <keyinterface> is equivalent to the following 3 FFs/Latches, which will be removed : <dataout_5> <dataout_6> <dataout_7> 
+WARNING:Xst:1293 - FF/Latch <data_1> has a constant value of 0 in block <keyout>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <data_2> has a constant value of 0 in block <keyout>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <data_3> has a constant value of 0 in block <keyout>. This FF/Latch will be trimmed during the optimization process.
 
 Optimizing unit <top_8042> ...
 
 Optimizing unit <keyin> ...
-WARNING:Xst:2677 - Node <k77/newdata> of sequential type is unconnected in block <top_8042>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
@@ -253,17 +458,17 @@ Found area constraint ratio of 100 (+ 5) on block top_8042, actual ratio is 0.
 Final Macro Processing ...
 
 Processing Unit <top_8042> :
-	Found 4-bit shift register for signal <k77/b_FSM_FFd10>.
+	Found 2-bit shift register for signal <kitty/keyinmod/b_FSM_FFd11>.
 Unit <top_8042> processed.
 
 =========================================================================
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 15
- Flip-Flops                                            : 15
+# Registers                                            : 68
+ Flip-Flops                                            : 68
 # Shift Registers                                      : 1
- 4-bit shift register                                  : 1
+ 2-bit shift register                                  : 1
 
 =========================================================================
 
@@ -289,24 +494,38 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 12
+# IOs                              : 15
 
 Cell Usage :
-# BELS                             : 3
+# BELS                             : 65
 #      GND                         : 1
-#      INV                         : 1
+#      INV                         : 3
+#      LUT2                        : 6
+#      LUT3                        : 14
+#      LUT4                        : 6
+#      LUT5                        : 13
+#      LUT6                        : 20
+#      MUXF7                       : 1
 #      VCC                         : 1
-# FlipFlops/Latches                : 16
-#      FD_1                        : 7
+# FlipFlops/Latches                : 69
+#      FD                          : 27
+#      FD_1                        : 9
 #      FDE                         : 1
 #      FDE_1                       : 8
+#      FDR                         : 2
+#      FDRE                        : 8
+#      FDRS                        : 9
+#      FDS                         : 4
+#      FDS_1                       : 1
 # Shift Registers                  : 1
 #      SRLC16E                     : 1
-# Clock Buffers                    : 1
+# Clock Buffers                    : 2
+#      BUFG                        : 1
 #      BUFGP                       : 1
-# IO Buffers                       : 9
-#      IBUF                        : 1
-#      OBUF                        : 8
+# IO Buffers                       : 13
+#      IBUF                        : 2
+#      IOBUF                       : 2
+#      OBUF                        : 9
 =========================================================================
 
 Device utilization summary:
@@ -316,25 +535,25 @@ Selected Device : 5vlx110tff1136-1
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:              16  out of  69120     0%  
- Number of Slice LUTs:                    2  out of  69120     0%  
-    Number used as Logic:                 1  out of  69120     0%  
+ Number of Slice Registers:              69  out of  69120     0%  
+ Number of Slice LUTs:                   63  out of  69120     0%  
+    Number used as Logic:                62  out of  69120     0%  
     Number used as Memory:                1  out of  17920     0%  
        Number used as SRL:                1
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:     17
-   Number with an unused Flip Flop:       1  out of     17     5%  
-   Number with an unused LUT:            15  out of     17    88%  
-   Number of fully used LUT-FF pairs:     1  out of     17     5%  
-   Number of unique control sets:        10
+ Number of LUT Flip Flop pairs used:     97
+   Number with an unused Flip Flop:      28  out of     97    28%  
+   Number with an unused LUT:            34  out of     97    35%  
+   Number of fully used LUT-FF pairs:    35  out of     97    36%  
+   Number of unique control sets:        28
 
 IO Utilization: 
- Number of IOs:                          12
- Number of bonded IOBs:                  10  out of    640     1%  
+ Number of IOs:                          15
+ Number of bonded IOBs:                  14  out of    640     2%  
 
 Specific Feature Utilization:
- Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
+ Number of BUFG/BUFGCTRLs:                2  out of     32     6%  
 
 ---------------------------
 Partition Resource Summary:
@@ -357,7 +576,8 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-KEYBOARD_CLK                       | BUFGP                  | 17    |
+USER_CLK                           | BUFGP                  | 50    |
+KEYBOARD_CLK                       | IBUF+BUFG              | 20    |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -368,9 +588,9 @@ Timing Summary:
 ---------------
 Speed Grade: -1
 
-   Minimum period: 1.889ns (Maximum Frequency: 529.381MHz)
-   Minimum input arrival time before clock: 1.192ns
-   Maximum output required time after clock: 3.255ns
+   Minimum period: 3.267ns (Maximum Frequency: 306.091MHz)
+   Minimum input arrival time before clock: 2.672ns
+   Maximum output required time after clock: 4.101ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -378,76 +598,124 @@ Timing Detail:
 All values displayed in nanoseconds (ns)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'KEYBOARD_CLK'
-  Clock period: 1.889ns (frequency: 529.381MHz)
-  Total number of paths / destination ports: 17 / 17
+Timing constraint: Default period analysis for Clock 'USER_CLK'
+  Clock period: 3.267ns (frequency: 306.091MHz)
+  Total number of paths / destination ports: 354 / 65
 -------------------------------------------------------------------------
-Delay:               1.889ns (Levels of Logic = 0)
-  Source:            k77/Mshreg_b_FSM_FFd10 (FF)
-  Destination:       k77/b_FSM_FFd10 (FF)
-  Source Clock:      KEYBOARD_CLK falling
-  Destination Clock: KEYBOARD_CLK falling
+Delay:               3.267ns (Levels of Logic = 2)
+  Source:            kitty/keyoutmod/state_FSM_FFd26 (FF)
+  Destination:       kitty/keyoutmod/dout (FF)
+  Source Clock:      USER_CLK rising
+  Destination Clock: USER_CLK rising
 
-  Data Path: k77/Mshreg_b_FSM_FFd10 to k77/b_FSM_FFd10
+  Data Path: kitty/keyoutmod/state_FSM_FFd26 to kitty/keyoutmod/dout
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     SRLC16E:CLK->Q        1   1.889   0.000  k77/Mshreg_b_FSM_FFd10 (k77/Mshreg_b_FSM_FFd10)
-     FDE:D                    -0.018          k77/b_FSM_FFd10
+     FD:C->Q               2   0.471   0.978  kitty/keyoutmod/state_FSM_FFd26 (kitty/keyoutmod/state_FSM_FFd26)
+     LUT5:I0->O            3   0.094   0.721  kitty/keyoutmod/dout_mux000021 (N2)
+     LUT6:I3->O            1   0.094   0.336  kitty/keyoutmod/dout_mux000040 (kitty/keyoutmod/dout_mux000040)
+     FDS:S                     0.573          kitty/keyoutmod/dout
     ----------------------------------------
-    Total                      1.889ns (1.889ns logic, 0.000ns route)
-                                       (100.0% logic, 0.0% route)
+    Total                      3.267ns (1.232ns logic, 2.035ns route)
+                                       (37.7% logic, 62.3% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'KEYBOARD_CLK'
+  Clock period: 2.215ns (frequency: 451.467MHz)
+  Total number of paths / destination ports: 30 / 21
+-------------------------------------------------------------------------
+Delay:               2.215ns (Levels of Logic = 2)
+  Source:            kitty/keyinmod/b_FSM_FFd4 (FF)
+  Destination:       kitty/keyinmod/newdata (FF)
+  Source Clock:      KEYBOARD_CLK falling
+  Destination Clock: KEYBOARD_CLK falling
+
+  Data Path: kitty/keyinmod/b_FSM_FFd4 to kitty/keyinmod/newdata
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD_1:C->Q             3   0.467   1.080  kitty/keyinmod/b_FSM_FFd4 (kitty/keyinmod/b_FSM_FFd4)
+     LUT6:I0->O            1   0.094   0.480  kitty/keyinmod/newdata_mux0000_SW0 (N7)
+     LUT5:I4->O            1   0.094   0.000  kitty/keyinmod/newdata_mux00001 (kitty/keyinmod/newdata_mux00001)
+     FDS_1:D                  -0.018          kitty/keyinmod/newdata
+    ----------------------------------------
+    Total                      2.215ns (0.655ns logic, 1.560ns route)
+                                       (29.6% logic, 70.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'USER_CLK'
+  Total number of paths / destination ports: 42 / 32
+-------------------------------------------------------------------------
+Offset:              2.672ns (Levels of Logic = 3)
+  Source:            KEYBOARD_CLK (PAD)
+  Destination:       kitty/keyoutmod/dout (FF)
+  Destination Clock: USER_CLK rising
+
+  Data Path: KEYBOARD_CLK to kitty/keyoutmod/dout
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IOBUF:IO->O          23   0.818   1.090  KEYBOARD_CLK_IOBUF (N101)
+     LUT5:I0->O            1   0.094   0.576  kitty/keyoutmod/dout_mux0000273 (kitty/keyoutmod/dout_mux0000273)
+     LUT6:I4->O            1   0.094   0.000  kitty/keyoutmod/dout_mux00003441 (kitty/keyoutmod/dout_mux0000344)
+     FDS:D                    -0.018          kitty/keyoutmod/dout
+    ----------------------------------------
+    Total                      2.672ns (1.006ns logic, 1.666ns route)
+                                       (37.6% logic, 62.4% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'KEYBOARD_CLK'
   Total number of paths / destination ports: 8 / 8
 -------------------------------------------------------------------------
-Offset:              1.192ns (Levels of Logic = 1)
+Offset:              1.392ns (Levels of Logic = 2)
   Source:            KEYBOARD_DATA (PAD)
-  Destination:       k77/dataout_7 (FF)
+  Destination:       kitty/keyinmod/dataout_7 (FF)
   Destination Clock: KEYBOARD_CLK falling
 
-  Data Path: KEYBOARD_DATA to k77/dataout_7
+  Data Path: KEYBOARD_DATA to kitty/keyinmod/dataout_7
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             8   0.818   0.374  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
-     FDE_1:D                  -0.018          k77/dataout_1
+     IOBUF:IO->O           1   0.818   0.480  KEYBOARD_DATA_IOBUF (N9)
+     LUT2:I1->O            8   0.094   0.000  kitty/datain1 (kitty/datain)
+     FDE_1:D                  -0.018          kitty/keyinmod/dataout_1
     ----------------------------------------
-    Total                      1.192ns (0.818ns logic, 0.374ns route)
-                                       (68.6% logic, 31.4% route)
+    Total                      1.392ns (0.912ns logic, 0.480ns route)
+                                       (65.5% logic, 34.5% route)
 
 =========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'KEYBOARD_CLK'
-  Total number of paths / destination ports: 8 / 8
+Timing constraint: Default OFFSET OUT AFTER for Clock 'USER_CLK'
+  Total number of paths / destination ports: 14 / 11
 -------------------------------------------------------------------------
-Offset:              3.255ns (Levels of Logic = 1)
-  Source:            k77/dataout_7 (FF)
-  Destination:       GPIO_LED_0 (PAD)
-  Source Clock:      KEYBOARD_CLK falling
+Offset:              4.101ns (Levels of Logic = 2)
+  Source:            kitty/state_FSM_FFd3 (FF)
+  Destination:       GPIO_LED_C (PAD)
+  Source Clock:      USER_CLK rising
 
-  Data Path: k77/dataout_7 to GPIO_LED_0
+  Data Path: kitty/state_FSM_FFd3 to GPIO_LED_C
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE_1:C->Q            1   0.467   0.336  k77/dataout_7 (k77/dataout_7)
-     OBUF:I->O                 2.452          GPIO_LED_0_OBUF (GPIO_LED_0)
+     FD:C->Q               8   0.471   0.748  kitty/state_FSM_FFd3 (kitty/state_FSM_FFd3)
+     LUT3:I0->O            1   0.094   0.336  kitty/state_FSM_Out11 (GPIO_LED_C_OBUF)
+     OBUF:I->O                 2.452          GPIO_LED_C_OBUF (GPIO_LED_C)
     ----------------------------------------
-    Total                      3.255ns (2.919ns logic, 0.336ns route)
-                                       (89.7% logic, 10.3% route)
+    Total                      4.101ns (3.017ns logic, 1.084ns route)
+                                       (73.6% logic, 26.4% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 4.18 secs
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 5.49 secs
  
 --> 
 
 
-Total memory usage is 642424 kilobytes
+Total memory usage is 655492 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    4 (   0 filtered)
-Number of infos    :    0 (   0 filtered)
+Number of warnings :   19 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
 

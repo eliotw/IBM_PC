@@ -282,7 +282,8 @@ module top_8042(
 		USER_CLK,
 		GPIO_LED_0,GPIO_LED_1,GPIO_LED_2,GPIO_LED_3,
 		GPIO_LED_4,GPIO_LED_5,GPIO_LED_6,GPIO_LED_7,
-		GPIO_SW_C,
+		GPIO_SW_C, GPIO_SW_E, GPIO_SW_W,
+		GPIO_LED_C,
       KEYBOARD_CLK,
       KEYBOARD_DATA
 		);
@@ -290,9 +291,28 @@ module top_8042(
    input USER_CLK;
    output GPIO_LED_0,GPIO_LED_1,GPIO_LED_2,GPIO_LED_3;
    output GPIO_LED_4,GPIO_LED_5,GPIO_LED_6,GPIO_LED_7;
-   input  GPIO_SW_C;
-   input KEYBOARD_CLK;
-   input  KEYBOARD_DATA;
+   input  GPIO_SW_C, GPIO_SW_E, GPIO_SW_W;
+	output GPIO_LED_C;
+   inout KEYBOARD_CLK;
+   inout  KEYBOARD_DATA;
+	
+	wire reset_n;
+	
+	assign reset_n = ~GPIO_SW_C;
+	
+	keyinterface kitty(
+		.pclk(USER_CLK),
+		.reset_n(reset_n),
+		.pa({GPIO_LED_0,GPIO_LED_1,GPIO_LED_2,GPIO_LED_3,GPIO_LED_4,GPIO_LED_5,GPIO_LED_6,GPIO_LED_7}),
+		.pb6(GPIO_SW_E),
+		.pb7(GPIO_SW_W),
+		.irq1(GPIO_LED_C),
+		.keyboard_clock(KEYBOARD_CLK),
+		.keyboard_data(KEYBOARD_DATA)
+	);
+
+	/*
+	
 	wire newdata;
 	keyin k77(
 		.clk(KEYBOARD_CLK),
@@ -300,6 +320,7 @@ module top_8042(
 		.dataout({GPIO_LED_0,GPIO_LED_1,GPIO_LED_2,GPIO_LED_3,GPIO_LED_4,GPIO_LED_5,GPIO_LED_6,GPIO_LED_7}),
 		.newdata(newdata)
 		);
+	*/
 	/*
 	wire clk;
 	wire data;
