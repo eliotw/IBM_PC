@@ -1,7 +1,7 @@
 Release 14.2 par P.28xd (lin64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-ahtanum.ece.cmu.edu::  Mon Oct 06 19:25:12 2014
+ahtanum.ece.cmu.edu::  Tue Oct 07 11:38:58 2014
 
 par -w -intstyle ise -ol high -mt off top_8042_map.ncd top_8042.ncd
 top_8042.pcf 
@@ -31,14 +31,14 @@ Device Utilization Summary:
    Number of External IOBs                  15 out of 640     2%
       Number of LOCed IOBs                  15 out of 15    100%
 
-   Number of Slices                         17 out of 17280   1%
+   Number of Slices                         29 out of 17280   1%
    Number of Slice Registers                29 out of 69120   1%
       Number used as Flip Flops             29
       Number used as Latches                 0
       Number used as LatchThrus              0
 
-   Number of Slice LUTS                     13 out of 69120   1%
-   Number of Slice LUT-Flip Flop pairs      30 out of 69120   1%
+   Number of Slice LUTS                     40 out of 69120   1%
+   Number of Slice LUT-Flip Flop pairs      57 out of 69120   1%
 
 
 Overall effort level (-ol):   High 
@@ -51,13 +51,13 @@ WARNING:Par:288 - The signal GPIO_SW_E_IBUF has no load.  PAR will not attempt t
 Starting Router
 
 
-Phase  1  : 122 unrouted;      REAL time: 8 secs 
+Phase  1  : 274 unrouted;      REAL time: 8 secs 
 
-Phase  2  : 104 unrouted;      REAL time: 8 secs 
+Phase  2  : 255 unrouted;      REAL time: 8 secs 
 
-Phase  3  : 32 unrouted;      REAL time: 8 secs 
+Phase  3  : 91 unrouted;      REAL time: 8 secs 
 
-Phase  4  : 37 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
+Phase  4  : 93 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
 
 Updating file: top_8042.ncd with current fully routed design.
 
@@ -93,11 +93,11 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net USE | SETUP       |         N/A|     1.828ns|     N/A|           0
-  R_CLK_BUFGP                               | HOLD        |     0.476ns|            |       0|           0
+  Autotimespec constraint for clock net USE | SETUP       |         N/A|     1.678ns|     N/A|           0
+  R_CLK_BUFGP                               | HOLD        |     0.516ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net KEY | SETUP       |         N/A|     1.719ns|     N/A|           0
-  BOARD_CLK_BUFGP                           | HOLD        |     0.477ns|            |       0|           0
+  Autotimespec constraint for clock net KEY | SETUP       |         N/A|     1.829ns|     N/A|           0
+  BOARD_CLK_BUFGP                           | HOLD        |     0.479ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
 
 

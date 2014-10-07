@@ -4,15 +4,15 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Reading design: top_8042.prj
@@ -203,12 +203,13 @@ Unit <keyin> synthesized.
 Synthesizing Unit <keyinterface>.
     Related source file is "../8042.v".
 WARNING:Xst:647 - Input <pb6> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:646 - Signal <tdata> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <f0> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 256x8-bit ROM for signal <tdata>.
     Found 1-bit register for signal <irq1>.
     Found 8-bit register for signal <pa>.
     Found 1-bit register for signal <state>.
     Summary:
+	inferred   1 ROM(s).
 	inferred  10 D-type flip-flop(s).
 Unit <keyinterface> synthesized.
 
@@ -222,6 +223,8 @@ Unit <top_8042> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
+# ROMs                                                 : 1
+ 256x8-bit ROM                                         : 1
 # Registers                                            : 12
  1-bit register                                        : 11
  8-bit register                                        : 1
@@ -255,6 +258,8 @@ Advanced HDL Synthesis Report
 
 Macro Statistics
 # FSMs                                                 : 1
+# ROMs                                                 : 1
+ 256x8-bit ROM                                         : 1
 # Registers                                            : 19
  Flip-Flops                                            : 19
 
@@ -316,13 +321,16 @@ Design Statistics
 # IOs                              : 15
 
 Cell Usage :
-# BELS                             : 15
+# BELS                             : 51
 #      GND                         : 1
 #      INV                         : 1
+#      LUT1                        : 2
 #      LUT2                        : 1
-#      LUT3                        : 1
-#      LUT5                        : 9
-#      LUT6                        : 1
+#      LUT3                        : 2
+#      LUT5                        : 13
+#      LUT6                        : 20
+#      MUXF7                       : 7
+#      MUXF8                       : 3
 #      VCC                         : 1
 # FlipFlops/Latches                : 29
 #      FD_1                        : 9
@@ -347,16 +355,16 @@ Selected Device : 5vlx110tff1136-1
 
 Slice Logic Utilization: 
  Number of Slice Registers:              29  out of  69120     0%  
- Number of Slice LUTs:                   14  out of  69120     0%  
-    Number used as Logic:                13  out of  69120     0%  
+ Number of Slice LUTs:                   40  out of  69120     0%  
+    Number used as Logic:                39  out of  69120     0%  
     Number used as Memory:                1  out of  17920     0%  
        Number used as SRL:                1
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:     31
-   Number with an unused Flip Flop:       2  out of     31     6%  
-   Number with an unused LUT:            17  out of     31    54%  
-   Number of fully used LUT-FF pairs:    12  out of     31    38%  
+ Number of LUT Flip Flop pairs used:     51
+   Number with an unused Flip Flop:      22  out of     51    43%  
+   Number with an unused LUT:            11  out of     51    21%  
+   Number of fully used LUT-FF pairs:    18  out of     51    35%  
    Number of unique control sets:        12
 
 IO Utilization: 
@@ -514,14 +522,14 @@ Offset:              3.264ns (Levels of Logic = 1)
 
 
 Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 4.36 secs
+Total CPU time to Xst completion: 4.57 secs
  
 --> 
 
 
-Total memory usage is 643688 kilobytes
+Total memory usage is 644820 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    3 (   0 filtered)
+Number of warnings :    2 (   0 filtered)
 Number of infos    :    1 (   0 filtered)
 

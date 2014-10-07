@@ -37,7 +37,7 @@ Setup/Hold to clock KEYBOARD_CLK
              |Max Setup to|Max Hold to |                  | Clock  |
 Source       | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
 -------------+------------+------------+------------------+--------+
-KEYBOARD_DATA|    0.066(F)|    2.945(F)|KEYBOARD_CLK_BUFGP|   0.000|
+KEYBOARD_DATA|   -0.092(F)|    2.886(F)|KEYBOARD_CLK_BUFGP|   0.000|
 -------------+------------+------------+------------------+--------+
 
 Setup/Hold to clock USER_CLK
@@ -45,8 +45,8 @@ Setup/Hold to clock USER_CLK
             |Max Setup to|Max Hold to |                  | Clock  |
 Source      | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
 ------------+------------+------------+------------------+--------+
-GPIO_SW_C   |    3.856(R)|    0.146(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_SW_W   |    3.730(R)|    0.306(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_SW_C   |    2.736(R)|    0.172(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_SW_W   |    2.483(R)|    0.492(R)|USER_CLK_BUFGP    |   0.000|
 ------------+------------+------------+------------------+--------+
 
 Clock USER_CLK to Pad
@@ -54,15 +54,15 @@ Clock USER_CLK to Pad
             | clk (edge) |                  | Clock  |
 Destination |   to PAD   |Internal Clock(s) | Phase  |
 ------------+------------+------------------+--------+
-GPIO_LED_0  |    9.727(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_1  |    9.713(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_2  |    9.882(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_3  |   10.967(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_4  |    9.974(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_5  |   12.200(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_6  |   10.960(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_7  |   12.035(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_C  |   11.898(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_0  |    9.931(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_1  |    9.893(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_2  |   10.574(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_3  |   11.059(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_4  |    9.933(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_5  |   10.987(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_6  |   11.380(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_7  |   10.554(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_C  |   11.892(R)|USER_CLK_BUFGP    |   0.000|
 ------------+------------+------------------+--------+
 
 Clock to Setup on destination clock KEYBOARD_CLK
@@ -70,7 +70,7 @@ Clock to Setup on destination clock KEYBOARD_CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-KEYBOARD_CLK   |         |         |         |    1.719|
+KEYBOARD_CLK   |         |         |         |    1.829|
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock USER_CLK
@@ -78,12 +78,12 @@ Clock to Setup on destination clock USER_CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-KEYBOARD_CLK   |         |    3.846|         |         |
-USER_CLK       |    1.828|         |         |         |
+KEYBOARD_CLK   |         |    6.240|         |         |
+USER_CLK       |    1.678|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Mon Oct  6 19:25:39 2014 
+Analysis completed Tue Oct  7 11:39:24 2014 
 --------------------------------------------------------------------------------
 
 Trace Settings:

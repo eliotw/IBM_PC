@@ -57,8 +57,8 @@ module keyinterface(
 	//assign fdata[7] = datakeyout[7];
 	//assign fdata[6:0] = datakeyout[6:0];
 
-        // Assign f0 check
-        assign fdata = tdata;
+	// Assign f0 check
+	assign fdata = tdata;
    
 	// Keyboard input module
 	keyin keyinmod(
