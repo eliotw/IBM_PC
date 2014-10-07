@@ -54,9 +54,12 @@ module keyinterface(
 	//assign fdata[6:0] = tdata[6:0];
 	
 	// Assign f0 check
-	assign fdata[7] = datakeyout[7];
-	assign fdata[6:0] = datakeyout[6:0];
-	
+	//assign fdata[7] = datakeyout[7];
+	//assign fdata[6:0] = datakeyout[6:0];
+
+        // Assign f0 check
+        assign fdata = tdata;
+   
 	// Keyboard input module
 	keyin keyinmod(
 		.clk(keyboard_clock),
