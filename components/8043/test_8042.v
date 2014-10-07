@@ -236,31 +236,6 @@ module test_8042;
       end // for (i=0; i<8; i=i+1)
       @(posedge clk);
 
-      // Run Released Test
-      /*
-      $display ("*****************");
-      $display ("Run Released Test");
-      $display ("*****************");
-      for (i=0; i<256; i=i+1) begin
-	 if(i !== 240) begin
-	    senddata(240);
-	    waitdata();
-	    waitdata();
-	    senddata(i);
-	    waitdata();
-	    waitdata();
-	    dto = (matrix[4'b1111 & (i >> 4)][4'b1111 & i])|(8'b10000000);
-	    if(dto !== dtr) begin
-	       $display("NO i:%b transi:%b dtr: %b",i,dto,dtr);
-	       errors = errors + 1;
-	    end
-	    else begin
-	       //$display("OK i:%b transi:%b dtr: %b",i,dto,dtr);
-	    end
-	 end // if (i !== 240)
-	 @(posedge clk);
-      end // for (i=0; i<8; i=i+1)
-      */
       if(errors > 0) begin
 	 $display("8042 TEST FAILURE WITH %d ERRORS",errors);
       end
@@ -285,7 +260,9 @@ module top_8042(
 		GPIO_SW_C, GPIO_SW_E, GPIO_SW_W,
 		GPIO_LED_C,
       KEYBOARD_CLK,
-      KEYBOARD_DATA
+      KEYBOARD_DATA,
+		GPIO_DIP_SW1,GPIO_DIP_SW2,GPIO_DIP_SW3,GPIO_DIP_SW4,
+		GPIO_DIP_SW5,GPIO_DIP_SW6,GPIO_DIP_SW7,GPIO_DIP_SW8
 		);
 
 	// Inputs and Outputs
@@ -296,204 +273,158 @@ module top_8042(
 	output GPIO_LED_C;
    inout KEYBOARD_CLK;
    inout  KEYBOARD_DATA;
+	input GPIO_DIP_SW1,GPIO_DIP_SW2,GPIO_DIP_SW3,GPIO_DIP_SW4;
+	input GPIO_DIP_SW5,GPIO_DIP_SW6,GPIO_DIP_SW7,GPIO_DIP_SW8;
+	
+	// Parameters
+	parameter [7:0] 	counterstop = 8'h0f;
+	parameter [7:0] 	idle = 8'b00000001,
+							fill = 8'b00000010,
+							wt00 = 8'b00000100;
+	// Registers
+	reg [7:0] state; // state of receipt fsm
+	reg [7:0] counter; // counter of data received
+	reg [7:0] datarec [0:255]; // place for holding received data
+	reg pb7; // acknowledges receipt of data
+	reg full; // indicates that queue is full
+	reg [7:0] datavisible; // data that is visible to the user
+
+	// Wires
+	wire [7:0] dataout; // data coming out of keyboard module
+	wire [7:0] countsel; // select for data
+	wire reset, reset_n; // reset wire
+	wire irq1; // irq wire
+	wire clk; // user clock
+	wire pb6; // essentially a dummy wire
+	wire inc; // increments the output data
+	
+	// Count select
+	assign countsel = {GPIO_DIP_SW1,GPIO_DIP_SW2,GPIO_DIP_SW3,GPIO_DIP_SW4,
+		GPIO_DIP_SW5,GPIO_DIP_SW6,GPIO_DIP_SW7,GPIO_DIP_SW8};
+		
+	// Clock Wire
+	assign clk = USER_CLK;
 	
 	// Reset Wire
-	wire reset_n;
-	assign reset_n = ~GPIO_SW_C;
+	assign reset = GPIO_SW_C;
+	assign reset_n = ~reset;
+	
+	// LED Indicator
+	assign GPIO_LED_C = full;
+	
+	// pb6 Assign
+	assign pb6 = GPIO_SW_E;
+	
+	// inc assign
+	assign inc = GPIO_SW_W;
+	
+	// LED Readout
+	assign GPIO_LED_0 = datavisible[7];
+	assign GPIO_LED_1 = datavisible[6];
+	assign GPIO_LED_2 = datavisible[5];
+	assign GPIO_LED_3 = datavisible[4];
+	assign GPIO_LED_4 = datavisible[3];
+	assign GPIO_LED_5 = datavisible[2];
+	assign GPIO_LED_6 = datavisible[1];
+	assign GPIO_LED_7 = datavisible[0];
+	
+	// Initial state
+	initial begin
+		state<=idle;
+		counter<=8'b0;
+		pb7<=1'b0;
+		full<=1'b0;
+		datavisible<=8'b0;
+	end
 	
 	// Key Interface Under Test
-	keyinterface kitty(
-		.pclk(USER_CLK),
+	keyinterface keyinter(
+		.pclk(clk),
 		.reset_n(reset_n),
-		.pa({GPIO_LED_0,GPIO_LED_1,GPIO_LED_2,GPIO_LED_3,GPIO_LED_4,GPIO_LED_5,GPIO_LED_6,GPIO_LED_7}),
-		.pb6(GPIO_SW_E),
-		.pb7(GPIO_SW_W),
-		.irq1(GPIO_LED_C),
+		.pa(dataout),
+		.pb6(pb6),
+		.pb7(pb7),
+		.irq1(irq1),
 		.keyboard_clock(KEYBOARD_CLK),
 		.keyboard_data(KEYBOARD_DATA)
 	);
-
-	/*
 	
-	wire newdata;
-	keyin k77(
-		.clk(KEYBOARD_CLK),
-		.data(KEYBOARD_DATA),
-		.dataout({GPIO_LED_0,GPIO_LED_1,GPIO_LED_2,GPIO_LED_3,GPIO_LED_4,GPIO_LED_5,GPIO_LED_6,GPIO_LED_7}),
-		.newdata(newdata)
-		);
-	*/
-	/*
-	wire clk;
-	wire data;
-	
-	reg [7:0] data_curr;
-	reg [7:0] data_pre;
-	reg [7:0] led;
-	reg [3:0] b;
-	reg flag;
-	
-	assign clk = KEYBOARD_CLK;
-	assign data = KEYBOARD_DATA;
-	
-	assign GPIO_LED_0 = data_curr[0];
-	assign GPIO_LED_1 = data_curr[1];
-	assign GPIO_LED_2 = data_curr[2];
-	assign GPIO_LED_3 = data_curr[3];
-   assign GPIO_LED_4 = data_curr[4];
-	assign GPIO_LED_5 = data_curr[5];
-	assign GPIO_LED_6 = data_curr[6];
-	assign GPIO_LED_7 = data_curr[7];
-	
-	initial begin
-		b<=4'h1;
-		flag<=1'b0;
-		data_curr<=8'hf0;
-		data_pre<=8'hf0;
-		led<=8'hf0;
-	end
-	always @(negedge clk) begin
-		//Activating at negative edge of clock from keyboard
-		case(b)
-			1:;
-			//first bit
-			2:data_curr[0]<=data;
-			3:data_curr[1]<=data;
-			4:data_curr[2]<=data;
-			5:data_curr[3]<=data;
-			6:data_curr[4]<=data;
-			7:data_curr[5]<=data;
-			8:data_curr[6]<=data;
-			9:data_curr[7]<=data;
-			10:flag<=1'b1;
-			//Parity bit
-			11:flag<=1'b0;
-			//Ending bit
+	// FSM Logic
+	always @(posedge clk) begin
+		case(state)
+			idle: begin
+				if(reset == 1'b1) begin
+					state<=idle;
+					counter<=8'b0;
+					pb7<=1'b0;
+					full<=1'b0;
+					datavisible<=counter;
+				end
+				else if(counter == counterstop) begin
+					state<=fill;
+					counter<=8'b0;
+					pb7<=1'b0;
+					full<=1'b1;
+					datavisible<=counter;
+				end
+				else if(irq1 == 1'b1) begin
+					state<=idle;
+					datarec[counter]<=dataout;
+					counter<=counter+1;
+					pb7<=1'b1;
+					full<=1'b0;
+					datavisible<=counter;
+				end
+				else begin
+					state<=idle;
+					counter<=counter;
+					pb7<=1'b0;
+					full<=1'b0;
+					datavisible<=counter;
+				end
+			end
+			fill: begin
+				if(reset == 1'b1) begin
+					state<=idle;
+					counter<=8'b0;
+					pb7<=1'b0;
+					full<=1'b0;
+					datavisible<=8'b0;
+				end
+				else begin
+					state<=fill;
+					datavisible<=datarec[countsel];
+					counter<=counter;
+					pb7<=1'b0;
+					full<=1'b1;
+				end
+			end
+			wt00: begin
+				if(inc == 1'b0) begin
+					state<=fill;
+					datavisible<=datavisible;
+					counter<=counter;
+					pb7<=1'b0;
+					full<=1'b1;
+				end
+				else begin
+					state<=wt00;
+					datavisible<=datavisible;
+					counter<=counter;
+					pb7<=1'b0;
+					full<=1'b1;
+				end
+			end
+			default: begin
+				state<=idle;
+				counter<=8'b0;
+				pb7<=1'b0;
+				full<=1'b0;
+				datavisible<=8'b0;
+			end
 		endcase
-		if(b<=10)
-			b<=b+1;
-		else if(b==11)
-			b<=1;
 	end
 	
-	always @(posedge flag) begin
-		// Printing data obtained to led
-		if(data_curr==8'hf0)
-			led<=data_pre;
-		else
-			data_pre<=data_curr;
-	end
-
-*/
-   /*
-   // Wires
-   wire   dout,clk;
-
-   // Registers
-   reg [7:0] d,state,nextstate;
-   
-   // Clock assign
-   assign clk = USER_CLK;
-
-   // Output assign
-   assign GPIO_LED_0 = d[0];
-   assign GPIO_LED_1 = d[1];
-   assign GPIO_LED_2 = d[2];
-   assign GPIO_LED_3 = d[3];
-   assign GPIO_LED_4 = d[4];
-   assign GPIO_LED_5 = d[5];
-   assign GPIO_LED_6 = d[6];
-   assign GPIO_LED_7 = d[7];
-   
-   // intel8042 under test
-   intel8042 kbrd(
-                  .KBD_CLK(clk),
-                  .KBD_DATA(dout),
-                  .KBD_RESET_N(GPIO_SW_C),
-                  .KEYBOARD_CLK_0(KEYBOARD_CLK),
-                  .KEYBOARD_DATA_0(KEYBOARD_DATA)
-                  );
-
-   // FSM for input
-   always @(posedge clk) begin
-      state <= nextstate;
-   end
-
-   // Next state logic
-   always @(state or dout) begin
-      case(state)
-	8'h00: begin
-	   if(dout == 1'b0) begin
-	      nextstate = 8'h10;
-	      d = 8'h0;
-	   end
-	   else begin
-	      nextstate = 8'h00;
-	      d = d;
-	   end
-	end
-	8'h10: begin
-	   // maybe needs another state? idk lol
-	   nextstate = 8'h20;
-	   d = d;
-	end
-	8'h20: begin
-	   nextstate = 8'h21;
-	   d[7:1] = 7'h0;
-	   d[0] = dout;
-	end
-	8'h21: begin
-	   nextstate = 8'h22;
-	   d[7:2] = 6'h0;
-	   d[1] = dout;
-	   d[0] = d[0];
-	end
-	8'h22: begin
-	   nextstate = 8'h23;
-	   d[7:3] = 5'h0;
-	   d[2] = dout;
-	   d[1:0] = d[1:0];
-	end
-	8'h23: begin
-	   nextstate = 8'h24;
-	   d[7:4] = 4'h0;
-	   d[3] = dout;
-	   d[2:0] = d[2:0];
-	end
-	8'h24: begin
-	   nextstate = 8'h25;
-	   d[7:5] = 3'h0;
-	   d[4] = dout;
-	   d[3:0] = d[3:0];
-	end
-	8'h25: begin
-	   nextstate = 8'h26;
-	   d[7:6] = 2'h0;
-	   d[5] = dout;
-	   d[4:0] = d[4:0];
-	end
-	8'h26: begin
-	   nextstate = 8'h27;
-	   d[7] = 1'h0;
-	   d[6] = dout;
-	   d[5:0] = d[5:0];
-	end
-	8'h27: begin
-	   nextstate = 8'h28;
-	   d[7] = dout;
-	   d[6:0] = d[6:0];
-	end
-	8'h28: begin
-	   nextstate = 8'h00;
-	   d = d;
-	end
-	default: begin
-	   nextstate = 8'h00;
-	   d = 8'h0;
-	end
-      endcase // case (state)
-   end // always @ (state or dout)
-   */
 endmodule // top_8042
 
 

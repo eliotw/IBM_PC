@@ -13,4 +13,13 @@ NET  GPIO_SW_W            LOC="AJ7";
 NET  KEYBOARD_CLK         LOC="T26"|CLOCK_DEDICATED_ROUTE=FALSE;
 NET  KEYBOARD_DATA        LOC="T25";
 NET  USER_CLK             LOC="AH15";
-TIMESPEC TS_USER_CLK = PERIOD "USER_CLK" 50MHz HIGH 50%;
+#TIMESPEC TS_USER_CLK = PERIOD "USER_CLK" 50MHz HIGH 50%;
+
+NET  GPIO_DIP_SW1         LOC="U25";   # Bank 15, Vcco=1.8V, DCI using 49.9 ohm resistors
+NET  GPIO_DIP_SW2         LOC="AG27";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors
+NET  GPIO_DIP_SW3         LOC="AF25";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors
+NET  GPIO_DIP_SW4         LOC="AF26";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors
+NET  GPIO_DIP_SW5         LOC="AE27";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors
+NET  GPIO_DIP_SW6         LOC="AE26";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors
+NET  GPIO_DIP_SW7         LOC="AC25";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors
+NET  GPIO_DIP_SW8         LOC="AC24";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors

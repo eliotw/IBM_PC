@@ -33,15 +33,19 @@ module keyinterface(
 	
 	// Registers
 	reg [7:0] pa; // data that is visible to ibm pc
-	reg state; // current state of fsm
-	reg f0; // detects if datakeyout is f0
+	reg [7:0] state; // current state of fsm
+	//reg f0; // detects if datakeyout is f0
 	reg irq1; // irq from keyboard
 	reg [7:0] tdata; // translated data
 	
 	// FSM State Enum
-   parameter
-		idle = 1'b0,
-		data = 1'b1;
+   parameter [7:0]
+		idle = 8'b00000001,
+		data = 8'b00000010,
+		wclr = 8'b00000100,
+		f0s0 = 8'b00001000,
+		f0s1 = 8'b00010000,
+		f0s2 = 8'b00100000;
 	
 	// Assignment of data line
 	assign datain = keyboard_data;
@@ -72,7 +76,7 @@ module keyinterface(
 	initial begin
 		state<=idle;
 		pa<=8'b0;
-		f0<=1'b0;
+		//f0<=1'b0;
 		irq1<=1'b0;
 	end
 	
@@ -84,19 +88,27 @@ module keyinterface(
 				if(reset == 1'b1) begin
 					state<=idle;
 					pa<=8'b0;
-					f0<=1'b0;
+					//f0<=1'b0;
 					irq1<=1'b0;
 				end
 				else if(newdata == 1'b1) begin
-					state<=data;
-					pa<=fdata;
-					f0<=f0;
-					irq1<=1'b0;
+					if(fdata == 8'hf0) begin
+						state<=f0s0;
+						pa<=pa;
+						//f0<=f0;
+						irq1<=1'b0;
+					end
+					else begin
+						state<=data;
+						pa<=fdata;
+						//f0<=f0;
+						irq1<=1'b0;
+					end
 				end
 				else begin
 					state<=idle;
 					pa<=8'b0;
-					f0<=f0;
+					//f0<=f0;
 					irq1<=1'b0;
 				end
 			end
@@ -104,34 +116,114 @@ module keyinterface(
 				if(reset == 1'b1) begin
 					state<=idle;
 					pa<=8'b0;
-					f0<=1'b0;
+					//f0<=1'b0;
 					irq1<=1'b0;
 				end
-				/*
-				else if(datakeyout == 8'hf0) begin
-					state<=idle;
-					pa<=pa;
-					f0<=1'b1;
-					irq1<=1'b0;
-				end
-				*/
 				else if(pb7 == 1'b1) begin
-					state<=idle;
+					state<=wclr;
 					pa<=8'b0;
-					f0<=1'b0;
+					//f0<=1'b0;
 					irq1<=1'b0;
 				end
 				else begin
 					state<=data;
 					pa<=pa;
-					f0<=f0;
+					//f0<=f0;
+					irq1<=1'b1;
+				end
+			end
+			wclr: begin
+				if(reset == 1'b1) begin
+					state<=idle;
+					pa<=8'b0;
+					//f0<=1'b0;
+					irq1<=1'b0;
+				end
+				else if(newdata == 1'b0) begin
+					state<=idle;
+					pa<=8'b0;
+					//f0<=1'b0;
+					irq1<=1'b0;
+				end
+				else begin
+					state<=wclr;
+					pa<=8'b0;
+					//f0<=1'b0;
+					irq1<=1'b0;
+				end
+			end
+			f0s0: begin
+				if(reset == 1'b1) begin
+					state<=idle;
+					pa<=8'b0;
+					//f0<=1'b0;
+					irq1<=1'b0;
+				end
+				else if(newdata == 1'b0) begin
+					state<=f0s1;
+					pa<=pa;
+					//f0<=1'b0;
+					irq1<=1'b0;
+				end
+				else begin
+					state<=f0s0;
+					pa<=pa;
+					//f0<=f0;
+					irq1<=1'b0;
+				end
+			end
+			f0s1: begin
+				if(reset == 1'b1) begin
+					state<=idle;
+					pa<=8'b0;
+					//f0<=1'b0;
+					irq1<=1'b0;
+				end
+				else if(newdata == 1'b1) begin
+					if(fdata == 8'hf0) begin
+						state<=f0s0;
+						pa<=pa;
+						//f0<=1'b0;
+						irq1<=1'b0;
+					end
+					else begin
+						state<=f0s2;
+						pa<={1'b1,fdata[6:0]};
+						//f0<=1'b0;
+						irq1<=1'b0;
+					end
+				end
+				else begin
+					state<=f0s1;
+					pa<=8'b0;
+					//f0<=f0;
+					irq1<=1'b0;
+				end
+			end
+			f0s2: begin
+				if(reset == 1'b1) begin
+					state<=idle;
+					pa<=8'b0;
+					//f0<=1'b0;
+					irq1<=1'b0;
+				end
+				else if(pb7 == 1'b1) begin
+					state<=wclr;
+					pa<=8'b0;
+					//f0<=1'b0;
+					irq1<=1'b0;
+				end
+				else begin
+					state<=f0s2;
+					pa<=pa;
+					//f0<=f0;
 					irq1<=1'b1;
 				end
 			end
 			default: begin
 				state<=idle;
 				pa<=8'b0;
-				f0<=1'b0;
+				//f0<=1'b0;
 				irq1<=1'b0;
 			end
 		endcase

@@ -10,19 +10,21 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Tue Oct  7 11:38:40 2014
+Mapped Date    : Tue Oct  7 14:12:40 2014
 
 Design Summary
 --------------
 Number of errors:      0
 Number of warnings:    1
 Slice Logic Utilization:
-  Number of Slice Registers:                    29 out of  69,120    1%
-    Number used as Flip Flops:                  29
-  Number of Slice LUTs:                         40 out of  69,120    1%
-    Number used as logic:                       37 out of  69,120    1%
-      Number using O6 output only:              37
-    Number used as Memory:                       1 out of  17,920    1%
+  Number of Slice Registers:                    53 out of  69,120    1%
+    Number used as Flip Flops:                  53
+  Number of Slice LUTs:                        136 out of  69,120    1%
+    Number used as logic:                       85 out of  69,120    1%
+      Number using O6 output only:              85
+    Number used as Memory:                      49 out of  17,920    1%
+      Number used as Dual Port RAM:             48
+        Number using O6 output only:            48
       Number used as Shift Register:             1
         Number using O6 output only:             1
     Number used as exclusive route-thru:         2
@@ -30,14 +32,14 @@ Slice Logic Utilization:
     Number using O6 output only:                 2
 
 Slice Logic Distribution:
-  Number of occupied Slices:                    29 out of  17,280    1%
-  Number of LUT Flip Flop pairs used:           57
-    Number with an unused Flip Flop:            28 out of      57   49%
-    Number with an unused LUT:                  17 out of      57   29%
-    Number of fully used LUT-FF pairs:          12 out of      57   21%
-    Number of unique control sets:              12
+  Number of occupied Slices:                    57 out of  17,280    1%
+  Number of LUT Flip Flop pairs used:          157
+    Number with an unused Flip Flop:           104 out of     157   66%
+    Number with an unused LUT:                  21 out of     157   13%
+    Number of fully used LUT-FF pairs:          32 out of     157   20%
+    Number of unique control sets:              19
     Number of slice register sites lost
-      to control set restrictions:              34 out of  69,120    1%
+      to control set restrictions:              38 out of  69,120    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -48,18 +50,18 @@ Slice Logic Distribution:
   over-mapped for a non-BRAM resource or if placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                        15 out of     640    2%
-    Number of LOCed IOBs:                       15 out of      15  100%
+  Number of bonded IOBs:                        23 out of     640    3%
+    Number of LOCed IOBs:                       23 out of      23  100%
 
 Specific Feature Utilization:
   Number of BUFG/BUFGCTRLs:                      2 out of      32    6%
     Number used as BUFGs:                        2
 
-Average Fanout of Non-Clock Nets:                4.77
+Average Fanout of Non-Clock Nets:                5.97
 
-Peak Memory Usage:  984 MB
-Total REAL time to MAP completion:  15 secs 
-Total CPU time to MAP completion:   12 secs 
+Peak Memory Usage:  987 MB
+Total REAL time to MAP completion:  17 secs 
+Total CPU time to MAP completion:   17 secs 
 
 Table of Contents
 -----------------
@@ -96,6 +98,14 @@ WARNING:Place:644 - A clock IOB clock component is not placed at an optimal
 Section 3 - Informational
 -------------------------
 INFO:LIT:243 - Logical network GPIO_SW_E_IBUF has no load.
+INFO:LIT:395 - The above info message is repeated 9 more times for the following
+   (max. 5 shown):
+   GPIO_SW_W_IBUF,
+   Mram_datarec92/SPO,
+   Mram_datarec91/SPO,
+   Mram_datarec121/SPO,
+   Mram_datarec122/SPO
+   To see the details of these info messages, please use the -detail switch.
 INFO:MapLib:562 - No environment variables are currently set.
 INFO:LIT:244 - All of the single ended outputs in this design are using slew
    rate limited output drivers. The delay on speed critical single ended outputs
@@ -130,6 +140,14 @@ Section 6 - IOB Properties
 | IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
 |                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| GPIO_DIP_SW1                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW2                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW3                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW4                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW5                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW6                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW7                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| GPIO_DIP_SW8                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
 | GPIO_LED_0                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
 | GPIO_LED_1                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
 | GPIO_LED_2                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
