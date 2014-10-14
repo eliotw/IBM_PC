@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_AZoCsc_1.db \
+	_VCSgd_qu25Ke_1.db \
+
+
+
+_VCSgd_AZoCsc_1.db :	8259.v 
+		${VLOGAN}  +v2k -work work 8259.v
+
+
+_VCSgd_qu25Ke_1.db :	test_8259.v 
+		${VLOGAN}  +v2k -work work test_8259.v
+
+
