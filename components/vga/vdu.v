@@ -4,23 +4,17 @@
  * It is adapted from Zet's VDU module with some changes to fit our design.
  * It displays 80 x 25 lines of text on a screen
  */
-
 module vdu (
 	    // Wishbone Replacement Signals
 	    input clk, // 25 MHz VDU clock
 	    input rst, // Reset Line
+	    input [19:0] a, // Address bits
+	    inout [7:0] d, // Data bits
+	    input ior, // I/O Read
+	    input iow, // I/O Write
+	    input memr, // Memory Read
+	    input memw, // Memory Write
 	    
-	    // Wishbone slave interface - CHANGE ME!
-	    input      [15:0] wb_dat_i, // data in
-	    output reg [15:0] wb_dat_o, // data out
-	    input      [19:1] wb_adr_i, // address in
-	    input             wb_we_i, // write enable
-	    input             wb_tga_i, // NO IDEA
-	    input      [ 1:0] wb_sel_i, // NO IDEA
-	    input             wb_stb_i, // NO IDEA
-	    input             wb_cyc_i, // NO IDEA
-	    output            wb_ack_o, // NO IDEA
-
 	    // VGA pad signals
 	    output reg [ 1:0] vga_red_o,
 	    output reg [ 1:0] vga_green_o,
@@ -32,7 +26,6 @@ module vdu (
    // Net, registers and parameters
    // Synchronization constants, these values are taken from:
    //  http://tinyvga.com/vga-timing/640x400@70Hz
-
    parameter HOR_DISP_END = 10'd639;
    // Last horizontal pixel displayed
    parameter HOR_SYNC_BEG = 10'd655;
@@ -132,6 +125,10 @@ module vdu (
    wire 		      vh_retrace;
    wire 		      v_retrace;
 
+   // Added wires
+   wire 		      io_range, mem_range;
+   wire [7:0] 		      dataout;
+   
    // Module instantiation
    vdu_char_rom char_rom (
 			  .clk  (clk),
@@ -149,15 +146,14 @@ module vdu (
 				.rdata (vga_data_out)
 				);
 
-     vdu_ram_2k_attr ram_2k_attr (
-				  .clk   (clk),
-				  .rst   (rst),
-				  .we    (attr_we),
-				  .addr  (attr_addr),
-				  .wdata (attr_data_in),
-				  .rdata (attr_data_out)
-				  );
-
+   vdu_ram_2k_attr ram_2k_attr (
+				.clk   (clk),
+				.rst   (rst),
+				.we    (attr_we),
+				.addr  (attr_addr),
+				.wdata (attr_data_in),
+				.rdata (attr_data_out)
+				);
 
    // Assignments
    assign video_on1  = video_on_h && video_on_v;
@@ -166,76 +162,115 @@ module vdu (
    assign vga_addr   = { 4'b0, hor_addr} + { ver_addr, 4'b0 };
    assign out_data   = {attr_data_out, vga_data_out};
 
-   assign stb        = wb_stb_i && wb_cyc_i; // WB
+   assign stb        = memw; // I have no idea what to do lol
 
    assign fg_or_bg    = vga_shift[7] ^ cursor_on;
    assign brown_fg    = (vga_fg_colour==3'd6) && !intense;
    assign brown_bg    = (vga_bg_colour==3'd6);
 
    // Control registers
-   assign write        = wb_tga_i & wb_stb_i & wb_cyc_i & wb_we_i; // WB
-   assign wr_adr       = write & wb_sel_i[0]; // WB
-   assign wr_reg       = write & wb_sel_i[1]; // WB
-   assign wr_hcursor   = wr_reg & (reg_adr==4'hf); // WB
-   assign wr_vcursor   = wr_reg & (reg_adr==4'he); // WB
-   assign wr_cur_start = wr_reg & (reg_adr==4'ha); // WB
-   assign wr_cur_end   = wr_reg & (reg_adr==4'hb); // WB
+   assign wr_reg = iow & (a == 20'h003D5);
+   assign wr_adr = iow & (a == 20'h003D4);
+   assign io_range = (a >= 20'h003D0) & (a <= 20'h003DF);
+   assign mem_range = (a >= 20'hB8000) & (a < 20'hBC000);
+   assign wr_hcursor   = wr_reg & (reg_adr==4'hf);
+   assign wr_vcursor   = wr_reg & (reg_adr==4'he);
+   assign wr_cur_start = wr_reg & (reg_adr==4'ha);
+   assign wr_cur_end   = wr_reg & (reg_adr==4'hb);
 
    assign v_retrace   = !video_on_v;
    assign vh_retrace  = v_retrace | !video_on_h;
    assign status_reg1 = { 11'b0, v_retrace, 3'b0, vh_retrace };
-   assign wb_ack_o    = stb & (wb_tga_i ? 1'b1 : vga5_rw); // WB
-
-     // Behaviour - CPU write interface
-     always @(posedge clk)
-       if(rst) begin
-	  attr0_addr    <= 11'b0;
-	  attr0_we      <= 1'b0;
-	  attr_data_in  <= 8'h0;
-	  buff0_addr    <= 11'b0;
-	  buff0_we      <= 1'b0;
-	  buff_data_in  <= 8'h0;
-       end
-       else begin
-	  if(stb && !wb_tga_i) begin // WB
-	     // 1111 1111 1100 0000 0000
-	     // 0xa0000 - 0xbffff    9876 5432 1098 7654 3210
-	     // if(wb_adr_i[19:12] &  8'h18) begin
-	     // 0xB8000 - 0xBFFFF =  1011_1000_xxxx_xxxx_xxxs
-	     attr0_addr   <= wb_adr_i[11:1]; // WB
-	     buff0_addr   <= wb_adr_i[11:1]; // WB
-	     attr0_we     <= wb_we_i & wb_sel_i[1]; // WB
-	     buff0_we     <= wb_we_i & wb_sel_i[0]; // end WB
-	     attr_data_in <= wb_dat_i[15:8]; // WB
-	     buff_data_in <= wb_dat_i[7:0]; // WB
-	  end // if (stb && !wb_tga_i)
-       end // else: !if(wb_rst_i)
+   
+   // Behaviour - CPU write interface
+   always @(posedge clk)
+     if(rst) begin
+	attr0_addr    <= 11'b0;
+	attr0_we      <= 1'b0;
+	attr_data_in  <= 8'h0;
+	buff0_addr    <= 11'b0;
+	buff0_we      <= 1'b0;
+	buff_data_in  <= 8'h0;
+     end
+     else begin
+	if(mem_range & memw) begin 
+	   // Attribute Write
+	   if(a[0] == 1'b1) begin
+	      attr0_addr <= a[11:1];
+	      buff0_addr <= buff0_addr;
+	      attr0_we <= 1'b1;
+	      buff0_we <= 1'b0;
+	      attr_data_in <= d;
+	      buff_data_in <= buff_data_in;
+	   end
+	   // Character Code
+	   else begin
+	      attr0_addr   <= attr0_addr;
+	      buff0_addr   <= a[11:1];
+	      attr0_we     <= 1'b0; 
+	      buff0_we     <= 1'b1;
+	      attr_data_in <= attr_data_in;
+	      buff_data_in <= d;
+	   end // else: !if(a[0] == 1'b1)
+	end 
+	else begin
+	   attr0_addr   <= attr0_addr;
+	   buff0_addr   <= buff0_addr;
+	   attr0_we     <= 1'b0;
+	   buff0_we     <= 1'b0;
+	   attr_data_in <= attr_data_in;
+	   buff_data_in <= buff_data_in;
+	end // else: !if(mem_range)
+     end // else: !if(rst)
+   
+   // Output assignment
+   assign d = (io_range & ior) ? dataout : 8'bzzzzzzzz;
 
    // CPU read interface
-   always @(posedge clk)
-     wb_dat_o <= rst ? 16'h0 : (wb_tga_i ? status_reg1 // WB
-				     : (vga4_rw ? out_data : wb_dat_o)); // WB
-
+   always @(posedge clk) begin
+      // Reset
+      if(rst) begin
+	 dataout <= 8'b0;
+      end
+      // Status Register
+      else if(a == 20'h003da) begin
+	 // Status Register
+	 dataout <= { 4'b0, v_retrace, 2'b0, vh_retrace };
+      end
+      // Read internal registers
+      else if(a == 20'h003d5) begin
+	 if(reg_adr==4'hf) dataout <= reg_hcursor;
+	 else if(reg_adr==4'he) dataout <= reg_vcursor;
+	 else if(reg_adr==4'ha) dataout <= reg_cur_start;
+	 else if(reg_adr==4'hb) dataout <= reg_cur_end;
+	 else dataout <= dataout;
+      end
+      // Keep at current value
+      else begin
+	 dataout <= dataout;
+      end
+   end
+   
    // Control registers
    always @(posedge clk)
      reg_adr <= rst ? 4'h0
-		: (wr_adr ? wb_dat_i[3:0] : reg_adr); // WB
+		: (wr_adr ? d[3:0] : reg_adr);
 
    always @(posedge clk)
      reg_hcursor <= rst ? 7'h0
-		    : (wr_hcursor ? wb_dat_i[14:8] : reg_hcursor); // WB
+		    : (wr_hcursor ? d[6:0] : reg_hcursor);
 
    always @(posedge clk) 
      reg_vcursor <= rst ? 5'h0
-		    : (wr_vcursor ? wb_dat_i[12:8] : reg_vcursor); // WB
+		    : (wr_vcursor ? d[4:0] : reg_vcursor);
 
    always @(posedge clk)
      reg_cur_start <= rst ? 4'he
-		      : (wr_cur_start ? wb_dat_i[11:8] : reg_cur_start); // WB
+		      : (wr_cur_start ? d[3:0] : reg_cur_start);
 
    always @(posedge clk)
      reg_cur_end <= rst ? 4'hf
-		    : (wr_cur_end ? wb_dat_i[11:8] : reg_cur_end); // WB
+		    : (wr_cur_end ? d[3:0] : reg_cur_end);
 
    // Sync generation & timing process
    // Generate horizontal and vertical timing signals for video signal
@@ -290,8 +325,8 @@ module vdu (
 	  case (h_count[2:0])  // all other cycles are reads
 	    3'b000:            // pipeline character write
 	      begin
-		 vga0_we <= wb_we_i; // WB
-		 vga0_rw <= stb;
+		 vga0_we <= stb; // idk lol
+		 vga0_rw <= stb; // idk lol
 	      end
 	    default:  // other 6 cycles free
 	      begin
