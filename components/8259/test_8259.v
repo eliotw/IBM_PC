@@ -660,10 +660,220 @@ module test_8259;
       cs_n = 1'b1;
       actin = 1'b0;
       #10;
+
+      // Test Middle Interrupt
+      $display ("*********************");
+      $display ("Test Middle Interrupt");
+      $display ("*********************");
+      #10;
+      ir = 8'b00010000;
+      #10;
+      ir = 8'b00000000;
+      #10;
+      // Check for inta                                                        
+      if(inta !== 1'b1) begin
+         $display("INTERRUPT NOT RECEIVED %b",inta);
+         errors = errors + 1;
+      end
+      #10;
+      inta_n = 1'b0;
+      #10;
+      inta_n = 1'b1;
+      // Check for inta                                                        
+      if(inta !== 1'b1) begin
+         $display("INTERRUPT NOT RECEIVED %b",inta);
+         errors = errors + 1;
+      end
+      #10;
+      wr_n = 1'b0;
+      rd_n = 1'b1;
+      cs_n = 1'b0;
+      actin = 1'b1;
+      din = 8'b00001010;
+      a0 = 1'b0;
+      #10;       
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b0;
+      cs_n = 1'b0;
+      actin = 1'b0;
+      #10;
+      // Check IRR Read                                                        
+      if(dout !== 8'b00100000) begin
+	 // IRR will still be 0b00100000 from blocked interrupt
+         $display("IRR Not Read %b",dout);
+         errors = errors + 1;
+      end
+      #10;
+      din = 8'b00001011;
+      wr_n = 1'b0;
+      rd_n = 1'b1;
+      cs_n = 1'b0;
+      actin = 1'b1;
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b0;
+      cs_n = 1'b0;
+      actin = 1'b0;
+      #10;
+      // ISR Read Test
+      if(dout !== 8'b00010000) begin
+	 $display("ISR Not Read %b",dout);
+	 errors = errors + 1;
+      end
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b1;
+      cs_n = 1'b1;
+      actin = 1'b0;
+      #10;
+      inta_n = 1'b0;
+      #10;
+      inta_n = 1'b1;
+      // Check for inta                                                        
+      if(inta !== 1'b0) begin
+         $display("INTERRUPT NOT RECEIVED %b",inta);
+         errors = errors + 1;
+      end
+      // Check for pointer       
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b0;
+      cs_n = 1'b0;
+      actin = 1'b0;
+      #10;
+      // Pointer Read Test       
+      if(dout !== 8'b00001100) begin
+         $display("Pointer Not Read %b",dout);
+         errors = errors + 1;
+      end
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b1;
+      cs_n = 1'b1;
+      actin = 1'b0;
+      #10;
+
+      // Send another interrupt
+      #10;
+      ir = 8'b00001000;
+      #10;
+      ir = 8'b00000000;
+      #10;
+      // Send EOI 
+      #10;
+      wr_n = 1'b0;
+      rd_n = 1'b1;
+      cs_n = 1'b0;
+      actin = 1'b1;
+      din = 8'b00100000;
+      a0 = 1'b0;
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b1;
+      cs_n = 1'b1;
+      actin = 1'b0;
+      #10;
       
+      // Service the second interrupt   
+      // Check for inta        
+      if(inta !== 1'b1) begin
+         $display("INTERRUPT NOT RECEIVED %b",inta);
+         errors = errors + 1;
+      end
+      #10;
+      inta_n = 1'b0;
+      #10;
+      inta_n = 1'b1;
+      // Check for inta         
+      if(inta !== 1'b1) begin
+         $display("INTERRUPT NOT RECEIVED %b",inta);
+         errors = errors + 1;
+      end
+      #10;
+      wr_n = 1'b0;
+      rd_n = 1'b1;
+      cs_n = 1'b0;
+      actin = 1'b1;
+      din = 8'b00001010;
+      a0 = 1'b0;
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b0;
+      cs_n = 1'b0;
+      actin = 1'b0;
+      #10;
+      // Check IRR Read
+      if(dout !== 8'b00100000) begin
+	 // IRR will still be 0b00100000 from blocked interrupt
+         $display("IRR Not Read %b",dout);
+         errors = errors + 1;
+      end
+      #10;
+      din = 8'b00001011;
+      wr_n = 1'b0;
+      rd_n = 1'b1;
+      cs_n = 1'b0;
+      actin = 1'b1;
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b0;
+      cs_n = 1'b0;
+      actin = 1'b0;
+      #10;
+      // ISR Read Test
+      if(dout !== 8'b00001000) begin
+         $display("ISR Not Read %b",dout);
+         errors = errors + 1;
+      end
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b1;
+      cs_n = 1'b1;
+      actin = 1'b0;
+      #10;
+      inta_n = 1'b0;
+      #10;
+      inta_n = 1'b1;
+      // Check for inta
+      if(inta !== 1'b0) begin
+	 $display("INTERRUPT NOT RECEIVED %b",inta);
+	 errors = errors + 1;
+      end
+      // Check for pointer
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b0;
+      cs_n = 1'b0;
+      actin = 1'b0;
+      #10;
+      // Pointer Read Test
+      if(dout !== 8'b00001011) begin
+	 $display("Pointer Not Read %b",dout);
+	 errors = errors + 1;
+      end
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b1;
+      cs_n = 1'b1;
+      actin = 1'b0;
+      #10;
+      // Send EOI
+      #10;
+      wr_n = 1'b0;
+      rd_n = 1'b1;
+      cs_n = 1'b0;
+      actin = 1'b1;
+      din = 8'b00100000;
+      a0 = 1'b0;
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b1;
+      cs_n = 1'b1;
+      actin = 1'b0;
+      #10;
       
-      
-      
+       
       // Conclude Test
       #10;
       if(errors > 0) begin
