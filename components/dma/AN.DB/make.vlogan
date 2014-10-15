@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_oNdFO_1.db \
+	_VCSgd_wIYFNe_1.db \
+
+
+
+_VCSgd_oNdFO_1.db :	test_8237.v 
+		${VLOGAN}  +v2k -work work test_8237.v
+
+
+_VCSgd_wIYFNe_1.db :	8237.v 
+		${VLOGAN}  +v2k -work work 8237.v
+
+

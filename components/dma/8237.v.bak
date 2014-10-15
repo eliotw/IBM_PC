@@ -55,37 +55,20 @@ reg [7:0] command;
 reg [5:0] mode;
 reg [3:0] request, mask;
 
-reg hrq, aen, adstb, memr, memw;
-reg [3:0] dack;
-
-wire [3:0] drequest;
+reg [3:0] drequest;
 reg ff, mast_clr;
 reg [2:0] state;
 reg [1:0] channel;
 reg adstb_needed;
+
+assign dreq_in = dreq;
+assign db = 
+
+
+assign drequest[0] = ((command[6] ^ dreq[0]) & ~mask[0]) | request[0];
 assign drequest[1] = ((command[6] ^ dreq[1]) & ~mask[1]) | request[1];
 assign drequest[2] = ((command[6] ^ dreq[2]) & ~mask[2]) | request[2];
 assign drequest[3] = ((command[6] ^ dreq[3]) & ~mask[3]) | request[3];
-
-
-
-assign dreq_io = (state == 3'b0) ? 4'bZZZZ : dreq;
-assign db_io = (state == 3'b0) ? 8'bZZZZZZZ : db;
-assign ior_io = (state == 3'b0) ? 1'bZ : ior;
-assign iow_io = (state == 3'b0) ? 1'bZ : iow;
-assign eopp_io = (state == 3'b0) ? 1'bZ : eopp;
-assign a3_0_io = (state == 3'b0) ? 4'bZZZZ : a3_0;
-assign a7_4_io = (state == 3'b0) ? 4'bZZZZ : a7_4;
-
-
-/*assign dreq_io = (state == 3'b0) ? dreq : 4'bZ;
-assign db_io = (state == 3'b0) ? db : 8'bZ;
-assign ior_io = (state == 3'b0) ? ior : 1'bZ;
-assign iow_io = (state == 3'b0) ? iow : 1'bZ;
-assign eopp_io = (state == 3'b0) ? eopp : 1'bZ;
-assign a3_0_io = (state == 3'b0) ? a3_0 : 4'bZ;
-assign a7_4_io = (state == 3'b0) ? a7_4 : 4'bZ;*/
-
 
 always @(posedge clk, reset, mast_clr, drequest) begin
     if (reset == 1'b1) begin
@@ -171,14 +154,14 @@ always @(posedge clk, reset, mast_clr, drequest) begin
                     hrq <= 1'b1;
                 end else if (hlda == 1'b0 && cs == 1'b0) begin
 
-                    if (ior_io == 1'b0 && iow_io == 1'b0) begin
+                    if (ior == 1'b0 && iow == 1'b0) begin
                         
-                        case(a3_0_io)
+                        case(a3_0)
                             4'b1000: begin
                                 command <= db;
                             end
                             4'b1011: begin
-                                if(db_io[3:2] != 2'b11) begin
+                                if(db[3:2] != 2'b11) begin
                                     mode <= db[7:2];
                                 end
                             end
@@ -206,9 +189,9 @@ always @(posedge clk, reset, mast_clr, drequest) begin
                                 end
                             end
                         endcase
-                    end else if (ior_io == 1'b0 && iow_io == 1'b1) begin
+                    end else if (ior == 1'b0 && iow == 1'b1) begin
 
-                        case (a3_0_io)
+                        case (a3_0)
                             4'b0000: begin
 
                                 if (ff == 1'b0) begin
@@ -245,13 +228,13 @@ always @(posedge clk, reset, mast_clr, drequest) begin
 
                 if (hlda == 1'b0 && cs == 1'b0) begin
                     state <= S0;
-                    if (ior_io == 1'b1 && iow_io == 1'b0) begin
-                        case (a3_0_io)
+                    if (ior == 1'b1 && iow == 1'b0) begin
+                        case (a3_0)
                             4'b1000: begin
                                 command <= db;
                             end
                             4'b1011: begin
-                                if(db_io[3:2] != 2'b11) begin
+                                if(db[3:2] != 2'b11) begin
                                     mode <= db[7:2];
                                 end
                             end
