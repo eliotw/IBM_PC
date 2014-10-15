@@ -49,6 +49,9 @@ module intel8259(
    reg 	       recint; // Has received an inta signal
    reg 	       clrisr; // Clear the ISR
    reg [7:0]   mrw; // Mask result wire
+
+   // Assign Spen
+   assign spen_n = rd_n;
    
    // Initialization
    initial begin
@@ -65,7 +68,7 @@ module intel8259(
    end
    
    // Assign line D
-   assign d = (rd_n == 1'b0) ? dout : 8'bzzzzzzzz;
+   assign d = (rd_n == 1'b0) ? ((a0 == 1'b1) ? imr : dout) : 8'bzzzzzzzz;
    assign din = d;
 
    // IMR Loading
