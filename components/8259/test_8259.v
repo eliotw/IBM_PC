@@ -47,6 +47,51 @@ module test_8259;
       i = 0;
       errors = 0;
       #10;
+
+      // Test Bypassing of Mask Register
+      $display ("*************************");
+      $display ("Test Mask Register Bypass");
+      $display ("*************************");
+      // Attempt Write 1
+      #10;
+      wr_n = 1'b0;
+      rd_n = 1'b1;
+      cs_n = 1'b0;
+      actin = 1'b1;
+      din = 8'b00001010;
+      a0 = 1'b1;
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b0;
+      cs_n = 1'b0;
+      actin = 1'b0;
+      a0 = 1'b1;
+      #10;
+      // Check IMR Read 1
+      if(dout !== 8'b00000000) begin
+	 $display("IMR Not Read %b",dout);
+	 errors = errors + 1;
+      end
+      // Attempt Write 2
+      #10;
+      wr_n = 1'b0;
+      rd_n = 1'b1;
+      cs_n = 1'b0;
+      actin = 1'b1;
+      din = 8'b00001010;
+      a0 = 1'b1;
+      #10;
+      wr_n = 1'b1;
+      rd_n = 1'b0;
+      cs_n = 1'b0;
+      actin = 1'b0;
+      a0 = 1'b1;
+      #10;
+      // Check IMR Read 2
+      if(dout !== 8'b00000000) begin
+	 $display("IMR Not Read %b",dout);
+	 errors = errors + 1;
+      end
       
       // Start Test of Normal Interrupt
       $display ("*********************");

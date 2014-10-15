@@ -49,12 +49,14 @@ module intel8259(
    reg 	       recint; // Has received an inta signal
    reg 	       clrisr; // Clear the ISR
    reg [7:0]   mrw; // Mask result wire
-
+   reg [1:0]   icws; // icws handles ignoring the first two control words
+   
    // Assign Spen
    assign spen_n = rd_n;
    
    // Initialization
    initial begin
+      icws = 2'b10;
       topint = 3'b0;
       irr = 8'b0;
       irr_clr = 8'b0;
@@ -74,9 +76,26 @@ module intel8259(
    // IMR Loading
    always @(cs_n or wr_n or a0 or din or imr) begin
       if((cs_n == 1'b0) & (wr_n == 1'b0) & (a0 == 1'b1)) begin
-	 imr <= din;
+	 if(icws == 2'b00) begin
+	    icws <= 2'b00;
+	    imr <= din;
+	 end
+	 else if(icws == 2'b01) begin
+	    icws <= 2'b00;
+	    imr <= 8'b0;
+	 end
+	 else if(icws == 2'b10) begin
+	    icws <= 2'b01;
+	    imr <= 8'b0;
+	 end
+	 else begin
+	    // This should not happen, but plan for what to do
+	    icws <= 2'b10;
+	    imr <= 8'b0;
+	 end
       end
       else begin
+	 icws <= icws;
 	 imr <= imr;
       end
    end
