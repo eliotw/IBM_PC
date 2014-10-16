@@ -1,0 +1,31 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_FvQoEc_1.db \
+	_VCSgd_YQWgZb_1.db \
+	_VCSgd_tqsvl_1.db \
+	_VCSgd_od42R_1.db \
+	_VCSgd_NJ9fXb_1.db \
+
+
+
+_VCSgd_FvQoEc_1.db :	vdu.v 
+		${VLOGAN}  +v2k -work work vdu.v
+
+
+_VCSgd_YQWgZb_1.db :	vdu_char_rom.v 
+		${VLOGAN}  +v2k -work work vdu_char_rom.v
+
+
+_VCSgd_tqsvl_1.db :	vdu_ram_2k_attr.v 
+		${VLOGAN}  +v2k -work work vdu_ram_2k_attr.v
+
+
+_VCSgd_od42R_1.db :	vdu_ram_2k_char.v 
+		${VLOGAN}  +v2k -work work vdu_ram_2k_char.v
+
+
+_VCSgd_NJ9fXb_1.db :	test_vdu.v 
+		${VLOGAN}  +v2k -work work test_vdu.v
+
+

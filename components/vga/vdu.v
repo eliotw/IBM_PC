@@ -21,7 +21,7 @@ module vdu (
 	    output reg [ 1:0] vga_blue_o,
 	    output reg        horiz_sync,
 	    output reg        vert_sync
-	    );
+    );
 
    // Net, registers and parameters
    // Synchronization constants, these values are taken from:
@@ -127,7 +127,7 @@ module vdu (
 
    // Added wires
    wire 		      io_range, mem_range;
-   wire [7:0] 		      dataout;
+   reg [7:0] 		      dataout;
    
    // Module instantiation
    vdu_char_rom char_rom (
@@ -325,8 +325,8 @@ module vdu (
 	  case (h_count[2:0])  // all other cycles are reads
 	    3'b000:            // pipeline character write
 	      begin
-		 vga0_we <= stb; // idk lol
-		 vga0_rw <= stb; // idk lol
+		 vga0_we <= memw; // idk lol stb?
+		 vga0_rw <= memw; // idk lol stb?
 	      end
 	    default:  // other 6 cycles free
 	      begin
@@ -362,16 +362,19 @@ module vdu (
        end // else: !if(rst)
 
    // Video shift register
-   always @(posedge clk)
+   always @(posedge clk) begin
+     //$display("videon %b fgbg %b brownfg %b vgafgcolor %b intense %b vgabgcolor %b",video_on,fg_or_bg,brown_fg,vga_fg_colour[1],intense,vga_bg_colour[1]);
+      //$display("buff %b we %b data %b attr %b we %b data %b",buff_addr,buff_we,vga_data_out,attr_addr,attr_we,attr_data_out);
+      
      if(rst) begin
 	video_on      <= 1'b0;
 	cursor_on     <= 1'b0;
 	vga_bg_colour <= 3'b000;
 	vga_fg_colour <= 3'b111;
 	vga_shift     <= 8'b00000000;
-	vga_red_o     <= 1'b0;
-	vga_green_o   <= 1'b0;
-	vga_blue_o    <= 1'b0;
+	vga_red_o     <= 2'b0;
+	vga_green_o   <= 2'b0;
+	vga_blue_o    <= 2'b0;
      end
      else begin
 	if(h_count[2:0] == 3'b000) begin
@@ -393,5 +396,6 @@ module vdu (
 	vga_green_o  <= video_on ? (fg_or_bg ? (brown_fg ? 2'b01 : { vga_fg_colour[1], intense}) : (brown_bg ? 2'b01 : { vga_bg_colour[1], 1'b0 })) : 2'b0;
 	vga_red_o    <= video_on ? (fg_or_bg ? { vga_fg_colour[2], intense } : { vga_bg_colour[2], 1'b0 }) : 2'b0;
      end // else: !if(rst)
+   end // always @ (posedge clk)
    
 endmodule // vdu
