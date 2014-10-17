@@ -130,13 +130,21 @@ module vdu (
    reg [7:0] 		      dataout;
    
    // Module instantiation
+	/*
    vdu_char_rom char_rom (
 			  .clk  (clk),
 			  .addr (char_addr),
 			  .q    (char_data_out)
 			  );
-
-   
+*/
+	charcore char_rom(
+	.clka(clk),
+	.wea(1'b0),
+	.addra(char_addr),
+	.dina(8'b0),
+	.douta(char_data_out)
+	); 
+	/*
    vdu_ram_2k_char ram_2k_char (
 				.clk   (clk),
 				.rst   (rst),
@@ -145,7 +153,16 @@ module vdu (
 				.wdata (buff_data_in),
 				.rdata (vga_data_out)
 				);
-
+*/
+	charram ram_2k_char(
+	.clka(clk),
+	.rsta(rst),
+	.wea(buff_we),
+	.addra(buff_addr),
+	.dina(buff_data_in),
+	.douta(vga_data_out)
+	);
+	/*
    vdu_ram_2k_attr ram_2k_attr (
 				.clk   (clk),
 				.rst   (rst),
@@ -154,7 +171,15 @@ module vdu (
 				.wdata (attr_data_in),
 				.rdata (attr_data_out)
 				);
-
+*/
+	attrram ram_2k_attr (
+	.clka(clk), // input clka
+	.rsta(rst), // input rsta
+	.wea(attr_we), // input [0 : 0] wea
+	.addra(attr_addr), // input [10 : 0] addra
+	.dina(attr_data_in), // input [7 : 0] dina
+	.douta(attr_data_out) // output [7 : 0] douta
+	);
    // Assignments
    assign video_on1  = video_on_h && video_on_v;
    assign cursor_on1 = cursor_on_h && cursor_on_v;

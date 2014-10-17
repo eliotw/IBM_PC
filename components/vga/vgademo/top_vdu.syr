@@ -1,0 +1,734 @@
+Release 14.2 - xst P.28xd (lin64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
+ 
+--> 
+Reading design: top_vdu.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "top_vdu.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "top_vdu"
+Output Format                      : NGC
+Target Device                      : xc5vlx110t-1-ff1136
+
+---- Source Options
+Top Module Name                    : top_vdu
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Off
+Reduce Control Sets                : Off
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+Cores Search Directories           : {"ipcore_dir"  }
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "ipcore_dir/charram.v" in library work
+Compiling verilog file "ipcore_dir/charcore.v" in library work
+Module <charram> compiled
+Compiling verilog file "ipcore_dir/attrram.v" in library work
+Module <charcore> compiled
+Compiling verilog file "../vdu.v" in library work
+Module <attrram> compiled
+Compiling verilog file "../test_vdu.v" in library work
+Module <vdu> compiled
+Module <top_vdu> compiled
+Module <play_vdu> compiled
+No errors in compilation
+Analysis of file <"top_vdu.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <top_vdu> in library <work> with parameters.
+	v0 = "0001"
+	v1 = "0010"
+	v2 = "0100"
+	v3 = "1000"
+
+Analyzing hierarchy for module <vdu> in library <work> with parameters.
+	HOR_DISP_CHR = "00000000000000000000000001010000"
+	HOR_DISP_END = "1001111111"
+	HOR_SCAN_END = "1100011111"
+	HOR_SYNC_BEG = "1010001111"
+	HOR_SYNC_END = "1011101111"
+	HOR_VIDEO_OFF = "1010000111"
+	HOR_VIDEO_ON = "0000000111"
+	VER_DISP_CHR = "11001"
+	VER_DISP_END = "110010000"
+	VER_SCAN_END = "111000000"
+	VER_SYNC_BEG = "110011011"
+	VER_SYNC_END = "110011101"
+
+Analyzing hierarchy for module <play_vdu> in library <work> with parameters.
+	v0 = "00000001"
+	v1 = "00000010"
+	v2 = "00000100"
+	v3 = "00001000"
+	v4 = "00010000"
+	v5 = "00100000"
+	v6 = "01000000"
+	v7 = "10000000"
+	va = "01000001"
+	vb = "00001111"
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <top_vdu>.
+	v0 = 4'b0001
+	v1 = 4'b0010
+	v2 = 4'b0100
+	v3 = 4'b1000
+Module <top_vdu> is correct for synthesis.
+ 
+Analyzing module <vdu> in library <work>.
+	HOR_DISP_CHR = 32'sb00000000000000000000000001010000
+	HOR_DISP_END = 10'b1001111111
+	HOR_SCAN_END = 10'b1100011111
+	HOR_SYNC_BEG = 10'b1010001111
+	HOR_SYNC_END = 10'b1011101111
+	HOR_VIDEO_OFF = 10'b1010000111
+	HOR_VIDEO_ON = 10'b0000000111
+	VER_DISP_CHR = 5'b11001
+	VER_DISP_END = 9'b110010000
+	VER_SCAN_END = 9'b111000000
+	VER_SYNC_BEG = 9'b110011011
+	VER_SYNC_END = 9'b110011101
+WARNING:Xst:2211 - "ipcore_dir/charcore.v" line 140: Instantiating black box module <charcore>.
+WARNING:Xst:2211 - "ipcore_dir/charram.v" line 157: Instantiating black box module <charram>.
+WARNING:Xst:2211 - "ipcore_dir/attrram.v" line 175: Instantiating black box module <attrram>.
+Module <vdu> is correct for synthesis.
+ 
+Analyzing module <play_vdu> in library <work>.
+	v0 = 8'b00000001
+	v1 = 8'b00000010
+	v2 = 8'b00000100
+	v3 = 8'b00001000
+	v4 = 8'b00010000
+	v5 = 8'b00100000
+	v6 = 8'b01000000
+	v7 = 8'b10000000
+	va = 8'b01000001
+	vb = 8'b00001111
+Module <play_vdu> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+INFO:Xst:2679 - Register <reg_adr> in unit <vdu> has a constant value of 0000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <reg_hcursor> in unit <vdu> has a constant value of 0000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <reg_vcursor> in unit <vdu> has a constant value of 00000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <reg_cur_start> in unit <vdu> has a constant value of 1110 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <reg_cur_end> in unit <vdu> has a constant value of 1111 during circuit operation. The register is replaced by logic.
+
+Synthesizing Unit <play_vdu>.
+    Related source file is "../test_vdu.v".
+    Found finite state machine <FSM_0> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 6                                              |
+    | Transitions        | 8                                              |
+    | Inputs             | 1                                              |
+    | Outputs            | 15                                             |
+    | Clock              | vga_clk                   (rising_edge)        |
+    | Reset              | rst                       (positive)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 00000001                                       |
+    | Power Up State     | 00000001                                       |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 20-bit register for signal <address>.
+    Found 8-bit tristate buffer for signal <data>.
+    Found 20-bit adder for signal <nextaddress$addsub0000>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  20 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   8 Tristate(s).
+Unit <play_vdu> synthesized.
+
+
+Synthesizing Unit <vdu>.
+    Related source file is "../vdu.v".
+WARNING:Xst:647 - Input <memr> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1780 - Signal <write> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <vga5_rw> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <stb> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <status_reg1> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <out_data> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 2-bit register for signal <vga_blue_o>.
+    Found 8-bit tristate buffer for signal <d>.
+    Found 1-bit register for signal <vert_sync>.
+    Found 2-bit register for signal <vga_red_o>.
+    Found 1-bit register for signal <horiz_sync>.
+    Found 2-bit register for signal <vga_green_o>.
+    Found 11-bit register for signal <attr0_addr>.
+    Found 1-bit register for signal <attr0_we>.
+    Found 11-bit register for signal <attr_addr>.
+    Found 8-bit register for signal <attr_data_in>.
+    Found 1-bit register for signal <attr_we>.
+    Found 23-bit up counter for signal <blink_count>.
+    Found 11-bit register for signal <buff0_addr>.
+    Found 1-bit register for signal <buff0_we>.
+    Found 11-bit register for signal <buff_addr>.
+    Found 8-bit register for signal <buff_data_in>.
+    Found 1-bit register for signal <buff_we>.
+    Found 7-bit register for signal <col1_addr>.
+    Found 7-bit register for signal <col_addr>.
+    Found 1-bit register for signal <cursor_on>.
+    Found 1-bit register for signal <cursor_on_h>.
+    Found 1-bit register for signal <cursor_on_v>.
+    Found 4-bit comparator greatequal for signal <cursor_on_v$cmp_ge0000> created at line 322.
+    Found 8-bit register for signal <dataout>.
+    Found 1-bit xor2 for signal <fg_or_bg>.
+    Found 10-bit up counter for signal <h_count>.
+    Found 7-bit register for signal <hor_addr>.
+    Found 1-bit register for signal <intense>.
+    Found 20-bit comparator greatequal for signal <io_range$cmp_ge0000> created at line 199.
+    Found 20-bit comparator lessequal for signal <io_range$cmp_le0000> created at line 199.
+    Found 20-bit comparator greatequal for signal <mem_range$cmp_ge0000> created at line 200.
+    Found 20-bit comparator less for signal <mem_range$cmp_lt0000> created at line 200.
+    Found 5-bit register for signal <row1_addr>.
+    Found 5-bit subtractor for signal <row1_addr$addsub0000> created at line 369.
+    Found 5-bit comparator less for signal <row1_addr$cmp_lt0000> created at line 369.
+    Found 5-bit register for signal <row_addr>.
+    Found 9-bit up counter for signal <v_count>.
+    Found 7-bit register for signal <ver_addr>.
+    Found 7-bit adder for signal <ver_addr$add0000> created at line 375.
+    Found 1-bit register for signal <vga0_rw>.
+    Found 1-bit register for signal <vga0_we>.
+    Found 1-bit register for signal <vga1_rw>.
+    Found 1-bit register for signal <vga1_we>.
+    Found 1-bit register for signal <vga2_rw>.
+    Found 1-bit register for signal <vga2_we>.
+    Found 11-bit adder for signal <vga_addr>.
+    Found 3-bit register for signal <vga_bg_colour>.
+    Found 3-bit register for signal <vga_fg_colour>.
+    Found 8-bit register for signal <vga_shift>.
+    Found 1-bit register for signal <video_on>.
+    Found 1-bit register for signal <video_on_h>.
+    Found 1-bit register for signal <video_on_v>.
+    Summary:
+	inferred   3 Counter(s).
+	inferred 145 D-type flip-flop(s).
+	inferred   3 Adder/Subtractor(s).
+	inferred   6 Comparator(s).
+	inferred   8 Tristate(s).
+Unit <vdu> synthesized.
+
+
+Synthesizing Unit <top_vdu>.
+    Related source file is "../test_vdu.v".
+    Found finite state machine <FSM_1> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 4                                              |
+    | Inputs             | 0                                              |
+    | Outputs            | 2                                              |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | rst                       (positive)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 0001                                           |
+    | Power Up State     | 0001                                           |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Summary:
+	inferred   1 Finite State Machine(s).
+Unit <top_vdu> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 4
+ 11-bit adder                                          : 1
+ 20-bit adder                                          : 1
+ 5-bit subtractor                                      : 1
+ 7-bit adder                                           : 1
+# Counters                                             : 3
+ 10-bit up counter                                     : 1
+ 23-bit up counter                                     : 1
+ 9-bit up counter                                      : 1
+# Registers                                            : 38
+ 1-bit register                                        : 19
+ 11-bit register                                       : 4
+ 2-bit register                                        : 3
+ 20-bit register                                       : 1
+ 3-bit register                                        : 2
+ 5-bit register                                        : 2
+ 7-bit register                                        : 4
+ 8-bit register                                        : 3
+# Comparators                                          : 4
+ 20-bit comparator greatequal                          : 1
+ 20-bit comparator less                                : 1
+ 4-bit comparator greatequal                           : 1
+ 5-bit comparator less                                 : 1
+# Tristates                                            : 9
+ 1-bit tristate buffer                                 : 8
+ 8-bit tristate buffer                                 : 1
+# Xors                                                 : 1
+ 1-bit xor2                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <state/FSM> on signal <state[1:4]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 0001  | 0001
+ 0010  | 0010
+ 0100  | 0100
+ 1000  | 1000
+-------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <pvd/state/FSM> on signal <state[1:6]> with one-hot encoding.
+----------------------
+ State    | Encoding
+----------------------
+ 00000001 | 000001
+ 00000010 | 000010
+ 00000100 | 000100
+ 00001000 | 001000
+ 00010000 | 010000
+ 00100000 | 100000
+----------------------
+Reading core <ipcore_dir/charcore.ngc>.
+Reading core <ipcore_dir/charram.ngc>.
+Reading core <ipcore_dir/attrram.ngc>.
+Loading core <charcore> for timing and area information for instance <char_rom>.
+Loading core <charram> for timing and area information for instance <ram_2k_char>.
+Loading core <attrram> for timing and area information for instance <ram_2k_attr>.
+INFO:Xst:2261 - The FF/Latch <vga_red_o_0> in Unit <vga> is equivalent to the following FF/Latch, which will be removed : <vga_blue_o_0> 
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 2
+# Adders/Subtractors                                   : 4
+ 11-bit adder                                          : 1
+ 20-bit adder                                          : 1
+ 5-bit subtractor                                      : 1
+ 7-bit adder                                           : 1
+# Counters                                             : 3
+ 10-bit up counter                                     : 1
+ 23-bit up counter                                     : 1
+ 9-bit up counter                                      : 1
+# Registers                                            : 157
+ Flip-Flops                                            : 157
+# Comparators                                          : 4
+ 20-bit comparator greatequal                          : 1
+ 20-bit comparator less                                : 1
+ 4-bit comparator greatequal                           : 1
+ 5-bit comparator less                                 : 1
+# Xors                                                 : 1
+ 1-bit xor2                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+INFO:Xst:2261 - The FF/Latch <vga_red_o_0> in Unit <vdu> is equivalent to the following FF/Latch, which will be removed : <vga_blue_o_0> 
+WARNING:Xst:2042 - Unit vdu: 8 internal tristates are replaced by logic (pull-up yes): d<0>, d<1>, d<2>, d<3>, d<4>, d<5>, d<6>, d<7>.
+WARNING:Xst:2042 - Unit play_vdu: 8 internal tristates are replaced by logic (pull-up yes): data<0>, data<1>, data<2>, data<3>, data<4>, data<5>, data<6>, data<7>.
+
+Optimizing unit <top_vdu> ...
+INFO:Xst:2261 - The FF/Latch <vga/attr_data_in_7> in Unit <top_vdu> is equivalent to the following 2 FFs/Latches, which will be removed : <vga/attr_data_in_5> <vga/attr_data_in_4> 
+INFO:Xst:2261 - The FF/Latch <vga/buff_data_in_3> in Unit <top_vdu> is equivalent to the following 2 FFs/Latches, which will be removed : <vga/buff_data_in_2> <vga/buff_data_in_1> 
+INFO:Xst:2261 - The FF/Latch <vga/attr_data_in_3> in Unit <top_vdu> is equivalent to the following 2 FFs/Latches, which will be removed : <vga/attr_data_in_2> <vga/attr_data_in_1> 
+INFO:Xst:2261 - The FF/Latch <vga/buff_data_in_7> in Unit <top_vdu> is equivalent to the following 2 FFs/Latches, which will be removed : <vga/buff_data_in_5> <vga/buff_data_in_4> 
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block top_vdu, actual ratio is 0.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 200
+ Flip-Flops                                            : 200
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : top_vdu.ngr
+Top Level Output File Name         : top_vdu
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 20
+
+Cell Usage :
+# BELS                             : 326
+#      GND                         : 4
+#      INV                         : 4
+#      LUT1                        : 58
+#      LUT2                        : 23
+#      LUT3                        : 19
+#      LUT4                        : 24
+#      LUT5                        : 32
+#      LUT6                        : 38
+#      MUXCY                       : 58
+#      VCC                         : 4
+#      XORCY                       : 62
+# FlipFlops/Latches                : 200
+#      FD                          : 38
+#      FDR                         : 100
+#      FDRE                        : 47
+#      FDS                         : 12
+#      FDSE                        : 3
+# RAMS                             : 3
+#      RAMB18                      : 2
+#      RAMB36_EXP                  : 1
+# Clock Buffers                    : 2
+#      BUFG                        : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 19
+#      IBUF                        : 2
+#      OBUF                        : 17
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 5vlx110tff1136-1 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             200  out of  69120     0%  
+ Number of Slice LUTs:                  198  out of  69120     0%  
+    Number used as Logic:               198  out of  69120     0%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    266
+   Number with an unused Flip Flop:      66  out of    266    24%  
+   Number with an unused LUT:            68  out of    266    25%  
+   Number of fully used LUT-FF pairs:   132  out of    266    49%  
+   Number of unique control sets:        10
+
+IO Utilization: 
+ Number of IOs:                          20
+ Number of bonded IOBs:                  20  out of    640     3%  
+
+Specific Feature Utilization:
+ Number of Block RAM/FIFO:                2  out of    148     1%  
+    Number using Block RAM only:          2
+ Number of BUFG/BUFGCTRLs:                2  out of     32     6%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)                                                                                                                   | Load  |
+-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+-------+
+USER_CLK                           | BUFGP                                                                                                                                   | 4     |
+GPIO_LED_7_OBUF1(vga_clk1:O)       | BUFG(*)(pvd/state_FSM_FFd1)                                                                                                             | 199   |
+vga/ram_2k_attr/N1                 | NONE(vga/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP)| 1     |
+vga/ram_2k_char/N1                 | NONE(vga/ram_2k_char/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP)| 1     |
+vga/char_rom/N1                    | NONE(vga/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)   | 1     |
+-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+-------+
+(*) This 1 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-------+
+Control Signal                         | Buffer(FF name)                                                                                                                      | Load  |
+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-------+
+vga/char_rom/N1(vga/char_rom/XST_GND:G)| NONE(vga/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)| 8     |
+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: 2.992ns (Maximum Frequency: 334.225MHz)
+   Minimum input arrival time before clock: 2.759ns
+   Maximum output required time after clock: 3.939ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'USER_CLK'
+  Clock period: 0.812ns (frequency: 1231.527MHz)
+  Total number of paths / destination ports: 4 / 4
+-------------------------------------------------------------------------
+Delay:               0.812ns (Levels of Logic = 0)
+  Source:            state_FSM_FFd4 (FF)
+  Destination:       state_FSM_FFd3 (FF)
+  Source Clock:      USER_CLK rising
+  Destination Clock: USER_CLK rising
+
+  Data Path: state_FSM_FFd4 to state_FSM_FFd3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDS:C->Q              2   0.471   0.341  state_FSM_FFd4 (state_FSM_FFd4)
+     FDR:D                    -0.018          state_FSM_FFd3
+    ----------------------------------------
+    Total                      0.812ns (0.471ns logic, 0.341ns route)
+                                       (58.0% logic, 42.0% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'GPIO_LED_7_OBUF1'
+  Clock period: 2.992ns (frequency: 334.225MHz)
+  Total number of paths / destination ports: 1953 / 320
+-------------------------------------------------------------------------
+Delay:               2.992ns (Levels of Logic = 3)
+  Source:            vga/h_count_5 (FF)
+  Destination:       vga/v_count_8 (FF)
+  Source Clock:      GPIO_LED_7_OBUF1 rising
+  Destination Clock: GPIO_LED_7_OBUF1 rising
+
+  Data Path: vga/h_count_5 to vga/v_count_8
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               6   0.471   1.000  vga/h_count_5 (vga/h_count_5)
+     LUT5:I0->O            2   0.094   0.715  vga/h_count_cmp_eq0000_SW0 (N6)
+     LUT6:I3->O            9   0.094   0.524  vga/v_count_or0000 (vga/v_count_or0000)
+     LUT4:I3->O            1   0.094   0.000  vga/v_count_8_rstpot (vga/v_count_8_rstpot)
+     FD:D                     -0.018          vga/v_count_8
+    ----------------------------------------
+    Total                      2.992ns (0.753ns logic, 2.239ns route)
+                                       (25.2% logic, 74.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'USER_CLK'
+  Total number of paths / destination ports: 4 / 4
+-------------------------------------------------------------------------
+Offset:              1.882ns (Levels of Logic = 1)
+  Source:            GPIO_SW_C (PAD)
+  Destination:       state_FSM_FFd4 (FF)
+  Destination Clock: USER_CLK rising
+
+  Data Path: GPIO_SW_C to state_FSM_FFd4
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O           181   0.818   0.491  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
+     FDS:S                     0.573          state_FSM_FFd4
+    ----------------------------------------
+    Total                      1.882ns (1.391ns logic, 0.491ns route)
+                                       (73.9% logic, 26.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'GPIO_LED_7_OBUF1'
+  Total number of paths / destination ports: 208 / 201
+-------------------------------------------------------------------------
+Offset:              2.759ns (Levels of Logic = 3)
+  Source:            GPIO_SW_C (PAD)
+  Destination:       vga/h_count_9 (FF)
+  Destination Clock: GPIO_LED_7_OBUF1 rising
+
+  Data Path: GPIO_SW_C to vga/h_count_9
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O           181   0.818   1.224  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
+     LUT6:I0->O           10   0.094   0.529  vga/h_count_or00001 (vga/h_count_or0000)
+     LUT2:I1->O            1   0.094   0.000  vga/h_count_9_rstpot (vga/h_count_9_rstpot)
+     FD:D                     -0.018          vga/h_count_9
+    ----------------------------------------
+    Total                      2.759ns (1.006ns logic, 1.753ns route)
+                                       (36.5% logic, 63.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'GPIO_LED_7_OBUF1'
+  Total number of paths / destination ports: 15 / 15
+-------------------------------------------------------------------------
+Offset:              3.275ns (Levels of Logic = 1)
+  Source:            vga/vga_red_o_0 (FF)
+  Destination:       HDR1_10 (PAD)
+  Source Clock:      GPIO_LED_7_OBUF1 rising
+
+  Data Path: vga/vga_red_o_0 to HDR1_10
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              4   0.471   0.352  vga/vga_red_o_0 (vga/vga_red_o_0)
+     OBUF:I->O                 2.452          HDR1_10_OBUF (HDR1_10)
+    ----------------------------------------
+    Total                      3.275ns (2.923ns logic, 0.352ns route)
+                                       (89.3% logic, 10.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'USER_CLK'
+  Total number of paths / destination ports: 4 / 2
+-------------------------------------------------------------------------
+Offset:              3.939ns (Levels of Logic = 2)
+  Source:            state_FSM_FFd4 (FF)
+  Destination:       HDR1_18 (PAD)
+  Source Clock:      USER_CLK rising
+
+  Data Path: state_FSM_FFd4 to HDR1_18
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDS:C->Q              2   0.471   0.581  state_FSM_FFd4 (state_FSM_FFd4)
+     LUT2:I0->O            2   0.094   0.341  vga_clk1 (GPIO_LED_7_OBUF1)
+     OBUF:I->O                 2.452          HDR1_18_OBUF (HDR1_18)
+    ----------------------------------------
+    Total                      3.939ns (3.017ns logic, 0.922ns route)
+                                       (76.6% logic, 23.4% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 7.21 secs
+ 
+--> 
+
+
+Total memory usage is 659452 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   11 (   0 filtered)
+Number of infos    :   13 (   0 filtered)
+
