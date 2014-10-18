@@ -125,6 +125,7 @@ Compiling verilog file "../test_vdu.v" in library work
 Module <vdu> compiled
 Module <top_vdu> compiled
 Module <play_vdu> compiled
+Module <test_vdu> compiled
 No errors in compilation
 Analysis of file <"top_vdu.prj"> succeeded.
  
@@ -153,16 +154,19 @@ Analyzing hierarchy for module <vdu> in library <work> with parameters.
 	VER_SYNC_END = "110011101"
 
 Analyzing hierarchy for module <play_vdu> in library <work> with parameters.
-	v0 = "00000001"
-	v1 = "00000010"
-	v2 = "00000100"
-	v3 = "00001000"
-	v4 = "00010000"
-	v5 = "00100000"
-	v6 = "01000000"
-	v7 = "10000000"
-	va = "01000001"
-	vb = "00001111"
+	v0 = "00000000"
+	v1 = "00000001"
+	v2 = "00000010"
+	v3 = "00000011"
+	v4 = "00000100"
+	v5 = "00000101"
+	v6 = "00000110"
+	v7 = "00000111"
+	v8 = "00001000"
+	v9 = "00001001"
+	va = "00001010"
+	vb = "00001011"
+	vc = "00001100"
 
 
 =========================================================================
@@ -188,22 +192,25 @@ Analyzing module <vdu> in library <work>.
 	VER_SCAN_END = 9'b111000000
 	VER_SYNC_BEG = 9'b110011011
 	VER_SYNC_END = 9'b110011101
-WARNING:Xst:2211 - "ipcore_dir/charcore.v" line 140: Instantiating black box module <charcore>.
-WARNING:Xst:2211 - "ipcore_dir/charram.v" line 157: Instantiating black box module <charram>.
-WARNING:Xst:2211 - "ipcore_dir/attrram.v" line 175: Instantiating black box module <attrram>.
+WARNING:Xst:2211 - "ipcore_dir/charcore.v" line 135: Instantiating black box module <charcore>.
+WARNING:Xst:2211 - "ipcore_dir/charram.v" line 143: Instantiating black box module <charram>.
+WARNING:Xst:2211 - "ipcore_dir/attrram.v" line 152: Instantiating black box module <attrram>.
 Module <vdu> is correct for synthesis.
  
 Analyzing module <play_vdu> in library <work>.
-	v0 = 8'b00000001
-	v1 = 8'b00000010
-	v2 = 8'b00000100
-	v3 = 8'b00001000
-	v4 = 8'b00010000
-	v5 = 8'b00100000
-	v6 = 8'b01000000
-	v7 = 8'b10000000
-	va = 8'b01000001
-	vb = 8'b00001111
+	v0 = 8'b00000000
+	v1 = 8'b00000001
+	v2 = 8'b00000010
+	v3 = 8'b00000011
+	v4 = 8'b00000100
+	v5 = 8'b00000101
+	v6 = 8'b00000110
+	v7 = 8'b00000111
+	v8 = 8'b00001000
+	v9 = 8'b00001001
+	va = 8'b00001010
+	vb = 8'b00001011
+	vc = 8'b00001100
 Module <play_vdu> is correct for synthesis.
  
 
@@ -212,47 +219,57 @@ Module <play_vdu> is correct for synthesis.
 =========================================================================
 
 Performing bidirectional port resolution...
+INFO:Xst:2679 - Register <vga0_we> in unit <vdu> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <vga1_we> in unit <vdu> has a constant value of 0 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <reg_adr> in unit <vdu> has a constant value of 0000 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <reg_hcursor> in unit <vdu> has a constant value of 0000000 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <reg_vcursor> in unit <vdu> has a constant value of 00000 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <reg_cur_start> in unit <vdu> has a constant value of 1110 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <reg_cur_end> in unit <vdu> has a constant value of 1111 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <vga2_we> in unit <vdu> has a constant value of 0 during circuit operation. The register is replaced by logic.
 
 Synthesizing Unit <play_vdu>.
     Related source file is "../test_vdu.v".
     Found finite state machine <FSM_0> for signal <state>.
     -----------------------------------------------------------------------
-    | States             | 6                                              |
-    | Transitions        | 8                                              |
-    | Inputs             | 1                                              |
-    | Outputs            | 15                                             |
+    | States             | 12                                             |
+    | Transitions        | 15                                             |
+    | Inputs             | 3                                              |
+    | Outputs            | 22                                             |
     | Clock              | vga_clk                   (rising_edge)        |
     | Reset              | rst                       (positive)           |
     | Reset type         | synchronous                                    |
-    | Reset State        | 00000001                                       |
-    | Power Up State     | 00000001                                       |
+    | Reset State        | 00000000                                       |
+    | Power Up State     | 00000000                                       |
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
     Found 20-bit register for signal <address>.
     Found 8-bit tristate buffer for signal <data>.
-    Found 20-bit adder for signal <nextaddress$addsub0000>.
+    Found 16-bit register for signal <charout>.
+    Found 20-bit adder for signal <nextaddress$share0000> created at line 212.
+    Found 16-bit adder for signal <nextchar$addsub0000> created at line 350.
+    Found 20-bit comparator greatequal for signal <nextchar$cmp_ge0000> created at line 344.
     Summary:
 	inferred   1 Finite State Machine(s).
-	inferred  20 D-type flip-flop(s).
-	inferred   1 Adder/Subtractor(s).
+	inferred  36 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
 	inferred   8 Tristate(s).
 Unit <play_vdu> synthesized.
 
 
 Synthesizing Unit <vdu>.
     Related source file is "../vdu.v".
-WARNING:Xst:647 - Input <memr> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:1780 - Signal <write> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <vga5_rw> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <stb> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <status_reg1> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <out_data> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <buff_we> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <buff_data_in> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <attr_we> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <attr_data_in> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 2-bit register for signal <vga_blue_o>.
     Found 8-bit tristate buffer for signal <d>.
     Found 1-bit register for signal <vert_sync>.
@@ -262,42 +279,35 @@ WARNING:Xst:646 - Signal <out_data> is assigned but never used. This unconnected
     Found 11-bit register for signal <attr0_addr>.
     Found 1-bit register for signal <attr0_we>.
     Found 11-bit register for signal <attr_addr>.
-    Found 8-bit register for signal <attr_data_in>.
-    Found 1-bit register for signal <attr_we>.
     Found 23-bit up counter for signal <blink_count>.
     Found 11-bit register for signal <buff0_addr>.
     Found 1-bit register for signal <buff0_we>.
     Found 11-bit register for signal <buff_addr>.
-    Found 8-bit register for signal <buff_data_in>.
-    Found 1-bit register for signal <buff_we>.
     Found 7-bit register for signal <col1_addr>.
     Found 7-bit register for signal <col_addr>.
     Found 1-bit register for signal <cursor_on>.
     Found 1-bit register for signal <cursor_on_h>.
     Found 1-bit register for signal <cursor_on_v>.
-    Found 4-bit comparator greatequal for signal <cursor_on_v$cmp_ge0000> created at line 322.
+    Found 4-bit comparator greatequal for signal <cursor_on_v$cmp_ge0000> created at line 309.
     Found 8-bit register for signal <dataout>.
     Found 1-bit xor2 for signal <fg_or_bg>.
     Found 10-bit up counter for signal <h_count>.
     Found 7-bit register for signal <hor_addr>.
     Found 1-bit register for signal <intense>.
-    Found 20-bit comparator greatequal for signal <io_range$cmp_ge0000> created at line 199.
-    Found 20-bit comparator lessequal for signal <io_range$cmp_le0000> created at line 199.
-    Found 20-bit comparator greatequal for signal <mem_range$cmp_ge0000> created at line 200.
-    Found 20-bit comparator less for signal <mem_range$cmp_lt0000> created at line 200.
+    Found 20-bit comparator greatequal for signal <io_range$cmp_ge0000> created at line 185.
+    Found 20-bit comparator lessequal for signal <io_range$cmp_le0000> created at line 185.
+    Found 20-bit comparator greatequal for signal <mem_range$cmp_ge0000> created at line 186.
+    Found 20-bit comparator less for signal <mem_range$cmp_lt0000> created at line 186.
     Found 5-bit register for signal <row1_addr>.
-    Found 5-bit subtractor for signal <row1_addr$addsub0000> created at line 369.
-    Found 5-bit comparator less for signal <row1_addr$cmp_lt0000> created at line 369.
+    Found 5-bit subtractor for signal <row1_addr$addsub0000> created at line 356.
+    Found 5-bit comparator less for signal <row1_addr$cmp_lt0000> created at line 356.
     Found 5-bit register for signal <row_addr>.
     Found 9-bit up counter for signal <v_count>.
     Found 7-bit register for signal <ver_addr>.
-    Found 7-bit adder for signal <ver_addr$add0000> created at line 375.
+    Found 7-bit adder for signal <ver_addr$add0000> created at line 362.
     Found 1-bit register for signal <vga0_rw>.
-    Found 1-bit register for signal <vga0_we>.
     Found 1-bit register for signal <vga1_rw>.
-    Found 1-bit register for signal <vga1_we>.
     Found 1-bit register for signal <vga2_rw>.
-    Found 1-bit register for signal <vga2_we>.
     Found 11-bit adder for signal <vga_addr>.
     Found 3-bit register for signal <vga_bg_colour>.
     Found 3-bit register for signal <vga_fg_colour>.
@@ -307,7 +317,7 @@ WARNING:Xst:646 - Signal <out_data> is assigned but never used. This unconnected
     Found 1-bit register for signal <video_on_v>.
     Summary:
 	inferred   3 Counter(s).
-	inferred 145 D-type flip-flop(s).
+	inferred 124 D-type flip-flop(s).
 	inferred   3 Adder/Subtractor(s).
 	inferred   6 Comparator(s).
 	inferred   8 Tristate(s).
@@ -349,23 +359,22 @@ Macro Statistics
  10-bit up counter                                     : 1
  23-bit up counter                                     : 1
  9-bit up counter                                      : 1
-# Registers                                            : 38
- 1-bit register                                        : 19
+# Registers                                            : 29
+ 1-bit register                                        : 12
  11-bit register                                       : 4
  2-bit register                                        : 3
  20-bit register                                       : 1
  3-bit register                                        : 2
  5-bit register                                        : 2
  7-bit register                                        : 4
- 8-bit register                                        : 3
-# Comparators                                          : 4
- 20-bit comparator greatequal                          : 1
+ 8-bit register                                        : 1
+# Comparators                                          : 5
+ 20-bit comparator greatequal                          : 2
  20-bit comparator less                                : 1
  4-bit comparator greatequal                           : 1
  5-bit comparator less                                 : 1
-# Tristates                                            : 9
- 1-bit tristate buffer                                 : 8
- 8-bit tristate buffer                                 : 1
+# Tristates                                            : 2
+ 8-bit tristate buffer                                 : 2
 # Xors                                                 : 1
  1-bit xor2                                            : 1
 
@@ -386,17 +395,23 @@ Optimizing FSM <state/FSM> on signal <state[1:4]> with user encoding.
  1000  | 1000
 -------------------
 Analyzing FSM <FSM_0> for best encoding.
-Optimizing FSM <pvd/state/FSM> on signal <state[1:6]> with one-hot encoding.
-----------------------
+Optimizing FSM <pvd/state/FSM> on signal <state[1:12]> with one-hot encoding.
+--------------------------
  State    | Encoding
-----------------------
- 00000001 | 000001
- 00000010 | 000010
- 00000100 | 000100
- 00001000 | 001000
- 00010000 | 010000
- 00100000 | 100000
-----------------------
+--------------------------
+ 00000000 | 000000000001
+ 00000001 | 000000000010
+ 00000010 | 000000000100
+ 00000011 | 000000001000
+ 00000100 | 000000010000
+ 00000101 | 000001000000
+ 00000110 | 000010000000
+ 00000111 | 000100000000
+ 00001000 | 001000000000
+ 00001001 | 010000000000
+ 00001010 | 100000000000
+ 00001100 | 000000100000
+--------------------------
 Reading core <ipcore_dir/charcore.ngc>.
 Reading core <ipcore_dir/charram.ngc>.
 Reading core <ipcore_dir/attrram.ngc>.
@@ -419,10 +434,10 @@ Macro Statistics
  10-bit up counter                                     : 1
  23-bit up counter                                     : 1
  9-bit up counter                                      : 1
-# Registers                                            : 157
- Flip-Flops                                            : 157
-# Comparators                                          : 4
- 20-bit comparator greatequal                          : 1
+# Registers                                            : 134
+ Flip-Flops                                            : 134
+# Comparators                                          : 5
+ 20-bit comparator greatequal                          : 2
  20-bit comparator less                                : 1
  4-bit comparator greatequal                           : 1
  5-bit comparator less                                 : 1
@@ -439,10 +454,6 @@ WARNING:Xst:2042 - Unit vdu: 8 internal tristates are replaced by logic (pull-up
 WARNING:Xst:2042 - Unit play_vdu: 8 internal tristates are replaced by logic (pull-up yes): data<0>, data<1>, data<2>, data<3>, data<4>, data<5>, data<6>, data<7>.
 
 Optimizing unit <top_vdu> ...
-INFO:Xst:2261 - The FF/Latch <vga/attr_data_in_7> in Unit <top_vdu> is equivalent to the following 2 FFs/Latches, which will be removed : <vga/attr_data_in_5> <vga/attr_data_in_4> 
-INFO:Xst:2261 - The FF/Latch <vga/buff_data_in_3> in Unit <top_vdu> is equivalent to the following 2 FFs/Latches, which will be removed : <vga/buff_data_in_2> <vga/buff_data_in_1> 
-INFO:Xst:2261 - The FF/Latch <vga/attr_data_in_3> in Unit <top_vdu> is equivalent to the following 2 FFs/Latches, which will be removed : <vga/attr_data_in_2> <vga/attr_data_in_1> 
-INFO:Xst:2261 - The FF/Latch <vga/buff_data_in_7> in Unit <top_vdu> is equivalent to the following 2 FFs/Latches, which will be removed : <vga/buff_data_in_5> <vga/buff_data_in_4> 
 
 Mapping all equations...
 Building and optimizing final netlist ...
@@ -454,8 +465,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 200
- Flip-Flops                                            : 200
+# Registers                                            : 191
+ Flip-Flops                                            : 191
 
 =========================================================================
 
@@ -484,23 +495,25 @@ Design Statistics
 # IOs                              : 20
 
 Cell Usage :
-# BELS                             : 326
+# BELS                             : 348
 #      GND                         : 4
-#      INV                         : 4
+#      INV                         : 5
 #      LUT1                        : 58
-#      LUT2                        : 23
-#      LUT3                        : 19
-#      LUT4                        : 24
-#      LUT5                        : 32
-#      LUT6                        : 38
+#      LUT2                        : 10
+#      LUT3                        : 41
+#      LUT4                        : 22
+#      LUT5                        : 50
+#      LUT6                        : 34
 #      MUXCY                       : 58
 #      VCC                         : 4
 #      XORCY                       : 62
-# FlipFlops/Latches                : 200
-#      FD                          : 38
-#      FDR                         : 100
-#      FDRE                        : 47
-#      FDS                         : 12
+# FlipFlops/Latches                : 191
+#      FD                          : 16
+#      FDE                         : 1
+#      FDR                         : 111
+#      FDRE                        : 48
+#      FDRS                        : 1
+#      FDS                         : 11
 #      FDSE                        : 3
 # RAMS                             : 3
 #      RAMB18                      : 2
@@ -520,16 +533,16 @@ Selected Device : 5vlx110tff1136-1
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             200  out of  69120     0%  
- Number of Slice LUTs:                  198  out of  69120     0%  
-    Number used as Logic:               198  out of  69120     0%  
+ Number of Slice Registers:             191  out of  69120     0%  
+ Number of Slice LUTs:                  220  out of  69120     0%  
+    Number used as Logic:               220  out of  69120     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    266
-   Number with an unused Flip Flop:      66  out of    266    24%  
-   Number with an unused LUT:            68  out of    266    25%  
-   Number of fully used LUT-FF pairs:   132  out of    266    49%  
-   Number of unique control sets:        10
+ Number of LUT Flip Flop pairs used:    288
+   Number with an unused Flip Flop:      97  out of    288    33%  
+   Number with an unused LUT:            68  out of    288    23%  
+   Number of fully used LUT-FF pairs:   123  out of    288    42%  
+   Number of unique control sets:        14
 
 IO Utilization: 
  Number of IOs:                          20
@@ -562,7 +575,7 @@ Clock Information:
 Clock Signal                       | Clock buffer(FF name)                                                                                                                   | Load  |
 -----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+-------+
 USER_CLK                           | BUFGP                                                                                                                                   | 4     |
-GPIO_LED_7_OBUF1(vga_clk1:O)       | BUFG(*)(pvd/state_FSM_FFd1)                                                                                                             | 199   |
+HDR1_18_OBUF1(vga_clk1:O)          | BUFG(*)(pvd/state_FSM_FFd2)                                                                                                             | 190   |
 vga/ram_2k_attr/N1                 | NONE(vga/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP)| 1     |
 vga/ram_2k_char/N1                 | NONE(vga/ram_2k_char/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP)| 1     |
 vga/char_rom/N1                    | NONE(vga/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)   | 1     |
@@ -584,9 +597,9 @@ Timing Summary:
 ---------------
 Speed Grade: -1
 
-   Minimum period: 2.992ns (Maximum Frequency: 334.225MHz)
-   Minimum input arrival time before clock: 2.759ns
-   Maximum output required time after clock: 3.939ns
+   Minimum period: 4.924ns (Maximum Frequency: 203.087MHz)
+   Minimum input arrival time before clock: 3.087ns
+   Maximum output required time after clock: 3.934ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -615,34 +628,36 @@ Delay:               0.812ns (Levels of Logic = 0)
                                        (58.0% logic, 42.0% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'GPIO_LED_7_OBUF1'
-  Clock period: 2.992ns (frequency: 334.225MHz)
-  Total number of paths / destination ports: 1953 / 320
+Timing constraint: Default period analysis for Clock 'HDR1_18_OBUF1'
+  Clock period: 4.924ns (frequency: 203.087MHz)
+  Total number of paths / destination ports: 3653 / 333
 -------------------------------------------------------------------------
-Delay:               2.992ns (Levels of Logic = 3)
-  Source:            vga/h_count_5 (FF)
-  Destination:       vga/v_count_8 (FF)
-  Source Clock:      GPIO_LED_7_OBUF1 rising
-  Destination Clock: GPIO_LED_7_OBUF1 rising
+Delay:               4.924ns (Levels of Logic = 5)
+  Source:            vga/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP (RAM)
+  Destination:       pvd/state_FSM_FFd7 (FF)
+  Source Clock:      HDR1_18_OBUF1 rising
+  Destination Clock: HDR1_18_OBUF1 rising
 
-  Data Path: vga/h_count_5 to vga/v_count_8
+  Data Path: vga/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP to pvd/state_FSM_FFd7
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               6   0.471   1.000  vga/h_count_5 (vga/h_count_5)
-     LUT5:I0->O            2   0.094   0.715  vga/h_count_cmp_eq0000_SW0 (N6)
-     LUT6:I3->O            9   0.094   0.524  vga/v_count_or0000 (vga/v_count_or0000)
-     LUT4:I3->O            1   0.094   0.000  vga/v_count_8_rstpot (vga/v_count_8_rstpot)
-     FD:D                     -0.018          vga/v_count_8
+     RAMB18:CLKA->DOA0     2   2.180   0.715  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP (douta<0>)
+     end scope: 'vga/ram_2k_attr'
+     LUT6:I3->O            4   0.094   0.592  data<0>LogicTrst1 (data<0>)
+     LUT4:I2->O            2   0.094   0.485  pvd/state_not0001_SW0 (N16)
+     LUT6:I5->O            1   0.094   0.576  pvd/state_not0001 (pvd/state_not0001)
+     LUT4:I2->O            1   0.094   0.000  pvd/state_FSM_FFd7-In11 (pvd/state_FSM_FFd7-In1)
+     FDRS:D                   -0.018          pvd/state_FSM_FFd7
     ----------------------------------------
-    Total                      2.992ns (0.753ns logic, 2.239ns route)
-                                       (25.2% logic, 74.8% route)
+    Total                      4.924ns (2.556ns logic, 2.368ns route)
+                                       (51.9% logic, 48.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'USER_CLK'
   Total number of paths / destination ports: 4 / 4
 -------------------------------------------------------------------------
-Offset:              1.882ns (Levels of Logic = 1)
+Offset:              1.880ns (Levels of Logic = 1)
   Source:            GPIO_SW_C (PAD)
   Destination:       state_FSM_FFd4 (FF)
   Destination Clock: USER_CLK rising
@@ -651,57 +666,56 @@ Offset:              1.882ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           181   0.818   0.491  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
+     IBUF:I->O           170   0.818   0.489  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
      FDS:S                     0.573          state_FSM_FFd4
     ----------------------------------------
-    Total                      1.882ns (1.391ns logic, 0.491ns route)
-                                       (73.9% logic, 26.1% route)
+    Total                      1.880ns (1.391ns logic, 0.489ns route)
+                                       (74.0% logic, 26.0% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'GPIO_LED_7_OBUF1'
-  Total number of paths / destination ports: 208 / 201
+Timing constraint: Default OFFSET IN BEFORE for Clock 'HDR1_18_OBUF1'
+  Total number of paths / destination ports: 207 / 191
 -------------------------------------------------------------------------
-Offset:              2.759ns (Levels of Logic = 3)
+Offset:              3.087ns (Levels of Logic = 2)
   Source:            GPIO_SW_C (PAD)
-  Destination:       vga/h_count_9 (FF)
-  Destination Clock: GPIO_LED_7_OBUF1 rising
+  Destination:       vga/v_count_8 (FF)
+  Destination Clock: HDR1_18_OBUF1 rising
 
-  Data Path: GPIO_SW_C to vga/h_count_9
+  Data Path: GPIO_SW_C to vga/v_count_8
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           181   0.818   1.224  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
-     LUT6:I0->O           10   0.094   0.529  vga/h_count_or00001 (vga/h_count_or0000)
-     LUT2:I1->O            1   0.094   0.000  vga/h_count_9_rstpot (vga/h_count_9_rstpot)
-     FD:D                     -0.018          vga/h_count_9
+     IBUF:I->O           170   0.818   1.222  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
+     LUT6:I0->O            9   0.094   0.380  vga/v_count_or0000 (vga/v_count_or0000)
+     FDRE:R                    0.573          vga/v_count_0
     ----------------------------------------
-    Total                      2.759ns (1.006ns logic, 1.753ns route)
-                                       (36.5% logic, 63.5% route)
+    Total                      3.087ns (1.485ns logic, 1.602ns route)
+                                       (48.1% logic, 51.9% route)
 
 =========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'GPIO_LED_7_OBUF1'
-  Total number of paths / destination ports: 15 / 15
+Timing constraint: Default OFFSET OUT AFTER for Clock 'HDR1_18_OBUF1'
+  Total number of paths / destination ports: 16 / 16
 -------------------------------------------------------------------------
-Offset:              3.275ns (Levels of Logic = 1)
-  Source:            vga/vga_red_o_0 (FF)
-  Destination:       HDR1_10 (PAD)
-  Source Clock:      GPIO_LED_7_OBUF1 rising
+Offset:              3.297ns (Levels of Logic = 1)
+  Source:            pvd/state_FSM_FFd7 (FF)
+  Destination:       GPIO_LED_6 (PAD)
+  Source Clock:      HDR1_18_OBUF1 rising
 
-  Data Path: vga/vga_red_o_0 to HDR1_10
+  Data Path: pvd/state_FSM_FFd7 to GPIO_LED_6
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q              4   0.471   0.352  vga/vga_red_o_0 (vga/vga_red_o_0)
-     OBUF:I->O                 2.452          HDR1_10_OBUF (HDR1_10)
+     FDRS:C->Q             8   0.471   0.374  pvd/state_FSM_FFd7 (pvd/state_FSM_FFd7)
+     OBUF:I->O                 2.452          GPIO_LED_6_OBUF (GPIO_LED_6)
     ----------------------------------------
-    Total                      3.275ns (2.923ns logic, 0.352ns route)
-                                       (89.3% logic, 10.7% route)
+    Total                      3.297ns (2.923ns logic, 0.374ns route)
+                                       (88.7% logic, 11.3% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'USER_CLK'
-  Total number of paths / destination ports: 4 / 2
+  Total number of paths / destination ports: 2 / 1
 -------------------------------------------------------------------------
-Offset:              3.939ns (Levels of Logic = 2)
+Offset:              3.934ns (Levels of Logic = 2)
   Source:            state_FSM_FFd4 (FF)
   Destination:       HDR1_18 (PAD)
   Source Clock:      USER_CLK rising
@@ -711,24 +725,24 @@ Offset:              3.939ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDS:C->Q              2   0.471   0.581  state_FSM_FFd4 (state_FSM_FFd4)
-     LUT2:I0->O            2   0.094   0.341  vga_clk1 (GPIO_LED_7_OBUF1)
+     LUT2:I0->O            1   0.094   0.336  vga_clk1 (HDR1_18_OBUF1)
      OBUF:I->O                 2.452          HDR1_18_OBUF (HDR1_18)
     ----------------------------------------
-    Total                      3.939ns (3.017ns logic, 0.922ns route)
-                                       (76.6% logic, 23.4% route)
+    Total                      3.934ns (3.017ns logic, 0.917ns route)
+                                       (76.7% logic, 23.3% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 7.21 secs
+Total REAL time to Xst completion: 8.00 secs
+Total CPU time to Xst completion: 7.51 secs
  
 --> 
 
 
-Total memory usage is 659452 kilobytes
+Total memory usage is 661612 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   11 (   0 filtered)
-Number of infos    :   13 (   0 filtered)
+Number of warnings :   14 (   0 filtered)
+Number of infos    :   12 (   0 filtered)
 

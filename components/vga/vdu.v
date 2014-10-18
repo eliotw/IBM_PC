@@ -128,15 +128,10 @@ module vdu (
    // Added wires
    wire 		      io_range, mem_range;
    reg [7:0] 		      dataout;
-   
+   wire [10:0] new_buff_addr, new_attr_addr;
+	wire new_buff_we, new_attr_we, new_buff, new_attr;
    // Module instantiation
-	/*
-   vdu_char_rom char_rom (
-			  .clk  (clk),
-			  .addr (char_addr),
-			  .q    (char_data_out)
-			  );
-*/
+
 	charcore char_rom(
 	.clka(clk),
 	.wea(1'b0),
@@ -144,42 +139,33 @@ module vdu (
 	.dina(8'b0),
 	.douta(char_data_out)
 	); 
-	/*
-   vdu_ram_2k_char ram_2k_char (
-				.clk   (clk),
-				.rst   (rst),
-				.we    (buff_we),
-				.addr  (buff_addr),
-				.wdata (buff_data_in),
-				.rdata (vga_data_out)
-				);
-*/
+
 	charram ram_2k_char(
 	.clka(clk),
 	.rsta(rst),
-	.wea(buff_we),
-	.addra(buff_addr),
-	.dina(buff_data_in),
+	.wea(new_buff_we), // was buff_we
+	.addra(new_buff_addr), // was buff_addr
+	.dina(d), // was buff_data_in
 	.douta(vga_data_out)
 	);
-	/*
-   vdu_ram_2k_attr ram_2k_attr (
-				.clk   (clk),
-				.rst   (rst),
-				.we    (attr_we),
-				.addr  (attr_addr),
-				.wdata (attr_data_in),
-				.rdata (attr_data_out)
-				);
-*/
+
 	attrram ram_2k_attr (
-	.clka(clk), // input clka
-	.rsta(rst), // input rsta
-	.wea(attr_we), // input [0 : 0] wea
-	.addra(attr_addr), // input [10 : 0] addra
-	.dina(attr_data_in), // input [7 : 0] dina
-	.douta(attr_data_out) // output [7 : 0] douta
+	.clka(clk), 
+	.rsta(rst), 
+	.wea(new_attr_we), // was attr_we
+	.addra(new_attr_addr), // was attr_addr
+	.dina(d), // was attr_data_in
+	.douta(attr_data_out) 
 	);
+	
+	// New Assignments
+	assign new_buff = mem_range & ~a[0] & (memw | memr);
+	assign new_attr = mem_range &  a[0] & (memw | memr);
+	assign new_buff_we = new_buff & memw;
+	assign new_attr_we = new_attr & memw;
+	assign new_buff_addr = (new_buff) ? a[11:1] : buff_addr;
+	assign new_attr_addr = (new_attr) ? a[11:1] : attr_addr;
+	
    // Assignments
    assign video_on1  = video_on_h && video_on_v;
    assign cursor_on1 = cursor_on_h && cursor_on_v;
@@ -249,7 +235,8 @@ module vdu (
      end // else: !if(rst)
    
    // Output assignment
-   assign d = (io_range & ior) ? dataout : 8'bzzzzzzzz;
+   assign d = ((memr & mem_range) | (ior & io_range)) ? 
+		((ior & io_range) ? dataout : (a[0] ? attr_data_out : vga_data_out)) : 8'bzzzzzzzz;
 
    // CPU read interface
    always @(posedge clk) begin
@@ -350,8 +337,8 @@ module vdu (
 	  case (h_count[2:0])  // all other cycles are reads
 	    3'b000:            // pipeline character write
 	      begin
-		 vga0_we <= memw; // idk lol stb?
-		 vga0_rw <= memw; // idk lol stb?
+		 vga0_we <= 1'b0; // idk lol stb? memw?
+		 vga0_rw <= 1'b0; // idk lol stb? memw?
 	      end
 	    default:  // other 6 cycles free
 	      begin

@@ -5,13 +5,19 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="Xst" num="2211" delta="old" >&quot;<arg fmt="%s" index="1">ipcore_dir/charcore.v</arg>&quot; line <arg fmt="%d" index="2">140</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">charcore</arg>&gt;.
+<msg type="warning" file="Xst" num="2211" delta="old" >&quot;<arg fmt="%s" index="1">ipcore_dir/charcore.v</arg>&quot; line <arg fmt="%d" index="2">135</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">charcore</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2211" delta="old" >&quot;<arg fmt="%s" index="1">ipcore_dir/charram.v</arg>&quot; line <arg fmt="%d" index="2">157</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">charram</arg>&gt;.
+<msg type="warning" file="Xst" num="2211" delta="old" >&quot;<arg fmt="%s" index="1">ipcore_dir/charram.v</arg>&quot; line <arg fmt="%d" index="2">143</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">charram</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2211" delta="old" >&quot;<arg fmt="%s" index="1">ipcore_dir/attrram.v</arg>&quot; line <arg fmt="%d" index="2">175</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">attrram</arg>&gt;.
+<msg type="warning" file="Xst" num="2211" delta="old" >&quot;<arg fmt="%s" index="1">ipcore_dir/attrram.v</arg>&quot; line <arg fmt="%d" index="2">152</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">attrram</arg>&gt;.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="old" >Register &lt;<arg fmt="%s" index="1">vga0_we</arg>&gt; in unit &lt;<arg fmt="%s" index="2">vdu</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="old" >Register &lt;<arg fmt="%s" index="1">vga1_we</arg>&gt; in unit &lt;<arg fmt="%s" index="2">vdu</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
 </msg>
 
 <msg type="info" file="Xst" num="2679" delta="old" >Register &lt;<arg fmt="%s" index="1">reg_adr</arg>&gt; in unit &lt;<arg fmt="%s" index="2">vdu</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000</arg> during circuit operation. The register is replaced by logic.
@@ -29,7 +35,7 @@
 <msg type="info" file="Xst" num="2679" delta="old" >Register &lt;<arg fmt="%s" index="1">reg_cur_end</arg>&gt; in unit &lt;<arg fmt="%s" index="2">vdu</arg>&gt; has a constant value of <arg fmt="%s" index="3">1111</arg> during circuit operation. The register is replaced by logic.
 </msg>
 
-<msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">memr</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+<msg type="info" file="Xst" num="2679" delta="old" >Register &lt;<arg fmt="%s" index="1">vga2_we</arg>&gt; in unit &lt;<arg fmt="%s" index="2">vdu</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
 </msg>
 
 <msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">write</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
@@ -47,6 +53,18 @@
 <msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">out_data</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
+<msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">buff_we</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">buff_data_in</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">attr_we</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">attr_data_in</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
 <msg type="info" file="Xst" num="1767" delta="old" >HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
 </msg>
 
@@ -59,18 +77,6 @@
 <msg type="warning" file="Xst" num="2042" delta="old" >Unit <arg fmt="%s" index="1">vdu</arg>: <arg fmt="%d" index="2">8</arg> internal tristates are replaced by logic (pull-up <arg fmt="%s" index="3">yes</arg>): </msg>
 
 <msg type="warning" file="Xst" num="2042" delta="old" >Unit <arg fmt="%s" index="1">play_vdu</arg>: <arg fmt="%d" index="2">8</arg> internal tristates are replaced by logic (pull-up <arg fmt="%s" index="3">yes</arg>): </msg>
-
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">vga/attr_data_in_7</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">top_vdu</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;vga/attr_data_in_5&gt; &lt;vga/attr_data_in_4&gt; </arg>
-</msg>
-
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">vga/buff_data_in_3</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">top_vdu</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;vga/buff_data_in_2&gt; &lt;vga/buff_data_in_1&gt; </arg>
-</msg>
-
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">vga/attr_data_in_3</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">top_vdu</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;vga/attr_data_in_2&gt; &lt;vga/attr_data_in_1&gt; </arg>
-</msg>
-
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">vga/buff_data_in_7</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">top_vdu</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;vga/buff_data_in_5&gt; &lt;vga/buff_data_in_4&gt; </arg>
-</msg>
 
 <msg type="info" file="Xst" num="2169" delta="old" >HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 </msg>

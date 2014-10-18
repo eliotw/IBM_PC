@@ -50,6 +50,8 @@ module top_vdu(
 	wire [19:0] address; // Address of new data
 	wire memw; // Write to memory
 	wire incr; // Increment the counter
+	wire warning; // a warning
+	wire memr; // read from memory
    
    // Wire assignment
    assign rst = GPIO_SW_C;
@@ -70,8 +72,8 @@ module top_vdu(
    assign GPIO_LED_3 = vga_green_o[1]; // vga green o 1
    assign GPIO_LED_4 = vga_blue_o[0]; // vga blue o 0
    assign GPIO_LED_5 = vga_blue_o[1]; // vga blue o 1
-   assign GPIO_LED_6 = horiz_sync; // vga horizontal sync
-   assign GPIO_LED_7 = vga_clk; // vga vertical sync
+   assign GPIO_LED_6 = warning; // vga horizontal sync
+   assign GPIO_LED_7 = warning; // vga vertical sync
    assign vga_clk = (state == v0) | (state == v1);
 	
 	initial begin
@@ -121,7 +123,7 @@ module top_vdu(
 	   .d(data), // Data bits
 	   .ior(1'b0), // I/O Read
 	   .iow(1'b0), // I/O Write
-	   .memr(1'b0), // Memory Read
+	   .memr(memr), // Memory Read
 	   .memw(memw), // Memory Write
 	   .vga_red_o(vga_red_o),
 	   .vga_green_o(vga_green_o),
@@ -132,7 +134,9 @@ module top_vdu(
 		
 	play_vdu pvd(
 		.memw(memw),
+		.memr(memr),
 		.address(address),
+		.warning(warning),
 		.data(data),
 		.vga_clk(vga_clk),
 		.rst(rst),
@@ -146,7 +150,9 @@ endmodule // top_vdu
  */
 module play_vdu(
 	output reg memw,
+	output reg memr,
 	output reg [19:0] address,
+	output reg warning,
 	inout [7:0] data,
 	input vga_clk,
 	input rst,
@@ -154,6 +160,239 @@ module play_vdu(
 	);
 	
 	parameter [7:0]
+			v0 = 8'b0000_0000,
+			v1 = 8'b0000_0001,
+			v2 = 8'b0000_0010,
+			v3 = 8'b0000_0011,
+			v4 = 8'b0000_0100,
+			v5 = 8'b0000_0101,
+			v6 = 8'b0000_0110,
+			v7 = 8'b0000_0111,
+			v8 = 8'b0000_1000,
+			v9 = 8'b0000_1001,
+			va = 8'b0000_1010,
+			vb = 8'b0000_1011,
+			vc = 8'b0000_1100;
+	
+	reg actin;
+	reg [7:0] state, nextstate;
+	reg [7:0] dataout;
+	reg [15:0] charout, nextchar;
+	reg [19:0] nextaddress;
+	assign data = (actin == 1'b1) ? dataout : 8'bzzzz_zzzz;
+	
+	initial begin
+		memw = 1'b0;
+		actin = 1'b0;
+		dataout = 8'b0;
+		nextchar = 16'b0;
+		charout = 16'b0;
+		address = 20'hB8000;
+		nextaddress = 20'hB8000;
+		state = v0;
+		nextstate = v0;
+		warning = 1'b0;
+		memr = 1'b0;
+	end
+	
+	always @(posedge vga_clk) begin
+		if(rst) begin
+			charout <= 16'b0;
+			state <= v0;
+			address <= 20'hB8000;
+		end
+		else begin
+			charout <= nextchar;
+			state <= nextstate;
+			address <= nextaddress;
+		end
+	end
+	
+	always @(state or incr or address or charout or data) begin
+		case(state)
+			v0: begin
+				if(incr == 1'b1) begin
+					nextstate <= v1;
+				end
+				else begin
+					nextstate <= v0;
+				end
+				dataout <= 8'b0;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= address;
+				nextchar <= charout;
+				warning <= 1'b0;
+			end
+			// Character Write Active
+			v1: begin
+				nextstate <= v2;
+				dataout <= 8'b1;
+				actin <= 1'b1;
+				memw <= 1'b1;
+				memr <= 1'b0;
+				nextaddress <= address;
+				nextchar <= charout;
+				warning <= 1'b0;
+			end
+			// Character Write Deactivate
+			v2: begin
+				nextstate <= v3;
+				dataout <= 8'b1;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= address; // address + 1
+				nextchar <= charout;
+				warning <= 1'b0;
+			end
+			// Test character activate 1
+			v3: begin
+				nextstate <= v4;
+				dataout <= 8'b0;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b1;
+				nextaddress <= address;
+				nextchar <= charout;
+				warning <= 1'b0;
+			end
+			// Test character activate 2
+			v4: begin
+				if(data != 8'b1) begin
+					nextstate <= vc; //!!!
+				end
+				else begin
+					nextstate <= v5;
+				end
+				dataout <= 8'b0;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b1;
+				nextaddress <= address;
+				nextchar <= charout;
+				warning <= 1'b0;
+			end
+			// Test character activate 3
+			v5: begin
+				nextstate <= v6;
+				dataout <= 8'b0;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= address + 1;
+				nextchar <= charout;
+				warning <= 1'b0;
+			end
+			// Attribute activate 1
+			v6: begin
+				nextstate <= v7;
+				dataout <= 8'b0_000_1111;
+				actin <= 1'b1;
+				memw <= 1'b1;
+				memr <= 1'b0;
+				nextaddress <= address;
+				nextchar <= charout;
+				warning <= 1'b0;
+			end
+			// Attribute activate 2
+			v7: begin
+				nextstate <= v8;
+				dataout <= 8'b0_000_1111;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= address;
+				nextchar <= charout;
+				warning <= 1'b0;
+			end
+			// Test character activate 3
+			v8: begin
+				nextstate <= v9;
+				dataout <= 8'b0;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b1;
+				nextaddress <= address;
+				nextchar <= charout;
+				warning <= 1'b0;
+			end
+			// Test character activate 4
+			v9: begin
+				if(data != 8'b0_000_1111) begin
+					nextstate <= vc; //!!!
+				end
+				else begin
+					nextstate <= va;
+				end
+				dataout <= 8'b0;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b1;
+				nextaddress <= address;
+				nextchar <= charout;
+				warning <= 1'b0;
+			end
+			// Test character activate 5
+			va: begin
+				nextstate <= v0;
+				dataout <= 8'b0_000_1111;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				if(address >= 20'hbbfff) begin
+					nextaddress <= 20'hb8000;
+					nextchar <= 8'b0;
+				end
+				else begin
+					nextaddress <= address + 1;
+					nextchar <= charout + 1;
+				end
+				warning <= 1'b0;
+			end
+			// Trap State
+			vc: begin
+				nextstate <= vc;
+				dataout <= 8'b0;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b1;
+				nextaddress <= address;
+				nextchar <= charout;
+				warning <= 1'b1;
+			end
+			// Default state
+			default: begin
+				nextstate <= v0;
+				dataout <= 8'b0;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'hB8000;
+				nextchar <= 8'b0;
+				warning <= 1'b0;
+			end
+		endcase
+	end
+	
+endmodule
+	
+/*
+ * test_vdu:
+ * An actual test for the vdu
+ */
+
+module test_vdu(
+	output reg memw,
+	output reg [19:0] address,
+	inout [7:0] data,
+	input vga_clk,
+	input rst,
+	input incr
+	);
+
+parameter [7:0]
 			v0 = 8'b0000_0001,
 			v1 = 8'b0000_0010,
 			v2 = 8'b0000_0100,
@@ -168,6 +407,7 @@ module play_vdu(
 	reg actin;
 	reg [7:0] state, nextstate;
 	reg [7:0] dataout;
+	reg [7:0] charout, nextchar;
 	reg [19:0] nextaddress;
 	assign data = (actin == 1'b1) ? dataout : 8'bzzzz_zzzz;
 	
@@ -175,6 +415,8 @@ module play_vdu(
 		memw = 1'b0;
 		actin = 1'b0;
 		dataout = 8'b0;
+		nextchar = 8'b0;
+		charout = 8'b0;
 		address = 20'hB8000;
 		nextaddress = 20'hB8000;
 		state = v0;
@@ -192,7 +434,7 @@ module play_vdu(
 		end
 	end
 	
-	always @(state or incr or address) begin
+	always @(state or incr or address or charout) begin
 		case(state)
 			v0: begin
 				if(incr == 1'b1) begin
@@ -205,46 +447,62 @@ module play_vdu(
 				actin <= 1'b0;
 				memw <= 1'b0;
 				nextaddress <= address;
+				charout <= charout;
 			end
 			v1: begin
 				if(incr == 1'b0) begin
 					nextstate <= v2;
 				end
 				else begin
-					nextstate <= v1;
+					nextstate <= v2;
 				end
 				dataout <= 8'b0;
 				actin <= 1'b0;
 				memw <= 1'b0;
 				nextaddress <= address;
+				charout <= charout;
 			end
 			v2: begin
 				nextstate <= v3;
-				dataout <= va;
+				//dataout <= charout;
+				dataout <= address [8:1];
 				actin <= 1'b1;
 				memw <= 1'b1;
 				nextaddress <= address;
+				charout <= charout;
 			end
 			v3: begin
 				nextstate <= v4;
-				dataout <= va;
+				//dataout <= charout;
+				dataout <= address [8:1];
 				actin <= 1'b0;
 				memw <= 1'b0;
 				nextaddress <= address + 1;
+				charout <= charout;
 			end
 			v4: begin
 				nextstate <= v5;
-				dataout <= vb;
+				dataout <= address [8:1]; // vb
 				actin <= 1'b1;
 				memw <= 1'b1;
 				nextaddress <= address;
+				charout <= charout + 1;
 			end
 			v5: begin
 				nextstate <= v0;
-				dataout <= vb;
+				dataout <= address [8:1]; // vb
 				actin <= 1'b0;
 				memw <= 1'b0;
-				nextaddress <= address + 1;
+				if(address >= 20'hbc000) begin
+					nextaddress <= 20'hb8000;
+				end
+				else if(address[7:0] == 8'hFF) begin
+					nextaddress <= 20'hb8000;
+				end
+				else begin
+					nextaddress <= address + 1;
+				end
+				charout <= charout;
 			end
 			default: begin
 				nextstate <= v0;
@@ -252,63 +510,9 @@ module play_vdu(
 				actin <= 1'b0;
 				memw <= 1'b0;
 				nextaddress <= 20'hB8000;
+				nextchar <= 8'b0;
 			end
 		endcase
-	end
-	
-endmodule
-	
-/*
- * test_vdu:
- * Just to sort out any compiler issues
- */
- /*
-module test_vdu();
-   
-   wire [1:0] red, green, blue;
-   wire       hor, vert, vga;
-   integer    i;
-   reg 	      rst, clk;
+	end   
 
-   always @(red or green or blue) begin
-      $display("r%b g%b b%b h%b v%b clk%b",red,green,blue,hor,vert,vga);
-   end
-   
-   initial begin
-      rst = 1'b0;
-      clk = 1'b0;
-      i = 0;
-      @(posedge clk);
-      rst = 1'b1;
-      @(posedge clk);
-      @(posedge clk);
-      rst = 1'b0;
-      @(posedge clk);
-      for(i = 0; i < 1000000; i = i + 1) begin
-	 @(posedge clk);
-	 //$display("r%b g%b b%b h%b v%b clk%b",red,green,blue,hor,vert,vga);
-      end
-      $finish();
-   end
-
-   always begin
-      #50 clk = ~clk;
-   end
-   
-   top_vdu t99(
-	       .HDR1_2(red[0]), // vga red o 0
-	       .HDR1_4(red[1]), // vga red o 1
-	       .HDR1_6(green[0]), // vga green o 0
-	       .HDR1_8(green[1]), // vga green o 1
-	       .HDR1_10(blue[0]), // vga blue o 0
-	       .HDR1_12(blue[1]), // vga blue o 1
-	       .HDR1_14(hor), // vga horizontal sync
-	       .HDR1_16(vert), // vga vertical sync
-	       .HDR1_18(vga), // vga clock
-	       .GPIO_SW_C(rst), // reset
-	       .USER_CLK(clk) // user clock
-	       );
-
-   
 endmodule // test_vdu
-*/
