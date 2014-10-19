@@ -14,21 +14,48 @@ wire [3:0] a3_0_io, a7_4_io;
 
 intel8237A dma(clk, cs, reset, ready, hlda, dreq, db_io, ior_io, iow_io, eopp_io, a3_0_io, a7_4_io, hrq, dack, aen, adstb, memr, memw);
 
+<<<<<<< HEAD
+/*assign db_io = (dma.state == 3'b0) ? db : 8'bZZZZZZZZ;
+=======
 assign db_io = (dma.state == 3'b0) ? db : 8'bZZZZZZZZ;
+>>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
 assign ior_io = (dma.state == 3'b0) ? ior : 1'bZ;
 assign iow_io = (dma.state == 3'b0) ? iow : 1'bZ;
 assign eopp_io = (dma.state == 3'b0) ? eopp : 1'bZ;
 assign a3_0_io = (dma.state == 3'b0) ? a3_0 : 4'bZZZZ;
+<<<<<<< HEAD
+assign a7_4_io = (dma.state == 3'b0) ? a7_4 : 4'bZZZZ;*/
+
+
+assign db_io = db;
+assign ior_io = ior;
+assign iow_io = iow;
+assign eopp_io = eopp;
+assign a3_0_io = a3_0;
+assign a7_4_io = a7_4;
+
+always begin
+    #10 clk = !clk;
+end
+
+=======
 assign a7_4_io = (dma.state == 3'b0) ? a7_4 : 4'bZZZZ;
 
 
 always begin
     #10 clk = !clk;
 end
+>>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
 initial begin
     clk = 0;
     $display("Starting test"); 
     $display("%d", dma.state);
+<<<<<<< HEAD
+
+    // Init values
+
+=======
+>>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
     cs <= 1'b1;
     ready <= 1'b0;
     hlda <= 1'b0;
@@ -38,20 +65,52 @@ initial begin
     iow <= 1'bZ;
     eopp <= 1'bZ;
     a3_0 <= 4'bZZZZ;
+<<<<<<< HEAD
+    a7_4 <= 4'bZZZZ;
+
+    // reset dma controller
+=======
 
     // reset dma
+>>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
     reset <= 1'b1;
     #10
     reset <= 1'b0;
     @(posedge clk);
 
+<<<<<<< HEAD
+    // program command register
+    cs <= 1'b0;
+    ior <= 1'b1;
+    iow <= 1'b0;
+    a3_0 <= 4'b1000;
+    db <= 8'b10000000;
+    @(posedge clk);
+    @(posedge clk);
+    @(negedge clk);
+
+    // verify command register write
+    $display("Current value of dack is %d (expected = 0)", dack);
+=======
     $display("%d", dma.state);
     // verify command register write
+>>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
 
     // program mode register for channel 0
 
     ior <= 1'b1;
     iow <= 1'b0;
+<<<<<<< HEAD
+    a3_0 <= 4'b1011;
+    db <= 8'b10010100;
+    @(posedge clk);
+
+    // program base and current word count register for channel 0
+
+    ior <= 1'b1;
+    iow <= 1'b0;
+=======
+>>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
     a3_0 <= 4'b0001;
     db <= 8'b00000011;
     @(posedge clk);
@@ -62,6 +121,26 @@ initial begin
     db <= 8'b0;
     @(posedge clk);
 
+<<<<<<< HEAD
+    // verify current word count program
+    ior <= 1'b0;
+    iow <= 1'b1;
+    a3_0 <= 4'b0001;
+    db <= 8'bZZZZZZZZ;
+    @(posedge clk);
+    @(negedge clk);
+    $display("Current value of db is %d (expected = 3)", db_io);
+
+    ior <= 1'b0;
+    iow <= 1'b1;
+    a3_0 <= 4'b0001;
+    db <= 8'bZZZZZZZZ;
+    @(posedge clk);
+    @(negedge clk);
+    $display("Current value of db is %d (expected = 0)", db_io);
+
+=======
+>>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
     // request service for channel 0
     dreq[0] = 1'b1;
     cs <= 1'b1;
@@ -82,7 +161,12 @@ initial begin
     @(posedge clk);
     @(posedge clk);
 
+<<<<<<< HEAD
+    // verify hrq
+
+=======
     $display("%d", dma.state);
+>>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
     $display("Current value of hrq is %d (expected = 1)", hrq);
 
     // relinquish bus to dma controller
