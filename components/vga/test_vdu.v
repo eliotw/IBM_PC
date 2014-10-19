@@ -52,6 +52,7 @@ module top_vdu(
 	wire incr; // Increment the counter
 	wire warning; // a warning
 	wire memr; // read from memory
+	wire ior, iow; // read and write to io
    
    // Wire assignment
    assign rst = GPIO_SW_C;
@@ -121,8 +122,8 @@ module top_vdu(
 	   .rst(rst), // Reset Line
 	   .a(address), // Address bits
 	   .d(data), // Data bits
-	   .ior(1'b0), // I/O Read
-	   .iow(1'b0), // I/O Write
+	   .ior(ior), // I/O Read
+	   .iow(iow), // I/O Write
 	   .memr(memr), // Memory Read
 	   .memw(memw), // Memory Write
 	   .vga_red_o(vga_red_o),
@@ -135,6 +136,8 @@ module top_vdu(
 	play_vdu pvd(
 		.memw(memw),
 		.memr(memr),
+		.ior(ior),
+		.iow(iow),
 		.address(address),
 		.warning(warning),
 		.data(data),
@@ -151,6 +154,8 @@ endmodule // top_vdu
 module play_vdu(
 	output reg memw,
 	output reg memr,
+	output reg ior,
+	output reg iow,
 	output reg [19:0] address,
 	output reg warning,
 	inout [7:0] data,
@@ -172,7 +177,30 @@ module play_vdu(
 			v9 = 8'b0000_1001,
 			va = 8'b0000_1010,
 			vb = 8'b0000_1011,
-			vc = 8'b0000_1100;
+			vc = 8'b0000_1100,
+			vd = 8'b0000_1101,
+			ve = 8'b0000_1110,
+			vf = 8'b0000_1111,
+			vg = 8'b0001_0000,
+			vh = 8'b0001_0001,
+			vi = 8'b0001_0010,
+			vj = 8'b0001_0011,
+			vk = 8'b0001_0100,
+			vl = 8'b0001_0101,
+			vm = 8'b0001_0110,
+			vn = 8'b0001_0111,
+			vo = 8'b0001_1000,
+			vp = 8'b0001_1001,
+			vq = 8'b0001_1010,
+			vr = 8'b0001_1011,
+			vs = 8'b0001_1100,
+			vt = 8'b0001_1101,
+			vu = 8'b0001_1110,
+			vv = 8'b0001_1111,
+			vw = 8'b0010_0000,
+			vx = 8'b0010_0001,
+			vy = 8'b0010_0010,
+			testchar = 8'hdb;
 	
 	reg actin;
 	reg [7:0] state, nextstate;
@@ -193,6 +221,8 @@ module play_vdu(
 		nextstate = v0;
 		warning = 1'b0;
 		memr = 1'b0;
+		ior = 1'b0;
+		iow = 1'b0;
 	end
 	
 	always @(posedge vga_clk) begin
@@ -224,28 +254,34 @@ module play_vdu(
 				nextaddress <= address;
 				nextchar <= charout;
 				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
 			end
 			// Character Write Active
 			v1: begin
 				nextstate <= v2;
-				dataout <= 8'b1;
+				dataout <= testchar;
 				actin <= 1'b1;
 				memw <= 1'b1;
 				memr <= 1'b0;
 				nextaddress <= address;
 				nextchar <= charout;
 				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
 			end
 			// Character Write Deactivate
 			v2: begin
 				nextstate <= v3;
-				dataout <= 8'b1;
+				dataout <= testchar;
 				actin <= 1'b0;
 				memw <= 1'b0;
 				memr <= 1'b0;
 				nextaddress <= address; // address + 1
 				nextchar <= charout;
 				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
 			end
 			// Test character activate 1
 			v3: begin
@@ -257,10 +293,12 @@ module play_vdu(
 				nextaddress <= address;
 				nextchar <= charout;
 				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
 			end
 			// Test character activate 2
 			v4: begin
-				if(data != 8'b1) begin
+				if(data != testchar) begin
 					nextstate <= vc; //!!!
 				end
 				else begin
@@ -273,6 +311,8 @@ module play_vdu(
 				nextaddress <= address;
 				nextchar <= charout;
 				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
 			end
 			// Test character activate 3
 			v5: begin
@@ -284,28 +324,34 @@ module play_vdu(
 				nextaddress <= address + 1;
 				nextchar <= charout;
 				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
 			end
 			// Attribute activate 1
 			v6: begin
 				nextstate <= v7;
-				dataout <= 8'b0_000_1111;
+				dataout <= {4'b0,address[6:3]};
 				actin <= 1'b1;
 				memw <= 1'b1;
 				memr <= 1'b0;
 				nextaddress <= address;
 				nextchar <= charout;
 				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
 			end
 			// Attribute activate 2
 			v7: begin
 				nextstate <= v8;
-				dataout <= 8'b0_000_1111;
+				dataout <= {4'b0,address[6:3]};
 				actin <= 1'b0;
 				memw <= 1'b0;
 				memr <= 1'b0;
 				nextaddress <= address;
 				nextchar <= charout;
 				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
 			end
 			// Test character activate 3
 			v8: begin
@@ -317,10 +363,12 @@ module play_vdu(
 				nextaddress <= address;
 				nextchar <= charout;
 				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
 			end
 			// Test character activate 4
 			v9: begin
-				if(data != 8'b0_000_1111) begin
+				if(data != {4'b0,address[6:3]}) begin
 					nextstate <= vc; //!!!
 				end
 				else begin
@@ -333,23 +381,42 @@ module play_vdu(
 				nextaddress <= address;
 				nextchar <= charout;
 				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
 			end
 			// Test character activate 5
 			va: begin
-				nextstate <= v0;
 				dataout <= 8'b0_000_1111;
 				actin <= 1'b0;
 				memw <= 1'b0;
 				memr <= 1'b0;
 				if(address >= 20'hbbfff) begin
-					nextaddress <= 20'hb8000;
+					nextstate <= vb;
+					nextaddress <= 20'h003d4;
 					nextchar <= 8'b0;
 				end
 				else begin
+					nextstate <= v0;
 					nextaddress <= address + 1;
 					nextchar <= charout + 1;
 				end
 				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
+			end
+			// Test State 0
+			// 3D4, reg A
+			vb: begin
+				nextstate <= vd;
+				dataout <= 8'haa;
+				actin <= 1'b1;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d4;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b1;
 			end
 			// Trap State
 			vc: begin
@@ -361,6 +428,345 @@ module play_vdu(
 				nextaddress <= address;
 				nextchar <= charout;
 				warning <= 1'b1;
+				ior <= 1'b0;
+				iow <= 1'b0;
+			end
+			// Test State 1
+			// 3D4, reg A
+			vd: begin
+				nextstate <= ve;
+				dataout <= 8'haa;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
+			end
+			// Test State 2
+			// 3D4, reg A
+			ve: begin
+				nextstate <= vf;
+				dataout <= 8'h01;
+				actin <= 1'b1;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b1;
+			end
+			// Test State 3
+			// 3D4, reg A
+			vf: begin
+				nextstate <= vg;
+				dataout <= 8'h01;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b1;
+				iow <= 1'b0;
+			end
+			// Test State 4
+			// 3D4, reg A
+			vg: begin
+				if(data != 8'h01) begin
+					nextstate <= vc;
+				end
+				else begin
+					nextstate <= vh;
+				end
+				dataout <= 8'h01;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b1;
+				iow <= 1'b0;
+			end
+			// Test State 0
+			// 3D4, reg b
+			vh: begin
+				nextstate <= vi;
+				dataout <= 8'hbb;
+				actin <= 1'b1;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d4;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b1;
+			end
+			// Test State 1
+			// 3D4, reg b
+			vi: begin
+				nextstate <= vj;
+				dataout <= 8'hbb;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
+			end
+			// Test State 2
+			// 3D4, reg b
+			vj: begin
+				nextstate <= vk;
+				dataout <= 8'h01;
+				actin <= 1'b1;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b1;
+			end
+			// Test State 3
+			// 3D4, reg b
+			vk: begin
+				nextstate <= vl;
+				dataout <= 8'h01;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b1;
+				iow <= 1'b0;
+			end
+			// Test State 4
+			// 3D4, reg b
+			vl: begin
+				if(data != 8'h01) begin
+					nextstate <= vc;
+				end
+				else begin
+					nextstate <= vm;
+				end
+				dataout <= 8'h01;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b1;
+				iow <= 1'b0;
+			end
+			
+			// Test State 0
+			// 3D4, reg e
+			vm: begin
+				nextstate <= vn;
+				dataout <= 8'hee;
+				actin <= 1'b1;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d4;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b1;
+			end
+			// Test State 1
+			// 3D4, reg e
+			vn: begin
+				nextstate <= vo;
+				dataout <= 8'hee;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
+			end
+			// Test State 2
+			// 3D4, reg e
+			vo: begin
+				nextstate <= vp;
+				dataout <= 8'h01;
+				actin <= 1'b1;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b1;
+			end
+			// Test State 3
+			// 3D4, reg e
+			vp: begin
+				nextstate <= vq;
+				dataout <= 8'h01;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b1;
+				iow <= 1'b0;
+			end
+			// Test State 4
+			// 3D4, reg e
+			vq: begin
+				if(data != 8'h01) begin
+					nextstate <= vc;
+				end
+				else begin
+					nextstate <= vr;
+				end
+				dataout <= 8'h01;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b1;
+				iow <= 1'b0;
+			end
+			
+			// Test State 0
+			// 3D4, reg f
+			vr: begin
+				nextstate <= vs;
+				dataout <= 8'hff;
+				actin <= 1'b1;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d4;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b1;
+			end
+			// Test State 1
+			// 3D4, reg f
+			vs: begin
+				nextstate <= vt;
+				dataout <= 8'hff;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
+			end
+			// Test State 2
+			// 3D4, reg f
+			vt: begin
+				nextstate <= vu;
+				dataout <= 8'h01;
+				actin <= 1'b1;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b1;
+			end
+			// Test State 3
+			// 3D4, reg f
+			vu: begin
+				nextstate <= vv;
+				dataout <= 8'h01;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003d5;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b1;
+				iow <= 1'b0;
+			end
+			// Test State 4
+			// 3D4, reg f
+			vv: begin
+				if(data != 8'h01) begin
+					nextstate <= vc;
+				end
+				else begin
+					nextstate <= vw;
+				end
+				dataout <= 8'h01;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003da;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b1;
+				iow <= 1'b0;
+			end
+			
+			// Test State 0
+			// 3DA
+			vw: begin
+				nextstate <= vx;
+				dataout <= 8'h01;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003da;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b1;
+				iow <= 1'b0;
+			end
+			// Test State 1
+			// 3DA
+			vx: begin
+				if((data[7:4] != 4'b0000) || (data[2:1] != 2'b00)) begin
+					nextstate <= vc;
+				end
+				else begin
+					nextstate <= vy;
+				end
+				dataout <= 8'h01;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'h003da;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b1;
+				iow <= 1'b0;
+			end
+
+			// Test final state
+			// return to normal pattern
+			vy: begin
+				nextstate <= v0;
+				dataout <= 8'h0;
+				actin <= 1'b0;
+				memw <= 1'b0;
+				memr <= 1'b0;
+				nextaddress <= 20'hb8000;
+				nextchar <= charout;
+				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
 			end
 			// Default state
 			default: begin
@@ -372,147 +778,10 @@ module play_vdu(
 				nextaddress <= 20'hB8000;
 				nextchar <= 8'b0;
 				warning <= 1'b0;
+				ior <= 1'b0;
+				iow <= 1'b0;
 			end
 		endcase
 	end
 	
 endmodule
-	
-/*
- * test_vdu:
- * An actual test for the vdu
- */
-
-module test_vdu(
-	output reg memw,
-	output reg [19:0] address,
-	inout [7:0] data,
-	input vga_clk,
-	input rst,
-	input incr
-	);
-
-parameter [7:0]
-			v0 = 8'b0000_0001,
-			v1 = 8'b0000_0010,
-			v2 = 8'b0000_0100,
-			v3 = 8'b0000_1000,
-			v4 = 8'b0001_0000,
-			v5 = 8'b0010_0000,
-			v6 = 8'b0100_0000,
-			v7 = 8'b1000_0000,
-			va = 8'b0100_0001, // character is a
-			vb = 8'b0000_1111; // character attribute
-	
-	reg actin;
-	reg [7:0] state, nextstate;
-	reg [7:0] dataout;
-	reg [7:0] charout, nextchar;
-	reg [19:0] nextaddress;
-	assign data = (actin == 1'b1) ? dataout : 8'bzzzz_zzzz;
-	
-	initial begin
-		memw = 1'b0;
-		actin = 1'b0;
-		dataout = 8'b0;
-		nextchar = 8'b0;
-		charout = 8'b0;
-		address = 20'hB8000;
-		nextaddress = 20'hB8000;
-		state = v0;
-		nextstate = v0;
-	end
-	
-	always @(posedge vga_clk) begin
-		if(rst) begin
-			state <= v0;
-			address <= 20'hB8000;
-		end
-		else begin
-			state <= nextstate;
-			address <= nextaddress;
-		end
-	end
-	
-	always @(state or incr or address or charout) begin
-		case(state)
-			v0: begin
-				if(incr == 1'b1) begin
-					nextstate <= v1;
-				end
-				else begin
-					nextstate <= v0;
-				end
-				dataout <= 8'b0;
-				actin <= 1'b0;
-				memw <= 1'b0;
-				nextaddress <= address;
-				charout <= charout;
-			end
-			v1: begin
-				if(incr == 1'b0) begin
-					nextstate <= v2;
-				end
-				else begin
-					nextstate <= v2;
-				end
-				dataout <= 8'b0;
-				actin <= 1'b0;
-				memw <= 1'b0;
-				nextaddress <= address;
-				charout <= charout;
-			end
-			v2: begin
-				nextstate <= v3;
-				//dataout <= charout;
-				dataout <= address [8:1];
-				actin <= 1'b1;
-				memw <= 1'b1;
-				nextaddress <= address;
-				charout <= charout;
-			end
-			v3: begin
-				nextstate <= v4;
-				//dataout <= charout;
-				dataout <= address [8:1];
-				actin <= 1'b0;
-				memw <= 1'b0;
-				nextaddress <= address + 1;
-				charout <= charout;
-			end
-			v4: begin
-				nextstate <= v5;
-				dataout <= address [8:1]; // vb
-				actin <= 1'b1;
-				memw <= 1'b1;
-				nextaddress <= address;
-				charout <= charout + 1;
-			end
-			v5: begin
-				nextstate <= v0;
-				dataout <= address [8:1]; // vb
-				actin <= 1'b0;
-				memw <= 1'b0;
-				if(address >= 20'hbc000) begin
-					nextaddress <= 20'hb8000;
-				end
-				else if(address[7:0] == 8'hFF) begin
-					nextaddress <= 20'hb8000;
-				end
-				else begin
-					nextaddress <= address + 1;
-				end
-				charout <= charout;
-			end
-			default: begin
-				nextstate <= v0;
-				dataout <= 8'b0;
-				actin <= 1'b0;
-				memw <= 1'b0;
-				nextaddress <= 20'hB8000;
-				nextchar <= 8'b0;
-			end
-		endcase
-	end   
-
-endmodule // test_vdu

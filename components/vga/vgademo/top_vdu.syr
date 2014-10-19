@@ -125,7 +125,6 @@ Compiling verilog file "../test_vdu.v" in library work
 Module <vdu> compiled
 Module <top_vdu> compiled
 Module <play_vdu> compiled
-Module <test_vdu> compiled
 No errors in compilation
 Analysis of file <"top_vdu.prj"> succeeded.
  
@@ -154,6 +153,7 @@ Analyzing hierarchy for module <vdu> in library <work> with parameters.
 	VER_SYNC_END = "110011101"
 
 Analyzing hierarchy for module <play_vdu> in library <work> with parameters.
+	testchar = "11011011"
 	v0 = "00000000"
 	v1 = "00000001"
 	v2 = "00000010"
@@ -167,6 +167,28 @@ Analyzing hierarchy for module <play_vdu> in library <work> with parameters.
 	va = "00001010"
 	vb = "00001011"
 	vc = "00001100"
+	vd = "00001101"
+	ve = "00001110"
+	vf = "00001111"
+	vg = "00010000"
+	vh = "00010001"
+	vi = "00010010"
+	vj = "00010011"
+	vk = "00010100"
+	vl = "00010101"
+	vm = "00010110"
+	vn = "00010111"
+	vo = "00011000"
+	vp = "00011001"
+	vq = "00011010"
+	vr = "00011011"
+	vs = "00011100"
+	vt = "00011101"
+	vu = "00011110"
+	vv = "00011111"
+	vw = "00100000"
+	vx = "00100001"
+	vy = "00100010"
 
 
 =========================================================================
@@ -198,6 +220,7 @@ WARNING:Xst:2211 - "ipcore_dir/attrram.v" line 152: Instantiating black box modu
 Module <vdu> is correct for synthesis.
  
 Analyzing module <play_vdu> in library <work>.
+	testchar = 8'b11011011
 	v0 = 8'b00000000
 	v1 = 8'b00000001
 	v2 = 8'b00000010
@@ -211,6 +234,28 @@ Analyzing module <play_vdu> in library <work>.
 	va = 8'b00001010
 	vb = 8'b00001011
 	vc = 8'b00001100
+	vd = 8'b00001101
+	ve = 8'b00001110
+	vf = 8'b00001111
+	vg = 8'b00010000
+	vh = 8'b00010001
+	vi = 8'b00010010
+	vj = 8'b00010011
+	vk = 8'b00010100
+	vl = 8'b00010101
+	vm = 8'b00010110
+	vn = 8'b00010111
+	vo = 8'b00011000
+	vp = 8'b00011001
+	vq = 8'b00011010
+	vr = 8'b00011011
+	vs = 8'b00011100
+	vt = 8'b00011101
+	vu = 8'b00011110
+	vv = 8'b00011111
+	vw = 8'b00100000
+	vx = 8'b00100001
+	vy = 8'b00100010
 Module <play_vdu> is correct for synthesis.
  
 
@@ -220,22 +265,15 @@ Module <play_vdu> is correct for synthesis.
 
 Performing bidirectional port resolution...
 INFO:Xst:2679 - Register <vga0_we> in unit <vdu> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <vga1_we> in unit <vdu> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <reg_adr> in unit <vdu> has a constant value of 0000 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <reg_hcursor> in unit <vdu> has a constant value of 0000000 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <reg_vcursor> in unit <vdu> has a constant value of 00000 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <reg_cur_start> in unit <vdu> has a constant value of 1110 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <reg_cur_end> in unit <vdu> has a constant value of 1111 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <vga2_we> in unit <vdu> has a constant value of 0 during circuit operation. The register is replaced by logic.
 
 Synthesizing Unit <play_vdu>.
     Related source file is "../test_vdu.v".
     Found finite state machine <FSM_0> for signal <state>.
     -----------------------------------------------------------------------
-    | States             | 12                                             |
-    | Transitions        | 15                                             |
-    | Inputs             | 3                                              |
-    | Outputs            | 22                                             |
+    | States             | 35                                             |
+    | Transitions        | 45                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 40                                             |
     | Clock              | vga_clk                   (rising_edge)        |
     | Reset              | rst                       (positive)           |
     | Reset type         | synchronous                                    |
@@ -247,14 +285,15 @@ Synthesizing Unit <play_vdu>.
     Found 20-bit register for signal <address>.
     Found 8-bit tristate buffer for signal <data>.
     Found 16-bit register for signal <charout>.
-    Found 20-bit adder for signal <nextaddress$share0000> created at line 212.
-    Found 16-bit adder for signal <nextchar$addsub0000> created at line 350.
-    Found 20-bit comparator greatequal for signal <nextchar$cmp_ge0000> created at line 344.
+    Found 20-bit adder for signal <nextaddress$share0000> created at line 242.
+    Found 16-bit adder for signal <nextchar$addsub0000> created at line 401.
+    Found 20-bit comparator greatequal for signal <state$cmp_ge0000> created at line 393.
+    Found 8-bit comparator not equal for signal <state$cmp_ne0001> created at line 371.
     Summary:
 	inferred   1 Finite State Machine(s).
 	inferred  36 D-type flip-flop(s).
 	inferred   2 Adder/Subtractor(s).
-	inferred   1 Comparator(s).
+	inferred   2 Comparator(s).
 	inferred   8 Tristate(s).
 Unit <play_vdu> synthesized.
 
@@ -277,18 +316,19 @@ WARNING:Xst:646 - Signal <attr_data_in> is assigned but never used. This unconne
     Found 1-bit register for signal <horiz_sync>.
     Found 2-bit register for signal <vga_green_o>.
     Found 11-bit register for signal <attr0_addr>.
-    Found 1-bit register for signal <attr0_we>.
     Found 11-bit register for signal <attr_addr>.
     Found 23-bit up counter for signal <blink_count>.
     Found 11-bit register for signal <buff0_addr>.
-    Found 1-bit register for signal <buff0_we>.
     Found 11-bit register for signal <buff_addr>.
     Found 7-bit register for signal <col1_addr>.
     Found 7-bit register for signal <col_addr>.
     Found 1-bit register for signal <cursor_on>.
     Found 1-bit register for signal <cursor_on_h>.
+    Found 7-bit comparator equal for signal <cursor_on_h$cmp_eq0000> created at line 308.
     Found 1-bit register for signal <cursor_on_v>.
+    Found 5-bit comparator equal for signal <cursor_on_v$cmp_eq0000> created at line 309.
     Found 4-bit comparator greatequal for signal <cursor_on_v$cmp_ge0000> created at line 309.
+    Found 4-bit comparator lessequal for signal <cursor_on_v$cmp_le0000> created at line 309.
     Found 8-bit register for signal <dataout>.
     Found 1-bit xor2 for signal <fg_or_bg>.
     Found 10-bit up counter for signal <h_count>.
@@ -298,6 +338,11 @@ WARNING:Xst:646 - Signal <attr_data_in> is assigned but never used. This unconne
     Found 20-bit comparator lessequal for signal <io_range$cmp_le0000> created at line 185.
     Found 20-bit comparator greatequal for signal <mem_range$cmp_ge0000> created at line 186.
     Found 20-bit comparator less for signal <mem_range$cmp_lt0000> created at line 186.
+    Found 4-bit register for signal <reg_adr>.
+    Found 4-bit register for signal <reg_cur_end>.
+    Found 4-bit register for signal <reg_cur_start>.
+    Found 7-bit register for signal <reg_hcursor>.
+    Found 5-bit register for signal <reg_vcursor>.
     Found 5-bit register for signal <row1_addr>.
     Found 5-bit subtractor for signal <row1_addr$addsub0000> created at line 356.
     Found 5-bit comparator less for signal <row1_addr$cmp_lt0000> created at line 356.
@@ -317,9 +362,9 @@ WARNING:Xst:646 - Signal <attr_data_in> is assigned but never used. This unconne
     Found 1-bit register for signal <video_on_v>.
     Summary:
 	inferred   3 Counter(s).
-	inferred 124 D-type flip-flop(s).
+	inferred 146 D-type flip-flop(s).
 	inferred   3 Adder/Subtractor(s).
-	inferred   6 Comparator(s).
+	inferred   9 Comparator(s).
 	inferred   8 Tristate(s).
 Unit <vdu> synthesized.
 
@@ -359,20 +404,26 @@ Macro Statistics
  10-bit up counter                                     : 1
  23-bit up counter                                     : 1
  9-bit up counter                                      : 1
-# Registers                                            : 29
+# Registers                                            : 35
  1-bit register                                        : 12
  11-bit register                                       : 4
  2-bit register                                        : 3
  20-bit register                                       : 1
  3-bit register                                        : 2
- 5-bit register                                        : 2
- 7-bit register                                        : 4
- 8-bit register                                        : 1
-# Comparators                                          : 5
- 20-bit comparator greatequal                          : 2
+ 4-bit register                                        : 3
+ 5-bit register                                        : 3
+ 7-bit register                                        : 5
+ 8-bit register                                        : 2
+# Comparators                                          : 11
+ 20-bit comparator greatequal                          : 3
  20-bit comparator less                                : 1
+ 20-bit comparator lessequal                           : 1
  4-bit comparator greatequal                           : 1
+ 4-bit comparator lessequal                            : 1
+ 5-bit comparator equal                                : 1
  5-bit comparator less                                 : 1
+ 7-bit comparator equal                                : 1
+ 8-bit comparator not equal                            : 1
 # Tristates                                            : 2
  8-bit tristate buffer                                 : 2
 # Xors                                                 : 1
@@ -395,23 +446,46 @@ Optimizing FSM <state/FSM> on signal <state[1:4]> with user encoding.
  1000  | 1000
 -------------------
 Analyzing FSM <FSM_0> for best encoding.
-Optimizing FSM <pvd/state/FSM> on signal <state[1:12]> with one-hot encoding.
---------------------------
+Optimizing FSM <pvd/state/FSM> on signal <state[1:35]> with one-hot encoding.
+-------------------------------------------------
  State    | Encoding
---------------------------
- 00000000 | 000000000001
- 00000001 | 000000000010
- 00000010 | 000000000100
- 00000011 | 000000001000
- 00000100 | 000000010000
- 00000101 | 000001000000
- 00000110 | 000010000000
- 00000111 | 000100000000
- 00001000 | 001000000000
- 00001001 | 010000000000
- 00001010 | 100000000000
- 00001100 | 000000100000
---------------------------
+-------------------------------------------------
+ 00000000 | 00000000000000000000000000000000001
+ 00000001 | 00000000000000000000000000000000010
+ 00000010 | 00000000000000000000000000000000100
+ 00000011 | 00000000000000000000000000000001000
+ 00000100 | 00000000000000000000000000000010000
+ 00000101 | 00000000000000000000000000001000000
+ 00000110 | 00000000000000000000000000010000000
+ 00000111 | 00000000000000000000000000100000000
+ 00001000 | 00000000000000000000000001000000000
+ 00001001 | 00000000000000000000000010000000000
+ 00001010 | 00000000000000000000000100000000000
+ 00001011 | 00000000000000000000001000000000000
+ 00001100 | 00000000000000000000000000000100000
+ 00001101 | 00000000000000000000010000000000000
+ 00001110 | 00000000000000000000100000000000000
+ 00001111 | 00000000000000000001000000000000000
+ 00010000 | 00000000000000000010000000000000000
+ 00010001 | 00000000000000000100000000000000000
+ 00010010 | 00000000000000001000000000000000000
+ 00010011 | 00000000000000010000000000000000000
+ 00010100 | 00000000000000100000000000000000000
+ 00010101 | 00000000000001000000000000000000000
+ 00010110 | 00000000000010000000000000000000000
+ 00010111 | 00000000000100000000000000000000000
+ 00011000 | 00000000001000000000000000000000000
+ 00011001 | 00000000010000000000000000000000000
+ 00011010 | 00000000100000000000000000000000000
+ 00011011 | 00000001000000000000000000000000000
+ 00011100 | 00000010000000000000000000000000000
+ 00011101 | 00000100000000000000000000000000000
+ 00011110 | 00001000000000000000000000000000000
+ 00011111 | 00010000000000000000000000000000000
+ 00100000 | 00100000000000000000000000000000000
+ 00100001 | 01000000000000000000000000000000000
+ 00100010 | 10000000000000000000000000000000000
+-------------------------------------------------
 Reading core <ipcore_dir/charcore.ngc>.
 Reading core <ipcore_dir/charram.ngc>.
 Reading core <ipcore_dir/attrram.ngc>.
@@ -419,6 +493,7 @@ Loading core <charcore> for timing and area information for instance <char_rom>.
 Loading core <charram> for timing and area information for instance <ram_2k_char>.
 Loading core <attrram> for timing and area information for instance <ram_2k_attr>.
 INFO:Xst:2261 - The FF/Latch <vga_red_o_0> in Unit <vga> is equivalent to the following FF/Latch, which will be removed : <vga_blue_o_0> 
+WARNING:Xst:1710 - FF/Latch <dataout_7> (without init value) has a constant value of 0 in block <vga>. This FF/Latch will be trimmed during the optimization process.
 
 =========================================================================
 Advanced HDL Synthesis Report
@@ -434,13 +509,18 @@ Macro Statistics
  10-bit up counter                                     : 1
  23-bit up counter                                     : 1
  9-bit up counter                                      : 1
-# Registers                                            : 134
- Flip-Flops                                            : 134
-# Comparators                                          : 5
- 20-bit comparator greatequal                          : 2
+# Registers                                            : 166
+ Flip-Flops                                            : 166
+# Comparators                                          : 11
+ 20-bit comparator greatequal                          : 3
  20-bit comparator less                                : 1
+ 20-bit comparator lessequal                           : 1
  4-bit comparator greatequal                           : 1
+ 4-bit comparator lessequal                            : 1
+ 5-bit comparator equal                                : 1
  5-bit comparator less                                 : 1
+ 7-bit comparator equal                                : 1
+ 8-bit comparator not equal                            : 1
 # Xors                                                 : 1
  1-bit xor2                                            : 1
 
@@ -449,7 +529,8 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-INFO:Xst:2261 - The FF/Latch <vga_red_o_0> in Unit <vdu> is equivalent to the following FF/Latch, which will be removed : <vga_blue_o_0> 
+WARNING:Xst:1710 - FF/Latch <dataout_7> (without init value) has a constant value of 0 in block <vdu>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <vga_blue_o_0> in Unit <vdu> is equivalent to the following FF/Latch, which will be removed : <vga_red_o_0> 
 WARNING:Xst:2042 - Unit vdu: 8 internal tristates are replaced by logic (pull-up yes): d<0>, d<1>, d<2>, d<3>, d<4>, d<5>, d<6>, d<7>.
 WARNING:Xst:2042 - Unit play_vdu: 8 internal tristates are replaced by logic (pull-up yes): data<0>, data<1>, data<2>, data<3>, data<4>, data<5>, data<6>, data<7>.
 
@@ -465,8 +546,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 191
- Flip-Flops                                            : 191
+# Registers                                            : 245
+ Flip-Flops                                            : 245
 
 =========================================================================
 
@@ -495,26 +576,26 @@ Design Statistics
 # IOs                              : 20
 
 Cell Usage :
-# BELS                             : 348
+# BELS                             : 436
 #      GND                         : 4
 #      INV                         : 5
 #      LUT1                        : 58
-#      LUT2                        : 10
-#      LUT3                        : 41
-#      LUT4                        : 22
-#      LUT5                        : 50
-#      LUT6                        : 34
+#      LUT2                        : 19
+#      LUT3                        : 47
+#      LUT4                        : 35
+#      LUT5                        : 53
+#      LUT6                        : 91
 #      MUXCY                       : 58
 #      VCC                         : 4
 #      XORCY                       : 62
-# FlipFlops/Latches                : 191
-#      FD                          : 16
+# FlipFlops/Latches                : 245
+#      FD                          : 8
 #      FDE                         : 1
-#      FDR                         : 111
-#      FDRE                        : 48
+#      FDR                         : 141
+#      FDRE                        : 65
 #      FDRS                        : 1
-#      FDS                         : 11
-#      FDSE                        : 3
+#      FDS                         : 19
+#      FDSE                        : 10
 # RAMS                             : 3
 #      RAMB18                      : 2
 #      RAMB36_EXP                  : 1
@@ -533,16 +614,16 @@ Selected Device : 5vlx110tff1136-1
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             191  out of  69120     0%  
- Number of Slice LUTs:                  220  out of  69120     0%  
-    Number used as Logic:               220  out of  69120     0%  
+ Number of Slice Registers:             245  out of  69120     0%  
+ Number of Slice LUTs:                  308  out of  69120     0%  
+    Number used as Logic:               308  out of  69120     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    288
-   Number with an unused Flip Flop:      97  out of    288    33%  
-   Number with an unused LUT:            68  out of    288    23%  
-   Number of fully used LUT-FF pairs:   123  out of    288    42%  
-   Number of unique control sets:        14
+ Number of LUT Flip Flop pairs used:    411
+   Number with an unused Flip Flop:     166  out of    411    40%  
+   Number with an unused LUT:           103  out of    411    25%  
+   Number of fully used LUT-FF pairs:   142  out of    411    34%  
+   Number of unique control sets:        21
 
 IO Utilization: 
  Number of IOs:                          20
@@ -575,7 +656,7 @@ Clock Information:
 Clock Signal                       | Clock buffer(FF name)                                                                                                                   | Load  |
 -----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+-------+
 USER_CLK                           | BUFGP                                                                                                                                   | 4     |
-HDR1_18_OBUF1(vga_clk1:O)          | BUFG(*)(pvd/state_FSM_FFd2)                                                                                                             | 190   |
+HDR1_18_OBUF1(vga_clk1:O)          | BUFG(*)(pvd/state_FSM_FFd25)                                                                                                            | 244   |
 vga/ram_2k_attr/N1                 | NONE(vga/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP)| 1     |
 vga/ram_2k_char/N1                 | NONE(vga/ram_2k_char/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP)| 1     |
 vga/char_rom/N1                    | NONE(vga/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)   | 1     |
@@ -597,8 +678,8 @@ Timing Summary:
 ---------------
 Speed Grade: -1
 
-   Minimum period: 4.924ns (Maximum Frequency: 203.087MHz)
-   Minimum input arrival time before clock: 3.087ns
+   Minimum period: 5.838ns (Maximum Frequency: 171.292MHz)
+   Minimum input arrival time before clock: 3.690ns
    Maximum output required time after clock: 3.934ns
    Maximum combinational path delay: No path found
 
@@ -629,35 +710,38 @@ Delay:               0.812ns (Levels of Logic = 0)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'HDR1_18_OBUF1'
-  Clock period: 4.924ns (frequency: 203.087MHz)
-  Total number of paths / destination ports: 3653 / 333
+  Clock period: 5.838ns (frequency: 171.292MHz)
+  Total number of paths / destination ports: 17939 / 415
 -------------------------------------------------------------------------
-Delay:               4.924ns (Levels of Logic = 5)
-  Source:            vga/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP (RAM)
-  Destination:       pvd/state_FSM_FFd7 (FF)
+Delay:               5.838ns (Levels of Logic = 8)
+  Source:            pvd/address_4 (FF)
+  Destination:       pvd/state_FSM_FFd30 (FF)
   Source Clock:      HDR1_18_OBUF1 rising
   Destination Clock: HDR1_18_OBUF1 rising
 
-  Data Path: vga/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP to pvd/state_FSM_FFd7
+  Data Path: pvd/address_4 to pvd/state_FSM_FFd30
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     RAMB18:CLKA->DOA0     2   2.180   0.715  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP (douta<0>)
-     end scope: 'vga/ram_2k_attr'
-     LUT6:I3->O            4   0.094   0.592  data<0>LogicTrst1 (data<0>)
-     LUT4:I2->O            2   0.094   0.485  pvd/state_not0001_SW0 (N16)
-     LUT6:I5->O            1   0.094   0.576  pvd/state_not0001 (pvd/state_not0001)
-     LUT4:I2->O            1   0.094   0.000  pvd/state_FSM_FFd7-In11 (pvd/state_FSM_FFd7-In1)
-     FDRS:D                   -0.018          pvd/state_FSM_FFd7
+     FDS:C->Q             12   0.471   1.129  pvd/address_4 (pvd/address_4)
+     LUT6:I0->O            1   0.094   0.480  vga/d_and000033 (vga/d_and000033)
+     LUT6:I5->O            2   0.094   0.485  vga/d_and0000110_SW0 (N56)
+     LUT6:I5->O           11   0.094   0.535  vga/d_and0000110 (vga/d_and0000)
+     LUT5:I4->O            1   0.094   0.480  data<6>LogicTrst_SW3 (N40)
+     LUT6:I5->O           13   0.094   0.546  data<6>LogicTrst (data<6>)
+     LUT6:I5->O            1   0.094   0.480  pvd/state_not0001_SW1 (N49)
+     LUT6:I5->O            1   0.094   0.480  pvd/state_FSM_FFd30-In18 (pvd/state_FSM_FFd30-In18)
+     LUT5:I4->O            1   0.094   0.000  pvd/state_FSM_FFd30-In441 (pvd/state_FSM_FFd30-In44)
+     FDRS:D                   -0.018          pvd/state_FSM_FFd30
     ----------------------------------------
-    Total                      4.924ns (2.556ns logic, 2.368ns route)
-                                       (51.9% logic, 48.1% route)
+    Total                      5.838ns (1.223ns logic, 4.615ns route)
+                                       (20.9% logic, 79.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'USER_CLK'
   Total number of paths / destination ports: 4 / 4
 -------------------------------------------------------------------------
-Offset:              1.880ns (Levels of Logic = 1)
+Offset:              1.891ns (Levels of Logic = 1)
   Source:            GPIO_SW_C (PAD)
   Destination:       state_FSM_FFd4 (FF)
   Destination Clock: USER_CLK rising
@@ -666,50 +750,51 @@ Offset:              1.880ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           170   0.818   0.489  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
+     IBUF:I->O           230   0.818   0.500  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
      FDS:S                     0.573          state_FSM_FFd4
     ----------------------------------------
-    Total                      1.880ns (1.391ns logic, 0.489ns route)
-                                       (74.0% logic, 26.0% route)
+    Total                      1.891ns (1.391ns logic, 0.500ns route)
+                                       (73.6% logic, 26.4% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'HDR1_18_OBUF1'
-  Total number of paths / destination ports: 207 / 191
+  Total number of paths / destination ports: 268 / 253
 -------------------------------------------------------------------------
-Offset:              3.087ns (Levels of Logic = 2)
+Offset:              3.690ns (Levels of Logic = 3)
   Source:            GPIO_SW_C (PAD)
-  Destination:       vga/v_count_8 (FF)
+  Destination:       pvd/address_9 (FF)
   Destination Clock: HDR1_18_OBUF1 rising
 
-  Data Path: GPIO_SW_C to vga/v_count_8
+  Data Path: GPIO_SW_C to pvd/address_9
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           170   0.818   1.222  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
-     LUT6:I0->O            9   0.094   0.380  vga/v_count_or0000 (vga/v_count_or0000)
-     FDRE:R                    0.573          vga/v_count_0
+     IBUF:I->O           230   0.818   0.953  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
+     LUT4:I0->O            3   0.094   0.800  pvd/nextaddress<1>111 (N68)
+     LUT6:I2->O            5   0.094   0.358  pvd/nextaddress<4>121 (N6)
+     FDS:S                     0.573          pvd/address_9
     ----------------------------------------
-    Total                      3.087ns (1.485ns logic, 1.602ns route)
-                                       (48.1% logic, 51.9% route)
+    Total                      3.690ns (1.579ns logic, 2.111ns route)
+                                       (42.8% logic, 57.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'HDR1_18_OBUF1'
   Total number of paths / destination ports: 16 / 16
 -------------------------------------------------------------------------
-Offset:              3.297ns (Levels of Logic = 1)
-  Source:            pvd/state_FSM_FFd7 (FF)
+Offset:              3.286ns (Levels of Logic = 1)
+  Source:            pvd/state_FSM_FFd30 (FF)
   Destination:       GPIO_LED_6 (PAD)
   Source Clock:      HDR1_18_OBUF1 rising
 
-  Data Path: pvd/state_FSM_FFd7 to GPIO_LED_6
+  Data Path: pvd/state_FSM_FFd30 to GPIO_LED_6
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRS:C->Q             8   0.471   0.374  pvd/state_FSM_FFd7 (pvd/state_FSM_FFd7)
+     FDRS:C->Q             6   0.471   0.363  pvd/state_FSM_FFd30 (pvd/state_FSM_FFd30)
      OBUF:I->O                 2.452          GPIO_LED_6_OBUF (GPIO_LED_6)
     ----------------------------------------
-    Total                      3.297ns (2.923ns logic, 0.374ns route)
-                                       (88.7% logic, 11.3% route)
+    Total                      3.286ns (2.923ns logic, 0.363ns route)
+                                       (89.0% logic, 11.0% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'USER_CLK'
@@ -734,15 +819,15 @@ Offset:              3.934ns (Levels of Logic = 2)
 =========================================================================
 
 
-Total REAL time to Xst completion: 8.00 secs
-Total CPU time to Xst completion: 7.51 secs
+Total REAL time to Xst completion: 9.00 secs
+Total CPU time to Xst completion: 8.65 secs
  
 --> 
 
 
-Total memory usage is 661612 kilobytes
+Total memory usage is 667452 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   14 (   0 filtered)
-Number of infos    :   12 (   0 filtered)
+Number of warnings :   16 (   0 filtered)
+Number of infos    :    5 (   0 filtered)
 
