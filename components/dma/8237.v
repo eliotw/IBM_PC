@@ -4,11 +4,7 @@ module intel8237A(
     reset,
     ready,
     hlda,
-<<<<<<< HEAD
     dreq,
-=======
-    dreq_io,
->>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
     db_io,
     ior_io,
     iow_io,
@@ -24,11 +20,7 @@ module intel8237A(
 );
 
 input clk, cs, reset, ready, hlda;
-<<<<<<< HEAD
 input [3:0] dreq;
-=======
-input [3:0] dreq_io;
->>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
 inout [7:0] db_io;
 inout ior_io, iow_io, eopp_io;
 inout [3:0] a3_0_io, a7_4_io;
@@ -53,10 +45,6 @@ parameter C0_4 = 4'b0;
 parameter C1_4 = 4'b1111;
 parameter BT = 2'b10;
 
-<<<<<<< HEAD
-=======
-reg [3:0] dreq;
->>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
 reg [7:0] db;
 reg ior, iow, eopp;
 reg [3:0] a3_0, a7_4;
@@ -74,28 +62,19 @@ reg ff, mast_clr;
 reg [2:0] state;
 reg [1:0] channel;
 reg adstb_needed;
-<<<<<<< HEAD
 assign drequest[0] = ((command[6] ^ dreq[0]) & ~mask[0]) | request[0];
-=======
->>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
 assign drequest[1] = ((command[6] ^ dreq[1]) & ~mask[1]) | request[1];
 assign drequest[2] = ((command[6] ^ dreq[2]) & ~mask[2]) | request[2];
 assign drequest[3] = ((command[6] ^ dreq[3]) & ~mask[3]) | request[3];
 
 
-<<<<<<< HEAD
 /*assign dreq_io = (state == 3'b0) ? 4'bZZZZ : dreq;
-=======
-
-assign dreq_io = (state == 3'b0) ? 4'bZZZZ : dreq;
->>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
 assign db_io = (state == 3'b0) ? 8'bZZZZZZZ : db;
 assign ior_io = (state == 3'b0) ? 1'bZ : ior;
 assign iow_io = (state == 3'b0) ? 1'bZ : iow;
 assign eopp_io = (state == 3'b0) ? 1'bZ : eopp;
 assign a3_0_io = (state == 3'b0) ? 4'bZZZZ : a3_0;
 assign a7_4_io = (state == 3'b0) ? 4'bZZZZ : a7_4;
-<<<<<<< HEAD
 */
 
 assign db_io = db;
@@ -104,9 +83,6 @@ assign iow_io = iow;
 assign eopp_io = eopp;
 assign a3_0_io = a3_0;
 assign a7_4_io = a7_4;
-=======
->>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
-
 
 /*assign dreq_io = (state == 3'b0) ? dreq : 4'bZ;
 assign db_io = (state == 3'b0) ? db : 8'bZ;
@@ -207,14 +183,9 @@ always @(posedge clk, reset, mast_clr, drequest) begin
                     state <= S0;
                     hrq <= 1'b1;
                 end else if (hlda == 1'b0 && cs == 1'b0) begin
-<<<<<<< HEAD
                     // Program Condition
 
                     if (ior_io == 1'b1 && iow_io == 1'b0) begin
-=======
-
-                    if (ior_io == 1'b0 && iow_io == 1'b0) begin
->>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
                         
                         case(a3_0_io)
                             4'b1000: begin
@@ -222,11 +193,7 @@ always @(posedge clk, reset, mast_clr, drequest) begin
                             end
                             4'b1011: begin
                                 if(db_io[3:2] != 2'b11) begin
-<<<<<<< HEAD
                                     mode <= db_io[7:2];
-=======
-                                    mode <= db[7:2];
->>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
                                 end
                             end
                             4'b1101: begin
@@ -303,11 +270,7 @@ always @(posedge clk, reset, mast_clr, drequest) begin
                             end
                             4'b1011: begin
                                 if(db_io[3:2] != 2'b11) begin
-<<<<<<< HEAD
                                     mode <= db_io[7:2];
-=======
-                                    mode <= db[7:2];
->>>>>>> dc6c761468ca77abbb0d29601c592cd4c0d15d26
                                 end
                             end
                             4'b1101: begin
