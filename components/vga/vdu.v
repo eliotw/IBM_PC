@@ -36,9 +36,9 @@ module vdu (
    // Last pixel in scan line
    parameter HOR_DISP_CHR = 80;
    // Number of characters displayed per row
-   parameter HOR_VIDEO_ON = 10'd7;
+   parameter HOR_VIDEO_ON = 10'd7; // was 7
    // When to start displaying characters
-   parameter HOR_VIDEO_OFF = 10'd647;
+   parameter HOR_VIDEO_OFF = 10'd647; // was 647
    // When to stop displaying characters
 
    parameter VER_DISP_END = 9'd400;
