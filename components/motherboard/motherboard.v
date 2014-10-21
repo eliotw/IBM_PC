@@ -196,6 +196,7 @@ module sheet2(
 	      input io_ch_ck_n,
 	      input enable_io_clk_n,
 	      input clk88,
+	      input clk_100,
 	      output rdy_wait,
 	      output rdy_to_dma,
 	      output dma_aen_n,
@@ -328,7 +329,7 @@ module sheet2(
    // Time delay function
    timedelay td2(
 		 .in(~clk),
-		 .clk(clk),
+		 .clk(clk_100),
 		 .rst(1'b0),
 		 .t5(b12),
 		 .t25(),
@@ -341,3 +342,297 @@ module sheet2(
    assign dclk = (~b12 | ~clk);
    
 endmodule // sheet2
+
+/*
+ * sheet3:
+ * The third part of the motherboard
+ */
+module sheet3(
+	      input xa5,
+	      input xa6,
+	      input xa7,
+	      input xa8,
+	      input xa9,
+	      input aen_n,
+	      input xiow_n,
+	      input a13,
+	      input a14,
+	      input a15,
+	      input a16,
+	      input a17,
+	      input a18,
+	      input a19,
+	      input xmemw_n,
+	      input dack_0_brd_n,
+	      input xmemr_n,
+	      input reset_drv_n,
+	      input dack_0,
+	      input clk_100,
+	      output dma_cs_n,
+	      output intr_cs_n,
+	      output tc_cs_n,
+	      output ppi_cs_n,
+	      output wrt_dma_pg_reg_n,
+	      output rom_addr_sel_n,
+	      output ram_addr_sel_n,
+	      output addr_sel,
+	      output [3:0] cas_n,
+	      output [3:0] ras_n,
+	      output [7:0] cs_n
+	      );
+
+   // Wires
+   wire 		   b0, b1;
+   wire [5:0] 		   x0;
+   wire [7:0] 		   y0;
+   wire 		   rasc;
+   wire 		   cas_nc;
+   wire 		   cas0, cas1;
+   wire [3:0] 		   y1, x1;
+   wire 		   refresh_gate_n;
+   
+   // Assignments of outputs
+   assign wrt_nmi_reg_n = xiow_n | b1;
+   assign wrt_dma_pg_reg_n = b0 | xiow_n;
+   assign rom_addr_sel_n = ~(a16 & a17 & a18 & a19);
+   assign ram_addr_sel_n = y0[0];
+   assign rasc = (~xmemw_n | ~xmemr_n);
+   assign cas_nc = ~(cas0 & cas1);
+   assign refresh_gate_n = ~(rasc & dack0);
+   assign ras_n[0] = refresh_gate_n & y1[0];
+   assign ras_n[1] = refresh_gate_n & y1[1];
+   assign ras_n[2] = refresh_gate_n & y1[2];
+   assign ras_n[3] = refresh_gate_n & y1[3];
+   
+   // LS138 Units
+   ls138 ls0(
+	     .a(xa5),
+	     .b(xa6),
+	     .c(xa7),
+	     .g2b(xa8), 
+	     .g2a(xa9),
+	     .g1(aen_n),
+	     .y({x0[1],x0[0],b1,b0,ppi_cs_n,tc_cs_n,intr_cs_n,dma_cs_n})
+	     );
+   
+   ls138 ls1(
+	     .a(1'b0),
+	     .b(1'b0),
+	     .c(a18),
+	     .g2b(a19),
+	     .g2a(1'b0),
+	     .g1(dack_0_brd_n),
+	     .y(y0)
+	     );
+
+   ls138 ls2(
+	     .a(a16),
+	     .b(a17),
+	     .c(1'b0),
+	     .g2b(cas_nc),
+	     .g2a(ram_addr_sel_n),
+	     .g1(dack_0_brd_n),
+	     .y({x0[5:2],cas_n})
+	     );
+
+   ls138 ls3(
+	     .a(a16),
+	     .b(a17),
+	     .c(1'b1),
+	     .g2b(ram_addr_sel_n),
+	     .g2a(dack0),
+	     .g1(rasc),
+	     .y({y1,x1})
+	     );
+
+   ls138 ls4(
+	     .a(a13),
+	     .b(a14),
+	     .c(a15),
+	     .g2b(rom_addr_sel_n),
+	     .g2a(xmemr_n),
+	     .g1(reset_drv_n),
+	     .y(cs_n)
+	     );
+   
+   // Clock delay units
+   timedelay td0(
+		 .in(rasc),
+		 .clk(clk_100),
+		 .rst(),
+		 .t5(),
+		 .t25(cas0),
+		 .t50(),
+		 .t75(addr_sel),
+		 .t100(),
+		 .t125(cas1)
+		 );
+   
+endmodule // sheet3
+
+/*
+ * sheet4:
+ * The fourth sheet of the motherboard
+ */
+module sheet4(
+	      inout [3:0] xa,
+	      input dma_cs_n,
+	      input rdy_to_dma,
+	      input dclk,
+	      input holda,
+	      input xior_n,
+	      input xiow_n,
+	      input xmemr_n,
+	      input xmemw_n,
+	      input [3:0] drq,
+	      input reset,
+	      inout [7:0] xd,
+	      input dma_aen_n,
+	      input wrt_dma_pg_reg_n,
+	      inout [19:0] a,
+	      output hrq_dma_n,
+	      output tc,
+	      output dack0,
+	      output dack0_brd_n,
+	      output dack1_n,
+	      output dack2_n,
+	      output dack3_n
+	      );
+
+   // Wires
+   wire 	     hrq;
+   wire 	     eop_n;
+   wire [3:0] 	     xas;
+   wire 	     adstb;
+   
+   // Assignment
+   assign hrq_dma_n = ~hrq;
+   assign tc = ~eop_n;
+   assign dack0 = ~dack0_brd_n;
+   
+   // Intel 8237
+   intel8237A i8237(
+		    .clk(dclk),
+		    .cs(dma_cs_n), // possible negation problem
+		    .reset(reset),
+		    .ready(rdy_to_dma),
+		    .hlda(holda),
+		    .dreq(drq),
+		    .db_io(xd),
+		    .ior_io(xior_n),
+		    .iow_io(xiow_n),
+		    .eopp_io(eop_n),
+		    .a3_0_io(xa),
+		    .a7_4_io(xas),
+		    .hrq(hrq),
+		    .dack({dack3_n,dack2_n,dack1_n,dack0_brd_n}),
+		    .aen(), // nc
+		    .adstb(adstb),
+		    .memr(xmemr_n),
+		    .memw(xmemw_n)
+		    );
+
+   // LS 244
+   ls244 ls2440(
+		.a1(xa),
+		.a2(xas),
+		.y1(a[3:0]),
+		.y2(a[7:4]),
+		.g1_n(dma_aen_n),
+		.g2_n(dma_aen_n)
+		);
+
+   // LS670 Module
+   ls670 ls6700(
+		.d(xd[3:0]),
+		.q(a[19:16]),
+		.ra(dack3_n),
+		.rb(dack2_n),
+		.read(dma_aen_n),
+		.wa(xa0),
+		.wb(xa1),
+		.write(wrt_dma_pg_reg_n)
+		);
+
+   // LS373 Unit
+   ls373 ls3730(
+		.d(xd),
+		.q(a[15:8]),
+		.g(adstb),
+		.oe_n(dma_aen_n)
+		);
+
+endmodule // sheet4
+
+/*
+ * sheet5:
+ * The fifth sheet of motherboard logic
+ */
+module sheet5(
+	      inout [19:0] a,
+	      input cs_n,
+	      input clk88,
+	      input aen_brd,
+	      input dack0_brd_n,
+	      inout [7:0] d,
+	      input rom_addr_sel_n,
+	      input ior_n,
+	      input iow_n,
+	      input memr_n,
+	      input memw_n,
+	      input dma_aen_n,
+	      inout [12:0] xa,
+	      inout [7:0] xd,
+	      output clk,
+	      output aen,
+	      output dack0_n,
+	      output xior_n,
+	      output xiow_n,
+	      output xmemr_n,
+	      output xmemw_n
+	      );
+
+   // Wires
+   wire 	     b0, b1, b2;
+   wire [3:0] 	     extrawires;
+   
+   // Wire assignments
+   assign b0 = (~xa9 & ~xior_n);
+   assign b1 = (~rom_addr_sel_n & ~xmemr_n);
+   assign b2 = ~(b0 | b1);
+   
+   // LS244 Units
+   ls244 ls2440(
+		.a1(a[3:0]),
+		.a2(a[7:4]),
+		.y1(xa[3:0]),
+		.y2(xa[7:4]),
+		.g1_n(aen_brd),
+		.g2_n(aen_brd)
+		);
+
+   ls244 ls2441(
+	        .a1(a[11:8]),
+	        .a2({dack0_brd_n,aen_brd,clk88,a[12]}),
+	        .y1(xa[11:8]),
+	        .y2({dack0_n,aen,clk,xa[12]}),
+	        .g1_n(1'b0),
+	        .g2_n(1'b0)
+		);
+
+   // LS245 Units
+   ls245 ls2450(
+		.a(d),
+		.b(xd),
+		.dir(~b2),
+		.g_n(aen_brd)
+		);
+
+   ls245 ls2451(
+		.a({4'b0,memw_n,memr_n,iow_n,iow_r}),
+		.b({extrawires,xmemw_n,xmemr_n,xiow_n,xior_n}),
+		.dir(dma_aen_n),
+		.g_n(aen_brd)
+		);
+
+endmodule // sheet5
