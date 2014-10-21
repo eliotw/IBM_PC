@@ -170,3 +170,174 @@ module sheet1(
 	    );
    
 endmodule // sheet1
+
+/*
+ * sheet2:
+ * The second sheet of the system board
+ */
+module sheet2(
+	      input io_ch_rdy,
+	      input xior_n,
+	      input xiow_n,
+	      input dack_0_brd_n,
+	      input xmemr_n,
+	      input clk,
+	      input s0_n,
+	      input s1_n,
+	      input s2_n,
+	      input lock_n,
+	      input reset,
+	      input hrq_dma_n,
+	      input npnpi,
+	      input npinstlsw,
+	      input pck_n,
+	      input xd7,
+	      input wrt_nmi_reg,
+	      input io_ch_ck_n,
+	      input enable_io_clk_n,
+	      input clk88,
+	      output rdy_wait,
+	      output rdy_to_dma,
+	      output dma_aen_n,
+	      output aen_brd,
+	      output aen_n,
+	      output holda,
+	      output reset_drv_n,
+	      output reset_drv,
+	      output nmi,
+	      output io_ch_ck,
+	      output dclk
+	      );
+
+   // Wires
+   wire 	     xmemr;
+   wire 	     u84;
+   wire 	     b0, b1, b2, b4;
+   wire 	     reset_n;
+   wire 	     hrq_dma;
+   wire 	     aen_n;
+   wire 	     b6, b8, b9, b10, b11;
+   wire 	     clk_n;
+   wire 	     b12;
+   
+   // Registers
+   reg 		     rdy_wait;
+   reg 		     aen_brd;
+   reg 		     b3, b5, b7;
+   reg 		     holda;
+   reg 		     allow_nmi;
+   
+   // Components
+   assign xmemr = ~xmemr_n;
+   assign u84 = ~(xmemr & dack_0_brd_n & b0);
+   assign b1 = (~xior_n | ~xiow_n | ~u84);
+   assign b2 = ~rdy_wait;
+   assign reset_n = ~reset;
+   assign rdy_to_dma = ~(b2 | b3);
+   assign hrq_dma = ~hrq_dma_n;
+   assign b4 = (s0_n & s1_n & s2_n & lock_n & hrq_dma);
+   assign aen_n = ~aen_brd;
+   assign b0 = aen_brd;
+   assign dma_wait_n = ~b5;
+   assign b6 = b5 & b0;
+   assign dma_aen_n = ~b6;
+   assign reset_drv_n = reset_n;
+   assign reset_drv = reset;
+   assign clk_n = ~clk88;
+   assign b8 = ~holda;
+   assign b11 = ~(io_ch_clk & ~enable_io_ck_n);
+   assign io_ch_ck = (~b11 | ~io_ch_clk_n);
+   assign b9 = ~(npnpi & npinstlsw);
+   assign b10 = (~b9 | ~pck_n | ~b11);
+   assign nmi = allow_nmi & b10;
+   
+   // Flip-flops
+   always @(posedge b1) begin
+      if(io_ch_rdy == 1'b0) begin
+	 rdy_wait <= 1'b1;
+      end
+      else if(b3 == 1'b0) begin
+	 rdy_wait <= 1'b0;
+      end
+      else begin
+	 rdy_wait <= dack_0_brd_n;
+      end
+   end // always @ (posedge b1)
+
+   always @(posedge clk) begin
+      if(reset_n == 1'b0) begin
+	 b3 <= 1'b1;
+      end
+      else begin
+	 b3 <= ~rdy_wait;
+      end
+   end
+
+   // LS175 Q1
+   always @(posedge clk) begin
+      if(reset_n == 1'b0) begin
+	 aen_brd <= 1'b0;
+      end
+      else begin
+	 aen_brd <= holda;
+      end
+   end
+   
+   // LS175 Q2
+   always @(posedge clk) begin
+      if(reset_n == 1'b0) begin
+	 b5 <= 1'b0;
+      end
+      else begin
+	 b5 <= b0;
+      end
+   end
+   
+   // LS175 Q3
+   always @(posedge clk) begin
+      if(reset_n == 1'b0) begin
+	 b7 <= 1'b0;
+      end
+      else begin
+	 b7 <= b4;
+      end
+   end
+
+   // U87
+   always @(posedge clk_n) begin
+      if(b8 == 1'b0) begin
+	 holda <= 1'b1;
+      end
+      else if(hrq_dma == 1'b0) begin
+	 holda <= 1'b0;
+      end
+      else begin
+	 holda <= b7;
+      end
+   end // always @ (posedge clk_n)
+
+   always @(posedge wrt_nmi_reg_n) begin
+      if(reset_n == 1'b0) begin
+	 allow_nmi <= 1'b0;
+      end
+      else begin
+	 allow_nmi <= xd7;
+      end
+   end
+
+   // Time delay function
+   timedelay td2(
+		 .in(~clk),
+		 .clk(clk),
+		 .rst(1'b0),
+		 .t5(b12),
+		 .t25(),
+		 .t50(),
+		 .t75(),
+		 .t100(),
+		 .t125()
+		 );
+
+   assign dclk = (~b12 | ~clk);
+   
+endmodule // sheet2
