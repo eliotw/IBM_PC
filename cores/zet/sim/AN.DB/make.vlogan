@@ -1,0 +1,26 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_K0Jhje_1.db \
+	_VCSgd_MF9OH_1.db \
+	_VCSgd_5jk5fb_1.db \
+	_VCSgd_sStAhe_1.db \
+
+
+
+_VCSgd_K0Jhje_1.db :	../rtl/8088.v 
+		${VLOGAN}  +v2k -work work ../rtl/8088.v
+
+
+_VCSgd_MF9OH_1.db :	../rtl/test_processor.v 
+		${VLOGAN}  +v2k -work work ../rtl/test_processor.v
+
+
+_VCSgd_5jk5fb_1.db :	../rtl/test_memory.v 
+		${VLOGAN}  +v2k -work work ../rtl/test_memory.v
+
+
+_VCSgd_sStAhe_1.db :	test_8088.v 
+		${VLOGAN}  +v2k -work work test_8088.v
+
+

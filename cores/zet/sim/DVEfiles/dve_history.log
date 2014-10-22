@@ -1,0 +1,86 @@
+# Preference setting overrides
+gui_create_pref_key -category {Globals} -key {load_detail_for_funcov} -value_type {bool} -value {false}
+gui_create_pref_category -category {schem_obj_name}
+gui_create_pref_key -category {schem_obj_name} -key {show_cell_and_pin_with_symbol_name} -value_type {bool} -value {false}
+gui_create_pref_key -category {schem_pin_hc} -key {textExtFont} -value_type {string} -value {Helvetica,10,-1,5,50,0,0,0,0,0}
+
+# State setting overrides
+gui_state_default_create -off -ini
+gui_set_state_value -category Globals -key recent_sessions -value {{gui_load_session -file /afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/zet/cores/zet/sim/waves/session.inter.vpd.tcl -ignore_errors} {gui_load_session -file /afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/zet/cores/zet/sim/waves/session.inter.vpd.tcl} {gui_load_session -file /afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/zet/cores/zet/sim/waves/reg_test.tcl -ignore_errors} {gui_load_session -file /afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/zet/cores/zet/sim/waves/reg_test.tcl} {gui_load_session -file /afs/ece.cmu.edu/usr/agrahame/Private/18341/proj_2/DVEfiles/dve_checkpoint_16527_1.tcl}}
+gui_set_state_value -category Layout -key child_console_size_x -value 637
+gui_set_state_value -category Layout -key child_console_size_y -value 115
+gui_set_state_value -category Layout -key child_data_size_x -value 150
+gui_set_state_value -category Layout -key child_data_size_y -value 433
+gui_set_state_value -category Layout -key child_hier_size_x -value 131
+gui_set_state_value -category Layout -key child_hier_size_y -value 433
+gui_set_state_value -category Layout -key child_list_down -value 161
+gui_set_state_value -category Layout -key child_list_right -value 443
+gui_set_state_value -category Layout -key child_schematic_docknewline -value false
+gui_set_state_value -category Layout -key child_schematic_pos_x -value {-2}
+gui_set_state_value -category Layout -key child_schematic_pos_y -value {-15}
+gui_set_state_value -category Layout -key child_schematic_size_x -value 373
+gui_set_state_value -category Layout -key child_schematic_size_y -value 383
+gui_set_state_value -category Layout -key child_source_docknewline -value false
+gui_set_state_value -category Layout -key child_source_pos_x -value {-2}
+gui_set_state_value -category Layout -key child_source_pos_y -value {-15}
+gui_set_state_value -category Layout -key child_source_size_x -value 359
+gui_set_state_value -category Layout -key child_source_size_y -value 428
+gui_set_state_value -category Layout -key child_wave_colname -value 183
+gui_set_state_value -category Layout -key child_wave_colvalue -value 183
+gui_set_state_value -category Layout -key child_wave_left -value 370
+gui_set_state_value -category Layout -key child_wave_right -value 903
+gui_set_state_value -category Layout -key main_pos_x -value 232
+gui_set_state_value -category Layout -key main_pos_y -value 66
+gui_set_state_value -category Layout -key main_size_x -value 870
+gui_set_state_value -category Layout -key main_size_y -value 694
+gui_set_state_value -category Layout -key stand_list_child_docknewline -value false
+gui_set_state_value -category Layout -key stand_list_child_pos_x -value {-2}
+gui_set_state_value -category Layout -key stand_list_child_pos_y -value {-15}
+gui_set_state_value -category Layout -key stand_list_child_size_x -value 603
+gui_set_state_value -category Layout -key stand_list_child_size_y -value 306
+gui_set_state_value -category Layout -key stand_list_top_pos_x -value 609
+gui_set_state_value -category Layout -key stand_list_top_pos_y -value 84
+gui_set_state_value -category Layout -key stand_list_top_size_x -value 1207
+gui_set_state_value -category Layout -key stand_list_top_size_y -value 582
+gui_set_state_value -category Layout -key stand_wave_child_docknewline -value false
+gui_set_state_value -category Layout -key stand_wave_child_pos_x -value {-2}
+gui_set_state_value -category Layout -key stand_wave_child_pos_y -value {-15}
+gui_set_state_value -category Layout -key stand_wave_child_size_x -value 1283
+gui_set_state_value -category Layout -key stand_wave_child_size_y -value 511
+gui_set_state_value -category Layout -key stand_wave_top_pos_x -value 35
+gui_set_state_value -category Layout -key stand_wave_top_pos_y -value 84
+gui_set_state_value -category Layout -key stand_wave_top_size_x -value 1313
+gui_set_state_value -category Layout -key stand_wave_top_size_y -value 722
+gui_set_state_value -category SaveSession -key single_view_name -value Wave.1
+gui_set_state_value -category SaveSession -key toplevel_window_name -value TopLevel.2
+gui_create_state_key -category FindDialog -key m_pMatchCase -value_type bool -value false
+gui_create_state_key -category FindDialog -key m_pMatchWord -value_type bool -value false
+gui_create_state_key -category FindDialog -key m_pUseCombo -value_type string -value {}
+gui_create_state_key -category FindDialog -key m_pWrapAround -value_type bool -value true
+gui_create_state_key -category Widget_History -key {dlgSimSetup|m_setupTab|tab pages|SimTab|m_VPDCombo} -value_type string -value inter.vpd
+gui_create_state_key -category Widget_History -key {dlgSimSetup|m_setupTab|tab pages|SimTab|m_curDirCombo} -value_type string -value /afs/ece.cmu.edu/usr/agrahame/Private/18341/proj_2
+gui_create_state_key -category Widget_History -key {dlgSimSetup|m_setupTab|tab pages|SimTab|m_exeCombo} -value_type string -value ./simv
+gui_state_default_create -off
+
+# Begin command logging
+gui_sim_run Ucli -exe simv -args {-ucligui  } -dir .
+set DIALOGS::LOADFILEDIR [file dirname /afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/zet/cores/zet/sim/waves/session.inter.vpd.tcl]; gui_load_session -ignore_errors -file /afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/zet/cores/zet/sim/waves/session.inter.vpd.tcl
+gui_sim_continue  
+gui_wv_scroll_hslidermove -id  Wave.1 0
+gui_wv_zoom_timerange -id  Wave.1 0 97597
+gui_marker_move -id  Wave.1 C1 41681
+gui_wv_scroll_hslidermove -id  Wave.1 579
+gui_wv_scroll_hslidermove -id  Wave.1 885
+gui_wv_scroll_hslidermove -id  Wave.1 0
+gui_wv_scroll_hslidermove -id  Wave.1 361
+gui_marker_move -id  Wave.1 C1 52000
+gui_wv_scroll_hslidermove -id  Wave.1 634
+gui_wv_zoom_timerange -id  Wave.1 54041 147803
+gui_wv_scroll_hslidermove -id  Wave.1 0
+gui_wv_scroll_hslidermove -id  Wave.1 775
+gui_wv_scroll_hslidermove -id  Wave.1 0
+gui_wv_scroll_hslidermove -id  Wave.1 0
+gui_marker_move -id  Wave.1 C1 85
+gui_wv_scroll_hslidermove -id  Wave.1 0
+gui_wv_zoom_timerange -id  Wave.1 0 92483
+gui_close_window -window TopLevel.2
