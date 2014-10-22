@@ -570,7 +570,7 @@ endmodule // sheet4
  */
 module sheet5(
 	      inout [19:0] a,
-	      input cs_n,
+	      input [7:0] cs_n,
 	      input clk88,
 	      input aen_brd,
 	      input dack0_brd_n,
@@ -635,4 +635,156 @@ module sheet5(
 		.g_n(aen_brd)
 		);
 
+   // ROM Module
+   rom rommod(
+              .a(xa),
+	      .d(xd),
+	      .cs_n(cs_n),
+	      .clk(clk88)
+	      );
+
 endmodule // sheet5
+
+/*
+ * sheet6:
+ * The sixth and seventh sheet of the motherboard
+ */
+module sheet6(
+	      inout [7:0] d,
+	      input xmemr_n,
+	      input [3:0] ras_n,
+	      input [3:0] cas_n,
+	      input [15:0] a,
+	      input addr_sel,
+	      input ram_addr_sel_n,
+	      input enb_ram_pck_n,
+	      input clk88,
+	      output pck,
+	      output pck_n
+	      );
+
+   // Wires
+   wire [7:0] 	     md, ma;
+   wire 	     mdp;
+   wire 	     mdpl;
+   wire 	     we_n;
+   wire 	     odd, even;
+   wire 	     ind;
+   wire 	     enb_ram_pck;
+   
+   // Registers
+   reg 		     pck, pck_n;
+   
+   // Assignments
+   assign mdpl = ~xmemr_n & mdp;
+   assign we_n = xmemw_n;
+   assign ind = ~ram_addr_sel_n & odd;
+   assign mdp = (we_n == 1'b0) ? even : 1'bz;
+   assign enb_ram_pck = ~enb_ram_pck_n;
+   
+   // RAM Banks
+   ram_bank rb0(
+		.clk(clk88), // clock
+		.rst(1'b0), // reset
+		.md(md), // memory data
+		.ma(ma), // memory address
+		.mdp(mdp), // memory data parity
+		.ras_n(ras_n[0]), // row enable not
+		.cas_n(cas_n[0]), // column enable not
+		.we_n(we_n) // write enable not
+		);
+
+   ram_bank rb1(
+		.clk(clk88), // clock
+		.rst(1'b0), // reset
+		.md(md), // memory data
+		.ma(ma), // memory address
+		.mdp(mdp), // memory data parity
+		.ras_n(ras_n[1]), // row enable not
+		.cas_n(cas_n[1]), // column enable not
+		.we_n(we_n) // write enable not
+		);
+
+   ram_bank rb2(
+		.clk(clk88), // clock
+		.rst(1'b0), // reset
+		.md(md), // memory data
+		.ma(ma), // memory address
+		.mdp(mdp), // memory data parity
+		.ras_n(ras_n[2]), // row enable not
+		.cas_n(cas_n[2]), // column enable not
+		.we_n(we_n) // write enable not
+		);
+
+   ram_bank rb3(
+		.clk(clk88), // clock
+		.rst(1'b0), // reset
+		.md(md), // memory data
+		.ma(ma), // memory address
+		.mdp(mdp), // memory data parity
+		.ras_n(ras_n[3]), // row enable not
+		.cas_n(cas_n[3]), // column enable not
+		.we_n(we_n) // write enable not
+		);
+
+   // LS245 Module
+   ls245 ls2450(
+		.a(d),
+		.b(md),
+		.dir(xmemr_n),
+		.g_n(ram_addr_sel_n)
+		);
+
+   // LS158 Modules
+   ls158 ls1580(
+		.a(a[3:0]),
+		.b(a[11:8]),
+		.y(ma[3:0]),
+		.s(addr_sel),
+		.g(1'b0)
+		);
+
+   ls158 ls1581(
+	        .a(a[7:4]),
+	        .b(a[15:12]),
+	        .y(ma[7:4]),
+	        .s(addr_sel),
+	        .g(1'b0)
+		);
+
+   // LS280 Module
+   ls280 ls2800(
+		.a(md[0]),
+		.b(md[1]),
+		.c(md[2]),
+		.d(md[3]),
+		.e(md[4]),
+		.f(md[5]),
+		.g(md[6]),
+		.h(md[7]),
+		.i(mdpl),
+		.odd(odd),
+		.even(even)
+		);
+
+   // Flip-Flop
+   always @(posedge xmemr_n) begin
+      if((pck_n == 1'b0) && (enb_ram_pck == 1'b1)) begin
+	 pck <= 1'b1;
+	 pck_n <= 1'b0;
+      end
+      else if((pck_n == 1'b1) && (enb_ram_pck == 1'b0)) begin
+	 pck <= 1'b0;
+	 pck_n <= 1'b1;
+      end
+      else if((pck_n == 1'b0) && (enb_ram_pck == 1'b0)) begin
+	 pck <= 1'b1;
+	 pck_n <= 1'b1;
+      end
+      else begin
+	 pck <= ind;
+	 pck_n <= ~ind;
+      end
+   end // always @ (posedge xmemr_n)
+
+endmodule // sheet6
