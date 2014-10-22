@@ -195,7 +195,7 @@ module ram_core_slice(
    // RAM Core
    ramcore central_ram_core (
 			     .clka(clk), // input clka
-			     .wea(wer), // input [0 : 0] wea
+			     .wea(we), // input [0 : 0] wea
 			     .addra(addr), // input [15 : 0] addra
 			     .dina(din), // input [8 : 0] dina
 			     .douta(memout) // output [8 : 0] douta
