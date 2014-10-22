@@ -23,6 +23,24 @@ module vdu (
 	    output reg        vert_sync
     );
 
+/* Alternate Timing Scheme
+horizontal sync is same.
+
+Old:
+Visible area	400
+Front porch	12
+Sync pulse	2
+Back porch	35
+Whole frame	449
+
+New:
+Visible area	480
+Front porch	10
+Sync pulse	2
+Back porch	33
+Whole frame	525
+*/
+
    // Net, registers and parameters
    // Synchronization constants, these values are taken from:
    //  http://tinyvga.com/vga-timing/640x400@70Hz
@@ -41,15 +59,15 @@ module vdu (
    parameter HOR_VIDEO_OFF = 10'd647; // was 647
    // When to stop displaying characters
 
-   parameter VER_DISP_END = 9'd400;
+   parameter VER_DISP_END = 10'd400; // was 400, then 480
    // last row displayed
-   parameter VER_SYNC_BEG = 9'd411;
+   parameter VER_SYNC_BEG = 10'd411; // was 411, then 409
    // start of vertical synch pulse
-   parameter VER_SYNC_END = 9'd413;
+   parameter VER_SYNC_END = 10'd413; // was 413, then 411
    // end of vertical synch pulse
-   parameter VER_SCAN_END = 9'd448;
+   parameter VER_SCAN_END = 10'd448; // was 448, then 444
    // Last scan row in the frame
-   parameter VER_DISP_CHR = 5'd25;
+   parameter VER_DISP_CHR = 5'd25; // was 25
    // Number of character rows displayed
 
    reg 			      cursor_on_v;
@@ -57,7 +75,7 @@ module vdu (
    reg 			      video_on_v;
    reg 			      video_on_h;
    reg [9:0] 		      h_count;
-   reg [8:0] 		      v_count;
+   reg [9:0] 		      v_count;
    // 0 to VER_SCAN_END
    reg [22:0] 		      blink_count;
 
@@ -290,7 +308,7 @@ module vdu (
      if(rst) begin
 	h_count     <= 10'b0;
 	horiz_sync  <= 1'b1;
-	v_count     <= 9'b0;
+	v_count     <= 10'b0;
 	vert_sync   <= 1'b1;
 	video_on_h  <= 1'b1;
 	video_on_v  <= 1'b1;
@@ -301,10 +319,10 @@ module vdu (
      else begin
 	h_count    <= (h_count==HOR_SCAN_END) ? 10'b0 : h_count + 10'b1;
 	horiz_sync <= (h_count==HOR_SYNC_BEG) ? 1'b0  : ((h_count==HOR_SYNC_END) ? 1'b1 : horiz_sync);
-	v_count    <= (v_count==VER_SCAN_END && h_count==HOR_SCAN_END) ? 9'b0 : ((h_count==HOR_SYNC_END) ? v_count + 9'b1 : v_count);
+	v_count    <= (v_count==VER_SCAN_END && h_count==HOR_SCAN_END) ? 10'b0 : ((h_count==HOR_SYNC_END) ? v_count + 10'b1 : v_count);
 	vert_sync  <= (v_count==VER_SYNC_BEG) ? 1'b0 : ((v_count==VER_SYNC_END) ? 1'b1 : vert_sync);
 	video_on_h <= (h_count==HOR_VIDEO_ON) ? 1'b1 : ((h_count==HOR_VIDEO_OFF) ? 1'b0 : video_on_h);
-	video_on_v <= (v_count==9'h0) ? 1'b1 : ((v_count==VER_DISP_END) ? 1'b0 : video_on_v);
+	video_on_v <= (v_count==10'h0) ? 1'b1 : ((v_count==VER_DISP_END) ? 1'b0 : video_on_v);
 	cursor_on_h <= (h_count[9:3] == reg_hcursor[6:0]);
 	cursor_on_v <= (v_count[8:4] == reg_vcursor[4:0]) && (v_count[3:0] >= reg_cur_start) && (v_count[3:0] <= reg_cur_end);
 	blink_count <= blink_count + 22'd1;

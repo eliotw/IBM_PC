@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: top_vdu.prj
@@ -147,10 +147,10 @@ Analyzing hierarchy for module <vdu> in library <work> with parameters.
 	HOR_VIDEO_OFF = "1010000111"
 	HOR_VIDEO_ON = "0000000111"
 	VER_DISP_CHR = "11001"
-	VER_DISP_END = "110010000"
-	VER_SCAN_END = "111000000"
-	VER_SYNC_BEG = "110011011"
-	VER_SYNC_END = "110011101"
+	VER_DISP_END = "0110010000"
+	VER_SCAN_END = "0111000000"
+	VER_SYNC_BEG = "0110011011"
+	VER_SYNC_END = "0110011101"
 
 Analyzing hierarchy for module <play_vdu> in library <work> with parameters.
 	testchar = "11011011"
@@ -210,13 +210,13 @@ Analyzing module <vdu> in library <work>.
 	HOR_VIDEO_OFF = 10'b1010000111
 	HOR_VIDEO_ON = 10'b0000000111
 	VER_DISP_CHR = 5'b11001
-	VER_DISP_END = 9'b110010000
-	VER_SCAN_END = 9'b111000000
-	VER_SYNC_BEG = 9'b110011011
-	VER_SYNC_END = 9'b110011101
-WARNING:Xst:2211 - "ipcore_dir/charcore.v" line 135: Instantiating black box module <charcore>.
-WARNING:Xst:2211 - "ipcore_dir/charram.v" line 143: Instantiating black box module <charram>.
-WARNING:Xst:2211 - "ipcore_dir/attrram.v" line 152: Instantiating black box module <attrram>.
+	VER_DISP_END = 10'b0110010000
+	VER_SCAN_END = 10'b0111000000
+	VER_SYNC_BEG = 10'b0110011011
+	VER_SYNC_END = 10'b0110011101
+WARNING:Xst:2211 - "ipcore_dir/charcore.v" line 153: Instantiating black box module <charcore>.
+WARNING:Xst:2211 - "ipcore_dir/charram.v" line 161: Instantiating black box module <charram>.
+WARNING:Xst:2211 - "ipcore_dir/attrram.v" line 170: Instantiating black box module <attrram>.
 Module <vdu> is correct for synthesis.
  
 Analyzing module <play_vdu> in library <work>.
@@ -324,32 +324,32 @@ WARNING:Xst:646 - Signal <attr_data_in> is assigned but never used. This unconne
     Found 7-bit register for signal <col_addr>.
     Found 1-bit register for signal <cursor_on>.
     Found 1-bit register for signal <cursor_on_h>.
-    Found 7-bit comparator equal for signal <cursor_on_h$cmp_eq0000> created at line 308.
+    Found 7-bit comparator equal for signal <cursor_on_h$cmp_eq0000> created at line 326.
     Found 1-bit register for signal <cursor_on_v>.
-    Found 5-bit comparator equal for signal <cursor_on_v$cmp_eq0000> created at line 309.
-    Found 4-bit comparator greatequal for signal <cursor_on_v$cmp_ge0000> created at line 309.
-    Found 4-bit comparator lessequal for signal <cursor_on_v$cmp_le0000> created at line 309.
+    Found 5-bit comparator equal for signal <cursor_on_v$cmp_eq0000> created at line 327.
+    Found 4-bit comparator greatequal for signal <cursor_on_v$cmp_ge0000> created at line 327.
+    Found 4-bit comparator lessequal for signal <cursor_on_v$cmp_le0000> created at line 327.
     Found 8-bit register for signal <dataout>.
     Found 1-bit xor2 for signal <fg_or_bg>.
     Found 10-bit up counter for signal <h_count>.
     Found 7-bit register for signal <hor_addr>.
     Found 1-bit register for signal <intense>.
-    Found 20-bit comparator greatequal for signal <io_range$cmp_ge0000> created at line 185.
-    Found 20-bit comparator lessequal for signal <io_range$cmp_le0000> created at line 185.
-    Found 20-bit comparator greatequal for signal <mem_range$cmp_ge0000> created at line 186.
-    Found 20-bit comparator less for signal <mem_range$cmp_lt0000> created at line 186.
+    Found 20-bit comparator greatequal for signal <io_range$cmp_ge0000> created at line 203.
+    Found 20-bit comparator lessequal for signal <io_range$cmp_le0000> created at line 203.
+    Found 20-bit comparator greatequal for signal <mem_range$cmp_ge0000> created at line 204.
+    Found 20-bit comparator less for signal <mem_range$cmp_lt0000> created at line 204.
     Found 4-bit register for signal <reg_adr>.
     Found 4-bit register for signal <reg_cur_end>.
     Found 4-bit register for signal <reg_cur_start>.
     Found 7-bit register for signal <reg_hcursor>.
     Found 5-bit register for signal <reg_vcursor>.
     Found 5-bit register for signal <row1_addr>.
-    Found 5-bit subtractor for signal <row1_addr$addsub0000> created at line 356.
-    Found 5-bit comparator less for signal <row1_addr$cmp_lt0000> created at line 356.
+    Found 5-bit subtractor for signal <row1_addr$addsub0000> created at line 374.
+    Found 5-bit comparator less for signal <row1_addr$cmp_lt0000> created at line 374.
     Found 5-bit register for signal <row_addr>.
-    Found 9-bit up counter for signal <v_count>.
+    Found 10-bit up counter for signal <v_count>.
     Found 7-bit register for signal <ver_addr>.
-    Found 7-bit adder for signal <ver_addr$add0000> created at line 362.
+    Found 7-bit adder for signal <ver_addr$add0000> created at line 380.
     Found 1-bit register for signal <vga0_rw>.
     Found 1-bit register for signal <vga1_rw>.
     Found 1-bit register for signal <vga2_rw>.
@@ -401,9 +401,8 @@ Macro Statistics
  5-bit subtractor                                      : 1
  7-bit adder                                           : 1
 # Counters                                             : 3
- 10-bit up counter                                     : 1
+ 10-bit up counter                                     : 2
  23-bit up counter                                     : 1
- 9-bit up counter                                      : 1
 # Registers                                            : 35
  1-bit register                                        : 12
  11-bit register                                       : 4
@@ -506,9 +505,8 @@ Macro Statistics
  5-bit subtractor                                      : 1
  7-bit adder                                           : 1
 # Counters                                             : 3
- 10-bit up counter                                     : 1
+ 10-bit up counter                                     : 2
  23-bit up counter                                     : 1
- 9-bit up counter                                      : 1
 # Registers                                            : 166
  Flip-Flops                                            : 166
 # Comparators                                          : 11
@@ -546,8 +544,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 245
- Flip-Flops                                            : 245
+# Registers                                            : 246
+ Flip-Flops                                            : 246
 
 =========================================================================
 
@@ -576,23 +574,23 @@ Design Statistics
 # IOs                              : 20
 
 Cell Usage :
-# BELS                             : 436
+# BELS                             : 438
 #      GND                         : 4
 #      INV                         : 5
-#      LUT1                        : 58
-#      LUT2                        : 19
-#      LUT3                        : 47
-#      LUT4                        : 35
-#      LUT5                        : 53
-#      LUT6                        : 91
-#      MUXCY                       : 58
+#      LUT1                        : 59
+#      LUT2                        : 18
+#      LUT3                        : 45
+#      LUT4                        : 34
+#      LUT5                        : 51
+#      LUT6                        : 96
+#      MUXCY                       : 59
 #      VCC                         : 4
-#      XORCY                       : 62
-# FlipFlops/Latches                : 245
+#      XORCY                       : 63
+# FlipFlops/Latches                : 246
 #      FD                          : 8
 #      FDE                         : 1
 #      FDR                         : 141
-#      FDRE                        : 65
+#      FDRE                        : 66
 #      FDRS                        : 1
 #      FDS                         : 19
 #      FDSE                        : 10
@@ -614,15 +612,15 @@ Selected Device : 5vlx110tff1136-1
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             245  out of  69120     0%  
+ Number of Slice Registers:             246  out of  69120     0%  
  Number of Slice LUTs:                  308  out of  69120     0%  
     Number used as Logic:               308  out of  69120     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    411
-   Number with an unused Flip Flop:     166  out of    411    40%  
-   Number with an unused LUT:           103  out of    411    25%  
-   Number of fully used LUT-FF pairs:   142  out of    411    34%  
+ Number of LUT Flip Flop pairs used:    410
+   Number with an unused Flip Flop:     164  out of    410    40%  
+   Number with an unused LUT:           102  out of    410    24%  
+   Number of fully used LUT-FF pairs:   144  out of    410    35%  
    Number of unique control sets:        21
 
 IO Utilization: 
@@ -656,7 +654,7 @@ Clock Information:
 Clock Signal                       | Clock buffer(FF name)                                                                                                                   | Load  |
 -----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+-------+
 USER_CLK                           | BUFGP                                                                                                                                   | 4     |
-HDR1_18_OBUF1(vga_clk1:O)          | BUFG(*)(pvd/state_FSM_FFd25)                                                                                                            | 244   |
+HDR1_18_OBUF1(vga_clk1:O)          | BUFG(*)(pvd/state_FSM_FFd25)                                                                                                            | 245   |
 vga/ram_2k_attr/N1                 | NONE(vga/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP)| 1     |
 vga/ram_2k_char/N1                 | NONE(vga/ram_2k_char/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP)| 1     |
 vga/char_rom/N1                    | NONE(vga/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)   | 1     |
@@ -711,7 +709,7 @@ Delay:               0.812ns (Levels of Logic = 0)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'HDR1_18_OBUF1'
   Clock period: 5.838ns (frequency: 171.292MHz)
-  Total number of paths / destination ports: 17939 / 415
+  Total number of paths / destination ports: 17990 / 418
 -------------------------------------------------------------------------
 Delay:               5.838ns (Levels of Logic = 8)
   Source:            pvd/address_4 (FF)
@@ -725,11 +723,11 @@ Delay:               5.838ns (Levels of Logic = 8)
     ----------------------------------------  ------------
      FDS:C->Q             12   0.471   1.129  pvd/address_4 (pvd/address_4)
      LUT6:I0->O            1   0.094   0.480  vga/d_and000033 (vga/d_and000033)
-     LUT6:I5->O            2   0.094   0.485  vga/d_and0000110_SW0 (N56)
+     LUT6:I5->O            2   0.094   0.485  vga/d_and0000110_SW0 (N54)
      LUT6:I5->O           11   0.094   0.535  vga/d_and0000110 (vga/d_and0000)
-     LUT5:I4->O            1   0.094   0.480  data<6>LogicTrst_SW3 (N40)
+     LUT5:I4->O            1   0.094   0.480  data<6>LogicTrst_SW3 (N38)
      LUT6:I5->O           13   0.094   0.546  data<6>LogicTrst (data<6>)
-     LUT6:I5->O            1   0.094   0.480  pvd/state_not0001_SW1 (N49)
+     LUT6:I5->O            1   0.094   0.480  pvd/state_not0001_SW1 (N47)
      LUT6:I5->O            1   0.094   0.480  pvd/state_FSM_FFd30-In18 (pvd/state_FSM_FFd30-In18)
      LUT5:I4->O            1   0.094   0.000  pvd/state_FSM_FFd30-In441 (pvd/state_FSM_FFd30-In44)
      FDRS:D                   -0.018          pvd/state_FSM_FFd30
@@ -758,7 +756,7 @@ Offset:              1.891ns (Levels of Logic = 1)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'HDR1_18_OBUF1'
-  Total number of paths / destination ports: 268 / 253
+  Total number of paths / destination ports: 269 / 254
 -------------------------------------------------------------------------
 Offset:              3.690ns (Levels of Logic = 3)
   Source:            GPIO_SW_C (PAD)
@@ -820,12 +818,12 @@ Offset:              3.934ns (Levels of Logic = 2)
 
 
 Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.65 secs
+Total CPU time to Xst completion: 8.71 secs
  
 --> 
 
 
-Total memory usage is 666980 kilobytes
+Total memory usage is 668120 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   16 (   0 filtered)
