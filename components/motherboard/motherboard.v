@@ -8,9 +8,127 @@ module motherboard(
 		   );
 
    // Internal signals
-
-   // Sheets of components
+   wire 		 pwr_good; // 10 -> 1
+   wire 		 dma_wait_n; // 2 -> 1
+   wire 		 rdy_wait_n; // 2 -> 1
+   wire 		 nmi; // 2 -> 1
+   wire 		 irq0; // 8 -> 1
+   wire 		 irq1; // 9 -> 1
+   wire 		 irq2, irq3, irq4, irq5, irq6, irq7; // 10 -> 1
+   wire 		 intr_cs_n; // 3 -> 1
+   wire 		 xior_n; // 5 -> 1, 2
+   wire 		 xiow_n; // 5 -> 1, 2
+   wire 		 xa0_n; // 5 -> 1
+   wire 		 aen_br0; // 2 -> 1, 5
+   wire 		 aen_n; // 2 -> 1, 3
+   wire 		 clk_100; // 100 MHz Clock -> 1, 2
+   wire 		 osc; // 1 -> 10
+   wire 		 pclk; // 1 -> 8, 9
+   wire [19:0] 		 a; // 1 -> 3, 4, 5, 6, 10
+   wire 		 lock_n; // 1 -> 2
+   wire 		 reset; // 1 -> 2, 4, 9
+   wire 		 clk88; // 1 -> 2, 5
+   wire [7:0] 		 d; // 1 -> 5, 6, 10
+   wire 		 vga_clk; // 25 MHz Clock -> 1, 10
+   wire 		 s0_n, s1_n, s2_n; // 1 -> 2
+   wire 		 ale; // 1 -> 10
+   wire 		 npnpi; // 1 -> 2
+   wire 		 ior_n, memr_n, iow_n, memw_n; // 1 -> 5, 10
+   wire 		 io_ch_rdy; // 10 -> 2
+   wire 		 dack_0_brd_n; // 4 -> 2
+   wire 		 xmemr_n; // 5 -> 2
+   wire 		 clk; // 5 -> 2
+   wire 		 hrq_dma_n; // 4 -> 2
+   wire 		 npinstlsw; // 9 -> 2
+   wire 		 pck_n; // 6 -> 2
+   wire [7:0] 		 xd; // 5 -> 2, 4, 8, 9
+   wire 		 wrt_nmi_reg_n; // 3 -> 2
+   wire 		 io_ch_ck_n; // 10 -> 2
+   wire 		 enable_io_ck_n; // 9 -> 2
+   wire 		 rdy_to_dma; // 2 -> 4
+   wire 		 dma_aen_n; // 2 -> 4, 5
+   wire 		 holda; // 2 -> 4
+   wire 		 reset_drv_n; // 2 -> 3, 8, 9
+   wire 		 reset_drv; // 2 -> 10
+   wire 		 io_ch_ck; // 2 -> 9
+   wire 		 dclk; // 2 -> 4
    
+   
+   // Some assignments
+   assign pwr_good = 1'b1;
+   assign clk_100 = USER_CLK;
+   
+   
+   // Sheet 1
+   sheet1 s1(
+	     .pwr_good(pwr_good),
+	     .dma_wait_n(dma_wait_n),
+	     .rdy_wait_n(rdy_wait_n),
+	     .nmi(nmi),
+	     .irq({irq7,irq6,irq5,irq4,irq3,irq2,irq1,irq0}),
+	     .intr_cs_n(intr_cs_n),
+	     .xior_n(xior_n),
+	     .xiow_n(xiow_n),
+	     .xa0_n(xa0_n),
+	     .aen_br0(aen_br0),
+	     .aen_n(aen_n),
+	     .clk_100(clk_100),
+	     .osc(osc), // oscillator clock
+	     .pclk(pclk), // i/o clock
+	     .a(a), // address bus
+	     .lock_n(lock_n), // lock cpu
+	     .reset(reset), // reset cpu
+	     .clk88(clk88), // 4.77 MHz clock for cpu
+	     .d(d), // data bus
+	     .vga_clk(vga_clk), // clock for VGA
+	     .s0_n(s0_n),
+	     .s1_n(s1_n),
+	     .s2_n(s2_n),
+	     .ale(ale),
+	     .npnpi(npnpi),
+	     .ior_n(ior_n),
+	     .memr_n(memr_n),
+	     .iow_n(iow_n),
+	     .memw_n(memw_n)
+	     );
+
+   // Sheet 2
+   sheet2 s2(
+	     .io_ch_rdy(io_ch_rdy),
+	     .xior_n(xior_n),
+	     .xiow_n(xiow_n),
+	     .dack_0_brd_n(dack_0_brd_n),
+	     .xmemr_n(xmemr_n),
+	     .clk(clk),
+	     .s0_n(s0_n),
+	     .s1_n(s1_n),
+	     .s2_n(s2_n),
+	     .lock_n(lock_n),
+	     .reset(reset),
+	     .hrq_dma_n(hrq_dma_n),
+	     .npnpi(npnpi),
+	     .npinstlsw(npinstlsw),
+	     .pck_n(pck_n),
+	     .xd7(xd[7]),
+	     .wrt_nmi_reg(wrt_nmi_reg_n),
+	     .io_ch_ck_n(io_ch_ck_m),
+	     .enable_io_ck_n(enable_io_ck_n),
+	     .clk88(clk88),
+	     .clk_100(clk_100),
+	     .rdy_wait(rdy_wait_n),
+	     .rdy_to_dma(rdy_to_dma),
+	     .dma_aen_n(dma_aen_n),
+	     .aen_brd(aen_br0),
+	     .aen_n(aen_n),
+	     .holda(holda),
+	     .reset_drv_n(reset_drv_n),
+	     .reset_drv(reset_drv),
+	     .nmi(nmi),
+	     .io_ch_ck(io_ch_ck),
+	     .dclk(dclk)
+	     );
+
+   // Sheet 3
 endmodule // motherboard
 
 /*
@@ -192,7 +310,7 @@ module sheet2(
 	      input npinstlsw,
 	      input pck_n,
 	      input xd7,
-	      input wrt_nmi_reg,
+	      input wrt_nmi_reg_n,
 	      input io_ch_ck_n,
 	      input enable_io_clk_n,
 	      input clk88,
@@ -246,8 +364,8 @@ module sheet2(
    assign reset_drv = reset;
    assign clk_n = ~clk88;
    assign b8 = ~holda;
-   assign b11 = ~(io_ch_clk & ~enable_io_ck_n);
-   assign io_ch_ck = (~b11 | ~io_ch_clk_n);
+   assign b11 = ~(io_ch_ck & ~enable_io_ck_n);
+   assign io_ch_ck = (~b11 | ~io_ch_ck_n);
    assign b9 = ~(npnpi & npinstlsw);
    assign b10 = (~b9 | ~pck_n | ~b11);
    assign nmi = allow_nmi & b10;
