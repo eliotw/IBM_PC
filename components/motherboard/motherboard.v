@@ -4,7 +4,7 @@
  */
 module motherboard(
 		   input USER_CLK, // user clock at 100 MHz
-		   
+		   output PIEZO_SPEAKER, // speaker
 		   );
 
    // Internal signals
@@ -74,12 +74,19 @@ module motherboard(
    wire 		 dack_0_n; // 5 -> 10
    wire 		 enb_ram_pck_n; // 9 -> 6
    wire 		 pck; // 6 -> 9
+   wire 		 spkr_data; // 9 -> 8
+   wire 		 tim_2_gate_spk; // 9 -> 8
+   wire 		 motor_off; // 9 -> 8
+   wire 		 spkr_data_out; // 8 -> piezo speaker
+   wire 		 tc_2_out; // 8 -> 9
+   wire 		 cass_data_in; // 8 -> 9
    
    
    // Some assignments
    assign pwr_good = 1'b1;
    assign clk_100 = USER_CLK;
    assign xa0_n = xa[0]; // not sure if needs to be inverted or not
+   assign PIEZO_SPEAKER = spkr_data_out;
    
    
    // Sheet 1
@@ -253,6 +260,27 @@ module motherboard(
 	     );
 
    // Sheet 8
+   sheet8 s8(
+	     .spkr_data(spkr_data),
+	     .dack0_brd_n(dack_0_brd_n),
+	     .tim_2_gate_spk(tim_2_gate_spk),
+	     .xior_n(xior_n),
+	     .xiow_n(xiow_n),
+	     .tc_cs_n(tc_cs_n),
+	     .xa0(xa[0]),
+	     .xa1(xa[1]),
+	     .xd(xd),
+	     .motor_off(motor_off),
+	     .pclk(pclk),
+	     .reset_drv_n(reset_drv_n),
+	     .drq0(drq[0]),
+	     .irq0(irq[0]),
+	     .spkr_data_out(spkr_data_out),
+	     .tc_2_out(tc_2_out),
+	     .cass_data_in(cass_data_in)
+	     );
+
+   
 endmodule // motherboard
 
 /*
