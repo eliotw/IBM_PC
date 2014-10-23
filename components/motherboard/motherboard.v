@@ -72,6 +72,8 @@ module motherboard(
    wire 		 dack_3_n; // 4 -> 10
    wire 		 aen; // 5 -> 10
    wire 		 dack_0_n; // 5 -> 10
+   wire 		 enb_ram_pck_n; // 9 -> 6
+   wire 		 pck; // 6 -> 9
    
    
    // Some assignments
@@ -235,7 +237,22 @@ module motherboard(
 	     .xmemw_n(xmemw_n)
 	     );
 
-   
+   // Sheet 6 (and 7)
+   sheet6 s6(
+	     .d(d),
+	     .xmemr_n(xmemr_n),
+	     .ras_n(ras_n),
+	     .cas_n(cas_n),
+	     .a(a[15:0]),
+	     .addr_sel(addr_sel),
+	     .ram_addr_sel_n(ram_addr_sel_n),
+	     .enb_ram_pck_n(enb_ram_pck_n),
+	     .clk88(clk88),
+	     .pck(pck),
+	     .pck_n(pck_n)
+	     );
+
+   // Sheet 8
 endmodule // motherboard
 
 /*
