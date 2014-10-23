@@ -1,10 +1,21 @@
 /*
  * motherboard:
  * Verilog description of the main motherboard of the IBM PC
+ * Accurate to what is actually in the PC
  */
 module motherboard(
 		   input USER_CLK, // user clock at 100 MHz
 		   output PIEZO_SPEAKER, // speaker
+		   inout KEYBOARD_CLK, // keyboard clock
+		   inout KEYBOARD_DATA, // keyboard data
+		   output HDR1_2, // vga red o 0
+		   output HDR1_4, // vga red o 1
+		   output HDR1_6, // vga green o 0
+		   output HDR1_8, // vga green o 1
+		   output HDR1_10, // vga blue o 0
+		   output HDR1_12, // vga blue o 1
+		   output HDR1_14, // vga horizontal sync
+		   output HDR1_16 // vga vertical sync
 		   );
 
    // Internal signals
@@ -80,14 +91,25 @@ module motherboard(
    wire 		 spkr_data_out; // 8 -> piezo speaker
    wire 		 tc_2_out; // 8 -> 9
    wire 		 cass_data_in; // 8 -> 9
-   
+   wire [1:0] 		 vga_red_o; // vga red output
+   wire [1:0] 		 vga_green_o; // vga green output
+   wire [1:0] 		 vga_blue_o; // vga blue output
+   wire 		 horiz_sync; // vga horizontal sync
+   wire 		 vert_sync; // vga vertical sync
    
    // Some assignments
    assign pwr_good = 1'b1;
    assign clk_100 = USER_CLK;
    assign xa0_n = xa[0]; // not sure if needs to be inverted or not
    assign PIEZO_SPEAKER = spkr_data_out;
-   
+   assign HDR1_2 = vga_red_o[0]; // vga red o 0
+   assign HDR1_4 = vga_red_o[1]; // vga red o 1
+   assign HDR1_6 = vga_green_o[0]; // vga green o 0
+   assign HDR1_8 = vga_green_o[1]; // vga green o 1
+   assign HDR1_10 = vga_blue_o[0]; // vga blue o 0
+   assign HDR1_12 = vga_blue_o[1]; // vga blue o 1
+   assign HDR1_14 = horiz_sync; // vga horizontal sync
+   assign HDR1_16 = vert_sync; // vga vertical sync
    
    // Sheet 1
    sheet1 s1(
@@ -274,13 +296,72 @@ module motherboard(
 	     .pclk(pclk),
 	     .reset_drv_n(reset_drv_n),
 	     .drq0(drq[0]),
-	     .irq0(irq[0]),
+	     .irq0(irq0),
 	     .spkr_data_out(spkr_data_out),
 	     .tc_2_out(tc_2_out),
 	     .cass_data_in(cass_data_in)
 	     );
 
-   
+   // Sheet 9
+   sheet9 s9(
+	     .xior_n(xior_n),
+	     .xiow_n(xiow_n),
+	     .ppics_n(ppi_cs_n),
+	     .xa0(xa[0]),
+	     .xa1(xa[1]),
+	     .reset(reset),
+	     .xd(xd),
+	     .pck(pck),
+	     .io_ch_ck(io_ch_ck),
+	     .tc_2_out(tc_2_out),
+	     .cass_data_in(cass_data_in),
+	     .pclk(pclk),
+	     .reset_drv_n(reset_drv_n),
+	     .tim_2_gate_spk(tim_2_gate_spk),
+	     .spkr_data(spkr_data),
+	     .motor_off(motor_off),
+	     .enb_ram_pck_n(enb_ram_pck_n),
+	     .enable_io_ck_n(enable_io_ck_n),
+	     .irq1(irq1),
+	     .np_instl_sw(np_instl_sw),
+	     .kbd_clk(KEYBOARD_CLK),
+	     .kbd_data(KEYBOARD_DATA)
+	     );
+
+   // Sheet 10
+   sheet10 s0(
+	      .d(d),
+	      .a(a),
+	      .ior_n(ior_n),
+	      .iow_n(iow_n),
+	      .memr_n(memr_n),
+	      .memw_n(memw_n),
+	      .clk(clk),
+	      .osc(osc),
+	      .tc(tc),
+	      .aen(aen),
+	      .reset_drv(reset_drv),
+	      .dack_n({dack_3_n,dack_2_n,dack_1_n,dack_0_n}),
+	      .ale(ale),
+	      .vga_clk(vga_clk),
+	      .reset(reset),
+	      .io_ch_ck_n(io_ch_ck_n),
+	      .io_ch_rdy(io_ch_rdy),
+	      .drq1(drq[1]),
+	      .drq2(drq[2]),
+	      .drq3(drq[3]),
+	      .irq2(irq2),
+	      .irq3(irq3),
+	      .irq4(irq4),
+	      .irq5(irq5),
+	      .irq6(irq6),
+	      .irq7(irq7),
+	      .vga_red_o(vga_red_o),
+	      .vga_green_o(vga_green_o),
+	      .vga_blue_o(vga_blue_o),
+	      .horiz_sync(horiz_sync),
+	      .vert_sync(vert_sync),
+	      );
 endmodule // motherboard
 
 /*
