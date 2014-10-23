@@ -959,3 +959,74 @@ module sheet9(
 			 );
    
 endmodule // sheet9
+
+/*
+ * sheet10:
+ * The tenth sheet of the motherboard, includes vga and floppy drive
+ */
+module sheet10(
+	       inout [7:0] d,
+	       inout [19:0] a,
+	       input ior_n,
+	       input iow_n,
+	       input memr_n,
+	       input memw_n,
+	       input clk,
+	       input osc,
+	       input tc,
+	       input aen,
+	       input reset_drv,
+	       input [3:0] dack_n,
+	       input ale,
+	       input vga_clk,
+	       input reset,
+	       output io_ch_ck_n,
+	       output io_ch_rdy,
+	       output drq1,
+	       output drq2,
+	       output drq3,
+	       output irq2,
+	       output irq3,
+	       output irq4,
+	       output irq5,
+	       output irq6,
+	       output irq7,
+	       output [1:0] vga_red_o,
+	       output [1:0] vga_green_o,
+	       output [1:0] vga_blue_o,
+	       output horiz_sync,
+	       output vert_sync,
+	       );
+
+   // VDU Module
+   vdu vga(
+           // Wishbone Replacement Signals
+           .clk(vga_clk), // 25 MHz VDU clock
+           .rst(reset), // Reset Line
+           .a(a), // Address bits
+           .d(d), // Data bits
+           .ior(~ior_n), // I/O Read
+           .iow(~iow_n), // I/O Write
+           .memr(~memr_n), // Memory Read
+           .memw(~memw_n), // Memory Write
+           .vga_red_o(vga_red_o),
+           .vga_green_o(vga_green_o),
+           .vga_blue_o(vga_blue_o),
+           .horiz_sync(horiz_sync),
+           .vert_sync(vert_sync)
+	   );
+   
+   // Output Assignments
+   assign io_ch_ck_n = 1'b1;
+   assign io_ch_rdy = 1'b0;
+   assign drq1 = 1'b0;
+   assign drq2 = 1'b0;
+   assign drq3 = 1'b0;
+   assign irq2 = 1'b0;
+   assign irq3 = 1'b0;
+   assign irq4 = 1'b0;
+   assign irq5 = 1'b0;
+   assign irq6 = 1'b0;
+   assign irq7 = 1'b0;
+	  
+endmodule // sheet10
