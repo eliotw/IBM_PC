@@ -25,7 +25,7 @@ module motherboard(
    wire 		 osc; // 1 -> 10
    wire 		 pclk; // 1 -> 8, 9
    wire [19:0] 		 a; // 1 -> 3, 4, 5, 6, 10
-   wire [19:0] 		 xa; // 5 -> 3
+   wire [12:0] 		 xa; // 5 -> 3, 4
    wire 		 lock_n; // 1 -> 2
    wire 		 reset; // 1 -> 2, 4, 9
    wire 		 clk88; // 1 -> 2, 5
@@ -36,10 +36,10 @@ module motherboard(
    wire 		 npnpi; // 1 -> 2
    wire 		 ior_n, memr_n, iow_n, memw_n; // 1 -> 5, 10
    wire 		 io_ch_rdy; // 10 -> 2
-   wire 		 dack_0_brd_n; // 4 -> 2, 3
+   wire 		 dack_0_brd_n; // 4 -> 2, 3, 5, 8
    wire 		 xmemr_n; // 5 -> 2, 3, 4, 6
    wire 		 xmemw_n; // 5 -> 3, 4, 6
-   wire 		 clk; // 5 -> 2
+   wire 		 clk; // 5 -> 2, 4, 10
    wire 		 hrq_dma_n; // 4 -> 2
    wire 		 npinstlsw; // 9 -> 2
    wire 		 pck_n; // 6 -> 2
@@ -65,11 +65,19 @@ module motherboard(
    wire [3:0] 		 cas_n; // 3 -> 6, 7
    wire [3:0] 		 ras_n; // 3 -> 6, 7
    wire [7:0] 		 cs_n; // 3 -> 5
+   wire [3:0] 		 drq; // 8, 10 -> 4
+   wire 		 tc; // 4 -> 10
+   wire 		 dack_1_n; // 4 -> 10
+   wire 		 dack_2_n; // 4 -> 10
+   wire 		 dack_3_n; // 4 -> 10
+   wire 		 aen; // 5 -> 10
+   wire 		 dack_0_n; // 5 -> 10
    
    
    // Some assignments
    assign pwr_good = 1'b1;
    assign clk_100 = USER_CLK;
+   assign xa0_n = xa[0]; // not sure if needs to be inverted or not
    
    
    // Sheet 1
@@ -177,6 +185,57 @@ module motherboard(
 	     );
 
    // Sheet 4
+   sheet4 s4(
+	     .xa(xa[3:0]),
+	     .dma_cs_n(dma_cs_n),
+	     .rdy_to_dma(rdy_to_dma),
+	     .dclk(dclk),
+	     .holda(holda),
+	     .xior_n(xior_n),
+	     .xiow_n(xiow_n),
+	     .xmemr_n(xmemr_n),
+	     .xmemw_n(xmemw_n),
+	     .drq(drq),
+	     .reset(reset),
+	     .xd(xd),
+	     .dma_aen_n(dma_aen_n),
+	     .wrt_dma_pg_reg_n(wrt_dma_pg_reg_n),
+	     .a(a),
+	     .hrq_dma_n(hrq_dma_n),
+	     .tc(tc),
+	     .dack0(dack_0),
+	     .dack0_brd_n(dack_0_brd_n),
+	     .dack1_n(dack_1_n),
+	     .dack2_n(dack_2_n),
+	     .dack3_n(dack_3_n)
+	     );
+
+   // Sheet 5
+   sheet5 s5(
+	     .a(a),
+	     .cs_n(cs_n),
+	     .clk88(clk88),
+	     .aen_brd(aen_br0),
+	     .dack0_brd_n(dack_0_brd_n),
+	     .d(d),
+	     .rom_addr_sel_n(rom_addr_sel_n),
+	     .ior_n(ior_n),
+	     .iow_n(iow_n),
+	     .memr_n(memr_n),
+	     .memw_n(memw_n),
+	     .dma_aen_n(dma_aen_n),
+	     .xa(xa),
+	     .xd(xd),
+	     .clk(clk),
+	     .aen(aen),
+	     .dack0_n(dack_0_n),
+	     .xior_n(xior_n),
+	     .xiow_n(xiow_n),
+	     .xmemr_n(xmemr_n),
+	     .xmemw_n(xmemw_n)
+	     );
+
+   
 endmodule // motherboard
 
 /*
