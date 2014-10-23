@@ -327,6 +327,7 @@ module sheet2(
    end
 
    // Time delay function
+   // TODO: See if this works
    timedelay td2(
 		 .in(~clk),
 		 .clk(clk_100),
@@ -397,7 +398,7 @@ module sheet3(
    assign rom_addr_sel_n = ~(a16 & a17 & a18 & a19);
    assign ram_addr_sel_n = y0[0];
    assign rasc = (~xmemw_n | ~xmemr_n);
-   assign cas_nc = ~(cas0 & cas1);
+   //assign cas_nc = ~(cas0 & cas1);
    assign refresh_gate_n = ~(rasc & dack0);
    assign ras_n[0] = refresh_gate_n & y1[0];
    assign ras_n[1] = refresh_gate_n & y1[1];
@@ -456,16 +457,17 @@ module sheet3(
 	     );
    
    // Clock delay units
+   // TODO: See if this works
    timedelay td0(
 		 .in(rasc),
 		 .clk(clk_100),
 		 .rst(),
 		 .t5(),
-		 .t25(cas0),
-		 .t50(),
-		 .t75(addr_sel),
+		 .t25(cas_nc), // was cas0
+		 .t50(addr_sel),
+		 .t75(), // was addr_sel
 		 .t100(),
-		 .t125(cas1)
+		 .t125() // was cas1
 		 );
    
 endmodule // sheet3
@@ -789,3 +791,171 @@ module sheet6(
    end // always @ (posedge xmemr_n)
 
 endmodule // sheet6
+
+/*
+ * sheet8:
+ * The eighth sheet of the motherboard
+ */
+module sheet8(
+	      input spkr_data,
+	      input dack0_brd_n,
+	      input tim_2_gate_spk,
+	      input xior_n,
+	      input xiow_n,
+	      input tc_cs_n,
+	      input xa0,
+	      input xa1,
+	      input [7:0] xd,
+	      input motor_off,
+	      input pclk,
+	      input reset_drv_n,
+	      output drq0,
+	      output irq0,
+	      output spkr_data_out,
+	      output tc_2_out,
+	      output cass_data_in
+	      );
+
+   // Wires
+   wire 	     out1, out2;
+   wire 	     motor_ctrl, sdata;
+   
+   // Registers
+   reg 		     pclka;
+   reg 		     drq0;
+   
+   // Assignments
+   assign cass_data_in = 1'b0;
+   assign tc_2_out = out2;
+   assign sdata = ~(out2 & spkr_data);
+   
+   // 8253 Module
+   intel8253 i8253(
+	           .gate({tim_2_gate_spk,1'b1,1'b1}),
+	           .clk({pclka,pclka,pclka}),
+	           .rd_n(xior_n),
+	           .wr_n(xiow_n),
+	           .cs_n(tc_cs_n),
+	           .a0(xa0),
+	           .a1(xa1),
+	           .d(xd),
+	           .out({out2,out1,irq0})
+		   );
+
+   // PCLK Flip-Flop
+   always @(posedge pclk) begin
+      if(reset_drv_n == 1'b0) begin
+	 pclka <= 1'b0;
+      end
+      else begin
+	 pclka <= ~pclka;
+      end
+   end
+   
+   // DRQ0 Flip-Flop
+   always @(posedge out1) begin
+      if(dack0_brd_n == 1'b0) begin
+	 drq0 <= 1'b0;
+      end
+      else begin
+	 drq0 <= 1'b1;
+      end
+   end
+
+   // 75477 Module
+   sn75477 sn7(
+	       .s(1'b1),
+	       .a({sdata,~motor_off}),
+	       .y({spkr_data_out,motor_ctrl})
+	       );
+   
+endmodule // sheet8
+
+/*
+ * sheet9:
+ * The ninth sheet of the motherboard
+ */
+module sheet9(
+	      input xior_n,
+	      input xiow_n,
+	      input ppics_n,
+	      input xa0,
+	      input xa1,
+	      input reset,
+	      input [7:0] xd,
+	      input pck,
+	      input io_ch_ck,
+	      input tc_2_out,
+	      input cass_data_in,
+	      input pclk,
+	      input reset_drv_n,
+	      output tim_2_gate_spk,
+	      output spkr_data,
+	      output motor_off,
+	      output enb_ram_pck_n,
+	      output enable_io_ck_n,
+	      output irq1,
+	      output np_instl_sw,
+	      inout kbd_clk,
+	      inout kbd_data
+	      );
+
+   // Wires
+   wire [7:0] 	    pa,pb,pc,py,px;
+   
+   // Registers
+
+   // Assignments
+   assign time_2_gate_spk = pb[0];
+   assign spkr_data = pb[1];
+   assign motor_off = pb[3];
+   assign enb_ram_pck_n = pb[4];
+   assign enable_io_ck_n = pb[5];
+   assign np_instl_sw = py[1];
+   
+   // SW2 Assignments
+   assign pc[0] = 1'b1;
+   assign pc[1] = 1'b1;
+   assign pc[2] = 1'b1;
+   assign pc[3] = ~pb[2]; // 256 k of RAM
+   
+   // Other Assignments
+   assign pa = (pb7 == 1'b1) ? px : py;
+   
+   // Intel 8255
+   intel8255 i8255(
+	           .rd_n(xior_n),
+	           .wr_n(xiow_n),
+	           .cs_n(ppics_n),
+	           .a({xa1,xa0}),
+	           .reset(reset),
+	           .d(xd),
+	           .pb(pb),
+	           .pc(pc),
+	           .pa(pa)
+		   );
+
+   // Assign SW1 settings
+   assign py[0] = 1'b1; // No floppy drive for now
+   assign py[1] = 1'b1; // No 8087
+   assign py[2] = 1'b0; // RAM Bank 256 K
+   assign py[3] = 1'b0; // RAM Bank 256 K
+   assign py[4] = 1'b1; // CGA 80x25
+   assign py[5] = 1'b0; // CGA 80x25
+   assign py[6] = 1'b1; // One floppy drive
+   assign py[7] = 1'b1; // One floppy drive
+   
+   // Keyboard Interface
+   keyinterface keyboard(
+			 .pclk(pclk),
+			 .reset_n(reset_drv_n),
+			 .pa(px),
+			 .pb6(pb[6]),
+			 .pb7(pb[7]),
+			 .irq1(irq1),
+			 .keyboard_clock(kbd_clk),
+			 .keyboard_data(kbd_data)
+			 // There is no keyboard_reset_n
+			 );
+   
+endmodule // sheet9
