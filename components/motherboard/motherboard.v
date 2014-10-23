@@ -16,15 +16,16 @@ module motherboard(
    wire 		 irq1; // 9 -> 1
    wire 		 irq2, irq3, irq4, irq5, irq6, irq7; // 10 -> 1
    wire 		 intr_cs_n; // 3 -> 1
-   wire 		 xior_n; // 5 -> 1, 2
-   wire 		 xiow_n; // 5 -> 1, 2
+   wire 		 xior_n; // 5 -> 1, 2, 4, 8, 9
+   wire 		 xiow_n; // 5 -> 1, 2, 3, 4, 8, 9
    wire 		 xa0_n; // 5 -> 1
    wire 		 aen_br0; // 2 -> 1, 5
    wire 		 aen_n; // 2 -> 1, 3
-   wire 		 clk_100; // 100 MHz Clock -> 1, 2
+   wire 		 clk_100; // 100 MHz Clock -> 1, 2, 3
    wire 		 osc; // 1 -> 10
    wire 		 pclk; // 1 -> 8, 9
    wire [19:0] 		 a; // 1 -> 3, 4, 5, 6, 10
+   wire [19:0] 		 xa; // 5 -> 3
    wire 		 lock_n; // 1 -> 2
    wire 		 reset; // 1 -> 2, 4, 9
    wire 		 clk88; // 1 -> 2, 5
@@ -35,8 +36,9 @@ module motherboard(
    wire 		 npnpi; // 1 -> 2
    wire 		 ior_n, memr_n, iow_n, memw_n; // 1 -> 5, 10
    wire 		 io_ch_rdy; // 10 -> 2
-   wire 		 dack_0_brd_n; // 4 -> 2
-   wire 		 xmemr_n; // 5 -> 2
+   wire 		 dack_0_brd_n; // 4 -> 2, 3
+   wire 		 xmemr_n; // 5 -> 2, 3, 4, 6
+   wire 		 xmemw_n; // 5 -> 3, 4, 6
    wire 		 clk; // 5 -> 2
    wire 		 hrq_dma_n; // 4 -> 2
    wire 		 npinstlsw; // 9 -> 2
@@ -52,6 +54,17 @@ module motherboard(
    wire 		 reset_drv; // 2 -> 10
    wire 		 io_ch_ck; // 2 -> 9
    wire 		 dclk; // 2 -> 4
+   wire 		 dack_0; // 4 -> 3
+   wire 		 dma_cs_n; // 3 -> 4
+   wire 		 tc_cs_n; // 3 -> 8
+   wire 		 ppi_cs_n; // 3 -> 9
+   wire 		 wrt_dma_pg_reg_n; // 3 -> 4
+   wire 		 rom_addr_sel_n; // 3 -> 5
+   wire 		 ram_addr_sel_n; // 3 -> 6
+   wire 		 addr_sel; // 3 -> 6
+   wire [3:0] 		 cas_n; // 3 -> 6, 7
+   wire [3:0] 		 ras_n; // 3 -> 6, 7
+   wire [7:0] 		 cs_n; // 3 -> 5
    
    
    // Some assignments
@@ -129,6 +142,41 @@ module motherboard(
 	     );
 
    // Sheet 3
+   sheet3 s3(
+	     .xa5(xa[5]),
+	     .xa6(xa[6]),
+	     .xa7(xa[7]),
+	     .xa8(xa[8]),
+	     .xa9(xa[9]),
+	     .aen_n(aen_n),
+	     .xiow_n(xiow_n),
+	     .a13(a[13]),
+	     .a14(a[14]),
+	     .a15(a[15]),
+	     .a16(a[16]),
+	     .a17(a[17]),
+	     .a18(a[18]),
+	     .a19(a[19]),
+	     .xmemw_n(xmemw_n),
+	     .dack_0_brd_n(dack_0_brd_n),
+	     .xmemr_n(xmemr_n),
+	     .reset_drv_n(reset_drv_n),
+	     .dack_0(dack_0),
+	     .clk_100(clk_100),
+	     .dma_cs_n(dma_cs_n),
+	     .intr_cs_n(intr_cs_n),
+	     .tc_cs_n(tc_cs_n),
+	     .ppi_cs_n(ppi_cs_n),
+	     .wrt_dma_pg_reg_n(wrt_dma_pg_reg_n),
+	     .rom_addr_sel_n(rom_addr_sel_n),
+	     .ram_addr_sel_n(ram_addr_sel_n),
+	     .addr_sel(addr_sel),
+	     .cas_n(cas_n),
+	     .ras_n(ras_n),
+	     .cs_n(cs_n)
+	     );
+
+   // Sheet 4
 endmodule // motherboard
 
 /*
