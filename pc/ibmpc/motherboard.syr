@@ -1,0 +1,496 @@
+Release 14.2 - xst P.28xd (lin64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> 
+Reading design: motherboard.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "motherboard.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "motherboard"
+Output Format                      : NGC
+Target Device                      : xc5vlx110t-1-ff1136
+
+---- Source Options
+Top Module Name                    : motherboard
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Off
+Reduce Control Sets                : Off
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+Cores Search Directories           : {"ipcore_dir"  }
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "ipcore_dir/romcore.v" in library work
+Compiling verilog file "ipcore_dir/ramcore.v" in library work
+Module <romcore> compiled
+Compiling verilog file "ipcore_dir/charram.v" in library work
+Module <ramcore> compiled
+Compiling verilog file "ipcore_dir/charcore.v" in library work
+Module <charram> compiled
+Compiling verilog file "ipcore_dir/attrram.v" in library work
+Module <charcore> compiled
+Compiling verilog file "../vdu.v" in library work
+Module <attrram> compiled
+Compiling verilog file "../timedelay.v" in library work
+Module <vdu> compiled
+Module <timedelay> compiled
+Compiling verilog file "../rds.v" in library work
+Module <tds> compiled
+Module <rds> compiled
+Compiling verilog file "../ram.v" in library work
+Module <rom> compiled
+Module <ram_bank> compiled
+Compiling verilog file "../ls670.v" in library work
+Module <ram_core_slice> compiled
+Compiling verilog file "../ls373.v" in library work
+Module <ls670> compiled
+Compiling verilog file "../ls280.v" in library work
+Module <ls373> compiled
+Compiling verilog file "../ls245.v" in library work
+Module <ls280> compiled
+Compiling verilog file "../ls244.v" in library work
+Module <ls245> compiled
+Compiling verilog file "../ls158.v" in library work
+Module <ls244> compiled
+Compiling verilog file "../ls138.v" in library work
+Module <ls158> compiled
+Compiling verilog file "../8288.v" in library work
+Module <ls138> compiled
+Compiling verilog file "../8284a.v" in library work
+Module <intel8288> compiled
+Compiling verilog file "../8259.v" in library work
+Module <intel8284a> compiled
+Compiling verilog file "../8255.v" in library work
+Module <intel8259> compiled
+Compiling verilog file "../8253.v" in library work
+Module <intel8255> compiled
+Module <intel8253> compiled
+Module <cntreg> compiled
+Module <downcntr> compiled
+Module <i8253> compiled
+Module <COUNT> compiled
+Module <modereg> compiled
+Module <outctrl> compiled
+Module <outlatch> compiled
+Compiling verilog file "../8237.v" in library work
+Module <read> compiled
+Compiling verilog file "../8088.v" in library work
+Module <intel8237A> compiled
+Compiling verilog file "../8042.v" in library work
+Module <intel8088> compiled
+Module <keyinterface> compiled
+Module <keyout> compiled
+Module <keyin> compiled
+Compiling verilog file "../75477.v" in library work
+Module <intel8042> compiled
+Compiling verilog file "../motherboard.v" in library work
+Module <sn75477> compiled
+Module <motherboard> compiled
+Module <sheet1> compiled
+Module <sheet2> compiled
+Module <sheet3> compiled
+Module <sheet4> compiled
+Module <sheet5> compiled
+Module <sheet6> compiled
+Module <sheet8> compiled
+Module <sheet9> compiled
+Module <sheet10> compiled
+No errors in compilation
+Analysis of file <"motherboard.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <motherboard> in library <work>.
+
+Analyzing hierarchy for module <sheet1> in library <work>.
+
+Analyzing hierarchy for module <sheet2> in library <work>.
+
+Analyzing hierarchy for module <sheet3> in library <work>.
+
+Analyzing hierarchy for module <sheet4> in library <work>.
+
+Analyzing hierarchy for module <sheet5> in library <work>.
+
+Analyzing hierarchy for module <sheet6> in library <work>.
+
+Analyzing hierarchy for module <sheet8> in library <work>.
+
+Analyzing hierarchy for module <sheet9> in library <work>.
+
+Analyzing hierarchy for module <sheet10> in library <work>.
+
+Analyzing hierarchy for module <intel8259> in library <work>.
+
+Analyzing hierarchy for module <ls373> in library <work>.
+
+Analyzing hierarchy for module <ls245> in library <work>.
+
+Analyzing hierarchy for module <timedelay> in library <work>.
+
+Analyzing hierarchy for module <ls138> in library <work>.
+
+Analyzing hierarchy for module <intel8237A> in library <work> with parameters.
+	BT = "10"
+	C0_16 = "0000000000000000"
+	C0_4 = "0000"
+	C0_6 = "000000"
+	C0_8 = "00000000"
+	C1_4 = "1111"
+	CFF_8 = "11111111"
+	IDLE = "00000000000000000000000000000000"
+	S0 = "00000000000000000000000000000001"
+	SS1 = "00000000000000000000000000000010"
+	SS2 = "00000000000000000000000000000100"
+	SS3 = "00000000000000000000000000000101"
+	SS4 = "00000000000000000000000000000110"
+	SSB2 = "00000000000000000000000000000011"
+	Z_4 = "ZZZZ"
+	Z_8 = "ZZZZZZZZ"
+
+Analyzing hierarchy for module <ls244> in library <work>.
+
+Analyzing hierarchy for module <ls670> in library <work>.
+
+Analyzing hierarchy for module <rom> in library <work>.
+
+Analyzing hierarchy for module <ram_bank> in library <work>.
+
+Analyzing hierarchy for module <ls158> in library <work>.
+
+Analyzing hierarchy for module <ls280> in library <work>.
+
+Analyzing hierarchy for module <intel8253> in library <work>.
+
+Analyzing hierarchy for module <sn75477> in library <work>.
+
+Analyzing hierarchy for module <intel8255> in library <work>.
+
+Analyzing hierarchy for module <keyinterface> in library <work> with parameters.
+	data = "00000010"
+	f0s0 = "00001000"
+	f0s1 = "00010000"
+	f0s2 = "00100000"
+	idle = "00000001"
+	wclr = "00000100"
+
+Analyzing hierarchy for module <vdu> in library <work> with parameters.
+	HOR_DISP_CHR = "00000000000000000000000001010000"
+	HOR_DISP_END = "1001111111"
+	HOR_SCAN_END = "1100011111"
+	HOR_SYNC_BEG = "1010001111"
+	HOR_SYNC_END = "1011101111"
+	HOR_VIDEO_OFF = "1010000111"
+	HOR_VIDEO_ON = "0000000111"
+	VER_DISP_CHR = "11001"
+	VER_DISP_END = "0110010000"
+	VER_SCAN_END = "0111000000"
+	VER_SYNC_BEG = "0110011011"
+	VER_SYNC_END = "0110011101"
+
+Analyzing hierarchy for module <tds> in library <work>.
+
+Analyzing hierarchy for module <ram_core_slice> in library <work> with parameters.
+	CAS = "10"
+	ERR = "11"
+	IDLE = "00"
+	RAS = "01"
+
+Analyzing hierarchy for module <i8253> in library <work>.
+
+Analyzing hierarchy for module <keyin> in library <work> with parameters.
+	b1 = "00000001"
+	b10 = "00001010"
+	b11 = "00001011"
+	b2 = "00000010"
+	b3 = "00000011"
+	b4 = "00000100"
+	b5 = "00000101"
+	b6 = "00000110"
+	b7 = "00000111"
+	b8 = "00001000"
+	b9 = "00001001"
+
+Analyzing hierarchy for module <COUNT> in library <work> with parameters.
+	CNTVAL = "00000000000000000000000000000000"
+
+Analyzing hierarchy for module <COUNT> in library <work> with parameters.
+	CNTVAL = "00000000000000000000000000000001"
+
+Analyzing hierarchy for module <COUNT> in library <work> with parameters.
+	CNTVAL = "00000000000000000000000000000010"
+
+Analyzing hierarchy for module <read> in library <work>.
+
+Analyzing hierarchy for module <cntreg> in library <work>.
+
+Analyzing hierarchy for module <modereg> in library <work>.
+
+Analyzing hierarchy for module <outlatch> in library <work>.
+
+Analyzing hierarchy for module <downcntr> in library <work>.
+
+Analyzing hierarchy for module <outctrl> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <motherboard>.
+Module <motherboard> is correct for synthesis.
+ 
+Analyzing module <sheet1> in library <work>.
+WARNING:Xst:2211 - "../8284a.v" line 427: Instantiating black box module <intel8284a>.
+WARNING:Xst:2211 - "../8088.v" line 442: Instantiating black box module <intel8088>.
+WARNING:Xst:2211 - "../8288.v" line 475: Instantiating black box module <intel8288>.
+Module <sheet1> is correct for synthesis.
+ 
+Analyzing module <intel8259> in library <work>.
+WARNING:Xst:905 - "../8259.v" line 77: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <icws>
+WARNING:Xst:905 - "../8259.v" line 117: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <topint>, <irr>, <isr>
+Module <intel8259> is correct for synthesis.
+ 
+Analyzing module <ls373> in library <work>.
+WARNING:Xst:1464 - "../ls373.v" line 31: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+Module <ls373> is correct for synthesis.
+ 
+Analyzing module <ls245> in library <work>.
+WARNING:Xst:1464 - "../ls245.v" line 21: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ls245.v" line 22: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+Module <ls245> is correct for synthesis.
+ 
+Analyzing module <sheet2> in library <work>.
+Module <sheet2> is correct for synthesis.
+ 
+Analyzing module <timedelay> in library <work>.
+Module <timedelay> is correct for synthesis.
+ 
+Analyzing module <tds> in library <work>.
+WARNING:Xst:1464 - "../timedelay.v" line 64: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+Module <tds> is correct for synthesis.
+ 
+Analyzing module <sheet3> in library <work>.
+WARNING:Xst:852 - "../motherboard.v" line 813: Unconnected input port 'rst' of instance 'td0' is tied to GND.
+Module <sheet3> is correct for synthesis.
+ 
+Analyzing module <ls138> in library <work>.
+WARNING:Xst:1464 - "../ls138.v" line 24: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ls138.v" line 24: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+Module <ls138> is correct for synthesis.
+ 
+Analyzing module <sheet4> in library <work>.
+Module <sheet4> is correct for synthesis.
+ 
+Analyzing module <intel8237A> in library <work>.
+	BT = 2'b10
+	C0_16 = 16'b0000000000000000
+	C0_4 = 4'b0000
+	C0_6 = 6'b000000
+	C0_8 = 8'b00000000
+	C1_4 = 4'b1111
+	CFF_8 = 8'b11111111
+	IDLE = 32'sb00000000000000000000000000000000
+	S0 = 32'sb00000000000000000000000000000001
+	SS1 = 32'sb00000000000000000000000000000010
+	SS2 = 32'sb00000000000000000000000000000100
+	SS3 = 32'sb00000000000000000000000000000101
+	SS4 = 32'sb00000000000000000000000000000110
+	SSB2 = 32'sb00000000000000000000000000000011
+	Z_4 = 4'bZZZZ
+	Z_8 = 8'bZZZZZZZZ
+"../8237.v" line 99: $display : Reset triggered
+WARNING:Xst:2323 - "../8237.v" line 178: Parameter 2 is not constant in call of system task $display.
+"../8237.v" line 178: $display : State: %d
+Module <intel8237A> is correct for synthesis.
+ 
+Analyzing module <ls244> in library <work>.
+WARNING:Xst:1464 - "../ls244.v" line 24: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ls244.v" line 32: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+Module <ls244> is correct for synthesis.
+ 
+Analyzing module <ls670> in library <work>.
+WARNING:Xst:1464 - "../ls670.v" line 48: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ls670.v" line 40: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+Module <ls670> is correct for synthesis.
+ 
+Analyzing module <sheet5> in library <work>.
+Module <sheet5> is correct for synthesis.
+ 
+Analyzing module <rom> in library <work>.
+WARNING:Xst:2211 - "ipcore_dir/romcore.v" line 85: Instantiating black box module <romcore>.
+Module <rom> is correct for synthesis.
+ 
+Analyzing module <sheet6> in library <work>.
+Module <sheet6> is correct for synthesis.
+ 
+Analyzing module <ram_bank> in library <work>.
+Module <ram_bank> is correct for synthesis.
+ 
+Analyzing module <ram_core_slice> in library <work>.
+	CAS = 2'b10
+	ERR = 2'b11
+	IDLE = 2'b00
+	RAS = 2'b01
+WARNING:Xst:1464 - "../ram.v" line 105: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 112: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 126: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 133: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 147: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 154: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 154: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 187: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 100: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:2211 - "ipcore_dir/ramcore.v" line 196: Instantiating black box module <ramcore>.
+Module <ram_core_slice> is correct for synthesis.
+ 
+Analyzing module <ls158> in library <work>.
+WARNING:Xst:1464 - "../ls158.v" line 20: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ls158.v" line 24: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+Module <ls158> is correct for synthesis.
+ 
+Analyzing module <ls280> in library <work>.
+Module <ls280> is correct for synthesis.
+ 
+Analyzing module <sheet8> in library <work>.
+Module <sheet8> is correct for synthesis.
+ 
+Analyzing module <intel8253> in library <work>.
+Module <intel8253> is correct for synthesis.
+ 
+Analyzing module <i8253> in library <work>.
+Module <i8253> is correct for synthesis.
+ 
+Analyzing module <COUNT.1> in library <work>.
+	CNTVAL = 32'sb00000000000000000000000000000000
+Module <COUNT.1> is correct for synthesis.
+ 
+Analyzing module <read> in library <work>.
+WARNING:Xst:905 - "../8253.v" line 664: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <MODE>, <LATCHLSB>, <LATCHMSB>, <READLSB>
+Module <read> is correct for synthesis.
+ 
+Analyzing module <cntreg> in library <work>.
+Module <cntreg> is correct for synthesis.
+ 
+Analyzing module <modereg> in library <work>.
+WARNING:Xst:905 - "../8253.v" line 434: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <D>
+Module <modereg> is correct for synthesis.
+ 
+Analyzing module <outlatch> in library <work>.
+Module <outlatch> is correct for synthesis.
+ 
+Analyzing module <downcntr> in library <work>.
+	Calling function <BCDDOWN>.
+	Calling function <BCDDOWN>.
+	Calling function <BCDDOWN>.
+ERROR:Xst:855 - "../8253.v" line 253: Unsupported procedural assignment for signal <LOAD>.
+ 
+Found 1 error(s). Aborting synthesis.
+--> 
+
+
+Total memory usage is 647624 kilobytes
+
+Number of errors   :    1 (   0 filtered)
+Number of warnings :   32 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+
