@@ -1,12 +1,15 @@
-input USER_CLK, // user clock at 100 MHz
-		   output PIEZO_SPEAKER, // speaker
-		   inout KEYBOARD_CLK, // keyboard clock
-		   inout KEYBOARD_DATA, // keyboard data
-		   output HDR1_2, // vga red o 0
-		   output HDR1_4, // vga red o 1
-		   output HDR1_6, // vga green o 0
-		   output HDR1_8, // vga green o 1
-		   output HDR1_10, // vga blue o 0
-		   output HDR1_12, // vga blue o 1
-		   output HDR1_14, // vga horizontal sync
-		   output HDR1_16 // vga vertical sync
+NET  HDR1_2		LOC="H33";
+NET  HDR1_4		LOC="F34";
+NET  HDR1_6		LOC="H34";
+NET  HDR1_8		LOC="G33";
+NET  HDR1_10		LOC="G32";
+NET  HDR1_12		LOC="H32";
+NET  HDR1_14		LOC="J32";
+NET  HDR1_16		LOC="J34";
+NET  KEYBOARD_CLK	LOC="T26";
+NET  KEYBOARD_DATA	LOC="T25";
+NET  PIEZO_SPEAKER	LOC="G30";
+NET  USER_CLK 		LOC="AH15";
+
+
+
