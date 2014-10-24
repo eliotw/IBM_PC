@@ -166,113 +166,83 @@ endmodule
  */
 module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
 
-  input         CLK,
-                OUT,
-                GATE,
-                LOADCNT;
-  input   [3:0] MODE;
-  input   [7:0] COUNTMSB,
-                COUNTLSB;
+   input         CLK,
+                 OUT,
+                 GATE,
+                 LOADCNT;
+   input [3:0] 	 MODE;
+   input [7:0] 	 COUNTMSB,
+                 COUNTLSB;
 
-  output [15:0] COUNT;
+   output [15:0] COUNT;
 
-  reg           LOAD,
-                CLRLOAD;
-  reg    [15:0] COUNT;
+   reg           LOAD,VLOADCNT,VGATE,
+                 CLRLOAD;
    
-  function [15:0] BCDDOWN;
-    input [1:0] VALUE;
-    begin
-      BCDDOWN = COUNT;
-      if (COUNT[3:0] < VALUE)
-        begin
-          BCDDOWN[3:0] = COUNT[3:0] + 10 - VALUE;
-          if (!COUNT[7:4])
-            begin
-              BCDDOWN[7:4] = 9;
-              if (!COUNT[11:8])
-                begin
-                  BCDDOWN[11:8] = 9;
-                  if (!COUNT[15:12])
-                    BCDDOWN[15:12] = 9;
-                  else
-                    BCDDOWN[15:12] = COUNT[15:12] - 1;
-                end
-              else
-                BCDDOWN[11:8] = COUNT[11:8] - 1;
-            end
-          else
-            BCDDOWN[7:4] = COUNT[7:4] - 1;
-        end
-      else
-        BCDDOWN[3:0] = COUNT[3:0] - VALUE;
-    end
-  endfunction
+   reg [15:0] 	 COUNT;
 
-  // Counter
-  always @(posedge CLK)
-    if (GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5))
-      if (LOAD)
-        begin
-          // Load Counter From Count Register
-          COUNT = {COUNTMSB,COUNTLSB};
-          // Clear Load Flag
-          CLRLOAD = 1;
-	   //$display("reload count: %h", COUNT);
-	   
-        end
-      else
-        begin
-          // Decrement Counter
-          if (MODE[3:1] == 3)
-            if (MODE[0])
-              if (OUT)
-                COUNT = BCDDOWN(1);
-              else
-                COUNT = BCDDOWN(3);
-            else
+   wire 	 RLOAD;
+
+   assign RLOAD = (VGATE&(
+			  (MODE[3:1]==1)
+			  |(MODE[3:1]==2)
+			  |(MODE[3:1]==5)))|VLOADCNT;
+   
+   
+   // Counter
+   always @(posedge CLK)
+     if (GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5))
+       if (LOAD)
+         begin
+            // Load Counter From Count Register
+	    COUNT = {COUNTMSB,COUNTLSB};
+            // Clear Load Flag
+	    CLRLOAD = 1;
+         end
+       else
+         begin
+            // Decrement Counter
+	    if (MODE[3:1] == 3)
               if (COUNT[0])
                 if (OUT)
                   COUNT = COUNT - 1; // was 1
-                else
-                  COUNT = COUNT - 3;
-              else 
+	        else
+		  COUNT = COUNT - 3;
+	      else 
                 COUNT = COUNT - 2;
-          else
-            if (MODE[0])
-              COUNT = BCDDOWN(1);
             else
               COUNT = COUNT - 1;
-          // Allow Counter To Be Loaded
-          CLRLOAD = 0;
-        end
+            // Allow Counter To Be Loaded
+	    CLRLOAD = 0;
+         end
 
-  // Reload Counter On Rising GATE In Modes 1, 2 and 5
-  always @(posedge GATE)
-    if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
-      assign LOAD = 'b1;
-    else 
-      assign LOAD = 'b0;
- 
-  // Set LOAD Until Cleared By Next Rising Clock Edge
-  always @(LOADCNT)
-    if (LOADCNT)
-      begin
-        assign LOAD = 'b1;
-        assign CLRLOAD = 'b0;
-      end
-    else
-      begin
-        deassign LOAD;
-        deassign CLRLOAD;
-      end
- 
-  always @(CLRLOAD)
-    if (CLRLOAD)
-      assign LOAD = 'b0;
-    else
-      deassign LOAD;
+   // VGATE
+   always @(posedge GATE or posedge LOAD) begin
+      if(LOAD) VGATE <= 1'b0;
+      else if(GATE) VGATE <= 1'b1;
+      else VGATE <= VGATE;
+   end
 
+   // VLOADCNT
+   always @(posedge LOADCNT or posedge LOAD) begin
+      if(LOAD) VLOADCNT <= 1'b0;
+      else if(LOADCNT) VLOADCNT <= 1'b1;
+      else VLOADCNT <= VLOADCNT;
+   end
+   
+   // Reload Counter On Rising GATE In Modes 1, 2 and 5
+   always @(posedge CLK) begin
+      if(VLOADCNT) begin
+	 LOAD = 1'b1;
+      end
+      else if(VGATE&&((MODE[3:1]==1)||(MODE[3:1]==2)||(MODE[3:1]==5))) begin
+	 LOAD = 1'b1;
+      end
+      else begin
+	 LOAD = 1'b0;
+      end
+   end // always @ (posedge CLK)
+    
 endmodule
 
 /*
@@ -476,6 +446,7 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
                RELOAD;
 
   reg          OUT,
+	       ZOUT,
                TRIG,
                RETRIG,
                RELOAD,
@@ -487,7 +458,9 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
       RELOAD = 'b0;
       // Clear Trigger Flag
       CLRTRIG = 'b0;
-      if ((GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5)) && OUTENABLE)
+       if(!SETOUT_) OUT = 1'b1;
+       else if(!CLROUT_) OUT = 1'b0;
+      else if ((GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5)) && OUTENABLE)
         case (MODE[3:1])
           0 : if (COUNT == 16'h2)
                 begin
@@ -553,10 +526,7 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
 	  
         endcase
     end
-  // Set OUT High Immediately When GATE Goes Low In Modes 2 and 3
-  always @(negedge GATE)
-    if ((MODE[3:1] == 2) || (MODE[3:1] == 3))
-      OUT = 'b1;
+
   // Retrigger When GATE Goes High In Modes 1, 2 and 5
   always @(posedge GATE)
     if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
@@ -567,21 +537,7 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
     else
       RETRIG = 'b0;
 
-  // Set or Clear OUT After A Mode Write
-  always @(SETOUT_) begin
-     if (!SETOUT_)
-       assign OUT = 'b1;
-     else
-       deassign OUT;
-  end
-   
-
-  always @(CLROUT_)
-    if (!CLROUT_)
-      assign OUT = 'b0;
-    else
-      deassign OUT;
-
+  
   // Counter Trigger Flag
   always @(RETRIG or MODETRIG) begin
      //$display("retrig %b modetrig %b",RETRIG,MODETRIG);
@@ -606,24 +562,11 @@ endmodule
  */
 module outlatch(COUNT, LATCHLSB, LATCHMSB, LATCHCNT);
 
-  input         LATCHCNT;
-  input  [15:0] COUNT;
+   input         LATCHCNT;
+   input [15:0]  COUNT;
 
-  output [ 7:0] LATCHLSB,
-                LATCHMSB;
-
-//  reg    [ 7:0] LATCHLSB,
-  //              LATCHMSB;
-/*
-  always @(LATCHCNT)
-    if (LATCHCNT)
-      begin
-        deassign LATCHLSB;                     // Latch Count
-        deassign LATCHMSB;
-      end
-    else
-      assign {LATCHMSB,LATCHLSB} = COUNT;    // Follow Counter If Not Latched 
-*/
+   output [ 7:0] LATCHLSB,
+                 LATCHMSB;
   
    assign {LATCHMSB,LATCHLSB} = COUNT;
     
@@ -707,9 +650,9 @@ module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
         SETREADLSB = 'b0;
       end
 
-   //always @((SEL & ~RD_ & WR_)) begin
+   always @((SEL & ~RD_ & WR_)) begin
   //    $display("dreg %b",DREG);
-   //end
+   end
    
   // Flag READLSB Is Set When In 2 Byte Mode And LSB Has Not Been Read Yet
   always @(SETREADLSB or MODEWRITE)
