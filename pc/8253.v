@@ -649,11 +649,11 @@ module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
         CLRREADLSB = 'b0;
         SETREADLSB = 'b0;
       end
-
+/*
    always @((SEL & ~RD_ & WR_)) begin
   //    $display("dreg %b",DREG);
    end
-   
+  */ 
   // Flag READLSB Is Set When In 2 Byte Mode And LSB Has Not Been Read Yet
   always @(SETREADLSB or MODEWRITE)
     if (SETREADLSB || MODEWRITE)

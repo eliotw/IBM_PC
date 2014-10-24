@@ -15,8 +15,8 @@ module intel8237A(
     dack,
     aen,
     adstb,
-    memr,
-    memw
+    memr_io,
+    memw_io
 );
 
 input clk, cs, reset, ready, hlda;
@@ -24,7 +24,8 @@ input [3:0] dreq;
 inout [7:0] db_io;
 inout ior_io, iow_io, eopp_io;
 inout [3:0] a3_0_io, a7_4_io;
-output hrq, aen, adstb, memr, memw;
+output hrq, aen, adstb;
+inout memr_io, memw_io; // change
 output [3:0] dack;
 
 parameter IDLE = 0;
@@ -54,7 +55,8 @@ reg [7:0] command;
 reg [5:0] mode;
 reg [3:0] request, mask;
 
-reg hrq, aen, adstb, memr, memw;
+reg hrq, aen, adstb;
+reg memr, memw; // change
 reg [3:0] dack;
 
 wire [3:0] drequest;
@@ -83,7 +85,8 @@ assign iow_io = iow;
 assign eopp_io = eopp;
 assign a3_0_io = a3_0;
 assign a7_4_io = a7_4;
-
+assign memr_io = (memr == 1'b1) ? 1'b1 : 1'bz;
+assign memw_io = (memw == 1'b1) ? 1'b1 : 1'bz;
 /*assign dreq_io = (state == 3'b0) ? dreq : 4'bZ;
 assign db_io = (state == 3'b0) ? db : 8'bZ;
 assign ior_io = (state == 3'b0) ? ior : 1'bZ;

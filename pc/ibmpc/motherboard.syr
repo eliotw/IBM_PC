@@ -396,9 +396,9 @@ Analyzing module <intel8237A> in library <work>.
 	SSB2 = 32'sb00000000000000000000000000000011
 	Z_4 = 4'bZZZZ
 	Z_8 = 8'bZZZZZZZZ
-"../8237.v" line 99: $display : Reset triggered
-WARNING:Xst:2323 - "../8237.v" line 178: Parameter 2 is not constant in call of system task $display.
-"../8237.v" line 178: $display : State: %d
+"../8237.v" line 102: $display : Reset triggered
+WARNING:Xst:2323 - "../8237.v" line 181: Parameter 2 is not constant in call of system task $display.
+"../8237.v" line 181: $display : State: %d
 Module <intel8237A> is correct for synthesis.
  
 Analyzing module <ls244> in library <work>.
@@ -463,7 +463,7 @@ Analyzing module <COUNT.1> in library <work>.
 Module <COUNT.1> is correct for synthesis.
  
 Analyzing module <read> in library <work>.
-WARNING:Xst:905 - "../8253.v" line 664: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+WARNING:Xst:905 - "../8253.v" line 607: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
    <MODE>, <LATCHLSB>, <LATCHMSB>, <READLSB>
 Module <read> is correct for synthesis.
  
@@ -471,7 +471,7 @@ Analyzing module <cntreg> in library <work>.
 Module <cntreg> is correct for synthesis.
  
 Analyzing module <modereg> in library <work>.
-WARNING:Xst:905 - "../8253.v" line 434: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+WARNING:Xst:905 - "../8253.v" line 404: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
    <D>
 Module <modereg> is correct for synthesis.
  
@@ -479,18 +479,1478 @@ Analyzing module <outlatch> in library <work>.
 Module <outlatch> is correct for synthesis.
  
 Analyzing module <downcntr> in library <work>.
-	Calling function <BCDDOWN>.
-	Calling function <BCDDOWN>.
-	Calling function <BCDDOWN>.
-ERROR:Xst:855 - "../8253.v" line 253: Unsupported procedural assignment for signal <LOAD>.
+Module <downcntr> is correct for synthesis.
  
-Found 1 error(s). Aborting synthesis.
+Analyzing module <outctrl> in library <work>.
+Module <outctrl> is correct for synthesis.
+ 
+Analyzing module <COUNT.2> in library <work>.
+	CNTVAL = 32'sb00000000000000000000000000000001
+Module <COUNT.2> is correct for synthesis.
+ 
+Analyzing module <COUNT.3> in library <work>.
+	CNTVAL = 32'sb00000000000000000000000000000010
+Module <COUNT.3> is correct for synthesis.
+ 
+Analyzing module <sn75477> in library <work>.
+Module <sn75477> is correct for synthesis.
+ 
+Analyzing module <sheet9> in library <work>.
+Module <sheet9> is correct for synthesis.
+ 
+Analyzing module <intel8255> in library <work>.
+WARNING:Xst:905 - "../8255.v" line 40: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <pa>, <pc>
+WARNING:Xst:905 - "../8255.v" line 56: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <pdi>
+Module <intel8255> is correct for synthesis.
+ 
+Analyzing module <keyinterface> in library <work>.
+	data = 8'b00000010
+	f0s0 = 8'b00001000
+	f0s1 = 8'b00010000
+	f0s2 = 8'b00100000
+	idle = 8'b00000001
+	wclr = 8'b00000100
+Module <keyinterface> is correct for synthesis.
+ 
+Analyzing module <keyin> in library <work>.
+	b1 = 8'b00000001
+	b10 = 8'b00001010
+	b11 = 8'b00001011
+	b2 = 8'b00000010
+	b3 = 8'b00000011
+	b4 = 8'b00000100
+	b5 = 8'b00000101
+	b6 = 8'b00000110
+	b7 = 8'b00000111
+	b8 = 8'b00001000
+	b9 = 8'b00001001
+Module <keyin> is correct for synthesis.
+ 
+Analyzing module <sheet10> in library <work>.
+Module <sheet10> is correct for synthesis.
+ 
+Analyzing module <vdu> in library <work>.
+	HOR_DISP_CHR = 32'sb00000000000000000000000001010000
+	HOR_DISP_END = 10'b1001111111
+	HOR_SCAN_END = 10'b1100011111
+	HOR_SYNC_BEG = 10'b1010001111
+	HOR_SYNC_END = 10'b1011101111
+	HOR_VIDEO_OFF = 10'b1010000111
+	HOR_VIDEO_ON = 10'b0000000111
+	VER_DISP_CHR = 5'b11001
+	VER_DISP_END = 10'b0110010000
+	VER_SCAN_END = 10'b0111000000
+	VER_SYNC_BEG = 10'b0110011011
+	VER_SYNC_END = 10'b0110011101
+WARNING:Xst:2211 - "ipcore_dir/charcore.v" line 153: Instantiating black box module <charcore>.
+WARNING:Xst:2211 - "ipcore_dir/charram.v" line 161: Instantiating black box module <charram>.
+WARNING:Xst:2211 - "ipcore_dir/attrram.v" line 170: Instantiating black box module <attrram>.
+Module <vdu> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+INFO:Xst:2679 - Register <request> in unit <intel8237A> has a constant value of 0000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <mask> in unit <intel8237A> has a constant value of 0000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <channel> in unit <intel8237A> has a constant value of 00 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <SETREADLSB> in unit <read> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <READLSB> in unit <read> has a constant value of 1 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <READLSB> in unit <read> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <COUNTLSB> in unit <cntreg> has a constant value of 00000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <LOAD> in unit <cntreg> has a constant value of 1 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <OUTEN> in unit <cntreg> has a constant value of 1 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <OUTEN> in unit <cntreg> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <COUNTMSB> in unit <cntreg> has a constant value of 00000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <LOADLSB> in unit <cntreg> has a constant value of 1 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <LOADLSB> in unit <cntreg> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <LATCHCNT> in unit <modereg> has a constant value of 1 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <RETRIG> in unit <outctrl> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <TRIG> in unit <outctrl> has a constant value of 1 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <TRIG> in unit <outctrl> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <vga0_we> in unit <vdu> has a constant value of 0 during circuit operation. The register is replaced by logic.
+
+Synthesizing Unit <intel8259>.
+    Related source file is "../8259.v".
+WARNING:Xst:647 - Input <cas> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <eoir<7:5>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <eoir<2>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:737 - Found 3-bit latch for signal <icws>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 8-bit latch for signal <imr>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 8-bit latch for signal <eoir>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <clrisr>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <irr_0>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <irr_1>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <irr_2>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <irr_3>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <irr_4>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <irr_5>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <irr_6>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <irr_7>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <icws> of Case statement line 0 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <icws> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Using one-hot encoding for signal <icws>.
+WARNING:Xst:737 - Found 8-bit latch for signal <dout>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+    Found 8-bit tristate buffer for signal <d>.
+    Found 8-bit register for signal <irr_clr>.
+    Found 8-bit register for signal <isr>.
+    Found 1-bit register for signal <recint>.
+    Summary:
+	inferred  17 D-type flip-flop(s).
+	inferred   8 Tristate(s).
+Unit <intel8259> synthesized.
+
+
+Synthesizing Unit <ls373>.
+    Related source file is "../ls373.v".
+WARNING:Xst:737 - Found 8-bit latch for signal <rq>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Found 8-bit tristate buffer for signal <q>.
+    Summary:
+	inferred   8 Tristate(s).
+Unit <ls373> synthesized.
+
+
+Synthesizing Unit <ls245>.
+    Related source file is "../ls245.v".
+    Found 8-bit tristate buffer for signal <a>.
+    Found 8-bit tristate buffer for signal <b>.
+    Summary:
+	inferred  16 Tristate(s).
+Unit <ls245> synthesized.
+
+
+Synthesizing Unit <tds>.
+    Related source file is "../timedelay.v".
+    Found 1-bit register for signal <q>.
+    Summary:
+	inferred   1 D-type flip-flop(s).
+Unit <tds> synthesized.
+
+
+Synthesizing Unit <ls138>.
+    Related source file is "../ls138.v".
+Unit <ls138> synthesized.
+
+
+Synthesizing Unit <intel8237A>.
+    Related source file is "../8237.v".
+WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <command<5:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Register <dack<2>> equivalent to <dack<1>> has been removed
+    Register <dack<3>> equivalent to <dack<1>> has been removed
+    Found 1-bit tristate buffer for signal <memr_io>.
+    Found 1-bit tristate buffer for signal <memw_io>.
+    Found 2-bit register for signal <dack<1:0>>.
+    Found 1-bit register for signal <aen>.
+    Found 1-bit register for signal <adstb>.
+    Found 1-bit register for signal <hrq>.
+    Found 16-bit adder for signal <$add0000> created at line 393.
+    Found 16-bit subtractor for signal <$sub0000> created at line 391.
+    Found 16-bit subtractor for signal <$sub0001> created at line 395.
+    Found 4-bit tristate buffer for signal <a3_0>.
+    Found 4-bit tristate buffer for signal <a7_4>.
+    Found 1-bit register for signal <adstb_needed>.
+    Found 16-bit register for signal <base_addr>.
+    Found 16-bit register for signal <base_word>.
+    Found 8-bit register for signal <command>.
+    Found 16-bit register for signal <curr_addr>.
+    Found 16-bit register for signal <curr_word>.
+    Found 8-bit tristate buffer for signal <db>.
+    Found 4-bit xor2 for signal <drequest>.
+    Found 1-bit tristate buffer for signal <eopp>.
+    Found 1-bit register for signal <ff>.
+    Found 1-bit tristate buffer for signal <ior>.
+    Found 1-bit tristate buffer for signal <iow>.
+    Found 1-bit register for signal <mast_clr>.
+    Found 1-bit register for signal <memr>.
+    Found 1-bit register for signal <memw>.
+    Found 6-bit register for signal <mode>.
+    Found 4-bit register for signal <Mtridata_a3_0>.
+    Found 4-bit register for signal <Mtridata_a7_4>.
+    Found 8-bit register for signal <Mtridata_db>.
+    Found 1-bit register for signal <Mtridata_eopp>.
+    Found 1-bit register for signal <Mtridata_ior>.
+    Found 1-bit register for signal <Mtridata_iow>.
+    Found 1-bit register for signal <Mtrien_a3_0>.
+    Found 1-bit register for signal <Mtrien_a7_4>.
+    Found 1-bit register for signal <Mtrien_db>.
+    Found 1-bit register for signal <Mtrien_eopp>.
+    Found 1-bit register for signal <Mtrien_ior>.
+    Found 1-bit register for signal <Mtrien_iow>.
+    Found 3-bit register for signal <state>.
+    Summary:
+	inferred 116 D-type flip-flop(s).
+	inferred   3 Adder/Subtractor(s).
+	inferred  21 Tristate(s).
+Unit <intel8237A> synthesized.
+
+
+Synthesizing Unit <ls244>.
+    Related source file is "../ls244.v".
+    Found 4-bit tristate buffer for signal <y1>.
+    Found 4-bit tristate buffer for signal <y2>.
+    Summary:
+	inferred   8 Tristate(s).
+Unit <ls244> synthesized.
+
+
+Synthesizing Unit <ls670>.
+    Related source file is "../ls670.v".
+WARNING:Xst:737 - Found 4-bit latch for signal <q0>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 4-bit latch for signal <q1>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 4-bit latch for signal <q2>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 4-bit latch for signal <q3>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Found 4-bit tristate buffer for signal <q>.
+    Summary:
+	inferred   4 Tristate(s).
+Unit <ls670> synthesized.
+
+
+Synthesizing Unit <ls158>.
+    Related source file is "../ls158.v".
+Unit <ls158> synthesized.
+
+
+Synthesizing Unit <ls280>.
+    Related source file is "../ls280.v".
+WARNING:Xst:646 - Signal <sum<3:1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 4-bit adder for signal <sum>.
+    Found 4-bit adder for signal <sum$addsub0000> created at line 16.
+    Found 4-bit adder for signal <sum$addsub0001> created at line 16.
+    Found 4-bit adder for signal <sum$addsub0002> created at line 16.
+    Found 4-bit adder for signal <sum$addsub0003> created at line 16.
+    Found 4-bit adder for signal <sum$addsub0004> created at line 16.
+    Found 4-bit adder for signal <sum$addsub0005> created at line 16.
+    Found 4-bit adder for signal <sum$addsub0006> created at line 16.
+    Summary:
+	inferred   8 Adder/Subtractor(s).
+Unit <ls280> synthesized.
+
+
+Synthesizing Unit <sn75477>.
+    Related source file is "../75477.v".
+Unit <sn75477> synthesized.
+
+
+Synthesizing Unit <read>.
+    Related source file is "../8253.v".
+WARNING:Xst:737 - Found 8-bit latch for signal <DREG>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <CLRLATCH>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <CLRREADLSB>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+    Found 8-bit tristate buffer for signal <D>.
+    Summary:
+	inferred   8 Tristate(s).
+Unit <read> synthesized.
+
+
+Synthesizing Unit <cntreg>.
+    Related source file is "../8253.v".
+WARNING:Xst:647 - Input <CLK> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <MODE<3:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:653 - Signal <SETLOADLSB> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+    Found 8-bit register for signal <COUNTLSB>.
+    Found 8-bit register for signal <COUNTMSB>.
+    Found 1-bit register for signal <CLRLOADLSB>.
+    Summary:
+	inferred  17 D-type flip-flop(s).
+Unit <cntreg> synthesized.
+
+
+Synthesizing Unit <modereg>.
+    Related source file is "../8253.v".
+WARNING:Xst:647 - Input <D<7:6>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 6-bit register for signal <MODE>.
+    Summary:
+	inferred   6 D-type flip-flop(s).
+Unit <modereg> synthesized.
+
+
+Synthesizing Unit <outlatch>.
+    Related source file is "../8253.v".
+WARNING:Xst:647 - Input <LATCHCNT> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <outlatch> synthesized.
+
+
+Synthesizing Unit <downcntr>.
+    Related source file is "../8253.v".
+WARNING:Xst:647 - Input <MODE<0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <RLOAD> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <CLRLOAD> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:2474 - Clock and clock enable of register <VGATE> are driven by the same logic. The clock enable is removed.
+WARNING:Xst:2474 - Clock and clock enable of register <VLOADCNT> are driven by the same logic. The clock enable is removed.
+    Found 16-bit register for signal <COUNT>.
+    Found 16-bit subtractor for signal <COUNT$addsub0000>.
+    Found 1-bit register for signal <LOAD>.
+    Found 1-bit register for signal <VGATE>.
+    Found 1-bit register for signal <VLOADCNT>.
+    Summary:
+	inferred  19 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <downcntr> synthesized.
+
+
+Synthesizing Unit <outctrl>.
+    Related source file is "../8253.v".
+WARNING:Xst:1780 - Signal <ZOUT> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <RELOAD>.
+    Found 1-bit register for signal <OUT>.
+    Found 1-bit register for signal <CLRTRIG>.
+    Found 1-bit register for signal <RETRIG>.
+    Summary:
+	inferred   4 D-type flip-flop(s).
+Unit <outctrl> synthesized.
+
+
+Synthesizing Unit <intel8255>.
+    Related source file is "../8255.v".
+WARNING:Xst:737 - Found 8-bit latch for signal <pb>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 8-bit latch for signal <pdo>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+    Found 8-bit tristate buffer for signal <d>.
+    Summary:
+	inferred   8 Tristate(s).
+Unit <intel8255> synthesized.
+
+
+Synthesizing Unit <keyin>.
+    Related source file is "../8042.v".
+    Found finite state machine <FSM_0> for signal <b>.
+    -----------------------------------------------------------------------
+    | States             | 11                                             |
+    | Transitions        | 11                                             |
+    | Inputs             | 0                                              |
+    | Outputs            | 11                                             |
+    | Clock              | clk                       (falling_edge)       |
+    | Power Up State     | 00000001                                       |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 8-bit register for signal <dataout>.
+    Found 1-bit register for signal <newdata>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   9 D-type flip-flop(s).
+Unit <keyin> synthesized.
+
+
+Synthesizing Unit <sheet1>.
+    Related source file is "../motherboard.v".
+WARNING:Xst:647 - Input <pwr_good> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <xrd> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <intr> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:653 - Signal <inta_n> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:646 - Signal <inta> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <aen_brd> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+Unit <sheet1> synthesized.
+
+
+Synthesizing Unit <sheet4>.
+    Related source file is "../motherboard.v".
+WARNING:Xst:653 - Signal <xa1> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:653 - Signal <xa0> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+Unit <sheet4> synthesized.
+
+
+Synthesizing Unit <timedelay>.
+    Related source file is "../timedelay.v".
+Unit <timedelay> synthesized.
+
+
+Synthesizing Unit <rom>.
+    Related source file is "../rds.v".
+    Found 8-bit tristate buffer for signal <d>.
+    Summary:
+	inferred   8 Tristate(s).
+Unit <rom> synthesized.
+
+
+Synthesizing Unit <ram_core_slice>.
+    Related source file is "../ram.v".
+WARNING:Xst:646 - Signal <wer> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <fsm> of Case statement line 104 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <fsm> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+INFO:Xst:1799 - State 11 is never reached in FSM <fsm>.
+    Found finite state machine <FSM_1> for signal <fsm>.
+    -----------------------------------------------------------------------
+    | States             | 3                                              |
+    | Transitions        | 7                                              |
+    | Inputs             | 2                                              |
+    | Outputs            | 3                                              |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | rst                       (positive)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 00                                             |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+WARNING:Xst:737 - Found 8-bit latch for signal <caddr>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 8-bit latch for signal <raddr>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 8-bit latch for signal <caddr$mux0000>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 8-bit latch for signal <raddr$mux0000>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+    Found 9-bit tristate buffer for signal <dout>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   9 Tristate(s).
+Unit <ram_core_slice> synthesized.
+
+
+Synthesizing Unit <COUNT_1>.
+    Related source file is "../8253.v".
+WARNING:Xst:646 - Signal <CLRLATCH> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+Unit <COUNT_1> synthesized.
+
+
+Synthesizing Unit <COUNT_2>.
+    Related source file is "../8253.v".
+WARNING:Xst:646 - Signal <CLRLATCH> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+Unit <COUNT_2> synthesized.
+
+
+Synthesizing Unit <COUNT_3>.
+    Related source file is "../8253.v".
+WARNING:Xst:646 - Signal <CLRLATCH> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+Unit <COUNT_3> synthesized.
+
+
+Synthesizing Unit <keyinterface>.
+    Related source file is "../8042.v".
+WARNING:Xst:647 - Input <pb6> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found finite state machine <FSM_2> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 6                                              |
+    | Transitions        | 14                                             |
+    | Inputs             | 3                                              |
+    | Outputs            | 6                                              |
+    | Clock              | pclk                      (rising_edge)        |
+    | Reset              | reset                     (positive)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 00000001                                       |
+    | Power Up State     | 00000001                                       |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 256x8-bit ROM for signal <tdata>.
+    Found 1-bit register for signal <irq1>.
+    Found 8-bit register for signal <pa>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   1 ROM(s).
+	inferred   9 D-type flip-flop(s).
+Unit <keyinterface> synthesized.
+
+
+Synthesizing Unit <vdu>.
+    Related source file is "../vdu.v".
+WARNING:Xst:1780 - Signal <write> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <vga5_rw> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <stb> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <status_reg1> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <out_data> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <buff_we> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <buff_data_in> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <attr_we> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <attr_data_in> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 2-bit register for signal <vga_blue_o>.
+    Found 8-bit tristate buffer for signal <d>.
+    Found 1-bit register for signal <vert_sync>.
+    Found 2-bit register for signal <vga_red_o>.
+    Found 1-bit register for signal <horiz_sync>.
+    Found 2-bit register for signal <vga_green_o>.
+    Found 11-bit register for signal <attr0_addr>.
+    Found 11-bit register for signal <attr_addr>.
+    Found 23-bit up counter for signal <blink_count>.
+    Found 11-bit register for signal <buff0_addr>.
+    Found 11-bit register for signal <buff_addr>.
+    Found 7-bit register for signal <col1_addr>.
+    Found 7-bit register for signal <col_addr>.
+    Found 1-bit register for signal <cursor_on>.
+    Found 1-bit register for signal <cursor_on_h>.
+    Found 7-bit comparator equal for signal <cursor_on_h$cmp_eq0000> created at line 326.
+    Found 1-bit register for signal <cursor_on_v>.
+    Found 5-bit comparator equal for signal <cursor_on_v$cmp_eq0000> created at line 327.
+    Found 4-bit comparator greatequal for signal <cursor_on_v$cmp_ge0000> created at line 327.
+    Found 4-bit comparator lessequal for signal <cursor_on_v$cmp_le0000> created at line 327.
+    Found 8-bit register for signal <dataout>.
+    Found 1-bit xor2 for signal <fg_or_bg>.
+    Found 10-bit up counter for signal <h_count>.
+    Found 7-bit register for signal <hor_addr>.
+    Found 1-bit register for signal <intense>.
+    Found 20-bit comparator greatequal for signal <io_range$cmp_ge0000> created at line 203.
+    Found 20-bit comparator lessequal for signal <io_range$cmp_le0000> created at line 203.
+    Found 20-bit comparator greatequal for signal <mem_range$cmp_ge0000> created at line 204.
+    Found 20-bit comparator less for signal <mem_range$cmp_lt0000> created at line 204.
+    Found 4-bit register for signal <reg_adr>.
+    Found 4-bit register for signal <reg_cur_end>.
+    Found 4-bit register for signal <reg_cur_start>.
+    Found 7-bit register for signal <reg_hcursor>.
+    Found 5-bit register for signal <reg_vcursor>.
+    Found 5-bit register for signal <row1_addr>.
+    Found 5-bit subtractor for signal <row1_addr$addsub0000> created at line 374.
+    Found 5-bit comparator less for signal <row1_addr$cmp_lt0000> created at line 374.
+    Found 5-bit register for signal <row_addr>.
+    Found 10-bit up counter for signal <v_count>.
+    Found 7-bit register for signal <ver_addr>.
+    Found 7-bit adder for signal <ver_addr$add0000> created at line 380.
+    Found 1-bit register for signal <vga0_rw>.
+    Found 1-bit register for signal <vga1_rw>.
+    Found 1-bit register for signal <vga2_rw>.
+    Found 11-bit adder for signal <vga_addr>.
+    Found 3-bit register for signal <vga_bg_colour>.
+    Found 3-bit register for signal <vga_fg_colour>.
+    Found 8-bit register for signal <vga_shift>.
+    Found 1-bit register for signal <video_on>.
+    Found 1-bit register for signal <video_on_h>.
+    Found 1-bit register for signal <video_on_v>.
+    Summary:
+	inferred   3 Counter(s).
+	inferred 146 D-type flip-flop(s).
+	inferred   3 Adder/Subtractor(s).
+	inferred   9 Comparator(s).
+	inferred   8 Tristate(s).
+Unit <vdu> synthesized.
+
+
+Synthesizing Unit <sheet2>.
+    Related source file is "../motherboard.v".
+WARNING:Xst:646 - Signal <dma_wait_n> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <holda>.
+    Found 1-bit register for signal <aen_brd>.
+    Found 1-bit register for signal <rdy_wait>.
+    Found 1-bit register for signal <allow_nmi>.
+    Found 1-bit register for signal <b3>.
+    Found 1-bit register for signal <b5>.
+    Found 1-bit register for signal <b7>.
+    Summary:
+	inferred   7 D-type flip-flop(s).
+Unit <sheet2> synthesized.
+
+
+Synthesizing Unit <sheet3>.
+    Related source file is "../motherboard.v".
+WARNING:Xst:647 - Input <dack_0> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <y0<7:1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <x1> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <x0> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <wrt_nmi_reg_n> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <dack0> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:1780 - Signal <cas1> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <cas0> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <sheet3> synthesized.
+
+
+Synthesizing Unit <sheet5>.
+    Related source file is "../motherboard.v".
+WARNING:Xst:2563 - Inout <ior_n> is never assigned. Tied to value Z.
+WARNING:Xst:2563 - Inout <a<13>> is never assigned. Tied to value Z.
+WARNING:Xst:2563 - Inout <a<14>> is never assigned. Tied to value Z.
+WARNING:Xst:2563 - Inout <a<15>> is never assigned. Tied to value Z.
+WARNING:Xst:2563 - Inout <a<16>> is never assigned. Tied to value Z.
+WARNING:Xst:2563 - Inout <a<17>> is never assigned. Tied to value Z.
+WARNING:Xst:2563 - Inout <a<18>> is never assigned. Tied to value Z.
+WARNING:Xst:2563 - Inout <a<19>> is never assigned. Tied to value Z.
+    Found 1-bit tristate buffer for signal <ior_n>.
+    Found 1-bit tristate buffer for signal <a<19>>.
+    Found 1-bit tristate buffer for signal <a<18>>.
+    Found 1-bit tristate buffer for signal <a<17>>.
+    Found 1-bit tristate buffer for signal <a<16>>.
+    Found 1-bit tristate buffer for signal <a<15>>.
+    Found 1-bit tristate buffer for signal <a<14>>.
+    Found 1-bit tristate buffer for signal <a<13>>.
+    Summary:
+	inferred   8 Tristate(s).
+Unit <sheet5> synthesized.
+
+
+Synthesizing Unit <sheet9>.
+    Related source file is "../motherboard.v".
+WARNING:Xst:647 - Input <tc_2_out> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1305 - Output <tim_2_gate_spk> is never assigned. Tied to value 0.
+WARNING:Xst:647 - Input <pck> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <io_ch_ck> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <cass_data_in> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <time_2_gate_spk> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <pc<7:4>> is used but never assigned. This sourceless signal will be automatically connected to value 0000.
+Unit <sheet9> synthesized.
+
+
+Synthesizing Unit <sheet10>.
+    Related source file is "../motherboard.v".
+WARNING:Xst:647 - Input <clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <reset_drv> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <dack_n> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <tc> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <aen> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <osc> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <ale> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <sheet10> synthesized.
+
+
+Synthesizing Unit <ram_bank>.
+    Related source file is "../ram.v".
+    Found 1-bit tristate buffer for signal <mdp>.
+    Found 8-bit tristate buffer for signal <md>.
+    Summary:
+	inferred   9 Tristate(s).
+Unit <ram_bank> synthesized.
+
+
+Synthesizing Unit <i8253>.
+    Related source file is "../8253.v".
+Unit <i8253> synthesized.
+
+
+Synthesizing Unit <sheet6>.
+    Related source file is "../motherboard.v".
+    Found 1-bit register for signal <pck_n>.
+    Found 1-bit register for signal <pck>.
+    Found 1-bit tristate buffer for signal <mdp>.
+    Summary:
+	inferred   2 D-type flip-flop(s).
+	inferred   1 Tristate(s).
+Unit <sheet6> synthesized.
+
+
+Synthesizing Unit <intel8253>.
+    Related source file is "../8253.v".
+Unit <intel8253> synthesized.
+
+
+Synthesizing Unit <sheet8>.
+    Related source file is "../motherboard.v".
+WARNING:Xst:646 - Signal <motor_ctrl> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <drq0>.
+    Found 1-bit register for signal <pclka>.
+    Summary:
+	inferred   2 D-type flip-flop(s).
+Unit <sheet8> synthesized.
+
+
+Synthesizing Unit <motherboard>.
+    Related source file is "../motherboard.v".
+WARNING:Xst:653 - Signal <wrt_nmi_reg_n> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:653 - Signal <npinstlsw> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:646 - Signal <np_instl_sw> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <lock_n> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:646 - Signal <io_ch_ck_n> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <io_ch_ck_m> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:653 - Signal <dma_wait_n> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+Unit <motherboard> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 1
+ 256x8-bit ROM                                         : 1
+# Adders/Subtractors                                   : 17
+ 11-bit adder                                          : 1
+ 16-bit adder                                          : 1
+ 16-bit subtractor                                     : 5
+ 4-bit adder                                           : 8
+ 5-bit subtractor                                      : 1
+ 7-bit adder                                           : 1
+# Counters                                             : 3
+ 10-bit up counter                                     : 2
+ 23-bit up counter                                     : 1
+# Registers                                            : 228
+ 1-bit register                                        : 185
+ 11-bit register                                       : 4
+ 16-bit register                                       : 3
+ 2-bit register                                        : 3
+ 3-bit register                                        : 3
+ 4-bit register                                        : 5
+ 5-bit register                                        : 3
+ 6-bit register                                        : 4
+ 7-bit register                                        : 5
+ 8-bit register                                        : 13
+# Latches                                              : 45
+ 1-bit latch                                           : 12
+ 3-bit latch                                           : 1
+ 4-bit latch                                           : 4
+ 8-bit latch                                           : 28
+# Comparators                                          : 9
+ 20-bit comparator greatequal                          : 2
+ 20-bit comparator less                                : 1
+ 20-bit comparator lessequal                           : 1
+ 4-bit comparator greatequal                           : 1
+ 4-bit comparator lessequal                            : 1
+ 5-bit comparator equal                                : 1
+ 5-bit comparator less                                 : 1
+ 7-bit comparator equal                                : 1
+# Tristates                                            : 55
+ 1-bit tristate buffer                                 : 18
+ 4-bit tristate buffer                                 : 9
+ 8-bit tristate buffer                                 : 24
+ 9-bit tristate buffer                                 : 4
+# Xors                                                 : 5
+ 1-bit xor2                                            : 5
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_2> for best encoding.
+Optimizing FSM <s9/keyboard/state/FSM> on signal <state[1:3]> with gray encoding.
+----------------------
+ State    | Encoding
+----------------------
+ 00000001 | 000
+ 00001000 | 001
+ 00000010 | 011
+ 00000100 | 010
+ 00010000 | 110
+ 00100000 | 111
+----------------------
+Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <s6/rb0/central_ram_core/fsm/FSM> on signal <fsm[1:2]> with gray encoding.
+Optimizing FSM <s6/rb1/central_ram_core/fsm/FSM> on signal <fsm[1:2]> with gray encoding.
+Optimizing FSM <s6/rb2/central_ram_core/fsm/FSM> on signal <fsm[1:2]> with gray encoding.
+Optimizing FSM <s6/rb3/central_ram_core/fsm/FSM> on signal <fsm[1:2]> with gray encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00    | 00
+ 01    | 01
+ 10    | 11
+ 11    | unreached
+-------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <s9/keyboard/keyinmod/b/FSM> on signal <b[1:11]> with one-hot encoding.
+-------------------------
+ State    | Encoding
+-------------------------
+ 00000001 | 00000000001
+ 00000010 | 00000000010
+ 00000011 | 00000000100
+ 00000100 | 00000001000
+ 00000101 | 00000010000
+ 00000110 | 00000100000
+ 00000111 | 00001000000
+ 00001000 | 00010000000
+ 00001001 | 00100000000
+ 00001010 | 01000000000
+ 00001011 | 10000000000
+-------------------------
+Reading core <ipcore_dir/romcore.ngc>.
+Reading core <ipcore_dir/charcore.ngc>.
+Reading core <ipcore_dir/charram.ngc>.
+Reading core <ipcore_dir/attrram.ngc>.
+Reading core <ipcore_dir/ramcore.ngc>.
+Loading core <romcore> for timing and area information for instance <crc>.
+Loading core <charcore> for timing and area information for instance <char_rom>.
+Loading core <charram> for timing and area information for instance <ram_2k_char>.
+Loading core <attrram> for timing and area information for instance <ram_2k_attr>.
+Loading core <ramcore> for timing and area information for instance <central_ram_core>.
+WARNING:Xst:1290 - Hierarchical block <td10> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td15> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td20> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td25> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td30> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td35> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td40> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td45> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td50> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td55> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td60> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td65> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td70> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td75> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td80> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td85> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td90> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td95> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td100> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td105> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td110> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td115> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td120> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td125> is unconnected in block <td2>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td55> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td60> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td65> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td70> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td75> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td80> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td85> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td90> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td95> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td100> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td105> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td110> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td115> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td120> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td125> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td30> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td35> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td40> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td45> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <td50> is unconnected in block <td0>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <ls1580> is unconnected in block <s6>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <ls1581> is unconnected in block <s6>.
+   It will be removed from the design.
+INFO:Xst:2261 - The FF/Latch <vga_red_o_0> in Unit <vgamod> is equivalent to the following FF/Latch, which will be removed : <vga_blue_o_0> 
+WARNING:Xst:1426 - The value init of the FF/Latch 0 hinder the constant cleaning in the block irr_1.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch 0 hinder the constant cleaning in the block irr_2.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch 0 hinder the constant cleaning in the block irr_3.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch 0 hinder the constant cleaning in the block irr_4.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch 0 hinder the constant cleaning in the block irr_5.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch 0 hinder the constant cleaning in the block irr_6.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch 0 hinder the constant cleaning in the block irr_7.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch 0 hinder the constant cleaning in the block irr_0.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1426 - The value init of the FF/Latch 0 hinder the constant cleaning in the block 2.
+   You should achieve better results by setting this init to 0.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <VGATE> (without init value) has a constant value of 0 in block <DOWNCNTR>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <RETRIG> (without init value) has a constant value of 0 in block <OUTCTRL>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <VGATE> (without init value) has a constant value of 0 in block <DOWNCNTR>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <RETRIG> (without init value) has a constant value of 0 in block <OUTCTRL>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <VGATE> (without init value) has a constant value of 0 in block <DOWNCNTR>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <RETRIG> (without init value) has a constant value of 0 in block <OUTCTRL>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <dataout_7> (without init value) has a constant value of 0 in block <vgamod>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <irr_clr_3> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <irr_clr_4> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <irr_clr_5> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <irr_clr_6> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <irr_clr_7> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <allow_nmi> (without init value) has a constant value of 0 in block <s2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <b7> (without init value) has a constant value of 0 in block <s2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <Mtridata_eopp> (without init value) has a constant value of 1 in block <i8237>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <irr_2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <irr_3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <irr_4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <irr_5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <irr_6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <irr_7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <recint> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <isr_0> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <isr_1> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <isr_2> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <isr_3> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <isr_4> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <isr_5> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <isr_6> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <isr_7> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <irr_clr_0> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <irr_clr_1> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <irr_clr_2> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <command_0> of sequential type is unconnected in block <i8237>.
+WARNING:Xst:2677 - Node <command_1> of sequential type is unconnected in block <i8237>.
+WARNING:Xst:2677 - Node <command_2> of sequential type is unconnected in block <i8237>.
+WARNING:Xst:2677 - Node <command_3> of sequential type is unconnected in block <i8237>.
+WARNING:Xst:2677 - Node <command_4> of sequential type is unconnected in block <i8237>.
+WARNING:Xst:2677 - Node <command_5> of sequential type is unconnected in block <i8237>.
+WARNING:Xst:2677 - Node <MODE_0> of sequential type is unconnected in block <MODEREG>.
+WARNING:Xst:2677 - Node <MODE_0> of sequential type is unconnected in block <MODEREG>.
+WARNING:Xst:2677 - Node <MODE_0> of sequential type is unconnected in block <MODEREG>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <0> is unconnected in block <5>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <hrq> is unconnected in block <i8237>.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <Mtridata_eopp> (without init value) has a constant value of 1 in block <i8237>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <pck_n> of sequential type is unconnected in block <s6>.
+WARNING:Xst:1710 - FF/Latch <Mtridata_eopp> (without init value) has a constant value of 1 in block <i8237>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <Mtridata_eopp> (without init value) has a constant value of 1 in block <i8237>. This FF/Latch will be trimmed during the optimization process.
+
+Synthesizing (advanced) Unit <downcntr>.
+The following registers are absorbed into accumulator <COUNT>: 1 register on signal <COUNT>.
+Unit <downcntr> synthesized (advanced).
+WARNING:Xst:2677 - Node <command_0> of sequential type is unconnected in block <intel8237A>.
+WARNING:Xst:2677 - Node <command_1> of sequential type is unconnected in block <intel8237A>.
+WARNING:Xst:2677 - Node <command_2> of sequential type is unconnected in block <intel8237A>.
+WARNING:Xst:2677 - Node <command_3> of sequential type is unconnected in block <intel8237A>.
+WARNING:Xst:2677 - Node <command_4> of sequential type is unconnected in block <intel8237A>.
+WARNING:Xst:2677 - Node <command_5> of sequential type is unconnected in block <intel8237A>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 3
+# ROMs                                                 : 1
+ 256x8-bit ROM                                         : 1
+# Adders/Subtractors                                   : 11
+ 1-bit adder                                           : 1
+ 1-bit adder carry in                                  : 1
+ 11-bit adder                                          : 1
+ 16-bit adder                                          : 1
+ 16-bit subtractor                                     : 2
+ 4-bit adder                                           : 1
+ 4-bit adder carry in                                  : 2
+ 5-bit subtractor                                      : 1
+ 7-bit adder                                           : 1
+# Counters                                             : 3
+ 10-bit up counter                                     : 2
+ 23-bit up counter                                     : 1
+# Accumulators                                         : 3
+ 16-bit down loadable accumulator                      : 3
+# Registers                                            : 436
+ Flip-Flops                                            : 436
+# Latches                                              : 45
+ 1-bit latch                                           : 12
+ 3-bit latch                                           : 1
+ 4-bit latch                                           : 4
+ 8-bit latch                                           : 28
+# Comparators                                          : 9
+ 20-bit comparator greatequal                          : 2
+ 20-bit comparator less                                : 1
+ 20-bit comparator lessequal                           : 1
+ 4-bit comparator greatequal                           : 1
+ 4-bit comparator lessequal                            : 1
+ 5-bit comparator equal                                : 1
+ 5-bit comparator less                                 : 1
+ 7-bit comparator equal                                : 1
+# Xors                                                 : 5
+ 1-bit xor2                                            : 5
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <Mtridata_eopp> (without init value) has a constant value of 1 in block <intel8237A>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <dataout_7> (without init value) has a constant value of 0 in block <vdu>. This FF/Latch will be trimmed during the optimization process.
+
+ERROR:Xst:528 - Multi-source in Unit <read> on signal <READLSB>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C0/READ/READLSB> in Unit <read> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <LOAD>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C0/CNTREG/LOAD> in Unit <cntreg> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <OUTEN>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C0/CNTREG/OUTEN> in Unit <cntreg> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <LOADLSB>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C0/CNTREG/LOADLSB> in Unit <cntreg> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<7>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTLSB_7>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTLSB<7>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<6>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTLSB_6>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTLSB<6>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<5>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTLSB_5>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTLSB<5>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<4>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTLSB_4>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTLSB<4>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<3>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTLSB_3>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTLSB<3>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<2>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTLSB_2>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTLSB<2>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<1>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTLSB_1>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTLSB<1>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<0>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTLSB_0>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTLSB<0>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<7>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTMSB_7>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTMSB<7>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<6>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTMSB_6>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTMSB<6>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<5>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTMSB_5>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTMSB<5>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<4>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTMSB_4>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTMSB<4>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<3>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTMSB_3>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTMSB<3>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<2>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTMSB_2>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTMSB<2>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<1>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTMSB_1>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTMSB<1>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<0>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C0/CNTREG/COUNTMSB_0>
+   Signal <s8/i8253/vcs/C0/CNTREG/COUNTMSB<0>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <outctrl> on signal <TRIG>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C0/OUTCTRL/TRIG> in Unit <outctrl> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <outctrl> on signal <RETRIG>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDR instance <s8/i8253/vcs/C0/OUTCTRL/RETRIG>
+   Signal <s8/i8253/vcs/C0/OUTCTRL/RETRIG> in Unit <outctrl> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <read> on signal <READLSB>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C1/READ/READLSB> in Unit <read> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <LOAD>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C1/CNTREG/LOAD> in Unit <cntreg> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <OUTEN>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C1/CNTREG/OUTEN> in Unit <cntreg> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <LOADLSB>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C1/CNTREG/LOADLSB> in Unit <cntreg> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<7>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTLSB_7>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTLSB<7>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<6>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTLSB_6>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTLSB<6>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<5>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTLSB_5>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTLSB<5>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<4>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTLSB_4>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTLSB<4>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<3>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTLSB_3>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTLSB<3>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<2>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTLSB_2>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTLSB<2>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<1>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTLSB_1>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTLSB<1>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<0>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTLSB_0>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTLSB<0>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<7>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTMSB_7>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTMSB<7>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<6>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTMSB_6>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTMSB<6>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<5>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTMSB_5>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTMSB<5>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<4>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTMSB_4>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTMSB<4>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<3>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTMSB_3>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTMSB<3>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<2>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTMSB_2>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTMSB<2>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<1>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTMSB_1>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTMSB<1>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<0>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C1/CNTREG/COUNTMSB_0>
+   Signal <s8/i8253/vcs/C1/CNTREG/COUNTMSB<0>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <outctrl> on signal <TRIG>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C1/OUTCTRL/TRIG> in Unit <outctrl> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <outctrl> on signal <RETRIG>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDR instance <s8/i8253/vcs/C1/OUTCTRL/RETRIG>
+   Signal <s8/i8253/vcs/C1/OUTCTRL/RETRIG> in Unit <outctrl> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <read> on signal <READLSB>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C2/READ/READLSB> in Unit <read> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <LOAD>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C2/CNTREG/LOAD> in Unit <cntreg> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <OUTEN>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C2/CNTREG/OUTEN> in Unit <cntreg> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <LOADLSB>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C2/CNTREG/LOADLSB> in Unit <cntreg> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<7>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTLSB_7>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTLSB<7>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<6>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTLSB_6>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTLSB<6>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<5>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTLSB_5>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTLSB<5>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<4>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTLSB_4>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTLSB<4>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<3>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTLSB_3>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTLSB<3>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<2>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTLSB_2>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTLSB<2>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<1>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTLSB_1>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTLSB<1>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTLSB<0>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTLSB_0>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTLSB<0>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<7>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTMSB_7>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTMSB<7>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<6>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTMSB_6>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTMSB<6>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<5>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTMSB_5>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTMSB<5>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<4>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTMSB_4>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTMSB<4>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<3>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTMSB_3>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTMSB<3>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<2>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTMSB_2>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTMSB<2>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<1>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTMSB_1>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTMSB<1>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <cntreg> on signal <COUNTMSB<0>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDE instance <s8/i8253/vcs/C2/CNTREG/COUNTMSB_0>
+   Signal <s8/i8253/vcs/C2/CNTREG/COUNTMSB<0>> in Unit <cntreg> is assigned to GND
+
+ERROR:Xst:528 - Multi-source in Unit <outctrl> on signal <TRIG>; this signal is connected to multiple drivers.
+Drivers are: 
+   Signal <s8/i8253/vcs/C2/OUTCTRL/TRIG> in Unit <outctrl> is assigned to VCC
+
+ERROR:Xst:528 - Multi-source in Unit <outctrl> on signal <RETRIG>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of FDR instance <s8/i8253/vcs/C2/OUTCTRL/RETRIG>
+   Signal <s8/i8253/vcs/C2/OUTCTRL/RETRIG> in Unit <outctrl> is assigned to GND
+
+
+Total REAL time to Xst completion: 10.00 secs
+Total CPU time to Xst completion: 8.87 secs
+ 
 --> 
 
 
-Total memory usage is 647624 kilobytes
+Total memory usage is 700396 kilobytes
 
-Number of errors   :    1 (   0 filtered)
-Number of warnings :   32 (   0 filtered)
-Number of infos    :    0 (   0 filtered)
+Number of errors   :   66 (   0 filtered)
+Number of warnings :  399 (   0 filtered)
+Number of infos    :   32 (   0 filtered)
 

@@ -532,7 +532,7 @@ module sheet2(
 	      input xior_n,
 	      input xiow_n,
 	      input dack_0_brd_n,
-	      input xmemr_n,
+	      inout xmemr_n,
 	      input clk,
 	      input s0_n,
 	      input s1_n,
@@ -543,7 +543,7 @@ module sheet2(
 	      input npnpi,
 	      input npinstlsw,
 	      input pck_n,
-	      input xd7,
+	      inout xd7,
 	      input wrt_nmi_reg_n,
 	      input io_ch_ck_n,
 	      input enable_io_clk_n,
@@ -715,9 +715,9 @@ module sheet3(
 	      input a17,
 	      input a18,
 	      input a19,
-	      input xmemw_n,
+	      inout xmemw_n,
 	      input dack_0_brd_n,
-	      input xmemr_n,
+	      inout xmemr_n,
 	      input reset_drv_n,
 	      input dack_0,
 	      input clk_100,
@@ -882,8 +882,8 @@ module sheet4(
 		    .dack({dack3_n,dack2_n,dack1_n,dack0_brd_n}),
 		    .aen(), // nc
 		    .adstb(adstb),
-		    .memr(xmemr_n),
-		    .memw(xmemw_n)
+		    .memr_io(xmemr_n),
+		    .memw_io(xmemw_n)
 		    );
 
    // LS 244
@@ -1005,10 +1005,10 @@ endmodule // sheet5
  */
 module sheet6(
 	      inout [7:0] d,
-	      input xmemr_n,
+	      inout xmemr_n,
 	      input [3:0] ras_n,
 	      input [3:0] cas_n,
-			input xmemw_n,
+			inout xmemw_n,
 	      input [15:0] a,
 	      input addr_sel,
 	      input ram_addr_sel_n,
@@ -1235,7 +1235,7 @@ module sheet9(
 	      input xa0,
 	      input xa1,
 	      input reset,
-	      input [7:0] xd,
+	      inout [7:0] xd,
 	      input pck,
 	      input io_ch_ck,
 	      input tc_2_out,

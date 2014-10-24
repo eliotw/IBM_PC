@@ -27,6 +27,7 @@
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="ipcore_dir/coregen.log"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="motherboard.cmd_log"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="motherboard.lso"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGR" xil_pn:name="motherboard.ngr"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="motherboard.prj"/>
     <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="motherboard.stx"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="motherboard.syr"/>
@@ -48,6 +49,7 @@
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
     <transform xil_pn:end_ts="1414100468" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1414100468">
       <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
     </transform>
     <transform xil_pn:end_ts="1414100468" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="7573836444929256284" xil_pn:start_ts="1414100468">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -83,13 +85,14 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1414104066" xil_pn:in_ck="-208983512326176176" xil_pn:name="TRANEXT_xstsynthesize_virtex5" xil_pn:prop_ck="5331973343451962537" xil_pn:start_ts="1414104061">
+    <transform xil_pn:end_ts="1414167962" xil_pn:in_ck="-208983512326176176" xil_pn:name="TRANEXT_xstsynthesize_virtex5" xil_pn:prop_ck="5331973343451962537" xil_pn:start_ts="1414167950">
       <status xil_pn:value="FailedRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name=".lso"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="motherboard.lso"/>
+      <outfile xil_pn:name="motherboard.ngr"/>
       <outfile xil_pn:name="motherboard.prj"/>
       <outfile xil_pn:name="motherboard.syr"/>
       <outfile xil_pn:name="motherboard.xst"/>
