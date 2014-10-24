@@ -14,6 +14,14 @@ module intel8284a(
 
 input rdy1, aen1, fclk;
 output ready, clk, reset, osc, pclk, vclk;
+
+// FAKE COMMANDS
+assign ready = rdy1;
+assign reset = aen1;
+assign clk = fclk;
+assign osc = fclk;
+assign pclk = fclk;
+assign vclk = fclk;
 /*
 reg [5:0] counter;
 reg [2:0] counter2;

@@ -163,7 +163,7 @@ module motherboard(
 	     .pck_n(pck_n),
 	     .xd7(xd[7]),
 	     .wrt_nmi_reg_n(wrt_nmi_reg_n),
-	     .io_ch_ck_n(io_ch_ck_m),
+	     .io_ch_ck_n(io_ch_ck_n),
 	     .enable_io_clk_n(enable_io_ck_n),
 	     .clk88(clk88),
 	     .clk_100(clk_100),
@@ -172,6 +172,7 @@ module motherboard(
 	     .dma_aen_n(dma_aen_n),
 	     .aen_brd(aen_br0),
 	     .aen_n(aen_n),
+		  .dma_wait_n(dma_wait_n),
 	     .holda(holda),
 	     .reset_drv_n(reset_drv_n),
 	     .reset_drv(reset_drv),
@@ -206,6 +207,7 @@ module motherboard(
 	     .intr_cs_n(intr_cs_n),
 	     .tc_cs_n(tc_cs_n),
 	     .ppi_cs_n(ppi_cs_n),
+		  .wrt_nmi_reg_n(wrt_nmi_reg_n),
 	     .wrt_dma_pg_reg_n(wrt_dma_pg_reg_n),
 	     .rom_addr_sel_n(rom_addr_sel_n),
 	     .ram_addr_sel_n(ram_addr_sel_n),
@@ -324,7 +326,7 @@ module motherboard(
 	     .enb_ram_pck_n(enb_ram_pck_n),
 	     .enable_io_ck_n(enable_io_ck_n),
 	     .irq1(irq1),
-	     .np_instl_sw(np_instl_sw),
+	     .np_instl_sw(npinstlsw),
 	     .kbd_clk(KEYBOARD_CLK),
 	     .kbd_data(KEYBOARD_DATA)
 	     );
@@ -385,7 +387,7 @@ module sheet1(
 	      output osc, // oscillator clock
 	      output pclk, // i/o clock
 	      inout tri [19:0] a, // address bus
-	      input lock_n, // lock cpu
+	      output lock_n, // lock cpu
 	      output reset, // reset cpu
 	      output clk88, // 4.77 MHz clock for cpu
 	      inout [7:0] d, // data bus
@@ -441,24 +443,28 @@ module sheet1(
 	);
 
    // Intel 8088 CPU
-   // Intel 8088 SPEC SUBJECT TO CHANGE
-   intel8088 i8088(
-	           .rqgto_n(1'b1), // rqgto_n
-	           .intr(intr), // interrupt
-	           .ready(ready), // ready
-	           .clk(clk88), // clock
-	           .reset(reset), // reset
-	           .nmi(nmi), // nmi
-	           .ad(adp), // ad
-	           .rqgti_n(rqgti_n), //rqgti not
-	           .qs(qs), // qs
-	           .test_n(test_n), // test not
-	           .mnmx(1'b0), // mnmx
-	           .a(ap), // a
-	           .s_n({s2_n,s1_n,s0_n}), // s not
-	           .lock(~lock_n) // lock
-		   );
-
+	processor_8088 i8088(
+		.clk(clk88),
+		.rst(reset),
+		.mnmx(1'b0),		         // minimum and maximum mode. high-> min, low-> max
+		.ready(ready),              // inform processor that mem or I/0 is ready for data transfer
+		.hold(1'b1),               // suspends the processor, rqgto
+		.nmi(nmi),                // causes non-maskable type-2 interrupt
+		.intr(intr),               // maskable interrupt request
+		.test_n(test_n),             // examined by processor testing instructions
+		.a(ap),               // address bus
+		.hlda(rqgti_n),               // acknowledges that the processor is suspended
+		.inta_n(qs[1]),             // indicates that an intr request has been received
+		.ale(qs[0]),                // indicates that current data on address/data bus are address
+		.den_n(s0_n),              // disconents data bus connection
+		.dtr(s1_n),               // indicates direction of data transfer. low-> to 8088, high-> from 8088
+		.wr_n(lock_n),               // indicates that the processor is writing to mem or I/O device
+		.rd_n(),               // indicates that the processor is reading from mem or I/O device (not connect)
+		.iom(s2_n),               // indicates that processor is accessing mem or I/O. low-> mem, high-> I/O
+		.sso(),                // status output (not connect)
+		.ad(adp)           // address/data bus
+	);
+	
    // Intel 8259 Programmable Interrupt Controller
    intel8259 i8259(
 		   .cs_n(intr_cs_n),
@@ -469,7 +475,7 @@ module sheet1(
 		   .a0(xa0_n),
 		   .inta_n(inta_n),
 		   .ir(irq),
-		   .inta(inta), // int
+		   .inta(intr), // int
 		   .spen_n(spen_n)
 		   );
 
@@ -571,6 +577,7 @@ module sheet2(
 	      output dma_aen_n,
 	      output reg aen_brd,
 	      output aen_n,
+			output dma_wait_n,
 	      output reg holda,
 	      output reset_drv_n,
 	      output reset_drv,
@@ -742,6 +749,7 @@ module sheet3(
 	      output intr_cs_n,
 	      output tc_cs_n,
 	      output ppi_cs_n,
+			output wrt_nmi_reg_n,
 	      output wrt_dma_pg_reg_n,
 	      output rom_addr_sel_n,
 	      output ram_addr_sel_n,
@@ -920,8 +928,8 @@ module sheet4(
 		.ra(dack3_n),
 		.rb(dack2_n),
 		.read(dma_aen_n),
-		.wa(xa0),
-		.wb(xa1),
+		.wa(xa[0]),
+		.wb(xa[1]),
 		.write(wrt_dma_pg_reg_n)
 		);
 
@@ -1000,7 +1008,7 @@ module sheet5(
 		);
 
    ls245 ls2451(
-		.a({e1,memw_n,memr_n,iow_n,iow_r}),
+		.a({e1,memw_n,memr_n,iow_n,ior_n}),
 		.b({e0,xmemw_n,xmemr_n,xiow_n,xior_n}),
 		.dir(dma_aen_n),
 		.g_n(aen_brd)
@@ -1276,7 +1284,7 @@ module sheet9(
    // Registers
 
    // Assignments
-   assign time_2_gate_spk = pb[0];
+   assign tim_2_gate_spk = pb[0];
    assign spkr_data = pb[1];
    assign motor_off = pb[3];
    assign enb_ram_pck_n = pb[4];
