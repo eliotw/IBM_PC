@@ -591,17 +591,12 @@ module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
 
    reg         CLRLATCH,
                READLSB,
-               SETREADLSB,
                CLRREADLSB;
 
    reg [7:0]   DREG;
 
    assign D = (SEL & ~RD_ & WR_) ? DREG : 8'bz;
-   /*
-   always @((SEL & ~RD_ & WR_)) begin
-      $display("dreg %b",DREG);
-   end
-   */
+   
    // Read Output Latch 
    always @(SEL or RD_ or WR_)
      if (SEL & ~RD_ & WR_)         
@@ -641,19 +636,14 @@ module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
           DREG = 8'b0;
           CLRLATCH = 'b0;
           CLRREADLSB = 'b0;
-          SETREADLSB = 'b0;
        end
 
-   // Flag READLSB Is Set When In 2 Byte Mode And LSB Has Not Been Read Yet
-   always @(SETREADLSB or MODEWRITE)
-     if (SETREADLSB || MODEWRITE)
-       READLSB = 'b1;
+   always @(CLRREADLSB or MODEWRITE) begin
+      if(MODEWRITE) READLSB = 1'b1;
+      else if(CLRREADLSB) READLSB = 1'b0;
+      else READLSB = READLSB;
+   end
+   
+endmodule // read
 
-   // Flag READLSB Is Cleared When In 2 Byte Mode And LSB Has Been Read
-   always @(CLRREADLSB)
-     begin
-	if (CLRREADLSB)
-	  READLSB = 1'b0;
-     end
 
-endmodule
