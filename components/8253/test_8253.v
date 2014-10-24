@@ -193,7 +193,7 @@ module test_8253;
       write(2'b11,8'h54);
       write(2'b01,8'h12);
       
-      @(posedge clk);
+      //@(posedge clk);
       for(i=0; i<17; i=i+1) begin
 	 @(posedge clk);
 	 if(out[1] !== 1'b1) begin

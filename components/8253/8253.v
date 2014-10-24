@@ -166,20 +166,28 @@ endmodule
  */
 module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
 
-  input         CLK,
-                OUT,
-                GATE,
-                LOADCNT;
-  input   [3:0] MODE;
-  input   [7:0] COUNTMSB,
-                COUNTLSB;
+   input         CLK,
+                 OUT,
+                 GATE,
+                 LOADCNT;
+   input [3:0] 	 MODE;
+   input [7:0] 	 COUNTMSB,
+                 COUNTLSB;
 
-  output [15:0] COUNT;
+   output [15:0] COUNT;
 
-  reg           LOAD,
-                CLRLOAD;
+   reg           LOAD,VLOADCNT,VGATE,
+                 CLRLOAD;
    
-  reg    [15:0] COUNT;
+   reg [15:0] 	 COUNT;
+
+   wire 	 RLOAD;
+
+   assign RLOAD = (VGATE&(
+			  (MODE[3:1]==1)
+			  |(MODE[3:1]==2)
+			  |(MODE[3:1]==5)))|VLOADCNT;
+   
    
    // Counter
    always @(posedge CLK)
@@ -208,13 +216,60 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
 	    CLRLOAD = 0;
          end
 
+   // VGATE
+   always @(posedge GATE or posedge LOAD) begin
+      if(LOAD) VGATE <= 1'b0;
+      else if(GATE) VGATE <= 1'b1;
+      else VGATE <= VGATE;
+   end
+
+   // VLOADCNT
+   always @(posedge LOADCNT or posedge LOAD) begin
+      if(LOAD) VLOADCNT <= 1'b0;
+      else if(LOADCNT) VLOADCNT <= 1'b1;
+      else VLOADCNT <= VLOADCNT;
+   end
+   
    // Reload Counter On Rising GATE In Modes 1, 2 and 5
-   always @(posedge GATE)
-     if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
-       LOAD = 'b1;
-     else 
-       LOAD = 'b0;
- 
+   always @(posedge CLK) begin
+      if(VLOADCNT) begin
+	 LOAD = 1'b1;
+      end
+      else if(VGATE&&((MODE[3:1]==1)||(MODE[3:1]==2)||(MODE[3:1]==5))) begin
+	 LOAD = 1'b1;
+      end
+      else begin
+	 LOAD = 1'b0;
+      end
+   end // always @ (posedge CLK)
+   
+/*
+   // Load VCLRLOAD
+   always @(posedge GATE or posedge CLRLOAD) begin
+      if(GATE) VCLRLOAD = 1'b0;
+      else if(CLRLOAD) VCLRLOAD = 1'b1;
+      else VCLRLOAD = VCLRLOAD;
+   end
+
+   // Load VLOADCNT
+   always @(posedge GATE or posedge LOADCNT or posedge CLRLOAD) begin
+      if(GATE) VLOADCNT = 1'b0;
+      else if(CLRLOAD) VLOADCNT = 1'b0;
+      else if(LOADCNT) VLOADCNT = 1'b1;
+      else VLOADCNT = VLOADCNT;
+   end
+
+   always @(VCLRLOAD) begin
+      if(VCLRLOAD) VLOAD = 1'b0;
+      else VLOAD = ULOAD;
+   end
+
+   always @(VLOADCNT) begin
+      if(VLOADCNT) LOAD = 1'b1;
+      else LOAD = VLOAD;
+   end
+  */ 
+ /*
    // Set LOAD Until Cleared By Next Rising Clock Edge
    always @(LOADCNT)
      if (LOADCNT)
@@ -233,7 +288,7 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
        assign LOAD = 'b0;
      else
        deassign LOAD;
-    
+   */ 
 endmodule
 
 /*
