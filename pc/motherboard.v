@@ -35,7 +35,7 @@ module motherboard(
    wire 		 clk_100; // 100 MHz Clock -> 1, 2, 3
    wire 		 osc; // 1 -> 10
    wire 		 pclk; // 1 -> 8, 9
-   wire [19:0] 		 a; // 1 -> 3, 4, 5, 6, 10
+   tri [19:0] 		 a; // 1 -> 3, 4, 5, 6, 10
    wire [12:0] 		 xa; // 5 -> 3, 4
    wire 		 lock_n; // 1 -> 2
    wire 		 reset; // 1 -> 2, 4, 9
@@ -384,7 +384,7 @@ module sheet1(
 	      input clk_100, // 100 MHz clock = USER_CLK
 	      output osc, // oscillator clock
 	      output pclk, // i/o clock
-	      inout [19:0] a, // address bus
+	      inout tri [19:0] a, // address bus
 	      input lock_n, // lock cpu
 	      output reset, // reset cpu
 	      output clk88, // 4.77 MHz clock for cpu
@@ -843,7 +843,7 @@ module sheet4(
 	      inout [7:0] xd,
 	      input dma_aen_n,
 	      input wrt_dma_pg_reg_n,
-	      inout [19:0] a,
+	      inout tri [19:0] a,
 	      output hrq_dma_n,
 	      output tc,
 	      output dack0,
