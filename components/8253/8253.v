@@ -178,69 +178,6 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
       end
    end // always @ (clear or WR_ or MODE or lsbflag)
    
-   // Count Register
-   /*
-   always @(posedge WR_)
-     if (SEL & RD_)
-       case (MODE[5:4])	
-         'b01 : begin
-            // Write LSB
-            COUNTLSB = D;
-            // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
-            if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
-              LOAD = 1'b1;
-            // Enable Output
-            OUTEN = 1'b1;
-         end
-         'b10 : begin
-            // Write MSB
-            COUNTMSB = D;
-            // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
-            if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
-              LOAD = 1'b1;
-            // Enable Output
-            OUTEN = 1'b1;
-         end
-         'b11 : if (LOADLSB)
-           begin
-              // Write LSB First
-              COUNTLSB = D;
-              CLRLOADLSB = 1'b1; 
-           end
-         else
-           begin
-              // Write MSB Only After LSB Loaded
-              COUNTMSB = D;
-	      CLRLOADLSB = 1'b0;
-              // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
-              if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
-                LOAD = 'b1;
-              // Enable Output
-              OUTEN = 'b1;
-           end
-       endcase
-
-   always @(posedge CLK)
-     LOAD = 'b0;
-
-  // Flag LOADLSB Is Set When In 2 Byte Mode And LSB Has Not Been Read Yet
-  always @(clear)
-    if (clear)
-      begin
-        OUTEN = 'b0;
-        LOADLSB = 'b1;
-        COUNTLSB = 8'b0;
-        COUNTMSB = 8'b0;
-      end
-
-  // Flag LOADLSB Is Cleared When In 2 Byte Mode And LSB Has Been Read
-  always @(CLRLOADLSB) begin
-     //$display("CLEARLOADLSB");
-     if (CLRLOADLSB)
-       LOADLSB = 'b0;
-  end
-   */
-
 endmodule
 
 /*
@@ -420,12 +357,6 @@ module COUNT(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT);
   wire [15:0] COUNT;
 
   wire LOADCNT = LOAD | RELOAD;
-
-   always @(COUNT) begin
-      if(CNTVAL == 0) begin	 
-	 //$display("cnt: %b",COUNT);
-      end
-   end
    
   read
     READ(`D,LATCHLSB,LATCHMSB,MODE[5:4],SEL,RD_,WR_,MODEWRITE,CLRLATCH);
@@ -513,132 +444,123 @@ endmodule
  * outctrl:
  * Module for out control for intel 8253
  */
-module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROUT_,
+module outctrl(COUNT,MODE,CLK,GATE,OUTENABLE,MODETRIG,LOAD,SETOUT_,CLROUT_,
                RELOAD, OUT);
 
-  input        CLK,
-               GATE,
-               LOAD,
-               SETOUT_,
-               CLROUT_,
-               MODETRIG,
-               OUTENABLE;
-  input [ 3:1] MODE;
-  input [15:0] COUNT;
+   input        CLK,
+		GATE,
+		LOAD,
+		SETOUT_,
+		CLROUT_,
+		MODETRIG,
+		OUTENABLE;
+   input [ 3:1] MODE;
+   input [15:0] COUNT;
 
-  output       OUT,
-               RELOAD;
+   output       OUT,
+		RELOAD;
 
-  reg          OUT,
-	       ZOUT,
-               TRIG,
-               RETRIG,
-               RELOAD,
-               CLRTRIG;
+   reg          OUT,
+		ZOUT,
+		TRIG,
+		RETRIG,
+		RELOAD,
+		CLRTRIG;
 
-  always @(negedge CLK)
-    begin
-      // Clear Counter Reload Flag
-      RELOAD = 'b0;
-      // Clear Trigger Flag
-      CLRTRIG = 'b0;
-       if(!SETOUT_) OUT = 1'b1;
-       else if(!CLROUT_) OUT = 1'b0;
-      else if ((GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5)) && OUTENABLE)
-        case (MODE[3:1])
-          0 : if (COUNT == 16'h2)
-                begin
-                  // Set Out High On Terminal Count
-                  OUT = 'b1;
-                end
-          1 : if (COUNT)
-                begin
-                  if (TRIG & ~LOAD)
-                    OUT = 'b0;
-                end
-              else
-                begin
-                  // Set Out High When Counter Hits 0
-                  OUT = 'b1;
-                  // Do Not Retrigger
-                  CLRTRIG = 'b1;
-                end
-          2 : if (COUNT == 16'h2) // was originally 1
-                begin
-                  // Set Out Low When Counter Reaches 1 
-                  OUT = 'b0;
-                  // Reload New Count
-                  RELOAD = 'b1;
-                end
-              else
-                begin
-                  // Set Out High When Counter Is Not 1 
-                  OUT = 'b1;
-                end
-          3 : if (COUNT == 16'h4) // was originally 2
-            begin
-	       if(LOAD == 1'b1) begin
-		  OUT = 1'b1;
-		  RELOAD = 1'b0;
-	       end
-	       else begin
-		  // Toggle Out When Counter Reaches 2
-                  OUT = ~OUT;
-                  // Reload New Count
-                  RELOAD = 1'b1;
-	       end   
-            end
-          4 ,
-          5 : begin
-	     if (COUNT)
-               begin
-                  // Set Out High When Counter Is Not 0
-                  OUT = 'b1;
-               end
-             else
-	       begin
-		  //$display("ZERO TRIG: %b",TRIG);
-		  
-                  if (TRIG)
-                    begin
-                       // Set Out Low When Counter Hits 0 And Was Triggered
-                       OUT = 'b0;
-                       CLRTRIG = 'b1;
-                    end
-	       end // else: !if(COUNT)
-	  end // case: 4 ,...
-	  
-        endcase
-    end
+   always @(negedge CLK)
+     begin
+	// Clear Counter Reload Flag
+	RELOAD = 'b0;
+	// Clear Trigger Flag
+	CLRTRIG = 'b0;
+	if(!SETOUT_) OUT = 1'b1;
+	else if(!CLROUT_) OUT = 1'b0;
+	else if ((GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5)) && OUTENABLE)
+          case (MODE[3:1])
+            0 : if (COUNT == 16'h2)
+              begin
+                 // Set Out High On Terminal Count
+                 OUT = 'b1;
+              end
+            1 : if (COUNT)
+              begin
+                 if (TRIG & ~LOAD)
+                   OUT = 'b0;
+              end
+            else
+              begin
+                 // Set Out High When Counter Hits 0
+                 OUT = 'b1;
+                 // Do Not Retrigger
+                 CLRTRIG = 'b1;
+              end
+            2 : if (COUNT == 16'h2) // was originally 1
+              begin
+                 // Set Out Low When Counter Reaches 1 
+                 OUT = 'b0;
+                 // Reload New Count
+                 RELOAD = 'b1;
+              end
+            else
+              begin
+                 // Set Out High When Counter Is Not 1 
+                 OUT = 'b1;
+              end
+            3 : if (COUNT == 16'h4) // was originally 2
+              begin
+		 if(LOAD == 1'b1) begin
+		    OUT = 1'b1;
+		    RELOAD = 1'b0;
+		 end
+		 else begin
+		    // Toggle Out When Counter Reaches 2
+                    OUT = ~OUT;
+                    // Reload New Count
+                    RELOAD = 1'b1;
+		 end   
+              end
+            4,5 : begin
+	       if (COUNT)
+		 begin
+                    // Set Out High When Counter Is Not 0
+                    OUT = 'b1;
+		 end
+               else
+		 begin
+                    if (TRIG)
+                      begin
+			 // Set Out Low When Counter Hits 0 And Was Triggered
+			 OUT = 'b0;
+			 CLRTRIG = 'b1;
+                      end
+		 end // else: !if(COUNT)
+	    end // case: 4 ,...
+          endcase
+     end
 
-  // Retrigger When GATE Goes High In Modes 1, 2 and 5
-  always @(posedge GATE)
-    if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
-      begin
-	 RETRIG = 'b1;
-	 //$display("retrig: %b",RETRIG);
-      end
-    else
-      RETRIG = 'b0;
+   // Retrigger When GATE Goes High In Modes 1, 2 and 5
+   always @(posedge GATE)
+     if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
+       begin
+	  RETRIG = 'b1;
+       end
+     else
+       RETRIG = 'b0;
 
   
-  // Counter Trigger Flag
-  always @(RETRIG or MODETRIG) begin
-     //$display("retrig %b modetrig %b",RETRIG,MODETRIG);
-     
-     if (RETRIG || MODETRIG) begin
-	TRIG = 'b1;
-	RETRIG = 1'b0;
-	
-	//$display("retrig to trig 1");
-     end
-  end	
+   // Counter Trigger Flag
+   always @(RETRIG or MODETRIG) begin
+      if (RETRIG || MODETRIG) begin
+	 TRIG = 'b1;
+	 RETRIG = 1'b0;
+      end
+   end	
+   
+   always @(CLRTRIG)
+     if (CLRTRIG)
+       TRIG = 'b0;
  
-  always @(CLRTRIG)
-    if (CLRTRIG)
-      TRIG = 'b0;
- 
-endmodule
+endmodule // outctrl
 
 /*
  * outlatch:
