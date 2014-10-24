@@ -53,95 +53,179 @@ endmodule // intel8253
 
 /*
  * cntreg:
- * This module is a 16-bit down counter for the 8253
+ * This module is a 16-bit count register for the 8253
  * This module has been copied from the VCS installation folder
  */
 module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
 
-  input        SEL,
-               RD_,
-               WR_,
-               CLK,
-               MODEWRITE;
+   input        SEL,
+		RD_,
+		WR_,
+		CLK,
+		MODEWRITE;
 
-  input  [5:1] MODE;
-  input  [7:0] D;
+   input [5:1] 	MODE;
+   input [7:0] 	D;
 
-  output       LOAD,
-               OUTEN;
+   output       LOAD,
+		OUTEN;
 
-  output [7:0] COUNTLSB,
-               COUNTMSB;
+   output [7:0] COUNTLSB,
+		COUNTMSB;
 
-  reg          LOAD,
-               OUTEN,
-               LOADLSB,
-               SETLOADLSB,
-               CLRLOADLSB;
+   reg          LOAD,
+		OUTEN,
+		LOADLSB,
+		CLRLOADLSB;
  
-  reg    [7:0] COUNTLSB,
-               COUNTMSB;
+   reg [7:0] 	COUNTLSB,
+		COUNTMSB;
 
-   // Witchcraft!
-   always @(COUNTMSB or COUNTLSB) begin
-      //$display("count: %b%b",COUNTMSB,COUNTLSB);
+   wire 	clear;
+   reg 		lsbflag;
+   
+   assign clear = MODEWRITE;
+
+   // LSB Flag Initial
+   initial begin
+      lsbflag = 1'b0;
    end
    
+   // LSB Flag
+   always @(posedge WR_) begin
+      if (SEL & RD_ & MODE[5] & MODE[4] & ~lsbflag) begin
+	 lsbflag <= 1'b1;
+      end
+      else if(SEL & RD_ & MODE[5] & MODE[4] & lsbflag) begin
+	 lsbflag <= 1'b0;
+      end
+      else begin
+	 lsbflag <= lsbflag;
+      end
+   end // always @ (posedge WR_)
    
-  // Count Register
+   // MSB Load
+   always @(posedge WR_ or posedge clear) begin
+      if(clear == 1'b1) begin
+	 COUNTMSB <= 8'b0;
+      end
+      else if(SEL & RD_ & MODE[5] & ~MODE[4]) begin
+	 COUNTMSB <= D;
+      end
+      else if(SEL & RD_ & MODE[5] & MODE[4] & lsbflag) begin
+	 COUNTMSB <= D;
+      end
+      else begin
+	 COUNTMSB <= COUNTMSB;
+      end
+   end // always @ (posedge WR_ or posedge clear)
 
-  always @(posedge WR_)
-    if (SEL & RD_)
-      case (MODE[5:4])
-	
-        'b01 : begin
-                 // Write LSB
-                 COUNTLSB = D;
-                 // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
-                 if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
-                   LOAD = 'b1;
-                 // Enable Output
-                 OUTEN = 'b1;
-               end
-        'b10 : begin
-                 // Write MSB
-                 COUNTMSB = D;
-                 // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
-                 if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
-                   LOAD = 'b1;
-                 // Enable Output
-                 OUTEN = 'b1;
-               end
-        'b11 : if (LOADLSB)
-                 begin
-                    // Write LSB First
-                    COUNTLSB = D;
-                    CLRLOADLSB = 1'b1;
-		    //$display("fajita: %b %b",D,CLRLOADLSB);
-		    
-                 end
-               else
-                 begin
-                    // Write MSB Only After LSB Loaded
-                    COUNTMSB = D;
-                    //SETLOADLSB =  'b1;
-		    CLRLOADLSB = 1'b0;
-		    //$display("fujita: %b %b",D,CLRLOADLSB);
-		    
-                   // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
-                   if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
-                     LOAD = 'b1;
-                   // Enable Output
-                   OUTEN = 'b1;
-                 end
-      endcase
+   // LSB Load
+   always @(posedge WR_ or posedge clear) begin
+      if(clear == 1'b1) begin
+	 COUNTLSB <= 8'b0;
+      end
+      else if(SEL & RD_ & ~MODE[5] & MODE[4]) begin
+	 COUNTLSB <= D;
+      end
+      else if(SEL & RD_ & MODE[5] & MODE[4] & ~lsbflag) begin
+	 COUNTLSB <= D;
+      end
+      else begin
+	 COUNTLSB <= COUNTLSB;
+      end
+   end // always @ (posedge WR_ or posedge clear)
 
-  always @(posedge CLK)
-    LOAD = 'b0;
+   // Load Register
+   always @(posedge CLK or posedge WR_) begin
+      if(WR_ & SEL & RD_) begin
+	 if(MODE[5] ^ MODE[4]) begin
+	    if ((MODE[3:1] != 1) || (MODE[3:1] != 5)) begin
+	       LOAD <= 1'b1;
+	    end
+	    else begin
+	       LOAD <= 1'b0;
+	    end
+	 end
+	 else if(MODE[5] & MODE[4] & lsbflag) begin
+	    LOAD <= 1'b1;
+	 end
+	 else begin
+	    LOAD <= 1'b0;
+	 end // else: !if(MODE[5] | MODE[4])
+      end // if (WR_ == 1'b1)
+      else if(CLK == 1'b1) begin
+	 LOAD <= 1'b0;
+      end
+      else begin
+	 LOAD <= LOAD;
+      end // else: !if(WR_ == 1'b1)
+   end // always @ (posedge CLK or posedge WR_)
+
+   // OUTEN Register
+   always @(posedge clear or posedge WR_) begin
+      if(clear == 1'b1) begin
+	 OUTEN <= 1'b0;
+      end
+      else if(SEL & RD_ & WR_ & (MODE[5] ^ MODE[4])) begin
+	 OUTEN <= 1'b1;
+      end
+      else if(SEL & RD_ & WR_ & MODE[5] & MODE[4] & lsbflag) begin
+	 OUTEN <= 1'b1;
+      end
+      else begin
+	 OUTEN <= OUTEN;
+      end
+   end // always @ (clear or WR_ or MODE or lsbflag)
+   
+   // Count Register
+   /*
+   always @(posedge WR_)
+     if (SEL & RD_)
+       case (MODE[5:4])	
+         'b01 : begin
+            // Write LSB
+            COUNTLSB = D;
+            // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
+            if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
+              LOAD = 1'b1;
+            // Enable Output
+            OUTEN = 1'b1;
+         end
+         'b10 : begin
+            // Write MSB
+            COUNTMSB = D;
+            // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
+            if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
+              LOAD = 1'b1;
+            // Enable Output
+            OUTEN = 1'b1;
+         end
+         'b11 : if (LOADLSB)
+           begin
+              // Write LSB First
+              COUNTLSB = D;
+              CLRLOADLSB = 1'b1; 
+           end
+         else
+           begin
+              // Write MSB Only After LSB Loaded
+              COUNTMSB = D;
+	      CLRLOADLSB = 1'b0;
+              // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
+              if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
+                LOAD = 'b1;
+              // Enable Output
+              OUTEN = 'b1;
+           end
+       endcase
+
+   always @(posedge CLK)
+     LOAD = 'b0;
 
   // Flag LOADLSB Is Set When In 2 Byte Mode And LSB Has Not Been Read Yet
-  always @(SETLOADLSB or MODEWRITE)
-    if (SETLOADLSB || MODEWRITE)
+  always @(clear)
+    if (clear)
       begin
         OUTEN = 'b0;
         LOADLSB = 'b1;
@@ -155,7 +239,7 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
      if (CLRLOADLSB)
        LOADLSB = 'b0;
   end
-   
+   */
 
 endmodule
 
