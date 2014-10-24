@@ -97,11 +97,15 @@
 <msg type="warning" file="Xst" num="1464" delta="old" >&quot;<arg fmt="%s" index="1">../ls158.v</arg>&quot; line <arg fmt="%d" index="2">24</arg>: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
 </msg>
 
-<msg type="warning" file="Xst" num="905" delta="new" >&quot;<arg fmt="%s" index="1">../8253.v</arg>&quot; line <arg fmt="%d" index="2">602</arg>: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+<msg type="warning" file="Xst" num="905" delta="new" >&quot;<arg fmt="%s" index="1">../8253.v</arg>&quot; line <arg fmt="%d" index="2">611</arg>: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
 <arg fmt="%s" index="3">&lt;MODE&gt;, &lt;LATCHLSB&gt;, &lt;LATCHMSB&gt;, &lt;READLSB&gt;</arg>
 </msg>
 
-<msg type="error" file="Xst" num="899" delta="new" >&quot;<arg fmt="%s" index="1">../8253.v</arg>&quot; line <arg fmt="%d" index="2">144</arg>: The logic for &lt;<arg fmt="%s" index="3">LOAD</arg>&gt; does not match a known FF or Latch template. The description style you are using to describe a register or latch is not supported in the current software release.
+<msg type="warning" file="Xst" num="905" delta="new" >&quot;<arg fmt="%s" index="1">../8253.v</arg>&quot; line <arg fmt="%d" index="2">428</arg>: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+<arg fmt="%s" index="3">&lt;D&gt;</arg>
+</msg>
+
+<msg type="error" file="Xst" num="899" delta="new" >&quot;<arg fmt="%s" index="1">../8253.v</arg>&quot; line <arg fmt="%d" index="2">553</arg>: The logic for &lt;<arg fmt="%s" index="3">TRIG</arg>&gt; does not match a known FF or Latch template. The description style you are using to describe a register or latch is not supported in the current software release.
 </msg>
 
 </messages>

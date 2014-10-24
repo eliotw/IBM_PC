@@ -1455,9 +1455,8 @@ void  hsC_0_5_0_(UB  * I655, scalar  val);
 void  hsF_0_6_0_(UB  * I655, scalar  val);
 void  hsF_0_7_0_(UB  * I655, scalar  val);
 void  hsC_0_8_0_(UB  * I655, scalar  val);
-void  hsC_0_9_0_(UB  * I655, scalar  val);
-void  hsC_0_10_0_(UB  * I655, scalar  val);
-void  hsC_0_10_5_(UB  * I655, UB  val);
+void  hsF_0_9_0_(UB  * I655, scalar  val);
+void  hsF_0_9_5_(UB  * I655, UB  val);
 void  schedNewEvent(struct dummyq_struct * I748, EBLK  * I749, U  I556);
 U   bsfFun(U  I760);
 #ifdef __cplusplus

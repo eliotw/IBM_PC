@@ -81,11 +81,12 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
    reg [7:0] 	COUNTLSB,
 		COUNTMSB;
 
-   wire 	clear;
+   wire 	clear,wrselrd;
    reg 		lsbflag;
    
    assign clear = MODEWRITE;
-
+   assign wrselrd = WR_ & SEL & RD_;
+   
    // LSB Flag Initial
    initial begin
       lsbflag = 1'b0;
@@ -138,21 +139,29 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
 
    // Load Register
    always @(posedge CLK or posedge WR_) begin
-      if(WR_ & SEL & RD_) begin
-	 if(MODE[5] ^ MODE[4]) begin
-	    if ((MODE[3:1] != 1) || (MODE[3:1] != 5)) begin
+      if(WR_ == 1'b1) begin
+	 if(SEL & RD_) begin
+	    if(MODE[5] ^ MODE[4]) begin
+	       if ((MODE[3:1] != 1) || (MODE[3:1] != 5)) begin
+		  LOAD <= 1'b1;
+	       end
+	       else begin
+		  LOAD <= 1'b0;
+	       end
+	    end
+	    else if(MODE[5] & MODE[4] & lsbflag) begin
 	       LOAD <= 1'b1;
 	    end
 	    else begin
 	       LOAD <= 1'b0;
-	    end
-	 end
-	 else if(MODE[5] & MODE[4] & lsbflag) begin
-	    LOAD <= 1'b1;
+	    end // else: !if(MODE[5] | MODE[4])
+	 end // if (SEL & RD)
+	 else if(CLK == 1'b1) begin
+	    LOAD <= 1'b0;
 	 end
 	 else begin
-	    LOAD <= 1'b0;
-	 end // else: !if(MODE[5] | MODE[4])
+	    LOAD <= LOAD;
+	 end
       end // if (WR_ == 1'b1)
       else if(CLK == 1'b1) begin
 	 LOAD <= 1'b0;

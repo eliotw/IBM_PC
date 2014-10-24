@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.07 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.07 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: motherboard.prj
@@ -463,20 +463,34 @@ Analyzing module <COUNT.1> in library <work>.
 Module <COUNT.1> is correct for synthesis.
  
 Analyzing module <read> in library <work>.
-WARNING:Xst:905 - "../8253.v" line 602: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+WARNING:Xst:905 - "../8253.v" line 611: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
    <MODE>, <LATCHLSB>, <LATCHMSB>, <READLSB>
 Module <read> is correct for synthesis.
  
 Analyzing module <cntreg> in library <work>.
-ERROR:Xst:899 - "../8253.v" line 144: The logic for <LOAD> does not match a known FF or Latch template. The description style you are using to describe a register or latch is not supported in the current software release.
+Module <cntreg> is correct for synthesis.
+ 
+Analyzing module <modereg> in library <work>.
+WARNING:Xst:905 - "../8253.v" line 428: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <D>
+Module <modereg> is correct for synthesis.
+ 
+Analyzing module <outlatch> in library <work>.
+Module <outlatch> is correct for synthesis.
+ 
+Analyzing module <downcntr> in library <work>.
+Module <downcntr> is correct for synthesis.
+ 
+Analyzing module <outctrl> in library <work>.
+ERROR:Xst:899 - "../8253.v" line 553: The logic for <TRIG> does not match a known FF or Latch template. The description style you are using to describe a register or latch is not supported in the current software release.
  
 Found 1 error(s). Aborting synthesis.
 --> 
 
 
-Total memory usage is 647004 kilobytes
+Total memory usage is 647108 kilobytes
 
 Number of errors   :    1 (   0 filtered)
-Number of warnings :   31 (   0 filtered)
+Number of warnings :   32 (   0 filtered)
 Number of infos    :    0 (   0 filtered)
 
