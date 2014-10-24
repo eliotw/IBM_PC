@@ -536,30 +536,24 @@ module outctrl(COUNT,MODE,CLK,GATE,OUTENABLE,MODETRIG,LOAD,SETOUT_,CLROUT_,
 		 end // else: !if(COUNT)
 	    end // case: 4 ,...
           endcase
-     end
+     end // always @ (negedge CLK)
 
-   // Retrigger When GATE Goes High In Modes 1, 2 and 5
-   always @(posedge GATE)
-     if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
-       begin
-	  RETRIG = 'b1;
-       end
-     else
-       RETRIG = 'b0;
-
-  
-   // Counter Trigger Flag
-   always @(RETRIG or MODETRIG) begin
-      if (RETRIG || MODETRIG) begin
-	 TRIG = 'b1;
-	 RETRIG = 1'b0;
+   // Retrigger TRIG
+   always @(posedge GATE or posedge MODETRIG or posedge CLRTRIG) begin
+      if(CLRTRIG == 1'b1) begin
+	 TRIG = 1'b0;
       end
-   end	
+      else if(GATE&((MODE[3:1]==1)||(MODE[3:1]==2)||(MODE[3:1]==5))) begin
+	 TRIG = 1'b1;
+      end
+      else if(MODETRIG) begin
+	 TRIG = 1'b1;
+      end
+      else begin
+	 TRIG = TRIG;
+      end
+   end // always @ (posedge GATE or posedge MODETRIG or posedge CLRTRIG)
    
-   always @(CLRTRIG)
-     if (CLRTRIG)
-       TRIG = 'b0;
- 
 endmodule // outctrl
 
 /*
