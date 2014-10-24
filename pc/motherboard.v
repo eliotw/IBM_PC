@@ -401,6 +401,9 @@ module sheet1(
 	      output memw_n
 	      );
 
+	// Register for address
+	reg [19:0] addr;
+	
    // Wires
    wire 	     ready;
    wire 	     intr;
@@ -491,26 +494,40 @@ module sheet1(
    // NAND gate U84
    assign u84 = ~(spen_n & den);
 
+	// Bus assignment
+	//assign a = (aen_br0 == 1'b0) ? addr : 20'bzzzz_zzzz_zzzz_zzzz_zzzz; // (vuvuzela intensifies)
+	
    // LS 373 Units
+	/*
+	always @(ale or ap or adp) begin
+		if(ale) begin
+			addr <= {ap,adp};
+		end
+		else begin
+			addr <= addr;
+		end
+	end
+	*/
+	
    ls373 u10(
 	     .d({ap[19:16],ap[19:16]}),
 	     .q({a[19:16],xrd}),
 	     .g(ale),
-	     .oe_n(aen_brd)
+	     .oe_n(aen_br0)
 	     );
 
    ls373 u9(
 	    .d(ap[15:8]),
 	    .q(a[15:8]),
 	    .g(ale),
-	    .oe_n(aen_brd)
+	    .oe_n(aen_br0)
 	    );
 
    ls373 u7(
 	    .d(adp),
 	    .q(a[7:0]),
 	    .g(ale),
-	    .oe_n(aen_brd)
+	    .oe_n(aen_br0)
 	    );
 
    // LS 245 Unit

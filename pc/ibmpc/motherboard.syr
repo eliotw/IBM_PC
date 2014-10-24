@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Reading design: motherboard.prj
@@ -336,9 +336,9 @@ Analyzing top module <motherboard>.
 Module <motherboard> is correct for synthesis.
  
 Analyzing module <sheet1> in library <work>.
-WARNING:Xst:2211 - "../8284a.v" line 427: Instantiating black box module <intel8284a>.
-WARNING:Xst:2211 - "../8088.v" line 442: Instantiating black box module <intel8088>.
-WARNING:Xst:2211 - "../8288.v" line 475: Instantiating black box module <intel8288>.
+WARNING:Xst:2211 - "../8284a.v" line 430: Instantiating black box module <intel8284a>.
+WARNING:Xst:2211 - "../8088.v" line 445: Instantiating black box module <intel8088>.
+WARNING:Xst:2211 - "../8288.v" line 478: Instantiating black box module <intel8288>.
 Module <sheet1> is correct for synthesis.
  
 Analyzing module <intel8259> in library <work>.
@@ -349,7 +349,6 @@ WARNING:Xst:905 - "../8259.v" line 117: One or more signals are missing in the s
 Module <intel8259> is correct for synthesis.
  
 Analyzing module <ls373> in library <work>.
-WARNING:Xst:1464 - "../ls373.v" line 31: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
 Module <ls373> is correct for synthesis.
  
 Analyzing module <ls245> in library <work>.
@@ -368,7 +367,7 @@ WARNING:Xst:1464 - "../timedelay.v" line 64: Exactly equal expression will be sy
 Module <tds> is correct for synthesis.
  
 Analyzing module <sheet3> in library <work>.
-WARNING:Xst:852 - "../motherboard.v" line 813: Unconnected input port 'rst' of instance 'td0' is tied to GND.
+WARNING:Xst:852 - "../motherboard.v" line 830: Unconnected input port 'rst' of instance 'td0' is tied to GND.
 Module <sheet3> is correct for synthesis.
  
 Analyzing module <ls138> in library <work>.
@@ -427,16 +426,15 @@ Analyzing module <ram_core_slice> in library <work>.
 	ERR = 2'b11
 	IDLE = 2'b00
 	RAS = 2'b01
-WARNING:Xst:1464 - "../ram.v" line 105: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "../ram.v" line 112: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "../ram.v" line 126: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "../ram.v" line 133: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "../ram.v" line 147: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "../ram.v" line 154: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "../ram.v" line 154: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:1464 - "../ram.v" line 187: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
 WARNING:Xst:1464 - "../ram.v" line 100: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
-WARNING:Xst:2211 - "ipcore_dir/ramcore.v" line 196: Instantiating black box module <ramcore>.
+WARNING:Xst:1464 - "../ram.v" line 107: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 121: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 128: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 142: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 149: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 149: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:1464 - "../ram.v" line 182: Exactly equal expression will be synthesized as an equal expression, simulation mismatch is possible.
+WARNING:Xst:2211 - "ipcore_dir/ramcore.v" line 191: Instantiating black box module <ramcore>.
 Module <ram_core_slice> is correct for synthesis.
  
 Analyzing module <ls158> in library <work>.
@@ -848,7 +846,7 @@ WARNING:Xst:646 - Signal <xrd> is assigned but never used. This unconnected sign
 WARNING:Xst:653 - Signal <intr> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:653 - Signal <inta_n> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:646 - Signal <inta> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <aen_brd> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:1780 - Signal <addr> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 Unit <sheet1> synthesized.
 
 
@@ -875,7 +873,7 @@ Unit <rom> synthesized.
 Synthesizing Unit <ram_core_slice>.
     Related source file is "../ram.v".
 WARNING:Xst:646 - Signal <wer> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <fsm> of Case statement line 104 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <fsm> of Case statement line 99 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
    	- add an 'INIT' attribute on signal <fsm> (optimization is then done without any risk)
    	- use the attribute 'signal_encoding user' to avoid onehot optimization
    	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
@@ -901,10 +899,8 @@ WARNING:Xst:737 - Found 8-bit latch for signal <caddr$mux0000>. Latches may be g
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
 WARNING:Xst:737 - Found 8-bit latch for signal <raddr$mux0000>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-    Found 9-bit tristate buffer for signal <dout>.
     Summary:
 	inferred   1 Finite State Machine(s).
-	inferred   9 Tristate(s).
 Unit <ram_core_slice> synthesized.
 
 
@@ -1193,11 +1189,10 @@ Macro Statistics
  5-bit comparator equal                                : 1
  5-bit comparator less                                 : 1
  7-bit comparator equal                                : 1
-# Tristates                                            : 55
+# Tristates                                            : 51
  1-bit tristate buffer                                 : 18
  4-bit tristate buffer                                 : 9
  8-bit tristate buffer                                 : 24
- 9-bit tristate buffer                                 : 4
 # Xors                                                 : 8
  1-bit xor2                                            : 8
 
@@ -1702,7 +1697,6 @@ WARNING:Xst:2042 - Unit rom: 8 internal tristates are replaced by logic (pull-up
 WARNING:Xst:2042 - Unit intel8259: 8 internal tristates are replaced by logic (pull-up yes): d<0>, d<1>, d<2>, d<3>, d<4>, d<5>, d<6>, d<7>.
 WARNING:Xst:2042 - Unit ls373: 8 internal tristates are replaced by logic (pull-up yes): q<0>, q<1>, q<2>, q<3>, q<4>, q<5>, q<6>, q<7>.
 WARNING:Xst:2042 - Unit intel8255: 8 internal tristates are replaced by logic (pull-up yes): d<0>, d<1>, d<2>, d<3>, d<4>, d<5>, d<6>, d<7>.
-WARNING:Xst:2042 - Unit ram_core_slice: 9 internal tristates are replaced by logic (pull-up yes): dout<0>, dout<1>, dout<2>, dout<3>, dout<4>, dout<5>, dout<6>, dout<7>, dout<8>.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -1725,116 +1719,1499 @@ WARNING:Xst:2677 - Node <s9/i8255/pb_0> of sequential type is unconnected in blo
 WARNING:Xst:2677 - Node <s9/i8255/pb_3> of sequential type is unconnected in block <motherboard>.
 WARNING:Xst:2677 - Node <s6/pck> of sequential type is unconnected in block <motherboard>.
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<19>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls6700/q_qr_3>
-   Output signal of LD instance <s1/u10/rq_7>
+Optimizing unit <motherboard> ...
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<18>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls6700/q_qr_2>
-   Output signal of LD instance <s1/u10/rq_6>
+Optimizing unit <keyin> ...
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<17>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls6700/q_qr_1>
-   Output signal of LD instance <s1/u10/rq_5>
+Optimizing unit <timedelay> ...
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<16>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls6700/q_qr_0>
-   Output signal of LD instance <s1/u10/rq_4>
+Optimizing unit <ram_core_slice> ...
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<15>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls3730/q_rq_0>
-   Output signal of LD instance <s1/u9/rq_7>
+Optimizing unit <keyinterface> ...
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<14>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls3730/q_rq_1>
-   Output signal of LD instance <s1/u9/rq_6>
+Optimizing unit <sheet2> ...
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<13>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls3730/q_rq_2>
-   Output signal of LD instance <s1/u9/rq_5>
+Optimizing unit <sheet3> ...
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/caddr_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/caddr_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/caddr_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/caddr_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/caddr_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/caddr_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/caddr_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/caddr_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/raddr_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/raddr_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/raddr_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/raddr_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/raddr_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/raddr_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/raddr_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb1/central_ram_core/raddr_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/caddr_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/caddr_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/caddr_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/caddr_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/caddr_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/caddr_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/caddr_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/caddr_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/raddr_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/raddr_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/raddr_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/raddr_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/raddr_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/raddr_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/raddr_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb0/central_ram_core/raddr_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/caddr_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/caddr_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/caddr_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/caddr_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/caddr_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/caddr_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/caddr_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/caddr_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/raddr_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/raddr_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/raddr_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/raddr_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/raddr_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/raddr_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/raddr_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb3/central_ram_core/raddr_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/caddr_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/caddr_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/caddr_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/caddr_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/caddr_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/caddr_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/caddr_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/caddr_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/raddr_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/raddr_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/raddr_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/raddr_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/raddr_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/raddr_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/raddr_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s6/rb2/central_ram_core/raddr_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <s4/i8237/hrq> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s9/i8255/pb_4> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s9/i8255/pb_5> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s9/i8255/pb_6> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s6/pck_n> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td125/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td120/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td115/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td110/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td105/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td100/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td95/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td90/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td85/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td80/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td75/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td70/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td65/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td60/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td55/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td50/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td45/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td40/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td35/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td30/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td25/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td20/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td15/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s2/td2/td10/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td125/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td120/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td115/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td110/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td105/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td100/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td95/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td90/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td85/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td80/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td75/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td70/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td65/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td60/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td55/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td50/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td45/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td40/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td35/q> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s3/td0/td30/q> of sequential type is unconnected in block <motherboard>.
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<12>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls3730/q_rq_3>
-   Output signal of LD instance <s1/u9/rq_4>
+Mapping all equations...
+WARNING:Xst:2170 - Unit s0/vgamod/ram_2k_attr : the following signal(s) form a combinatorial loop: motherboard/xa<0>, addra<10>, motherboard/s0/vgamod/new_attr_addr<10>, motherboard/s0/vgamod/new_attr, motherboard/a<0>.
+WARNING:Xst:2170 - Unit s0/vgamod/ram_2k_attr : the following signal(s) form a combinatorial loop: motherboard/xa<3>, motherboard/s0/vgamod/new_attr_addr<2>, addra<2>, motherboard/a<3>.
+WARNING:Xst:2170 - Unit s0/vgamod/ram_2k_attr : the following signal(s) form a combinatorial loop: motherboard/a<2>, motherboard/xa<2>, motherboard/s0/vgamod/new_attr_addr<1>, addra<1>.
+WARNING:Xst:2170 - Unit s0/vgamod/ram_2k_attr : the following signal(s) form a combinatorial loop: motherboard/s0/vgamod/new_attr_addr<0>, addra<0>, motherboard/a<1>, motherboard/xa<1>.
+WARNING:Xst:2170 - Unit s0/vgamod/ram_2k_attr : the following signal(s) form a combinatorial loop: motherboard/N125, motherboard/memr_n, dina<7>, motherboard/s0/vgamod/d_or0000_inv, motherboard/d<7>, motherboard/xmemr_n.
+WARNING:Xst:2170 - Unit s0/vgamod/ram_2k_attr : the following signal(s) form a combinatorial loop: motherboard/s6/rb2/enexp, motherboard/s6/md<6>LogicTrst23, motherboard/s6/md<6>, motherboard/d<6>, motherboard/xmemw_n, dina<6>, motherboard/memw_n.
+WARNING:Xst:2170 - Unit s0/vgamod/ram_2k_attr : the following signal(s) form a combinatorial loop: dina<5>, motherboard/s6/md<5>, motherboard/s6/md<5>LogicTrst5, motherboard/d<5>.
+WARNING:Xst:2170 - Unit s0/vgamod/ram_2k_attr : the following signal(s) form a combinatorial loop: motherboard/s6/md<4>, motherboard/d<4>, dina<4>, motherboard/s6/md<4>LogicTrst5.
+WARNING:Xst:2170 - Unit s0/vgamod/ram_2k_attr : the following signal(s) form a combinatorial loop: motherboard/s6/md<3>LogicTrst5, motherboard/s6/md<3>, motherboard/d<3>, dina<3>.
+WARNING:Xst:2170 - Unit s0/vgamod/ram_2k_attr : the following signal(s) form a combinatorial loop: motherboard/d<2>, motherboard/s6/md<2>, motherboard/s6/md<2>LogicTrst5, dina<2>.
+WARNING:Xst:2170 - Unit s0/vgamod/ram_2k_attr : the following signal(s) form a combinatorial loop: dina<1>, motherboard/d<1>, motherboard/s6/md<1>LogicTrst5, motherboard/s6/md<1>.
+WARNING:Xst:2170 - Unit s0/vgamod/ram_2k_attr : the following signal(s) form a combinatorial loop: motherboard/s6/md<0>, dina<0>, motherboard/s6/md<0>LogicTrst5, motherboard/d<0>.
+WARNING:Xst:2170 - Unit s6/rb3/central_ram_core/central_ram_core : the following signal(s) form a combinatorial loop: dina<0>, motherboard/s6/mdpLogicTrst62, motherboard/s6/mdp.
+WARNING:Xst:2170 - Unit motherboard : the following signal(s) form a combinatorial loop: s4/i8237/base_word_7_not0001, iow_n, xiow_n, s4/i8237/Mtridata_db_and0000.
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block motherboard, actual ratio is 1.
+FlipFlop s2/aen_brd has been replicated 1 time(s)
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<11>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls3730/q_rq_4>
-   Output signal of LD instance <s1/u9/rq_3>
+Final Macro Processing ...
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<10>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls3730/q_rq_5>
-   Output signal of LD instance <s1/u9/rq_2>
+Processing Unit <motherboard> :
+	Found 2-bit shift register for signal <s1/i8259/icws_1>.
+	Found 2-bit shift register for signal <s9/keyboard/keyinmod/b_FSM_FFd11>.
+	Found 4-bit shift register for signal <s3/td0/td25/q>.
+Unit <motherboard> processed.
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<9>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls3730/q_rq_6>
-   Output signal of LD instance <s1/u9/rq_1>
+=========================================================================
+Final Register Report
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<8>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls3730/q_rq_7>
-   Output signal of LD instance <s1/u9/rq_0>
+Macro Statistics
+# Registers                                            : 480
+ Flip-Flops                                            : 480
+# Shift Registers                                      : 3
+ 2-bit shift register                                  : 2
+ 4-bit shift register                                  : 1
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<7>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls2440/y2_a2_3>
-   Output signal of LD instance <s1/u7/rq_7>
+=========================================================================
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<6>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls2440/y2_a2_2>
-   Output signal of LD instance <s1/u7/rq_6>
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<5>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls2440/y2_a2_1>
-   Output signal of LD instance <s1/u7/rq_5>
+Partition Implementation Status
+-------------------------------
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<4>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls2440/y2_a2_0>
-   Output signal of LD instance <s1/u7/rq_4>
+  No Partitions were found in this design.
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<3>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls2440/y1_a1_3>
-   Output signal of LD instance <s1/u7/rq_3>
+-------------------------------
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<2>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls2440/y1_a1_2>
-   Output signal of LD instance <s1/u7/rq_2>
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : motherboard.ngr
+Top Level Output File Name         : motherboard
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<1>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls2440/y1_a1_1>
-   Output signal of LD instance <s1/u7/rq_1>
+Design Statistics
+# IOs                              : 12
 
-ERROR:Xst:528 - Multi-source in Unit <motherboard> on signal <a<0>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of BUFT instance <s4/ls2440/y1_a1_0>
-   Output signal of LD instance <s1/u7/rq_0>
+Cell Usage :
+# BELS                             : 1579
+#      GND                         : 9
+#      INV                         : 49
+#      LUT1                        : 59
+#      LUT2                        : 100
+#      LUT3                        : 109
+#      LUT4                        : 212
+#      LUT5                        : 125
+#      LUT6                        : 493
+#      MUXCY                       : 130
+#      MUXF7                       : 106
+#      MUXF8                       : 39
+#      VCC                         : 9
+#      XORCY                       : 139
+# FlipFlops/Latches                : 593
+#      FD                          : 28
+#      FD_1                        : 9
+#      FDC                         : 3
+#      FDCE                        : 51
+#      FDCPE                       : 6
+#      FDE                         : 83
+#      FDE_1                       : 8
+#      FDR                         : 135
+#      FDR_1                       : 6
+#      FDRE                        : 141
+#      FDRS                        : 3
+#      FDS                         : 13
+#      FDS_1                       : 1
+#      FDSE                        : 13
+#      FDSE_1                      : 3
+#      LD                          : 65
+#      LDC                         : 5
+#      LDE                         : 13
+#      LDP                         : 3
+#      LDPE_1                      : 4
+# RAMS                             : 83
+#      RAMB18                      : 2
+#      RAMB36_EXP                  : 81
+# Shift Registers                  : 3
+#      SRLC16E                     : 3
+# Clock Buffers                    : 7
+#      BUFG                        : 5
+#      BUFGP                       : 2
+# IO Buffers                       : 10
+#      IBUF                        : 1
+#      OBUF                        : 9
+# Others                           : 3
+#      intel8088                   : 1
+#      intel8284a                  : 1
+#      intel8288                   : 1
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 5vlx110tff1136-1 
 
 
-Total REAL time to Xst completion: 14.00 secs
-Total CPU time to Xst completion: 13.24 secs
+Slice Logic Utilization: 
+ Number of Slice Registers:             593  out of  69120     0%  
+ Number of Slice LUTs:                 1150  out of  69120     1%  
+    Number used as Logic:              1147  out of  69120     1%  
+    Number used as Memory:                3  out of  17920     0%  
+       Number used as SRL:                3
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:   1363
+   Number with an unused Flip Flop:     770  out of   1363    56%  
+   Number with an unused LUT:           213  out of   1363    15%  
+   Number of fully used LUT-FF pairs:   380  out of   1363    27%  
+   Number of unique control sets:       108
+
+IO Utilization: 
+ Number of IOs:                          12
+ Number of bonded IOBs:                  12  out of    640     1%  
+
+Specific Feature Utilization:
+ Number of Block RAM/FIFO:               82  out of    148    55%  
+    Number using Block RAM only:         82
+ Number of BUFG/BUFGCTRLs:                7  out of     32    21%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+Clock Signal                                                           | Clock buffer(FF name)                                                                                                                                               | Load  |
+-----------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+s8/i8253/vcs/C1/OUTCTRL/OUT                                            | NONE(s8/drq0)                                                                                                                                                       | 1     |
+pclk                                                                   | NONE(s8/pclka)                                                                                                                                                      | 13    |
+dclk1(s2/dclk1:O)                                                      | BUFG(*)(s4/i8237/base_word_1)                                                                                                                                       | 107   |
+vga_clk1                                                               | BUFG                                                                                                                                                                | 190   |
+s0/vgamod/ram_2k_attr/N1                                               | NONE(s0/vgamod/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP)                      | 1     |
+s0/vgamod/ram_2k_char/N1                                               | NONE(s0/vgamod/ram_2k_char/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP)                      | 1     |
+s0/vgamod/char_rom/N1                                                  | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                         | 1     |
+s4/i8237/adstb                                                         | NONE(s4/ls3730/rq_7)                                                                                                                                                | 8     |
+wrt_dma_pg_reg_n(s3/wrt_dma_pg_reg_n:O)                                | NONE(*)(s4/ls6700/q0_3)                                                                                                                                             | 4     |
+clk1                                                                   | BUFG                                                                                                                                                                | 109   |
+s5/rommod/crc/N1                                                       | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 16    |
+s1/ale1                                                                | BUFG                                                                                                                                                                | 20    |
+s9/keyboard/irq1                                                       | NONE(s1/i8259/irr_1)                                                                                                                                                | 1     |
+s8/i8253/vcs/C0/OUTCTRL/OUT                                            | NONE(s1/i8259/irr_0)                                                                                                                                                | 1     |
+s1/i8259/icws_and0000(s1/i8259/icws_and0000:O)                         | NONE(*)(s1/i8259/icws_0)                                                                                                                                            | 11    |
+s1/i8259/dout_not0001(s1/i8259/dout_not00011:O)                        | NONE(*)(s1/i8259/dout_0)                                                                                                                                            | 2     |
+s1/i8259/eoir_not0001(s1/i8259/eoir_not00011:O)                        | NONE(*)(s1/i8259/eoir_0)                                                                                                                                            | 4     |
+s9/i8255/pb_cmp_eq0000(s9/i8255/pb_cmp_eq00001:O)                      | NONE(*)(s9/i8255/pb_1)                                                                                                                                              | 3     |
+s9/i8255/pdo_not0001(s9/i8255/pdo_not00011:O)                          | NONE(*)(s9/i8255/pdo_0)                                                                                                                                             | 8     |
+s8/i8253/vcs/C0/READ/DREG_not0001(s8/i8253/vcs/C0/READ/DREG_not00011:O)| NONE(*)(s8/i8253/vcs/C0/READ/DREG_7)                                                                                                                                | 9     |
+s8/i8253/vcs/C1/READ/DREG_not0001(s8/i8253/vcs/C1/READ/DREG_not00011:O)| NONE(*)(s8/i8253/vcs/C1/READ/DREG_7)                                                                                                                                | 9     |
+s8/i8253/vcs/C2/READ/DREG_not0001(s8/i8253/vcs/C2/READ/DREG_not00011:O)| NONE(*)(s8/i8253/vcs/C2/READ/DREG_7)                                                                                                                                | 9     |
+s8/pclka1                                                              | BUFG                                                                                                                                                                | 63    |
+xiow_n(xiow_nLogicTrst1:O)                                             | NONE(*)(s8/i8253/vcs/C2/CNTREG/OUTEN)                                                                                                                               | 69    |
+s8/i8253/vcs/C2/LOADCNT(s8/i8253/vcs/C2/LOADCNT1:O)                    | NONE(*)(s8/i8253/vcs/C2/DOWNCNTR/VLOADCNT)                                                                                                                          | 1     |
+s8/i8253/vcs/C2/MODETRIG(s8/i8253/vcs/C2/MODEREG/MODETRIG1:O)          | NONE(*)(s8/i8253/vcs/C2/OUTCTRL/TRIG)                                                                                                                               | 1     |
+s8/i8253/vcs/C2/READ/CLRREADLSB                                        | NONE(s8/i8253/vcs/C2/READ/READLSB)                                                                                                                                  | 1     |
+s8/i8253/vcs/C1/LOADCNT(s8/i8253/vcs/C1/LOADCNT1:O)                    | NONE(*)(s8/i8253/vcs/C1/DOWNCNTR/VLOADCNT)                                                                                                                          | 1     |
+s8/i8253/vcs/C1/MODETRIG(s8/i8253/vcs/C1/MODEREG/MODETRIG2:O)          | NONE(*)(s8/i8253/vcs/C1/OUTCTRL/TRIG)                                                                                                                               | 1     |
+s8/i8253/vcs/C1/READ/CLRREADLSB                                        | NONE(s8/i8253/vcs/C1/READ/READLSB)                                                                                                                                  | 1     |
+s8/i8253/vcs/C0/LOADCNT(s8/i8253/vcs/C0/LOADCNT1:O)                    | NONE(*)(s8/i8253/vcs/C0/DOWNCNTR/VLOADCNT)                                                                                                                          | 1     |
+s8/i8253/vcs/C0/MODETRIG(s8/i8253/vcs/C0/MODEREG/MODETRIG2:O)          | NONE(*)(s8/i8253/vcs/C0/OUTCTRL/TRIG)                                                                                                                               | 1     |
+s8/i8253/vcs/C0/READ/CLRREADLSB                                        | NONE(s8/i8253/vcs/C0/READ/READLSB)                                                                                                                                  | 1     |
+s6/rb3/central_ram_core/central_ram_core/N1                            | NONE(s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 16    |
+s6/rb2/central_ram_core/central_ram_core/N1                            | NONE(s6/rb2/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 16    |
+s6/rb1/central_ram_core/central_ram_core/N1                            | NONE(s6/rb1/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 16    |
+s6/rb0/central_ram_core/central_ram_core/N1                            | NONE(s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 16    |
+KEYBOARD_CLK                                                           | BUFGP                                                                                                                                                               | 20    |
+USER_CLK                                                               | BUFGP                                                                                                                                                               | 8     |
+s2/b1(s2/b11:O)                                                        | NONE(*)(s2/rdy_wait)                                                                                                                                                | 1     |
+-----------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+(*) These 18 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+Control Signal                                                                                                                                                                                                                                                                    | Buffer(FF name)                                                                                                                                                    | Load  |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+s6/rb0/central_ram_core/central_ram_core/N1(s6/rb0/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s6/rb1/central_ram_core/central_ram_core/N1(s6/rb1/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb1/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s6/rb2/central_ram_core/central_ram_core/N1(s6/rb2/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb2/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s6/rb3/central_ram_core/central_ram_core/N1(s6/rb3/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                        | 64    |
+s8/i8253/vcs/C0/MODEWRITE(s8/i8253/vcs/C0/MODEREG/MODETRIG11:O)                                                                                                                                                                                                                   | NONE(s8/i8253/vcs/C0/CNTREG/COUNTLSB_0)                                                                                                                            | 18    |
+s8/i8253/vcs/C1/MODEWRITE(s8/i8253/vcs/C1/MODEREG/MODETRIG11:O)                                                                                                                                                                                                                   | NONE(s8/i8253/vcs/C1/CNTREG/COUNTLSB_0)                                                                                                                            | 18    |
+s8/i8253/vcs/C2/MODEWRITE(s8/i8253/vcs/C2/OUTCTRL/RELOAD_or000011:O)                                                                                                                                                                                                              | NONE(s8/i8253/vcs/C2/CNTREG/COUNTLSB_0)                                                                                                                            | 18    |
+s0/vgamod/char_rom/N1(s0/vgamod/char_rom/XST_GND:G)                                                                                                                                                                                                                               | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                        | 8     |
+N0(XST_GND:G)                                                                                                                                                                                                                                                                     | NONE(s1/i8259/irr_0)                                                                                                                                               | 3     |
+reset(s1/i8284:reset)                                                                                                                                                                                                                                                             | NONE(s9/i8255/pb_1)                                                                                                                                                | 3     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s8/i8253/vcs/C0/CNTREG/LOAD_and0000(s8/i8253/vcs/C0/CNTREG/LOAD_and00001:O)                                                                                                                                                                                                       | NONE(s8/i8253/vcs/C0/CNTREG/LOAD)                                                                                                                                  | 1     |
+s8/i8253/vcs/C0/CNTREG/LOAD_or0000(s8/i8253/vcs/C0/CNTREG/LOAD_or0000:O)                                                                                                                                                                                                          | NONE(s8/i8253/vcs/C0/CNTREG/LOAD)                                                                                                                                  | 1     |
+s8/i8253/vcs/C0/DOWNCNTR/LOAD(s8/i8253/vcs/C0/DOWNCNTR/LOAD:Q)                                                                                                                                                                                                                    | NONE(s8/i8253/vcs/C0/DOWNCNTR/VLOADCNT)                                                                                                                            | 1     |
+s8/i8253/vcs/C0/OUTCTRL/CLRTRIG(s8/i8253/vcs/C0/OUTCTRL/CLRTRIG:Q)                                                                                                                                                                                                                | NONE(s8/i8253/vcs/C0/OUTCTRL/TRIG)                                                                                                                                 | 1     |
+s8/i8253/vcs/C0/OUTCTRL/TRIG_or0000(s8/i8253/vcs/C0/OUTCTRL/TRIG_or00001:O)                                                                                                                                                                                                       | NONE(s8/i8253/vcs/C0/OUTCTRL/TRIG)                                                                                                                                 | 1     |
+s8/i8253/vcs/C1/CNTREG/LOAD_and0000(s8/i8253/vcs/C1/CNTREG/LOAD_and00001:O)                                                                                                                                                                                                       | NONE(s8/i8253/vcs/C1/CNTREG/LOAD)                                                                                                                                  | 1     |
+s8/i8253/vcs/C1/CNTREG/LOAD_or0000(s8/i8253/vcs/C1/CNTREG/LOAD_or0000:O)                                                                                                                                                                                                          | NONE(s8/i8253/vcs/C1/CNTREG/LOAD)                                                                                                                                  | 1     |
+s8/i8253/vcs/C1/DOWNCNTR/LOAD(s8/i8253/vcs/C1/DOWNCNTR/LOAD:Q)                                                                                                                                                                                                                    | NONE(s8/i8253/vcs/C1/DOWNCNTR/VLOADCNT)                                                                                                                            | 1     |
+s8/i8253/vcs/C1/OUTCTRL/CLRTRIG(s8/i8253/vcs/C1/OUTCTRL/CLRTRIG:Q)                                                                                                                                                                                                                | NONE(s8/i8253/vcs/C1/OUTCTRL/TRIG)                                                                                                                                 | 1     |
+s8/i8253/vcs/C1/OUTCTRL/TRIG_or0000(s8/i8253/vcs/C1/OUTCTRL/TRIG_or00001:O)                                                                                                                                                                                                       | NONE(s8/i8253/vcs/C1/OUTCTRL/TRIG)                                                                                                                                 | 1     |
+s8/i8253/vcs/C2/CNTREG/LOAD_and0000(s8/i8253/vcs/C2/CNTREG/LOAD_and00001:O)                                                                                                                                                                                                       | NONE(s8/i8253/vcs/C2/CNTREG/LOAD)                                                                                                                                  | 1     |
+s8/i8253/vcs/C2/CNTREG/LOAD_or0000(s8/i8253/vcs/C2/CNTREG/LOAD_or0000:O)                                                                                                                                                                                                          | NONE(s8/i8253/vcs/C2/CNTREG/LOAD)                                                                                                                                  | 1     |
+s8/i8253/vcs/C2/DOWNCNTR/LOAD(s8/i8253/vcs/C2/DOWNCNTR/LOAD:Q)                                                                                                                                                                                                                    | NONE(s8/i8253/vcs/C2/DOWNCNTR/VLOADCNT)                                                                                                                            | 1     |
+s8/i8253/vcs/C2/OUTCTRL/CLRTRIG(s8/i8253/vcs/C2/OUTCTRL/CLRTRIG:Q)                                                                                                                                                                                                                | NONE(s8/i8253/vcs/C2/OUTCTRL/TRIG)                                                                                                                                 | 1     |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: 9.086ns (Maximum Frequency: 110.056MHz)
+   Minimum input arrival time before clock: 8.987ns
+   Maximum output required time after clock: 4.098ns
+   Maximum combinational path delay: 0.506ns
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'pclk'
+  Clock period: 2.583ns (frequency: 387.147MHz)
+  Total number of paths / destination ports: 75 / 13
+-------------------------------------------------------------------------
+Delay:               2.583ns (Levels of Logic = 2)
+  Source:            s9/keyboard/state_FSM_FFd3 (FF)
+  Destination:       s9/keyboard/pa_6 (FF)
+  Source Clock:      pclk rising
+  Destination Clock: pclk rising
+
+  Data Path: s9/keyboard/state_FSM_FFd3 to s9/keyboard/pa_6
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              7   0.471   1.102  s9/keyboard/state_FSM_FFd3 (s9/keyboard/state_FSM_FFd3)
+     LUT6:I0->O            7   0.094   0.822  s9/keyboard/pa_mux0000<1>31 (s9/keyboard/N5)
+     LUT4:I0->O            1   0.094   0.000  s9/keyboard/pa_mux0000<7>1 (s9/keyboard/pa_mux0000<7>)
+     FD:D                     -0.018          s9/keyboard/pa_0
+    ----------------------------------------
+    Total                      2.583ns (0.659ns logic, 1.924ns route)
+                                       (25.5% logic, 74.5% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'dclk1'
+  Clock period: 8.041ns (frequency: 124.364MHz)
+  Total number of paths / destination ports: 31114 / 193
+-------------------------------------------------------------------------
+Delay:               8.041ns (Levels of Logic = 9)
+  Source:            s4/i8237/dack_1 (FF)
+  Destination:       s4/i8237/mode_4 (FF)
+  Source Clock:      dclk1 rising
+  Destination Clock: dclk1 rising
+
+  Data Path: s4/i8237/dack_1 to s4/i8237/mode_4
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDS:C->Q              8   0.471   0.748  s4/i8237/dack_1 (s4/i8237/dack_1)
+     LUT5:I2->O           16   0.094   0.658  a<19>LogicTrst1 (a<19>)
+     LUT3:I1->O           13   0.094   0.855  s3/ls1/y<0>1 (ram_addr_sel_n)
+     LUT5:I1->O           11   0.094   0.535  s3/ls3/y<6>1 (ras_n<2>)
+     LUT4:I3->O            4   0.094   0.805  s6/rb2/central_ram_core/enexp1 (s6/rb2/enexp)
+     LUT4:I0->O            1   0.094   1.069  s6/md<6>LogicTrst23 (s6/md<6>LogicTrst23)
+     LUT6:I0->O           66   0.094   0.844  s6/md<6>LogicTrst75 (s6/md<6>)
+     LUT6:I3->O            6   0.094   0.603  d<6>LogicTrst76 (d<6>)
+     LUT3:I1->O           32   0.094   0.607  xd<6>LogicTrst67 (xd<6>)
+     LUT6:I5->O            1   0.094   0.000  s4/i8237/curr_addr_6_mux000073 (s4/i8237/curr_addr_6_mux0000)
+     FDRE:D                   -0.018          s4/i8237/curr_addr_6
+    ----------------------------------------
+    Total                      8.041ns (1.317ns logic, 6.724ns route)
+                                       (16.4% logic, 83.6% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'vga_clk1'
+  Clock period: 5.052ns (frequency: 197.941MHz)
+  Total number of paths / destination ports: 1581 / 304
+-------------------------------------------------------------------------
+Delay:               5.052ns (Levels of Logic = 3)
+  Source:            s0/vgamod/ram_2k_char/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP (RAM)
+  Destination:       s0/vgamod/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP (RAM)
+  Source Clock:      vga_clk1 rising
+  Destination Clock: vga_clk1 rising
+
+  Data Path: s0/vgamod/ram_2k_char/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP to s0/vgamod/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     RAMB18:CLKA->DOA0     3   2.180   0.984  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP (douta<0>)
+     end scope: 's0/vgamod/ram_2k_char'
+     LUT6:I1->O            1   0.094   0.973  d<0>LogicTrst47 (d<0>LogicTrst47)
+     LUT5:I0->O           10   0.094   0.385  d<0>LogicTrst74 (d<0>)
+     begin scope: 's0/vgamod/ram_2k_char'
+     RAMB18:DIA0               0.342          U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP
+    ----------------------------------------
+    Total                      5.052ns (2.710ns logic, 2.342ns route)
+                                       (53.6% logic, 46.4% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 's4/i8237/adstb'
+  Clock period: 7.294ns (frequency: 137.099MHz)
+  Total number of paths / destination ports: 608 / 8
+-------------------------------------------------------------------------
+Delay:               7.294ns (Levels of Logic = 7)
+  Source:            s4/ls3730/rq_6 (LATCH)
+  Destination:       s4/ls3730/rq_3 (LATCH)
+  Source Clock:      s4/i8237/adstb falling
+  Destination Clock: s4/i8237/adstb falling
+
+  Data Path: s4/ls3730/rq_6 to s4/ls3730/rq_3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD:G->Q               2   0.736   0.581  s4/ls3730/rq_6 (s4/ls3730/rq_6)
+     LUT4:I2->O           12   0.094   1.033  a<14>LogicTrst1 (a<14>)
+     LUT6:I1->O            1   0.094   0.973  s0/vgamod/d_and000012 (s0/vgamod/d_and000012)
+     LUT6:I1->O            9   0.094   0.754  s0/vgamod/d_and0000111 (s0/vgamod/d_and0000)
+     LUT3:I0->O            8   0.094   0.827  s0/vgamod/d_or0000_inv1 (s0/vgamod/d_or0000_inv)
+     LUT4:I0->O            8   0.094   1.107  d<0>LogicTrst110 (N125)
+     LUT6:I0->O           10   0.094   0.625  d<3>LogicTrst76 (d<3>)
+     LUT3:I1->O           30   0.094   0.000  xd<3>LogicTrst67 (xd<3>)
+     LD:D                     -0.071          s4/ls3730/rq_3
+    ----------------------------------------
+    Total                      7.294ns (1.394ns logic, 5.900ns route)
+                                       (19.1% logic, 80.9% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'wrt_dma_pg_reg_n'
+  Clock period: 6.881ns (frequency: 145.328MHz)
+  Total number of paths / destination ports: 640 / 4
+-------------------------------------------------------------------------
+Delay:               6.881ns (Levels of Logic = 7)
+  Source:            s4/ls6700/q0_2 (LATCH)
+  Destination:       s4/ls6700/q0_3 (LATCH)
+  Source Clock:      wrt_dma_pg_reg_n falling
+  Destination Clock: wrt_dma_pg_reg_n falling
+
+  Data Path: s4/ls6700/q0_2 to s4/ls6700/q0_3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDE:G->Q              3   0.736   0.721  s4/ls6700/q0_2 (s4/ls6700/q0_2)
+     LUT6:I3->O            1   0.094   0.973  s0/vgamod/d_and00001 (s0/vgamod/d_and00001)
+     LUT5:I0->O            1   0.094   0.480  s0/vgamod/d_and0000111_SW0 (N302)
+     LUT6:I5->O            9   0.094   0.754  s0/vgamod/d_and0000111 (s0/vgamod/d_and0000)
+     LUT3:I0->O            8   0.094   0.827  s0/vgamod/d_or0000_inv1 (s0/vgamod/d_or0000_inv)
+     LUT4:I0->O            8   0.094   1.107  d<0>LogicTrst110 (N125)
+     LUT6:I0->O           10   0.094   0.625  d<3>LogicTrst76 (d<3>)
+     LUT3:I1->O           30   0.094   0.000  xd<3>LogicTrst67 (xd<3>)
+     LDE:D                    -0.071          s4/ls6700/q0_3
+    ----------------------------------------
+    Total                      6.881ns (1.394ns logic, 5.487ns route)
+                                       (20.3% logic, 79.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk1'
+  Clock period: 9.086ns (frequency: 110.056MHz)
+  Total number of paths / destination ports: 430324 / 1596
+-------------------------------------------------------------------------
+Delay:               9.086ns (Levels of Logic = 10)
+  Source:            s2/b5 (FF)
+  Destination:       s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP (RAM)
+  Source Clock:      clk1 rising
+  Destination Clock: clk1 rising
+
+  Data Path: s2/b5 to s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q             29   0.471   0.703  s2/b5 (s2/b5)
+     LUT2:I0->O           10   0.094   0.625  s2/dma_aen_n1 (dma_aen_n)
+     LUT3:I1->O           16   0.094   0.658  memw_nLogicTrst1 (memw_n)
+     LUT4:I2->O           27   0.094   0.606  xmemw_nLogicTrst1 (xmemw_n)
+     LUT2:I1->O            6   0.094   1.000  s6/rb2/central_ram_core/enexp1_SW0 (N293)
+     LUT6:I1->O            1   0.094   1.069  s6/md<2>LogicTrst23 (s6/md<2>LogicTrst23)
+     LUT6:I0->O           66   0.094   0.844  s6/md<2>LogicTrst75 (s6/md<2>)
+     LUT3:I0->O            1   0.094   0.480  s6/ls2800/Madd_sum_addsub0002_Madd_lut<0>1 (s6/ls2800/Madd_sum_addsub0002_Madd_lut<0>)
+     LUT6:I5->O            1   0.094   0.973  s6/ls2800/Madd_sum_Madd_Madd_lut<0>1 (s6/ls2800/Madd_sum_Madd_Madd_lut<0>)
+     LUT6:I1->O           66   0.094   0.470  s6/mdpLogicTrst100 (s6/mdp)
+     begin scope: 's6/rb3/central_ram_core/central_ram_core'
+     RAMB36_EXP:DIA0           0.342          U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP
+    ----------------------------------------
+    Total                      9.086ns (1.659ns logic, 7.427ns route)
+                                       (18.3% logic, 81.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 's1/ale1'
+  Clock period: 3.182ns (frequency: 314.264MHz)
+  Total number of paths / destination ports: 8 / 8
+-------------------------------------------------------------------------
+Delay:               3.182ns (Levels of Logic = 3)
+  Source:            s1/u7/rq_0 (LATCH)
+  Destination:       s1/u7/rq_0 (LATCH)
+  Source Clock:      s1/ale1 falling
+  Destination Clock: s1/ale1 falling
+
+  Data Path: s1/u7/rq_0 to s1/u7/rq_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD:G->Q               1   0.736   0.710  s1/u7/rq_0 (s1/u7/rq_0)
+     LUT4:I1->O           33   0.094   0.607  a<0>LogicTrst1 (a<0>)
+     LUT4:I3->O           82   0.094   0.847  xa<0>LogicTrst1 (xa<0>)
+     LUT6:I3->O            4   0.094   0.000  s1/adp<0>LogicTrst1 (s1/adp<0>)
+     LD:D                     -0.071          s1/u7/rq_0
+    ----------------------------------------
+    Total                      3.182ns (1.018ns logic, 2.164ns route)
+                                       (32.0% logic, 68.0% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 's1/i8259/icws_and0000'
+  Clock period: 2.090ns (frequency: 478.469MHz)
+  Total number of paths / destination ports: 19 / 10
+-------------------------------------------------------------------------
+Delay:               1.045ns (Levels of Logic = 1)
+  Source:            s1/i8259/icws_1 (FF)
+  Destination:       s1/i8259/icws_0 (LATCH)
+  Source Clock:      s1/i8259/icws_and0000 rising
+  Destination Clock: s1/i8259/icws_and0000 falling
+
+  Data Path: s1/i8259/icws_1 to s1/i8259/icws_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              1   0.471   0.480  s1/i8259/icws_1 (s1/i8259/icws_1)
+     LUT2:I1->O            1   0.094   0.000  s1/i8259/icws_mux0000<2>1 (s1/i8259/icws_mux0000<2>)
+     LDE:D                    -0.071          s1/i8259/icws_0
+    ----------------------------------------
+    Total                      1.045ns (0.565ns logic, 0.480ns route)
+                                       (54.1% logic, 45.9% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 's8/pclka1'
+  Clock period: 7.438ns (frequency: 134.445MHz)
+  Total number of paths / destination ports: 1983 / 57
+-------------------------------------------------------------------------
+Delay:               3.719ns (Levels of Logic = 4)
+  Source:            s8/i8253/vcs/C2/DOWNCNTR/COUNT_3 (FF)
+  Destination:       s8/i8253/vcs/C2/OUTCTRL/OUT (FF)
+  Source Clock:      s8/pclka1 rising
+  Destination Clock: s8/pclka1 falling
+
+  Data Path: s8/i8253/vcs/C2/DOWNCNTR/COUNT_3 to s8/i8253/vcs/C2/OUTCTRL/OUT
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              4   0.471   1.085  s8/i8253/vcs/C2/DOWNCNTR/COUNT_3 (s8/i8253/vcs/C2/DOWNCNTR/COUNT_3)
+     LUT6:I0->O            2   0.094   0.581  s8/i8253/vcs/C2/OUTCTRL/CLRTRIG_and0000188 (s8/i8253/vcs/C2/OUTCTRL/CLRTRIG_and0000188)
+     LUT4:I2->O            4   0.094   0.496  s8/i8253/vcs/C2/OUTCTRL/CLRTRIG_and0000190 (N55)
+     LUT6:I5->O            1   0.094   0.710  s8/i8253/vcs/C2/OUTCTRL/OUT_mux0000150 (s8/i8253/vcs/C2/OUTCTRL/OUT_mux0000150)
+     LUT4:I1->O            1   0.094   0.000  s8/i8253/vcs/C2/OUTCTRL/OUT_mux0000172 (s8/i8253/vcs/C2/OUTCTRL/OUT_mux0000)
+     FDSE_1:D                 -0.018          s8/i8253/vcs/C2/OUTCTRL/OUT
+    ----------------------------------------
+    Total                      3.719ns (0.847ns logic, 2.872ns route)
+                                       (22.8% logic, 77.2% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'xiow_n'
+  Clock period: 2.290ns (frequency: 436.681MHz)
+  Total number of paths / destination ports: 171 / 57
+-------------------------------------------------------------------------
+Delay:               2.290ns (Levels of Logic = 1)
+  Source:            s8/i8253/vcs/C2/CNTREG/lsbflag (FF)
+  Destination:       s8/i8253/vcs/C2/CNTREG/lsbflag (FF)
+  Source Clock:      xiow_n rising
+  Destination Clock: xiow_n rising
+
+  Data Path: s8/i8253/vcs/C2/CNTREG/lsbflag to s8/i8253/vcs/C2/CNTREG/lsbflag
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDSE:C->Q             6   0.471   0.816  s8/i8253/vcs/C2/CNTREG/lsbflag (s8/i8253/vcs/C2/CNTREG/lsbflag)
+     LUT4:I0->O            1   0.094   0.336  s8/i8253/vcs/C2/CNTREG/lsbflag_and00001 (s8/i8253/vcs/C2/CNTREG/lsbflag_and0000)
+     FDSE:S                    0.573          s8/i8253/vcs/C2/CNTREG/lsbflag
+    ----------------------------------------
+    Total                      2.290ns (1.138ns logic, 1.152ns route)
+                                       (49.7% logic, 50.3% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'KEYBOARD_CLK'
+  Clock period: 2.215ns (frequency: 451.467MHz)
+  Total number of paths / destination ports: 30 / 21
+-------------------------------------------------------------------------
+Delay:               2.215ns (Levels of Logic = 2)
+  Source:            s9/keyboard/keyinmod/b_FSM_FFd7 (FF)
+  Destination:       s9/keyboard/keyinmod/newdata (FF)
+  Source Clock:      KEYBOARD_CLK falling
+  Destination Clock: KEYBOARD_CLK falling
+
+  Data Path: s9/keyboard/keyinmod/b_FSM_FFd7 to s9/keyboard/keyinmod/newdata
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD_1:C->Q             3   0.467   1.080  s9/keyboard/keyinmod/b_FSM_FFd7 (s9/keyboard/keyinmod/b_FSM_FFd7)
+     LUT6:I0->O            1   0.094   0.480  s9/keyboard/keyinmod/newdata_mux0000_SW0 (N190)
+     LUT5:I4->O            1   0.094   0.000  s9/keyboard/keyinmod/newdata_mux00001 (s9/keyboard/keyinmod/newdata_mux00001)
+     FDS_1:D                  -0.018          s9/keyboard/keyinmod/newdata
+    ----------------------------------------
+    Total                      2.215ns (0.655ns logic, 1.560ns route)
+                                       (29.6% logic, 70.4% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'USER_CLK'
+  Clock period: 1.889ns (frequency: 529.381MHz)
+  Total number of paths / destination ports: 6 / 5
+-------------------------------------------------------------------------
+Delay:               1.889ns (Levels of Logic = 0)
+  Source:            s3/td0/td25/Mshreg_q (FF)
+  Destination:       s3/td0/td25/q1 (FF)
+  Source Clock:      USER_CLK rising
+  Destination Clock: USER_CLK rising
+
+  Data Path: s3/td0/td25/Mshreg_q to s3/td0/td25/q1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     SRLC16E:CLK->Q        1   1.889   0.000  s3/td0/td25/Mshreg_q (s3/td0/td25/Mshreg_q)
+     FDE:D                    -0.018          s3/td0/td25/q1
+    ----------------------------------------
+    Total                      1.889ns (1.889ns logic, 0.000ns route)
+                                       (100.0% logic, 0.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's8/i8253/vcs/C1/OUTCTRL/OUT'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              0.470ns (Levels of Logic = 0)
+  Source:            s1/i8088:rqgti_n (PAD)
+  Destination:       s8/drq0 (FF)
+  Destination Clock: s8/i8253/vcs/C1/OUTCTRL/OUT rising
+
+  Data Path: s1/i8088:rqgti_n to s8/drq0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8088:rqgti_n     68   0.000   0.470  s1/i8088 (s1/rqgti_n)
+     FDR:D                    -0.018          s8/drq0
+    ----------------------------------------
+    Total                      0.470ns (0.000ns logic, 0.470ns route)
+                                       (0.0% logic, 100.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'pclk'
+  Total number of paths / destination ports: 45 / 16
+-------------------------------------------------------------------------
+Offset:              2.830ns (Levels of Logic = 5)
+  Source:            s1/i8088:rqgti_n (PAD)
+  Destination:       s9/keyboard/pa_6 (FF)
+  Destination Clock: pclk rising
+
+  Data Path: s1/i8088:rqgti_n to s9/keyboard/pa_6
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8088:rqgti_n     68   0.000   0.000  s1/i8088 (s1/rqgti_n)
+     MUXF7:I1->O           1   0.254   0.000  s9/keyboard_Mrom_tdata16_f7 (s9/keyboard_Mrom_tdata16_f7)
+     MUXF8:I1->O           2   0.176   0.485  s9/keyboard_Mrom_tdata16_f8 (s9/keyboard/tdata<6>)
+     LUT6:I5->O            5   0.094   0.811  s9/keyboard/state_cmp_eq0000 (s9/keyboard/state_cmp_eq0000)
+     LUT6:I2->O            7   0.094   0.822  s9/keyboard/pa_mux0000<1>31 (s9/keyboard/N5)
+     LUT4:I0->O            1   0.094   0.000  s9/keyboard/pa_mux0000<7>1 (s9/keyboard/pa_mux0000<7>)
+     FD:D                     -0.018          s9/keyboard/pa_0
+    ----------------------------------------
+    Total                      2.830ns (0.712ns logic, 2.118ns route)
+                                       (25.2% logic, 74.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'dclk1'
+  Total number of paths / destination ports: 6015 / 204
+-------------------------------------------------------------------------
+Offset:              6.576ns (Levels of Logic = 8)
+  Source:            s1/i8288:amwc_n (PAD)
+  Destination:       s4/i8237/mode_4 (FF)
+  Destination Clock: dclk1 rising
+
+  Data Path: s1/i8288:amwc_n to s4/i8237/mode_4
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:amwc_n      16   0.000   0.658  s1/i8288 (memr_n)
+     LUT4:I2->O           33   0.094   0.703  xmemr_nLogicTrst1 (xmemr_n)
+     LUT5:I3->O           11   0.094   0.535  s3/ls3/y<6>1 (ras_n<2>)
+     LUT4:I3->O            4   0.094   0.805  s6/rb2/central_ram_core/enexp1 (s6/rb2/enexp)
+     LUT4:I0->O            1   0.094   1.069  s6/md<6>LogicTrst23 (s6/md<6>LogicTrst23)
+     LUT6:I0->O           66   0.094   0.844  s6/md<6>LogicTrst75 (s6/md<6>)
+     LUT6:I3->O            6   0.094   0.603  d<6>LogicTrst76 (d<6>)
+     LUT3:I1->O           32   0.094   0.607  xd<6>LogicTrst67 (xd<6>)
+     LUT6:I5->O            1   0.094   0.000  s4/i8237/curr_addr_6_mux000073 (s4/i8237/curr_addr_6_mux0000)
+     FDRE:D                   -0.018          s4/i8237/curr_addr_6
+    ----------------------------------------
+    Total                      6.576ns (0.752ns logic, 5.824ns route)
+                                       (11.4% logic, 88.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'vga_clk1'
+  Total number of paths / destination ports: 1826 / 342
+-------------------------------------------------------------------------
+Offset:              5.883ns (Levels of Logic = 7)
+  Source:            s1/i8288:amwc_n (PAD)
+  Destination:       s0/vgamod/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP (RAM)
+  Destination Clock: vga_clk1 rising
+
+  Data Path: s1/i8288:amwc_n to s0/vgamod/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:amwc_n      16   0.000   0.658  s1/i8288 (memr_n)
+     LUT4:I2->O           33   0.094   0.703  xmemr_nLogicTrst1 (xmemr_n)
+     LUT5:I3->O           11   0.094   0.535  s3/ls3/y<6>1 (ras_n<2>)
+     LUT4:I3->O            4   0.094   0.805  s6/rb2/central_ram_core/enexp1 (s6/rb2/enexp)
+     LUT4:I0->O            1   0.094   1.069  s6/md<6>LogicTrst23 (s6/md<6>LogicTrst23)
+     LUT6:I0->O           66   0.094   0.844  s6/md<6>LogicTrst75 (s6/md<6>)
+     LUT6:I3->O            6   0.094   0.363  d<6>LogicTrst76 (d<6>)
+     begin scope: 's0/vgamod/ram_2k_char'
+     RAMB18:DIA6               0.342          U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP
+    ----------------------------------------
+    Total                      5.883ns (0.906ns logic, 4.977ns route)
+                                       (15.4% logic, 84.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's4/i8237/adstb'
+  Total number of paths / destination ports: 538 / 8
+-------------------------------------------------------------------------
+Offset:              5.875ns (Levels of Logic = 7)
+  Source:            s1/i8288:amwc_n (PAD)
+  Destination:       s4/ls3730/rq_6 (LATCH)
+  Destination Clock: s4/i8237/adstb falling
+
+  Data Path: s1/i8288:amwc_n to s4/ls3730/rq_6
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:amwc_n      16   0.000   0.658  s1/i8288 (memr_n)
+     LUT4:I2->O           33   0.094   0.703  xmemr_nLogicTrst1 (xmemr_n)
+     LUT5:I3->O           11   0.094   0.535  s3/ls3/y<6>1 (ras_n<2>)
+     LUT4:I3->O            4   0.094   0.805  s6/rb2/central_ram_core/enexp1 (s6/rb2/enexp)
+     LUT4:I0->O            1   0.094   1.069  s6/md<6>LogicTrst23 (s6/md<6>LogicTrst23)
+     LUT6:I0->O           66   0.094   0.844  s6/md<6>LogicTrst75 (s6/md<6>)
+     LUT6:I3->O            6   0.094   0.603  d<6>LogicTrst76 (d<6>)
+     LUT3:I1->O           32   0.094   0.000  xd<6>LogicTrst67 (xd<6>)
+     LD:D                     -0.071          s4/ls3730/rq_6
+    ----------------------------------------
+    Total                      5.875ns (0.658ns logic, 5.217ns route)
+                                       (11.2% logic, 88.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'wrt_dma_pg_reg_n'
+  Total number of paths / destination ports: 270 / 8
+-------------------------------------------------------------------------
+Offset:              5.637ns (Levels of Logic = 7)
+  Source:            s1/i8288:amwc_n (PAD)
+  Destination:       s4/ls6700/q0_3 (LATCH)
+  Destination Clock: wrt_dma_pg_reg_n falling
+
+  Data Path: s1/i8288:amwc_n to s4/ls6700/q0_3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:amwc_n      16   0.000   0.658  s1/i8288 (memr_n)
+     LUT4:I2->O           33   0.094   1.100  xmemr_nLogicTrst1 (xmemr_n)
+     LUT6:I1->O           10   0.094   0.529  s3/ls4/y_and00001 (s3/ls4/y_and0000)
+     LUT5:I4->O            3   0.094   0.984  s5/rommod/csv_inv11 (N135)
+     LUT6:I1->O            1   0.094   0.480  xd<0>LogicTrst1_SW0 (N242)
+     LUT6:I5->O            8   0.094   0.518  xd<0>LogicTrst1 (N51)
+     LUT5:I4->O            1   0.094   0.710  xd<3>LogicTrst52 (xd<3>LogicTrst52)
+     LUT3:I0->O           30   0.094   0.000  xd<3>LogicTrst67 (xd<3>)
+     LDE:D                    -0.071          s4/ls6700/q0_3
+    ----------------------------------------
+    Total                      5.637ns (0.658ns logic, 4.979ns route)
+                                       (11.7% logic, 88.3% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk1'
+  Total number of paths / destination ports: 24852 / 1180
+-------------------------------------------------------------------------
+Offset:              7.100ns (Levels of Logic = 8)
+  Source:            s1/i8288:mrdc_n (PAD)
+  Destination:       s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP (RAM)
+  Destination Clock: clk1 rising
+
+  Data Path: s1/i8288:mrdc_n to s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:mrdc_n      16   0.000   0.658  s1/i8288 (memw_n)
+     LUT4:I2->O           27   0.094   0.606  xmemw_nLogicTrst1 (xmemw_n)
+     LUT2:I1->O            6   0.094   1.000  s6/rb2/central_ram_core/enexp1_SW0 (N293)
+     LUT6:I1->O            1   0.094   1.069  s6/md<2>LogicTrst23 (s6/md<2>LogicTrst23)
+     LUT6:I0->O           66   0.094   0.844  s6/md<2>LogicTrst75 (s6/md<2>)
+     LUT3:I0->O            1   0.094   0.480  s6/ls2800/Madd_sum_addsub0002_Madd_lut<0>1 (s6/ls2800/Madd_sum_addsub0002_Madd_lut<0>)
+     LUT6:I5->O            1   0.094   0.973  s6/ls2800/Madd_sum_Madd_Madd_lut<0>1 (s6/ls2800/Madd_sum_Madd_Madd_lut<0>)
+     LUT6:I1->O           66   0.094   0.470  s6/mdpLogicTrst100 (s6/mdp)
+     begin scope: 's6/rb3/central_ram_core/central_ram_core'
+     RAMB36_EXP:DIA0           0.342          U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP
+    ----------------------------------------
+    Total                      7.100ns (1.000ns logic, 6.100ns route)
+                                       (14.1% logic, 85.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's1/ale1'
+  Total number of paths / destination ports: 36 / 20
+-------------------------------------------------------------------------
+Offset:              2.273ns (Levels of Logic = 2)
+  Source:            s1/i8288:dtr (PAD)
+  Destination:       s1/u7/rq_0 (LATCH)
+  Destination Clock: s1/ale1 falling
+
+  Data Path: s1/i8288:dtr to s1/u7/rq_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:dtr          2   0.000   0.978  s1/i8288 (s1/dtr)
+     LUT5:I0->O            8   0.094   1.107  s1/u8/ba_inv1 (s1/u8/ba_inv)
+     LUT6:I0->O            4   0.094   0.000  s1/adp<0>LogicTrst1 (s1/adp<0>)
+     LD:D                     -0.071          s1/u7/rq_0
+    ----------------------------------------
+    Total                      2.273ns (0.188ns logic, 2.085ns route)
+                                       (8.3% logic, 91.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's9/keyboard/irq1'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              0.470ns (Levels of Logic = 0)
+  Source:            s1/i8088:rqgti_n (PAD)
+  Destination:       s1/i8259/irr_1 (LATCH)
+  Destination Clock: s9/keyboard/irq1 falling
+
+  Data Path: s1/i8088:rqgti_n to s1/i8259/irr_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8088:rqgti_n     68   0.000   0.470  s1/i8088 (s1/rqgti_n)
+     LDC:D                    -0.071          s1/i8259/irr_1
+    ----------------------------------------
+    Total                      0.470ns (0.000ns logic, 0.470ns route)
+                                       (0.0% logic, 100.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's8/i8253/vcs/C0/OUTCTRL/OUT'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              0.470ns (Levels of Logic = 0)
+  Source:            s1/i8088:rqgti_n (PAD)
+  Destination:       s1/i8259/irr_0 (LATCH)
+  Destination Clock: s8/i8253/vcs/C0/OUTCTRL/OUT falling
+
+  Data Path: s1/i8088:rqgti_n to s1/i8259/irr_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8088:rqgti_n     68   0.000   0.470  s1/i8088 (s1/rqgti_n)
+     LDC:D                    -0.071          s1/i8259/irr_0
+    ----------------------------------------
+    Total                      0.470ns (0.000ns logic, 0.470ns route)
+                                       (0.0% logic, 100.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's1/i8259/eoir_not0001'
+  Total number of paths / destination ports: 12 / 4
+-------------------------------------------------------------------------
+Offset:              2.273ns (Levels of Logic = 2)
+  Source:            s1/i8288:dtr (PAD)
+  Destination:       s1/i8259/eoir_0 (LATCH)
+  Destination Clock: s1/i8259/eoir_not0001 rising
+
+  Data Path: s1/i8288:dtr to s1/i8259/eoir_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:dtr          2   0.000   0.978  s1/i8288 (s1/dtr)
+     LUT5:I0->O            8   0.094   1.107  s1/u8/ba_inv1 (s1/u8/ba_inv)
+     LUT6:I0->O            4   0.094   0.000  s1/adp<0>LogicTrst1 (s1/adp<0>)
+     LDPE_1:D                 -0.071          s1/i8259/eoir_0
+    ----------------------------------------
+    Total                      2.273ns (0.188ns logic, 2.085ns route)
+                                       (8.3% logic, 91.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's1/i8259/icws_and0000'
+  Total number of paths / destination ports: 24 / 8
+-------------------------------------------------------------------------
+Offset:              2.863ns (Levels of Logic = 3)
+  Source:            s1/i8288:dtr (PAD)
+  Destination:       s1/i8259/imr_0 (LATCH)
+  Destination Clock: s1/i8259/icws_and0000 falling
+
+  Data Path: s1/i8288:dtr to s1/i8259/imr_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:dtr          2   0.000   0.978  s1/i8288 (s1/dtr)
+     LUT5:I0->O            8   0.094   1.107  s1/u8/ba_inv1 (s1/u8/ba_inv)
+     LUT6:I0->O            4   0.094   0.496  s1/adp<0>LogicTrst1 (s1/adp<0>)
+     LUT2:I1->O            1   0.094   0.000  s1/i8259/imr_mux0000<0>1 (s1/i8259/imr_mux0000<0>)
+     LDE:D                    -0.071          s1/i8259/imr_0
+    ----------------------------------------
+    Total                      2.863ns (0.282ns logic, 2.581ns route)
+                                       (9.8% logic, 90.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's9/i8255/pb_cmp_eq0000'
+  Total number of paths / destination ports: 202 / 3
+-------------------------------------------------------------------------
+Offset:              5.637ns (Levels of Logic = 7)
+  Source:            s1/i8288:amwc_n (PAD)
+  Destination:       s9/i8255/pb_1 (LATCH)
+  Destination Clock: s9/i8255/pb_cmp_eq0000 falling
+
+  Data Path: s1/i8288:amwc_n to s9/i8255/pb_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:amwc_n      16   0.000   0.658  s1/i8288 (memr_n)
+     LUT4:I2->O           33   0.094   1.100  xmemr_nLogicTrst1 (xmemr_n)
+     LUT6:I1->O           10   0.094   0.529  s3/ls4/y_and00001 (s3/ls4/y_and0000)
+     LUT5:I4->O            3   0.094   0.984  s5/rommod/csv_inv11 (N135)
+     LUT6:I1->O            1   0.094   0.480  xd<0>LogicTrst1_SW0 (N242)
+     LUT6:I5->O            8   0.094   0.518  xd<0>LogicTrst1 (N51)
+     LUT5:I4->O            1   0.094   0.710  xd<7>LogicTrst52 (xd<7>LogicTrst52)
+     LUT3:I0->O           33   0.094   0.000  xd<7>LogicTrst67 (xd<7>)
+     LDC:D                    -0.071          s9/i8255/pb_7
+    ----------------------------------------
+    Total                      5.637ns (0.658ns logic, 4.979ns route)
+                                       (11.7% logic, 88.3% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's9/i8255/pdo_not0001'
+  Total number of paths / destination ports: 16 / 8
+-------------------------------------------------------------------------
+Offset:              2.942ns (Levels of Logic = 3)
+  Source:            s1/i8288:iorc_n (PAD)
+  Destination:       s9/i8255/pdo_5 (LATCH)
+  Destination Clock: s9/i8255/pdo_not0001 falling
+
+  Data Path: s1/i8288:iorc_n to s9/i8255/pdo_5
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:iorc_n       3   0.000   0.721  s1/i8288 (iow_n)
+     LUT5:I2->O           97   0.094   1.112  xiow_nLogicTrst1 (xiow_n)
+     LUT5:I0->O            8   0.094   0.827  s9/i8255/pdo_mux0000<0>21 (N150)
+     LUT4:I0->O            1   0.094   0.000  s9/i8255/pdo_mux0000<5>1 (s9/i8255/pdo_mux0000<5>)
+     LD:D                     -0.071          s9/i8255/pdo_5
+    ----------------------------------------
+    Total                      2.942ns (0.282ns logic, 2.660ns route)
+                                       (9.6% logic, 90.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's8/i8253/vcs/C0/READ/DREG_not0001'
+  Total number of paths / destination ports: 9 / 9
+-------------------------------------------------------------------------
+Offset:              3.272ns (Levels of Logic = 3)
+  Source:            s1/i8288:iorc_n (PAD)
+  Destination:       s8/i8253/vcs/C0/READ/DREG_7 (LATCH)
+  Destination Clock: s8/i8253/vcs/C0/READ/DREG_not0001 falling
+
+  Data Path: s1/i8288:iorc_n to s8/i8253/vcs/C0/READ/DREG_7
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:iorc_n       3   0.000   0.721  s1/i8288 (iow_n)
+     LUT5:I2->O           97   0.094   1.112  xiow_nLogicTrst1 (xiow_n)
+     LUT5:I0->O           17   0.094   1.157  s8/i8253/vcs/C0/READ/D_and00001 (s8/i8253/vcs/C0/READ/D_and0000)
+     LUT6:I0->O            1   0.094   0.000  s8/i8253/vcs/C0/READ/DREG_mux0000<7>1 (s8/i8253/vcs/C0/READ/DREG_mux0000<7>)
+     LD:D                     -0.071          s8/i8253/vcs/C0/READ/DREG_7
+    ----------------------------------------
+    Total                      3.272ns (0.282ns logic, 2.990ns route)
+                                       (8.6% logic, 91.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's8/i8253/vcs/C1/READ/DREG_not0001'
+  Total number of paths / destination ports: 9 / 9
+-------------------------------------------------------------------------
+Offset:              3.088ns (Levels of Logic = 3)
+  Source:            s1/i8288:iorc_n (PAD)
+  Destination:       s8/i8253/vcs/C1/READ/DREG_7 (LATCH)
+  Destination Clock: s8/i8253/vcs/C1/READ/DREG_not0001 falling
+
+  Data Path: s1/i8288:iorc_n to s8/i8253/vcs/C1/READ/DREG_7
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:iorc_n       3   0.000   0.721  s1/i8288 (iow_n)
+     LUT5:I2->O           97   0.094   0.928  xiow_nLogicTrst1 (xiow_n)
+     LUT5:I1->O           17   0.094   1.157  s8/i8253/vcs/C1/READ/D_and00001 (s8/i8253/vcs/C1/READ/D_and0000)
+     LUT6:I0->O            1   0.094   0.000  s8/i8253/vcs/C1/READ/DREG_mux0000<7>1 (s8/i8253/vcs/C1/READ/DREG_mux0000<7>)
+     LD:D                     -0.071          s8/i8253/vcs/C1/READ/DREG_7
+    ----------------------------------------
+    Total                      3.088ns (0.282ns logic, 2.806ns route)
+                                       (9.1% logic, 90.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's8/i8253/vcs/C2/READ/DREG_not0001'
+  Total number of paths / destination ports: 9 / 9
+-------------------------------------------------------------------------
+Offset:              3.088ns (Levels of Logic = 3)
+  Source:            s1/i8288:iorc_n (PAD)
+  Destination:       s8/i8253/vcs/C2/READ/DREG_7 (LATCH)
+  Destination Clock: s8/i8253/vcs/C2/READ/DREG_not0001 falling
+
+  Data Path: s1/i8288:iorc_n to s8/i8253/vcs/C2/READ/DREG_7
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:iorc_n       3   0.000   0.721  s1/i8288 (iow_n)
+     LUT5:I2->O           97   0.094   0.928  xiow_nLogicTrst1 (xiow_n)
+     LUT5:I1->O           17   0.094   1.157  s8/i8253/vcs/C2/READ/D_and00001 (s8/i8253/vcs/C2/READ/D_and0000)
+     LUT6:I0->O            1   0.094   0.000  s8/i8253/vcs/C2/READ/DREG_mux0000<7>1 (s8/i8253/vcs/C2/READ/DREG_mux0000<7>)
+     LD:D                     -0.071          s8/i8253/vcs/C2/READ/DREG_7
+    ----------------------------------------
+    Total                      3.088ns (0.282ns logic, 2.806ns route)
+                                       (9.1% logic, 90.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's8/pclka1'
+  Total number of paths / destination ports: 5945 / 47
+-------------------------------------------------------------------------
+Offset:              8.987ns (Levels of Logic = 9)
+  Source:            s1/i8288:amwc_n (PAD)
+  Destination:       s8/i8253/vcs/C2/OUTCTRL/CLRTRIG (FF)
+  Destination Clock: s8/pclka1 falling
+
+  Data Path: s1/i8288:amwc_n to s8/i8253/vcs/C2/OUTCTRL/CLRTRIG
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:amwc_n      16   0.000   0.658  s1/i8288 (memr_n)
+     LUT4:I2->O           33   0.094   0.703  xmemr_nLogicTrst1 (xmemr_n)
+     LUT5:I3->O           11   0.094   0.535  s3/ls3/y<6>1 (ras_n<2>)
+     LUT4:I3->O            4   0.094   0.805  s6/rb2/central_ram_core/enexp1 (s6/rb2/enexp)
+     LUT4:I0->O            1   0.094   1.069  s6/md<6>LogicTrst23 (s6/md<6>LogicTrst23)
+     LUT6:I0->O           66   0.094   0.844  s6/md<6>LogicTrst75 (s6/md<6>)
+     LUT6:I3->O            6   0.094   0.603  d<6>LogicTrst76 (d<6>)
+     LUT3:I1->O           32   0.094   1.196  xd<6>LogicTrst67 (xd<6>)
+     LUT6:I0->O           20   0.094   0.814  s8/i8253/vcs/C2/OUTCTRL/RELOAD_or000011 (s8/i8253/vcs/C2/MODEWRITE)
+     LUT4:I1->O            2   0.094   0.341  s8/i8253/vcs/C2/OUTCTRL/RELOAD_or00002 (s8/i8253/vcs/C2/OUTCTRL/RELOAD_or0000)
+     FDR_1:R                   0.573          s8/i8253/vcs/C2/OUTCTRL/RELOAD
+    ----------------------------------------
+    Total                      8.987ns (1.419ns logic, 7.568ns route)
+                                       (15.8% logic, 84.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'xiow_n'
+  Total number of paths / destination ports: 6288 / 84
+-------------------------------------------------------------------------
+Offset:              7.640ns (Levels of Logic = 8)
+  Source:            s1/i8288:amwc_n (PAD)
+  Destination:       s8/i8253/vcs/C0/MODEREG/MODE_5 (FF)
+  Destination Clock: xiow_n rising
+
+  Data Path: s1/i8288:amwc_n to s8/i8253/vcs/C0/MODEREG/MODE_5
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:amwc_n      16   0.000   0.658  s1/i8288 (memr_n)
+     LUT4:I2->O           33   0.094   0.703  xmemr_nLogicTrst1 (xmemr_n)
+     LUT5:I3->O           11   0.094   0.535  s3/ls3/y<6>1 (ras_n<2>)
+     LUT4:I3->O            4   0.094   0.805  s6/rb2/central_ram_core/enexp1 (s6/rb2/enexp)
+     LUT4:I0->O            1   0.094   1.069  s6/md<6>LogicTrst23 (s6/md<6>LogicTrst23)
+     LUT6:I0->O           66   0.094   0.844  s6/md<6>LogicTrst75 (s6/md<6>)
+     LUT6:I3->O            6   0.094   0.603  d<6>LogicTrst76 (d<6>)
+     LUT3:I1->O           32   0.094   1.100  xd<6>LogicTrst67 (xd<6>)
+     LUT6:I1->O            5   0.094   0.358  s8/i8253/vcs/C0/MODEREG/MODE_and00001 (s8/i8253/vcs/C0/MODEREG/MODE_and0000)
+     FDE:CE                    0.213          s8/i8253/vcs/C0/MODEREG/MODE_1
+    ----------------------------------------
+    Total                      7.640ns (0.965ns logic, 6.675ns route)
+                                       (12.6% logic, 87.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's8/i8253/vcs/C2/LOADCNT'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              0.470ns (Levels of Logic = 0)
+  Source:            s1/i8088:rqgti_n (PAD)
+  Destination:       s8/i8253/vcs/C2/DOWNCNTR/VLOADCNT (FF)
+  Destination Clock: s8/i8253/vcs/C2/LOADCNT rising
+
+  Data Path: s1/i8088:rqgti_n to s8/i8253/vcs/C2/DOWNCNTR/VLOADCNT
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8088:rqgti_n     68   0.000   0.470  s1/i8088 (s1/rqgti_n)
+     FDC:D                    -0.018          s8/i8253/vcs/C2/DOWNCNTR/VLOADCNT
+    ----------------------------------------
+    Total                      0.470ns (0.000ns logic, 0.470ns route)
+                                       (0.0% logic, 100.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's8/i8253/vcs/C2/MODETRIG'
+  Total number of paths / destination ports: 476 / 2
+-------------------------------------------------------------------------
+Offset:              8.493ns (Levels of Logic = 9)
+  Source:            s1/i8288:amwc_n (PAD)
+  Destination:       s8/i8253/vcs/C2/OUTCTRL/TRIG (FF)
+  Destination Clock: s8/i8253/vcs/C2/MODETRIG rising
+
+  Data Path: s1/i8288:amwc_n to s8/i8253/vcs/C2/OUTCTRL/TRIG
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:amwc_n      16   0.000   0.658  s1/i8288 (memr_n)
+     LUT4:I2->O           33   0.094   0.703  xmemr_nLogicTrst1 (xmemr_n)
+     LUT5:I3->O           11   0.094   0.535  s3/ls3/y<6>1 (ras_n<2>)
+     LUT4:I3->O            4   0.094   0.805  s6/rb2/central_ram_core/enexp1 (s6/rb2/enexp)
+     LUT4:I0->O            1   0.094   1.069  s6/md<6>LogicTrst23 (s6/md<6>LogicTrst23)
+     LUT6:I0->O           66   0.094   0.844  s6/md<6>LogicTrst75 (s6/md<6>)
+     LUT6:I3->O            6   0.094   0.603  d<6>LogicTrst76 (d<6>)
+     LUT3:I1->O           32   0.094   1.196  xd<6>LogicTrst67 (xd<6>)
+     LUT6:I0->O           20   0.094   0.680  s8/i8253/vcs/C2/OUTCTRL/RELOAD_or000011 (s8/i8253/vcs/C2/MODEWRITE)
+     LUT4:I2->O            2   0.094   0.341  s8/i8253/vcs/C2/MODEREG/MODETRIG1 (s8/i8253/vcs/C2/MODETRIG)
+     FDCPE:CE                  0.213          s8/i8253/vcs/C2/OUTCTRL/TRIG
+    ----------------------------------------
+    Total                      8.493ns (1.059ns logic, 7.434ns route)
+                                       (12.5% logic, 87.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's8/i8253/vcs/C1/LOADCNT'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              0.470ns (Levels of Logic = 0)
+  Source:            s1/i8088:rqgti_n (PAD)
+  Destination:       s8/i8253/vcs/C1/DOWNCNTR/VLOADCNT (FF)
+  Destination Clock: s8/i8253/vcs/C1/LOADCNT rising
+
+  Data Path: s1/i8088:rqgti_n to s8/i8253/vcs/C1/DOWNCNTR/VLOADCNT
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8088:rqgti_n     68   0.000   0.470  s1/i8088 (s1/rqgti_n)
+     FDC:D                    -0.018          s8/i8253/vcs/C1/DOWNCNTR/VLOADCNT
+    ----------------------------------------
+    Total                      0.470ns (0.000ns logic, 0.470ns route)
+                                       (0.0% logic, 100.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's8/i8253/vcs/C1/MODETRIG'
+  Total number of paths / destination ports: 476 / 2
+-------------------------------------------------------------------------
+Offset:              8.257ns (Levels of Logic = 9)
+  Source:            s1/i8288:amwc_n (PAD)
+  Destination:       s8/i8253/vcs/C1/OUTCTRL/TRIG (FF)
+  Destination Clock: s8/i8253/vcs/C1/MODETRIG rising
+
+  Data Path: s1/i8288:amwc_n to s8/i8253/vcs/C1/OUTCTRL/TRIG
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:amwc_n      16   0.000   0.658  s1/i8288 (memr_n)
+     LUT4:I2->O           33   0.094   1.100  xmemr_nLogicTrst1 (xmemr_n)
+     LUT6:I1->O           10   0.094   0.529  s3/ls4/y_and00001 (s3/ls4/y_and0000)
+     LUT5:I4->O            3   0.094   0.984  s5/rommod/csv_inv11 (N135)
+     LUT6:I1->O            1   0.094   0.480  xd<0>LogicTrst1_SW0 (N242)
+     LUT6:I5->O            8   0.094   0.518  xd<0>LogicTrst1 (N51)
+     LUT5:I4->O            1   0.094   0.710  xd<7>LogicTrst52 (xd<7>LogicTrst52)
+     LUT3:I0->O           33   0.094   1.196  xd<7>LogicTrst67 (xd<7>)
+     LUT6:I0->O           19   0.094   0.675  s8/i8253/vcs/C1/MODEREG/MODETRIG11 (s8/i8253/vcs/C1/MODEWRITE)
+     LUT4:I2->O            3   0.094   0.347  s8/i8253/vcs/C1/MODEREG/MODETRIG2 (s8/i8253/vcs/C1/MODETRIG)
+     FDCPE:CE                  0.213          s8/i8253/vcs/C1/OUTCTRL/TRIG
+    ----------------------------------------
+    Total                      8.257ns (1.059ns logic, 7.198ns route)
+                                       (12.8% logic, 87.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's8/i8253/vcs/C0/LOADCNT'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              0.470ns (Levels of Logic = 0)
+  Source:            s1/i8088:rqgti_n (PAD)
+  Destination:       s8/i8253/vcs/C0/DOWNCNTR/VLOADCNT (FF)
+  Destination Clock: s8/i8253/vcs/C0/LOADCNT rising
+
+  Data Path: s1/i8088:rqgti_n to s8/i8253/vcs/C0/DOWNCNTR/VLOADCNT
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8088:rqgti_n     68   0.000   0.470  s1/i8088 (s1/rqgti_n)
+     FDC:D                    -0.018          s8/i8253/vcs/C0/DOWNCNTR/VLOADCNT
+    ----------------------------------------
+    Total                      0.470ns (0.000ns logic, 0.470ns route)
+                                       (0.0% logic, 100.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's8/i8253/vcs/C0/MODETRIG'
+  Total number of paths / destination ports: 476 / 2
+-------------------------------------------------------------------------
+Offset:              8.680ns (Levels of Logic = 10)
+  Source:            s1/i8288:amwc_n (PAD)
+  Destination:       s8/i8253/vcs/C0/OUTCTRL/TRIG (FF)
+  Destination Clock: s8/i8253/vcs/C0/MODETRIG rising
+
+  Data Path: s1/i8288:amwc_n to s8/i8253/vcs/C0/OUTCTRL/TRIG
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:amwc_n      16   0.000   0.658  s1/i8288 (memr_n)
+     LUT4:I2->O           33   0.094   1.100  xmemr_nLogicTrst1 (xmemr_n)
+     LUT6:I1->O           10   0.094   0.529  s3/ls4/y_and00001 (s3/ls4/y_and0000)
+     LUT5:I4->O            3   0.094   0.984  s5/rommod/csv_inv11 (N135)
+     LUT6:I1->O            1   0.094   0.480  xd<0>LogicTrst1_SW0 (N242)
+     LUT6:I5->O            8   0.094   0.518  xd<0>LogicTrst1 (N51)
+     LUT5:I4->O            1   0.094   0.710  xd<4>LogicTrst52 (xd<4>LogicTrst52)
+     LUT3:I0->O           23   0.094   0.693  xd<4>LogicTrst67 (xd<4>)
+     LUT2:I0->O            9   0.094   0.833  s8/i8253/vcs/C0/MODEREG/SETOUT__and00011 (s8/i8253/vcs/C0/MODEREG/SETOUT__and0001)
+     LUT6:I2->O           19   0.094   0.675  s8/i8253/vcs/C0/MODEREG/MODETRIG11 (s8/i8253/vcs/C0/MODEWRITE)
+     LUT4:I2->O            3   0.094   0.347  s8/i8253/vcs/C0/MODEREG/MODETRIG2 (s8/i8253/vcs/C0/MODETRIG)
+     FDCPE:CE                  0.213          s8/i8253/vcs/C0/OUTCTRL/TRIG
+    ----------------------------------------
+    Total                      8.680ns (1.153ns logic, 7.527ns route)
+                                       (13.3% logic, 86.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'KEYBOARD_CLK'
+  Total number of paths / destination ports: 10 / 10
+-------------------------------------------------------------------------
+Offset:              1.192ns (Levels of Logic = 1)
+  Source:            KEYBOARD_DATA (PAD)
+  Destination:       s9/keyboard/keyinmod/dataout_1 (FF)
+  Destination Clock: KEYBOARD_CLK falling
+
+  Data Path: KEYBOARD_DATA to s9/keyboard/keyinmod/dataout_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             8   0.818   0.374  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
+     FDE_1:D                  -0.018          s9/keyboard/keyinmod/dataout_1
+    ----------------------------------------
+    Total                      1.192ns (0.818ns logic, 0.374ns route)
+                                       (68.6% logic, 31.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'USER_CLK'
+  Total number of paths / destination ports: 11 / 10
+-------------------------------------------------------------------------
+Offset:              1.548ns (Levels of Logic = 2)
+  Source:            s1/i8288:mrdc_n (PAD)
+  Destination:       s3/td0/td5/q (FF)
+  Destination Clock: USER_CLK rising
+
+  Data Path: s1/i8288:mrdc_n to s3/td0/td5/q
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8288:mrdc_n      16   0.000   0.658  s1/i8288 (memw_n)
+     LUT4:I2->O           27   0.094   0.702  xmemw_nLogicTrst1 (xmemw_n)
+     LUT2:I0->O            1   0.094   0.000  s3/rasc1 (s3/rasc)
+     FDR:D                    -0.018          s3/td0/td5/q
+    ----------------------------------------
+    Total                      1.548ns (0.188ns logic, 1.360ns route)
+                                       (12.1% logic, 87.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's2/b1'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.043ns (Levels of Logic = 0)
+  Source:            s1/i8088:rqgti_n (PAD)
+  Destination:       s2/rdy_wait (FF)
+  Destination Clock: s2/b1 rising
+
+  Data Path: s1/i8088:rqgti_n to s2/rdy_wait
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8088:rqgti_n     68   0.000   0.470  s1/i8088 (s1/rqgti_n)
+     FDS:S                     0.573          s2/rdy_wait
+    ----------------------------------------
+    Total                      1.043ns (0.573ns logic, 0.470ns route)
+                                       (54.9% logic, 45.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'vga_clk1'
+  Total number of paths / destination ports: 8 / 8
+-------------------------------------------------------------------------
+Offset:              3.264ns (Levels of Logic = 1)
+  Source:            s0/vgamod/vga_blue_o_0 (FF)
+  Destination:       HDR1_10 (PAD)
+  Source Clock:      vga_clk1 rising
+
+  Data Path: s0/vgamod/vga_blue_o_0 to HDR1_10
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              2   0.471   0.341  s0/vgamod/vga_blue_o_0 (s0/vgamod/vga_blue_o_0)
+     OBUF:I->O                 2.452          HDR1_10_OBUF (HDR1_10)
+    ----------------------------------------
+    Total                      3.264ns (2.923ns logic, 0.341ns route)
+                                       (89.6% logic, 10.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 's8/pclka1'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.941ns (Levels of Logic = 2)
+  Source:            s8/i8253/vcs/C2/OUTCTRL/OUT (FF)
+  Destination:       PIEZO_SPEAKER (PAD)
+  Source Clock:      s8/pclka1 falling
+
+  Data Path: s8/i8253/vcs/C2/OUTCTRL/OUT to PIEZO_SPEAKER
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDSE_1:C->Q           4   0.467   0.592  s8/i8253/vcs/C2/OUTCTRL/OUT (s8/i8253/vcs/C2/OUTCTRL/OUT)
+     LUT2:I0->O            1   0.094   0.336  s8/sdata_and00001 (PIEZO_SPEAKER_OBUF)
+     OBUF:I->O                 2.452          PIEZO_SPEAKER_OBUF (PIEZO_SPEAKER)
+    ----------------------------------------
+    Total                      3.941ns (3.013ns logic, 0.928ns route)
+                                       (76.5% logic, 23.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 's9/i8255/pb_cmp_eq0000'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              4.098ns (Levels of Logic = 2)
+  Source:            s9/i8255/pb_1 (LATCH)
+  Destination:       PIEZO_SPEAKER (PAD)
+  Source Clock:      s9/i8255/pb_cmp_eq0000 falling
+
+  Data Path: s9/i8255/pb_1 to PIEZO_SPEAKER
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDC:G->Q              1   0.736   0.480  s9/i8255/pb_1 (s9/i8255/pb_1)
+     LUT2:I1->O            1   0.094   0.336  s8/sdata_and00001 (PIEZO_SPEAKER_OBUF)
+     OBUF:I->O                 2.452          PIEZO_SPEAKER_OBUF (PIEZO_SPEAKER)
+    ----------------------------------------
+    Total                      4.098ns (3.282ns logic, 0.816ns route)
+                                       (80.1% logic, 19.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk1'
+  Total number of paths / destination ports: 2 / 2
+-------------------------------------------------------------------------
+Offset:              1.178ns (Levels of Logic = 1)
+  Source:            s2/aen_brd (FF)
+  Destination:       s1/i8288:cen (PAD)
+  Source Clock:      clk1 rising
+
+  Data Path: s2/aen_brd to s1/i8288:cen
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q             65   0.471   0.469  s2/aen_brd (s2/aen_brd)
+     INV:I->O              0   0.238   0.000  s2/aen_n1_INV_0 (aen_n)
+    intel8288:cen              0.000          s1/i8288
+    ----------------------------------------
+    Total                      1.178ns (0.709ns logic, 0.469ns route)
+                                       (60.2% logic, 39.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 's2/b1'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              0.807ns (Levels of Logic = 0)
+  Source:            s2/rdy_wait (FF)
+  Destination:       s1/i8284:aen1 (PAD)
+  Source Clock:      s2/b1 rising
+
+  Data Path: s2/rdy_wait to s1/i8284:aen1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDS:C->Q              1   0.471   0.336  s2/rdy_wait (s2/rdy_wait)
+    intel8284a:aen1            0.000          s1/i8284
+    ----------------------------------------
+    Total                      0.807ns (0.471ns logic, 0.336ns route)
+                                       (58.4% logic, 41.6% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 9 / 9
+-------------------------------------------------------------------------
+Delay:               0.506ns (Levels of Logic = 0)
+  Source:            s1/i8284:reset (PAD)
+  Destination:       s1/i8088:reset (PAD)
+
+  Data Path: s1/i8284:reset to s1/i8088:reset
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+    intel8284a:reset     260   0.000   0.506  s1/i8284 (reset)
+    intel8088:reset            0.000          s1/i8088
+    ----------------------------------------
+    Total                      0.506ns (0.000ns logic, 0.506ns route)
+                                       (0.0% logic, 100.0% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 41.00 secs
+Total CPU time to Xst completion: 39.86 secs
  
 --> 
 
 
-Total memory usage is 700168 kilobytes
+Total memory usage is 725132 kilobytes
 
-Number of errors   :   20 (   0 filtered)
-Number of warnings :  488 (   0 filtered)
-Number of infos    :   26 (   0 filtered)
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  612 (   0 filtered)
+Number of infos    :   27 (   0 filtered)
 

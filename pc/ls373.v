@@ -10,13 +10,16 @@ module ls373(
 	     );
 
    input [7:0]  d;
-   inout [7:0] 	q;
+   inout tri [7:0] 	q;
    input 	g;
    input 	oe_n;
 
-   // Holding Register
+   wire 	oe;
    reg [7:0] 	rq;
-
+   
+   assign oe = ~oe_n;
+   assign q = (oe) ? rq : 8'bzzzzzzzz;
+   
    // D-Latch
    always @(g or d) begin
       if(g) begin
@@ -27,7 +30,4 @@ module ls373(
       end
    end
 
-   // Bus Control
-   assign q = (oe_n === 1'b0) ? rq : 8'bzzzzzzzz;
-   
 endmodule // ls373
