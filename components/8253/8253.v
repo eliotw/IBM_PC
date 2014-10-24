@@ -578,93 +578,82 @@ endmodule
  */
 module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
 
-  input       SEL,
-              RD_,
-              WR_,
-              MODEWRITE;
-  input [5:4] MODE;
+   input       SEL,
+               RD_,
+               WR_,
+               MODEWRITE;
+   input [5:4] MODE;
    inout [7:0] D;
    input [7:0] LATCHLSB,
-              LATCHMSB;
+               LATCHMSB;
 
-  output      CLRLATCH;
+   output      CLRLATCH;
 
-  reg         CLRLATCH,
-              READLSB,
-              SETREADLSB,
-              CLRREADLSB;
+   reg         CLRLATCH,
+               READLSB,
+               SETREADLSB,
+               CLRREADLSB;
 
-  reg   [7:0] DREG;
+   reg [7:0]   DREG;
 
-  assign D = (SEL & ~RD_ & WR_) ? DREG : 8'bz;
+   assign D = (SEL & ~RD_ & WR_) ? DREG : 8'bz;
    /*
    always @((SEL & ~RD_ & WR_)) begin
       $display("dreg %b",DREG);
    end
    */
-  // Read Output Latch 
-  always @(SEL or RD_ or WR_)
-    if (SEL & ~RD_ & WR_)         
-      case (MODE[5:4])
-        'b01 : begin
-           // Read LSB
-           DREG = LATCHLSB;
-           // Reset Latch Command
-           CLRLATCH = 1'b1;
-	   CLRREADLSB = 1'b0;
-	   
-               end
-        'b10 : begin
-                 // Read MSB
-                 DREG = LATCHMSB;
-	   CLRREADLSB = 1'b0;
-	   
-                 // Reset Latch Command
-                 CLRLATCH = 1'b1;
-               end
-        'b11 : if (READLSB)
-                 begin
-                   // Read LSB First
-		    CLRLATCH = 1'b0;
-//		    $display("dddddddddddddddddd");
- 
-                   DREG = LATCHLSB;
-                   CLRREADLSB = 1'b1;
-                 end
-               else
-                 begin
-                   // Read MSB Only After LSB Is Read 
-                   DREG = LATCHMSB;
-                   CLRREADLSB = 1'b0;
-		    //SETREADLSB = 'b1;
-//		    $display("fasdfadsf");    
-                   // Reset Latch Command
-                   CLRLATCH = 'b1;
-                 end
-      endcase
-    else
-      begin
-        DREG = 8'b0;
-        CLRLATCH = 'b0;
-        CLRREADLSB = 'b0;
-        SETREADLSB = 'b0;
-      end
+   // Read Output Latch 
+   always @(SEL or RD_ or WR_)
+     if (SEL & ~RD_ & WR_)         
+       case (MODE[5:4])
+         'b01 : begin
+            // Read LSB
+            DREG = LATCHLSB;
+            // Reset Latch Command
+            CLRLATCH = 1'b1;
+	    CLRREADLSB = 1'b0;
+         end
+         'b10 : begin
+            // Read MSB
+            DREG = LATCHMSB;
+	    CLRREADLSB = 1'b0;
+            // Reset Latch Command
+            CLRLATCH = 1'b1;
+         end
+         'b11 : if (READLSB)
+           begin
+              // Read LSB First
+	      CLRLATCH = 1'b0;
+              DREG = LATCHLSB;
+              CLRREADLSB = 1'b1;
+           end
+         else
+           begin
+              // Read MSB Only After LSB Is Read 
+              DREG = LATCHMSB;
+              CLRREADLSB = 1'b0;    
+              // Reset Latch Command
+              CLRLATCH = 'b1;
+           end
+       endcase
+     else
+       begin
+          DREG = 8'b0;
+          CLRLATCH = 'b0;
+          CLRREADLSB = 'b0;
+          SETREADLSB = 'b0;
+       end
 
-   always @((SEL & ~RD_ & WR_)) begin
-  //    $display("dreg %b",DREG);
-   end
-   
-  // Flag READLSB Is Set When In 2 Byte Mode And LSB Has Not Been Read Yet
-  always @(SETREADLSB or MODEWRITE)
-    if (SETREADLSB || MODEWRITE)
-      READLSB = 'b1;
+   // Flag READLSB Is Set When In 2 Byte Mode And LSB Has Not Been Read Yet
+   always @(SETREADLSB or MODEWRITE)
+     if (SETREADLSB || MODEWRITE)
+       READLSB = 'b1;
 
-  // Flag READLSB Is Cleared When In 2 Byte Mode And LSB Has Been Read
+   // Flag READLSB Is Cleared When In 2 Byte Mode And LSB Has Been Read
+   always @(CLRREADLSB)
+     begin
+	if (CLRREADLSB)
+	  READLSB = 1'b0;
+     end
 
-  always @(CLRREADLSB)
-    begin
-//       $display("clr read lsb %b",CLRREADLSB);   
-       if (CLRREADLSB)
-	 READLSB = 1'b0;
-    end
 endmodule
