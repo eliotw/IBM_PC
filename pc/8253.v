@@ -53,110 +53,131 @@ endmodule // intel8253
 
 /*
  * cntreg:
- * This module is a 16-bit down counter for the 8253
+ * This module is a 16-bit count register for the 8253
  * This module has been copied from the VCS installation folder
  */
 module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
 
-  input        SEL,
-               RD_,
-               WR_,
-               CLK,
-               MODEWRITE;
+   input        SEL,
+		RD_,
+		WR_,
+		CLK,
+		MODEWRITE;
 
-  input  [5:1] MODE;
-  input  [7:0] D;
+   input [5:1] 	MODE;
+   input [7:0] 	D;
 
-  output       LOAD,
-               OUTEN;
+   output       LOAD,
+		OUTEN;
 
-  output [7:0] COUNTLSB,
-               COUNTMSB;
+   output [7:0] COUNTLSB,
+		COUNTMSB;
 
-  reg          LOAD,
-               OUTEN,
-               LOADLSB,
-               SETLOADLSB,
-               CLRLOADLSB;
+   reg          LOAD,
+		OUTEN,
+		LOADLSB,
+		CLRLOADLSB;
  
-  reg    [7:0] COUNTLSB,
-               COUNTMSB;
+   reg [7:0] 	COUNTLSB,
+		COUNTMSB;
 
-   // Witchcraft!
-   always @(COUNTMSB or COUNTLSB) begin
-      //$display("count: %b%b",COUNTMSB,COUNTLSB);
+   wire 	clear;
+   reg 		lsbflag;
+   
+   assign clear = MODEWRITE;
+
+   // LSB Flag Initial
+   initial begin
+      lsbflag = 1'b0;
    end
    
-   
-  // Count Register
-
-  always @(posedge WR_)
-    if (SEL & RD_)
-      case (MODE[5:4])
-	
-        'b01 : begin
-                 // Write LSB
-                 COUNTLSB = D;
-                 // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
-                 if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
-                   LOAD = 'b1;
-                 // Enable Output
-                 OUTEN = 'b1;
-               end
-        'b10 : begin
-                 // Write MSB
-                 COUNTMSB = D;
-                 // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
-                 if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
-                   LOAD = 'b1;
-                 // Enable Output
-                 OUTEN = 'b1;
-               end
-        'b11 : if (LOADLSB)
-                 begin
-                    // Write LSB First
-                    COUNTLSB = D;
-                    CLRLOADLSB = 1'b1;
-		    //$display("fajita: %b %b",D,CLRLOADLSB);
-		    
-                 end
-               else
-                 begin
-                    // Write MSB Only After LSB Loaded
-                    COUNTMSB = D;
-                    //SETLOADLSB =  'b1;
-		    CLRLOADLSB = 1'b0;
-		    //$display("fujita: %b %b",D,CLRLOADLSB);
-		    
-                   // Load Count On Next Rising CLK In Modes 0, 2, 3 and 4
-                   if ((MODE[3:1] != 1) || (MODE[3:1] != 5))
-                     LOAD = 'b1;
-                   // Enable Output
-                   OUTEN = 'b1;
-                 end
-      endcase
-
-  always @(posedge CLK)
-    LOAD = 'b0;
-
-  // Flag LOADLSB Is Set When In 2 Byte Mode And LSB Has Not Been Read Yet
-  always @(SETLOADLSB or MODEWRITE)
-    if (SETLOADLSB || MODEWRITE)
-      begin
-        OUTEN = 'b0;
-        LOADLSB = 'b1;
-        COUNTLSB = 8'b0;
-        COUNTMSB = 8'b0;
+   // LSB Flag
+   always @(posedge WR_) begin
+      if (SEL & RD_ & MODE[5] & MODE[4] & ~lsbflag) begin
+	 lsbflag <= 1'b1;
       end
-
-  // Flag LOADLSB Is Cleared When In 2 Byte Mode And LSB Has Been Read
-  always @(CLRLOADLSB) begin
-     //$display("CLEARLOADLSB");
-     if (CLRLOADLSB)
-       LOADLSB = 'b0;
-  end
+      else if(SEL & RD_ & MODE[5] & MODE[4] & lsbflag) begin
+	 lsbflag <= 1'b0;
+      end
+      else begin
+	 lsbflag <= lsbflag;
+      end
+   end // always @ (posedge WR_)
    
+   // MSB Load
+   always @(posedge WR_ or posedge clear) begin
+      if(clear == 1'b1) begin
+	 COUNTMSB <= 8'b0;
+      end
+      else if(SEL & RD_ & MODE[5] & ~MODE[4]) begin
+	 COUNTMSB <= D;
+      end
+      else if(SEL & RD_ & MODE[5] & MODE[4] & lsbflag) begin
+	 COUNTMSB <= D;
+      end
+      else begin
+	 COUNTMSB <= COUNTMSB;
+      end
+   end // always @ (posedge WR_ or posedge clear)
 
+   // LSB Load
+   always @(posedge WR_ or posedge clear) begin
+      if(clear == 1'b1) begin
+	 COUNTLSB <= 8'b0;
+      end
+      else if(SEL & RD_ & ~MODE[5] & MODE[4]) begin
+	 COUNTLSB <= D;
+      end
+      else if(SEL & RD_ & MODE[5] & MODE[4] & ~lsbflag) begin
+	 COUNTLSB <= D;
+      end
+      else begin
+	 COUNTLSB <= COUNTLSB;
+      end
+   end // always @ (posedge WR_ or posedge clear)
+
+   // Load Register
+   always @(posedge CLK or posedge WR_) begin
+      if(WR_ & SEL & RD_) begin
+	 if(MODE[5] ^ MODE[4]) begin
+	    if ((MODE[3:1] != 1) || (MODE[3:1] != 5)) begin
+	       LOAD <= 1'b1;
+	    end
+	    else begin
+	       LOAD <= 1'b0;
+	    end
+	 end
+	 else if(MODE[5] & MODE[4] & lsbflag) begin
+	    LOAD <= 1'b1;
+	 end
+	 else begin
+	    LOAD <= 1'b0;
+	 end // else: !if(MODE[5] | MODE[4])
+      end // if (WR_ == 1'b1)
+      else if(CLK == 1'b1) begin
+	 LOAD <= 1'b0;
+      end
+      else begin
+	 LOAD <= LOAD;
+      end // else: !if(WR_ == 1'b1)
+   end // always @ (posedge CLK or posedge WR_)
+
+   // OUTEN Register
+   always @(posedge clear or posedge WR_) begin
+      if(clear == 1'b1) begin
+	 OUTEN <= 1'b0;
+      end
+      else if(SEL & RD_ & WR_ & (MODE[5] ^ MODE[4])) begin
+	 OUTEN <= 1'b1;
+      end
+      else if(SEL & RD_ & WR_ & MODE[5] & MODE[4] & lsbflag) begin
+	 OUTEN <= 1'b1;
+      end
+      else begin
+	 OUTEN <= OUTEN;
+      end
+   end // always @ (clear or WR_ or MODE or lsbflag)
+   
 endmodule
 
 /*
@@ -336,12 +357,6 @@ module COUNT(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT);
   wire [15:0] COUNT;
 
   wire LOADCNT = LOAD | RELOAD;
-
-   always @(COUNT) begin
-      if(CNTVAL == 0) begin	 
-	 //$display("cnt: %b",COUNT);
-      end
-   end
    
   read
     READ(`D,LATCHLSB,LATCHMSB,MODE[5:4],SEL,RD_,WR_,MODEWRITE,CLRLATCH);
@@ -429,132 +444,117 @@ endmodule
  * outctrl:
  * Module for out control for intel 8253
  */
-module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROUT_,
+module outctrl(COUNT,MODE,CLK,GATE,OUTENABLE,MODETRIG,LOAD,SETOUT_,CLROUT_,
                RELOAD, OUT);
 
-  input        CLK,
-               GATE,
-               LOAD,
-               SETOUT_,
-               CLROUT_,
-               MODETRIG,
-               OUTENABLE;
-  input [ 3:1] MODE;
-  input [15:0] COUNT;
+   input        CLK,
+		GATE,
+		LOAD,
+		SETOUT_,
+		CLROUT_,
+		MODETRIG,
+		OUTENABLE;
+   input [ 3:1] MODE;
+   input [15:0] COUNT;
 
-  output       OUT,
-               RELOAD;
+   output       OUT,
+		RELOAD;
 
-  reg          OUT,
-	       ZOUT,
-               TRIG,
-               RETRIG,
-               RELOAD,
-               CLRTRIG;
+   reg          OUT,
+		ZOUT,
+		TRIG,
+		RETRIG,
+		RELOAD,
+		CLRTRIG;
 
-  always @(negedge CLK)
-    begin
-      // Clear Counter Reload Flag
-      RELOAD = 'b0;
-      // Clear Trigger Flag
-      CLRTRIG = 'b0;
-       if(!SETOUT_) OUT = 1'b1;
-       else if(!CLROUT_) OUT = 1'b0;
-      else if ((GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5)) && OUTENABLE)
-        case (MODE[3:1])
-          0 : if (COUNT == 16'h2)
-                begin
-                  // Set Out High On Terminal Count
-                  OUT = 'b1;
-                end
-          1 : if (COUNT)
-                begin
-                  if (TRIG & ~LOAD)
-                    OUT = 'b0;
-                end
-              else
-                begin
-                  // Set Out High When Counter Hits 0
-                  OUT = 'b1;
-                  // Do Not Retrigger
-                  CLRTRIG = 'b1;
-                end
-          2 : if (COUNT == 16'h2) // was originally 1
-                begin
-                  // Set Out Low When Counter Reaches 1 
-                  OUT = 'b0;
-                  // Reload New Count
-                  RELOAD = 'b1;
-                end
-              else
-                begin
-                  // Set Out High When Counter Is Not 1 
-                  OUT = 'b1;
-                end
-          3 : if (COUNT == 16'h4) // was originally 2
-            begin
-	       if(LOAD == 1'b1) begin
-		  OUT = 1'b1;
-		  RELOAD = 1'b0;
-	       end
-	       else begin
-		  // Toggle Out When Counter Reaches 2
-                  OUT = ~OUT;
-                  // Reload New Count
-                  RELOAD = 1'b1;
-	       end   
-            end
-          4 ,
-          5 : begin
-	     if (COUNT)
-               begin
-                  // Set Out High When Counter Is Not 0
-                  OUT = 'b1;
-               end
-             else
-	       begin
-		  //$display("ZERO TRIG: %b",TRIG);
-		  
-                  if (TRIG)
-                    begin
-                       // Set Out Low When Counter Hits 0 And Was Triggered
-                       OUT = 'b0;
-                       CLRTRIG = 'b1;
-                    end
-	       end // else: !if(COUNT)
-	  end // case: 4 ,...
-	  
-        endcase
-    end
+   always @(negedge CLK)
+     begin
+	// Clear Counter Reload Flag
+	RELOAD = 'b0;
+	// Clear Trigger Flag
+	CLRTRIG = 'b0;
+	if(!SETOUT_) OUT = 1'b1;
+	else if(!CLROUT_) OUT = 1'b0;
+	else if ((GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5)) && OUTENABLE)
+          case (MODE[3:1])
+            0 : if (COUNT == 16'h2)
+              begin
+                 // Set Out High On Terminal Count
+                 OUT = 'b1;
+              end
+            1 : if (COUNT)
+              begin
+                 if (TRIG & ~LOAD)
+                   OUT = 'b0;
+              end
+            else
+              begin
+                 // Set Out High When Counter Hits 0
+                 OUT = 'b1;
+                 // Do Not Retrigger
+                 CLRTRIG = 'b1;
+              end
+            2 : if (COUNT == 16'h2) // was originally 1
+              begin
+                 // Set Out Low When Counter Reaches 1 
+                 OUT = 'b0;
+                 // Reload New Count
+                 RELOAD = 'b1;
+              end
+            else
+              begin
+                 // Set Out High When Counter Is Not 1 
+                 OUT = 'b1;
+              end
+            3 : if (COUNT == 16'h4) // was originally 2
+              begin
+		 if(LOAD == 1'b1) begin
+		    OUT = 1'b1;
+		    RELOAD = 1'b0;
+		 end
+		 else begin
+		    // Toggle Out When Counter Reaches 2
+                    OUT = ~OUT;
+                    // Reload New Count
+                    RELOAD = 1'b1;
+		 end   
+              end
+            4,5 : begin
+	       if (COUNT)
+		 begin
+                    // Set Out High When Counter Is Not 0
+                    OUT = 'b1;
+		 end
+               else
+		 begin
+                    if (TRIG)
+                      begin
+			 // Set Out Low When Counter Hits 0 And Was Triggered
+			 OUT = 'b0;
+			 CLRTRIG = 'b1;
+                      end
+		 end // else: !if(COUNT)
+	    end // case: 4 ,...
+          endcase
+     end // always @ (negedge CLK)
 
-  // Retrigger When GATE Goes High In Modes 1, 2 and 5
-  always @(posedge GATE)
-    if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
-      begin
-	 RETRIG = 'b1;
-	 //$display("retrig: %b",RETRIG);
+   // Retrigger TRIG
+   always @(posedge GATE or posedge MODETRIG or posedge CLRTRIG) begin
+      if(CLRTRIG == 1'b1) begin
+	 TRIG = 1'b0;
       end
-    else
-      RETRIG = 'b0;
-
-  
-  // Counter Trigger Flag
-  always @(RETRIG or MODETRIG) begin
-     //$display("retrig %b modetrig %b",RETRIG,MODETRIG);
-     
-     if (RETRIG || MODETRIG) begin
-	TRIG = 'b1;
-	RETRIG = 1'b0;
-	
-	//$display("retrig to trig 1");
-     end
-  end	
- 
-  always @(CLRTRIG)
-    if (CLRTRIG)
-      TRIG = 'b0;
- 
-endmodule
+      else if(GATE&((MODE[3:1]==1)||(MODE[3:1]==2)||(MODE[3:1]==5))) begin
+	 TRIG = 1'b1;
+      end
+      else if(MODETRIG) begin
+	 TRIG = 1'b1;
+      end
+      else begin
+	 TRIG = TRIG;
+      end
+   end // always @ (posedge GATE or posedge MODETRIG or posedge CLRTRIG)
+   
+endmodule // outctrl
 
 /*
  * outlatch:
@@ -578,93 +578,72 @@ endmodule
  */
 module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
 
-  input       SEL,
-              RD_,
-              WR_,
-              MODEWRITE;
-  input [5:4] MODE;
+   input       SEL,
+               RD_,
+               WR_,
+               MODEWRITE;
+   input [5:4] MODE;
    inout [7:0] D;
    input [7:0] LATCHLSB,
-              LATCHMSB;
+               LATCHMSB;
 
-  output      CLRLATCH;
+   output      CLRLATCH;
 
-  reg         CLRLATCH,
-              READLSB,
-              SETREADLSB,
-              CLRREADLSB;
+   reg         CLRLATCH,
+               READLSB,
+               CLRREADLSB;
 
-  reg   [7:0] DREG;
+   reg [7:0]   DREG;
 
-  assign D = (SEL & ~RD_ & WR_) ? DREG : 8'bz;
-   /*
-   always @((SEL & ~RD_ & WR_)) begin
-      $display("dreg %b",DREG);
+   assign D = (SEL & ~RD_ & WR_) ? DREG : 8'bz;
+   
+   // Read Output Latch 
+   always @(SEL or RD_ or WR_)
+     if (SEL & ~RD_ & WR_)         
+       case (MODE[5:4])
+         'b01 : begin
+            // Read LSB
+            DREG = LATCHLSB;
+            // Reset Latch Command
+            CLRLATCH = 1'b1;
+	    CLRREADLSB = 1'b0;
+         end
+         'b10 : begin
+            // Read MSB
+            DREG = LATCHMSB;
+	    CLRREADLSB = 1'b0;
+            // Reset Latch Command
+            CLRLATCH = 1'b1;
+         end
+         'b11 : if (READLSB)
+           begin
+              // Read LSB First
+	      CLRLATCH = 1'b0;
+              DREG = LATCHLSB;
+              CLRREADLSB = 1'b1;
+           end
+         else
+           begin
+              // Read MSB Only After LSB Is Read 
+              DREG = LATCHMSB;
+              CLRREADLSB = 1'b0;    
+              // Reset Latch Command
+              CLRLATCH = 'b1;
+           end
+       endcase
+     else
+       begin
+          DREG = 8'b0;
+          CLRLATCH = 'b0;
+          CLRREADLSB = 'b0;
+       end
+
+   always @(CLRREADLSB or MODEWRITE) begin
+      if(MODEWRITE) READLSB = 1'b1;
+      else if(CLRREADLSB) READLSB = 1'b0;
+      else READLSB = READLSB;
    end
-   */
-  // Read Output Latch 
-  always @(SEL or RD_ or WR_)
-    if (SEL & ~RD_ & WR_)         
-      case (MODE[5:4])
-        'b01 : begin
-           // Read LSB
-           DREG = LATCHLSB;
-           // Reset Latch Command
-           CLRLATCH = 1'b1;
-	   CLRREADLSB = 1'b0;
-	   
-               end
-        'b10 : begin
-                 // Read MSB
-                 DREG = LATCHMSB;
-	   CLRREADLSB = 1'b0;
-	   
-                 // Reset Latch Command
-                 CLRLATCH = 1'b1;
-               end
-        'b11 : if (READLSB)
-                 begin
-                   // Read LSB First
-		    CLRLATCH = 1'b0;
-//		    $display("dddddddddddddddddd");
- 
-                   DREG = LATCHLSB;
-                   CLRREADLSB = 1'b1;
-                 end
-               else
-                 begin
-                   // Read MSB Only After LSB Is Read 
-                   DREG = LATCHMSB;
-                   CLRREADLSB = 1'b0;
-		    //SETREADLSB = 'b1;
-//		    $display("fasdfadsf");    
-                   // Reset Latch Command
-                   CLRLATCH = 'b1;
-                 end
-      endcase
-    else
-      begin
-        DREG = 8'b0;
-        CLRLATCH = 'b0;
-        CLRREADLSB = 'b0;
-        SETREADLSB = 'b0;
-      end
-/*
-   always @((SEL & ~RD_ & WR_)) begin
-  //    $display("dreg %b",DREG);
-   end
-  */ 
-  // Flag READLSB Is Set When In 2 Byte Mode And LSB Has Not Been Read Yet
-  always @(SETREADLSB or MODEWRITE)
-    if (SETREADLSB || MODEWRITE)
-      READLSB = 'b1;
+   
+endmodule // read
 
-  // Flag READLSB Is Cleared When In 2 Byte Mode And LSB Has Been Read
 
-  always @(CLRREADLSB)
-    begin
-//       $display("clr read lsb %b",CLRREADLSB);   
-       if (CLRREADLSB)
-	 READLSB = 1'b0;
-    end
-endmodule
