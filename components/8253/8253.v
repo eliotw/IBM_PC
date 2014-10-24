@@ -178,101 +178,62 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
 
   reg           LOAD,
                 CLRLOAD;
+   
   reg    [15:0] COUNT;
    
-  function [15:0] BCDDOWN;
-    input [1:0] VALUE;
-    begin
-      BCDDOWN = COUNT;
-      if (COUNT[3:0] < VALUE)
-        begin
-          BCDDOWN[3:0] = COUNT[3:0] + 10 - VALUE;
-          if (!COUNT[7:4])
-            begin
-              BCDDOWN[7:4] = 9;
-              if (!COUNT[11:8])
-                begin
-                  BCDDOWN[11:8] = 9;
-                  if (!COUNT[15:12])
-                    BCDDOWN[15:12] = 9;
-                  else
-                    BCDDOWN[15:12] = COUNT[15:12] - 1;
-                end
-              else
-                BCDDOWN[11:8] = COUNT[11:8] - 1;
-            end
-          else
-            BCDDOWN[7:4] = COUNT[7:4] - 1;
-        end
-      else
-        BCDDOWN[3:0] = COUNT[3:0] - VALUE;
-    end
-  endfunction
-
-  // Counter
-  always @(posedge CLK)
-    if (GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5))
-      if (LOAD)
-        begin
-          // Load Counter From Count Register
-          COUNT = {COUNTMSB,COUNTLSB};
-          // Clear Load Flag
-          CLRLOAD = 1;
-	   //$display("reload count: %h", COUNT);
-	   
-        end
-      else
-        begin
-          // Decrement Counter
-          if (MODE[3:1] == 3)
-            if (MODE[0])
-              if (OUT)
-                COUNT = BCDDOWN(1);
-              else
-                COUNT = BCDDOWN(3);
-            else
+   // Counter
+   always @(posedge CLK)
+     if (GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5))
+       if (LOAD)
+         begin
+            // Load Counter From Count Register
+	    COUNT = {COUNTMSB,COUNTLSB};
+            // Clear Load Flag
+	    CLRLOAD = 1;
+         end
+       else
+         begin
+            // Decrement Counter
+	    if (MODE[3:1] == 3)
               if (COUNT[0])
                 if (OUT)
                   COUNT = COUNT - 1; // was 1
-                else
-                  COUNT = COUNT - 3;
-              else 
+	        else
+		  COUNT = COUNT - 3;
+	      else 
                 COUNT = COUNT - 2;
-          else
-            if (MODE[0])
-              COUNT = BCDDOWN(1);
             else
               COUNT = COUNT - 1;
-          // Allow Counter To Be Loaded
-          CLRLOAD = 0;
-        end
+            // Allow Counter To Be Loaded
+	    CLRLOAD = 0;
+         end
 
-  // Reload Counter On Rising GATE In Modes 1, 2 and 5
-  always @(posedge GATE)
-    if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
-      LOAD = 'b1;
-    else 
-      LOAD = 'b0;
+   // Reload Counter On Rising GATE In Modes 1, 2 and 5
+   always @(posedge GATE)
+     if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
+       LOAD = 'b1;
+     else 
+       LOAD = 'b0;
  
-  // Set LOAD Until Cleared By Next Rising Clock Edge
-  always @(LOADCNT)
-    if (LOADCNT)
-      begin
-        assign LOAD = 'b1;
-        assign CLRLOAD = 'b0;
-      end
-    else
-      begin
-        deassign LOAD;
-        deassign CLRLOAD;
-      end
+   // Set LOAD Until Cleared By Next Rising Clock Edge
+   always @(LOADCNT)
+     if (LOADCNT)
+       begin
+          assign LOAD = 'b1;
+          assign CLRLOAD = 'b0;
+       end
+     else
+       begin
+          deassign LOAD;
+          deassign CLRLOAD;
+       end
  
-  always @(CLRLOAD)
-    if (CLRLOAD)
-      assign LOAD = 'b0;
-    else
-      deassign LOAD;
-
+   always @(CLRLOAD)
+     if (CLRLOAD)
+       assign LOAD = 'b0;
+     else
+       deassign LOAD;
+    
 endmodule
 
 /*
