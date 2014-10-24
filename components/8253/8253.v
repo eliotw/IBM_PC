@@ -242,53 +242,7 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT);
 	 LOAD = 1'b0;
       end
    end // always @ (posedge CLK)
-   
-/*
-   // Load VCLRLOAD
-   always @(posedge GATE or posedge CLRLOAD) begin
-      if(GATE) VCLRLOAD = 1'b0;
-      else if(CLRLOAD) VCLRLOAD = 1'b1;
-      else VCLRLOAD = VCLRLOAD;
-   end
-
-   // Load VLOADCNT
-   always @(posedge GATE or posedge LOADCNT or posedge CLRLOAD) begin
-      if(GATE) VLOADCNT = 1'b0;
-      else if(CLRLOAD) VLOADCNT = 1'b0;
-      else if(LOADCNT) VLOADCNT = 1'b1;
-      else VLOADCNT = VLOADCNT;
-   end
-
-   always @(VCLRLOAD) begin
-      if(VCLRLOAD) VLOAD = 1'b0;
-      else VLOAD = ULOAD;
-   end
-
-   always @(VLOADCNT) begin
-      if(VLOADCNT) LOAD = 1'b1;
-      else LOAD = VLOAD;
-   end
-  */ 
- /*
-   // Set LOAD Until Cleared By Next Rising Clock Edge
-   always @(LOADCNT)
-     if (LOADCNT)
-       begin
-          assign LOAD = 'b1;
-          assign CLRLOAD = 'b0;
-       end
-     else
-       begin
-          deassign LOAD;
-          deassign CLRLOAD;
-       end
- 
-   always @(CLRLOAD)
-     if (CLRLOAD)
-       assign LOAD = 'b0;
-     else
-       deassign LOAD;
-   */ 
+    
 endmodule
 
 /*
@@ -492,6 +446,7 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
                RELOAD;
 
   reg          OUT,
+	       ZOUT,
                TRIG,
                RETRIG,
                RELOAD,
@@ -503,7 +458,9 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
       RELOAD = 'b0;
       // Clear Trigger Flag
       CLRTRIG = 'b0;
-      if ((GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5)) && OUTENABLE)
+       if(!SETOUT_) OUT = 1'b1;
+       else if(!CLROUT_) OUT = 1'b0;
+      else if ((GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5)) && OUTENABLE)
         case (MODE[3:1])
           0 : if (COUNT == 16'h2)
                 begin
@@ -569,10 +526,7 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
 	  
         endcase
     end
-  // Set OUT High Immediately When GATE Goes Low In Modes 2 and 3
-  always @(negedge GATE)
-    if ((MODE[3:1] == 2) || (MODE[3:1] == 3))
-      OUT = 'b1;
+
   // Retrigger When GATE Goes High In Modes 1, 2 and 5
   always @(posedge GATE)
     if ((MODE[3:1] == 1) || (MODE[3:1] == 2) || (MODE[3:1] == 5))
@@ -583,21 +537,7 @@ module outctrl(COUNT, MODE, CLK, GATE, OUTENABLE, MODETRIG, LOAD, SETOUT_, CLROU
     else
       RETRIG = 'b0;
 
-  // Set or Clear OUT After A Mode Write
-  always @(SETOUT_) begin
-     if (!SETOUT_)
-       assign OUT = 'b1;
-     else
-       deassign OUT;
-  end
-   
-
-  always @(CLROUT_)
-    if (!CLROUT_)
-      assign OUT = 'b0;
-    else
-      deassign OUT;
-
+  
   // Counter Trigger Flag
   always @(RETRIG or MODETRIG) begin
      //$display("retrig %b modetrig %b",RETRIG,MODETRIG);
