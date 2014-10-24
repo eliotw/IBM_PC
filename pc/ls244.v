@@ -11,7 +11,7 @@ module ls244(
 	     g2_n);
 
    input [3:0] a1,a2;
-   output [3:0] y1,y2;
+   inout [3:0] y1,y2;
    input       g1_n, g2_n;
 
    reg [3:0]   y1,y2;

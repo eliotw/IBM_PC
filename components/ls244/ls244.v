@@ -11,15 +11,18 @@ module ls244(
 	     g2_n);
 
    input [3:0] a1,a2;
-   output [3:0] y1,y2;
+   inout [3:0] y1,y2;
    input       g1_n, g2_n;
 
-   reg [3:0]   y1,y2;
+   //reg [3:0]   y1,y2;
    wire        g1, g2;
 
+   assign y1 = (g1 == 1'b1) ? a1 : 4'bzzzz;
+   assign y2 = (g2 == 1'b1) ? a2 : 4'bzzzz;
+   
    assign g1 = ~g1_n;
    assign g2 = ~g2_n;
-
+/*
    always @(g1 or a1) begin
       if(g1 === 1'b1) begin
 	 y1 = a1;
@@ -36,5 +39,5 @@ module ls244(
 	 y2 = 4'bzzzz;
       end
    end
-   
+  */ 
 endmodule // ls244

@@ -552,10 +552,18 @@ module outctrl(COUNT,MODE,CLK,GATE,OUTENABLE,MODETRIG,LOAD,SETOUT_,CLROUT_,
       if(CLRTRIG == 1'b1) begin
 	 TRIG = 1'b0;
       end
-      else if(GATE&((MODE[3:1]==1)||(MODE[3:1]==2)||(MODE[3:1]==5))) begin
-	 TRIG = 1'b1;
+      else if(GATE == 1'b1) begin
+	 if((MODE[3:1]==1)||(MODE[3:1]==2)||(MODE[3:1]==5)) begin
+	    TRIG = 1'b1;
+	 end
+	 else if(MODETRIG == 1'b1) begin
+	    TRIG = 1'b1;
+	 end
+	 else begin
+	    TRIG = TRIG;
+	 end
       end
-      else if(MODETRIG) begin
+      else if(MODETRIG == 1'b1) begin
 	 TRIG = 1'b1;
       end
       else begin

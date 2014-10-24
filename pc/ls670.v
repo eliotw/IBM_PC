@@ -14,7 +14,7 @@ module ls670(
 	     );
 
    input [3:0] d;
-   output [3:0] q;
+   inout [3:0] q;
    input 	ra, rb, read, wa, wb, write;
 
    // Registers
