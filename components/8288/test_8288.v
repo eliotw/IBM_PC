@@ -588,7 +588,7 @@ module test_8288;
       cen = 1'b0;
       aen_n = 1'b0;
       #1;
-      if(outvector !== 11'b1111111_1010) begin
+      if(outvector !== 11'bz1zz1z1_1010) begin
 	 $display("ERR0: %b",outvector);
 	 errors = errors + 1;
       end
@@ -597,7 +597,7 @@ module test_8288;
       @(posedge clk);
       s_n = 3'b010;
       #1;
-      if(outvector !== 11'b1111111_1010) begin
+      if(outvector !== 11'bz1zz1z1_1010) begin
 	 $display("ERR1: %b",outvector);
 	 errors = errors + 1;
       end
@@ -605,7 +605,7 @@ module test_8288;
       // S1
       @(posedge clk);
       #1;
-      if(outvector !== 11'b1111111_1010) begin
+      if(outvector !== 11'bz1zz1z1_1010) begin
 	 $display("ERR2: %b",outvector);
 	 errors = errors + 1;
       end
@@ -614,7 +614,7 @@ module test_8288;
       @(posedge clk);
       s_n = 3'b111;
       #1;
-      if(outvector !== 11'b1111111_1010) begin
+      if(outvector !== 11'bz1zz1z1_1010) begin
 	 $display("ERR3: %b",outvector);
 	 errors = errors + 1;
       end
@@ -622,7 +622,7 @@ module test_8288;
       // S3
       @(posedge clk);
       #1;
-      if(outvector !== 11'b1111111_1010) begin
+      if(outvector !== 11'bz1zz1z1_1010) begin
 	 $display("ERR: %b",outvector);
 	 errors = errors + 1;
       end
@@ -630,7 +630,7 @@ module test_8288;
       // S0
       @(posedge clk);
       #1;
-      if(outvector !== 11'b1111111_1010) begin
+      if(outvector !== 11'bz1zz1z1_1010) begin
 	 $display("ERR0: %b",outvector);
 	 errors = errors + 1;
       end

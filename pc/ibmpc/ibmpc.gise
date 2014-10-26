@@ -37,8 +37,8 @@
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="motherboard_summary.html"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="motherboard_xst.xrpt"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="netgen"/>
-    <file xil_pn:branch="PostSynthSim" xil_pn:fileType="FILE_NETGEN_REPORT" xil_pn:name="netgen/synthesis/motherboard_synthesis.nlf"/>
-    <file xil_pn:branch="PostSynthSim" xil_pn:fileType="FILE_VERILOG" xil_pn:name="netgen/synthesis/motherboard_synthesis.v"/>
+    <file xil_pn:fileType="FILE_NETGEN_REPORT" xil_pn:name="netgen/synthesis/motherboard_synthesis.nlf"/>
+    <file xil_pn:fileType="FILE_VERILOG" xil_pn:name="netgen/synthesis/motherboard_synthesis.v"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="sheet1.prj"/>
     <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="sheet1.stx"/>
     <file xil_pn:fileType="FILE_XST" xil_pn:name="sheet1.xst"/>
@@ -89,17 +89,18 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1414193152" xil_pn:in_ck="1458007630566849889" xil_pn:name="TRANEXT_xstsynthesize_virtex5" xil_pn:prop_ck="9197919585742709161" xil_pn:start_ts="1414193087">
-      <status xil_pn:value="SuccessfullyRun"/>
+    <transform xil_pn:end_ts="1414349930" xil_pn:in_ck="1458007630566849889" xil_pn:name="TRANEXT_xstsynthesize_virtex5" xil_pn:prop_ck="9197919585742709161" xil_pn:start_ts="1414349908">
+      <status xil_pn:value="FailedRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="InputChanged"/>
       <outfile xil_pn:name=".lso"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="motherboard.lso"/>
       <outfile xil_pn:name="motherboard.ngc"/>
       <outfile xil_pn:name="motherboard.ngr"/>
       <outfile xil_pn:name="motherboard.prj"/>
-      <outfile xil_pn:name="motherboard.stx"/>
       <outfile xil_pn:name="motherboard.syr"/>
       <outfile xil_pn:name="motherboard.xst"/>
       <outfile xil_pn:name="motherboard_xst.xrpt"/>
@@ -111,8 +112,9 @@
       <status xil_pn:value="ReadyToRun"/>
     </transform>
     <transform xil_pn:end_ts="1414193159" xil_pn:in_ck="3041672674791284166" xil_pn:name="TRAN_postSynthesisSimModel" xil_pn:prop_ck="1627247534842921643" xil_pn:start_ts="1414193156">
-      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="AbortedRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="netgen"/>
       <outfile xil_pn:name="netgen/synthesis/motherboard_synthesis.nlf"/>
       <outfile xil_pn:name="netgen/synthesis/motherboard_synthesis.v"/>

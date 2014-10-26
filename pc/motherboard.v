@@ -397,10 +397,10 @@ module sheet1(
 	      output s2_n,
 	      output ale,
 	      output npnpi,
-	      output ior_n,
-	      output memr_n,
-	      output iow_n,
-	      output memw_n
+	      inout ior_n,
+	      inout memr_n,
+	      inout iow_n,
+	      inout memw_n
 	      );
 
 	// Register for address

@@ -8,13 +8,13 @@ module intel8288(
 		 input aen_n,
 		 input cen, // output enable
 		 input iob, // set equal to 0
-		 output mrdc_n,
-		 output mwtc_n, // not connected
-		 output amwc_n,
-		 output iorc_n,
-		 output iowc_n, // not connected
-		 output aiowc_n,
-		 output inta_n,
+		 inout mrdc_n,
+		 inout mwtc_n, // not connected
+		 inout amwc_n,
+		 inout iorc_n,
+		 inout iowc_n, // not connected
+		 inout aiowc_n,
+		 inout inta_n,
 		 output dtr,
 		 output den,
 		 output mce, // not connected
@@ -54,10 +54,10 @@ module intel8288(
    assign mce = 1'b1;
 
    // Assign connected signals
-   assign mrdc_n = (cen) ? mrdc_n_s : 1'b1;
-   assign amwc_n = (cen) ? amwc_n_s : 1'b1;
-   assign iorc_n = (cen) ? iorc_n_s : 1'b1;
-   assign aiowc_n = (cen) ? aiowc_n_s : 1'b1;
+   assign mrdc_n = (cen) ? mrdc_n_s : 1'bz;
+   assign amwc_n = (cen) ? amwc_n_s : 1'bz;
+   assign iorc_n = (cen) ? iorc_n_s : 1'bz;
+   assign aiowc_n = (cen) ? aiowc_n_s : 1'bz;
    assign inta_n = (cen) ? inta_n_s : 1'b1;
    assign dtr = (cen) ? dtr_s : 1'b1; 
    assign den = (cen) ? den_s : 1'b0;
