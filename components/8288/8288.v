@@ -110,7 +110,7 @@ module intel8288(
    
    // Latching of relevant input
    always @(posedge clk) begin
-      if(state == s1) begin
+      if(state == s0) begin
 	 mrdc <= ((s_n == 3'b100) | (s_n == 3'b101));
 	 amwc <= (s_n == 3'b110);
 	 iorc <= (s_n == 3'b001);

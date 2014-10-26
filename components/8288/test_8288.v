@@ -10,6 +10,7 @@ module test_8288;
    wire    mrdc_n,mwtc_n,amwc_n,iorc_n,iowc_n,aiowc_n,inta_n;
    wire    dtr,den,mce,ale;	
    reg [2:0] s_n;
+   wire [10:0] outvector;
    
    // intel8288 under test
    intel8288 i8288(
@@ -30,6 +31,22 @@ module test_8288;
 	           .mce(mce), // not connected
 	           .ale(ale)
 		   );
+   // Assign output vector
+   assign outvector = {
+		       mrdc_n,
+		       mwtc_n, // 1
+		       amwc_n,
+		       iorc_n,
+		       iowc_n, // 1
+		       aiowc_n,
+		       inta_n,
+		       dtr,
+		       den,
+		       mce, // 1
+		       ale
+		       };
+   // Normal form: 1111111_1010
+   // Vector form: x1xx1xx_xx1x
    
    // Clock
    always begin
@@ -56,37 +73,60 @@ module test_8288;
       $display ("******************");
       $display ("Run Interrupt Test");
       $display ("******************");
+      // S0
       @(posedge clk);
       cen = 1'b1;
       aen_n = 1'b0;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
       @(posedge clk);
       s_n = 3'b000;
       #1;
-      if(ale !== 1'b1) begin
-	 $display("ALE NOT 1");
+      if(outvector !== 11'b1111111_1011) begin
+	 $display("ERR1: %b",outvector);
 	 errors = errors + 1;
       end
-/*      
-      // Run Pressed Test
-      $display ("****************");
-      $display ("Run Pressed Test");
-      $display ("****************");
-      for (i=0; i<256; i=i+1) begin
-	 if(1 == 1) begin
-	    senddata(i);
-	    waitdata();
-	    waitdata();
-	    dto = i;
-	    //dto = (matrix[4'b1111 & (i >> 4)][4'b1111 & i]);
-	    if(dto !== dtr) begin
-	       $display("NO i:%b transi:%b dtr: %b",i,dto,dtr);
-	       errors = errors + 1;
-	    end
-	 end
-	 @(posedge clk);
-      end // for (i=0; i<8; i=i+1)
+      
+      // S1
       @(posedge clk);
-*/
+      #1;
+      if(outvector !== 11'b1111110_0010) begin
+	 $display("ERR2: %b",outvector);
+	 errors = errors + 1;
+      end
+      
+      // S2
+      @(posedge clk);
+      s_n = 3'b111;
+      #1;
+      if(outvector !== 11'b1111110_0110) begin
+	 $display("ERR3: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S3
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_0010) begin
+	 $display("ERR: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+     
+      
+      // Complete Tests
       if(errors > 0) begin
 	 $display("8288 TEST FAILURE WITH %d ERRORS",errors);
       end
