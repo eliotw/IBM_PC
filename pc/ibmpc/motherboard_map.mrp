@@ -10,38 +10,39 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Sun Oct 26 15:18:15 2014
+Mapped Date    : Sun Oct 26 16:34:32 2014
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:    1
+Number of warnings:    4
 Slice Logic Utilization:
-  Number of Slice Registers:                 1,378 out of  69,120    1%
-    Number used as Flip Flops:               1,355
-    Number used as Latches:                     23
-  Number of Slice LUTs:                      3,696 out of  69,120    5%
-    Number used as logic:                    3,658 out of  69,120    5%
-      Number using O6 output only:           3,317
+  Number of Slice Registers:                 1,487 out of  69,120    2%
+    Number used as Flip Flops:               1,459
+    Number used as Latches:                     28
+  Number of Slice LUTs:                      3,829 out of  69,120    5%
+    Number used as logic:                    3,805 out of  69,120    5%
+      Number using O6 output only:           3,474
       Number using O5 output only:              49
-      Number using O5 and O6:                  292
+      Number using O5 and O6:                  282
     Number used as Memory:                      18 out of  17,920    1%
       Number used as Shift Register:            18
         Number using O6 output only:            18
-    Number used as exclusive route-thru:        20
-  Number of route-thrus:                        70
-    Number using O6 output only:                67
-    Number using O5 output only:                 3
+    Number used as exclusive route-thru:         6
+  Number of route-thrus:                        55
+    Number using O6 output only:                52
+    Number using O5 output only:                 1
+    Number using O5 and O6:                      2
 
 Slice Logic Distribution:
-  Number of occupied Slices:                 1,310 out of  17,280    7%
-  Number of LUT Flip Flop pairs used:        4,000
-    Number with an unused Flip Flop:         2,622 out of   4,000   65%
-    Number with an unused LUT:                 304 out of   4,000    7%
-    Number of fully used LUT-FF pairs:       1,074 out of   4,000   26%
-    Number of unique control sets:              45
+  Number of occupied Slices:                 1,311 out of  17,280    7%
+  Number of LUT Flip Flop pairs used:        4,203
+    Number with an unused Flip Flop:         2,716 out of   4,203   64%
+    Number with an unused LUT:                 374 out of   4,203    8%
+    Number of fully used LUT-FF pairs:       1,113 out of   4,203   26%
+    Number of unique control sets:              75
     Number of slice register sites lost
-      to control set restrictions:             108 out of  69,120    1%
+      to control set restrictions:             171 out of  69,120    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -52,25 +53,25 @@ Slice Logic Distribution:
   over-mapped for a non-BRAM resource or if placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                        12 out of     640    1%
-    Number of LOCed IOBs:                       12 out of      12  100%
+  Number of bonded IOBs:                        13 out of     640    2%
+    Number of LOCed IOBs:                       13 out of      13  100%
 
 Specific Feature Utilization:
-  Number of BlockRAM/FIFO:                       6 out of     148    4%
-    Number using BlockRAM only:                  6
+  Number of BlockRAM/FIFO:                      23 out of     148   15%
+    Number using BlockRAM only:                 23
     Total primitives used:
-      Number of 36k BlockRAM used:               5
-      Number of 18k BlockRAM used:               2
-    Total Memory used (KB):                    216 out of   5,328    4%
-  Number of BUFG/BUFGCTRLs:                      2 out of      32    6%
-    Number used as BUFGs:                        2
+      Number of 36k BlockRAM used:              21
+      Number of 18k BlockRAM used:               3
+    Total Memory used (KB):                    810 out of   5,328   15%
+  Number of BUFG/BUFGCTRLs:                      5 out of      32   15%
+    Number used as BUFGs:                        5
   Number of DSP48Es:                             1 out of      64    1%
 
-Average Fanout of Non-Clock Nets:                4.82
+Average Fanout of Non-Clock Nets:                4.97
 
-Peak Memory Usage:  1065 MB
-Total REAL time to MAP completion:  1 mins 13 secs 
-Total CPU time to MAP completion:   1 mins 10 secs 
+Peak Memory Usage:  1075 MB
+Total REAL time to MAP completion:  1 mins 36 secs 
+Total CPU time to MAP completion:   1 mins 35 secs 
 
 Table of Contents
 -----------------
@@ -93,21 +94,29 @@ Section 1 - Errors
 
 Section 2 - Warnings
 --------------------
+WARNING:Place:644 - A clock IOB clock component is not placed at an optimal
+   clock IOB site. The clock IOB component <KEYBOARD_CLK> is placed at site
+   <T26>. The clock IO site can use the fast path between the IO and the Clock
+   buffer/GCLK if the IOB is placed in the master Clock IOB Site. This is
+   normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint was applied on
+   COMP.PIN <KEYBOARD_CLK.PAD> allowing your design to continue. This constraint
+   disables all clock placer rules related to the specified COMP.PIN. The use of
+   this override is highly discouraged as it may lead to very poor timing
+   results. It is recommended that this error condition be corrected in the
+   design.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s1/inta_n is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s9/i8255/Mmux_pdo[7]_pa[7]_mux_10_OUT<3>12 is sourced by a combinatorial pin.
+   This is not good design practice. Use the CE pin to control the loading of
+   data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net dclk is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
 
 Section 3 - Informational
 -------------------------
-INFO:LIT:243 - Logical network KEYBOARD_CLK_IBUF has no load.
-INFO:LIT:395 - The above info message is repeated 9 more times for the following
-   (max. 5 shown):
-   KEYBOARD_DATA_IBUF,
-   s5/rommod/crc/douta<7>,
-   s5/rommod/crc/douta<6>,
-   s5/rommod/crc/douta<5>,
-   s5/rommod/crc/douta<4>
-   To see the details of these info messages, please use the -detail switch.
 INFO:MapLib:562 - No environment variables are currently set.
 INFO:LIT:244 - All of the single ended outputs in this design are using slew
    rate limited output drivers. The delay on speed critical single ended outputs
@@ -122,9 +131,9 @@ INFO:Pack:1650 - Map created a placed design.
 
 Section 4 - Removed Logic Summary
 ---------------------------------
- 166 block(s) removed
-  52 block(s) optimized away
- 694 signal(s) removed
+ 144 block(s) removed
+  50 block(s) optimized away
+ 648 signal(s) removed
 
 Section 5 - Removed Logic
 -------------------------
@@ -139,144 +148,6 @@ To quickly locate the original cause for the removal of a chain of logic, look
 above the place where that logic is listed in the trimming report, then locate
 the lines that are least indented (begin at the leftmost edge).
 
-The signal "s5/rommod/crc/douta<7>" is sourceless and has been removed.
-The signal "s5/rommod/crc/douta<6>" is sourceless and has been removed.
-The signal "s5/rommod/crc/douta<5>" is sourceless and has been removed.
-The signal "s5/rommod/crc/douta<4>" is sourceless and has been removed.
-The signal "s5/rommod/crc/douta<3>" is sourceless and has been removed.
-The signal "s5/rommod/crc/douta<2>" is sourceless and has been removed.
-The signal "s5/rommod/crc/douta<1>" is sourceless and has been removed.
-The signal "s5/rommod/crc/douta<0>" is sourceless and has been removed.
-The signal "s5/rommod/crc/N0" is sourceless and has been removed.
-The signal "s5/rommod/crc/N1" is sourceless and has been removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[7].ram.r/v5_init.ram/cascadelata_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[7].ram.r/v5_init.ram/cascadelatb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[7].ram.r/v5_init.ram/cascaderega_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[7].ram.r/v5_init.ram/cascaderegb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[6].ram.r/v5_init.ram/cascadelata_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[6].ram.r/v5_init.ram/cascadelatb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[6].ram.r/v5_init.ram/cascaderega_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[6].ram.r/v5_init.ram/cascaderegb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[5].ram.r/v5_init.ram/cascadelata_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[5].ram.r/v5_init.ram/cascadelatb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[5].ram.r/v5_init.ram/cascaderega_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[5].ram.r/v5_init.ram/cascaderegb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[4].ram.r/v5_init.ram/cascadelata_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[4].ram.r/v5_init.ram/cascadelatb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[4].ram.r/v5_init.ram/cascaderega_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[4].ram.r/v5_init.ram/cascaderegb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[3].ram.r/v5_init.ram/cascadelata_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[3].ram.r/v5_init.ram/cascadelatb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[3].ram.r/v5_init.ram/cascaderega_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[3].ram.r/v5_init.ram/cascaderegb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[2].ram.r/v5_init.ram/cascadelata_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[2].ram.r/v5_init.ram/cascadelatb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[2].ram.r/v5_init.ram/cascaderega_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[2].ram.r/v5_init.ram/cascaderegb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[1].ram.r/v5_init.ram/cascadelata_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[1].ram.r/v5_init.ram/cascadelatb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[1].ram.r/v5_init.ram/cascaderega_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[1].ram.r/v5_init.ram/cascaderegb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[0].ram.r/v5_init.ram/cascadelata_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[0].ram.r/v5_init.ram/cascadelatb_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[0].ram.r/v5_init.ram/cascaderega_tmp" is sourceless and has been
-removed.
-The signal
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[0].ram.r/v5_init.ram/cascaderegb_tmp" is sourceless and has been
-removed.
 The signal "s6/rb0/central_ram_core/central_ram_core/N0" is sourceless and has
 been removed.
 The signal
@@ -2909,69 +2780,6 @@ tive_blk_mem_gen/valid.cstr/ena_array<3>" is sourceless and has been removed.
 The signal
 "s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.na
 tive_blk_mem_gen/valid.cstr/ena_array<1>" is sourceless and has been removed.
-
-The trimmed logic reported below is either:
-   1. part of a cycle
-   2. part of disabled logic
-   3. a side-effect of other trimmed logic
-
-The signal "a<12>" is unused and has been removed.
- Unused block "a<12>LogicTrst1" (ROM) removed.
-The signal "ppi_cs_n" is unused and has been removed.
- Unused block "s3/ls0/Mmux_y41" (ROM) removed.
-The signal "s9/i8255/pdo[7]_pa[7]_mux_10_OUT<4>" is unused and has been removed.
- Unused block "s9/i8255/Mmux_pdo[7]_pa[7]_mux_10_OUT<4>11" (ROM) removed.
-The signal "s9/i8255/Mmux_pdo[7]_pa[7]_mux_10_OUT<3>11" is unused and has been
-removed.
- Unused block "s9/i8255/Mmux_pdo[7]_pa[7]_mux_10_OUT<2>11" (ROM) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B" (RAMB36_EXP) removed.
-Unused block
-"s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr
-/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T" (RAMB36_EXP) removed.
 Unused block
 "s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.na
 tive_blk_mem_gen/valid.cstr/ramloop[10].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP"
@@ -3164,8 +2972,6 @@ Unused block
 "s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.na
 tive_blk_mem_gen/valid.cstr/ramloop[9].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP"
 (RAMB36_EXP) removed.
-Unused block "s5/rommod/crc/XST_GND" (ZERO) removed.
-Unused block "s5/rommod/crc/XST_VCC" (ONE) removed.
 Unused block
 "s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.na
 tive_blk_mem_gen/valid.cstr/bindec_a.bindec_inst_a/ADDR[3]_GND_16_o_equal_2_o<3>
@@ -3411,14 +3217,14 @@ Optimized Block(s):
 TYPE 		BLOCK
 GND 		XST_GND
 VCC 		XST_VCC
-LUT2 		d<4>LogicTrst4
-   optimized to 0
 GND 		s0/vgamod/char_rom/XST_GND
 VCC 		s0/vgamod/char_rom/XST_VCC
 GND 		s0/vgamod/ram_2k_attr/XST_GND
 VCC 		s0/vgamod/ram_2k_attr/XST_VCC
 GND 		s0/vgamod/ram_2k_char/XST_GND
 VCC 		s0/vgamod/ram_2k_char/XST_VCC
+GND 		s5/rommod/crc/XST_GND
+VCC 		s5/rommod/crc/XST_VCC
 LUT4
 		s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.n
 ative_blk_mem_gen/valid.cstr/bindec_a.bindec_inst_a/ADDR[3]_GND_16_o_equal_1_o<3
@@ -3571,12 +3377,6 @@ ative_blk_mem_gen/valid.cstr/has_mux_a.A/sel_pipe_3
    optimized to 0
 GND 		s6/rb3/central_ram_core/central_ram_core/XST_GND
 VCC 		s6/rb3/central_ram_core/central_ram_core/XST_VCC
-LDC 		s9/i8255/pdo_0
-   optimized to 0
-LDC 		s9/i8255/pdo_2
-   optimized to 0
-LDC 		s9/i8255/pdo_7
-   optimized to 0
 
 To enable printing of redundant blocks removed and signals merged, set the
 detailed map report option and rerun map.
@@ -3588,6 +3388,7 @@ Section 6 - IOB Properties
 | IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
 |                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| GPIO_SW_C                          | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
 | HDR1_2                             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
 | HDR1_4                             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
 | HDR1_6                             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |

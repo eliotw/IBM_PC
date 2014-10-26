@@ -32,34 +32,39 @@ Data Sheet report:
 -----------------
 All values displayed in nanoseconds (ns)
 
-Clock USER_CLK to Pad
-------------+------------+------------------+--------+
-            | clk (edge) |                  | Clock  |
-Destination |   to PAD   |Internal Clock(s) | Phase  |
-------------+------------+------------------+--------+
-HDR1_4      |    9.221(R)|USER_CLK_BUFGP    |   0.000|
-HDR1_6      |    9.225(R)|USER_CLK_BUFGP    |   0.000|
-HDR1_8      |    9.167(R)|USER_CLK_BUFGP    |   0.000|
-HDR1_12     |    9.266(R)|USER_CLK_BUFGP    |   0.000|
-------------+------------+------------------+--------+
+Setup/Hold to clock KEYBOARD_CLK
+-------------+------------+------------+------------------+--------+
+             |Max Setup to|Max Hold to |                  | Clock  |
+Source       | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
+-------------+------------+------------+------------------+--------+
+KEYBOARD_DATA|    1.687(F)|    2.021(F)|KEYBOARD_CLK_BUFGP|   0.000|
+-------------+------------+------------+------------------+--------+
+
+Clock to Setup on destination clock KEYBOARD_CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+KEYBOARD_CLK   |         |         |         |    3.518|
+---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock USER_CLK
 ---------------+---------+---------+---------+---------+
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-USER_CLK       |   35.228|    1.049|         |    2.208|
+USER_CLK       |    2.436|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Sun Oct 26 15:21:05 2014 
+Analysis completed Sun Oct 26 16:37:57 2014 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 665 MB
+Peak Memory Usage: 675 MB
 
 
 

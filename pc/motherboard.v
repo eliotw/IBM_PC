@@ -8,6 +8,7 @@ module motherboard(
 		   output PIEZO_SPEAKER, // speaker
 		   inout KEYBOARD_CLK, // keyboard clock
 		   inout KEYBOARD_DATA, // keyboard data
+			input GPIO_SW_C, // reset trigger
 		   output HDR1_2, // vga red o 0
 		   output HDR1_4, // vga red o 1
 		   output HDR1_6, // vga green o 0
@@ -98,8 +99,8 @@ module motherboard(
    wire 		 vert_sync; // vga vertical sync
    
    // Some assignments
-   assign pwr_good = 1'b1;
-   assign clk_100 = USER_CLK;
+   assign pwr_good = GPIO_SW_C; // reset
+   assign clk_100 = USER_CLK; // user clock is 100 MHz clock
    assign xa0_n = xa[0]; // not sure if needs to be inverted or not
    assign PIEZO_SPEAKER = spkr_data_out;
    assign HDR1_2 = vga_red_o[0]; // vga red o 0
@@ -372,7 +373,7 @@ endmodule // motherboard
  * Verilog description of the first sheet of the motherboard
  */
 module sheet1(
-	      input pwr_good, // power good signal, not sure if needed
+	      input pwr_good, // power good signal, now reset signal
 	      input dma_wait_n, // 
 	      input rdy_wait_n, //
 	      input nmi,
@@ -416,29 +417,28 @@ module sheet1(
    wire [19:8] 	     ap;
    wire 	     inta_n;
    wire 	     spen_n;
-//   wire 	     ale;
    wire 	     den;
    wire 	     u84;
    wire 	     dtr;
    wire [3:0] 	     xrd; // extra data
    
+	// Assign powergood to reset
+	assign reset = pwr_good;
+	
    // 8087 math coprocessor
    assign rqgti_n = 1'b1;
    assign test_n = 1'b1;
    assign npnpi = 1'b0;
    
    // 8284 clock generation
-   // Intel 8284 SPEC SUBJECT TO CHANGE
-   intel8284a i8284(
-		// no power good
+	intel8284a i8284(
+		.fpga_clk(clk_100),
 		.rdy1(dma_wait_n),
-		.aen1(rdy_wait_n),
-		.fclk(clk_100),
+      .aen1(rdy_wait_n),
 		.ready(ready),
 		.clk(clk88),
-		.reset(reset),
 		.osc(osc),
-		.pclk(pclk),
+      .pclk(pclk),
 		.vclk(vga_clk)
 	);
 

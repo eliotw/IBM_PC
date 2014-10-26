@@ -1,7 +1,7 @@
 Release 14.2 par P.28xd (lin64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-ahtanum.ece.cmu.edu::  Sun Oct 26 15:19:31 2014
+ahtanum.ece.cmu.edu::  Sun Oct 26 16:36:11 2014
 
 par -w -intstyle ise -ol high -mt off motherboard_map.ncd motherboard.ncd
 motherboard.pcf 
@@ -27,57 +27,55 @@ Device speed data version:  "PRODUCTION 1.73 2012-07-09".
 
 Device Utilization Summary:
 
-   Number of BUFGs                           2 out of 32      6%
+   Number of BUFGs                           5 out of 32     15%
    Number of DSP48Es                         1 out of 64      1%
-   Number of External IOBs                  12 out of 640     1%
-      Number of LOCed IOBs                  12 out of 12    100%
+   Number of External IOBs                  13 out of 640     2%
+      Number of LOCed IOBs                  13 out of 13    100%
 
-   Number of RAMB18X2s                       1 out of 148     1%
-   Number of RAMB36_EXPs                     5 out of 148     3%
-   Number of Slices                       1310 out of 17280   7%
-   Number of Slice Registers              1378 out of 69120   1%
-      Number used as Flip Flops           1355
-      Number used as Latches                22
-      Number used as LatchThrus              1
+   Number of RAMB18X2s                       2 out of 148     1%
+   Number of RAMB36_EXPs                    21 out of 148    14%
+   Number of Slices                       1311 out of 17280   7%
+   Number of Slice Registers              1487 out of 69120   2%
+      Number used as Flip Flops           1459
+      Number used as Latches                26
+      Number used as LatchThrus              2
 
-   Number of Slice LUTS                   3696 out of 69120   5%
-   Number of Slice LUT-Flip Flop pairs    4000 out of 69120   5%
+   Number of Slice LUTS                   3829 out of 69120   5%
+   Number of Slice LUT-Flip Flop pairs    4203 out of 69120   6%
 
 
 Overall effort level (-ol):   High 
 Router effort level (-rl):    High 
 
-Starting initial Timing Analysis.  REAL time: 9 secs 
-Finished initial Timing Analysis.  REAL time: 9 secs 
+Starting initial Timing Analysis.  REAL time: 10 secs 
+Finished initial Timing Analysis.  REAL time: 10 secs 
 
-WARNING:Par:288 - The signal KEYBOARD_DATA_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal KEYBOARD_CLK_IBUF has no load.  PAR will not attempt to route this signal.
 Starting Router
 
 
-Phase  1  : 20208 unrouted;      REAL time: 10 secs 
+Phase  1  : 22764 unrouted;      REAL time: 11 secs 
 
-Phase  2  : 18689 unrouted;      REAL time: 11 secs 
+Phase  2  : 19941 unrouted;      REAL time: 12 secs 
 
-Phase  3  : 4487 unrouted;      REAL time: 27 secs 
+Phase  3  : 4913 unrouted;      REAL time: 30 secs 
 
-Phase  4  : 11193 unrouted; (Par is working to improve performance)     REAL time: 1 mins 2 secs 
+Phase  4  : 11752 unrouted; (Par is working to improve performance)     REAL time: 1 mins 11 secs 
 
 Updating file: motherboard.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 12 secs 
+Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
 
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 12 secs 
+Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
 
-Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 12 secs 
+Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
 
-Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 12 secs 
+Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
 
-Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 12 secs 
+Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
 
-Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 13 secs 
-Total REAL time to Router completion: 1 mins 13 secs 
-Total CPU time to Router completion: 1 mins 14 secs 
+Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 23 secs 
+Total REAL time to Router completion: 1 mins 23 secs 
+Total CPU time to Router completion: 1 mins 24 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -97,14 +95,26 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net USE | SETUP       |         N/A|    39.533ns|     N/A|           0
-  R_CLK_BUFGP                               | HOLD        |     0.249ns|            |       0|           0
+  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|    18.876ns|     N/A|           0
+  i8284/vclk_BUFG                           | HOLD        |     0.413ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|     1.861ns|     N/A|           0
-  inta_n                                    | HOLD        |     0.556ns|            |       0|           0
+  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|    45.692ns|     N/A|           0
+  i8284/clk_BUFG                            | HOLD        |     0.368ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|    18.002ns|     N/A|           0
-  ale_BUFG                                  | HOLD        |     3.067ns|            |       0|           0
+  Autotimespec constraint for clock net USE | SETUP       |         N/A|     2.436ns|     N/A|           0
+  R_CLK_BUFGP                               | HOLD        |     0.419ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  Autotimespec constraint for clock net KEY | SETUP       |         N/A|     3.518ns|     N/A|           0
+  BOARD_CLK_BUFGP                           | HOLD        |     0.492ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|     2.872ns|     N/A|           0
+  i8284/pclk                                | HOLD        |     0.505ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|     2.278ns|     N/A|           0
+  inta_n                                    | HOLD        |     0.570ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|    23.261ns|     N/A|           0
+  ale_BUFG                                  | HOLD        |     2.614ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -120,18 +130,16 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-WARNING:Par:283 - There are 2 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
+Total REAL time to PAR completion: 1 mins 31 secs 
+Total CPU time to PAR completion: 1 mins 32 secs 
 
-Total REAL time to PAR completion: 1 mins 20 secs 
-Total CPU time to PAR completion: 1 mins 20 secs 
-
-Peak Memory Usage:  804 MB
+Peak Memory Usage:  813 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.
 
 Number of error messages: 0
-Number of warning messages: 4
+Number of warning messages: 0
 Number of info messages: 2
 
 Writing design to file motherboard.ncd
