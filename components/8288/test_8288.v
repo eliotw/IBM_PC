@@ -349,6 +349,348 @@ module test_8288;
 	 $display("ERR0: %b",outvector);
 	 errors = errors + 1;
       end
+
+      // Run read memory test
+      $display ("********************");
+      $display ("Run Read Memory Test");
+      $display ("********************");
+
+      // S0
+      @(posedge clk);
+      cen = 1'b1;
+      aen_n = 1'b0;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      s_n = 3'b101;
+      #1;
+      if(outvector !== 11'b1111111_1011) begin
+	 $display("ERR1: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S1
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b0111111_0010) begin
+	 $display("ERR2: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S2
+      @(posedge clk);
+      s_n = 3'b111;
+      #1;
+      if(outvector !== 11'b0111111_0110) begin
+	 $display("ERR3: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S3
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_0010) begin
+	 $display("ERR: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // Run write memory test
+      $display ("*********************");
+      $display ("Run Write Memory Test");
+      $display ("*********************");
+
+      // S0
+      @(posedge clk);
+      cen = 1'b1;
+      aen_n = 1'b0;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      s_n = 3'b110;
+      #1;
+      if(outvector !== 11'b1111111_1011) begin
+	 $display("ERR1: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S1
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1101111_1110) begin
+	 $display("ERR2: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S2
+      @(posedge clk);
+      s_n = 3'b111;
+      #1;
+      if(outvector !== 11'b1101111_1110) begin
+	 $display("ERR3: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S3
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1110) begin
+	 $display("ERR: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // Run passive test
+      $display ("****************");
+      $display ("Run Passive Test");
+      $display ("****************");
+
+      // S0
+      @(posedge clk);
+      cen = 1'b1;
+      aen_n = 1'b0;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      s_n = 3'b111;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR1: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S1
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR2: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S2
+      @(posedge clk);
+      s_n = 3'b111;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR3: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S3
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // Run AEN_N test
+      $display ("**************");
+      $display ("Run AEN_N Test");
+      $display ("**************");
+
+      // S0
+      @(posedge clk);
+      cen = 1'b1;
+      aen_n = 1'b1;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      s_n = 3'b010;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR1: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S1
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR2: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S2
+      @(posedge clk);
+      s_n = 3'b111;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR3: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S3
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // Run cen test
+      $display ("************");
+      $display ("Run CEN Test");
+      $display ("************");
+
+      // S0
+      @(posedge clk);
+      cen = 1'b0;
+      aen_n = 1'b0;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      s_n = 3'b010;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR1: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S1
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR2: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S2
+      @(posedge clk);
+      s_n = 3'b111;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR3: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S3
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // Run write io test
+      $display ("************************");
+      $display ("Run Write I/O Test Again");
+      $display ("************************");
+
+      // S0
+      @(posedge clk);
+      cen = 1'b1;
+      aen_n = 1'b0;
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      s_n = 3'b010;
+      #1;
+      if(outvector !== 11'b1111111_1011) begin
+	 $display("ERR1: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S1
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111101_1110) begin
+	 $display("ERR2: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S2
+      @(posedge clk);
+      s_n = 3'b111;
+      #1;
+      if(outvector !== 11'b1111101_1110) begin
+	 $display("ERR3: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S3
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1110) begin
+	 $display("ERR: %b",outvector);
+	 errors = errors + 1;
+      end
+
+      // S0
+      @(posedge clk);
+      #1;
+      if(outvector !== 11'b1111111_1010) begin
+	 $display("ERR0: %b",outvector);
+	 errors = errors + 1;
+      end
       
       // Complete Tests
       if(errors > 0) begin
