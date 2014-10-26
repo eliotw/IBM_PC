@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_ikteF_1.db \
+	_VCSgd_MLXOtb_1.db \
+
+
+
+_VCSgd_ikteF_1.db :	8284a.v 
+		${VLOGAN}  +v2k -work work 8284a.v
+
+
+_VCSgd_MLXOtb_1.db :	8284a_TB.v 
+		${VLOGAN}  +v2k -work work 8284a_TB.v
+
+
