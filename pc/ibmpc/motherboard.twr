@@ -1,0 +1,65 @@
+--------------------------------------------------------------------------------
+Release 14.2 Trace  (lin64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+/afs/ece.cmu.edu/support/xilinx/xilinx.release/14.2/ISE_DS/ISE/bin/lin64/unwrapped/trce
+-intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml motherboard.twx motherboard.ncd -o
+motherboard.twr motherboard.pcf
+
+Design file:              motherboard.ncd
+Physical constraint file: motherboard.pcf
+Device,package,speed:     xc5vlx110t,ff1136,-1 (PRODUCTION 1.73 2012-07-09, STEPPING level 0)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2698 - No timing constraints found, doing default enumeration.
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock USER_CLK to Pad
+------------+------------+------------------+--------+
+            | clk (edge) |                  | Clock  |
+Destination |   to PAD   |Internal Clock(s) | Phase  |
+------------+------------+------------------+--------+
+HDR1_4      |    9.221(R)|USER_CLK_BUFGP    |   0.000|
+HDR1_6      |    9.225(R)|USER_CLK_BUFGP    |   0.000|
+HDR1_8      |    9.167(R)|USER_CLK_BUFGP    |   0.000|
+HDR1_12     |    9.266(R)|USER_CLK_BUFGP    |   0.000|
+------------+------------+------------------+--------+
+
+Clock to Setup on destination clock USER_CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+USER_CLK       |   35.228|    1.049|         |    2.208|
+---------------+---------+---------+---------+---------+
+
+
+Analysis completed Sun Oct 26 15:21:05 2014 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 665 MB
+
+
+

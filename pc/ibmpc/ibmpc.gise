@@ -23,22 +23,55 @@
 
   <files xmlns="http://www.xilinx.com/XMLSchema">
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name=".lso"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/bitgen.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/map.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/par.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/trce.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="ipcore_dir/coregen.log"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="motherboard.bgn" xil_pn:subbranch="FPGAConfiguration"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BIT" xil_pn:name="motherboard.bit" xil_pn:subbranch="FPGAConfiguration"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="motherboard.bld"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="motherboard.cmd_log"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_DRC" xil_pn:name="motherboard.drc" xil_pn:subbranch="FPGAConfiguration"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="motherboard.lso"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NCD" xil_pn:name="motherboard.ncd" xil_pn:subbranch="Par"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="motherboard.ngc"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGD" xil_pn:name="motherboard.ngd"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGR" xil_pn:name="motherboard.ngr"/>
+    <file xil_pn:fileType="FILE_PAD_MISC" xil_pn:name="motherboard.pad"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAR_REPORT" xil_pn:name="motherboard.par" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PCF" xil_pn:name="motherboard.pcf" xil_pn:subbranch="Map"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="motherboard.prj"/>
+    <file xil_pn:fileType="FILE_TRCE_MISC" xil_pn:name="motherboard.ptwx"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_STX" xil_pn:name="motherboard.stx"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="motherboard.syr"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_TXT_REPORT" xil_pn:name="motherboard.twr" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_XML_REPORT" xil_pn:name="motherboard.twx" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_UNROUTES" xil_pn:name="motherboard.unroutes" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="motherboard.ut" xil_pn:subbranch="FPGAConfiguration"/>
+    <file xil_pn:fileType="FILE_XPI" xil_pn:name="motherboard.xpi"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="motherboard.xst"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="motherboard_envsettings.html"/>
+    <file xil_pn:fileType="FILE_NCD" xil_pn:name="motherboard_guide.ncd" xil_pn:origination="imported"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="motherboard_map.map" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="motherboard_map.mrp" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NCD" xil_pn:name="motherboard_map.ncd" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGM" xil_pn:name="motherboard_map.ngm" xil_pn:subbranch="Map"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="motherboard_map.xrpt"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="motherboard_ngdbuild.xrpt"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_EXCEL_REPORT" xil_pn:name="motherboard_pad.csv" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_TXT_REPORT" xil_pn:name="motherboard_pad.txt" xil_pn:subbranch="Par"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="motherboard_par.xrpt"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="motherboard_summary.html"/>
+    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="motherboard_summary.xml"/>
+    <file xil_pn:fileType="FILE_WEBTALK" xil_pn:name="motherboard_usage.xml"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="motherboard_xst.xrpt"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="netgen"/>
-    <file xil_pn:fileType="FILE_NETGEN_REPORT" xil_pn:name="netgen/synthesis/motherboard_synthesis.nlf"/>
-    <file xil_pn:fileType="FILE_VERILOG" xil_pn:name="netgen/synthesis/motherboard_synthesis.v"/>
+    <file xil_pn:branch="PostSynthSim" xil_pn:fileType="FILE_NETGEN_REPORT" xil_pn:name="netgen/synthesis/motherboard_synthesis.nlf"/>
+    <file xil_pn:branch="PostSynthSim" xil_pn:fileType="FILE_VERILOG" xil_pn:name="netgen/synthesis/motherboard_synthesis.v"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="sheet1.prj"/>
     <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="sheet1.stx"/>
     <file xil_pn:fileType="FILE_XST" xil_pn:name="sheet1.xst"/>
@@ -46,7 +79,10 @@
     <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="sheet10.stx"/>
     <file xil_pn:fileType="FILE_VERILOG_INSTTEMPLATE" xil_pn:name="sheet10.tfi"/>
     <file xil_pn:fileType="FILE_XST" xil_pn:name="sheet10.xst"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="usage_statistics_webtalk.html"/>
+    <file xil_pn:fileType="FILE_LOG" xil_pn:name="webtalk.log"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xlnx_auto_0_xdb"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
   </files>
 
@@ -89,18 +125,19 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1414349930" xil_pn:in_ck="1458007630566849889" xil_pn:name="TRANEXT_xstsynthesize_virtex5" xil_pn:prop_ck="9197919585742709161" xil_pn:start_ts="1414349908">
-      <status xil_pn:value="FailedRun"/>
+    <transform xil_pn:end_ts="1414350972" xil_pn:in_ck="1458007630566849889" xil_pn:name="TRANEXT_xstsynthesize_virtex5" xil_pn:prop_ck="9197919585742709161" xil_pn:start_ts="1414350916">
+      <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name=".lso"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="motherboard.lso"/>
       <outfile xil_pn:name="motherboard.ngc"/>
       <outfile xil_pn:name="motherboard.ngr"/>
       <outfile xil_pn:name="motherboard.prj"/>
+      <outfile xil_pn:name="motherboard.stx"/>
       <outfile xil_pn:name="motherboard.syr"/>
       <outfile xil_pn:name="motherboard.xst"/>
       <outfile xil_pn:name="motherboard_xst.xrpt"/>
@@ -111,10 +148,67 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1414193159" xil_pn:in_ck="3041672674791284166" xil_pn:name="TRAN_postSynthesisSimModel" xil_pn:prop_ck="1627247534842921643" xil_pn:start_ts="1414193156">
-      <status xil_pn:value="AbortedRun"/>
+    <transform xil_pn:end_ts="1414351093" xil_pn:in_ck="3259932993536500168" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-7150944492692462516" xil_pn:start_ts="1414351085">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <outfile xil_pn:name="_ngo"/>
+      <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
+      <outfile xil_pn:name="motherboard.bld"/>
+      <outfile xil_pn:name="motherboard.ngd"/>
+      <outfile xil_pn:name="motherboard_ngdbuild.xrpt"/>
+    </transform>
+    <transform xil_pn:end_ts="1414351170" xil_pn:in_ck="-2772417258192151648" xil_pn:name="TRANEXT_map_virtex5" xil_pn:prop_ck="6733564432430981316" xil_pn:start_ts="1414351093">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
+      <outfile xil_pn:name="motherboard.pcf"/>
+      <outfile xil_pn:name="motherboard_map.map"/>
+      <outfile xil_pn:name="motherboard_map.mrp"/>
+      <outfile xil_pn:name="motherboard_map.ncd"/>
+      <outfile xil_pn:name="motherboard_map.ngm"/>
+      <outfile xil_pn:name="motherboard_map.xrpt"/>
+      <outfile xil_pn:name="motherboard_summary.xml"/>
+      <outfile xil_pn:name="motherboard_usage.xml"/>
+    </transform>
+    <transform xil_pn:end_ts="1414351265" xil_pn:in_ck="6029471287760714425" xil_pn:name="TRANEXT_par_virtex5" xil_pn:prop_ck="-4097515898943074650" xil_pn:start_ts="1414351170">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
+      <outfile xil_pn:name="motherboard.ncd"/>
+      <outfile xil_pn:name="motherboard.pad"/>
+      <outfile xil_pn:name="motherboard.par"/>
+      <outfile xil_pn:name="motherboard.ptwx"/>
+      <outfile xil_pn:name="motherboard.unroutes"/>
+      <outfile xil_pn:name="motherboard.xpi"/>
+      <outfile xil_pn:name="motherboard_pad.csv"/>
+      <outfile xil_pn:name="motherboard_pad.txt"/>
+      <outfile xil_pn:name="motherboard_par.xrpt"/>
+    </transform>
+    <transform xil_pn:end_ts="1414351324" xil_pn:in_ck="-9166322738979048742" xil_pn:name="TRANEXT_bitFile_virtex5" xil_pn:prop_ck="-4008143788065839743" xil_pn:start_ts="1414351295">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="_xmsgs/bitgen.xmsgs"/>
+      <outfile xil_pn:name="motherboard.bgn"/>
+      <outfile xil_pn:name="motherboard.bit"/>
+      <outfile xil_pn:name="motherboard.drc"/>
+      <outfile xil_pn:name="motherboard.ut"/>
+      <outfile xil_pn:name="usage_statistics_webtalk.html"/>
+      <outfile xil_pn:name="webtalk.log"/>
+      <outfile xil_pn:name="webtalk_pn.xml"/>
+    </transform>
+    <transform xil_pn:end_ts="1414351265" xil_pn:in_ck="-2772417258192151780" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416183" xil_pn:start_ts="1414351253">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>
+      <outfile xil_pn:name="motherboard.twr"/>
+      <outfile xil_pn:name="motherboard.twx"/>
+    </transform>
+    <transform xil_pn:end_ts="1414350975" xil_pn:in_ck="3041672674791284166" xil_pn:name="TRAN_postSynthesisSimModel" xil_pn:prop_ck="1627247534842921643" xil_pn:start_ts="1414350972">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="netgen"/>
       <outfile xil_pn:name="netgen/synthesis/motherboard_synthesis.nlf"/>
       <outfile xil_pn:name="netgen/synthesis/motherboard_synthesis.v"/>
