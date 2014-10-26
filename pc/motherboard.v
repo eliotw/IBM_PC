@@ -480,41 +480,29 @@ module sheet1(
 		   );
 
    // Intel 8288 Bus Controller
-   // SPEC SUBJECT TO CHANGE
    intel8288 i8288(
-		   .s({s2_n,s1_n,s0_n}),
-		   .inta_n(inta_n),
-		   .clk(clk88),
-		   .aen_n(aen_br0),
-		   .cen(aen_n),
-		   .ale(ale),
-		   .den(den),
-		   .dtr(dtr),
-		   .pden_n(), // not connected
-		   .aiowc_n(ior_n),
-		   .amwc_n(memr_n),
-		   .iorc_n(iow_n),
-		   .mrdc_n(memw_n)
+	           .s_n({s2_n,s1_n,s0_n}),
+	           .clk(clk88),
+	           .aen_n(aen_br0),
+	           .cen(aen_n), // output enable
+	           .iob(1'b0), // set equal to 0
+	           .mrdc_n(memw_n),
+	           .mwtc_n(), // not connected
+	           .amwc_n(memr_n),
+	           .iorc_n(iow_m),
+	           .iowc_n(), // not connected
+	           .aiowc_n(ior_n),
+	           .inta_n(inta_n),
+	           .dtr(dtr),
+	           .den(den),
+	           .mce(mce), // not connected
+	           .ale(ale)
 		   );
-
+   
    // NAND gate U84
    assign u84 = ~(spen_n & den);
-
-	// Bus assignment
-	//assign a = (aen_br0 == 1'b0) ? addr : 20'bzzzz_zzzz_zzzz_zzzz_zzzz; // (vuvuzela intensifies)
-	
+   
    // LS 373 Units
-	/*
-	always @(ale or ap or adp) begin
-		if(ale) begin
-			addr <= {ap,adp};
-		end
-		else begin
-			addr <= addr;
-		end
-	end
-	*/
-	
    ls373 u10(
 	     .d({ap[19:16],ap[19:16]}),
 	     .q({a[19:16],xrd}),
