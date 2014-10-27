@@ -86,7 +86,7 @@ module keyinterface(
       case(state)
 	idle: begin
 	   if(reset == 1'b1) begin
-	      state<=idle;
+	      state<=data;
 	      pa<=8'haa;
 	      //f0<=1'b0;
 	      irq1<=1'b0;
@@ -114,7 +114,7 @@ module keyinterface(
 	end
 	data: begin
 	   if(reset == 1'b1) begin
-	      state<=idle;
+	      state<=data;
 	      pa<=8'haa;
 	      //f0<=1'b0;
 	      irq1<=1'b0;
@@ -134,7 +134,7 @@ module keyinterface(
 	end
 	wclr: begin
 	   if(reset == 1'b1) begin
-	      state<=idle;
+	      state<=data;
 	      pa<=8'haa;
 	      //f0<=1'b0;
 	      irq1<=1'b0;
@@ -154,7 +154,7 @@ module keyinterface(
 	end
 	f0s0: begin
 	   if(reset == 1'b1) begin
-	      state<=idle;
+	      state<=data;
 	      pa<=8'haa;
 	      //f0<=1'b0;
 	      irq1<=1'b0;
@@ -174,7 +174,7 @@ module keyinterface(
 	end
 	f0s1: begin
 	   if(reset == 1'b1) begin
-	      state<=idle;
+	      state<=data;
 	      pa<=8'haa;
 	      //f0<=1'b0;
 	      irq1<=1'b0;
@@ -202,7 +202,7 @@ module keyinterface(
 	end
 	f0s2: begin
 	   if(reset == 1'b1) begin
-	      state<=idle;
+	      state<=data;
 	      pa<=8'haa;
 	      //f0<=1'b0;
 	      irq1<=1'b0;
@@ -221,7 +221,7 @@ module keyinterface(
 	   end
 	end
 	default: begin
-	   state<=idle;
+	   state<=data;
 	   pa<=8'haa;
 	   //f0<=1'b0;
 	   irq1<=1'b0;
