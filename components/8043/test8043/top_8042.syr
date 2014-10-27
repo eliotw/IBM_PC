@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: top_8042.prj
@@ -131,6 +131,7 @@ Analyzing hierarchy for module <top_8042> in library <work> with parameters.
 	fill = "00000010"
 	idle = "00000001"
 	wt00 = "00000100"
+	wt01 = "00001000"
 
 Analyzing hierarchy for module <keyinterface> in library <work> with parameters.
 	data = "00000010"
@@ -162,6 +163,7 @@ Analyzing top module <top_8042>.
 	fill = 8'b00000010
 	idle = 8'b00000001
 	wt00 = 8'b00000100
+	wt01 = 8'b00001000
 Module <top_8042> is correct for synthesis.
  
 Analyzing module <keyinterface> in library <work>.
@@ -227,7 +229,7 @@ WARNING:Xst:647 - Input <pb6> is never used. This port will be preserved and lef
     | Clock              | pclk                      (rising_edge)        |
     | Reset              | reset                     (positive)           |
     | Reset type         | synchronous                                    |
-    | Reset State        | 00000001                                       |
+    | Reset State        | 00000010                                       |
     | Power Up State     | 00000001                                       |
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
@@ -248,17 +250,17 @@ Synthesizing Unit <top_8042>.
 INFO:Xst:1799 - State 00000100 is never reached in FSM <state>.
     Found finite state machine <FSM_2> for signal <state>.
     -----------------------------------------------------------------------
-    | States             | 2                                              |
-    | Transitions        | 5                                              |
-    | Inputs             | 3                                              |
-    | Outputs            | 2                                              |
+    | States             | 3                                              |
+    | Transitions        | 9                                              |
+    | Inputs             | 4                                              |
+    | Outputs            | 3                                              |
     | Clock              | clk                       (rising_edge)        |
     | Power Up State     | 00000001                                       |
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
     Found 8-bit register for signal <counter>.
-    Found 8-bit adder for signal <counter$addsub0000> created at line 373.
+    Found 8-bit adder for signal <counter$addsub0000> created at line 430.
     Found 8-bit register for signal <datavisible>.
     Found 1-bit register for signal <full>.
     Found 1-bit register for signal <pb7>.
@@ -291,25 +293,26 @@ Macro Statistics
 =========================================================================
 
 Analyzing FSM <FSM_2> for best encoding.
-Optimizing FSM <state/FSM> on signal <state[1:1]> with sequential encoding.
+Optimizing FSM <state/FSM> on signal <state[1:2]> with sequential encoding.
 ----------------------
  State    | Encoding
 ----------------------
- 00000001 | 0
- 00000010 | 1
+ 00000001 | 00
+ 00000010 | 01
+ 00001000 | 10
  00000100 | unreached
 ----------------------
 Analyzing FSM <FSM_1> for best encoding.
-Optimizing FSM <keyinter/state/FSM> on signal <state[1:3]> with gray encoding.
+Optimizing FSM <keyinter/state/FSM> on signal <state[1:3]> with sequential encoding.
 ----------------------
  State    | Encoding
 ----------------------
  00000001 | 000
- 00001000 | 001
- 00000010 | 011
- 00000100 | 010
- 00010000 | 110
- 00100000 | 111
+ 00000010 | 001
+ 00001000 | 010
+ 00000100 | 011
+ 00010000 | 100
+ 00100000 | 101
 ----------------------
 Analyzing FSM <FSM_0> for best encoding.
 Optimizing FSM <keyinter/keyinmod/b/FSM> on signal <b[1:11]> with one-hot encoding.
@@ -367,9 +370,12 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-INFO:Xst:2261 - The FF/Latch <full> in Unit <top_8042> is equivalent to the following FF/Latch, which will be removed : <state_FSM_FFd1> 
 
 Optimizing unit <top_8042> ...
+INFO:Xst:2261 - The FF/Latch <full> in Unit <top_8042> is equivalent to the following FF/Latch, which will be removed : <state_FSM_FFd2> 
+INFO:Xst:2261 - The FF/Latch <full> in Unit <top_8042> is equivalent to the following FF/Latch, which will be removed : <state_FSM_FFd2> 
+INFO:Xst:2261 - The FF/Latch <full> in Unit <top_8042> is equivalent to the following FF/Latch, which will be removed : <state_FSM_FFd2> 
+INFO:Xst:2261 - The FF/Latch <full> in Unit <top_8042> is equivalent to the following FF/Latch, which will be removed : <state_FSM_FFd2> 
 
 Optimizing unit <keyin> ...
 
@@ -378,10 +384,6 @@ Optimizing unit <keyinterface> ...
 Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block top_8042, actual ratio is 0.
-FlipFlop counter_1 has been replicated 1 time(s)
-FlipFlop counter_2 has been replicated 1 time(s)
-FlipFlop counter_3 has been replicated 1 time(s)
-FlipFlop full has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -393,8 +395,8 @@ Unit <top_8042> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 52
- Flip-Flops                                            : 52
+# Registers                                            : 49
+ Flip-Flops                                            : 49
 # Shift Registers                                      : 1
  2-bit shift register                                  : 1
 
@@ -425,25 +427,25 @@ Design Statistics
 # IOs                              : 23
 
 Cell Usage :
-# BELS                             : 109
+# BELS                             : 108
 #      GND                         : 1
 #      INV                         : 1
 #      LUT1                        : 2
-#      LUT2                        : 4
-#      LUT3                        : 5
-#      LUT4                        : 9
-#      LUT5                        : 13
-#      LUT6                        : 53
-#      MUXF7                       : 17
+#      LUT2                        : 3
+#      LUT3                        : 7
+#      LUT4                        : 10
+#      LUT5                        : 14
+#      LUT6                        : 59
+#      MUXF7                       : 7
 #      MUXF8                       : 3
 #      VCC                         : 1
-# FlipFlops/Latches                : 53
-#      FD                          : 27
+# FlipFlops/Latches                : 50
+#      FD                          : 15
 #      FD_1                        : 9
 #      FDE                         : 1
 #      FDE_1                       : 8
-#      FDR                         : 5
-#      FDS                         : 2
+#      FDR                         : 10
+#      FDS                         : 6
 #      FDS_1                       : 1
 # RAMS                             : 16
 #      RAM64M                      : 8
@@ -464,18 +466,18 @@ Selected Device : 5vlx110tff1136-1
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:              53  out of  69120     0%  
- Number of Slice LUTs:                  136  out of  69120     0%  
-    Number used as Logic:                87  out of  69120     0%  
+ Number of Slice Registers:              50  out of  69120     0%  
+ Number of Slice LUTs:                  145  out of  69120     0%  
+    Number used as Logic:                96  out of  69120     0%  
     Number used as Memory:               49  out of  17920     0%  
        Number used as RAM:               48
        Number used as SRL:                1
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    150
-   Number with an unused Flip Flop:      97  out of    150    64%  
-   Number with an unused LUT:            14  out of    150     9%  
-   Number of fully used LUT-FF pairs:    39  out of    150    26%  
+ Number of LUT Flip Flop pairs used:    156
+   Number with an unused Flip Flop:     106  out of    156    67%  
+   Number with an unused LUT:            11  out of    156     7%  
+   Number of fully used LUT-FF pairs:    39  out of    156    25%  
    Number of unique control sets:        15
 
 IO Utilization: 
@@ -506,7 +508,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-USER_CLK                           | BUFGP                  | 50    |
+USER_CLK                           | BUFGP                  | 47    |
 KEYBOARD_CLK                       | BUFGP                  | 20    |
 -----------------------------------+------------------------+-------+
 
@@ -518,9 +520,9 @@ Timing Summary:
 ---------------
 Speed Grade: -1
 
-   Minimum period: 2.781ns (Maximum Frequency: 359.583MHz)
-   Minimum input arrival time before clock: 3.267ns
-   Maximum output required time after clock: 3.385ns
+   Minimum period: 3.147ns (Maximum Frequency: 317.763MHz)
+   Minimum input arrival time before clock: 3.256ns
+   Maximum output required time after clock: 3.347ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -529,26 +531,26 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'USER_CLK'
-  Clock period: 2.781ns (frequency: 359.583MHz)
-  Total number of paths / destination ports: 601 / 181
+  Clock period: 3.147ns (frequency: 317.763MHz)
+  Total number of paths / destination ports: 517 / 177
 -------------------------------------------------------------------------
-Delay:               2.781ns (Levels of Logic = 2)
-  Source:            counter_1_1 (FF)
-  Destination:       Mram_datarec1 (RAM)
+Delay:               3.147ns (Levels of Logic = 2)
+  Source:            Mram_datarec1 (RAM)
+  Destination:       datavisible_2 (FF)
   Source Clock:      USER_CLK rising
   Destination Clock: USER_CLK rising
 
-  Data Path: counter_1_1 to Mram_datarec1
+  Data Path: Mram_datarec1 to datavisible_2
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               1   0.471   0.789  counter_1_1 (counter_1_1)
-     LUT4:I0->O            3   0.094   0.491  counter_mux0000<0>4_SW0 (N36)
-     LUT6:I5->O            4   0.094   0.352  write_ctrl (write_ctrl)
-     RAM64M:WE                 0.490          Mram_datarec1
+     RAM64M:WCLK->DOC      2   1.668   0.715  Mram_datarec1 (N11)
+     LUT6:I3->O            1   0.094   0.576  datavisible_mux0000<2>_SW0 (N331)
+     LUT6:I4->O            1   0.094   0.000  datavisible_mux0000<2> (datavisible_mux0000<2>)
+     FD:D                     -0.018          datavisible_2
     ----------------------------------------
-    Total                      2.781ns (1.149ns logic, 1.632ns route)
-                                       (41.3% logic, 58.7% route)
+    Total                      3.147ns (1.856ns logic, 1.291ns route)
+                                       (59.0% logic, 41.0% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'KEYBOARD_CLK'
@@ -566,7 +568,7 @@ Delay:               2.215ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FD_1:C->Q             3   0.467   1.080  keyinter/keyinmod/b_FSM_FFd4 (keyinter/keyinmod/b_FSM_FFd4)
-     LUT6:I0->O            1   0.094   0.480  keyinter/keyinmod/newdata_mux0000_SW0 (N8)
+     LUT6:I0->O            1   0.094   0.480  keyinter/keyinmod/newdata_mux0000_SW0 (N43)
      LUT5:I4->O            1   0.094   0.000  keyinter/keyinmod/newdata_mux00001 (keyinter/keyinmod/newdata_mux00001)
      FDS_1:D                  -0.018          keyinter/keyinmod/newdata
     ----------------------------------------
@@ -575,24 +577,25 @@ Delay:               2.215ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'USER_CLK'
-  Total number of paths / destination ports: 204 / 100
+  Total number of paths / destination ports: 225 / 96
 -------------------------------------------------------------------------
-Offset:              3.267ns (Levels of Logic = 3)
+Offset:              3.256ns (Levels of Logic = 4)
   Source:            GPIO_SW_C (PAD)
-  Destination:       Mram_datarec1 (RAM)
+  Destination:       datavisible_0 (FF)
   Destination Clock: USER_CLK rising
 
-  Data Path: GPIO_SW_C to Mram_datarec1
+  Data Path: GPIO_SW_C to datavisible_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            35   0.818   0.838  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
-     LUT3:I0->O            2   0.094   0.581  counter_mux0000<0>4_SW1 (N44)
-     LUT6:I4->O            4   0.094   0.352  write_ctrl (write_ctrl)
-     RAM64M:WE                 0.490          Mram_datarec1
+     IBUF:I->O            29   0.818   0.703  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
+     LUT2:I0->O           17   0.094   0.877  counter_mux0000<7>11 (N171)
+     LUT6:I2->O            1   0.094   0.576  datavisible_mux0000<7>_SW0 (N101)
+     LUT6:I4->O            1   0.094   0.000  datavisible_mux0000<7> (datavisible_mux0000<7>)
+     FD:D                     -0.018          datavisible_7
     ----------------------------------------
-    Total                      3.267ns (1.496ns logic, 1.771ns route)
-                                       (45.8% logic, 54.2% route)
+    Total                      3.256ns (1.100ns logic, 2.156ns route)
+                                       (33.8% logic, 66.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'KEYBOARD_CLK'
@@ -617,7 +620,7 @@ Offset:              1.192ns (Levels of Logic = 1)
 Timing constraint: Default OFFSET OUT AFTER for Clock 'USER_CLK'
   Total number of paths / destination ports: 9 / 9
 -------------------------------------------------------------------------
-Offset:              3.385ns (Levels of Logic = 1)
+Offset:              3.347ns (Levels of Logic = 1)
   Source:            full (FF)
   Destination:       GPIO_LED_C (PAD)
   Source Clock:      USER_CLK rising
@@ -626,24 +629,24 @@ Offset:              3.385ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDS:C->Q             25   0.471   0.462  full (full)
+     FDS:C->Q             17   0.471   0.424  full (full)
      OBUF:I->O                 2.452          GPIO_LED_C_OBUF (GPIO_LED_C)
     ----------------------------------------
-    Total                      3.385ns (2.923ns logic, 0.462ns route)
-                                       (86.4% logic, 13.6% route)
+    Total                      3.347ns (2.923ns logic, 0.424ns route)
+                                       (87.3% logic, 12.7% route)
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 6.14 secs
+Total CPU time to Xst completion: 5.97 secs
  
 --> 
 
 
-Total memory usage is 672484 kilobytes
+Total memory usage is 672772 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    1 (   0 filtered)
-Number of infos    :    3 (   0 filtered)
+Number of infos    :    6 (   0 filtered)
 

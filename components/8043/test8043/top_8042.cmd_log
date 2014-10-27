@@ -175,3 +175,27 @@ map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -regist
 par -w -intstyle ise -ol high -mt off top_8042_map.ncd top_8042.ncd top_8042.pcf 
 trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml top_8042.twx top_8042.ncd -o top_8042.twr top_8042.pcf 
 bitgen -intstyle ise -f top_8042.ut top_8042.ncd 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/test8043/top_8042.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/test8043/top_8042.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc /afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/ucf_8043.ucf -p xc5vlx110t-ff1136-1 top_8042.ngc top_8042.ngd  
+map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr off -lc off -power off -o top_8042_map.ncd top_8042.ngd top_8042.pcf 
+par -w -intstyle ise -ol high -mt off top_8042_map.ncd top_8042.ncd top_8042.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml top_8042.twx top_8042.ncd -o top_8042.twr top_8042.pcf 
+bitgen -intstyle ise -f top_8042.ut top_8042.ncd 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/test8043/top_8042.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/test8043/top_8042.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc /afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/ucf_8043.ucf -p xc5vlx110t-ff1136-1 top_8042.ngc top_8042.ngd  
+map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr off -lc off -power off -o top_8042_map.ncd top_8042.ngd top_8042.pcf 
+par -w -intstyle ise -ol high -mt off top_8042_map.ncd top_8042.ncd top_8042.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml top_8042.twx top_8042.ncd -o top_8042.twr top_8042.pcf 
+bitgen -intstyle ise -f top_8042.ut top_8042.ncd 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/test8043/top_8042.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/test8043/top_8042.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc /afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/ucf_8043.ucf -p xc5vlx110t-ff1136-1 top_8042.ngc top_8042.ngd  
+map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr off -lc off -power off -o top_8042_map.ncd top_8042.ngd top_8042.pcf 
+par -w -intstyle ise -ol high -mt off top_8042_map.ncd top_8042.ncd top_8042.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml top_8042.twx top_8042.ncd -o top_8042.twr top_8042.pcf 
+bitgen -intstyle ise -f top_8042.ut top_8042.ncd 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/test8043/top_8042.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/test8043/top_8042.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc /afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/8043/ucf_8043.ucf -p xc5vlx110t-ff1136-1 top_8042.ngc top_8042.ngd  
+map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr off -lc off -power off -o top_8042_map.ncd top_8042.ngd top_8042.pcf 
+par -w -intstyle ise -ol high -mt off top_8042_map.ncd top_8042.ncd top_8042.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml top_8042.twx top_8042.ncd -o top_8042.twr top_8042.pcf 
+bitgen -intstyle ise -f top_8042.ut top_8042.ncd 

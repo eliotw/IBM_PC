@@ -37,7 +37,7 @@ Setup/Hold to clock KEYBOARD_CLK
              |Max Setup to|Max Hold to |                  | Clock  |
 Source       | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
 -------------+------------+------------+------------------+--------+
-KEYBOARD_DATA|   -0.621(F)|    3.515(F)|KEYBOARD_CLK_BUFGP|   0.000|
+KEYBOARD_DATA|   -0.001(F)|    3.106(F)|KEYBOARD_CLK_BUFGP|   0.000|
 -------------+------------+------------+------------------+--------+
 
 Setup/Hold to clock USER_CLK
@@ -45,15 +45,15 @@ Setup/Hold to clock USER_CLK
             |Max Setup to|Max Hold to |                  | Clock  |
 Source      | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
 ------------+------------+------------+------------------+--------+
-GPIO_DIP_SW1|    3.381(R)|   -0.258(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_DIP_SW2|    1.561(R)|    1.703(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_DIP_SW3|    2.295(R)|    1.269(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_DIP_SW4|    2.158(R)|    1.369(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_DIP_SW5|    2.123(R)|    1.251(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_DIP_SW6|    2.565(R)|    1.192(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_DIP_SW7|    2.744(R)|    0.762(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_DIP_SW8|    2.694(R)|    0.770(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_SW_C   |    3.949(R)|    0.627(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW1|    3.552(R)|   -0.311(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW2|    2.248(R)|    1.480(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW3|    2.258(R)|    1.084(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW4|    2.326(R)|    1.142(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW5|    2.225(R)|    0.839(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW6|    2.448(R)|    0.723(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW7|    2.584(R)|    0.605(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_DIP_SW8|    2.862(R)|    0.528(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_SW_C   |    3.593(R)|    0.581(R)|USER_CLK_BUFGP    |   0.000|
 ------------+------------+------------+------------------+--------+
 
 Clock USER_CLK to Pad
@@ -61,15 +61,15 @@ Clock USER_CLK to Pad
             | clk (edge) |                  | Clock  |
 Destination |   to PAD   |Internal Clock(s) | Phase  |
 ------------+------------+------------------+--------+
-GPIO_LED_0  |   11.349(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_1  |   11.646(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_2  |   11.400(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_3  |   10.001(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_4  |   11.575(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_5  |   10.252(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_6  |   10.215(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_7  |   10.272(R)|USER_CLK_BUFGP    |   0.000|
-GPIO_LED_C  |   13.958(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_0  |   11.351(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_1  |   11.490(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_2  |   11.043(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_3  |   10.287(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_4  |   11.259(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_5  |    9.912(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_6  |   10.205(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_7  |   10.214(R)|USER_CLK_BUFGP    |   0.000|
+GPIO_LED_C  |   13.136(R)|USER_CLK_BUFGP    |   0.000|
 ------------+------------+------------------+--------+
 
 Clock to Setup on destination clock KEYBOARD_CLK
@@ -77,7 +77,7 @@ Clock to Setup on destination clock KEYBOARD_CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-KEYBOARD_CLK   |         |         |         |    1.714|
+KEYBOARD_CLK   |         |         |         |    1.863|
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock USER_CLK
@@ -85,12 +85,12 @@ Clock to Setup on destination clock USER_CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-KEYBOARD_CLK   |         |    8.827|         |         |
-USER_CLK       |    2.577|         |         |         |
+KEYBOARD_CLK   |         |    8.752|         |         |
+USER_CLK       |    2.599|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Tue Oct  7 14:13:29 2014 
+Analysis completed Mon Oct 27 11:41:34 2014 
 --------------------------------------------------------------------------------
 
 Trace Settings:

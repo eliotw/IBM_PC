@@ -280,7 +280,8 @@ module top_8042(
 	parameter [7:0] 	counterstop = 8'h0f;
 	parameter [7:0] 	idle = 8'b00000001,
 							fill = 8'b00000010,
-							wt00 = 8'b00000100;
+							wt00 = 8'b00000100,
+							wt01 = 8'b00001000;
 	// Registers
 	reg [7:0] state; // state of receipt fsm
 	reg [7:0] counter; // counter of data received
@@ -368,10 +369,11 @@ module top_8042(
 					datavisible<=counter;
 				end
 				else if(irq1 == 1'b1) begin
-					state<=idle;
-					datarec[counter]<=dataout;
-					counter<=counter+1;
-					pb7<=1'b1;
+					state<=wt01;
+					//datarec[counter]<=dataout;
+					//counter<=counter+1;
+					counter<=counter;
+					pb7<=1'b0;
 					full<=1'b0;
 					datavisible<=counter;
 				end
@@ -413,6 +415,30 @@ module top_8042(
 					counter<=counter;
 					pb7<=1'b0;
 					full<=1'b1;
+				end
+			end
+			wt01: begin
+				if(reset == 1'b1) begin
+					state<=idle;
+					counter<=8'b0;
+					pb7<=1'b0;
+					full<=1'b0;
+					datavisible<=counter;
+				end
+				else if(irq1 == 1'b0) begin
+					state<=idle;
+					counter<=counter+1;
+					pb7<=1'b0;
+					full<=1'b0;
+					datavisible<=counter;
+				end
+				else begin
+					state<=wt01;
+					datarec[counter]<=dataout;
+					counter<=counter;
+					pb7<=1'b1;
+					full<=1'b0;
+					datavisible<=counter;
 				end
 			end
 			default: begin

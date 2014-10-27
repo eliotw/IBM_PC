@@ -4,15 +4,15 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 WARNING:Xst:1583 - You are using an internal switch '-use_new_parser'.
@@ -3109,7 +3109,7 @@ WARNING:Xst:647 - Input <pb6> is never used. This port will be preserved and lef
     | Clock              | pclk (rising_edge)                             |
     | Reset              | reset_n (negative)                             |
     | Reset type         | synchronous                                    |
-    | Reset State        | 00000001                                       |
+    | Reset State        | 00000010                                       |
     | Power Up State     | 00000001                                       |
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
@@ -4684,8 +4684,8 @@ Primitive and Black Box Usage:
 #      LUT1                        : 51
 #      LUT2                        : 295
 #      LUT3                        : 534
-#      LUT4                        : 517
-#      LUT5                        : 562
+#      LUT4                        : 516
+#      LUT5                        : 563
 #      LUT6                        : 1866
 #      MUXCY                       : 899
 #      MUXF7                       : 368
@@ -4699,13 +4699,13 @@ Primitive and Black Box Usage:
 #      FDCE                        : 34
 #      FDE                         : 81
 #      FDE_1                       : 2
-#      FDR                         : 383
+#      FDR                         : 382
 #      FDR_1                       : 11
 #      FDRE                        : 94
 #      FDRE_1                      : 2
 #      FDRS_1                      : 1
 #      FDRSE                       : 10
-#      FDS                         : 17
+#      FDS                         : 18
 #      FDS_1                       : 1
 #      FDSE                        : 9
 #      LD                          : 22
@@ -4808,11 +4808,11 @@ Asynchronous Control Signals Information:
 Control Signal                                                                                                                                                                                                                                                                    | Buffer(FF name)                                                                                                                                                     | Load  |
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 s6/rb0/central_ram_core/central_ram_core/N1(s6/rb0/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[14].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
-s6/rb1/central_ram_core/central_ram_core/N1(s6/rb1/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb1/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
-s6/rb2/central_ram_core/central_ram_core/N1(s6/rb2/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb2/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
-s6/rb3/central_ram_core/central_ram_core/N1(s6/rb3/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
-s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                         | 64    |
-s1/i8088/ctrl_fsm/cnt/rst_inv(s1/i8088/msb_o/rst_inv1_INV_0:O)                                                                                                                                                                                                                    | NONE(s1/i8088/ctrl_fsm/state_FSM_FFd1)                                                                                                                              | 36    |
+s6/rb1/central_ram_core/central_ram_core/N1(s6/rb1/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb1/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
+s6/rb2/central_ram_core/central_ram_core/N1(s6/rb2/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb2/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s6/rb3/central_ram_core/central_ram_core/N1(s6/rb3/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                         | 64    |
+s1/i8088/ctrl_fsm/cnt/rst_inv(s1/i8088/msb_o/rst_inv1_INV_0:O)                                                                                                                                                                                                                    | NONE(s1/i8088/lsb_o/q_6)                                                                                                                                            | 36    |
 s0/vgamod/char_rom/N1(s0/vgamod/char_rom/XST_GND:G)                                                                                                                                                                                                                               | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                         | 8     |
 GPIO_SW_C                                                                                                                                                                                                                                                                         | IBUF                                                                                                                                                                | 3     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
@@ -4860,7 +4860,7 @@ Timing Summary:
 Speed Grade: -1
 
    Minimum period: 46.014ns (Maximum Frequency: 21.733MHz)
-   Minimum input arrival time before clock: 30.919ns
+   Minimum input arrival time before clock: 30.920ns
    Maximum output required time after clock: 3.264ns
    Maximum combinational path delay: No path found
 
@@ -5148,7 +5148,7 @@ Delay:               2.066ns (Levels of Logic = 1)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDR:C->Q              4   0.471   0.592  s9/keyboard/state_FSM_FFd2 (s9/keyboard/state_FSM_FFd2)
-     LUT2:I0->O            1   0.094   0.336  s9/keyboard/out11 (s9/keyboard/state[7]_reduce_or_51_o)
+     LUT2:I0->O            1   0.094   0.336  s9/keyboard/out11 (s9/keyboard/state[7]_reduce_or_52_o)
      FDR:R                     0.573          s9/keyboard/irq1
     ----------------------------------------
     Total                      2.066ns (1.138ns logic, 0.928ns route)
@@ -5158,7 +5158,7 @@ Delay:               2.066ns (Levels of Logic = 1)
 Timing constraint: Default OFFSET IN BEFORE for Clock 's1/ale'
   Total number of paths / destination ports: 19200 / 4
 -------------------------------------------------------------------------
-Offset:              30.911ns (Levels of Logic = 35)
+Offset:              30.912ns (Levels of Logic = 35)
   Source:            GPIO_SW_C (PAD)
   Destination:       s1/u7/rq_7 (LATCH)
   Destination Clock: s1/ale falling
@@ -5167,7 +5167,7 @@ Offset:              30.911ns (Levels of Logic = 35)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           477   0.818   0.999  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
+     IBUF:I->O           478   0.818   0.999  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
      LUT6:I2->O            3   0.094   0.800  s3/ls4/Mmux_y61 (cs_n<5>)
      LUT4:I0->O            2   0.094   0.794  s5/rommod/csv_inv11 (s5/rommod/csv_inv1)
      LUT5:I1->O            9   0.094   1.113  s5/rommod/csv_inv1 (s5/rommod/csv_inv)
@@ -5204,14 +5204,14 @@ Offset:              30.911ns (Levels of Logic = 35)
      LUT5:I3->O            4   0.094   0.000  s1/adp<4>LogicTrst2 (s1/adp<4>)
      LD:D                     -0.071          s1/u7/rq_4
     ----------------------------------------
-    Total                     30.911ns (4.014ns logic, 26.897ns route)
+    Total                     30.912ns (4.014ns logic, 26.898ns route)
                                        (13.0% logic, 87.0% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 's1/i8284/vclk'
   Total number of paths / destination ports: 70417 / 227
 -------------------------------------------------------------------------
-Offset:              30.919ns (Levels of Logic = 35)
+Offset:              30.920ns (Levels of Logic = 35)
   Source:            GPIO_SW_C (PAD)
   Destination:       s0/vgamod/ram_2k_char/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP (RAM)
   Destination Clock: s1/i8284/vclk rising
@@ -5220,7 +5220,7 @@ Offset:              30.919ns (Levels of Logic = 35)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           477   0.818   0.999  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
+     IBUF:I->O           478   0.818   0.999  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
      LUT6:I2->O            3   0.094   0.800  s3/ls4/Mmux_y61 (cs_n<5>)
      LUT4:I0->O            2   0.094   0.794  s5/rommod/csv_inv11 (s5/rommod/csv_inv1)
      LUT5:I1->O            9   0.094   1.113  s5/rommod/csv_inv1 (s5/rommod/csv_inv)
@@ -5257,7 +5257,7 @@ Offset:              30.919ns (Levels of Logic = 35)
      begin scope: 's0/vgamod/ram_2k_char:dina<4>'
      RAMB18:DIA4               0.342          U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP
     ----------------------------------------
-    Total                     30.919ns (4.262ns logic, 26.657ns route)
+    Total                     30.920ns (4.262ns logic, 26.658ns route)
                                        (13.8% logic, 86.2% route)
 
 =========================================================================
@@ -5273,7 +5273,7 @@ Offset:              2.176ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           477   0.818   0.690  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
+     IBUF:I->O           478   0.818   0.690  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
      LUT6:I5->O            1   0.094   0.480  s4/i8237/reset_mast_clr_AND_707_o_SW0 (N30)
      LUT6:I5->O            1   0.094   0.000  s4/i8237/reset_mast_clr_AND_707_o (s4/i8237/reset_mast_clr_AND_707_o)
      FD:D                     -0.018          s4/i8237/reset_clk_DFF_1945
@@ -5285,7 +5285,7 @@ Offset:              2.176ns (Levels of Logic = 3)
 Timing constraint: Default OFFSET IN BEFORE for Clock 's1/i8284/clk'
   Total number of paths / destination ports: 141875 / 968
 -------------------------------------------------------------------------
-Offset:              30.911ns (Levels of Logic = 35)
+Offset:              30.912ns (Levels of Logic = 35)
   Source:            GPIO_SW_C (PAD)
   Destination:       s1/i8088/msb_i/q_7 (FF)
   Destination Clock: s1/i8284/clk rising
@@ -5294,7 +5294,7 @@ Offset:              30.911ns (Levels of Logic = 35)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           477   0.818   0.999  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
+     IBUF:I->O           478   0.818   0.999  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
      LUT6:I2->O            3   0.094   0.800  s3/ls4/Mmux_y61 (cs_n<5>)
      LUT4:I0->O            2   0.094   0.794  s5/rommod/csv_inv11 (s5/rommod/csv_inv1)
      LUT5:I1->O            9   0.094   1.113  s5/rommod/csv_inv1 (s5/rommod/csv_inv)
@@ -5331,12 +5331,12 @@ Offset:              30.911ns (Levels of Logic = 35)
      LUT5:I3->O            4   0.094   0.000  s1/adp<4>LogicTrst2 (s1/adp<4>)
      FDCE:D                   -0.018          s1/i8088/msb_i/q_4
     ----------------------------------------
-    Total                     30.911ns (4.014ns logic, 26.897ns route)
+    Total                     30.912ns (4.014ns logic, 26.898ns route)
                                        (13.0% logic, 87.0% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 's1/i8284/pclk'
-  Total number of paths / destination ports: 4 / 4
+  Total number of paths / destination ports: 5 / 5
 -------------------------------------------------------------------------
 Offset:              2.066ns (Levels of Logic = 2)
   Source:            GPIO_SW_C (PAD)
@@ -5347,7 +5347,7 @@ Offset:              2.066ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           477   0.818   0.546  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
+     IBUF:I->O           478   0.818   0.546  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
      INV:I->O             37   0.238   0.464  s1/i8088/msb_o/rst_inv1_INV_0 (s1/i8088/ctrl_fsm/cnt/rst_inv)
      FDR:D                    -0.018          s9/keyboard/irq1
     ----------------------------------------
@@ -5506,8 +5506,8 @@ s1/i8284/clk   |         |         |    3.727|         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 53.00 secs
-Total CPU time to Xst completion: 49.75 secs
+Total REAL time to Xst completion: 52.00 secs
+Total CPU time to Xst completion: 49.05 secs
  
 WARNING:Xst:3152 - You have chosen to run a version of XST which is not the default solution
    for the specified device family. You are free to use it in order to take
@@ -5520,7 +5520,7 @@ WARNING:Xst:3152 - You have chosen to run a version of XST which is not the defa
 --> 
 
 
-Total memory usage is 572788 kilobytes
+Total memory usage is 572412 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings : 1355 (   0 filtered)

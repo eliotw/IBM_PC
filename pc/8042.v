@@ -80,154 +80,154 @@ module keyinterface(
 		irq1<=1'b0;
 	end
 	
-	// FSM State Movement
-	always @(posedge pclk) begin
-		//Activating at positive edge of clock
-		case(state)
-			idle: begin
-				if(reset == 1'b1) begin
-					state<=idle;
-					pa<=8'b0;
-					//f0<=1'b0;
-					irq1<=1'b0;
-				end
-				else if(newdata == 1'b1) begin
-					if(fdata == 8'hf0) begin
-						state<=f0s0;
-						pa<=pa;
-						//f0<=f0;
-						irq1<=1'b0;
-					end
-					else begin
-						state<=data;
-						pa<=fdata;
-						//f0<=f0;
-						irq1<=1'b0;
-					end
-				end
-				else begin
-					state<=idle;
-					pa<=8'b0;
-					//f0<=f0;
-					irq1<=1'b0;
-				end
-			end
-			data: begin
-				if(reset == 1'b1) begin
-					state<=idle;
-					pa<=8'b0;
-					//f0<=1'b0;
-					irq1<=1'b0;
-				end
-				else if(pb7 == 1'b1) begin
-					state<=wclr;
-					pa<=8'b0;
-					//f0<=1'b0;
-					irq1<=1'b0;
-				end
-				else begin
-					state<=data;
-					pa<=pa;
-					//f0<=f0;
-					irq1<=1'b1;
-				end
-			end
-			wclr: begin
-				if(reset == 1'b1) begin
-					state<=idle;
-					pa<=8'b0;
-					//f0<=1'b0;
-					irq1<=1'b0;
-				end
-				else if(newdata == 1'b0) begin
-					state<=idle;
-					pa<=8'b0;
-					//f0<=1'b0;
-					irq1<=1'b0;
-				end
-				else begin
-					state<=wclr;
-					pa<=8'b0;
-					//f0<=1'b0;
-					irq1<=1'b0;
-				end
-			end
-			f0s0: begin
-				if(reset == 1'b1) begin
-					state<=idle;
-					pa<=8'b0;
-					//f0<=1'b0;
-					irq1<=1'b0;
-				end
-				else if(newdata == 1'b0) begin
-					state<=f0s1;
-					pa<=pa;
-					//f0<=1'b0;
-					irq1<=1'b0;
-				end
-				else begin
-					state<=f0s0;
-					pa<=pa;
-					//f0<=f0;
-					irq1<=1'b0;
-				end
-			end
-			f0s1: begin
-				if(reset == 1'b1) begin
-					state<=idle;
-					pa<=8'b0;
-					//f0<=1'b0;
-					irq1<=1'b0;
-				end
-				else if(newdata == 1'b1) begin
-					if(fdata == 8'hf0) begin
-						state<=f0s0;
-						pa<=pa;
-						//f0<=1'b0;
-						irq1<=1'b0;
-					end
-					else begin
-						state<=f0s2;
-						pa<={1'b1,fdata[6:0]};
-						//f0<=1'b0;
-						irq1<=1'b0;
-					end
-				end
-				else begin
-					state<=f0s1;
-					pa<=8'b0;
-					//f0<=f0;
-					irq1<=1'b0;
-				end
-			end
-			f0s2: begin
-				if(reset == 1'b1) begin
-					state<=idle;
-					pa<=8'b0;
-					//f0<=1'b0;
-					irq1<=1'b0;
-				end
-				else if(pb7 == 1'b1) begin
-					state<=wclr;
-					pa<=8'b0;
-					//f0<=1'b0;
-					irq1<=1'b0;
-				end
-				else begin
-					state<=f0s2;
-					pa<=pa;
-					//f0<=f0;
-					irq1<=1'b1;
-				end
-			end
-			default: begin
-				state<=idle;
-				pa<=8'b0;
-				//f0<=1'b0;
-				irq1<=1'b0;
-			end
-		endcase
+   // FSM State Movement
+   always @(posedge pclk) begin
+      //Activating at positive edge of clock
+      case(state)
+	idle: begin
+	   if(reset == 1'b1) begin
+	      state<=data;
+	      pa<=8'haa;
+	      //f0<=1'b0;
+	      irq1<=1'b0;
+	   end
+	   else if(newdata == 1'b1) begin
+	      if(fdata == 8'hf0) begin
+		 state<=f0s0;
+		 pa<=pa;
+		 //f0<=f0;
+		 irq1<=1'b0;
+	      end
+	      else begin
+		 state<=data;
+		 pa<=fdata;
+		 //f0<=f0;
+		 irq1<=1'b0;
+	      end
+	   end
+	   else begin
+	      state<=idle;
+	      pa<=8'b0;
+	      //f0<=f0;
+	      irq1<=1'b0;
+	   end
 	end
+	data: begin
+	   if(reset == 1'b1) begin
+	      state<=data;
+	      pa<=8'haa;
+	      //f0<=1'b0;
+	      irq1<=1'b0;
+	   end
+	   else if(pb7 == 1'b1) begin
+	      state<=wclr;
+	      pa<=8'b0;
+	      //f0<=1'b0;
+	      irq1<=1'b0;
+	   end
+	   else begin
+	      state<=data;
+	      pa<=pa;
+	      //f0<=f0;
+	      irq1<=1'b1;
+	   end
+	end
+	wclr: begin
+	   if(reset == 1'b1) begin
+	      state<=data;
+	      pa<=8'haa;
+	      //f0<=1'b0;
+	      irq1<=1'b0;
+	   end
+	   else if(newdata == 1'b0) begin
+	      state<=idle;
+	      pa<=8'b0;
+	      //f0<=1'b0;
+	      irq1<=1'b0;
+	   end
+	   else begin
+	      state<=wclr;
+	      pa<=8'b0;
+	      //f0<=1'b0;
+	      irq1<=1'b0;
+	   end
+	end
+	f0s0: begin
+	   if(reset == 1'b1) begin
+	      state<=data;
+	      pa<=8'haa;
+	      //f0<=1'b0;
+	      irq1<=1'b0;
+	   end
+	   else if(newdata == 1'b0) begin
+	      state<=f0s1;
+	      pa<=pa;
+	      //f0<=1'b0;
+	      irq1<=1'b0;
+	   end
+	   else begin
+	      state<=f0s0;
+	      pa<=pa;
+	      //f0<=f0;
+	      irq1<=1'b0;
+	   end
+	end
+	f0s1: begin
+	   if(reset == 1'b1) begin
+	      state<=data;
+	      pa<=8'haa;
+	      //f0<=1'b0;
+	      irq1<=1'b0;
+	   end
+	   else if(newdata == 1'b1) begin
+	      if(fdata == 8'hf0) begin
+		 state<=f0s0;
+		 pa<=pa;
+		 //f0<=1'b0;
+		 irq1<=1'b0;
+	      end
+	      else begin
+		 state<=f0s2;
+		 pa<={1'b1,fdata[6:0]};
+		 //f0<=1'b0;
+		 irq1<=1'b0;
+	      end
+	   end
+	   else begin
+	      state<=f0s1;
+	      pa<=8'b0;
+	      //f0<=f0;
+	      irq1<=1'b0;
+	   end
+	end
+	f0s2: begin
+	   if(reset == 1'b1) begin
+	      state<=data;
+	      pa<=8'haa;
+	      //f0<=1'b0;
+	      irq1<=1'b0;
+	   end
+	   else if(pb7 == 1'b1) begin
+	      state<=wclr;
+	      pa<=8'b0;
+	      //f0<=1'b0;
+	      irq1<=1'b0;
+	   end
+	   else begin
+	      state<=f0s2;
+	      pa<=pa;
+	      //f0<=f0;
+	      irq1<=1'b1;
+	   end
+	end
+	default: begin
+	   state<=data;
+	   pa<=8'haa;
+	   //f0<=1'b0;
+	   irq1<=1'b0;
+	end
+      endcase
+   end
 	
 	// Translate udata to tdata
    always @(datakeyout) begin

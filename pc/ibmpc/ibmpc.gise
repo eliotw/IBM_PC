@@ -54,6 +54,8 @@
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="motherboard.ut" xil_pn:subbranch="FPGAConfiguration"/>
     <file xil_pn:fileType="FILE_XPI" xil_pn:name="motherboard.xpi"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="motherboard.xst"/>
+    <file xil_pn:fileType="FILE_BLIF" xil_pn:name="motherboard_cs.blc"/>
+    <file xil_pn:fileType="FILE_NGC" xil_pn:name="motherboard_cs.ngc"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="motherboard_envsettings.html"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="motherboard_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="motherboard_map.map" xil_pn:subbranch="Map"/>
@@ -125,7 +127,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1414355656" xil_pn:in_ck="1458007630566849889" xil_pn:name="TRANEXT_xstsynthesize_virtex5" xil_pn:prop_ck="9197919585742709161" xil_pn:start_ts="1414355602">
+    <transform xil_pn:end_ts="1414425007" xil_pn:in_ck="1458007630566849889" xil_pn:name="TRANEXT_xstsynthesize_virtex5" xil_pn:prop_ck="9197919585742709161" xil_pn:start_ts="1414424952">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -148,16 +150,18 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1414355670" xil_pn:in_ck="3259932993536500168" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-7150944492692462516" xil_pn:start_ts="1414355662">
+    <transform xil_pn:end_ts="1414426060" xil_pn:in_ck="8691721273946450560" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-7150944492692462516" xil_pn:start_ts="1414425853">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_ngo"/>
       <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
       <outfile xil_pn:name="motherboard.bld"/>
       <outfile xil_pn:name="motherboard.ngd"/>
+      <outfile xil_pn:name="motherboard_cs.blc"/>
+      <outfile xil_pn:name="motherboard_cs.ngc"/>
       <outfile xil_pn:name="motherboard_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1414355769" xil_pn:in_ck="-2772417258192151648" xil_pn:name="TRANEXT_map_virtex5" xil_pn:prop_ck="6733564432430981316" xil_pn:start_ts="1414355670">
+    <transform xil_pn:end_ts="1414426111" xil_pn:in_ck="-2772417258192151648" xil_pn:name="TRANEXT_map_virtex5" xil_pn:prop_ck="6733564432430981316" xil_pn:start_ts="1414426060">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -173,7 +177,7 @@
       <outfile xil_pn:name="motherboard_summary.xml"/>
       <outfile xil_pn:name="motherboard_usage.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1414355878" xil_pn:in_ck="6029471287760714425" xil_pn:name="TRANEXT_par_virtex5" xil_pn:prop_ck="-4097515898943074650" xil_pn:start_ts="1414355769">
+    <transform xil_pn:end_ts="1414426152" xil_pn:in_ck="6029471287760714425" xil_pn:name="TRANEXT_par_virtex5" xil_pn:prop_ck="-4097515898943074650" xil_pn:start_ts="1414426111">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
@@ -187,7 +191,7 @@
       <outfile xil_pn:name="motherboard_pad.txt"/>
       <outfile xil_pn:name="motherboard_par.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1414355914" xil_pn:in_ck="-9166322738979048742" xil_pn:name="TRANEXT_bitFile_virtex5" xil_pn:prop_ck="-4008143788065839743" xil_pn:start_ts="1414355878">
+    <transform xil_pn:end_ts="1414426188" xil_pn:in_ck="-9166322738979048742" xil_pn:name="TRANEXT_bitFile_virtex5" xil_pn:prop_ck="-4008143788065839743" xil_pn:start_ts="1414426152">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -200,19 +204,22 @@
       <outfile xil_pn:name="webtalk.log"/>
       <outfile xil_pn:name="webtalk_pn.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1414355994" xil_pn:in_ck="-9166322738979061596" xil_pn:name="TRAN_configureTargetDevice" xil_pn:prop_ck="7814804799388247210" xil_pn:start_ts="1414355921">
+    <transform xil_pn:end_ts="1414426695" xil_pn:in_ck="-9166322738979061596" xil_pn:name="TRAN_configureTargetDevice" xil_pn:prop_ck="8643374914975828191" xil_pn:start_ts="1414426693">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
-    <transform xil_pn:end_ts="1414355878" xil_pn:in_ck="-2772417258192151780" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416183" xil_pn:start_ts="1414355864">
+    <transform xil_pn:end_ts="1414426758" xil_pn:in_ck="-9166322738979061596" xil_pn:name="TRAN_analyzeDesignUsingChipscope" xil_pn:prop_ck="-7150944492692462516" xil_pn:start_ts="1414426758">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1414426152" xil_pn:in_ck="-2772417258192151780" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416183" xil_pn:start_ts="1414426142">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>
       <outfile xil_pn:name="motherboard.twr"/>
       <outfile xil_pn:name="motherboard.twx"/>
     </transform>
-    <transform xil_pn:end_ts="1414355660" xil_pn:in_ck="3041672674791284166" xil_pn:name="TRAN_postSynthesisSimModel" xil_pn:prop_ck="1627247534842921643" xil_pn:start_ts="1414355658">
+    <transform xil_pn:end_ts="1414426882" xil_pn:in_ck="3041672674791284166" xil_pn:name="TRAN_postSynthesisSimModel" xil_pn:prop_ck="1627247534842921643" xil_pn:start_ts="1414426879">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="netgen"/>

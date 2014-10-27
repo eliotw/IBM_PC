@@ -7,7 +7,7 @@
 // \   \   \/     Version: P.28xd
 //  \   \         Application: netgen
 //  /   /         Filename: motherboard_synthesis.v
-// /___/   /\     Timestamp: Sun Oct 26 16:34:19 2014
+// /___/   /\     Timestamp: Mon Oct 27 12:21:21 2014
 // \   \  /  \ 
 //  \___\/\___\
 //             
@@ -3981,7 +3981,7 @@ module motherboard (
   wire \s9/keyboard/state_FSM_FFd1_5701 ;
   wire \s9/keyboard/state_FSM_FFd2_5702 ;
   wire \s9/keyboard/state_FSM_FFd3_5703 ;
-  wire \s9/keyboard/state_FSM_FFd3-In2 ;
+  wire \s9/keyboard/state_FSM_FFd3-In ;
   wire \s9/keyboard/state_FSM_FFd2-In1 ;
   wire \s9/keyboard/state_FSM_FFd1-In2 ;
   wire \s9/keyboard/keyinmod/b[7]_newdata_Select_16_o ;
@@ -3994,7 +3994,7 @@ module motherboard (
   wire \s9/keyboard/keyinmod/b[7]_dataout[7]_select_14_OUT<1> ;
   wire \s9/keyboard/keyinmod/b[7]_dataout[7]_select_14_OUT<0> ;
   wire \s9/keyboard/fdata[7]_PWR_185_o_equal_5_o ;
-  wire \s9/keyboard/state[7]_reduce_or_51_o ;
+  wire \s9/keyboard/state[7]_reduce_or_52_o ;
   wire \s9/keyboard/keyinmod/newdata_5726 ;
   wire \s9/keyboard/dataout_0_5727 ;
   wire \s9/keyboard/dataout_1_5728 ;
@@ -28129,12 +28129,12 @@ PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAK
     .R(PIEZO_SPEAKER_OBUF_75),
     .Q(\s9/keyboard/keyinmod/b_FSM_FFd10_5690 )
   );
-  FDR #(
+  FDS #(
     .INIT ( 1'b0 ))
   \s9/keyboard/state_FSM_FFd3  (
     .C(\s1/i8284/pclk_32 ),
-    .D(\s9/keyboard/state_FSM_FFd3-In2 ),
-    .R(GPIO_SW_C_IBUF_3),
+    .D(\s9/keyboard/state_FSM_FFd3-In ),
+    .S(GPIO_SW_C_IBUF_3),
     .Q(\s9/keyboard/state_FSM_FFd3_5703 )
   );
   FDR #(
@@ -28150,7 +28150,7 @@ PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAK
   \s9/keyboard/irq1  (
     .C(\s1/i8284/pclk_32 ),
     .D(\s1/i8088/ctrl_fsm/cnt/rst_inv ),
-    .R(\s9/keyboard/state[7]_reduce_or_51_o ),
+    .R(\s9/keyboard/state[7]_reduce_or_52_o ),
     .Q(\s9/keyboard/irq1_60 )
   );
   FD_1 #(
@@ -33368,6 +33368,25 @@ PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAK
     .I3(a[19]),
     .O(rom_addr_sel_n)
   );
+  LUT4 #(
+    .INIT ( 16'hAA20 ))
+  \s9/keyboard/state_FSM_FFd2-In11  (
+    .I0(\s9/keyboard/keyinmod/newdata_5726 ),
+    .I1(\s9/keyboard/state_FSM_FFd3_5703 ),
+    .I2(\s9/keyboard/fdata[7]_PWR_185_o_equal_5_o ),
+    .I3(\s9/keyboard/state_FSM_FFd2_5702 ),
+    .O(\s9/keyboard/state_FSM_FFd2-In1 )
+  );
+  LUT5 #(
+    .INIT ( 32'hFFFFE8EE ))
+  \s9/keyboard/state_FSM_FFd3-In1  (
+    .I0(\s9/keyboard/state_FSM_FFd3_5703 ),
+    .I1(\s9/keyboard/keyinmod/newdata_5726 ),
+    .I2(\s9/keyboard/state_FSM_FFd1_5701 ),
+    .I3(\s9/keyboard/state_FSM_FFd2_5702 ),
+    .I4(GPIO_SW_C_IBUF_3),
+    .O(\s9/keyboard/state_FSM_FFd3-In )
+  );
   LUT5 #(
     .INIT ( 32'hFFFFFFFE ))
   \s9/keyboard/keyinmod/Mmux_b[7]_dataout[7]_select_14_OUT<6>111  (
@@ -33509,15 +33528,6 @@ PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAK
     .I4(KEYBOARD_DATA_IBUF_2),
     .O(\s9/keyboard/keyinmod/b[7]_dataout[7]_select_14_OUT<0> )
   );
-  LUT4 #(
-    .INIT ( 16'hAA20 ))
-  \s9/keyboard/state_FSM_FFd2-In11  (
-    .I0(\s9/keyboard/keyinmod/newdata_5726 ),
-    .I1(\s9/keyboard/state_FSM_FFd3_5703 ),
-    .I2(\s9/keyboard/fdata[7]_PWR_185_o_equal_5_o ),
-    .I3(\s9/keyboard/state_FSM_FFd2_5702 ),
-    .O(\s9/keyboard/state_FSM_FFd2-In1 )
-  );
   LUT5 #(
     .INIT ( 32'h8AEE8AAA ))
   \s9/keyboard/state_FSM_FFd1-In21  (
@@ -33542,7 +33552,7 @@ PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAK
   \s9/keyboard/out11  (
     .I0(\s9/keyboard/state_FSM_FFd2_5702 ),
     .I1(\s9/keyboard/state_FSM_FFd3_5703 ),
-    .O(\s9/keyboard/state[7]_reduce_or_51_o )
+    .O(\s9/keyboard/state[7]_reduce_or_52_o )
   );
   LUT4 #(
     .INIT ( 16'h888D ))
@@ -46579,15 +46589,6 @@ PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAKER_OBUF_75, PIEZO_SPEAK
     .I4(\s1/i8088/tcore/ir[28] ),
     .I5(\s1/i8088/tcore/exec/alu/addsub/xs ),
     .O(\s1/i8088/tcore/exec/alu/Mmux_oflags96_6027 )
-  );
-  LUT4 #(
-    .INIT ( 16'hEF8A ))
-  \s9/keyboard/state_FSM_FFd3-In21  (
-    .I0(\s9/keyboard/state_FSM_FFd3_5703 ),
-    .I1(\s9/keyboard/state_FSM_FFd1_5701 ),
-    .I2(\s9/keyboard/state_FSM_FFd2_5702 ),
-    .I3(\s9/keyboard/keyinmod/newdata_5726 ),
-    .O(\s9/keyboard/state_FSM_FFd3-In2 )
   );
   LUT3 #(
     .INIT ( 8'h96 ))

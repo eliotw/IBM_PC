@@ -1,7 +1,7 @@
 Release 14.2 par P.28xd (lin64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-ahtanum.ece.cmu.edu::  Sun Oct 26 16:36:11 2014
+ahtanum.ece.cmu.edu::  Mon Oct 27 12:08:32 2014
 
 par -w -intstyle ise -ol high -mt off motherboard_map.ncd motherboard.ncd
 motherboard.pcf 
@@ -15,11 +15,6 @@ Loading device for application Rf_Device from file '5vlx110t.nph' in environment
 Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000 Celsius)
 Initializing voltage to 0.950 Volts. (default - Range: 0.950 to 1.050 Volts)
 
-INFO:Par:282 - No user timing constraints were detected or you have set the option to ignore timing constraints ("par
-   -x"). Place and Route will run in "Performance Evaluation Mode" to automatically improve the performance of all
-   internal clocks in this design. Because there are not defined timing requirements, a timing score will not be
-   reported in the PAR report in this mode. The PAR timing summary will list the performance achieved for each clock.
-   Note: For the fastest runtime, set the effort level to "std".  For best performance, set the effort level to "high".
 
 Device speed data version:  "PRODUCTION 1.73 2012-07-09".
 
@@ -27,55 +22,56 @@ Device speed data version:  "PRODUCTION 1.73 2012-07-09".
 
 Device Utilization Summary:
 
-   Number of BUFGs                           5 out of 32     15%
+   Number of BSCANs                          1 out of 4      25%
+   Number of BUFGs                           6 out of 32     18%
    Number of DSP48Es                         1 out of 64      1%
    Number of External IOBs                  13 out of 640     2%
       Number of LOCed IOBs                  13 out of 13    100%
 
-   Number of RAMB18X2s                       2 out of 148     1%
-   Number of RAMB36_EXPs                    21 out of 148    14%
-   Number of Slices                       1311 out of 17280   7%
-   Number of Slice Registers              1487 out of 69120   2%
-      Number used as Flip Flops           1459
-      Number used as Latches                26
+   Number of RAMB18X2s                       3 out of 148     2%
+   Number of RAMB36_EXPs                    22 out of 148    14%
+   Number of Slices                       1607 out of 17280   9%
+   Number of Slice Registers              1813 out of 69120   2%
+      Number used as Flip Flops           1784
+      Number used as Latches                27
       Number used as LatchThrus              2
 
-   Number of Slice LUTS                   3829 out of 69120   5%
-   Number of Slice LUT-Flip Flop pairs    4203 out of 69120   6%
+   Number of Slice LUTS                   4077 out of 69120   5%
+   Number of Slice LUT-Flip Flop pairs    4661 out of 69120   6%
 
 
 Overall effort level (-ol):   High 
 Router effort level (-rl):    High 
 
-Starting initial Timing Analysis.  REAL time: 10 secs 
-Finished initial Timing Analysis.  REAL time: 10 secs 
+Starting initial Timing Analysis.  REAL time: 9 secs 
+Finished initial Timing Analysis.  REAL time: 9 secs 
 
 Starting Router
 
 
-Phase  1  : 22764 unrouted;      REAL time: 11 secs 
+Phase  1  : 24577 unrouted;      REAL time: 10 secs 
 
-Phase  2  : 19941 unrouted;      REAL time: 12 secs 
+Phase  2  : 21130 unrouted;      REAL time: 11 secs 
 
-Phase  3  : 4913 unrouted;      REAL time: 30 secs 
+Phase  3  : 9318 unrouted;      REAL time: 16 secs 
 
-Phase  4  : 11752 unrouted; (Par is working to improve performance)     REAL time: 1 mins 11 secs 
+Phase  4  : 9318 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 20 secs 
 
 Updating file: motherboard.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
+Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 23 secs 
 
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
+Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 23 secs 
 
-Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
+Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 23 secs 
 
-Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
+Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 23 secs 
 
-Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
+Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 23 secs 
 
-Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 23 secs 
-Total REAL time to Router completion: 1 mins 23 secs 
-Total CPU time to Router completion: 1 mins 24 secs 
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 24 secs 
+Total REAL time to Router completion: 24 secs 
+Total CPU time to Router completion: 23 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -85,8 +81,55 @@ Partition Implementation Status
 -------------------------------
 
 Generating "PAR" statistics.
-INFO:Par:459 - The Clock Report is not displayed in the non timing-driven mode.
-Timing Score: 0 (Setup: 0, Hold: 0)
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|   s1/i8284/clk_BUFG |BUFGCTRL_X0Y14| No   |  420 |  0.646     |  2.185      |
++---------------------+--------------+------+------+------------+-------------+
+|    icon_control0<0> |BUFGCTRL_X0Y22| No   |   66 |  0.316     |  1.872      |
++---------------------+--------------+------+------+------------+-------------+
+|      USER_CLK_BUFGP | BUFGCTRL_X0Y6| No   |  105 |  0.338     |  1.872      |
++---------------------+--------------+------+------+------------+-------------+
+|         s1/ale_BUFG |BUFGCTRL_X0Y15| No   |    5 |  0.041     |  1.581      |
++---------------------+--------------+------+------+------------+-------------+
+|  KEYBOARD_CLK_BUFGP |BUFGCTRL_X0Y19| No   |   10 |  0.269     |  2.044      |
++---------------------+--------------+------+------+------------+-------------+
+|  s1/i8284/vclk_BUFG | BUFGCTRL_X0Y5| No   |   63 |  0.433     |  1.977      |
++---------------------+--------------+------+------+------------+-------------+
+|s9/i8255/Mmux_pdo[7] |              |      |      |            |             |
+|_pa[7]_mux_10_OUT<3> |              |      |      |            |             |
+|                  12 |         Local|      |    9 |  0.000     |  0.614      |
++---------------------+--------------+------+------+------------+-------------+
+|       s1/i8284/pclk |         Local|      |    2 |  0.519     |  1.557      |
++---------------------+--------------+------+------+------------+-------------+
+|     s1/i8259/recint |         Local|      |   11 |  0.158     |  1.441      |
++---------------------+--------------+------+------+------------+-------------+
+|           s1/inta_n |         Local|      |    4 |  0.390     |  0.881      |
++---------------------+--------------+------+------+------------+-------------+
+|   icon_control0<13> |         Local|      |    5 |  0.000     |  0.606      |
++---------------------+--------------+------+------+------------+-------------+
+|U_icon_pro/U0/iUPDAT |              |      |      |            |             |
+|               E_OUT |         Local|      |    1 |  0.000     |  1.081      |
++---------------------+--------------+------+------+------------+-------------+
+|                dclk |         Local|      |    1 |  0.000     |  0.916      |
++---------------------+--------------+------+------+------------+-------------+
+
+* Net Skew is the difference between the minimum and maximum routing
+only delays for the net. Note this is different from Clock Skew which
+is reported in TRCE timing report. Clock Skew is the difference between
+the minimum and maximum path delays which includes logic delays.
+
+* The fanout is the number of component pins not the individual BEL loads,
+for example SLICE loads not FF loads.
+
+Timing Score: 0 (Setup: 0, Hold: 0, Component Switching Limit: 0)
+
+Number of Timing Constraints that were not applied: 2
 
 Asterisk (*) preceding a constraint indicates it was not met.
    This may be due to a setup or hold violation.
@@ -95,26 +138,26 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|    18.876ns|     N/A|           0
-  i8284/vclk_BUFG                           | HOLD        |     0.413ns|            |       0|           0
+  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    12.148ns|     2.852ns|       0|           0
+   TO TIMEGRP "J_CLK" 15 ns                 | HOLD        |     1.989ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|    45.692ns|     N/A|           0
-  i8284/clk_BUFG                            | HOLD        |     0.368ns|            |       0|           0
+  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    14.130ns|     0.870ns|       0|           0
+   TO TIMEGRP "U_CLK" 15 ns                 | HOLD        |     0.547ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net USE | SETUP       |         N/A|     2.436ns|     N/A|           0
-  R_CLK_BUFGP                               | HOLD        |     0.419ns|            |       0|           0
+  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    24.334ns|     5.666ns|       0|           0
+  IGH 50%                                   | HOLD        |     0.333ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net KEY | SETUP       |         N/A|     3.518ns|     N/A|           0
-  BOARD_CLK_BUFGP                           | HOLD        |     0.492ns|            |       0|           0
+  PATH "TS_D2_TO_T2_path" TIG               | SETUP       |         N/A|     3.000ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|     2.872ns|     N/A|           0
-  i8284/pclk                                | HOLD        |     0.505ns|            |       0|           0
+  PATH "TS_J2_TO_D2_path" TIG               | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|     2.278ns|     N/A|           0
-  inta_n                                    | HOLD        |     0.570ns|            |       0|           0
+  PATH "TS_J3_TO_D2_path" TIG               | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|    23.261ns|     N/A|           0
-  ale_BUFG                                  | HOLD        |     2.614ns|            |       0|           0
+  PATH "TS_J4_TO_D2_path" TIG               | MAXDELAY    |         N/A|     3.472ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J_TO_D_path" TIG                 | SETUP       |         N/A|     3.603ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_D_TO_J_path" TIG                 | SETUP       |         N/A|     3.597ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -130,17 +173,18 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-Total REAL time to PAR completion: 1 mins 31 secs 
-Total CPU time to PAR completion: 1 mins 32 secs 
+Total REAL time to PAR completion: 28 secs 
+Total CPU time to PAR completion: 28 secs 
 
-Peak Memory Usage:  813 MB
+Peak Memory Usage:  781 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.
+Timing: Completed - No errors found.
 
 Number of error messages: 0
 Number of warning messages: 0
-Number of info messages: 2
+Number of info messages: 0
 
 Writing design to file motherboard.ncd
 
