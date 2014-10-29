@@ -93,13 +93,13 @@ module zet_decode (
   assign iflss = !wr_ss & iflssd;
 
   // Behaviour
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     ifld <= rst ? 1'b0 : (exec_st ? ifld : ifl);
 
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     tfld <= rst ? 1'b0 : (exec_st ? tfld : tfl);
 
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     if (rst)
       iflssd <= 1'b0;
     else
@@ -111,7 +111,7 @@ module zet_decode (
     end
 
   // seq
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     seq <= rst ? `MICRO_ADDR_WIDTH'd0
          : block ? seq
          : end_seq ? `MICRO_ADDR_WIDTH'd0
@@ -119,38 +119,38 @@ module zet_decode (
          : exec_st ? (seq + `MICRO_ADDR_WIDTH'd1) : `MICRO_ADDR_WIDTH'd0;
 
   // div_cnt - divisor counter
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     div_cnt <= rst ? 5'd0
        : ((div & exec_st) ? (div_cnt==5'd0 ? 5'd18 : div_cnt - 5'd1) : 5'd0);
 
   // dive
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     if (rst) dive <= 1'b0;
     else dive <= block ? dive
      : (div_exc ? 1'b1 : (dive ? !end_seq : 1'b0));
 
   // tfle
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     if (rst) tfle <= 1'b0;
     else tfle <= block ? tfle
      : ((((tflm & !tfle) & iflss) & exec_st & end_seq) ? 1'b1 : (tfle ? !end_seq : 1'b0));
 
   // ext_int
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     if (rst) ext_int <= 1'b0;
     else ext_int <= block ? ext_int
       : ((((nmir | (intr & iflm)) & iflss) & exec_st & end_seq) ? 1'b1
         : (ext_int ? !end_seq : 1'b0));
 
   // old_ext_int
-  always @(posedge clk) old_ext_int <= rst ? 1'b0 : ext_int;
+  always @(posedge clk or negedge rst) old_ext_int <= rst ? 1'b0 : ext_int;
 
   // inta
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     inta <= rst ? 1'b0 : (!nmir & (!old_ext_int & ext_int));
 
   // nmia
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     nmia <= rst ? 1'b0 : (nmir & (!old_ext_int & ext_int));
 
 endmodule

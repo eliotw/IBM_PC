@@ -52,7 +52,7 @@ module processor_8088
     wire        cpu_m_io;
     wire        cpu_we_o;
     wire [19:0] pc;  // for debugging purposes
-    wire [2:0] zet_state;
+    wire [2:0] zet_state, zet_next_state;
     
     /* zet states */
     localparam opcod_st = 3'h0;
@@ -63,12 +63,16 @@ module processor_8088
     
     wire [19:0] calculated_addr;
     wire [1:0] bytes_transferred;
+    wire fetch_new_instr;
+    wire [19:0] cpu_adr;
     
-    assign calculated_addr = cpu_adr_o + (8 * bytes_transferred);
+    assign fetch_new_instr = (zet_state == execu_st) & (zet_next_state == opcod_st);
+    assign cpu_adr = (fetch_new_instr)? pc : cpu_adr_o;
+    assign calculated_addr = cpu_adr + (8 * bytes_transferred);
     assign a = calculated_addr[19:8];
     
-    // zet_core core (.cpu_m_io(iom), .*); 
-    test_core tcore (.clk(clk),
+    
+    zet_core core (.clk(clk),
                      .rst(rst),
                      .intr(intr),
                      .inta(inta),
@@ -84,8 +88,9 @@ module processor_8088
                      .cpu_m_io(iom),
                      .cpu_we_o(cpu_we_o),
                      .pc(pc),
-                     .state(zet_state));
-    
+                     .state(zet_state),
+                     .n_state(zet_next_state));
+
     /* output registers */
     wire ld_out_regs;
     wire [7:0] msb_o_q;
@@ -141,7 +146,7 @@ module processor_8088
     wire write_bus;
     assign start = (read | write);
     assign write = (zet_state == execu_st)? cpu_we_o : 0;
-    assign read = (zet_state == opcod_st)? 1 : ((zet_state == execu_st)? !cpu_we_o : 0);
+    assign read = fetch_new_instr;
     assign ad = (write_bus)? ((ale)? calculated_addr[7:0] : ((ctrl_fsm_state == addr)? ((bytes_transferred == 0)? lsb_o_q : ((bytes_transferred == 1)? msb_o_q : 8'bz)) : 8'bz )) : 8'bz;
      
     
@@ -227,7 +232,7 @@ module control_fsm
 
     
     always @(posedge clk or negedge rst) begin
-        if (~rst)
+        if (rst)
             state <= idle;
         else 
             state <= next_state;
@@ -357,7 +362,7 @@ module interrupt_fsm
     assign clr_count = clr;
     
     always @(posedge clk or negedge rst) begin
-        if (~rst) 
+        if (rst) 
             state <= idle;
         else 
             state <= next_state;
@@ -432,7 +437,7 @@ module hold_fsm
                       .count(count));
     
     always @(posedge clk or negedge rst) begin
-        if (~rst) 
+        if (rst) 
             state <= idle;
         else 
             state <= next_state;
@@ -490,7 +495,7 @@ module counter
      output reg [width-1:0] count);
      
     always @(posedge clk or negedge rst) begin
-        if (~rst) 
+        if (rst) 
             count <= 0;
         else if (clr)
             count <= 0;
@@ -509,7 +514,7 @@ module register
      output reg [width-1:0] q);
      
     always @(posedge clk or negedge rst) begin
-        if (~rst)
+        if (rst)
             q <= 0;
         else if (ld)
             q <= d;

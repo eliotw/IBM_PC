@@ -35,6 +35,7 @@ module zet_nstate (
     input iflm,
     input nmir,
     input iflss,
+    output [2:0] n_state,
     output [2:0] next_state
   );
 
@@ -45,7 +46,6 @@ module zet_nstate (
   parameter immed_st = 3'h3;
   parameter execu_st = 3'h4;
   wire into, end_instr, end_into;
-  wire [2:0] n_state;
   wire       intr_iflm;
   wire       intrs_tni;
 
@@ -65,7 +65,7 @@ module zet_nstate (
                                            : (need_imm ? immed_st : execu_st))
                      : (state == offse_st) ? (need_imm ? immed_st : execu_st)
                      : (state == immed_st) ? (execu_st)
-   /* state == execu_st */ : (end_instr ? opcod_st : execu_st);
+                     : (end_instr ? opcod_st : execu_st);
 
   assign next_state = block ? state : n_state;
 endmodule

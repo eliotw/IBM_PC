@@ -40,7 +40,7 @@ module test_memory
     reg [1:0] state, next_state;
     
     always @(posedge clk or negedge rst) begin
-    	if (~rst)
+    	if (rst)
 			state <= idle;
         else
         	state <= next_state;

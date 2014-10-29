@@ -1,21 +1,20 @@
 # Begin_DVE_Session_Save_Info
 # DVE full session
-# Saved on Wed Oct 22 10:45:25 2014
+# Saved on Wed Oct 29 13:28:23 2014
 # Designs open: 1
-#   Sim: /afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/zet/cores/zet/sim/simv
+#   Sim: /afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/cores/zet/sim/simv
 # Toplevel windows open: 1
 # 	TopLevel.1
 #   Source.1: test_8088
-#   Group count = 2
-#   Group Group1 signal count = 13
-#   Group Group2 signal count = 11
+#   Group count = 1
+#   Group Group1 signal count = 10
 # End_DVE_Session_Save_Info
 
 # DVE version: F-2011.12-SP1
 # DVE build date: May 27 2012 20:57:07
 
 
-#<Session mode="Full" path="/afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/zet/cores/zet/sim/DVEfiles/session.tcl" type="Debug">
+#<Session mode="Full" path="/afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/cores/zet/sim/DVEfiles/session.tcl" type="Debug">
 
 gui_set_loading_session_type Post
 gui_continuetime_set
@@ -67,7 +66,7 @@ if {![gui_exist_window -window TopLevel.1]} {
 } else { 
     set TopLevel.1 TopLevel.1
 }
-gui_show_window -window ${TopLevel.1} -show_state normal -rect {{232 66} {870 694}}
+gui_show_window -window ${TopLevel.1} -show_state normal -rect {{232 132} {867 757}}
 
 # ToolBar settings
 gui_set_toolbar_attributes -toolbar {TimeOperations} -dock_state top
@@ -113,23 +112,23 @@ gui_show_toolbar -toolbar {Grid}
 # End ToolBar settings
 
 # Docked window settings
-set HSPane.1 [gui_create_window -type HSPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 133]
+set HSPane.1 [gui_create_window -type HSPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 130]
 set Hier.1 [gui_share_window -id ${HSPane.1} -type Hier]
-gui_set_window_pref_key -window ${HSPane.1} -key dock_width -value_type integer -value 133
+gui_set_window_pref_key -window ${HSPane.1} -key dock_width -value_type integer -value 130
 gui_set_window_pref_key -window ${HSPane.1} -key dock_height -value_type integer -value -1
 gui_set_window_pref_key -window ${HSPane.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${HSPane.1} {{left 0} {top 0} {width 132} {height 318} {dock_state left} {dock_on_new_line true} {child_hier_colhier 140} {child_hier_coltype 100} {child_hier_col1 0} {child_hier_col2 1}}
-set DLPane.1 [gui_create_window -type DLPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 152]
+gui_update_layout -id ${HSPane.1} {{left 0} {top 0} {width 129} {height 318} {dock_state left} {dock_on_new_line true} {child_hier_colhier 140} {child_hier_coltype 100} {child_hier_col1 0} {child_hier_col2 1}}
+set DLPane.1 [gui_create_window -type DLPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 149]
 set Data.1 [gui_share_window -id ${DLPane.1} -type Data]
-gui_set_window_pref_key -window ${DLPane.1} -key dock_width -value_type integer -value 152
+gui_set_window_pref_key -window ${DLPane.1} -key dock_width -value_type integer -value 149
 gui_set_window_pref_key -window ${DLPane.1} -key dock_height -value_type integer -value 318
 gui_set_window_pref_key -window ${DLPane.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${DLPane.1} {{left 0} {top 0} {width 151} {height 318} {dock_state left} {dock_on_new_line true} {child_data_colvariable 140} {child_data_colvalue 100} {child_data_coltype 40} {child_data_col1 0} {child_data_col2 1} {child_data_col3 2}}
-set Console.1 [gui_create_window -type Console -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line true -dock_extent 117]
-gui_set_window_pref_key -window ${Console.1} -key dock_width -value_type integer -value 640
-gui_set_window_pref_key -window ${Console.1} -key dock_height -value_type integer -value 117
+gui_update_layout -id ${DLPane.1} {{left 0} {top 0} {width 148} {height 318} {dock_state left} {dock_on_new_line true} {child_data_colvariable 140} {child_data_colvalue 100} {child_data_coltype 40} {child_data_col1 0} {child_data_col2 1} {child_data_col3 2}}
+set Console.1 [gui_create_window -type Console -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line true -dock_extent 114]
+gui_set_window_pref_key -window ${Console.1} -key dock_width -value_type integer -value 636
+gui_set_window_pref_key -window ${Console.1} -key dock_height -value_type integer -value 114
 gui_set_window_pref_key -window ${Console.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${Console.1} {{left 0} {top 0} {width 638} {height 116} {dock_state bottom} {dock_on_new_line true}}
+gui_update_layout -id ${Console.1} {{left 0} {top 0} {width 635} {height 113} {dock_state bottom} {dock_on_new_line true}}
 #### Start - Readjusting docked view's offset / size
 set dockAreaList { top left right bottom }
 foreach dockArea $dockAreaList {
@@ -174,10 +173,10 @@ gui_update_statusbar_target_frame ${TopLevel.1}
 
 if { [llength [lindex [gui_get_db -design Sim] 0]] == 0 } {
 gui_set_env SIMSETUP::SIMARGS {{ -ucligui}}
-gui_set_env SIMSETUP::SIMEXE {/afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/zet/cores/zet/sim/simv}
+gui_set_env SIMSETUP::SIMEXE {/afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/cores/zet/sim/simv}
 gui_set_env SIMSETUP::ALLOW_POLL {0}
-if { ![gui_is_db_opened -db {/afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/zet/cores/zet/sim/simv}] } {
-gui_sim_run Ucli -exe simv -args { -ucligui} -dir /afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/zet/cores/zet/sim -nosource
+if { ![gui_is_db_opened -db {/afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/cores/zet/sim/simv}] } {
+gui_sim_run Ucli -exe simv -args { -ucligui} -dir /afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/cores/zet/sim -nosource
 }
 }
 if { ![gui_sim_state -check active] } {error "Simulator did not start correctly" error}
@@ -202,17 +201,14 @@ gui_set_time_units 10ps
 
 set Group1 Group1
 gui_sg_create ${Group1}
-gui_sg_addsignal -group ${Group1} { test_8088.i8088.ctrl_fsm.clk test_8088.i8088.ctrl_fsm.rst test_8088.i8088.ctrl_fsm.state test_8088.i8088.ctrl_fsm.inc_count test_8088.i8088.ctrl_fsm.clr_count test_8088.i8088.ctrl_fsm.bytes_transferred test_8088.i8088.ctrl_fsm.read test_8088.i8088.ctrl_fsm.cpu_block test_8088.i8088.ctrl_fsm.ale test_8088.i8088.ctrl_fsm.write_bus test_8088.ad test_8088.i8088.tcore.state test_8088.i8088.tcore.cpu_we_o }
-set Group2 Group2
-gui_sg_create ${Group2}
-gui_sg_addsignal -group ${Group2} { test_8088.i8088.ctrl_fsm.clk test_8088.i8088.ctrl_fsm.rst test_8088.i8088.ctrl_fsm.ale test_8088.a test_8088.ad test_8088.iom test_8088.dtr test_8088.den_n test_8088.rd_n test_8088.wr_n test_8088.i8088.ctrl_fsm.state }
+gui_sg_addsignal -group ${Group1} { test_8088.i8088.core.clk test_8088.i8088.core.rst test_8088.i8088.core.pc test_8088.i8088.calculated_addr test_8088.i8088.core.fetch.state test_8088.i8088.core.fetch.n_state test_8088.i8088.core.fetch.next_state test_8088.i8088.cpu_block test_8088.i8088.fetch_new_instr test_8088.i8088.cpu_adr }
 
 # Global: Highlighting
 
 # Post database loading setting...
 
 # Restore C1 time
-gui_set_time -C1_only 85
+gui_set_time -C1_only 1000000
 
 
 
@@ -238,18 +234,17 @@ gui_list_set_filter -id ${Hier.1} -text {*}
 gui_hier_list_init -id ${Hier.1}
 gui_change_design -id ${Hier.1} -design Sim
 catch {gui_list_expand -id ${Hier.1} test_8088}
-catch {gui_list_expand -id ${Hier.1} test_8088.i8088}
-catch {gui_list_select -id ${Hier.1} {test_8088.i8088.ctrl_fsm}}
+catch {gui_list_select -id ${Hier.1} {test_8088.i8088}}
 gui_view_scroll -id ${Hier.1} -vertical -set 0
 gui_view_scroll -id ${Hier.1} -horizontal -set 0
 
 # Data 'Data.1'
 gui_list_set_filter -id ${Data.1} -list { {Buffer 1} {Input 1} {Others 1} {Linkage 1} {Output 1} {Parameter 1} {All 1} {Aggregate 1} {Event 1} {Assertion 1} {Constant 1} {Interface 1} {Signal 1} {$unit 1} {Inout 1} {Variable 1} }
 gui_list_set_filter -id ${Data.1} -text {*}
-gui_list_show_data -id ${Data.1} {test_8088.i8088.ctrl_fsm}
+gui_list_show_data -id ${Data.1} {test_8088.i8088}
 gui_show_window -window ${Data.1}
-catch { gui_list_select -id ${Data.1} {test_8088.i8088.ctrl_fsm.state }}
-gui_view_scroll -id ${Data.1} -vertical -set 193
+catch { gui_list_select -id ${Data.1} {test_8088.i8088.cpu_adr }}
+gui_view_scroll -id ${Data.1} -vertical -set 605
 gui_view_scroll -id ${Data.1} -horizontal -set 0
 gui_view_scroll -id ${Hier.1} -vertical -set 0
 gui_view_scroll -id ${Hier.1} -horizontal -set 0
@@ -257,7 +252,7 @@ gui_view_scroll -id ${Hier.1} -horizontal -set 0
 # Source 'Source.1'
 gui_src_value_annotate -id ${Source.1} -switch false
 gui_set_env TOGGLE::VALUEANNOTATE 0
-gui_open_source -id ${Source.1}  -replace -active test_8088 /afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/zet/cores/zet/sim/test_8088.v
+gui_open_source -id ${Source.1}  -replace -active test_8088 /afs/ece.cmu.edu/usr/agrahame/Private/18545/IBM_PC/cores/zet/sim/test_8088.v
 gui_view_scroll -id ${Source.1} -vertical -set 42
 gui_src_set_reusable -id ${Source.1}
 # Restore toplevel window zorder
