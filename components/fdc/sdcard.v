@@ -137,7 +137,7 @@ module sdcard(
 	   wea = 1'b0;
 	   sd_slave_read = 1'b0;
 	   sd_slave_write = 1'b0;
-	   if(sd_master_write & (sd_master_address == 32'd4)) begin
+	   if(sd_master_write & (sd_master_address == 32'd12)) begin
 	      if(sd_master_writedata == 32'd2) begin
 		 nextstate = rd;
 	      end
@@ -213,7 +213,7 @@ module fakeramcore(
 		   input wea,
 		   input [20:0] addra,
 		   input [7:0] dina,
-		   output [7:0] douta
+		   output reg [7:0] douta
 		   );
    
    reg [7:0] 			reg_array [2097151:0];
@@ -226,12 +226,12 @@ module fakeramcore(
       end
    end
 
-   always @(posedge(clk)) begin
+   always @(posedge clka) begin
       if(wea == 1'b1) begin
 	 reg_array[addra] <= dina;
       end
       
-      data_out = reg_array[addra];
+      douta = reg_array[addra];
    end // always @ (posedge(clk))
    
 endmodule // fakeramcore

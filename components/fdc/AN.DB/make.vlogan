@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_yDKxuc_1.db \
+	_VCSgd_G5Jnl_1.db \
+
+
+
+_VCSgd_yDKxuc_1.db :	sdcard.v 
+		${VLOGAN}  +v2k -work work sdcard.v
+
+
+_VCSgd_G5Jnl_1.db :	test_sdcard.v 
+		${VLOGAN}  +v2k -work work test_sdcard.v
+
+
