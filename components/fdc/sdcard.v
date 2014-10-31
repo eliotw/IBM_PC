@@ -21,19 +21,25 @@ module sdcard(
 	      output [7:0] sd_slave_writedata // data to fdd
 	      );
 
+   // Remember, there are 512 bytes per sector, 2^9
+   // There can be a max of 2880 sectors, 2^12
+   
    // Wires
    wire 		   read, write;
+   wire [20:0] 		   sector_address;
    
    // Registers
    reg [31:0] 		   r0, r4, r8, r12;
+   reg [8:0] 		   sector_counter;
    
    // Assignments - based on assumptions, may have to modify later
-   assign sd_slave_address = 9'b0; // not used by fdc
+   assign sd_slave_address = sector_counter; // not used by fdc, here for debug
    assign sd_master_readdata = 31'd1; // always make mutex available
    assign sd_master_readdatavalid = 1'b1; // all data read is valid
    assign sd_master_waitrequest = 1'b0; // no need to wait on master
    assign read = (r12 == 32'd2); // Control Read
    assign write = (r12 == 32'd3); // Control Write
+   assign sector_address = {r4[11:0],sector_counter}; // location
    
    // Register R0 - Avalon Base
    always @(posedge clk, posedge rst) begin
