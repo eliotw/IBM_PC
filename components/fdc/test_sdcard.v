@@ -8,7 +8,7 @@ module test_sdcard();
    reg clk, rst;
    reg [31:0] sd_master_address,sd_master_writedata;
    reg 	      sd_master_read,sd_master_write;
-   reg [7:0]  sd_slave_readdata,i8;
+   reg [7:0]  sd_slave_readdata,i8,j8;
 
    // Wires
    wire        sd_master_waitrequest;
@@ -18,7 +18,7 @@ module test_sdcard();
    wire [7:0]  sd_slave_writedata;
 
    // Integers
-   integer     i, errors;
+   integer     i, j, errors;
    
    // SD Card Module
    sdcard sd1(
@@ -43,8 +43,13 @@ module test_sdcard();
       #5 clk = ~clk;   
    end
 
+   // Latch i
    always @(i) begin
       i8 = i;
+   end
+   // Latch j
+   always @(j) begin
+      j8 = j;
    end
    
    // Test Routine
@@ -58,6 +63,7 @@ module test_sdcard();
       sd_master_write = 1'b0;
       sd_slave_readdata = 8'd0;
       i = 0;
+      j = 0;
       errors = 0;
       #1;
       rst = 1'b1;
@@ -165,6 +171,87 @@ module test_sdcard();
 	 $display("Not Finally Reading Properly");
 	 errors = errors + 1;
       end
+
+      // Complex Write Test
+      @(posedge clk);
+      $display("Perform Complex Write Test");
+      @(posedge clk);
+      for(j = 0; j < 4096; j = j + 1) begin
+	 @(posedge clk);
+	 sd_master_address = 32'd4;
+	 sd_master_writedata = j;
+	 sd_master_write = 1'b1;
+	 @(posedge clk);
+	 sd_master_address = 32'd12;
+	 sd_master_writedata = 32'd3;
+	 sd_master_write = 1'b1;
+	 sd_slave_readdata = 8'd0;
+	 @(posedge clk);
+         if(sd_slave_read !== 1'b0) begin
+	    $display("Not Initially Writing Properly");
+	    errors = errors + 1;
+	 end
+	 sd_master_address = 32'd0;
+	 sd_master_writedata = 32'd0;
+	 sd_master_write = 1'b0;
+	 sd_slave_readdata = j;
+	 @(posedge clk);
+	 for(i = 0; i < 512; i = i + 1) begin
+	    sd_slave_readdata = j;
+	    if(sd_slave_read !== 1'b1) begin
+	       $display("Not Writing Properly at %d",i);
+	       errors = errors + 1;
+	    end
+	    sd_slave_readdata = j;
+	    @(posedge clk);
+	 end // for (i = 0; i < 512; i = i + 1)
+         if(sd_slave_read !== 1'b0) begin
+	    $display("Not Finally Writing Properly");
+	    errors = errors + 1;
+	 end
+      end // for (j = 0; j < 4096; j = j + 1)
+
+
+      // Complex Read Test
+      @(posedge clk);
+      $display("Perform Complex Read Test");
+      @(posedge clk);
+      for(j = 0; j < 4096; j = j + 1) begin
+	 @(posedge clk);
+	 sd_master_address = 32'd4;
+	 sd_master_writedata = j;
+	 sd_master_write = 1'b1;
+	 @(posedge clk);
+	 sd_master_address = 32'd12;
+	 sd_master_writedata = 32'd2;
+	 sd_master_write = 1'b1;
+	 sd_slave_readdata = 8'd0;
+	 @(posedge clk);
+         if(sd_slave_write !== 1'b0) begin
+	    $display("Not Initially Reading Properly");
+	    errors = errors + 1;
+	 end
+	 sd_master_address = 32'd0;
+	 sd_master_writedata = 32'd0;
+	 sd_master_write = 1'b0;
+	 sd_slave_readdata = 8'd0;
+	 @(posedge clk);
+	 for(i = 0; i < 512; i = i + 1) begin
+	    if(sd_slave_write !== 1'b1) begin
+	       $display("Not Reading Properly at %d",i);
+	       errors = errors + 1;
+	    end
+	    if(sd_slave_writedata !== j8) begin
+	       $display("Wrong Data Back I: %d D: %d",i8,sd_slave_writedata);
+	       errors = errors + 1;
+	    end
+	    @(posedge clk);
+	 end // for (i = 0; i < 512; i = i + 1)
+         if(sd_slave_write !== 1'b0) begin
+	    $display("Not Finally Reading Properly");
+	    errors = errors + 1;
+	 end
+      end // for (j = 0; j < 4096; j = j + 1)
       
       
       // Conclude Simulation
