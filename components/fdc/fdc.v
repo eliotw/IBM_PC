@@ -7,23 +7,23 @@ module fdc(
 	   input rst, // system reset
 	   output irq6, // irq number 6
 	   output drq2, // drq number 2
-	   input dack2, // drq acknowledge 2
+	   input dack2_n, // drq acknowledge 2
 	   input tc, // terminal count
 	   input ior_n, // io read
 	   input iow_n, // io write
 	   inout [19:0] a, // address
 	   inout [7:0] d, // data
-	   // more stuff to come!
+	   input aen // address enable
 	   );
 
    // Wires
    wire 	 rst_n; // Reset inverted
-   wire [7:0] 	 dma_floppy_writedata; // ???
+   wire [7:0] 	 dma_floppy_writedata; // floppy to data line dma
    wire 	 ior, iow; // IO read and write
-   wire [7:0]	 io_readdata; // ???
-   wire 	 ide_3f6_read; // ???
-   wire 	 ide_3f6_write; // ???
-   wire [7:0] 	 ide_3f6_writedata; // ???
+   wire [7:0]	 io_readdata; // floppy to data line
+   wire 	 ide_3f6_read; // ? - leaving unconnected
+   wire 	 ide_3f6_write; // ? - leaving unconnected
+   wire [7:0] 	 ide_3f6_writedata; // ? - leaving unconnected
    wire 	 inrange; // Is the data in range check
    wire [2:0] 	 io_address; // IO Address
    wire [7:0] 	 io_writedata; // IO Write Data
@@ -44,6 +44,7 @@ module fdc(
    wire [7:0] 	 sd_slave_readdata; // sd slave read data
    wire 	 sd_slave_write; // sd slave write
    wire [7:0] 	 sd_slave_writedata; // sd slave write data
+   wire 	 dack2; // acknowledge dma request
    
    // Assignments
    assign inrange = (a >= 20'h3f0) & (a <= 20'h3ff);
@@ -57,6 +58,9 @@ module fdc(
    assign mgmt_address = 4'b0000;
    assign mgmt_write  = 1'b0;
    assign mgmt_writedata = 32'd0;
+   assign d = (dack2 | ior) ? ((ior) ? io_readdata : dma_floppy_writedata) 
+       : 8'bzzzzzzzz;
+   assign dack2 = ~dack2_n;
    
    // Floppy Disk Controller
    floppy fdd(
@@ -66,11 +70,11 @@ module fdc(
               .dma_floppy_ack(dack2), // dack2
               .dma_floppy_terminal(tc), // tc
               .dma_floppy_readdata(dma_floppy_readdata), // dma to floppy data
-              .dma_floppy_writedata(dma_floppy_writedata), // ?
+              .dma_floppy_writedata(dma_floppy_writedata), // floppy to dma
 	      .irq(irq6), // irq6
               .io_address(io_address), // io address
               .io_read(ior), // ior
-              .io_readdata(io_readdata), // ?
+              .io_readdata(io_readdata), // floppy to io
               .io_write(iow), // iow
               .io_writedata(io_writedata), // io writedata
 	      .ide_3f6_read(ide_3f6_read), // ?
