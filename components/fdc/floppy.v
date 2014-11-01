@@ -88,7 +88,38 @@ module floppy(
     input       [31:0]  mgmt_writedata
 );
 
-//------------------------------------------------------------------------------
+   // Add registers
+   reg 			execute_ndma;
+   reg 			io_read_last;
+   reg 			sd_slave_read_last;
+   reg 			motor_enable;
+   reg 			dma_irq_enable;
+   reg 			enable;
+   reg [1:0] 		selected_drive;
+   reg [7:0] 		media_type;
+   reg 			datareg_ready;
+   reg 			transfer_to_cpu;
+   reg 			busy;
+   reg 			change;
+   reg [3:0] 		in_seek_mode;
+   reg [3:0] 		reply_left;
+   reg [79:0] 		reply;
+   
+   // Add wires
+   wire 		cmd_read_normal_in_progress;
+   wire 		cmd_write_normal_in_progress;
+   wire 		cmd_format_in_progress;
+   wire 		cmd_recalibrate_in_progress;
+   wire 		cmd_read_id_in_progress;
+   wire 		io_read_valid;
+   wire 		sd_slave_read_valid;
+   wire [7:0] 		from_floppy_q;
+   wire 		from_floppy_empty;
+   wire 		cmd_format_writeprotected_at_start;
+   wire 		cmd_format_hang_on_start;
+   wire 		cmd_format_ok_at_start;
+   
+//---------------------------------------------------------------------------
 
 `define SD_AVALON_BASE_ADDRESS_FOR_FDD 32'h00000800
 
@@ -96,13 +127,11 @@ module floppy(
 
 //------------------------------------------------------------------------------
 
-reg io_read_last;
 always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) io_read_last <= 1'b0; else if(io_read_last) io_read_last <= 1'b0; else io_read_last <= io_read; end 
-wire io_read_valid = io_read && io_read_last == 1'b0;
+assign io_read_valid = io_read && io_read_last == 1'b0;
 
-reg sd_slave_read_last;
 always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) sd_slave_read_last <= 1'b0; else if(sd_slave_read_last) sd_slave_read_last <= 1'b0; else sd_slave_read_last <= sd_slave_read; end 
-wire sd_slave_read_valid = sd_slave_read && sd_slave_read_last == 1'b0;
+assign sd_slave_read_valid = sd_slave_read && sd_slave_read_last == 1'b0;
 
 //------------------------------------------------------------------------------ ide shared ports
 
@@ -191,7 +220,6 @@ always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_1
 always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_2 <= 16'd2000; else if(mgmt_write && mgmt_address == 4'hA) media_wait_rate_2 <= mgmt_writedata[15:0]; end
 always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_3 <= 16'd500;  else if(mgmt_write && mgmt_address == 4'hB) media_wait_rate_3 <= mgmt_writedata[15:0]; end
 
-reg [7:0] media_type;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           media_type <= 8'h20;
     else if(mgmt_write && mgmt_address == 4'hC) media_type <= mgmt_writedata[7:0];
@@ -203,7 +231,6 @@ wire sw_reset =
     (io_write && io_address == 3'h2 && io_writedata[2] == 1'b0 && enable) ||
     (io_write && io_address == 3'h4 && io_writedata[7]);
 
-reg [1:0] selected_drive;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           selected_drive <= 2'd0;
     else if(io_write && io_address == 3'h2)     selected_drive <= io_writedata[1:0];
@@ -214,19 +241,16 @@ always @(posedge clk or negedge rst_n) begin
     else if(cmd_read_write_start)               selected_drive <= command[49:48];
 end
 
-reg motor_enable;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           motor_enable <= 1'b0;
     else if(io_write && io_address == 3'h2)     motor_enable <= io_writedata[4];
 end
 
-reg dma_irq_enable;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           dma_irq_enable <= 1'b1;
     else if(io_write && io_address == 3'h2)     dma_irq_enable <= io_writedata[3];
 end
 
-reg enable;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           enable <= 1'b1;
     else if(io_write && io_address == 3'h2)     enable <= io_writedata[2];
@@ -239,7 +263,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(io_write && io_address == 3'h7)     data_rate <= io_writedata[1:0];
 end
 
-reg datareg_ready;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                               datareg_ready <= 1'b1;
     else if(sw_reset)                               datareg_ready <= 1'b1;
@@ -260,7 +283,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(enter_result_phase)                                                                                     datareg_ready <= 1'b1;
 end
 
-reg execute_ndma;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                               execute_ndma <= 1'b0;
     else if(cmd_read_write_ok_at_start && ndma)     execute_ndma <= 1'b1;
@@ -268,7 +290,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(enter_result_phase)                     execute_ndma <= 1'b0;
 end
 
-reg transfer_to_cpu;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                   transfer_to_cpu <= 1'b0;
     else if(sw_reset)                                                   transfer_to_cpu <= 1'b0;
@@ -278,7 +299,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(io_read_valid && io_address == 3'd5 && reply_left == 4'd1)  transfer_to_cpu <= 1'b0;
 end
 
-reg busy;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                   busy <= 1'b0;
     else if(sw_reset)                                                   busy <= 1'b0;
@@ -292,14 +312,12 @@ always @(posedge clk or negedge rst_n) begin
     else if(io_read_valid && io_address == 3'd5 && reply_left == 4'd1)  busy <= 1'b0;
 end
 
-reg change;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                       change <= 1'b1;
     else if(~(media_present))                                               change <= 1'b1;
     else if(reset_changeline && selected_drive == 2'd0 && media_present)    change <= 1'b0;
 end
 
-reg [3:0] in_seek_mode;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                   in_seek_mode <= 4'd0;
     else if(sw_reset)                   in_seek_mode <= 4'd0;
@@ -395,11 +413,11 @@ wire cmd_invalid_start = command_first &&
 
 wire cmd_read_write_start = cmd_read_normal_start || cmd_write_normal_start;
 
-wire cmd_read_normal_in_progress  = { 1'b0, pending_command[6], 1'b0, pending_command[4:0] } ==  8'h46;
-wire cmd_write_normal_in_progress = { 1'b0, pending_command[6:0] } == 8'h45;
-wire cmd_format_in_progress       = pending_command == 8'h4D;
-wire cmd_recalibrate_in_progress  = pending_command == 8'h07;
-wire cmd_read_id_in_progress      = pending_command == 8'h4A;
+cmd_read_normal_in_progress  = { 1'b0, pending_command[6], 1'b0, pending_command[4:0] } ==  8'h46;
+cmd_write_normal_in_progress = { 1'b0, pending_command[6:0] } == 8'h45;
+cmd_format_in_progress       = pending_command == 8'h4D;
+cmd_recalibrate_in_progress  = pending_command == 8'h07;
+cmd_read_id_in_progress      = pending_command == 8'h4A;
 
 wire enter_result_phase =
     cmd_invalid_start || cmd_sense_interrupt_status_start || cmd_dump_registers_start || cmd_version_start || cmd_unlock_start || cmd_lock_start ||
@@ -602,16 +620,16 @@ end
 
 //------------------------------------------------------------------------------ cmd: format
 
-wire cmd_format_writeprotected_at_start = ~(cmd_format_hang_on_start) && cmd_format_track_start && media_writeprotected;
+assign cmd_format_writeprotected_at_start = ~(cmd_format_hang_on_start) && cmd_format_track_start && media_writeprotected;
     
-wire cmd_format_hang_on_start =
+assign cmd_format_hang_on_start =
     ~(motor_enable) ||                          //motor off
     command[25:24] != 2'b00 ||                  //no drive
     ~(media_present) ||                         //no media
     command[23:16] != 8'h02 ||                  //invalid sector size
     command[15:8] != media_sectors_per_track;   //invalid secotr count
 
-wire cmd_format_ok_at_start = cmd_format_track_start && ~(cmd_format_writeprotected_at_start) && ~(cmd_format_hang_on_start);
+assign cmd_format_ok_at_start = cmd_format_track_start && ~(cmd_format_writeprotected_at_start) && ~(cmd_format_hang_on_start);
 
 reg [31:0] format_data;
 always @(posedge clk or negedge rst_n) begin
@@ -649,7 +667,6 @@ wire cmd_format_finish = cmd_format_in_progress && (
 
 //------------------------------------------------------------------------------ reply
 
-reg [3:0] reply_left;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                               reply_left <= 4'd0;
     else if(sw_reset)                                                               reply_left <= 4'd0;
@@ -669,7 +686,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(io_read_valid && io_address == 3'h5 && reply_left > 4'd0)               reply_left <= reply_left - 3'd1;
 end
 
-reg [79:0] reply;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                           reply <= 80'd0;
     else if(sw_reset)                                                           reply <= { 72'd0, 8'hC0 };
@@ -959,9 +975,6 @@ fifo_to_floppy_inst(
     
     .usedw      (to_floppy_usedw)       //output [9:0]
 );
-
-wire [7:0] from_floppy_q;
-wire       from_floppy_empty;
 
 simple_fifo #(
     .width      (8),
