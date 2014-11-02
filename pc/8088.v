@@ -4,7 +4,7 @@
  */
  
 
-`default_nettype none
+//`default_nettype none
 
 `timescale 1ns/10ps
 
@@ -25,7 +25,7 @@ module processor_8088
     input         test_n,             // examined by processor testing instructions
     
     // output
-    output [19:8] a,               // address bus
+    output [19:0] a,               // address bus
     output        hlda,               // acknowledges that the processor is suspended
     output        inta_n,             // indicates that an intr request has been received
     output        ale,                // indicates that current data on address/data bus are address
@@ -66,8 +66,10 @@ module processor_8088
     wire [19:0] calculated_addr;
     wire [1:0] bytes_transferred;
 
-    assign calculated_addr = cpu_adr_o + (8 * bytes_transferred);
-    assign a = calculated_addr[19:8];
+	 assign a = calculated_addr;
+	 //assign a[7:0] = 8'b0;
+    assign calculated_addr = cpu_adr_o + (bytes_transferred);
+    //assign a[19:8] = calculated_addr[19:8];
     
     
     zet_core core (.clk(clk),

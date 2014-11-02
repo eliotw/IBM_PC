@@ -420,7 +420,7 @@ module sheet1(
    wire 	     rqgti_n;
    wire [1:0] 	     qs;
    wire 	     test_n;
-   wire [19:8] 	     ap;
+   wire [19:0] 	     ap;
    wire 	     inta_n;
    wire 	     spen_n;
    wire 	     den;
@@ -451,7 +451,7 @@ module sheet1(
    // Intel 8088 CPU
    processor_8088 i8088(
 			.clk(clk88),
-			.rst(reset),
+			.rst(~reset),
 			.mnmx(1'b0),		         // minimum and maximum mode. high-> min, low-> max
 		.ready(ready),              // inform processor that mem or I/0 is ready for data transfer
 		.hold(1'b1),               // suspends the processor, rqgto
@@ -496,13 +496,13 @@ module sheet1(
 	           .mrdc_n(memw_n),
 	           .mwtc_n(), // not connected
 	           .amwc_n(memr_n),
-	           .iorc_n(iow_m),
+	           .iorc_n(iow_n),
 	           .iowc_n(), // not connected
 	           .aiowc_n(ior_n),
 	           .inta_n(inta_n),
 	           .dtr(dtr),
 	           .den(den),
-	           .mce(mce), // not connected
+	           .mce(), // not connected
 	           .ale(ale)
 		   );
    
@@ -1013,7 +1013,7 @@ module sheet5(
    rom rommod(
               .a(xa),
 	      .d(xd),
-	      .cs_n(cs_n),
+	      .cs_n({cs_n[7:2],1'b1,1'b1}),
 	      .clk(clk88)
 	      );
 

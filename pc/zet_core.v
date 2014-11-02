@@ -288,7 +288,7 @@ module zet_core (
 
   // Behaviour
   always @(posedge clk or negedge rst)
-    if (rst)
+    if (~rst)
       hlt_op_old <= 1'b0;
     else
       if (hlt_op)
@@ -297,7 +297,7 @@ module zet_core (
         hlt_op_old <= 1'b0;
 
   always @(posedge clk or negedge rst)
-    if (rst)
+    if (~rst)
       hlt <= 1'b0;
     else
       if (hlt_in)
@@ -306,7 +306,7 @@ module zet_core (
         hlt <= 1'b0;
 
   always @(posedge clk or negedge rst)
-    if (rst)
+    if (~rst)
     begin
       nmir <= 1'b0;
       nmi_old <= 1'b0;
