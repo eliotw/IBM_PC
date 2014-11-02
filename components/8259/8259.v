@@ -19,7 +19,7 @@ module intel8259(
    // Inputs, Outputs, and Inouts
    input cs_n, wr_n, rd_n;
    inout [7:0] d;
-   inout [2:0] cas; // not connected
+   input [2:0] cas; // not connected
    input       a0;
    input       inta_n;
    input [7:0] ir;
