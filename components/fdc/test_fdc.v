@@ -7,6 +7,7 @@ module test_fdc();
    // Registers
    reg clk, rst;
    reg dack2_n, tc, ior_n, iow_n, aen;
+   reg [7:0] test_MSR; //check main status register
    
    // Wires
    wire irq6, drq2;
@@ -51,6 +52,11 @@ module test_fdc();
       #1;
       rst = 1'b0;
       #1;
+      ior_n = 1'b0;
+      a = 20'h34f;
+      @(posedge clk);
+      errors = errors + (d == testMSR);
+      
       
       // Conclude Simulation
       @(posedge clk);
