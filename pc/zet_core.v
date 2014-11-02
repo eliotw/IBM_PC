@@ -39,9 +39,11 @@ module zet_core (
     output        cpu_mem_op,
     output        cpu_m_io,
     output        cpu_we_o,
+    output        memalu,
 
     output [19:0] pc,  // for debugging purposes
-    output [2:0] zet_state
+    output [2:0] state,
+    output [2:0] n_state
   );
 
   // Net declarations
@@ -169,7 +171,8 @@ module zet_core (
     .intr          (intr),
     .nmir          (nmir),
     
-    .state(zet_state)
+    .state(state),
+    .n_state(n_state)
   );
 
   zet_decode decode (
@@ -259,6 +262,7 @@ module zet_core (
 
     // from wb
     .memout  (iid_dat_i),
+    .memalu  (memalu),
     .wr_data (cpu_dat_o),
     .addr    (addr_exec),
     .we      (cpu_we_o),
@@ -271,6 +275,7 @@ module zet_core (
   assign cpu_adr_o  = exec_st ? addr_exec : pc;
   assign cpu_byte_o = exec_st ? byte_exec : byte_fetch;
   assign cpu_mem_op = ir[`MEM_OP];
+  
 
   assign ir    = exec_st ? rom_ir : `ADD_IP;
   assign imm   = exec_st ? imm_d  : imm_f;
@@ -282,7 +287,7 @@ module zet_core (
   assign block_or_hlt = cpu_block | hlt | hlt_in;
 
   // Behaviour
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     if (rst)
       hlt_op_old <= 1'b0;
     else
@@ -291,7 +296,7 @@ module zet_core (
       else
         hlt_op_old <= 1'b0;
 
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     if (rst)
       hlt <= 1'b0;
     else
@@ -300,7 +305,7 @@ module zet_core (
       else if (hlt_out)
         hlt <= 1'b0;
 
-  always @(posedge clk)
+  always @(posedge clk or negedge rst)
     if (rst)
     begin
       nmir <= 1'b0;

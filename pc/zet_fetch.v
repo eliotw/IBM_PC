@@ -69,7 +69,8 @@ module zet_fetch (
     input  nmir,
     input  iflss,
     
-    output reg [2:0] state 
+    output reg [2:0] state,
+    output [2:0] n_state
   );
 
   // Registers, nets and parameters
@@ -78,6 +79,7 @@ module zet_fetch (
   parameter offse_st = 3'h2;
   parameter immed_st = 3'h3;
   parameter execu_st = 3'h4;
+  parameter fetch_st = 3'h5;
 
   //reg  [2:0] state;
   wire [2:0] next_state;
@@ -94,7 +96,7 @@ module zet_fetch (
                   next_in_exec);
   zet_nstate nstate (state, prefix, need_modrm, need_off, need_imm, end_seq,
              ftype, of, next_in_opco, next_in_exec, block, div_exc,
-             tflm, intr, iflm, nmir, iflss, next_state);
+             tflm, intr, iflm, nmir, iflss, n_state, next_state);
 
   // Assignments
   assign pc = (cs << 4) + ip;
@@ -117,10 +119,10 @@ module zet_fetch (
   assign rep     = pref_l[1];
 
   // Behaviour
-  always @(posedge clk)
-    if (rst)
+  always @(posedge clk or negedge rst)
+    if (~rst)
       begin
-        state <= execu_st;
+        state <= fetch_st;
         opcode_l <= `OP_NOP;
       end
     else if (!block)
@@ -146,6 +148,10 @@ module zet_fetch (
             off_l <= 16'd0;
             modrm_l <= 8'b0000_0110;
           end
+        
+        fetch_st: begin
+            state <= fetch_st;
+        end
 
         modrm_st:  // modrm
           begin

@@ -4,7 +4,7 @@
  */
  
 
-//`default_nettype none
+`default_nettype none
 
 `timescale 1ns/10ps
 
@@ -51,8 +51,9 @@ module processor_8088
     wire        cpu_mem_op;
     wire        cpu_m_io;
     wire        cpu_we_o;
+    wire        memalu;
     wire [19:0] pc;  // for debugging purposes
-    wire [2:0] zet_state;
+    wire [2:0] zet_state, zet_next_state;
     
     /* zet states */
     localparam opcod_st = 3'h0;
@@ -60,16 +61,16 @@ module processor_8088
     localparam offse_st = 3'h2;
     localparam immed_st = 3'h3;
     localparam execu_st = 3'h4;
+    localparam fetch_st = 3'h5;
     
     wire [19:0] calculated_addr;
     wire [1:0] bytes_transferred;
-    
+
     assign calculated_addr = cpu_adr_o + (8 * bytes_transferred);
     assign a = calculated_addr[19:8];
     
-    // zet_core core (.cpu_m_io(iom), .*); 
-	 zet_core tcore (.clk(clk),
-    //test_core tcore (.clk(clk),
+    
+    zet_core core (.clk(clk),
                      .rst(rst),
                      .intr(intr),
                      .inta(inta),
@@ -84,9 +85,11 @@ module processor_8088
                      .cpu_mem_op(cpu_mem_op),
                      .cpu_m_io(iom),
                      .cpu_we_o(cpu_we_o),
+                     .memalu(memalu),
                      .pc(pc),
-                     .zet_state(zet_state));
-    
+                     .state(zet_state),
+                     .n_state(zet_next_state));
+
     /* output registers */
     wire ld_out_regs;
     wire [7:0] msb_o_q;
@@ -129,7 +132,8 @@ module processor_8088
                     .ld(ld_lsb_i)
                     );
     
-    assign cpu_dat_i = {msb_i_q, lsb_i_q};                
+    assign cpu_dat_i = {msb_i_q, lsb_i_q};
+    assign iid_dat_i = cpu_dat_i;
     
     /* control fsm state */
     wire [2:0] ctrl_fsm_state;
@@ -142,7 +146,7 @@ module processor_8088
     wire write_bus;
     assign start = (read | write);
     assign write = (zet_state == execu_st)? cpu_we_o : 0;
-    assign read = (zet_state == opcod_st)? 1 : ((zet_state == execu_st)? !cpu_we_o : 0);
+    assign read =  (zet_state == fetch_st); // || ((zet_state == execu_st) && ~memalu);
     assign ad = (write_bus)? ((ale)? calculated_addr[7:0] : ((ctrl_fsm_state == addr)? ((bytes_transferred == 0)? lsb_o_q : ((bytes_transferred == 1)? msb_o_q : 8'bz)) : 8'bz )) : 8'bz;
      
     
@@ -261,10 +265,10 @@ module control_fsm
     
     always @( * ) begin
         ale = 0;
-        dtr = 1'bz;
+        dtr = 1'b1;
         rd_n = 1; 
         wr_n = 1;
-        den_n = 0; 
+        den_n = 1; 
         inc_count = 0;
         clr_count = 0; 
         ld_out_regs = 0;
@@ -321,7 +325,7 @@ module control_fsm
                 end
                 else begin
                     cpu_block = 0;
-                    dtr = 1'bz;
+                    dtr = 1'b1;
                     wr_n = 1;
                     clr_count = 1;
                 end
