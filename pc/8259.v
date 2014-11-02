@@ -12,6 +12,7 @@ module intel8259(
 		 a0,
 		 inta_n,
 		 ir,
+		 rst, // reset
 		 inta, // int
 		 spen_n
 		 );
@@ -23,6 +24,7 @@ module intel8259(
    input       a0;
    input       inta_n;
    input [7:0] ir;
+   input       rst;
    output      inta;
    output      spen_n;
 
@@ -74,8 +76,12 @@ module intel8259(
    assign din = d;
 
    // IMR Loading
-   always @(cs_n or wr_n or a0 or din or imr) begin
-      if((cs_n == 1'b0) & (wr_n == 1'b0) & (a0 == 1'b1)) begin
+   always @(cs_n or wr_n or a0 or din or imr or rst) begin
+      if(rst == 1'b1) begin
+	 icws <= 2'b10;
+	 imr <= 8'b0;
+      end
+      else if((cs_n == 1'b0) & (wr_n == 1'b0) & (a0 == 1'b1)) begin
 	 if(icws == 2'b00) begin
 	    icws <= 2'b00;
 	    imr <= din;
@@ -101,8 +107,11 @@ module intel8259(
    end
 
    // EOI Loading
-   always @(cs_n or wr_n or a0 or din or clrisr or inta_n) begin
-      if((clrisr == 1'b1) | (inta_n == 1'b0)) begin
+   always @(cs_n or wr_n or a0 or din or clrisr or inta_n or rst) begin
+      if(rst == 1'b1) begin
+	 eoir <= 8'b11111111;
+      end
+      else if((clrisr == 1'b1) | (inta_n == 1'b0)) begin
 	 eoir <= 8'b11111111;
       end
       else if((cs_n == 1'b0) & (wr_n == 1'b0) & (a0 == 1'b0)) begin
@@ -114,10 +123,12 @@ module intel8259(
    end
 
    // EOI interpretation
-   always @(eoir or recint or clrisr or inta_n) begin
-      //$display("eior loop");
-      
-      if((inta_n == 1'b0) & (recint == 1'b1)) begin
+   always @(eoir or recint or clrisr or inta_n or rst) begin
+      if(rst == 1'b1) begin
+	 dout <= 8'b0;
+	 clrisr <= 1'b0;
+      end
+      else if((inta_n == 1'b0) & (recint == 1'b1)) begin
 	 dout <= {5'b00001,topint};
 	 clrisr <= clrisr;
       end
@@ -157,9 +168,14 @@ module intel8259(
    end // always @ (eoir or recint)
 
    // Mock FSM
-   always @(negedge inta_n) begin
+   always @(negedge inta_n or posedge rst) begin
       // Wait State
-      if(recint == 1'b0) begin
+      if(rst == 1'b1) begin
+	 recint <= 1'b0;
+	 isr <= 8'b0;
+	 irr_clr <= 8'b0;
+      end
+      else if(recint == 1'b0) begin
 	 if(inta == 1'b1) begin
 	    recint <= 1'b1;
 	    if(mrw[0] == 1'b1) begin
@@ -211,48 +227,55 @@ module intel8259(
 	 isr <= isr;
 	 irr_clr <= 8'b0;
       end
-      
    end
    
    
    // IRR Loading
-   always @(ir[0] or irr_clr[0]) begin
-      if(irr_clr[0] == 1'b1) irr[0] <= 1'b0;
+   always @(ir[0] or irr_clr[0] or rst) begin
+      if(rst == 1'b1) irr[0] <= 1'b0;
+      else if(irr_clr[0] == 1'b1) irr[0] <= 1'b0;
       else if(ir[0] == 1'b1) irr[0] <= 1'b1;
       else irr[0] <= irr[0];
    end
-   always @(ir[1] or irr_clr[1]) begin
-      if(irr_clr[1] == 1'b1) irr[1] <= 1'b0;
+   always @(ir[1] or irr_clr[1] or rst) begin
+      if(rst == 1'b1) irr[1] <= 1'b0;
+      else if(irr_clr[1] == 1'b1) irr[1] <= 1'b0;
       else if(ir[1] == 1'b1) irr[1] <= 1'b1;
       else irr[1] <= irr[1];
    end
-   always @(ir[2] or irr_clr[2]) begin
-      if(irr_clr[2] == 1'b1) irr[2] <= 1'b0;
+   always @(ir[2] or irr_clr[2] or rst) begin
+      if(rst == 1'b1) irr[2] <= 1'b0;
+      else if(irr_clr[2] == 1'b1) irr[2] <= 1'b0;
       else if(ir[2] == 1'b1) irr[2] <= 1'b1;
       else irr[2] <= irr[2];
    end
-   always @(ir[3] or irr_clr[3]) begin
-      if(irr_clr[3] == 1'b1) irr[3] <= 1'b0;
+   always @(ir[3] or irr_clr[3] or rst) begin
+      if(rst == 1'b1) irr[3] <= 1'b0;
+      else if(irr_clr[3] == 1'b1) irr[3] <= 1'b0;
       else if(ir[3] == 1'b1) irr[3] <= 1'b1;
       else irr[3] <= irr[3];
    end
-   always @(ir[4] or irr_clr[4]) begin
-      if(irr_clr[4] == 1'b1) irr[4] <= 1'b0;
+   always @(ir[4] or irr_clr[4] or rst) begin
+      if(rst == 1'b1) irr[4] <= 1'b0;
+      else if(irr_clr[4] == 1'b1) irr[4] <= 1'b0;
       else if(ir[4] == 1'b1) irr[4] <= 1'b1;
       else irr[4] <= irr[4];
    end
-   always @(ir[5] or irr_clr[5]) begin
-      if(irr_clr[5] == 1'b1) irr[5] <= 1'b0;
+   always @(ir[5] or irr_clr[5] or rst) begin
+      if(rst == 1'b1) irr[5] <= 1'b0;
+      else if(irr_clr[5] == 1'b1) irr[5] <= 1'b0;
       else if(ir[5] == 1'b1) irr[5] <= 1'b1;
       else irr[5] <= irr[5];
    end
-   always @(ir[6] or irr_clr[6]) begin
-      if(irr_clr[6] == 1'b1) irr[6] <= 1'b0;
+   always @(ir[6] or irr_clr[6] or rst) begin
+      if(rst == 1'b1) irr[6] <= 1'b0;
+      else if(irr_clr[6] == 1'b1) irr[6] <= 1'b0;
       else if(ir[6] == 1'b1) irr[6] <= 1'b1;
       else irr[6] <= irr[6];
    end
-   always @(ir[7] or irr_clr[7]) begin
-      if(irr_clr[7] == 1'b1) irr[7] <= 1'b0;
+   always @(ir[7] or irr_clr[7] or rst) begin
+      if(rst == 1'b1) irr[7] <= 1'b0;
+      else if(irr_clr[7] == 1'b1) irr[7] <= 1'b0;
       else if(ir[7] == 1'b1) irr[7] <= 1'b1;
       else irr[7] <= irr[7];
    end
@@ -272,32 +295,7 @@ module intel8259(
    // Interrupt Assignment
    assign inta = mrw[0] | mrw[1] | mrw[2] | mrw[3] |
 		 mrw[4] | mrw[5] | mrw[6] | mrw[7] | recint;
-/*
-   always @(ir) begin
-      $display("ir %b",ir);
-   end
-   always @(irr_clr) begin
-      $display("irr clr %b",irr_clr);
-   end
-   always @(irr) begin
-      $display("irr %b",irr);
-   end
-   always @(mrw) begin
-      $display("mrw: %b",mrw);
-   end
-   always @(imr) begin
-      $display("imr %b",imr);
-   end
-   always @(isr) begin
-      $display("isr %b",isr);
-   end
-   always @(eoir) begin
-      $display("eoir %b", eoir);
-   end
-   always @(dout) begin
-      $display("dout %b",dout);
-   end
-  */ 
+ 
    // Assign top interrupt
    always @(isr) begin
       if(isr[0] == 1'b1) topint <= 3'b000;

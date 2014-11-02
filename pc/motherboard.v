@@ -428,8 +428,8 @@ module sheet1(
    wire 	     dtr;
    wire [3:0] 	     xrd; // extra data
    
-	// Assign powergood to reset
-	assign reset = pwr_good;
+   // Assign powergood to reset
+   assign reset = pwr_good;
 	
    // 8087 math coprocessor
    assign rqgti_n = 1'b1;
@@ -437,22 +437,22 @@ module sheet1(
    assign npnpi = 1'b0;
    
    // 8284 clock generation
-	intel8284a i8284(
-		.fpga_clk(clk_100),
-		.rdy1(dma_wait_n),
-      .aen1(rdy_wait_n),
-		.ready(ready),
-		.clk(clk88),
-		.osc(osc),
-      .pclk(pclk),
-		.vclk(vga_clk)
-	);
+   intel8284a i8284(
+		    .fpga_clk(clk_100),
+		    .rdy1(dma_wait_n),
+		    .aen1(rdy_wait_n),
+		    .ready(ready),
+		    .clk(clk88),
+		    .osc(osc),
+		    .pclk(pclk),
+		    .vclk(vga_clk)
+		    );
 
    // Intel 8088 CPU
-	processor_8088 i8088(
-		.clk(clk88),
-		.rst(reset),
-		.mnmx(1'b0),		         // minimum and maximum mode. high-> min, low-> max
+   processor_8088 i8088(
+			.clk(clk88),
+			.rst(reset),
+			.mnmx(1'b0),		         // minimum and maximum mode. high-> min, low-> max
 		.ready(ready),              // inform processor that mem or I/0 is ready for data transfer
 		.hold(1'b1),               // suspends the processor, rqgto
 		.nmi(nmi),                // causes non-maskable type-2 interrupt
@@ -481,6 +481,7 @@ module sheet1(
 		   .a0(xa0_n),
 		   .inta_n(inta_n),
 		   .ir(irq),
+		   .rst(reset),
 		   .inta(intr), // int
 		   .spen_n(spen_n)
 		   );
