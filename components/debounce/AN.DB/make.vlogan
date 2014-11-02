@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_0lZww_1.db \
+	_VCSgd_glBLR_1.db \
+
+
+
+_VCSgd_0lZww_1.db :	debounce.v 
+		${VLOGAN}  +v2k -work work debounce.v
+
+
+_VCSgd_glBLR_1.db :	test_debounce.v 
+		${VLOGAN}  +v2k -work work test_debounce.v
+
+
