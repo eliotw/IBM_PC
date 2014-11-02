@@ -1,0 +1,176 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_K0Jhje_1.db \
+	_VCSgd_5jk5fb_1.db \
+	_VCSgd_MF9OH_1.db \
+	_VCSgd_awEzdd_1.db \
+	_VCSgd_er1Hqe_1.db \
+	_VCSgd_16YQ1c_1.db \
+	_VCSgd_Vq23cc_1.db \
+	_VCSgd_2SW7pd_1.db \
+	_VCSgd_l0fa2_1.db \
+	_VCSgd_uInyzb_1.db \
+	_VCSgd_X8C8ab_1.db \
+	_VCSgd_RWhj1d_1.db \
+	_VCSgd_dXLCSd_1.db \
+	_VCSgd_PVoH4b_1.db \
+	_VCSgd_K5bYXb_1.db \
+	_VCSgd_0qmPcb_1.db \
+	_VCSgd_nRLhzd_1.db \
+	_VCSgd_JUIiNd_1.db \
+	_VCSgd_Dtt2kb_1.db \
+	_VCSgd_6EOQxd_1.db \
+	_VCSgd_26Nfnd_1.db \
+	_VCSgd_Lemumd_1.db \
+	_VCSgd_lMlxY_1.db \
+	_VCSgd_aw5BYb_1.db \
+	_VCSgd_QKIdk_1.db \
+	_VCSgd_xA2JKe_1.db \
+	_VCSgd_djQjNb_1.db \
+	_VCSgd_AhzU2d_1.db \
+	_VCSgd_SfmSIb_1.db \
+	_VCSgd_quX45b_1.db \
+	_VCSgd_R7EyHc_1.db \
+	_VCSgd_A6jPMb_1.db \
+	_VCSgd_2OPeyc_1.db \
+	_VCSgd_sStAhe_1.db \
+
+
+
+_VCSgd_K0Jhje_1.db :	../rtl/8088.v 
+		${VLOGAN}  +v2k -work work ../rtl/8088.v
+
+
+_VCSgd_5jk5fb_1.db :	../rtl/test_memory.v 
+		${VLOGAN}  +v2k -work work ../rtl/test_memory.v
+
+
+_VCSgd_MF9OH_1.db :	../rtl/test_processor.v 
+		${VLOGAN}  +v2k -work work ../rtl/test_processor.v
+
+
+_VCSgd_awEzdd_1.db :	../rtl/zet_addsub.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_addsub.v
+
+
+_VCSgd_er1Hqe_1.db :	../rtl/zet_alu.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_alu.v
+
+
+_VCSgd_16YQ1c_1.db :	../rtl/zet_arlog.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_arlog.v
+
+
+_VCSgd_Vq23cc_1.db :	../rtl/zet_bitlog.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_bitlog.v
+
+
+_VCSgd_2SW7pd_1.db :	../rtl/zet_conv.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_conv.v
+
+
+_VCSgd_l0fa2_1.db :	../rtl/zet_core.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_core.v
+
+
+_VCSgd_uInyzb_1.db :	../rtl/zet_decode.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_decode.v
+
+
+_VCSgd_X8C8ab_1.db :	../rtl/zet_div_su.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_div_su.v
+
+
+_VCSgd_RWhj1d_1.db :	../rtl/zet_div_uu.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_div_uu.v
+
+
+_VCSgd_dXLCSd_1.db :	../rtl/zet_exec.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_exec.v
+
+
+_VCSgd_PVoH4b_1.db :	../rtl/zet_fetch.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_fetch.v
+
+
+_VCSgd_K5bYXb_1.db :	../rtl/zet_fulladd16.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_fulladd16.v
+
+
+_VCSgd_0qmPcb_1.db :	../rtl/zet_jmp_cond.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_jmp_cond.v
+
+
+_VCSgd_nRLhzd_1.db :	../rtl/zet_memory_regs.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_memory_regs.v
+
+
+_VCSgd_JUIiNd_1.db :	../rtl/zet_micro_data.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_micro_data.v
+
+
+_VCSgd_Dtt2kb_1.db :	../rtl/zet_micro_rom.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_micro_rom.v
+
+
+_VCSgd_6EOQxd_1.db :	../rtl/zet_muldiv.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_muldiv.v
+
+
+_VCSgd_26Nfnd_1.db :	../rtl/zet_mux8_16.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_mux8_16.v
+
+
+_VCSgd_Lemumd_1.db :	../rtl/zet_mux8_1.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_mux8_1.v
+
+
+_VCSgd_lMlxY_1.db :	../rtl/zet_next_or_not.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_next_or_not.v
+
+
+_VCSgd_aw5BYb_1.db :	../rtl/zet_nstate.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_nstate.v
+
+
+_VCSgd_QKIdk_1.db :	../rtl/zet_opcode_deco.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_opcode_deco.v
+
+
+_VCSgd_xA2JKe_1.db :	../rtl/zet_othop.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_othop.v
+
+
+_VCSgd_djQjNb_1.db :	../rtl/zet_regfile.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_regfile.v
+
+
+_VCSgd_AhzU2d_1.db :	../rtl/zet_rxr16.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_rxr16.v
+
+
+_VCSgd_SfmSIb_1.db :	../rtl/zet_rxr8.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_rxr8.v
+
+
+_VCSgd_quX45b_1.db :	../rtl/zet_shrot.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_shrot.v
+
+
+_VCSgd_R7EyHc_1.db :	../rtl/zet_signmul17.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_signmul17.v
+
+
+_VCSgd_A6jPMb_1.db :	../rtl/zet.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet.v
+
+
+_VCSgd_2OPeyc_1.db :	../rtl/zet_wb_master.v 
+		${VLOGAN}  +v2k -work work ../rtl/zet_wb_master.v
+
+
+_VCSgd_sStAhe_1.db :	test_8088.v 
+		${VLOGAN}  +v2k -work work test_8088.v
+
+

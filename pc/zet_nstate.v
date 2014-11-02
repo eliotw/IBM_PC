@@ -35,6 +35,7 @@ module zet_nstate (
     input iflm,
     input nmir,
     input iflss,
+    output reg [2:0] n_state,
     output [2:0] next_state
   );
 
@@ -44,8 +45,9 @@ module zet_nstate (
   parameter offse_st = 3'h2;
   parameter immed_st = 3'h3;
   parameter execu_st = 3'h4;
+  parameter fetch_st = 3'h5;
+
   wire into, end_instr, end_into;
-  wire [2:0] n_state;
   wire       intr_iflm;
   wire       intrs_tni;
 
@@ -56,16 +58,38 @@ module zet_nstate (
   assign intr_iflm = intr & iflm;
   assign intrs_tni = (tflm | nmir | intr_iflm) & iflss;
 
-  assign n_state = (state == opcod_st) ? (prefix ? opcod_st
-                         : (next_in_opco ? opcod_st
-                         : (need_modrm ? modrm_st
-                         : (need_off ? offse_st
-                         : (need_imm ? immed_st : execu_st)))))
-                     : (state == modrm_st) ? (need_off ? offse_st
-                                           : (need_imm ? immed_st : execu_st))
-                     : (state == offse_st) ? (need_imm ? immed_st : execu_st)
-                     : (state == immed_st) ? (execu_st)
-   /* state == execu_st */ : (end_instr ? opcod_st : execu_st);
+  always @( * ) begin
+    n_state = fetch_st;
+    case(state)
+        fetch_st: begin
+            n_state = opcod_st;
+        end
+        opcod_st: begin
+            if (prefix) n_state = opcod_st;
+            else if (next_in_opco) n_state = opcod_st;
+            else if (need_modrm) n_state = modrm_st;
+            else if (need_off) n_state = offse_st;
+            else if (need_imm) n_state = immed_st;
+            else n_state = execu_st;
+        end
+        modrm_st: begin
+            if (need_off) n_state = offse_st;
+            else if (need_imm) n_state = immed_st;
+            else n_state = execu_st;
+        end
+        offse_st: begin
+            if (need_imm) n_state = immed_st;
+            else n_state = execu_st;
+        end
+        immed_st: begin
+            n_state = execu_st;
+        end
+        execu_st: begin
+            if (end_instr) n_state = fetch_st;
+            else n_state = execu_st;
+        end
+    endcase
+  end
 
   assign next_state = block ? state : n_state;
 endmodule

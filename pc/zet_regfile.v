@@ -79,8 +79,8 @@ module zet_regfile (
   assign ip = r[15];
 
   // Behaviour
-  always @(posedge clk)
-    if (rst) begin
+  always @(posedge clk or negedge rst)
+    if (~rst) begin
       r[0]  <= 16'd0; r[1]  <= 16'd0;
       r[2]  <= 16'd0; r[3]  <= 16'd0;
       r[4]  <= 16'd0; r[5]  <= 16'd0;

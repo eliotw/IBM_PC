@@ -35,6 +35,7 @@ module zet_exec
     output        zf,
     output        cx_zero,
     input [15:0]  memout,
+    output        memalu,
 
     output [15:0] wr_data,
     output [19:0] addr,
@@ -62,7 +63,7 @@ module zet_exec
   wire [3:0]  addr_b;
   wire [2:0]  t, func;
   wire [1:0]  addr_s;
-  wire        wrfl, high, memalu, r_byte, c_byte;
+  wire        wrfl, high, r_byte, c_byte;
   wire        wr, wr_reg;
   wire        wr_cnd;
   wire        jmp;
