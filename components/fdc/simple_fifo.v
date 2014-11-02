@@ -24,31 +24,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-module simple_fifo(
-    input                       clk,
-    input                       rst_n,
-    input                       sclr,
-    
-    input                       rdreq,
-    input                       wrreq,
-    input       [width-1:0]     data,
-    
-    output                      empty,
-    output reg                  full,
-    output      [width-1:0]     q,
-    output reg  [widthu-1:0]    usedw
-);
+module simple_fifo(clk,
+                   rst_n,
+                   sclr,
+                   rdreq,
+                   wrreq,
+		   data,
+                   empty,
+                   full,
+		   q,
+		   usedw
+		   );
 
-parameter width     = 1;
-parameter widthu    = 1;
+   parameter width     = 1;
+   parameter widthu    = 1;
 
-reg [width-1:0] mem [(2**widthu)-1:0];
+   input 			clk;
+   input 			rst_n;
+   input 			sclr;
+   input 			rdreq;
+   input 			wrreq;
+   input [width-1:0] 		data;
+   output 			empty;
+   output reg 			full;
+   output [width-1:0] 		q;
+   output reg [widthu-1:0] 	usedw;
+   
+   reg [width-1:0] 		mem [(2**widthu)-1:0];
+   reg [widthu-1:0] 		rd_index = 0;
+   reg [widthu-1:0] 		wr_index = 0;
 
-reg [widthu-1:0] rd_index = 0;
-reg [widthu-1:0] wr_index = 0;
-
-assign q    = mem[rd_index];
-assign empty= usedw == 0 && ~(full);
+   assign q    = mem[rd_index];
+   assign empty= usedw == 0 && ~(full);
 
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)           rd_index <= 0;

@@ -1441,6 +1441,11 @@ extern void CallMhdlCoercedPort(void*, UP);
 #ifdef __cplusplus
 extern "C" {
 #endif
+void  hsC_0_0_0_(UB  * I655, scalar  val);
+void  hsF_0_1_0_(UB  * I655, scalar  val);
+void  hsF_0_2_0_(UB  * I655, scalar  val);
+void  hsF_0_3_0_(UB  * I655, vec32  * I656, U  I677);
+void  hsF_0_4_0_(UB  * I655, scalar  val);
 void  schedNewEvent(struct dummyq_struct * I748, EBLK  * I749, U  I556);
 U   bsfFun(U  I760);
 #ifdef __cplusplus

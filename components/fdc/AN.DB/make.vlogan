@@ -1,13 +1,33 @@
 
 VLOGAN	= vlogan
 
-all :		_VCSgd_yDKxuc_1.db \
+all :		_VCSgd_j5AGUd_1.db \
+	_VCSgd_HsD8Cc_1.db \
+	_VCSgd_DTuXAd_1.db \
+	_VCSgd_yDKxuc_1.db \
+	_VCSgd_bI3ize_1.db \
 	_VCSgd_G5Jnl_1.db \
 
 
 
+_VCSgd_j5AGUd_1.db :	fdc.v 
+		${VLOGAN}  +v2k -work work fdc.v
+
+
+_VCSgd_HsD8Cc_1.db :	test_fdc.v 
+		${VLOGAN}  +v2k -work work test_fdc.v
+
+
+_VCSgd_DTuXAd_1.db :	floppy.v 
+		${VLOGAN}  +v2k -work work floppy.v
+
+
 _VCSgd_yDKxuc_1.db :	sdcard.v 
 		${VLOGAN}  +v2k -work work sdcard.v
+
+
+_VCSgd_bI3ize_1.db :	simple_fifo.v 
+		${VLOGAN}  +v2k -work work simple_fifo.v
 
 
 _VCSgd_G5Jnl_1.db :	test_sdcard.v 

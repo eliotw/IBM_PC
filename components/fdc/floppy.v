@@ -88,6 +88,25 @@ module floppy(
     input       [31:0]  mgmt_writedata
 );
 
+   // Local Parameters
+   localparam [4:0] S_IDLE                         = 5'd0;
+   localparam [4:0] S_PREPARE_COUNT                = 5'd1;
+   localparam [4:0] S_COUNT_LOGICAL                = 5'd2;
+   localparam [4:0] S_SD_MUTEX                     = 5'd3;
+   localparam [4:0] S_SD_AVALON_BASE               = 5'd4;
+   localparam [4:0] S_SD_ADDRESS                   = 5'd5;
+   localparam [4:0] S_SD_BLOCK_COUNT               = 5'd6;
+   localparam [4:0] S_SD_CONTROL                   = 5'd7;
+   localparam [4:0] S_SD_READ_WAIT_FOR_DATA        = 5'd8;
+   localparam [4:0] S_WAIT_FOR_EMPTY_READ_FIFO     = 5'd9;
+   localparam [4:0] S_UPDATE_SECTOR                = 5'd10;
+   localparam [4:0] S_CHECK_TC                     = 5'd11;
+   localparam [4:0] S_WAIT                         = 5'd12;
+   localparam [4:0] S_WAIT_FOR_FULL_WRITE_FIFO     = 5'd13;
+   localparam [4:0] S_SD_WRITE_WAIT_FOR_EMPTY_FIFO = 5'd14;
+   localparam [4:0] S_WAIT_FOR_FORMAT_INPUT        = 5'd15;
+   localparam [4:0] S_SD_FORMAT_WAIT_FOR_FILL      = 5'd16;
+   
    // Add registers
    reg 			execute_ndma;
    reg 			io_read_last;
@@ -104,6 +123,46 @@ module floppy(
    reg [3:0] 		in_seek_mode;
    reg [3:0] 		reply_left;
    reg [79:0] 		reply;
+   reg 			media_present;
+   reg 			media_writeprotected;
+   reg [7:0] 		media_cylinders;
+   reg [7:0] 		media_sectors_per_track;
+   reg [31:0] 		media_sector_count;
+   reg [1:0] 		media_heads;
+   reg [31:0] 		media_sd_base;
+   reg [15:0] 		media_wait_cycles;
+   reg [15:0] 		media_wait_rate_0;
+   reg [15:0] 		media_wait_rate_1;
+   reg [15:0] 		media_wait_rate_2;
+   reg [15:0] 		media_wait_rate_3;
+   reg [1:0] 		data_rate;
+   reg [71:0] 		command;
+   reg [3:0] 		command_size;
+   reg [3:0] 		command_left;
+   reg [7:0] 		pending_command;
+   reg 			cmd_read_write_multitrack;
+   reg 			cmd_read_write_was_ndma_terminal;
+   reg [3:0] 		specify_srt;
+   reg [3:0] 		specify_hut;
+   reg [6:0] 		specify_hlt;
+   reg 			ndma;
+   reg [2:0] 		reset_sensei;
+   reg 			pending_request, pending_interrupt;
+   reg 			pending_interrupt_last;
+   reg [7:0] 		delay_steps;
+   reg [3:0] 		delay_srt;
+   reg [15:0] 		delay_rate;
+   reg [7:0] 		status_reg0_temp;
+   reg [7:0] 		config_config, config_pretrk, perp_mode;
+   reg 			lock, head, sd_read_done;
+   reg [31:0] 		format_data, sd_sector;
+   reg [2:0] 		format_data_count, sd_mutex_wait;
+   reg [7:0] 		format_filler_byte, format_sector_count;
+   reg [4:0] 		state;
+   reg [15:0] 		command_wait_counter, mult_a, logical_sector;
+   reg [7:0] 		mult_b, cylinder, sector, eot;
+   reg [8:0] 		sd_write_counter, sd_read_counter;
+   reg 			was_dma_terminal;
    
    // Add wires
    wire 		cmd_read_normal_in_progress;
@@ -210,58 +269,45 @@ end
 
 //------------------------------------------------------------------------------ media management
 
-reg media_present;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           media_present <= 1'b0;
     else if(mgmt_write && mgmt_address == 4'd0) media_present <= mgmt_writedata[0];
 end
 
-reg media_writeprotected;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           media_writeprotected <= 1'b0;
     else if(mgmt_write && mgmt_address == 4'd1) media_writeprotected <= mgmt_writedata[0];
 end
 
-reg [7:0] media_cylinders;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           media_cylinders <= 8'd0;
     else if(mgmt_write && mgmt_address == 4'd2) media_cylinders <= mgmt_writedata[7:0];
 end
 
-reg [7:0] media_sectors_per_track;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           media_sectors_per_track <= 8'd0;
     else if(mgmt_write && mgmt_address == 4'd3) media_sectors_per_track <= mgmt_writedata[7:0];
 end
 
-reg [31:0] media_sector_count;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           media_sector_count <= 32'd0;
     else if(mgmt_write && mgmt_address == 4'd4) media_sector_count <= mgmt_writedata;
 end
 
-reg [1:0] media_heads;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           media_heads <= 2'd2;
     else if(mgmt_write && mgmt_address == 4'd5) media_heads <= mgmt_writedata[1:0];
 end
 
-reg [31:0] media_sd_base;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           media_sd_base <= 32'd0;
     else if(mgmt_write && mgmt_address == 4'd6) media_sd_base <= mgmt_writedata;
 end
 
-reg [15:0] media_wait_cycles;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           media_wait_cycles <= 16'd0;
     else if(mgmt_write && mgmt_address == 4'd7) media_wait_cycles <= mgmt_writedata[15:0];
 end
-
-reg [15:0] media_wait_rate_0;
-reg [15:0] media_wait_rate_1;
-reg [15:0] media_wait_rate_2;
-reg [15:0] media_wait_rate_3;
 
 always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_0 <= 16'd1000; else if(mgmt_write && mgmt_address == 4'h8) media_wait_rate_0 <= mgmt_writedata[15:0]; end
 always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_1 <= 16'd1666; else if(mgmt_write && mgmt_address == 4'h9) media_wait_rate_1 <= mgmt_writedata[15:0]; end
@@ -304,7 +350,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(io_write && io_address == 3'h2)     enable <= io_writedata[2];
 end
 
-reg [1:0] data_rate;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           data_rate <= 2'b10;
     else if(io_write && io_address == 3'h4)     data_rate <= io_writedata[1:0];
@@ -378,7 +423,6 @@ end
 assign command_first = io_write && io_address == 3'h5 && state == S_IDLE && command_left == 4'd0 && ~(busy);
 assign command_next  = io_write && io_address == 3'h5 && state == S_IDLE && command_left > 4'd0;
 
-reg [71:0] command;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)           command <= 72'd0;
     else if(command_first)      command <= { command[63:0], io_writedata };
@@ -398,14 +442,12 @@ assign command_at_first =
     (io_writedata == 8'h13)?                    4'd3 :                      //configure command (Enhanced)
                                                 4'd0;
 
-reg [3:0] command_size;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                   command_size <= 4'd0;
     
     else if(command_first && command_at_first != 4'd0)  command_size <= command_at_first;
 end
 
-reg [3:0] command_left;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                       command_left <= 4'd0;
     
@@ -413,7 +455,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(command_next)                                   command_left <= command_left - 4'd1;
 end
 
-reg [7:0] pending_command;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           pending_command <= 8'b0;
     else if(sw_reset)                           pending_command <= 8'h00;
@@ -508,7 +549,6 @@ assign cmd_write_and_writeprotected_at_start    = ~(cmd_read_write_hang_at_start
 assign cmd_read_write_ok_at_start = 
     cmd_read_write_start && ~(cmd_read_write_hang_at_start) && ~(cmd_read_write_incorrect_head_at_start) && ~(cmd_read_write_incorrect_sector_at_start) && ~(cmd_write_and_writeprotected_at_start);
     
-reg cmd_read_write_multitrack;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                   cmd_read_write_multitrack <= 1'b0;
     else if(cmd_read_write_ok_at_start) cmd_read_write_multitrack <= command[63];
@@ -520,7 +560,6 @@ assign cmd_read_write_finish =
         (execute_ndma && cmd_read_write_was_ndma_terminal)
 );
 
-reg cmd_read_write_was_ndma_terminal;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                                               cmd_read_write_was_ndma_terminal <= 1'd0;
     else if(state == S_UPDATE_SECTOR && sector == eot && { 1'b0, head } == (media_heads - 2'd1))    cmd_read_write_was_ndma_terminal <= 1'd1;
@@ -540,25 +579,21 @@ assign cmd_read_id_finished = state == S_WAIT && command_wait_counter == 16'd0 &
 
 //------------------------------------------------------------------------------ cmd: specify
     
-reg [3:0] specify_srt;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)           specify_srt <= 4'd0;
     else if(cmd_specify_start)  specify_srt <= command[7:4];
 end
 
-reg [3:0] specify_hut;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)           specify_hut <= 4'b0;
     else if(cmd_specify_start)  specify_hut <= command[3:0];
 end
 
-reg [6:0] specify_hlt;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)           specify_hlt <= 7'b0;
     else if(cmd_specify_start)  specify_hlt <= io_writedata[7:1];
 end
 
-reg ndma;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)           ndma <= 1'b0;
     else if(cmd_specify_start)  ndma <= io_writedata[0];
@@ -575,7 +610,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(io_read_valid && io_address == 3'd5 && ~(read_in_io_mode))  irq <= 1'b0;
 end
 
-reg [2:0] reset_sensei;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                   reset_sensei <= 3'd0;
     else if(sw_reset)                                                   reset_sensei <= 3'd4;
@@ -589,14 +623,12 @@ assign reset_sensei_drive =
     (reset_sensei == 3'd2)?     2'd2 :
                                 2'd3;
 
-reg pending_interrupt;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)           pending_interrupt <= 1'b0;
     else if(raise_interrupt)    pending_interrupt <= 1'b1;
     else if(~(irq))             pending_interrupt <= 1'b0;
 end
 
-reg pending_interrupt_last;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)   pending_interrupt_last <= 1'b0;
     else                pending_interrupt_last <= pending_interrupt;
@@ -604,7 +636,6 @@ end
 
 //------------------------------------------------------------------------------ cmd: recalibrate / seek
 
-reg [7:0] delay_steps;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                       delay_steps <= 8'd0;
     else if(cmd_recalibrate_start)                                          delay_steps <= (cylinder == 8'd0)? 8'd0 : cylinder - 8'd1;
@@ -612,7 +643,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(delay_rate == 16'd0 && delay_srt == 4'd0 && delay_steps > 8'd0) delay_steps <= delay_steps - 8'd1;
 end
 
-reg [3:0] delay_srt;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                   delay_srt <= 4'd0;
     else if(cmd_recalibrate_start)                      delay_srt <= specify_srt;
@@ -621,7 +651,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(delay_rate == 16'd0 && delay_steps > 8'd0)  delay_srt <= specify_srt;
 end
 
-reg [15:0] delay_rate;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                               delay_rate <= 16'd0;
     else if(cmd_recalibrate_start)                  delay_rate <= (data_rate == 2'd0)? media_wait_rate_0 : (data_rate == 2'd1)? media_wait_rate_1 : (data_rate == 2'd2)? media_wait_rate_2 : media_wait_rate_3;
@@ -632,7 +661,6 @@ end
 
 assign delay_last_cycle = delay_steps == 8'd0 && delay_srt == 4'd0 && delay_rate == 16'd1;
 
-reg [7:0] status_reg0_temp;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                   status_reg0_temp <= 8'd0;
     else if(pending_interrupt && pending_interrupt_last == 1'b0)        status_reg0_temp <= reply[7:0];
@@ -641,25 +669,21 @@ end
 
 //------------------------------------------------------------------------------ cmd: configure / lock / unlock
 
-reg [7:0] config_config;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                   config_config <= 8'd0;
     else if(cmd_configure_mode_start)   config_config <= command[7:0];
 end
 
-reg [7:0] config_pretrk;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                   config_pretrk <= 8'd0;
     else if(cmd_configure_mode_start)   config_pretrk <= io_writedata;
 end
 
-reg [7:0] perp_mode;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                       perp_mode <= 8'd0;
     else if(cmd_perpendicular_mode_start)   perp_mode <= io_writedata;
 end
 
-reg lock;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)           lock <= 1'd0;
     else if(cmd_unlock_start)   lock <= 1'd0;
@@ -679,27 +703,23 @@ assign cmd_format_hang_on_start =
 
 assign cmd_format_ok_at_start = cmd_format_track_start && ~(cmd_format_writeprotected_at_start) && ~(cmd_format_hang_on_start);
 
-reg [31:0] format_data;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                       format_data <= 32'd0;
     else if(write_in_io_mode && format_data_count < 3'd4)   format_data <= { format_data[23:0], io_writedata };
     else if(dma_floppy_ack && format_data_count < 3'd4)     format_data <= { format_data[23:0], dma_floppy_readdata };
 end
 
-reg [2:0] format_data_count;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                           format_data_count <= 3'd0;
     else if(state != S_WAIT_FOR_FORMAT_INPUT)                                   format_data_count <= 3'd0;
     else if((write_in_io_mode || dma_floppy_ack) && format_data_count < 3'd4)   format_data_count <= format_data_count + 3'd1;
 end
 
-reg [7:0] format_filler_byte;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                   format_filler_byte <= 8'd0;
     else if(cmd_format_ok_at_start)     format_filler_byte <= io_writedata;
 end
 
-reg [7:0] format_sector_count;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                                               format_sector_count <= 8'd0;
     else if(cmd_format_ok_at_start)                                                                 format_sector_count <= command[15:8];
@@ -763,31 +783,6 @@ end
 
 //------------------------------------------------------------------------------ state
 
-localparam [4:0] S_IDLE                         = 5'd0;
-
-localparam [4:0] S_PREPARE_COUNT                = 5'd1;
-localparam [4:0] S_COUNT_LOGICAL                = 5'd2;
-
-localparam [4:0] S_SD_MUTEX                     = 5'd3;
-localparam [4:0] S_SD_AVALON_BASE               = 5'd4;
-localparam [4:0] S_SD_ADDRESS                   = 5'd5;
-localparam [4:0] S_SD_BLOCK_COUNT               = 5'd6;
-
-localparam [4:0] S_SD_CONTROL                   = 5'd7;
-localparam [4:0] S_SD_READ_WAIT_FOR_DATA        = 5'd8;
-localparam [4:0] S_WAIT_FOR_EMPTY_READ_FIFO     = 5'd9;
-
-localparam [4:0] S_UPDATE_SECTOR                = 5'd10;
-localparam [4:0] S_CHECK_TC                     = 5'd11;
-localparam [4:0] S_WAIT                         = 5'd12;
-
-localparam [4:0] S_WAIT_FOR_FULL_WRITE_FIFO     = 5'd13;
-localparam [4:0] S_SD_WRITE_WAIT_FOR_EMPTY_FIFO = 5'd14;
-
-localparam [4:0] S_WAIT_FOR_FORMAT_INPUT        = 5'd15;
-localparam [4:0] S_SD_FORMAT_WAIT_FOR_FILL      = 5'd16;
-
-reg [4:0] state;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                                                   state <= S_IDLE;
     
@@ -839,7 +834,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(state == S_CHECK_TC)                                                                        state <= S_PREPARE_COUNT;
 end
 
-reg [15:0] command_wait_counter;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                           command_wait_counter <= 16'd0;
     else if(state != S_WAIT)                                    command_wait_counter <= media_wait_cycles;
@@ -848,21 +842,20 @@ end
 
 //------------------------------------------------------------------------------ count logical sector
 
-reg [15:0] mult_a; //sectors per track * heads
+// mult_a is sectors per track * heads
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)	                mult_a <= 16'd0;
     else if(state == S_PREPARE_COUNT)   mult_a <= (media_heads == 2'd2)? { 7'd0, media_sectors_per_track, 1'b0 } : { 8'b0, media_sectors_per_track };
     else if(state == S_COUNT_LOGICAL)   mult_a <= { mult_a[14:0], 1'b0 };
 end
 
-reg [7:0] mult_b; //cylinder
+// mult_b is cylinder
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                   mult_b <= 8'd0;
     else if(state == S_PREPARE_COUNT)   mult_b <= cylinder;
     else if(state == S_COUNT_LOGICAL)   mult_b <= { 1'b0, mult_b[7:1] };
 end
 
-reg [15:0] logical_sector;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                               logical_sector <= 16'd0;
     else if(state == S_PREPARE_COUNT)               logical_sector <= ((head == 1'b1)? { 8'd0, media_sectors_per_track } : 16'd0) + { 8'd0, sector } - 16'd1;
@@ -874,7 +867,6 @@ end
 assign increment_only_sector = sector < eot && sector < media_sectors_per_track;
 assign increment_cylinder    = ~(increment_only_sector) && (~(cmd_read_write_multitrack) || head == 1'b1);
 
-reg [7:0] cylinder;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                                                                       cylinder <= 8'd0;
     else if(sw_reset)                                                                                                       cylinder <= 8'd0;
@@ -886,7 +878,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(state == S_WAIT_FOR_FORMAT_INPUT && format_data_count == 3'd4)                                                  cylinder <= format_data[31:24];
 end
 
-reg head;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                                                                       head <= 1'd0;
     else if(sw_reset)                                                                                                       head <= 1'b0;
@@ -900,7 +891,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(state == S_UPDATE_SECTOR && ~(increment_only_sector) && cmd_read_write_multitrack)                              head <= ~(head);
 end
 
-reg [7:0] sector;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                                                                                       sector <= 8'd1;
     else if(sw_reset)                                                                                                       sector <= 8'd1;
@@ -911,7 +901,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(state == S_WAIT_FOR_FORMAT_INPUT && format_data_count == 3'd4)                                                  sector <= format_data[15:8];
 end
 
-reg [7:0] eot;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                       eot <= 8'd0;
     else if(sw_reset)                       eot <= 8'd0;
@@ -928,13 +917,11 @@ assign sd_master_address =
     (state == S_SD_CONTROL)?        32'd12 :
                                     32'd0;
 
-reg [2:0] sd_mutex_wait;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                       sd_mutex_wait <= 3'd0;
     else if(state == S_SD_MUTEX && sd_master_read == 1'b0)  sd_mutex_wait <= sd_mutex_wait + 3'd1;
 end
 
-reg sd_read_done;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                                           sd_read_done <= 1'b0;
     else if(sd_master_read && sd_master_waitrequest == 1'b0)    sd_read_done <= 1'b1;
@@ -954,19 +941,16 @@ assign sd_master_writedata =
     (state == S_SD_CONTROL && cmd_format_in_progress)?          32'd3 : //CONTROL_WRITE
                                                                 32'd0;
 
-reg [8:0] sd_write_counter;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)           sd_write_counter <= 9'd0;
     else if(sd_slave_write)     sd_write_counter <= sd_write_counter + 9'd1;
 end
 
-reg [8:0] sd_read_counter;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)               sd_read_counter <= 9'd0;
     else if(sd_slave_read_valid)    sd_read_counter <= sd_read_counter + 9'd1;
 end
 
-reg [31:0] sd_sector;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                   sd_sector <= 32'd0;
     else if(state == S_SD_AVALON_BASE)  sd_sector <= ({ 16'd0, logical_sector } >= media_sector_count)? media_sd_base + media_sector_count - 32'd1 : media_sd_base + { 16'd0, logical_sector };
@@ -982,7 +966,6 @@ assign dma_floppy_req = ~(execute_ndma) && ~(was_dma_terminal) && dma_irq_enable
     (cmd_format_in_progress       && format_data_count < 3'd4 && state == S_WAIT_FOR_FORMAT_INPUT)
 );
 
-reg was_dma_terminal;
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)               was_dma_terminal <= 1'd0;
     else if(state == S_IDLE)        was_dma_terminal <= 1'd0;
