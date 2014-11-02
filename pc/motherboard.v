@@ -8,7 +8,7 @@ module motherboard(
 		   output PIEZO_SPEAKER, // speaker
 		   inout KEYBOARD_CLK, // keyboard clock
 		   inout KEYBOARD_DATA, // keyboard data
-			input GPIO_SW_C, // reset trigger
+		   input GPIO_SW_C, // reset trigger
 		   output HDR1_2, // vga red o 0
 		   output HDR1_4, // vga red o 1
 		   output HDR1_6, // vga green o 0
@@ -99,7 +99,6 @@ module motherboard(
    wire 		 vert_sync; // vga vertical sync
    
    // Some assignments
-   assign pwr_good = GPIO_SW_C; // reset
    assign clk_100 = USER_CLK; // user clock is 100 MHz clock
    assign xa0_n = xa[0]; // not sure if needs to be inverted or not
    assign PIEZO_SPEAKER = spkr_data_out;
@@ -111,6 +110,13 @@ module motherboard(
    assign HDR1_12 = vga_blue_o[1]; // vga blue o 1
    assign HDR1_14 = horiz_sync; // vga horizontal sync
    assign HDR1_16 = vert_sync; // vga vertical sync
+
+   // Debounce Module
+   debounce deb(
+		.clk(clk_100), // clock signal
+		.rst(GPIO_SW_C), // reset signal from button
+		.drst(pwr_good) // debounced reset signal
+		);
    
    // Sheet 1
    sheet1 s1(
