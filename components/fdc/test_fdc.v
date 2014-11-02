@@ -42,6 +42,7 @@ module test_fdc();
       // Set Up Systems
       clk = 1'b0;
       rst = 1'b0;
+      testMSR = 8'hE0; //Testing initial Main status register (hypothetically should be this)
       dack2_n = 1'b1;
       tc = 1'b0;
       ior_n = 1'b1;
@@ -55,7 +56,7 @@ module test_fdc();
       ior_n = 1'b0;
       a = 20'h34f;
       @(posedge clk);
-      errors = errors + (d == testMSR);
+      errors = errors + (d != testMSR); //should be right
       
       
       // Conclude Simulation
