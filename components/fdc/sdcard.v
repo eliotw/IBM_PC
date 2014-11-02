@@ -23,6 +23,7 @@ module sdcard(
 
    // Remember, there are 512 bytes per sector, 2^9
    // There can be a max of 2880 sectors, 2^12
+   // On the SD card? because a floppy should only have 8 sectors
 
    // Parameters
    parameter [3:0] id = 4'b0001,
@@ -216,7 +217,7 @@ module fakeramcore(
 		   output reg [7:0] douta
 		   );
    
-   reg [7:0] 			reg_array [2097151:0];
+   reg [7:0] 			reg_array [2097151:0]; //? I'm confused
 
    integer 			i;
 
