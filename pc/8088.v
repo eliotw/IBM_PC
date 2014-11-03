@@ -270,7 +270,7 @@ module control_fsm
         dtr = 1'b1;
         rd_n = 1; 
         wr_n = 1;
-        den_n = 0; 
+        den_n = 1; 
         inc_count = 0;
         clr_count = 0; 
         ld_out_regs = 0;
@@ -285,12 +285,12 @@ module control_fsm
                     ale = 1;
                     dtr = (write)? 1 : 0;
                     ld_out_regs = (write)? 1 : 0;
-                    den_n = 1;
                     write_bus = 1;
                 end
             end
             addr: begin
                 cpu_block = 1;
+                den_n = 0;
                 if (read) begin
                     dtr = 0;
                     rd_n = 0;
@@ -305,6 +305,7 @@ module control_fsm
             interm: begin
                 rd_n = 0;
                 dtr = 0;
+                den_n = 0;
                 cpu_block = 1;
                 inc_count = 1;
                 ld_lsb_i = (bytes_transferred == 0);
@@ -314,7 +315,7 @@ module control_fsm
                 if (~data_tran_done) begin
                     cpu_block = 1;
                     ale = 1;
-                    den_n = 1;
+                    den_n = 0;
                     write_bus = 1;
                     if (read) begin
                         rd_n = 0;
