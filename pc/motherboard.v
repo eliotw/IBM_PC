@@ -763,7 +763,7 @@ module sheet3(
    wire 		   cas0, cas1;
    wire [3:0] 		   y1, x1;
    wire 		   refresh_gate_n;
-   wire dack0;
+   
    // Assignments of outputs
    assign wrt_nmi_reg_n = xiow_n | b1;
    assign wrt_dma_pg_reg_n = b0 | xiow_n;
@@ -771,7 +771,7 @@ module sheet3(
    assign ram_addr_sel_n = y0[0];
    assign rasc = (~xmemw_n | ~xmemr_n);
    //assign cas_nc = ~(cas0 & cas1);
-   assign refresh_gate_n = ~(rasc & dack0);
+   assign refresh_gate_n = ~(rasc & dack_0);
    assign ras_n[0] = refresh_gate_n & y1[0];
    assign ras_n[1] = refresh_gate_n & y1[1];
    assign ras_n[2] = refresh_gate_n & y1[2];
@@ -813,7 +813,7 @@ module sheet3(
 	     .b(a17),
 	     .c(1'b1),
 	     .g2b(ram_addr_sel_n),
-	     .g2a(dack0),
+	     .g2a(dack_0),
 	     .g1(rasc),
 	     .y({y1,x1})
 	     );
@@ -1006,7 +1006,7 @@ module sheet5(
 		.a({e1,memw_n,memr_n,iow_n,ior_n}),
 		.b({e0,xmemw_n,xmemr_n,xiow_n,xior_n}),
 		.dir(dma_aen_n),
-		.g_n(aen_brd)
+		.g_n(1'b0)
 		);
 
    // ROM Module
@@ -1292,6 +1292,12 @@ module sheet9(
    assign pc[2] = 1'b1;
    assign pc[3] = ~pb[2]; // 256 k of RAM
    
+	// PC assignments
+	assign pc[7] = pck;
+	assign pc[6] = io_ch_ck;
+	assign pc[5] = tc_2_out;
+	assign pc[4] = cass_data_in;
+	
    // Other Assignments
    assign pa = (pb[7] == 1'b1) ? px : py;
    

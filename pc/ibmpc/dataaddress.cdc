@@ -1,18 +1,21 @@
 #ChipScope Core Inserter Project File Version 3.0
-#Sun Nov 02 17:24:23 EST 2014
+#Mon Nov 03 11:24:50 EST 2014
 Project.device.designInputFile=/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/ibmpc/motherboard_cs.ngc
 Project.device.designOutputFile=/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/ibmpc/motherboard_cs.ngc
 Project.device.deviceFamily=14
 Project.device.enableRPMs=true
 Project.device.outputDirectory=/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/ibmpc/_ngo
 Project.device.useSRL16=true
-Project.filter.dimension=6
-Project.filter<0>=
-Project.filter<1>=*adr*
-Project.filter<2>=*adr
-Project.filter<3>=adr
-Project.filter<4>=clk
-Project.filter<5>=88
+Project.filter.dimension=9
+Project.filter<0>=*a*
+Project.filter<1>=a*
+Project.filter<2>=a
+Project.filter<3>=
+Project.filter<4>=*adr*
+Project.filter<5>=*adr
+Project.filter<6>=adr
+Project.filter<7>=clk
+Project.filter<8>=88
 Project.icon.boundaryScanChain=1
 Project.icon.enableExtTriggerIn=false
 Project.icon.enableExtTriggerOut=false

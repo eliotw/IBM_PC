@@ -49,15 +49,20 @@ always @(posedge fpga_clk) begin
     else begin
         pclk <= 1'b0;
     end
-
-    if ((counter % 21) < 7) begin
+// if ((counter % 21) < 7) begin
+    if ((0 <= counter && counter < 7) || (21 <= counter && counter < 28)) begin
         clk <= 1'b1;
     end
     else begin
         clk <= 1'b0;
     end
-
-    if ((counter % 7) < 3) begin
+// if ((counter % 7) < 3) begin
+    if ((0 <= counter && counter < 2) 
+		|| (7 <= counter && counter < 9) 
+		|| (14 <= counter && counter < 16) 
+		|| (21 <= counter && counter < 23) 
+		|| (28 <= counter && counter < 30) 
+		|| (35 <= counter && counter < 37)) begin
         osc <= 1'b1;
     end
     else begin

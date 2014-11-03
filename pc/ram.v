@@ -26,7 +26,7 @@ module ram_bank(
 	assign md_in = md;
 	assign mdp_in = mdp;
 	assign md = enexp ? md_out : 8'bz;
-	assign mdp = enexp ? mdp_out : 8'bz;
+	assign mdp = enexp ? mdp_out : 1'bz;
 	
 	ram_core_slice central_ram_core(
 	.clk(clk), // clock
@@ -84,6 +84,7 @@ module ram_core_slice(
 
 	// register to activate writing
 	reg wer;
+	// IGNORED B/C NEVER USED
 	
 	// states for fsm
 	parameter IDLE = 2'b00, RAS = 2'b01, CAS = 2'b10, ERR = 2'b11;
