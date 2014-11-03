@@ -1399,7 +1399,7 @@ module sheet10(
    
    // Output Assignments
    assign io_ch_ck_n = 1'b1;
-   assign io_ch_rdy = 1'b0;
+   assign io_ch_rdy = 1'b1;
    assign drq1 = 1'b0;
    assign drq2 = 1'b0;
    assign drq3 = 1'b0;
