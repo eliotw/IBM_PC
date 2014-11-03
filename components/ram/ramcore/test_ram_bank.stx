@@ -1,0 +1,42 @@
+Release 14.2 - xst P.28xd (lin64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to /afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/ram/ramcore/xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.12 secs
+ 
+--> 
+Parameter xsthdpdir set to /afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/ram/ramcore/xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.12 secs
+ 
+--> 
+WARNING:Xst:3164 - Option "-debug" found multiple times in the command line. Only the first occurence is considered.
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "ipcore_dir/ramcore.v" in library work
+Compiling verilog file "../ram.v" in library work
+Module <ramcore> compiled
+Module <ram_bank> compiled
+Compiling verilog file "../test_ram.v" in library work
+Module <ram_core_slice> compiled
+Compiling verilog file "ipcore_dir/ramcore_synth.v" in library work
+Module <test_ram_bank> compiled
+ERROR:HDLCompilers:27 - "ipcore_dir/ramcore_synth.v" line 61 Illegal redeclaration of 'ramcore'
+Module <ramcore> compiled
+Analysis of file <"test_ram_bank.prj"> failed.
+--> 
+
+
+Total memory usage is 564976 kilobytes
+
+Number of errors   :    1 (   0 filtered)
+Number of warnings :    1 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

@@ -26,7 +26,7 @@ module ram_bank(
 	assign md_in = md;
 	assign mdp_in = mdp;
 	assign md = enexp ? md_out : 8'bz;
-	assign mdp = enexp ? mdp_out : 8'bz;
+	assign mdp = enexp ? mdp_out : 1'bz;
 	
 	ram_core_slice central_ram_core(
 	.clk(clk), // clock
@@ -129,8 +129,8 @@ module ram_core_slice(
 			raddr = raddr;
 			caddr = a;
 			nxt = CAS;
-			enexp = 1'b0;
-			wer = 1'b0;
+			enexp = ~we;
+			wer = we;
 			end
 			else begin
 			raddr = raddr;
@@ -190,7 +190,7 @@ module ram_core_slice(
 	// RAM Core
 	ramcore central_ram_core (
 		.clka(clk), // input clka
-		.wea(we), // input [0 : 0] wea
+		.wea(wer), // input [0 : 0] wea
 		.addra(addr), // input [15 : 0] addra
 		.dina(din), // input [8 : 0] dina
 		.douta(dout) // output [8 : 0] douta

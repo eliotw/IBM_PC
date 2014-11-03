@@ -1116,7 +1116,7 @@ module sheet6(
 		.b(a[11:8]),
 		.y(ma[3:0]),
 		.s(addr_sel),
-		.g(1'b0)
+		.g(1'b1)
 		);
 
    ls158 ls1581(
@@ -1124,7 +1124,7 @@ module sheet6(
 	        .b(a[15:12]),
 	        .y(ma[7:4]),
 	        .s(addr_sel),
-	        .g(1'b0)
+	        .g(1'b1)
 		);
 
    // LS280 Module

@@ -23,6 +23,7 @@
 #endif
 static const char *ng0 = "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/components/ram/ram.v";
 static unsigned int ng1[] = {0U, 255U};
+static unsigned int ng2[] = {0U, 1U};
 
 
 
@@ -267,7 +268,6 @@ static void Cont_29_3(char *t0)
 {
     char t3[8];
     char t4[8];
-    char t18[8];
     char *t1;
     char *t2;
     char *t5;
@@ -283,24 +283,24 @@ static void Cont_29_3(char *t0)
     unsigned int t15;
     char *t16;
     char *t17;
+    unsigned int t18;
     unsigned int t19;
     unsigned int t20;
     unsigned int t21;
-    unsigned int t22;
+    char *t22;
     char *t23;
     char *t24;
     char *t25;
     char *t26;
-    char *t27;
+    unsigned int t27;
     unsigned int t28;
-    unsigned int t29;
-    char *t30;
+    char *t29;
+    unsigned int t30;
     unsigned int t31;
-    unsigned int t32;
-    char *t33;
+    char *t32;
+    unsigned int t33;
     unsigned int t34;
-    unsigned int t35;
-    char *t36;
+    char *t35;
 
 LAB0:    t1 = (t0 + 5024U);
     t2 = *((char **)t1);
@@ -332,11 +332,11 @@ LAB7:    t12 = (t4 + 4);
     if (t15 > 0)
         goto LAB8;
 
-LAB9:    t19 = *((unsigned int *)t4);
-    t20 = (~(t19));
-    t21 = *((unsigned int *)t12);
-    t22 = (t20 || t21);
-    if (t22 > 0)
+LAB9:    t18 = *((unsigned int *)t4);
+    t19 = (~(t18));
+    t20 = *((unsigned int *)t12);
+    t21 = (t19 || t20);
+    if (t21 > 0)
         goto LAB10;
 
 LAB11:    if (*((unsigned int *)t12) > 0)
@@ -347,27 +347,27 @@ LAB13:    if (*((unsigned int *)t4) > 0)
 
 LAB15:    memcpy(t3, t16, 8);
 
-LAB16:    t23 = (t0 + 5928);
-    t24 = (t23 + 56U);
-    t25 = *((char **)t24);
-    t26 = (t25 + 56U);
-    t27 = *((char **)t26);
-    memset(t27, 0, 8);
-    t28 = 1U;
-    t29 = t28;
-    t30 = (t3 + 4);
-    t31 = *((unsigned int *)t3);
+LAB16:    t22 = (t0 + 5928);
+    t23 = (t22 + 56U);
+    t24 = *((char **)t23);
+    t25 = (t24 + 56U);
+    t26 = *((char **)t25);
+    memset(t26, 0, 8);
+    t27 = 1U;
+    t28 = t27;
+    t29 = (t3 + 4);
+    t30 = *((unsigned int *)t3);
+    t27 = (t27 & t30);
+    t31 = *((unsigned int *)t29);
     t28 = (t28 & t31);
-    t32 = *((unsigned int *)t30);
-    t29 = (t29 & t32);
-    t33 = (t27 + 4);
-    t34 = *((unsigned int *)t27);
-    *((unsigned int *)t27) = (t34 | t28);
-    t35 = *((unsigned int *)t33);
-    *((unsigned int *)t33) = (t35 | t29);
-    xsi_driver_vfirst_trans(t23, 0, 0);
-    t36 = (t0 + 5640);
-    *((int *)t36) = 1;
+    t32 = (t26 + 4);
+    t33 = *((unsigned int *)t26);
+    *((unsigned int *)t26) = (t33 | t27);
+    t34 = *((unsigned int *)t32);
+    *((unsigned int *)t32) = (t34 | t28);
+    xsi_driver_vfirst_trans(t22, 0, 0);
+    t35 = (t0 + 5640);
+    *((int *)t35) = 1;
 
 LAB1:    return;
 LAB4:    *((unsigned int *)t4) = 1;
@@ -380,16 +380,15 @@ LAB6:    t11 = (t4 + 4);
 
 LAB8:    t16 = (t0 + 2808U);
     t17 = *((char **)t16);
-    memcpy(t18, t17, 8);
     goto LAB9;
 
-LAB10:    t16 = ((char*)((ng1)));
+LAB10:    t16 = ((char*)((ng2)));
     goto LAB11;
 
-LAB12:    xsi_vlog_unsigned_bit_combine(t3, 8, t18, 8, t16, 8);
+LAB12:    xsi_vlog_unsigned_bit_combine(t3, 1, t17, 1, t16, 1);
     goto LAB16;
 
-LAB14:    memcpy(t3, t18, 8);
+LAB14:    memcpy(t3, t17, 8);
     goto LAB16;
 
 }

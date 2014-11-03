@@ -84,7 +84,6 @@ module ram_core_slice(
 
 	// register to activate writing
 	reg wer;
-	// IGNORED B/C NEVER USED
 	
 	// states for fsm
 	parameter IDLE = 2'b00, RAS = 2'b01, CAS = 2'b10, ERR = 2'b11;
@@ -130,8 +129,8 @@ module ram_core_slice(
 			raddr = raddr;
 			caddr = a;
 			nxt = CAS;
-			enexp = 1'b0;
-			wer = 1'b0;
+			enexp = ~we;
+			wer = we;
 			end
 			else begin
 			raddr = raddr;
@@ -191,7 +190,7 @@ module ram_core_slice(
 	// RAM Core
 	ramcore central_ram_core (
 		.clka(clk), // input clka
-		.wea(we), // input [0 : 0] wea
+		.wea(wer), // input [0 : 0] wea
 		.addra(addr), // input [15 : 0] addra
 		.dina(din), // input [8 : 0] dina
 		.douta(dout) // output [8 : 0] douta
