@@ -270,7 +270,7 @@ module control_fsm
         dtr = 1'b1;
         rd_n = 1; 
         wr_n = 1;
-        den_n = 1; 
+        den_n = 0; 
         inc_count = 0;
         clr_count = 0; 
         ld_out_regs = 0;
