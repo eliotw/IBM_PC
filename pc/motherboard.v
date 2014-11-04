@@ -427,6 +427,7 @@ module sheet1(
    wire 	     u84;
    wire 	     dtr;
    wire [3:0] 	     xrd; // extra data
+	wire iom;
    
    // Assign powergood to reset
    assign reset = pwr_good;
@@ -435,7 +436,8 @@ module sheet1(
    assign rqgti_n = 1'b1;
    assign test_n = 1'b1;
    assign npnpi = 1'b0;
-   
+   assign s2_n = ~iom;
+	
    // 8284 clock generation
    intel8284a i8284(
 		    .fpga_clk(clk_100),
@@ -466,7 +468,7 @@ module sheet1(
 		.dtr(s1_n),               // indicates direction of data transfer. low-> to 8088, high-> from 8088
 		.wr_n(lock_n),               // indicates that the processor is writing to mem or I/O device
 		.rd_n(),               // indicates that the processor is reading from mem or I/O device (not connect)
-		.iom(s2_n),               // indicates that processor is accessing mem or I/O. low-> mem, high-> I/O
+		.iom(iom),               // indicates that processor is accessing mem or I/O. low-> mem, high-> I/O
 		.sso(),                // status output (not connect)
 		.ad(adp)           // address/data bus
 	);
@@ -493,12 +495,12 @@ module sheet1(
 	           .aen_n(aen_br0),
 	           .cen(aen_n), // output enable
 	           .iob(1'b0), // set equal to 0
-	           .mrdc_n(memw_n),
+	           .mrdc_n(memr_n),
 	           .mwtc_n(), // not connected
-	           .amwc_n(memr_n),
-	           .iorc_n(iow_n),
+	           .amwc_n(memw_n),
+	           .iorc_n(ior_n),
 	           .iowc_n(), // not connected
-	           .aiowc_n(ior_n),
+	           .aiowc_n(iow_n),
 	           .inta_n(inta_n),
 	           .dtr(dtr),
 	           .den(den),
@@ -998,7 +1000,7 @@ module sheet5(
    ls245 ls2450(
 		.a(d),
 		.b(xd),
-		.dir(~b2),
+		.dir(b2),
 		.g_n(aen_brd)
 		);
 
