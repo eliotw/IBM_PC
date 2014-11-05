@@ -5,6 +5,7 @@
 module intel8288(
 		 input [2:0] s_n,
 		 input clk,
+		 input rst,
 		 input aen_n,
 		 input cen, // output enable
 		 input iob, // set equal to 0
@@ -97,7 +98,7 @@ module intel8288(
 	   nextstate = s2;
 	end
 	s2: begin
-	   nextstate = s0;
+	   nextstate = s3;
 	end
 	s3: begin
 	   nextstate = s0;
@@ -127,8 +128,9 @@ module intel8288(
    end
    
    // FSM Movement Logic
-   always @(posedge clk) begin
-      state <= nextstate;
+   always @(posedge clk or posedge rst) begin
+		if(rst) state <= s0;
+		else state <= nextstate;
    end
    
 endmodule // intel8288

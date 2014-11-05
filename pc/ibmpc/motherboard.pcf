@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.28xd on Wed Nov 05 12:15:31 2014
+// Written by: Map P.28xd on Wed Nov 05 13:11:53 2014
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -1996,6 +1996,7 @@ TIMEGRP D_CLK = BEL "s1/i8288/state_FSM_FFd1" BEL "s1/i8288/state_FSM_FFd2"
         BEL "s1/i8088/core/fetch/off_l_5" BEL "s1/i8088/core/fetch/off_l_4"
         BEL "s1/i8088/core/fetch/off_l_3" BEL "s1/i8088/core/fetch/off_l_2"
         BEL "s1/i8088/core/fetch/off_l_1" BEL "s1/i8088/core/fetch/off_l_0"
+        BEL "s1/i8088/core/fetch/pref_l_1" BEL "s1/i8088/core/fetch/sop_l_2"
         BEL "s1/i8088/core/fetch/opcode_l_7" BEL
         "s1/i8088/core/fetch/opcode_l_6" BEL "s1/i8088/core/fetch/opcode_l_5"
         BEL "s1/i8088/core/fetch/opcode_l_4" BEL
@@ -2048,17 +2049,19 @@ TIMEGRP D_CLK = BEL "s1/i8288/state_FSM_FFd1" BEL "s1/i8288/state_FSM_FFd2"
         "s6/rb2/central_ram_core/fsm_FSM_FFd2" BEL
         "s6/rb3/central_ram_core/fsm_FSM_FFd1" BEL
         "s6/rb3/central_ram_core/fsm_FSM_FFd2" BEL
-        "s1/i8088/core/fetch/pref_l_1" BEL "s1/i8088/core/fetch/pref_l_0" BEL
-        "s1/i8088/core/fetch/sop_l_2" BEL "s1/i8088/core/fetch/sop_l_1" BEL
-        "s1/i8088/core/fetch/sop_l_0" BEL "s1/i8088/core/fetch/lock_l" BEL
-        "s1/i8088/lsb_i/q_3_1" BEL "s1/i8088/lsb_i/q_1_1" BEL
-        "s1/i8088/lsb_i/q_0_1" BEL "s1/i8088/core/fetch/state_1_1" BEL
-        "s1/i8088/core/fetch/state_0_1" BEL "s1/i8088/core/fetch/state_2_1"
-        BEL "s1/i8088/lsb_i/q_3_2" BEL "s1/i8088/core/fetch/state_0_2" BEL
+        "s1/i8088/core/fetch/lock_l" BEL "s1/i8088/core/fetch/pref_l_0" BEL
+        "s1/i8088/core/fetch/sop_l_1" BEL "s1/i8088/core/fetch/sop_l_0" BEL
+        "s1/i8088/core/fetch/opcode_l_3_1" BEL "s1/i8088/core/fetch/state_2_1"
+        BEL "s1/i8088/core/fetch/state_1_1" BEL
+        "s1/i8088/core/fetch/state_0_1" BEL "s1/i8088/lsb_i/q_1_1" BEL
         "s1/i8088/core/fetch/state_2_2" BEL "s1/i8088/core/fetch/state_1_2"
-        BEL "s1/i8088/lsb_i/q_3_3" BEL "s1/i8088/core/fetch/state_2_3" BEL
-        "s1/i8088/core/fetch/state_1_3" BEL "s1/i8088/core/fetch/state_0_3"
-        BEL "s1/i8284/clk_BUFG" BEL "dclk_BUFG" BEL
+        BEL "s1/i8088/core/fetch/state_0_2" BEL
+        "s1/i8088/core/fetch/opcode_l_0_1" BEL "s1/i8088/lsb_i/q_1_2" BEL
+        "s1/i8088/core/fetch/state_2_3" BEL "s1/i8088/core/fetch/state_1_3"
+        BEL "s1/i8088/core/fetch/state_0_3" BEL
+        "s1/i8088/core/fetch/state_2_4" BEL "s1/i8088/core/fetch/state_1_4"
+        BEL "s1/i8088/core/fetch/state_0_4" BEL "s1/i8284/clk_BUFG" BEL
+        "dclk_BUFG" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/Mshreg_szpipe_18" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/szpipe_18" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/Mshreg_ovf" BEL

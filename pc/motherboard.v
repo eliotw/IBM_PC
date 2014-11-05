@@ -492,6 +492,7 @@ module sheet1(
    intel8288 i8288(
 	           .s_n({s2_n,s1_n,s0_n}),
 	           .clk(clk88),
+				  .rst(reset),
 	           .aen_n(aen_br0),
 	           .cen(aen_n), // output enable
 	           .iob(1'b0), // set equal to 0
@@ -527,7 +528,7 @@ module sheet1(
 	    );
 
    ls373 u7(
-	    .d(adp),
+	    .d(ap[7:0]),
 	    .q(a[7:0]),
 	    .g(ale),
 	    .oe_n(aen_br0)
