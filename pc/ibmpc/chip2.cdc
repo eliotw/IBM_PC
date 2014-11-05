@@ -1,5 +1,5 @@
 #ChipScope Core Inserter Project File Version 3.0
-#Tue Nov 04 18:33:12 EST 2014
+#Tue Nov 04 19:21:46 EST 2014
 Project.device.designInputFile=/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/ibmpc/motherboard_cs.ngc
 Project.device.designOutputFile=/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/ibmpc/motherboard_cs.ngc
 Project.device.deviceFamily=14
