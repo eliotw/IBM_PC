@@ -97,7 +97,7 @@ module intel8288(
 	   nextstate = s2;
 	end
 	s2: begin
-	   nextstate = s3;
+	   nextstate = s0;
 	end
 	s3: begin
 	   nextstate = s0;

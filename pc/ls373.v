@@ -21,7 +21,7 @@ module ls373(
    assign q = (oe) ? rq : 8'bzzzzzzzz;
    
    // D-Latch
-   always @(g or d) begin
+   always @(posedge g) begin
       if(g) begin
 	 rq <= d;
       end

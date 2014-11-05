@@ -10,7 +10,7 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Tue Nov  4 20:46:05 2014
+Mapped Date    : Wed Nov  5 12:14:41 2014
 
 vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable is not set.
@@ -29,7 +29,7 @@ WARNING:Security:44 - Since no license file was found,
        (xlcm or "Manage Xilinx Licenses")
        to assist in obtaining a license.
 WARNING:Security:42 - Your license support version '2014.11' for ISE expires in
-26 days after which you will not qualify for Xilinx software updates or new
+25 days after which you will not qualify for Xilinx software updates or new
 releases.
 ----------------------------------------------------------------------
 Mapping design into LUTs...
@@ -256,6 +256,38 @@ WARNING:Pack:2874 - Trimming timing constraints from pin
    of frag REGCLKBL connected to power/ground net
    U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I
    _V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[0].u_r
+   amb36/U_RAMB36_REGCLKBL_tiesig
+WARNING:Pack:2874 - Trimming timing constraints from pin
+   U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I
+   _V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[1].u_r
+   amb36/U_RAMB36
+   of frag REGCLKAU connected to power/ground net
+   U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I
+   _V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[1].u_r
+   amb36/U_RAMB36_REGCLKAU_tiesig
+WARNING:Pack:2874 - Trimming timing constraints from pin
+   U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I
+   _V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[1].u_r
+   amb36/U_RAMB36
+   of frag REGCLKAL connected to power/ground net
+   U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I
+   _V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[1].u_r
+   amb36/U_RAMB36_REGCLKAL_tiesig
+WARNING:Pack:2874 - Trimming timing constraints from pin
+   U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I
+   _V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[1].u_r
+   amb36/U_RAMB36
+   of frag REGCLKBU connected to power/ground net
+   U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I
+   _V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[1].u_r
+   amb36/U_RAMB36_REGCLKBU_tiesig
+WARNING:Pack:2874 - Trimming timing constraints from pin
+   U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I
+   _V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[1].u_r
+   amb36/U_RAMB36
+   of frag REGCLKBL connected to power/ground net
+   U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I
+   _V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[1].u_r
    amb36/U_RAMB36_REGCLKBL_tiesig
 WARNING:Pack:2874 - Trimming timing constraints from pin
    s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.
@@ -1287,26 +1319,26 @@ Updating timing models...
 INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
    (.mrp).
 Running timing-driven placement...
-Total REAL time at the beginning of Placer: 28 secs 
-Total CPU  time at the beginning of Placer: 27 secs 
+Total REAL time at the beginning of Placer: 27 secs 
+Total CPU  time at the beginning of Placer: 26 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:efbc7bd8) REAL time: 30 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:a720b90) REAL time: 30 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:efbc7bd8) REAL time: 30 secs 
+Phase 2.7  Design Feasibility Check (Checksum:a720b90) REAL time: 30 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:2da07948) REAL time: 30 secs 
+Phase 3.31  Local Placement Optimization (Checksum:5df2abb0) REAL time: 30 secs 
 
 Phase 4.37  Local Placement Optimization
-Phase 4.37  Local Placement Optimization (Checksum:2da07948) REAL time: 30 secs 
+Phase 4.37  Local Placement Optimization (Checksum:5df2abb0) REAL time: 30 secs 
 
 Phase 5.33  Local Placement Optimization
-Phase 5.33  Local Placement Optimization (Checksum:2da07948) REAL time: 33 secs 
+Phase 5.33  Local Placement Optimization (Checksum:5df2abb0) REAL time: 33 secs 
 
 Phase 6.32  Local Placement Optimization
-Phase 6.32  Local Placement Optimization (Checksum:2da07948) REAL time: 33 secs 
+Phase 6.32  Local Placement Optimization (Checksum:5df2abb0) REAL time: 33 secs 
 
 Phase 7.2  Initial Clock and IO Placement
 
@@ -1321,39 +1353,39 @@ WARNING:Place:644 - A clock IOB clock component is not placed at an optimal
    this override is highly discouraged as it may lead to very poor timing
    results. It is recommended that this error condition be corrected in the
    design.
-Phase 7.2  Initial Clock and IO Placement (Checksum:ea2fe5a8) REAL time: 34 secs 
+Phase 7.2  Initial Clock and IO Placement (Checksum:ebf2cdeb) REAL time: 33 secs 
 
 Phase 8.36  Local Placement Optimization
-Phase 8.36  Local Placement Optimization (Checksum:ea2fe5a8) REAL time: 34 secs 
+Phase 8.36  Local Placement Optimization (Checksum:ebf2cdeb) REAL time: 33 secs 
 
 Phase 9.30  Global Clock Region Assignment
-Phase 9.30  Global Clock Region Assignment (Checksum:ea2fe5a8) REAL time: 34 secs 
+Phase 9.30  Global Clock Region Assignment (Checksum:ebf2cdeb) REAL time: 33 secs 
 
 Phase 10.3  Local Placement Optimization
-Phase 10.3  Local Placement Optimization (Checksum:ea2fe5a8) REAL time: 34 secs 
+Phase 10.3  Local Placement Optimization (Checksum:ebf2cdeb) REAL time: 34 secs 
 
 Phase 11.5  Local Placement Optimization
-Phase 11.5  Local Placement Optimization (Checksum:ea2fe5a8) REAL time: 34 secs 
+Phase 11.5  Local Placement Optimization (Checksum:ebf2cdeb) REAL time: 34 secs 
 
 Phase 12.8  Global Placement
-...................................................................................................
-................
-Phase 12.8  Global Placement (Checksum:e4829e5) REAL time: 38 secs 
+....................................................................................................................................................................................
+.............
+Phase 12.8  Global Placement (Checksum:b7506f4d) REAL time: 38 secs 
 
 Phase 13.29  Local Placement Optimization
-Phase 13.29  Local Placement Optimization (Checksum:e4829e5) REAL time: 38 secs 
+Phase 13.29  Local Placement Optimization (Checksum:b7506f4d) REAL time: 38 secs 
 
 Phase 14.5  Local Placement Optimization
-Phase 14.5  Local Placement Optimization (Checksum:e4829e5) REAL time: 38 secs 
+Phase 14.5  Local Placement Optimization (Checksum:b7506f4d) REAL time: 38 secs 
 
 Phase 15.18  Placement Optimization
-Phase 15.18  Placement Optimization (Checksum:2d1abe8b) REAL time: 48 secs 
+Phase 15.18  Placement Optimization (Checksum:7f5287f0) REAL time: 48 secs 
 
 Phase 16.5  Local Placement Optimization
-Phase 16.5  Local Placement Optimization (Checksum:2d1abe8b) REAL time: 48 secs 
+Phase 16.5  Local Placement Optimization (Checksum:7f5287f0) REAL time: 48 secs 
 
 Phase 17.34  Placement Validation
-Phase 17.34  Placement Validation (Checksum:2d1abe8b) REAL time: 48 secs 
+Phase 17.34  Placement Validation (Checksum:7f5287f0) REAL time: 48 secs 
 
 Total REAL time to Placer completion: 48 secs 
 Total CPU  time to Placer completion: 47 secs 
@@ -1362,55 +1394,80 @@ Writing output files...
 WARNING:PhysDesignRules:372 - Gated clock. Clock net xa<0> is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C2/LOADCNT is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net wrt_dma_pg_reg_n is sourced
+   by a combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s6/rb3/central_ram_core/fsm[1]_PWR_142_o_Mux_30_o is sourced by a
+   s1/i8259/recint_eoir[1]_MUX_3328_o is sourced by a combinatorial pin. This is
+   not good design practice. Use the CE pin to control the loading of data into
+   the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1 is sourced by a combinatorial pin.
+   This is not good design practice. Use the CE pin to control the loading of
+   data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net xmemr_n is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C0/LOADCNT is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s9/i8255/cmd[4]_GND_278_o_equal_13_o is sourced by a combinatorial pin. This
+   is not good design practice. Use the CE pin to control the loading of data
+   into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s1/i8259/cs_n_wr_n_AND_618_o is sourced by a combinatorial pin. This is not
+   good design practice. Use the CE pin to control the loading of data into the
+   flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net wrt_nmi_reg_n is sourced by
+   a combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s1/i8259/inta_n_eoir[4]_OR_888_o is sourced by a combinatorial pin. This is
+   not good design practice. Use the CE pin to control the loading of data into
+   the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s1/inta_n is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o is sourced by a combinatorial
    pin. This is not good design practice. Use the CE pin to control the loading
    of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C2/MODETRIG is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o is sourced by a combinatorial
    pin. This is not good design practice. Use the CE pin to control the loading
    of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s1/inta_n is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net xmemr_n is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s1/i8259/inta_n_recint_AND_621_o is sourced by a combinatorial pin. This is
-   not good design practice. Use the CE pin to control the loading of data into
-   the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s1/i8259/cs_n_wr_n_AND_617_o is sourced by a combinatorial pin. This is not
-   good design practice. Use the CE pin to control the loading of data into the
-   flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s1/i8259/inta_n_eoir[4]_OR_887_o is sourced by a combinatorial pin. This is
-   not good design practice. Use the CE pin to control the loading of data into
-   the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s1/i8259/recint_eoir[1]_MUX_3328_o is sourced by a combinatorial pin. This is
-   not good design practice. Use the CE pin to control the loading of data into
-   the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s9/i8255/cmd[4]_GND_286_o_equal_8_o<4>1 is sourced by a combinatorial pin.
-   This is not good design practice. Use the CE pin to control the loading of
-   data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s6/rb0/central_ram_core/fsm[1]_PWR_149_o_Mux_44_o is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o is sourced by a combinatorial
    pin. This is not good design practice. Use the CE pin to control the loading
    of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s1/i8259/inta_n_recint_AND_622_o is sourced by a combinatorial pin. This is
+   not good design practice. Use the CE pin to control the loading of data into
+   the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C1/MODETRIG is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C0/MODETRIG is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s6/rb3/central_ram_core/fsm[1]_PWR_142_o_Mux_30_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C2/MODETRIG is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s6/rb0/central_ram_core/fsm[1]_PWR_149_o_Mux_44_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s6/rb0/central_ram_core/fsm[1]_PWR_142_o_Mux_30_o is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
@@ -1438,67 +1495,42 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C1/LOADCNT is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C2/LOADCNT is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net wrt_nmi_reg_n is sourced by
-   a combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C0/MODETRIG is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C0/LOADCNT is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net wrt_dma_pg_reg_n is sourced
-   by a combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s9/i8255/cmd[4]_GND_286_o_equal_13_o is sourced by a combinatorial pin. This
-   is not good design practice. Use the CE pin to control the loading of data
-   into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C1/MODETRIG is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
 
 Design Summary
 --------------
 
 Design Summary:
 Number of errors:      0
-Number of warnings:  194
+Number of warnings:  198
 Slice Logic Utilization:
-  Number of Slice Registers:                 2,242 out of  69,120    3%
-    Number used as Flip Flops:               2,076
-    Number used as Latches:                    166
-  Number of Slice LUTs:                      5,302 out of  69,120    7%
-    Number used as logic:                    5,183 out of  69,120    7%
-      Number using O6 output only:           4,641
-      Number using O5 output only:             112
-      Number using O5 and O6:                  430
-    Number used as Memory:                     104 out of  17,920    1%
-      Number used as Shift Register:           104
-        Number using O6 output only:           102
+  Number of Slice Registers:                 2,429 out of  69,120    3%
+    Number used as Flip Flops:               2,291
+    Number used as Latches:                    138
+  Number of Slice LUTs:                      5,433 out of  69,120    7%
+    Number used as logic:                    5,245 out of  69,120    7%
+      Number using O6 output only:           4,697
+      Number using O5 output only:             116
+      Number using O5 and O6:                  432
+    Number used as Memory:                     174 out of  17,920    1%
+      Number used as Shift Register:           174
+        Number using O6 output only:           172
         Number using O5 output only:             1
         Number using O5 and O6:                  1
-    Number used as exclusive route-thru:        15
-  Number of route-thrus:                       133
-    Number using O6 output only:               122
-    Number using O5 output only:                 8
-    Number using O5 and O6:                      3
+    Number used as exclusive route-thru:        14
+  Number of route-thrus:                       128
+    Number using O6 output only:               125
+    Number using O5 output only:                 1
+    Number using O5 and O6:                      2
 
 Slice Logic Distribution:
-  Number of occupied Slices:                 1,903 out of  17,280   11%
-  Number of LUT Flip Flop pairs used:        5,868
-    Number with an unused Flip Flop:         3,626 out of   5,868   61%
-    Number with an unused LUT:                 566 out of   5,868    9%
-    Number of fully used LUT-FF pairs:       1,676 out of   5,868   28%
-    Number of unique control sets:             202
+  Number of occupied Slices:                 2,202 out of  17,280   12%
+  Number of LUT Flip Flop pairs used:        6,241
+    Number with an unused Flip Flop:         3,812 out of   6,241   61%
+    Number with an unused LUT:                 808 out of   6,241   12%
+    Number of fully used LUT-FF pairs:       1,621 out of   6,241   25%
+    Number of unique control sets:             201
     Number of slice register sites lost
-      to control set restrictions:             401 out of  69,120    1%
+      to control set restrictions:             404 out of  69,120    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -1513,21 +1545,21 @@ IO Utilization:
     Number of LOCed IOBs:                       13 out of      13  100%
 
 Specific Feature Utilization:
-  Number of BlockRAM/FIFO:                      84 out of     148   56%
-    Number using BlockRAM only:                 84
+  Number of BlockRAM/FIFO:                      85 out of     148   57%
+    Number using BlockRAM only:                 85
     Total primitives used:
-      Number of 36k BlockRAM used:              82
+      Number of 36k BlockRAM used:              83
       Number of 18k BlockRAM used:               3
-    Total Memory used (KB):                  3,006 out of   5,328   56%
+    Total Memory used (KB):                  3,042 out of   5,328   57%
   Number of BUFG/BUFGCTRLs:                      9 out of      32   28%
     Number used as BUFGs:                        9
   Number of BSCANs:                              1 out of       4   25%
   Number of DSP48Es:                             1 out of      64    1%
 
   Number of RPM macros:            9
-Average Fanout of Non-Clock Nets:                4.83
+Average Fanout of Non-Clock Nets:                4.72
 
-Peak Memory Usage:  1085 MB
+Peak Memory Usage:  1088 MB
 Total REAL time to MAP completion:  52 secs 
 Total CPU time to MAP completion:   51 secs 
 
