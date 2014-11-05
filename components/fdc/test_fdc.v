@@ -57,6 +57,8 @@ module test_fdc();
       a = 20'h34f;
       @(posedge clk);
       errors = errors + (d != testMSR); //should be right
+      $display(d);
+      @(posedge clk);
       
       
       // Conclude Simulation
