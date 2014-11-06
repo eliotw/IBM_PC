@@ -4,15 +4,15 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.07 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.11 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.07 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.11 secs
  
 --> 
 WARNING:Xst:1583 - You are using an internal switch '-use_new_parser'.
@@ -566,19 +566,22 @@ Unit <motherboard> synthesized.
 
 Synthesizing Unit <debounce>.
     Related source file is "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/debounce.v".
-        s0 = 2'b00
-        s1 = 2'b01
-        s2 = 2'b10
-        s3 = 2'b11
-    Found 2-bit register for signal <state>.
+        s0 = 4'b0000
+        s1 = 4'b0001
+        s2 = 4'b0010
+        s3 = 4'b0011
+    Found 4-bit register for signal <state>.
     Found finite state machine <FSM_0> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 6                                              |
     | Inputs             | 1                                              |
-    | Outputs            | 1                                              |
+    | Outputs            | 2                                              |
     | Clock              | clk (rising_edge)                              |
-    | Power Up State     | 00                                             |
+    | Reset              | _n0025 (positive)                              |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 0000                                           |
+    | Power Up State     | 0000                                           |
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
@@ -1998,312 +2001,312 @@ Synthesizing Unit <zet_div_uu>.
     Found 35-bit adder for signal <s_pipe[16][33]_d_pipe[16][34]_add_50_OUT> created at line 96.
     Found 35-bit adder for signal <s_pipe[17][34]_d_pipe[17][34]_add_64_OUT> created at line 116.
     Found 17-bit comparator lessequal for signal <z[33]_d[16]_LessThan_56_o> created at line 176
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><0><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><10><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><15><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><34><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><34><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><34><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><7><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><5><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><10><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><7><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<1><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<2><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<3><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<4><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<5><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<6><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<7><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<8><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<9><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<10><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<11><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<12><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<13><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><34><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><15><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<14><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><7><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><16><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><15><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><14><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><10><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><7><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><0><7:7>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<15><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><16><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><15><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><10><15:15>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><5><10:10>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><34><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><16><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><13><16:16>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<16><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><34><0:0>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><14><34:34>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><13><14:14>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><12><13:13>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><11><12:12>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><9><11:11>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><8><9:9>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><6><8:8>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><5><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
-    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><4><5:5>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><4><6:6>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><3><4:4>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><2><3:3>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><1><2:2>> (without init value) have a constant value of 0 in block <zet_div_uu>.
+    WARNING:Xst:2404 -  FFs/Latches <d_pipe<17><0><1:1>> (without init value) have a constant value of 0 in block <zet_div_uu>.
     Summary:
 	inferred  18 Adder/Subtractor(s).
 	inferred 1090 D-type flip-flop(s).
@@ -2471,12 +2474,11 @@ Unit <interrupt_fsm> synthesized.
 Synthesizing Unit <hold_fsm>.
     Related source file is "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v".
     Found 2-bit register for signal <state>.
-    Found 4x1-bit Read Only RAM for signal <state[1]_GND_61_o_Mux_7_o>
-    Found 4x1-bit Read Only RAM for signal <hlda>
+    Found 4x2-bit Read Only RAM for signal <_n0034>
 WARNING:Xst:737 - Found 1-bit latch for signal <next_state<1>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 WARNING:Xst:737 - Found 1-bit latch for signal <next_state<0>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
     Summary:
-	inferred   2 RAM(s).
+	inferred   1 RAM(s).
 	inferred   2 D-type flip-flop(s).
 	inferred   2 Latch(s).
 	inferred   1 Multiplexer(s).
@@ -2685,11 +2687,11 @@ Synthesizing Unit <intel8237A>.
         BT = 2'b10
 WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 8-bit register for signal <state[2]_dff_201_OUT>.
-    Found 1-bit register for signal <reset_clk_DFF_1945>.
-    Found 1-bit register for signal <state[2]_clk_DFF_1953_q>.
-    Found 1-bit register for signal <reset_clk_DFF_1954>.
-    Found 1-bit register for signal <reset_clk_DFF_1956>.
+    Found 1-bit register for signal <reset_clk_DFF_1949>.
+    Found 1-bit register for signal <state[2]_clk_DFF_1957_q>.
     Found 1-bit register for signal <reset_clk_DFF_1958>.
+    Found 1-bit register for signal <reset_clk_DFF_1960>.
+    Found 1-bit register for signal <reset_clk_DFF_1962>.
     Found 4-bit register for signal <state[2]_dff_220_OUT>.
     Found 1-bit register for signal <reset_clk_DFF_1963>.
     Found 4-bit register for signal <state[2]_dff_225_OUT>.
@@ -3274,9 +3276,9 @@ Unit <vdu> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# RAMs                                                 : 6
+# RAMs                                                 : 5
  256x8-bit single-port Read Only RAM                   : 1
- 4x1-bit single-port Read Only RAM                     : 2
+ 4x2-bit single-port Read Only RAM                     : 1
  512x50-bit single-port Read Only RAM                  : 1
  8x3-bit single-port Read Only RAM                     : 1
  8x4-bit single-port Read Only RAM                     : 1
@@ -3525,27 +3527,16 @@ WARNING:Xst:2677 - Node <command_5> of sequential type is unconnected in block <
 WARNING:Xst:2677 - Node <dack_1> of sequential type is unconnected in block <i8237>.
 
 Synthesizing (advanced) Unit <hold_fsm>.
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_state[1]_GND_61_o_Mux_7_o> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram__n0034> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
     -----------------------------------------------------------------------
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
     | Port A                                                              |
-    |     aspect ratio   | 4-word x 1-bit                      |          |
+    |     aspect ratio   | 4-word x 2-bit                      |          |
     |     weA            | connected to signal <GND>           | high     |
     |     addrA          | connected to signal <state>         |          |
     |     diA            | connected to signal <GND>           |          |
     |     doA            | connected to internal node          |          |
-    -----------------------------------------------------------------------
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_hlda> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
-    -----------------------------------------------------------------------
-    | ram_type           | Distributed                         |          |
-    -----------------------------------------------------------------------
-    | Port A                                                              |
-    |     aspect ratio   | 4-word x 1-bit                      |          |
-    |     weA            | connected to signal <GND>           | high     |
-    |     addrA          | connected to signal <state>         |          |
-    |     diA            | connected to signal <GND>           |          |
-    |     doA            | connected to signal <hlda>          |          |
     -----------------------------------------------------------------------
 Unit <hold_fsm> synthesized (advanced).
 
@@ -3637,9 +3628,9 @@ WARNING:Xst:2677 - Node <command_5> of sequential type is unconnected in block <
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# RAMs                                                 : 6
+# RAMs                                                 : 5
  256x8-bit single-port block Read Only RAM             : 1
- 4x1-bit single-port distributed Read Only RAM         : 2
+ 4x2-bit single-port distributed Read Only RAM         : 1
  512x50-bit single-port distributed Read Only RAM      : 1
  8x3-bit single-port distributed Read Only RAM         : 1
  8x4-bit single-port distributed Read Only RAM         : 1
@@ -3760,14 +3751,14 @@ WARNING:Xst:2677 - Node <C1/READ/CLRLATCH> of sequential type is unconnected in 
 WARNING:Xst:2677 - Node <C2/MODEREG/MODE_0> of sequential type is unconnected in block <i8253>.
 WARNING:Xst:2677 - Node <C2/READ/CLRLATCH> of sequential type is unconnected in block <i8253>.
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <FSM_0> on signal <state[1:2]> with user encoding.
+Optimizing FSM <FSM_0> on signal <state[1:2]> with gray encoding.
 -------------------
  State | Encoding
 -------------------
- 00    | 00
- 01    | 01
- 10    | 10
- 11    | 11
+ 0000  | 00
+ 0001  | 01
+ 0010  | 11
+ 0011  | 10
 -------------------
 Analyzing FSM <MFsm> for best encoding.
 Optimizing FSM <s1/i8288/FSM_2> on signal <state[1:2]> with user encoding.
@@ -3886,7 +3877,7 @@ WARNING:Xst:2677 - Node <s1/u10/rq_1> of sequential type is unconnected in block
 WARNING:Xst:2677 - Node <s1/u10/rq_0> of sequential type is unconnected in block <motherboard>.
 WARNING:Xst:2677 - Node <s9/i8255/pb_3> of sequential type is unconnected in block <motherboard>.
 WARNING:Xst:2677 - Node <s4/i8237/aen> of sequential type is unconnected in block <motherboard>.
-WARNING:Xst:2677 - Node <s4/i8237/reset_clk_DFF_1958> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s4/i8237/reset_clk_DFF_1962> of sequential type is unconnected in block <motherboard>.
 
 Optimizing unit <timedelay> ...
 
@@ -3899,18 +3890,18 @@ WARNING:Xst:2677 - Node <s4/ls6700/q2_2> of sequential type is unconnected in bl
 WARNING:Xst:2677 - Node <s4/ls6700/q1_1> of sequential type is unconnected in block <motherboard>.
 WARNING:Xst:2677 - Node <s4/ls6700/q1_2> of sequential type is unconnected in block <motherboard>.
 WARNING:Xst:2677 - Node <s4/ls6700/q1_3> of sequential type is unconnected in block <motherboard>.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_3> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_6> is unconnected in block <motherboard>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_4> is unconnected in block <motherboard>.
+WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_2> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_7> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_5> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_3> is unconnected in block <motherboard>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_4> is unconnected in block <motherboard>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_6> is unconnected in block <motherboard>.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -3921,18 +3912,18 @@ WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_5> has a constant value of 0 in block 
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_3> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_3> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_6> is unconnected in block <motherboard>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_4> is unconnected in block <motherboard>.
+WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_2> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_7> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_5> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_3> is unconnected in block <motherboard>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_4> is unconnected in block <motherboard>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_6> is unconnected in block <motherboard>.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4302,22 +4293,22 @@ Top Level Output File Name         : motherboard.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 7569
+# BELS                             : 7647
 #      GND                         : 9
-#      INV                         : 338
+#      INV                         : 339
 #      LUT1                        : 64
-#      LUT2                        : 307
-#      LUT3                        : 685
-#      LUT4                        : 533
-#      LUT5                        : 869
-#      LUT6                        : 2239
+#      LUT2                        : 319
+#      LUT3                        : 680
+#      LUT4                        : 539
+#      LUT5                        : 896
+#      LUT6                        : 2275
 #      MUXCY                       : 1056
-#      MUXF7                       : 374
+#      MUXF7                       : 375
 #      MUXF8                       : 157
 #      VCC                         : 9
 #      XORCY                       : 929
 # FlipFlops/Latches                : 1935
-#      FD                          : 848
+#      FD                          : 846
 #      FD_1                        : 9
 #      FDC                         : 254
 #      FDC_1                       : 1
@@ -4327,7 +4318,7 @@ Primitive and Black Box Usage:
 #      FDE                         : 177
 #      FDP                         : 16
 #      FDPE                        : 10
-#      FDR                         : 147
+#      FDR                         : 149
 #      FDR_1                       : 16
 #      FDRE                        : 152
 #      FDRS                        : 5
@@ -4368,17 +4359,17 @@ Selected Device : 5vlx110tff1136-1
 
 Slice Logic Utilization: 
  Number of Slice Registers:            1935  out of  69120     2%  
- Number of Slice LUTs:                 5055  out of  69120     7%  
-    Number used as Logic:              5035  out of  69120     7%  
+ Number of Slice LUTs:                 5132  out of  69120     7%  
+    Number used as Logic:              5112  out of  69120     7%  
     Number used as Memory:               20  out of  17920     0%  
        Number used as SRL:               20
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   5504
-   Number with an unused Flip Flop:    3569  out of   5504    64%  
-   Number with an unused LUT:           449  out of   5504     8%  
-   Number of fully used LUT-FF pairs:  1486  out of   5504    26%  
-   Number of unique control sets:       154
+ Number of LUT Flip Flop pairs used:   5581
+   Number with an unused Flip Flop:    3646  out of   5581    65%  
+   Number with an unused LUT:           449  out of   5581     8%  
+   Number of fully used LUT-FF pairs:  1486  out of   5581    26%  
+   Number of unique control sets:       155
 
 IO Utilization: 
  Number of IOs:                          13
@@ -4411,17 +4402,16 @@ Clock Information:
 -------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Clock Signal                                                                                                 | Clock buffer(FF name)                                                                                                                                               | Load  |
 -------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-USER_CLK                                                                                                     | BUFGP                                                                                                                                                               | 24    |
+s1/i8284/clk                                                                                                 | BUFG                                                                                                                                                                | 1381  |
 s8/i8253/vcs/C1/OUTCTRL/OUT                                                                                  | NONE(s8/drq0)                                                                                                                                                       | 1     |
 s1/i8284/pclk                                                                                                | NONE(s8/pclka)                                                                                                                                                      | 13    |
-s1/i8259/inta_n_eoir[4]_OR_887_o(s1/i8259/inta_n_eoir[4]_OR_887_o1:O)                                        | NONE(*)(s1/i8259/dout_0)                                                                                                                                            | 3     |
+s1/i8259/inta_n_eoir[4]_OR_890_o(s1/i8259/inta_n_eoir[4]_OR_890_o1:O)                                        | NONE(*)(s1/i8259/dout_0)                                                                                                                                            | 3     |
 s1/i8259/recint_eoir[1]_MUX_3329_o(s1/i8259/Mmux_recint_eoir[1]_MUX_3329_o11:O)                              | NONE(*)(s1/i8259/dout_3)                                                                                                                                            | 1     |
 s1/inta_n(s1/i8288/Mmux_inta_n11:O)                                                                          | NONE(*)(s1/i8259/isr_1)                                                                                                                                             | 5     |
 s1/i8259/cs_n_wr_n_AND_618_o(s1/i8259/cs_n_wr_n_AND_618_o1:O)                                                | NONE(*)(s1/i8259/imr_0)                                                                                                                                             | 10    |
 xa<0>(xa<0>LogicTrst1:O)                                                                                     | NONE(*)(s1/i8259/eoir_0)                                                                                                                                            | 4     |
 s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8                                      | NONE(s1/i8259/irr_1)                                                                                                                                                | 5     |
 s1/i8259/inta_n_recint_AND_622_o(s1/i8259/inta_n_recint_AND_622_o1:O)                                        | NONE(*)(s1/i8259/clrisr)                                                                                                                                            | 1     |
-s1/i8284/clk                                                                                                 | BUFG                                                                                                                                                                | 1379  |
 s1/ale(s1/i8288/Mmux_ale11:O)                                                                                | BUFG(*)(s1/u7/rq_7)                                                                                                                                                 | 20    |
 s4/i8237/adstb                                                                                               | NONE(s4/ls3730/rq_7)                                                                                                                                                | 8     |
 s9/i8255/cmd[4]_GND_278_o_equal_13_o(s9/i8255/cmd[4]_GND_278_o_equal_13_o<4>1:O)                             | NONE(*)(s9/i8255/pb_0)                                                                                                                                              | 6     |
@@ -4442,6 +4432,7 @@ s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o(s8/i8253/vcs/C0/READ/MODE[5]_PWR_
 dclk(s2/dclk1:O)                                                                                             | BUFG(*)(s4/i8237/state_FSM_FFd2)                                                                                                                                    | 105   |
 wrt_dma_pg_reg_n(s3/wrt_dma_pg_reg_n1:O)                                                                     | NONE(*)(s4/ls6700/q0_3)                                                                                                                                             | 8     |
 xmemr_n(xmemr_nLogicTrst1:O)                                                                                 | NONE(*)(s6/pck)                                                                                                                                                     | 2     |
+USER_CLK                                                                                                     | BUFGP                                                                                                                                                               | 22    |
 wrt_nmi_reg_n(s3/wrt_nmi_reg_n1:O)                                                                           | NONE(*)(s2/allow_nmi)                                                                                                                                               | 1     |
 KEYBOARD_CLK                                                                                                 | BUFGP                                                                                                                                                               | 21    |
 s6/rb0/central_ram_core/fsm[1]_PWR_149_o_Mux_44_o(s6/rb0/central_ram_core/Mmux_fsm[1]_PWR_149_o_Mux_44_o11:O)| NONE(*)(s6/rb0/central_ram_core/caddr_0)                                                                                                                            | 8     |
@@ -4471,20 +4462,20 @@ Asynchronous Control Signals Information:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Control Signal                                                                                                                                                                                                                                                                    | Buffer(FF name)                                                                                                                                                     | Load  |
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-pwr_good(deb/state_drst1:O)                                                                                                                                                                                                                                                       | NONE(s1/i8259/dout_1)                                                                                                                                               | 388   |
-s6/rb0/central_ram_core/central_ram_core/N1(s6/rb0/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
-s6/rb1/central_ram_core/central_ram_core/N1(s6/rb1/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb1/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
-s6/rb2/central_ram_core/central_ram_core/N1(s6/rb2/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb2/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
-s6/rb3/central_ram_core/central_ram_core/N1(s6/rb3/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
-s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                         | 64    |
+deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                          | NONE(s1/i8088/core/exec/regfile/r_0_84)                                                                                                                             | 388   |
+s6/rb0/central_ram_core/central_ram_core/N1(s6/rb0/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s6/rb1/central_ram_core/central_ram_core/N1(s6/rb1/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb1/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
+s6/rb2/central_ram_core/central_ram_core/N1(s6/rb2/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb2/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
+s6/rb3/central_ram_core/central_ram_core/N1(s6/rb3/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
+s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                         | 64    |
 s8/i8253/vcs/C0/MODEWRITE(s8/i8253/vcs/C0/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                             | NONE(s8/i8253/vcs/C0/READ/READLSB)                                                                                                                                  | 18    |
 s8/i8253/vcs/C1/MODEWRITE(s8/i8253/vcs/C1/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                             | NONE(s8/i8253/vcs/C1/READ/READLSB)                                                                                                                                  | 18    |
 s8/i8253/vcs/C2/MODEWRITE(s8/i8253/vcs/C2/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                             | NONE(s8/i8253/vcs/C2/READ/READLSB)                                                                                                                                  | 18    |
-s8/i8253/vcs/C0/READ/SEL_WR__AND_829_o_inv(s8/i8253/vcs/C0/READ/SEL_WR__AND_829_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C0/READ/DREG_6)                                                                                                                                   | 9     |
-s8/i8253/vcs/C1/READ/SEL_WR__AND_829_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_829_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C1/READ/DREG_4)                                                                                                                                   | 9     |
-s8/i8253/vcs/C2/READ/SEL_WR__AND_829_o_inv(s8/i8253/vcs/C2/READ/SEL_WR__AND_829_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C2/READ/DREG_2)                                                                                                                                   | 9     |
+s8/i8253/vcs/C0/READ/SEL_WR__AND_829_o_inv(s8/i8253/vcs/C0/READ/SEL_WR__AND_829_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C0/READ/CLRREADLSB)                                                                                                                               | 9     |
+s8/i8253/vcs/C1/READ/SEL_WR__AND_829_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_829_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C1/READ/DREG_0)                                                                                                                                   | 9     |
+s8/i8253/vcs/C2/READ/SEL_WR__AND_829_o_inv(s8/i8253/vcs/C2/READ/SEL_WR__AND_829_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C2/READ/DREG_5)                                                                                                                                   | 9     |
 s0/vgamod/char_rom/N1(s0/vgamod/char_rom/XST_GND:G)                                                                                                                                                                                                                               | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                         | 8     |
-s1/i8259/rst_clrisr_OR_865_o(s1/i8259/rst_clrisr_OR_865_o1:O)                                                                                                                                                                                                                     | NONE(s1/i8259/eoir_4)                                                                                                                                               | 4     |
+s1/i8259/rst_clrisr_OR_868_o(s1/i8259/rst_clrisr_OR_868_o1:O)                                                                                                                                                                                                                     | NONE(s1/i8259/eoir_4)                                                                                                                                               | 4     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
@@ -4547,7 +4538,7 @@ Timing Summary:
 ---------------
 Speed Grade: -1
 
-   Minimum period: 23.377ns (Maximum Frequency: 42.777MHz)
+   Minimum period: 23.025ns (Maximum Frequency: 43.430MHz)
    Minimum input arrival time before clock: 2.118ns
    Maximum output required time after clock: 4.098ns
    Maximum combinational path delay: No path found
@@ -4557,26 +4548,64 @@ Timing Details:
 All values displayed in nanoseconds (ns)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'USER_CLK'
-  Clock period: 2.592ns (frequency: 385.802MHz)
-  Total number of paths / destination ports: 92 / 30
+Timing constraint: Default period analysis for Clock 's1/i8284/clk'
+  Clock period: 23.025ns (frequency: 43.430MHz)
+  Total number of paths / destination ports: 1512918154085950 / 3053
 -------------------------------------------------------------------------
-Delay:               2.592ns (Levels of Logic = 1)
-  Source:            s1/i8284/counter_4 (FF)
-  Destination:       s1/i8284/counter_5 (FF)
-  Source Clock:      USER_CLK rising
-  Destination Clock: USER_CLK rising
+Delay:               23.025ns (Levels of Logic = 39)
+  Source:            s1/i8088/core/fetch/state_0_1 (FF)
+  Destination:       s1/i8088/core/fetch/modrm_l_7 (FF)
+  Source Clock:      s1/i8284/clk rising
+  Destination Clock: s1/i8284/clk rising
 
-  Data Path: s1/i8284/counter_4 to s1/i8284/counter_5
+  Data Path: s1/i8088/core/fetch/state_0_1 to s1/i8088/core/fetch/modrm_l_7
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q              5   0.471   1.091  s1/i8284/counter_4 (s1/i8284/counter_4)
-     LUT6:I0->O            6   0.094   0.363  s1/i8284/counter[5]_PWR_4_o_equal_2_o<5>1 (s1/i8284/counter[5]_PWR_4_o_equal_2_o)
-     FDR:R                     0.573          s1/i8284/counter_0
+     FDPE:C->Q             1   0.471   0.973  s1/i8088/core/fetch/state_0_1 (s1/i8088/core/fetch/state_0_1)
+     LUT5:I0->O           66   0.094   0.844  s1/i8088/core/fetch/Mmux_opcode81 (s1/i8088/core/opcode<7>)
+     LUT3:I0->O           19   0.094   0.579  s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_185_o<7>11 (s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_185_o<7>1)
+     LUT6:I5->O            2   0.094   0.581  s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_204_o<7>1 (s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_204_o)
+     LUT6:I4->O            1   0.094   0.480  s1/i8088/core/decode/n0089<0>13 (s1/i8088/core/decode/n0089<0>13)
+     LUT6:I5->O            1   0.094   0.480  s1/i8088/core/decode/n0089<0>15_SW0_SW0 (N1543)
+     LUT2:I1->O            1   0.094   0.480  s1/i8088/core/decode/n0089<0>15_SW0_SW1 (N1561)
+     LUT6:I5->O            1   0.094   0.480  s1/i8088/core/decode/n0089<0>15_SW0 (N822)
+     LUT6:I5->O            1   0.094   0.000  s1/i8088/core/decode/Madd_seq_addr_lut<0> (s1/i8088/core/decode/Madd_seq_addr_lut<0>)
+     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<0> (s1/i8088/core/decode/Madd_seq_addr_cy<0>)
+     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<1> (s1/i8088/core/decode/Madd_seq_addr_cy<1>)
+     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<2> (s1/i8088/core/decode/Madd_seq_addr_cy<2>)
+     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<3> (s1/i8088/core/decode/Madd_seq_addr_cy<3>)
+     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<4> (s1/i8088/core/decode/Madd_seq_addr_cy<4>)
+     XORCY:CI->O         278   0.357   1.242  s1/i8088/core/decode/Madd_seq_addr_xor<5> (s1/i8088/core/seq_addr<5>)
+     LUT6:I0->O            1   0.094   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom1461110_SW0_G (s1/i8088/core/micro_data_N104)
+     MUXF7:I1->O           1   0.254   0.480  s1/i8088/core/micro_data_micro_rom/Mram_rom1461110_SW0 (s1/i8088/core/micro_data_N34)
+     LUT5:I4->O            1   0.094   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom1461110_F (s1/i8088/core/micro_data_N85)
+     MUXF7:I0->O          21   0.251   0.588  s1/i8088/core/micro_data_micro_rom/Mram_rom1461110 (s1/i8088/core/micro_data/micro_o<39>)
+     LUT6:I5->O          100   0.094   0.716  s1/i8088/core/Mmux_ir33 (s1/i8088/core/ir<6>)
+     LUT6:I4->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_59 (s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][15]_wide_mux_8_OUT_521)
+     MUXF7:I1->O           1   0.254   0.000  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][15]_wide_mux_8_OUT_4_f7_9 (s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][15]_wide_mux_8_OUT_4_f710)
+     MUXF8:I0->O           1   0.182   0.576  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][15]_wide_mux_8_OUT_2_f8_9 (s1/i8088/core/exec/regfile/addr_b[3]_r[15][15]_wide_mux_8_OUT<4>)
+     LUT6:I4->O           22   0.094   0.593  s1/i8088/core/exec/Mmux_bus_b112 (s1/i8088/core/exec/Mmux_bus_b112)
+     LUT2:I1->O            1   0.094   0.789  s1/i8088/core/exec/Mmux_bus_b115_1 (s1/i8088/core/exec/Mmux_bus_b115)
+     LUT6:I2->O            5   0.094   0.502  s1/i8088/core/exec/alu/shrot/y[4]_PWR_35_o_LessThan_7_o1 (s1/i8088/core/exec/alu/shrot/y[4]_PWR_35_o_LessThan_7_o)
+     LUT6:I5->O           17   0.094   1.061  s1/i8088/core/exec/alu/shrot/Mmux_rot162 (s1/i8088/core/exec/alu/shrot/rot16<1>)
+     LUT6:I1->O           17   0.094   0.798  s1/i8088/core/exec/alu/shrot/rxr16/y[4]_GND_34_o_equal_7_o<4>1 (s1/i8088/core/exec/alu/shrot/rxr16/y[4]_GND_34_o_equal_7_o)
+     LUT6:I3->O            1   0.094   0.710  s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42510 (s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o4259)
+     LUT5:I2->O            1   0.094   0.480  s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42512 (s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42511)
+     LUT6:I5->O            1   0.094   0.480  s1/i8088/core/exec/alu/m0/Mmux_out_33_SW0 (N727)
+     LUT6:I5->O            1   0.094   0.000  s1/i8088/core/exec/alu/m0/Mmux_out_2_f7_2_F (N1525)
+     MUXF7:I0->O           4   0.251   0.496  s1/i8088/core/exec/alu/m0/Mmux_out_2_f7_2 (s1/i8088/core/addr_exec<3>)
+     LUT6:I5->O            9   0.094   0.380  s1/i8088/core/exec/Mmux_omemalu101 (s1/i8088/core/exec/omemalu<3>)
+     MUXF7:S->O           11   0.329   0.535  s1/i8088/core/exec/Mmux_omemalu21_SW0 (N1160)
+     LUT6:I5->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_cx_zero111_SW1_SW2_G (N1482)
+     MUXF7:I1->O           2   0.254   0.485  s1/i8088/core/exec/regfile/Mmux_cx_zero111_SW1_SW2 (N1193)
+     LUT6:I5->O           12   0.094   0.540  s1/i8088/core/fetch/nstate/Mmux_n_state28 (s1/i8088/core/fetch/nstate/Mmux_n_state27)
+     LUT6:I5->O           17   0.094   0.568  s1/i8088/core/fetch/nstate/Mmux_n_state211 (s1/i8088/core/n_state<0>)
+     LUT6:I5->O            8   0.094   0.374  s1/i8088/core/fetch/_n0282_inv1 (s1/i8088/core/fetch/_n0282_inv)
+     FDE:CE                    0.213          s1/i8088/core/fetch/modrm_l_0
     ----------------------------------------
-    Total                      2.592ns (1.138ns logic, 1.454ns route)
-                                       (43.9% logic, 56.1% route)
+    Total                     23.025ns (5.736ns logic, 17.289ns route)
+                                       (24.9% logic, 75.1% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/pclk'
@@ -4604,10 +4633,10 @@ Delay:               2.820ns (Levels of Logic = 3)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/inta_n'
-  Clock period: 2.149ns (frequency: 465.333MHz)
+  Clock period: 2.154ns (frequency: 464.253MHz)
   Total number of paths / destination ports: 9 / 9
 -------------------------------------------------------------------------
-Delay:               2.149ns (Levels of Logic = 1)
+Delay:               2.154ns (Levels of Logic = 1)
   Source:            s1/i8259/recint (FF)
   Destination:       s1/i8259/isr_1 (FF)
   Source Clock:      s1/inta_n falling
@@ -4617,12 +4646,12 @@ Delay:               2.149ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC_1:C->Q           11   0.467   1.028  s1/i8259/recint (s1/i8259/recint)
+     FDC_1:C->Q           12   0.467   1.033  s1/i8259/recint (s1/i8259/recint)
      LUT5:I0->O            3   0.094   0.347  s1/i8259/GND_63_o_inta_MUX_3332_o1 (s1/i8259/GND_63_o_inta_MUX_3332_o)
      FDCE_1:CE                 0.213          s1/i8259/isr_0
     ----------------------------------------
-    Total                      2.149ns (0.774ns logic, 1.375ns route)
-                                       (36.0% logic, 64.0% route)
+    Total                      2.154ns (0.774ns logic, 1.380ns route)
+                                       (35.9% logic, 64.1% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8259/cs_n_wr_n_AND_618_o'
@@ -4650,83 +4679,11 @@ Delay:               3.631ns (Levels of Logic = 4)
                                        (30.6% logic, 69.4% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 's1/i8284/clk'
-  Clock period: 23.377ns (frequency: 42.777MHz)
-  Total number of paths / destination ports: 1502401299327041 / 3046
--------------------------------------------------------------------------
-Delay:               23.377ns (Levels of Logic = 51)
-  Source:            s1/i8088/core/fetch/state_0_1 (FF)
-  Destination:       s1/i8088/core/fetch/off_l_15 (FF)
-  Source Clock:      s1/i8284/clk rising
-  Destination Clock: s1/i8284/clk rising
-
-  Data Path: s1/i8088/core/fetch/state_0_1 to s1/i8088/core/fetch/off_l_15
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDPE:C->Q             1   0.471   0.973  s1/i8088/core/fetch/state_0_1 (s1/i8088/core/fetch/state_0_1)
-     LUT5:I0->O           65   0.094   0.843  s1/i8088/core/fetch/Mmux_opcode81 (s1/i8088/core/opcode<7>)
-     LUT3:I0->O           19   0.094   0.579  s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_185_o<7>11 (s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_185_o<7>1)
-     LUT6:I5->O            2   0.094   0.581  s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_204_o<7>1 (s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_204_o)
-     LUT6:I4->O            1   0.094   0.480  s1/i8088/core/decode/n0089<0>13 (s1/i8088/core/decode/n0089<0>13)
-     LUT6:I5->O            1   0.094   0.480  s1/i8088/core/decode/n0089<0>15_SW0_SW0 (N1338)
-     LUT2:I1->O            1   0.094   0.480  s1/i8088/core/decode/n0089<0>15_SW0_SW1 (N1358)
-     LUT6:I5->O            1   0.094   0.480  s1/i8088/core/decode/n0089<0>15_SW0 (N822)
-     LUT6:I5->O            1   0.094   0.000  s1/i8088/core/decode/Madd_seq_addr_lut<0> (s1/i8088/core/decode/Madd_seq_addr_lut<0>)
-     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<0> (s1/i8088/core/decode/Madd_seq_addr_cy<0>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<1> (s1/i8088/core/decode/Madd_seq_addr_cy<1>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<2> (s1/i8088/core/decode/Madd_seq_addr_cy<2>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<3> (s1/i8088/core/decode/Madd_seq_addr_cy<3>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<4> (s1/i8088/core/decode/Madd_seq_addr_cy<4>)
-     XORCY:CI->O         278   0.357   1.242  s1/i8088/core/decode/Madd_seq_addr_xor<5> (s1/i8088/core/seq_addr<5>)
-     LUT6:I0->O            1   0.094   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom1461110_SW0_G (s1/i8088/core/micro_data_N104)
-     MUXF7:I1->O           1   0.254   0.480  s1/i8088/core/micro_data_micro_rom/Mram_rom1461110_SW0 (s1/i8088/core/micro_data_N34)
-     LUT5:I4->O            1   0.094   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom1461110_F (s1/i8088/core/micro_data_N85)
-     MUXF7:I0->O          21   0.251   0.588  s1/i8088/core/micro_data_micro_rom/Mram_rom1461110 (s1/i8088/core/micro_data/micro_o<39>)
-     LUT6:I5->O          100   0.094   0.716  s1/i8088/core/Mmux_ir33 (s1/i8088/core/ir<6>)
-     LUT6:I4->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f7_02 (s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f7_01)
-     MUXF7:I1->O           1   0.254   0.000  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f7_0 (s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f71)
-     MUXF8:I0->O           1   0.182   0.576  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_2_f8_0 (s1/i8088/core/exec/regfile/addr_b[3]_r[15][7]_wide_mux_11_OUT<1>)
-     LUT5:I3->O           15   0.094   0.557  s1/i8088/core/exec/Mmux_bus_b83 (s1/i8088/core/exec/Mmux_bus_b82)
-     LUT5:I4->O            1   0.094   0.480  s1/i8088/core/exec/regfile/Mmux_a11_SW0 (N1208)
-     LUT6:I5->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_lut<1> (s1/i8088/core/exec/alu/othop/Madd_n0083_lut<1>)
-     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<1> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<1>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<2> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<2>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<3> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<3>)
-     XORCY:CI->O           1   0.357   0.480  s1/i8088/core/exec/alu/othop/Madd_n0083_xor<4> (s1/i8088/core/exec/alu/othop/n0083<4>)
-     LUT3:I2->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_deff_lut<4> (s1/i8088/core/exec/alu/othop/Madd_deff_lut<4>)
-     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/exec/alu/othop/Madd_deff_cy<4> (s1/i8088/core/exec/alu/othop/Madd_deff_cy<4>)
-     XORCY:CI->O           6   0.357   0.507  s1/i8088/core/exec/alu/othop/Madd_deff_xor<5> (s1/i8088/core/exec/alu/othop/deff<5>)
-     LUT1:I0->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_deff2_cy<5>_rt (s1/i8088/core/exec/alu/othop/Madd_deff2_cy<5>_rt)
-     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/exec/alu/othop/Madd_deff2_cy<5> (s1/i8088/core/exec/alu/othop/Madd_deff2_cy<5>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_deff2_cy<6> (s1/i8088/core/exec/alu/othop/Madd_deff2_cy<6>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_deff2_cy<7> (s1/i8088/core/exec/alu/othop/Madd_deff2_cy<7>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_deff2_cy<8> (s1/i8088/core/exec/alu/othop/Madd_deff2_cy<8>)
-     XORCY:CI->O           1   0.357   0.480  s1/i8088/core/exec/alu/othop/Madd_deff2_xor<9> (s1/i8088/core/exec/alu/othop/deff2<9>)
-     LUT2:I1->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_dcmp2_lut<9> (s1/i8088/core/exec/alu/othop/Madd_dcmp2_lut<9>)
-     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/exec/alu/othop/Madd_dcmp2_cy<9> (s1/i8088/core/exec/alu/othop/Madd_dcmp2_cy<9>)
-     XORCY:CI->O           1   0.357   0.480  s1/i8088/core/exec/alu/othop/Madd_dcmp2_xor<10> (s1/i8088/core/exec/alu/othop/dcmp2<10>)
-     LUT6:I5->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/mux8_16/Mmux_out_2_f7_F (N1286)
-     MUXF7:I0->O           2   0.251   0.485  s1/i8088/core/exec/alu/othop/mux8_16/Mmux_out_2_f7 (s1/i8088/core/exec/alu/oth<10>)
-     LUT6:I5->O            2   0.094   0.485  s1/i8088/core/exec/alu/m0/Mmux_out14 (s1/i8088/core/exec/alu/m0/Mmux_out14)
-     LUT6:I5->O           11   0.094   0.535  s1/i8088/core/exec/Mmux_omemalu21 (s1/i8088/core/exec/omemalu<10>)
-     LUT6:I5->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_cx_zero111_SW1_SW0_G (N1305)
-     MUXF7:I1->O           3   0.254   0.491  s1/i8088/core/exec/regfile/Mmux_cx_zero111_SW1_SW0 (N1171)
-     LUT6:I5->O            9   0.094   0.524  s1/i8088/core/fetch/nstate/Mmux_n_state28 (s1/i8088/core/fetch/nstate/Mmux_n_state27)
-     LUT6:I5->O           18   0.094   0.573  s1/i8088/core/fetch/nstate/Mmux_n_state211 (s1/i8088/core/n_state<0>)
-     LUT6:I5->O           16   0.094   0.562  s1/i8088/core/fetch/_n0258_inv3_rstpot (s1/i8088/core/fetch/_n0258_inv3_rstpot)
-     LUT3:I2->O            1   0.094   0.000  s1/i8088/core/fetch/off_l_0_dpot (s1/i8088/core/fetch/off_l_0_dpot)
-     FDE:D                    -0.018          s1/i8088/core/fetch/off_l_0
-    ----------------------------------------
-    Total                     23.377ns (8.240ns logic, 15.137ns route)
-                                       (35.2% logic, 64.8% route)
-
-=========================================================================
 Timing constraint: Default period analysis for Clock 's4/i8237/adstb'
-  Clock period: 5.121ns (frequency: 195.274MHz)
+  Clock period: 5.384ns (frequency: 185.736MHz)
   Total number of paths / destination ports: 416 / 8
 -------------------------------------------------------------------------
-Delay:               5.121ns (Levels of Logic = 5)
+Delay:               5.384ns (Levels of Logic = 5)
   Source:            s4/ls3730/rq_6 (FF)
   Destination:       s4/ls3730/rq_7 (FF)
   Source Clock:      s4/i8237/adstb rising
@@ -4740,25 +4697,25 @@ Delay:               5.121ns (Levels of Logic = 5)
      LUT4:I2->O           16   0.094   1.151  a<14>LogicTrst1 (a<14>)
      LUT6:I0->O            4   0.094   1.085  s3/ls4/Mmux_y31 (cs_n<2>)
      LUT6:I0->O            9   0.094   0.620  s5/rommod/csv_inv1 (s5/rommod/csv_inv)
-     LUT6:I4->O            8   0.094   0.748  xd<0>LogicTrst1 (xd<0>LogicTrst1)
-     LUT5:I2->O           23   0.094   0.000  xd<7>LogicTrst4 (xd<7>)
+     LUT6:I4->O            8   0.094   1.011  xd<0>LogicTrst1 (xd<0>LogicTrst1)
+     LUT5:I0->O           23   0.094   0.000  xd<7>LogicTrst4 (xd<7>)
      FDE:D                    -0.018          s4/ls3730/rq_7
     ----------------------------------------
-    Total                      5.121ns (0.941ns logic, 4.180ns route)
-                                       (18.4% logic, 81.6% route)
+    Total                      5.384ns (0.941ns logic, 4.443ns route)
+                                       (17.5% logic, 82.5% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/vclk'
-  Clock period: 5.395ns (frequency: 185.357MHz)
+  Clock period: 5.269ns (frequency: 189.789MHz)
   Total number of paths / destination ports: 2115 / 295
 -------------------------------------------------------------------------
-Delay:               5.395ns (Levels of Logic = 5)
+Delay:               5.269ns (Levels of Logic = 4)
   Source:            s0/vgamod/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP (RAM)
-  Destination:       s0/vgamod/reg_cur_start_3 (FF)
+  Destination:       s0/vgamod/ram_2k_char/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP (RAM)
   Source Clock:      s1/i8284/vclk rising
   Destination Clock: s1/i8284/vclk rising
 
-  Data Path: s0/vgamod/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP to s0/vgamod/reg_cur_start_3
+  Data Path: s0/vgamod/ram_2k_attr/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP to s0/vgamod/ram_2k_char/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
@@ -4766,12 +4723,12 @@ Delay:               5.395ns (Levels of Logic = 5)
      end scope: 's0/vgamod/ram_2k_attr:douta<3>'
      LUT5:I1->O            1   0.094   0.576  d<3>LogicTrst1 (d<3>LogicTrst)
      LUT5:I3->O            1   0.094   0.710  d<3>LogicTrst2 (d<3>LogicTrst1)
-     LUT5:I2->O           10   0.094   0.759  d<3>LogicTrst3 (d<3>)
-     LUT3:I0->O            1   0.094   0.000  s0/vgamod/Mmux_reg_cur_start[3]_PWR_188_o_mux_68_OUT41 (s0/vgamod/reg_cur_start[3]_PWR_188_o_mux_68_OUT<3>)
-     FDE:D                    -0.018          s0/vgamod/reg_cur_start_3
+     LUT5:I2->O           10   0.094   0.385  d<3>LogicTrst3 (d<3>)
+     begin scope: 's0/vgamod/ram_2k_char:dina<3>'
+     RAMB18:DIA3               0.342          U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM18.SP
     ----------------------------------------
-    Total                      5.395ns (2.556ns logic, 2.839ns route)
-                                       (47.4% logic, 52.6% route)
+    Total                      5.269ns (2.804ns logic, 2.465ns route)
+                                       (53.2% logic, 46.8% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's8/pclka'
@@ -4888,10 +4845,10 @@ Delay:               1.067ns (Levels of Logic = 1)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'dclk'
-  Clock period: 7.461ns (frequency: 134.036MHz)
+  Clock period: 7.908ns (frequency: 126.460MHz)
   Total number of paths / destination ports: 23781 / 182
 -------------------------------------------------------------------------
-Delay:               7.461ns (Levels of Logic = 7)
+Delay:               7.908ns (Levels of Logic = 7)
   Source:            s4/i8237/dack_1 (FF)
   Destination:       s4/i8237/mode_5 (FF)
   Source Clock:      dclk rising
@@ -4904,22 +4861,22 @@ Delay:               7.461ns (Levels of Logic = 7)
      FDS:C->Q              4   0.471   0.805  s4/i8237/dack_1 (s4/i8237/dack_1)
      LUT6:I2->O           11   0.094   0.844  a<16>LogicTrst1 (a<16>)
      LUT4:I0->O            9   0.094   1.017  s3/rom_addr_sel_n1 (rom_addr_sel_n)
-     LUT6:I1->O            4   0.094   0.805  s3/ls4/Mmux_y61 (cs_n<5>)
-     LUT6:I2->O            9   0.094   0.620  s5/rommod/csv_inv1 (s5/rommod/csv_inv)
-     LUT6:I4->O            8   0.094   0.748  xd<0>LogicTrst1 (xd<0>LogicTrst1)
-     LUT5:I2->O           34   0.094   0.917  xd<2>LogicTrst4 (xd<2>)
+     LUT6:I1->O            4   0.094   0.989  s3/ls4/Mmux_y61 (cs_n<5>)
+     LUT6:I1->O            9   0.094   0.620  s5/rommod/csv_inv1 (s5/rommod/csv_inv)
+     LUT6:I4->O            8   0.094   1.011  xd<0>LogicTrst1 (xd<0>LogicTrst1)
+     LUT5:I0->O           34   0.094   0.917  xd<2>LogicTrst4 (xd<2>)
      LUT6:I2->O            6   0.094   0.363  s4/i8237/_n0696_inv3 (s4/i8237/_n0696_inv)
      FDRE:CE                   0.213          s4/i8237/mode_0
     ----------------------------------------
-    Total                      7.461ns (1.342ns logic, 6.119ns route)
-                                       (18.0% logic, 82.0% route)
+    Total                      7.908ns (1.342ns logic, 6.566ns route)
+                                       (17.0% logic, 83.0% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'wrt_dma_pg_reg_n'
-  Clock period: 6.044ns (frequency: 165.453MHz)
+  Clock period: 6.491ns (frequency: 154.059MHz)
   Total number of paths / destination ports: 896 / 8
 -------------------------------------------------------------------------
-Delay:               6.044ns (Levels of Logic = 6)
+Delay:               6.491ns (Levels of Logic = 6)
   Source:            s4/ls6700/q3_0 (LATCH)
   Destination:       s4/ls6700/q0_3 (LATCH)
   Source Clock:      wrt_dma_pg_reg_n falling
@@ -4932,14 +4889,14 @@ Delay:               6.044ns (Levels of Logic = 6)
      LDE:G->Q              1   0.736   0.710  s4/ls6700/q3_0 (s4/ls6700/q3_0)
      LUT6:I3->O           11   0.094   0.844  a<16>LogicTrst1 (a<16>)
      LUT4:I0->O            9   0.094   1.017  s3/rom_addr_sel_n1 (rom_addr_sel_n)
-     LUT6:I1->O            4   0.094   0.805  s3/ls4/Mmux_y61 (cs_n<5>)
-     LUT6:I2->O            9   0.094   0.620  s5/rommod/csv_inv1 (s5/rommod/csv_inv)
-     LUT6:I4->O            8   0.094   0.748  xd<0>LogicTrst1 (xd<0>LogicTrst1)
-     LUT5:I2->O           33   0.094   0.000  xd<3>LogicTrst4 (xd<3>)
+     LUT6:I1->O            4   0.094   0.989  s3/ls4/Mmux_y61 (cs_n<5>)
+     LUT6:I1->O            9   0.094   0.620  s5/rommod/csv_inv1 (s5/rommod/csv_inv)
+     LUT6:I4->O            8   0.094   1.011  xd<0>LogicTrst1 (xd<0>LogicTrst1)
+     LUT5:I0->O           33   0.094   0.000  xd<3>LogicTrst4 (xd<3>)
      LDE:D                    -0.071          s4/ls6700/q3_3
     ----------------------------------------
-    Total                      6.044ns (1.300ns logic, 4.744ns route)
-                                       (21.5% logic, 78.5% route)
+    Total                      6.491ns (1.300ns logic, 5.191ns route)
+                                       (20.0% logic, 80.0% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'xmemr_n'
@@ -4962,6 +4919,28 @@ Delay:               2.088ns (Levels of Logic = 1)
     ----------------------------------------
     Total                      2.088ns (1.138ns logic, 0.950ns route)
                                        (54.5% logic, 45.5% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'USER_CLK'
+  Clock period: 2.592ns (frequency: 385.802MHz)
+  Total number of paths / destination ports: 88 / 28
+-------------------------------------------------------------------------
+Delay:               2.592ns (Levels of Logic = 1)
+  Source:            s1/i8284/counter_4 (FF)
+  Destination:       s1/i8284/counter_5 (FF)
+  Source Clock:      USER_CLK rising
+  Destination Clock: USER_CLK rising
+
+  Data Path: s1/i8284/counter_4 to s1/i8284/counter_5
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              5   0.471   1.091  s1/i8284/counter_4 (s1/i8284/counter_4)
+     LUT6:I0->O            6   0.094   0.363  s1/i8284/counter[5]_PWR_4_o_equal_2_o<5>1 (s1/i8284/counter[5]_PWR_4_o_equal_2_o)
+     FDR:R                     0.573          s1/i8284/counter_0
+    ----------------------------------------
+    Total                      2.592ns (1.138ns logic, 1.454ns route)
+                                       (43.9% logic, 56.1% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'KEYBOARD_CLK'
@@ -4988,21 +4967,21 @@ Delay:               3.734ns (Levels of Logic = 3)
                                        (29.4% logic, 70.6% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'USER_CLK'
+Timing constraint: Default OFFSET IN BEFORE for Clock 's1/i8284/clk'
   Total number of paths / destination ports: 2 / 2
 -------------------------------------------------------------------------
 Offset:              1.493ns (Levels of Logic = 2)
   Source:            GPIO_SW_C (PAD)
-  Destination:       deb/state_FSM_FFd2 (FF)
-  Destination Clock: USER_CLK rising
+  Destination:       deb/state_FSM_FFd1 (FF)
+  Destination Clock: s1/i8284/clk rising
 
-  Data Path: GPIO_SW_C to deb/state_FSM_FFd2
+  Data Path: GPIO_SW_C to deb/state_FSM_FFd1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O             2   0.818   0.581  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
-     LUT3:I1->O            1   0.094   0.000  deb/state_FSM_FFd2-In1 (deb/state_FSM_FFd2-In)
-     FD:D                     -0.018          deb/state_FSM_FFd2
+     LUT2:I0->O            1   0.094   0.000  deb/state_FSM_FFd1-In11 (deb/state_FSM_FFd1-In1)
+     FDR:D                    -0.018          deb/state_FSM_FFd1
     ----------------------------------------
     Total                      1.493ns (0.912ns logic, 0.581ns route)
                                        (61.1% logic, 38.9% route)
@@ -5114,17 +5093,16 @@ Clock to Setup on destination clock dclk
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |    6.692|         |         |         |
-dclk                                          |    7.461|         |         |         |
-s1/ale                                        |    7.629|         |         |         |
-s1/i8284/clk                                  |    7.857|    4.426|         |         |
-s4/i8237/adstb                                |    6.708|         |         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    3.471|         |         |
+dclk                                          |    7.908|         |         |         |
+s1/ale                                        |    8.076|         |         |         |
+s1/i8284/clk                                  |    8.304|    4.426|         |         |
+s4/i8237/adstb                                |    6.971|         |         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    3.701|         |         |
 s8/i8253/vcs/C1/OUTCTRL/OUT                   |    4.274|         |         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    3.663|         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    3.780|         |         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    3.876|         |         |
-wrt_dma_pg_reg_n                              |         |    7.631|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    3.876|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.010|         |         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    4.089|         |         |
+wrt_dma_pg_reg_n                              |         |    8.078|         |         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/ale
@@ -5132,7 +5110,7 @@ Clock to Setup on destination clock s1/ale
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-s1/i8284/clk   |   21.484|         |         |         |
+s1/i8284/clk   |   21.561|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/i8259/cs_n_wr_n_AND_618_o
@@ -5140,31 +5118,31 @@ Clock to Setup on destination clock s1/i8259/cs_n_wr_n_AND_618_o
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |         |         |    8.799|         |
-dclk                                          |         |         |    9.568|         |
-s1/ale                                        |         |         |    9.736|         |
+USER_CLK                                      |         |         |    7.774|         |
+dclk                                          |         |         |   10.015|         |
+s1/ale                                        |         |         |   10.183|         |
 s1/i8259/cs_n_wr_n_AND_618_o                  |         |         |    3.631|         |
-s1/i8259/inta_n_eoir[4]_OR_887_o              |         |         |    3.694|         |
+s1/i8259/inta_n_eoir[4]_OR_890_o              |         |         |    3.694|         |
 s1/i8259/recint_eoir[1]_MUX_3329_o            |         |         |    3.705|         |
-s1/i8284/clk                                  |         |         |   21.977|         |
+s1/i8284/clk                                  |         |         |   21.988|         |
 s1/i8284/vclk                                 |         |         |    7.042|         |
-s4/i8237/adstb                                |         |         |    8.842|         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    5.578|         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    5.770|         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    5.887|         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |         |    5.983|         |
-wrt_dma_pg_reg_n                              |         |         |    9.738|         |
+s4/i8237/adstb                                |         |         |    9.078|         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    5.808|         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    5.983|         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    6.117|         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |         |    6.196|         |
+wrt_dma_pg_reg_n                              |         |         |   10.185|         |
 ----------------------------------------------+---------+---------+---------+---------+
 
-Clock to Setup on destination clock s1/i8259/inta_n_eoir[4]_OR_887_o
+Clock to Setup on destination clock s1/i8259/inta_n_eoir[4]_OR_890_o
 -----------------------------------------------------------------------+---------+---------+---------+---------+
                                                                        | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                                           |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -----------------------------------------------------------------------+---------+---------+---------+---------+
 s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8|         |         |    1.439|         |
-s1/i8284/clk                                                           |         |         |    3.157|         |
-s1/inta_n                                                              |         |         |    2.483|         |
-xa<0>                                                                  |         |         |    2.822|         |
+s1/i8284/clk                                                           |         |         |    3.084|         |
+s1/inta_n                                                              |         |         |    2.573|         |
+xa<0>                                                                  |         |         |    3.102|         |
 -----------------------------------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/i8259/inta_n_recint_AND_622_o
@@ -5172,7 +5150,7 @@ Clock to Setup on destination clock s1/i8259/inta_n_recint_AND_622_o
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-s1/inta_n      |         |    1.645|         |         |
+s1/inta_n      |         |    1.650|         |         |
 xa<0>          |    2.129|         |         |         |
 ---------------+---------+---------+---------+---------+
 
@@ -5189,17 +5167,17 @@ Clock to Setup on destination clock s1/i8284/clk
                                                                        | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                                           |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -----------------------------------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                                               |    7.973|         |         |         |
-dclk                                                                   |    8.742|         |    1.959|         |
-s1/ale                                                                 |    8.910|         |         |         |
-s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8|         |    9.099|         |         |
-s1/i8259/cs_n_wr_n_AND_618_o                                           |         |    8.915|         |         |
-s1/i8259/inta_n_eoir[4]_OR_887_o                                       |         |    2.863|         |         |
+USER_CLK                                                               |    7.113|         |         |         |
+dclk                                                                   |    9.189|         |    1.959|         |
+s1/ale                                                                 |    9.357|         |         |         |
+s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8|         |    9.165|         |         |
+s1/i8259/cs_n_wr_n_AND_618_o                                           |         |    8.981|         |         |
+s1/i8259/inta_n_eoir[4]_OR_890_o                                       |         |    2.863|         |         |
 s1/i8259/recint_eoir[1]_MUX_3329_o                                     |         |    2.863|         |         |
-s1/i8284/clk                                                           |   23.377|    0.863|    2.106|         |
+s1/i8284/clk                                                           |   23.025|    0.863|    2.106|         |
 s1/i8284/vclk                                                          |    6.216|         |         |         |
-s1/inta_n                                                              |         |    8.589|         |         |
-s4/i8237/adstb                                                         |    8.022|         |         |         |
+s1/inta_n                                                              |         |    8.660|         |         |
+s4/i8237/adstb                                                         |    8.252|         |         |         |
 s6/rb0/central_ram_core/fsm[1]_PWR_142_o_Mux_30_o                      |         |    2.462|         |         |
 s6/rb0/central_ram_core/fsm[1]_PWR_149_o_Mux_44_o                      |         |    1.546|         |         |
 s6/rb1/central_ram_core/fsm[1]_PWR_142_o_Mux_30_o                      |         |    2.462|         |         |
@@ -5208,14 +5186,14 @@ s6/rb2/central_ram_core/fsm[1]_PWR_142_o_Mux_30_o                      |        
 s6/rb2/central_ram_core/fsm[1]_PWR_149_o_Mux_44_o                      |         |    1.546|         |         |
 s6/rb3/central_ram_core/fsm[1]_PWR_142_o_Mux_30_o                      |         |    2.462|         |         |
 s6/rb3/central_ram_core/fsm[1]_PWR_149_o_Mux_44_o                      |         |    1.546|         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o                         |         |    4.752|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o                         |         |    4.944|         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o                         |         |    5.061|         |         |
-s9/i8255/cmd[4]_GND_278_o_equal_13_o                                   |         |    2.685|         |         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1                                |         |    5.157|         |         |
-wrt_dma_pg_reg_n                                                       |         |    8.912|         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o                         |         |    4.982|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o                         |         |    5.157|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o                         |         |    5.291|         |         |
+s9/i8255/cmd[4]_GND_278_o_equal_13_o                                   |         |    2.551|         |         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1                                |         |    5.370|         |         |
+wrt_dma_pg_reg_n                                                       |         |    9.359|         |         |
 wrt_nmi_reg_n                                                          |    1.914|         |         |         |
-xmemr_n                                                                |    1.723|         |         |         |
+xmemr_n                                                                |    1.857|         |         |         |
 -----------------------------------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/i8284/pclk
@@ -5224,7 +5202,7 @@ Clock to Setup on destination clock s1/i8284/pclk
 Source Clock                        |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ------------------------------------+---------+---------+---------+---------+
 KEYBOARD_CLK                        |         |    5.752|         |         |
-USER_CLK                            |    2.651|         |         |         |
+s1/i8284/clk                        |    1.855|         |         |         |
 s1/i8284/pclk                       |    2.820|         |         |         |
 s9/i8255/cmd[4]_GND_278_o_equal_13_o|         |    2.974|         |         |
 ------------------------------------+---------+---------+---------+---------+
@@ -5234,17 +5212,17 @@ Clock to Setup on destination clock s1/i8284/vclk
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |    7.153|         |         |         |
-dclk                                          |    7.921|         |         |         |
-s1/ale                                        |    8.089|         |         |         |
-s1/i8284/clk                                  |    8.318|         |         |         |
-s1/i8284/vclk                                 |    5.395|         |         |         |
-s4/i8237/adstb                                |    7.168|         |         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    3.931|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.123|         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.240|         |         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    4.336|         |         |
-wrt_dma_pg_reg_n                              |         |    8.091|         |         |
+USER_CLK                                      |    6.001|         |         |         |
+dclk                                          |    8.242|         |         |         |
+s1/ale                                        |    8.410|         |         |         |
+s1/i8284/clk                                  |    8.639|         |         |         |
+s1/i8284/vclk                                 |    5.269|         |         |         |
+s4/i8237/adstb                                |    7.305|         |         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.035|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.210|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.344|         |         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    4.423|         |         |
+wrt_dma_pg_reg_n                              |         |    8.412|         |         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/inta_n
@@ -5255,7 +5233,7 @@ Source Clock                                                           |Dest:Ris
 s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8|         |         |    2.412|         |
 s1/i8259/cs_n_wr_n_AND_618_o                                           |         |         |    2.228|         |
 s1/i8259/inta_n_recint_AND_622_o                                       |         |         |    1.413|         |
-s1/inta_n                                                              |         |         |    2.149|         |
+s1/inta_n                                                              |         |         |    2.154|         |
 -----------------------------------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s4/i8237/adstb
@@ -5263,16 +5241,15 @@ Clock to Setup on destination clock s4/i8237/adstb
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |    5.106|         |         |         |
-dclk                                          |    5.874|         |         |         |
-s1/ale                                        |    6.042|         |         |         |
-s1/i8284/clk                                  |    6.270|         |         |         |
-s4/i8237/adstb                                |    5.121|         |         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    1.884|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    2.076|         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    2.193|         |         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    2.289|         |         |
-wrt_dma_pg_reg_n                              |         |    6.044|         |         |
+dclk                                          |    6.321|         |         |         |
+s1/ale                                        |    6.489|         |         |         |
+s1/i8284/clk                                  |    6.717|         |         |         |
+s4/i8237/adstb                                |    5.384|         |         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    2.114|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    2.289|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    2.423|         |         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    2.502|         |         |
+wrt_dma_pg_reg_n                              |         |    6.491|         |         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s6/rb0/central_ram_core/fsm[1]_PWR_142_o_Mux_30_o
@@ -5384,17 +5361,16 @@ Clock to Setup on destination clock s8/i8253/vcs/C0/MODETRIG
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |    7.802|         |         |         |
-dclk                                          |    8.570|         |         |         |
-s1/ale                                        |    8.738|         |         |         |
-s1/i8284/clk                                  |    8.966|         |         |         |
-s4/i8237/adstb                                |    7.817|         |         |         |
+dclk                                          |    9.017|         |         |         |
+s1/ale                                        |    9.185|         |         |         |
+s1/i8284/clk                                  |    9.413|         |         |         |
+s4/i8237/adstb                                |    8.080|         |         |         |
 s8/i8253/vcs/C0/MODETRIG                      |    1.067|         |         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.580|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.772|         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.889|         |         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    4.985|         |         |
-wrt_dma_pg_reg_n                              |         |    8.740|         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.810|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.985|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    5.119|         |         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    5.198|         |         |
+wrt_dma_pg_reg_n                              |         |    9.187|         |         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o
@@ -5420,17 +5396,16 @@ Clock to Setup on destination clock s8/i8253/vcs/C1/MODETRIG
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |    7.513|         |         |         |
-dclk                                          |    8.281|         |         |         |
-s1/ale                                        |    8.449|         |         |         |
-s1/i8284/clk                                  |    8.677|         |         |         |
-s4/i8237/adstb                                |    7.528|         |         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.291|         |         |
+dclk                                          |    8.728|         |         |         |
+s1/ale                                        |    8.896|         |         |         |
+s1/i8284/clk                                  |    9.124|         |         |         |
+s4/i8237/adstb                                |    7.791|         |         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.521|         |         |
 s8/i8253/vcs/C1/MODETRIG                      |    1.067|         |         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.483|         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.600|         |         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    4.696|         |         |
-wrt_dma_pg_reg_n                              |         |    8.451|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.696|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.830|         |         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    4.909|         |         |
+wrt_dma_pg_reg_n                              |         |    8.898|         |         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s8/i8253/vcs/C1/OUTCTRL/OUT
@@ -5464,17 +5439,16 @@ Clock to Setup on destination clock s8/i8253/vcs/C2/MODETRIG
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |    7.686|         |         |         |
-dclk                                          |    8.454|         |         |         |
-s1/ale                                        |    8.622|         |         |         |
-s1/i8284/clk                                  |    8.850|         |         |         |
-s4/i8237/adstb                                |    7.701|         |         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.464|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.656|         |         |
+dclk                                          |    8.901|         |         |         |
+s1/ale                                        |    9.069|         |         |         |
+s1/i8284/clk                                  |    9.297|         |         |         |
+s4/i8237/adstb                                |    7.964|         |         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.694|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.869|         |         |
 s8/i8253/vcs/C2/MODETRIG                      |    1.056|         |         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.773|         |         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    4.869|         |         |
-wrt_dma_pg_reg_n                              |         |    8.624|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    5.003|         |         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    5.082|         |         |
+wrt_dma_pg_reg_n                              |         |    9.071|         |         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o
@@ -5492,26 +5466,25 @@ Clock to Setup on destination clock s8/pclka
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |         |         |    9.057|         |
-dclk                                          |         |         |    9.825|         |
-s1/ale                                        |         |         |    9.993|         |
-s1/i8284/clk                                  |         |         |   10.221|         |
+dclk                                          |         |         |   10.272|         |
+s1/ale                                        |         |         |   10.440|         |
+s1/i8284/clk                                  |         |         |   10.668|         |
 s1/i8284/pclk                                 |    1.061|         |         |         |
-s4/i8237/adstb                                |         |         |    9.072|         |
+s4/i8237/adstb                                |         |         |    9.335|         |
 s8/i8253/vcs/C0/LOADCNT                       |    1.380|         |         |         |
 s8/i8253/vcs/C0/MODETRIG                      |         |         |    2.499|         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    5.835|         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    6.065|         |
 s8/i8253/vcs/C1/LOADCNT                       |    1.380|         |         |         |
 s8/i8253/vcs/C1/MODETRIG                      |         |         |    2.499|         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    6.027|         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    6.240|         |
 s8/i8253/vcs/C2/LOADCNT                       |    1.380|         |         |         |
 s8/i8253/vcs/C2/MODETRIG                      |         |         |    2.488|         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    6.144|         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    6.374|         |
 s8/pclka                                      |    4.088|    2.437|    4.767|         |
 s9/i8255/cmd[4]_GND_278_o_equal_13_o          |         |    2.210|    3.093|         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |         |    6.240|         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |         |    6.453|         |
 s9/i8255/pb_0                                 |    1.354|         |         |         |
-wrt_dma_pg_reg_n                              |         |         |    9.995|         |
+wrt_dma_pg_reg_n                              |         |         |   10.442|         |
 xiow_n                                        |    2.886|         |    3.478|         |
 ----------------------------------------------+---------+---------+---------+---------+
 
@@ -5520,16 +5493,15 @@ Clock to Setup on destination clock s9/i8255/cmd[4]_GND_278_o_equal_13_o
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |         |         |    5.106|         |
-dclk                                          |         |         |    5.874|         |
-s1/ale                                        |         |         |    6.042|         |
-s1/i8284/clk                                  |         |         |    6.270|         |
-s4/i8237/adstb                                |         |         |    5.121|         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    1.884|         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    2.076|         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    2.193|         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |         |    2.289|         |
-wrt_dma_pg_reg_n                              |         |         |    6.044|         |
+dclk                                          |         |         |    6.321|         |
+s1/ale                                        |         |         |    6.489|         |
+s1/i8284/clk                                  |         |         |    6.717|         |
+s4/i8237/adstb                                |         |         |    5.384|         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    2.114|         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    2.289|         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    2.423|         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |         |    2.502|         |
+wrt_dma_pg_reg_n                              |         |         |    6.491|         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1
@@ -5539,7 +5511,7 @@ Source Clock                        |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ------------------------------------+---------+---------+---------+---------+
 dclk                                |         |         |    4.341|         |
 s1/ale                              |         |         |    4.112|         |
-s1/i8284/clk                        |         |         |    4.834|         |
+s1/i8284/clk                        |         |         |    4.846|         |
 s1/i8284/pclk                       |         |         |    1.359|         |
 s4/i8237/adstb                      |         |         |    4.110|         |
 s8/pclka                            |         |         |    1.633|         |
@@ -5560,16 +5532,15 @@ Clock to Setup on destination clock wrt_dma_pg_reg_n
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |         |         |    5.106|         |
-dclk                                          |         |         |    5.874|         |
-s1/ale                                        |         |         |    6.042|         |
-s1/i8284/clk                                  |         |         |    6.270|         |
-s4/i8237/adstb                                |         |         |    5.121|         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    1.884|         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    2.076|         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    2.193|         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |         |    2.289|         |
-wrt_dma_pg_reg_n                              |         |         |    6.044|         |
+dclk                                          |         |         |    6.321|         |
+s1/ale                                        |         |         |    6.489|         |
+s1/i8284/clk                                  |         |         |    6.717|         |
+s4/i8237/adstb                                |         |         |    5.384|         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    2.114|         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    2.289|         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |         |    2.423|         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |         |    2.502|         |
+wrt_dma_pg_reg_n                              |         |         |    6.491|         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock wrt_nmi_reg_n
@@ -5577,16 +5548,15 @@ Clock to Setup on destination clock wrt_nmi_reg_n
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |    5.106|         |         |         |
-dclk                                          |    5.874|         |         |         |
-s1/ale                                        |    6.042|         |         |         |
-s1/i8284/clk                                  |    6.270|         |         |         |
-s4/i8237/adstb                                |    5.121|         |         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    1.884|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    2.076|         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    2.193|         |         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    2.289|         |         |
-wrt_dma_pg_reg_n                              |         |    6.044|         |         |
+dclk                                          |    6.321|         |         |         |
+s1/ale                                        |    6.489|         |         |         |
+s1/i8284/clk                                  |    6.717|         |         |         |
+s4/i8237/adstb                                |    5.384|         |         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    2.114|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    2.289|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    2.423|         |         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    2.502|         |         |
+wrt_dma_pg_reg_n                              |         |    6.491|         |         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock xa<0>
@@ -5594,20 +5564,20 @@ Clock to Setup on destination clock xa<0>
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |    7.973|         |         |         |
-dclk                                          |    8.742|         |         |         |
-s1/ale                                        |    8.910|         |         |         |
+USER_CLK                                      |    6.948|         |         |         |
+dclk                                          |    9.189|         |         |         |
+s1/ale                                        |    9.357|         |         |         |
 s1/i8259/cs_n_wr_n_AND_618_o                  |         |    2.800|         |         |
-s1/i8259/inta_n_eoir[4]_OR_887_o              |         |    2.863|         |         |
+s1/i8259/inta_n_eoir[4]_OR_890_o              |         |    2.863|         |         |
 s1/i8259/recint_eoir[1]_MUX_3329_o            |         |    2.863|         |         |
-s1/i8284/clk                                  |   20.641|         |         |         |
+s1/i8284/clk                                  |   20.583|         |         |         |
 s1/i8284/vclk                                 |    6.216|         |         |         |
-s4/i8237/adstb                                |    7.989|         |         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.752|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.944|         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    5.061|         |         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    5.157|         |         |
-wrt_dma_pg_reg_n                              |         |    8.912|         |         |
+s4/i8237/adstb                                |    8.252|         |         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.982|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    5.157|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    5.291|         |         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    5.370|         |         |
+wrt_dma_pg_reg_n                              |         |    9.359|         |         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock xiow_n
@@ -5615,16 +5585,15 @@ Clock to Setup on destination clock xiow_n
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |    6.995|         |         |         |
-dclk                                          |    7.763|         |         |         |
-s1/ale                                        |    7.931|         |         |         |
-s1/i8284/clk                                  |    8.159|         |         |         |
-s4/i8237/adstb                                |    7.010|         |         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    3.773|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    3.965|         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.082|         |         |
-s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    4.178|         |         |
-wrt_dma_pg_reg_n                              |         |    7.933|         |         |
+dclk                                          |    8.210|         |         |         |
+s1/ale                                        |    8.378|         |         |         |
+s1/i8284/clk                                  |    8.606|         |         |         |
+s4/i8237/adstb                                |    7.273|         |         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.003|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.178|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_166_o_Mux_9_o|         |    4.312|         |         |
+s9/i8255/cmd[4]_GND_278_o_equal_8_o<4>1       |         |    4.391|         |         |
+wrt_dma_pg_reg_n                              |         |    8.380|         |         |
 xiow_n                                        |    2.301|         |         |         |
 ----------------------------------------------+---------+---------+---------+---------+
 
@@ -5645,8 +5614,8 @@ xmemr_n                             |    2.088|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 69.00 secs
-Total CPU time to Xst completion: 65.96 secs
+Total REAL time to Xst completion: 71.00 secs
+Total CPU time to Xst completion: 69.01 secs
  
 WARNING:Xst:3152 - You have chosen to run a version of XST which is not the default solution
    for the specified device family. You are free to use it in order to take
@@ -5659,9 +5628,9 @@ WARNING:Xst:3152 - You have chosen to run a version of XST which is not the defa
 --> 
 
 
-Total memory usage is 572872 kilobytes
+Total memory usage is 576944 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  918 (   0 filtered)
-Number of infos    :   44 (   0 filtered)
+Number of infos    :   43 (   0 filtered)
 

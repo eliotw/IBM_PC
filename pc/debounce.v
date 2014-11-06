@@ -9,13 +9,13 @@ module debounce(
 		);
 
    // Parameters
-   parameter [1:0] s0 = 2'b00, 
-		s1 = 2'b01,
-		s2 = 2'b10,
-		s3 = 2'b11;
+   parameter [3:0] s0 = 4'b00, 
+		s1 = 4'b01,
+		s2 = 4'b10,
+		s3 = 4'b11;
    
    // Registers
-   reg [1:0] 		   state, nextstate;
+   reg [3:0] 		   state, nextstate;
    
    // Initial conditions
    initial begin
@@ -46,7 +46,7 @@ module debounce(
 	end
 	s2: begin
 	   nextstate = s3;
-	   drst = 1'b0;
+	   drst = 1'b1;
 	end
 	s3: begin
 	   nextstate = s0;

@@ -113,7 +113,7 @@ module motherboard(
 
    // Debounce Module
    debounce deb(
-		.clk(clk_100), // clock signal
+		.clk(clk88), // clock signal
 		.rst(GPIO_SW_C), // reset signal from button
 		.drst(pwr_good) // debounced reset signal
 		);

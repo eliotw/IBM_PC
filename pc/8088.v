@@ -148,7 +148,7 @@ module processor_8088
     wire write_bus;
     assign start = (read | write);
     assign write = (zet_state == execu_st)? cpu_we_o : 1'b0;
-    assign read =  (zet_state == fetch_st) || ((zet_state == execu_st) && ~memalu);
+    assign read =  (zet_state == fetch_st) || ((zet_state == execu_st) && ~memalu) || (zet_state == offse_st) || (zet_state == immed_st);
     assign ad = (write_bus)? ((ale)? calculated_addr[7:0] : ((ctrl_fsm_state == addr)? ((bytes_transferred == 0)? lsb_o_q : ((bytes_transferred == 1)? msb_o_q : 8'bz)) : 8'bz )) : 8'bz;
      
     
