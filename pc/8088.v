@@ -258,7 +258,7 @@ module control_fsm
             interm: next_state = data;
             data: begin
                 if (~data_tran_done)
-                    next_state = addr;
+                    next_state = idle;
                 else
                     next_state = idle;
             end
@@ -314,9 +314,9 @@ module control_fsm
             data: begin
                 if (~data_tran_done) begin
                     cpu_block = 1;
-                    ale = 1;
+                    //ale = 1;
                     den_n = 0;
-                    write_bus = 1;
+                    //write_bus = 1;
                     if (read) begin
                         rd_n = 0;
                         dtr = 0;

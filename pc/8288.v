@@ -32,10 +32,9 @@ module intel8288(
    // Registers
    reg [1:0] 		state, nextstate; // States
    reg 			mrdc, amwc, iorc, aiowc, inta;
-   
+   reg	mrdc_n_s, amwc_n_s, iorc_n_s, aiowc_n_s, inta_n_s;
    // Wires
    wire 		read, write, interrupt, activate, readint;
-   wire 		mrdc_n_s, amwc_n_s, iorc_n_s, aiowc_n_s, inta_n_s;
    wire 		dtr_s, den_s, ale_s;
 
    // Initial Conditions
@@ -75,55 +74,73 @@ module intel8288(
    assign ale_s = (state == s0) & ~aen_n & activate;
    assign dtr_s = ~((state != s0) & readint);
    assign den_s = ((state == s2) & readint) | ((state != s0) & write);
-
-   // Assign command wires
-   assign mrdc_n_s = ~(((state == s1) | (state == s2)) & mrdc);
-   assign amwc_n_s = ~(((state == s1) | (state == s2)) & amwc);
-   assign iorc_n_s = ~(((state == s1) | (state == s2)) & iorc);
-   assign aiowc_n_s = ~(((state == s1) | (state == s2)) & aiowc);
-   assign inta_n_s = ~(((state == s1) | (state == s2)) & inta);
    
    // Finite State Machine Next State Logic
-   always @(state or aen_n or activate) begin
+   always @(state or aen_n or activate or mrdc or amwc or iorc or aiowc or inta) begin
       case(state)
-	s0: begin
-	   if(~aen_n & activate) begin
-	      nextstate = s1;
-	   end
-	   else begin
-	      nextstate = s0;
-	   end
-	end
-	s1: begin
-	   nextstate = s2;
-	end
-	s2: begin
-	   nextstate = s3;
-	end
-	s3: begin
-	   nextstate = s0;
-	end
-	default: begin
-	   nextstate = s0;
-	end
+			s0: begin
+				mrdc_n_s = 1'b1;
+				amwc_n_s = 1'b1;
+				iorc_n_s = 1'b1;
+				aiowc_n_s = 1'b1;
+				inta_n_s = 1'b1;
+				if(~aen_n & activate) begin
+					nextstate = s1;
+				end
+				else begin
+					nextstate = s0;
+				end
+			end
+			s1: begin
+				nextstate = s2;
+				mrdc_n_s = ~mrdc;
+				amwc_n_s = ~amwc;
+				iorc_n_s = ~iorc;
+				aiowc_n_s = ~aiowc;
+				inta_n_s = ~inta;
+			end
+			s2: begin
+				nextstate = s3;
+				mrdc_n_s = ~mrdc;
+				amwc_n_s = ~amwc;
+				iorc_n_s = ~iorc;
+				aiowc_n_s = ~aiowc;
+				inta_n_s = ~inta;
+			end
+			s3: begin
+				nextstate = s0;
+				mrdc_n_s = 1'b1;
+				amwc_n_s = 1'b1;
+				iorc_n_s = 1'b1;
+				aiowc_n_s = 1'b1;
+				inta_n_s = 1'b1;
+			end
+			default: begin
+				nextstate = s0;
+				mrdc_n_s = 1'b1;
+				amwc_n_s = 1'b1;
+				iorc_n_s = 1'b1;
+				aiowc_n_s = 1'b1;
+				inta_n_s = 1'b1;
+			end
       endcase // case (state)   
    end // always @ (state)
    
    // Latching of relevant input
    always @(posedge clk) begin
       if(state == s0) begin
-	 mrdc <= ((s_n == 3'b100) | (s_n == 3'b101));
-	 amwc <= (s_n == 3'b110);
-	 iorc <= (s_n == 3'b001);
-	 aiowc <= (s_n == 3'b010);
-	 inta <= (s_n == 3'b000);
+			mrdc <= ((s_n == 3'b100) | (s_n == 3'b101));
+			amwc <= (s_n == 3'b110);
+			iorc <= (s_n == 3'b001);
+			aiowc <= (s_n == 3'b010);
+			inta <= (s_n == 3'b000);
       end
       else begin
-	 mrdc <= mrdc;
-	 amwc <= amwc;
-	 iorc <= iorc;
-	 aiowc <= aiowc;
-	 inta <= inta;
+			mrdc <= mrdc;
+			amwc <= amwc;
+			iorc <= iorc;
+			aiowc <= aiowc;
+			inta <= inta;
       end // else: !if(state == s1)
    end
    

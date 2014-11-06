@@ -1,7 +1,7 @@
 Release 14.2 par P.28xd (lin64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-ahtanum.ece.cmu.edu::  Wed Nov 05 13:11:59 2014
+ahtanum.ece.cmu.edu::  Wed Nov 05 19:51:52 2014
 
 par -w -intstyle ise -ol high -mt off motherboard_map.ncd motherboard.ncd
 motherboard.pcf 
@@ -45,50 +45,50 @@ Device Utilization Summary:
    Number of External IOBs                  13 out of 640     2%
       Number of LOCed IOBs                  13 out of 13    100%
 
-   Number of RAMB18X2s                       3 out of 148     2%
+   Number of RAMB18X2s                       4 out of 148     2%
    Number of RAMB36_EXPs                    83 out of 148    56%
-   Number of Slices                       2200 out of 17280  12%
-   Number of Slice Registers              2431 out of 69120   3%
-      Number used as Flip Flops           2293
+   Number of Slices                       2177 out of 17280  12%
+   Number of Slice Registers              2457 out of 69120   3%
+      Number used as Flip Flops           2319
       Number used as Latches               133
       Number used as LatchThrus              5
 
-   Number of Slice LUTS                   5388 out of 69120   7%
-   Number of Slice LUT-Flip Flop pairs    6116 out of 69120   8%
+   Number of Slice LUTS                   5372 out of 69120   7%
+   Number of Slice LUT-Flip Flop pairs    6215 out of 69120   8%
 
 
 Overall effort level (-ol):   High 
 Router effort level (-rl):    High 
 
-Starting initial Timing Analysis.  REAL time: 11 secs 
-Finished initial Timing Analysis.  REAL time: 11 secs 
+Starting initial Timing Analysis.  REAL time: 10 secs 
+Finished initial Timing Analysis.  REAL time: 10 secs 
 
 Starting Router
 
 
-Phase  1  : 38877 unrouted;      REAL time: 13 secs 
+Phase  1  : 38837 unrouted;      REAL time: 12 secs 
 
-Phase  2  : 30747 unrouted;      REAL time: 14 secs 
+Phase  2  : 30463 unrouted;      REAL time: 13 secs 
 
-Phase  3  : 13201 unrouted;      REAL time: 22 secs 
+Phase  3  : 13224 unrouted;      REAL time: 21 secs 
 
-Phase  4  : 13201 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 27 secs 
+Phase  4  : 13224 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 25 secs 
 
 Updating file: motherboard.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 33 secs 
+Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 31 secs 
 
-Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 33 secs 
+Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 31 secs 
 
-Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 33 secs 
+Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 31 secs 
 
-Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 33 secs 
+Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 31 secs 
 
-Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 33 secs 
+Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 31 secs 
 
-Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 33 secs 
-Total REAL time to Router completion: 33 secs 
-Total CPU time to Router completion: 33 secs 
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 31 secs 
+Total REAL time to Router completion: 31 secs 
+Total CPU time to Router completion: 31 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -106,129 +106,127 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|   s1/i8284/clk_BUFG | BUFGCTRL_X0Y7| No   |  565 |  0.647     |  2.192      |
+|      USER_CLK_BUFGP | BUFGCTRL_X0Y2| No   |  172 |  0.411     |  1.971      |
 +---------------------+--------------+------+------+------------+-------------+
-|         xiow_n_BUFG | BUFGCTRL_X0Y4| No   |   24 |  0.219     |  1.753      |
+|    icon_control0<0> | BUFGCTRL_X0Y0| No   |   77 |  0.411     |  1.971      |
 +---------------------+--------------+------+------+------------+-------------+
-|       s8/pclka_BUFG | BUFGCTRL_X0Y5| No   |   39 |  0.257     |  1.797      |
+|  s1/i8284/vclk_BUFG |BUFGCTRL_X0Y14| No   |   70 |  0.349     |  1.948      |
 +---------------------+--------------+------+------+------------+-------------+
-|    icon_control0<0> | BUFGCTRL_X0Y0| No   |   74 |  0.415     |  1.968      |
+|         xiow_n_BUFG | BUFGCTRL_X0Y4| No   |   24 |  0.196     |  1.739      |
 +---------------------+--------------+------+------+------------+-------------+
-|  s1/i8284/vclk_BUFG |BUFGCTRL_X0Y14| No   |   70 |  0.238     |  1.764      |
+|   s1/i8284/clk_BUFG | BUFGCTRL_X0Y7| No   |  554 |  0.670     |  2.204      |
 +---------------------+--------------+------+------+------------+-------------+
-|           dclk_BUFG | BUFGCTRL_X0Y6| No   |   39 |  0.116     |  1.714      |
+|           dclk_BUFG | BUFGCTRL_X0Y6| No   |   40 |  0.136     |  1.681      |
 +---------------------+--------------+------+------+------------+-------------+
-|         s1/ale_BUFG | BUFGCTRL_X0Y3| No   |    5 |  0.088     |  1.683      |
+|       s8/pclka_BUFG | BUFGCTRL_X0Y5| No   |   39 |  0.202     |  1.750      |
 +---------------------+--------------+------+------+------------+-------------+
-|  KEYBOARD_CLK_BUFGP |BUFGCTRL_X0Y24| No   |   10 |  0.217     |  1.751      |
+|         s1/ale_BUFG | BUFGCTRL_X0Y3| No   |    5 |  0.085     |  1.644      |
 +---------------------+--------------+------+------+------------+-------------+
-|      USER_CLK_BUFGP | BUFGCTRL_X0Y2| No   |   13 |  0.291     |  1.853      |
+|  KEYBOARD_CLK_BUFGP |BUFGCTRL_X0Y24| No   |   10 |  0.176     |  1.977      |
 +---------------------+--------------+------+------+------------+-------------+
-|        s1/i8284/clk |         Local|      |  173 |  2.736     |  3.553      |
+|               xa<0> |         Local|      |   74 |  0.000     |  1.078      |
++---------------------+--------------+------+------+------------+-------------+
+|s8/i8253/vcs/C1/LOAD |              |      |      |            |             |
+|                 CNT |         Local|      |    4 |  0.000     |  0.756      |
++---------------------+--------------+------+------+------------+-------------+
+|s6/rb3/central_ram_c |              |      |      |            |             |
+|ore/fsm[1]_PWR_142_o |              |      |      |            |             |
+|           _Mux_30_o |         Local|      |    2 |  0.147     |  0.865      |
++---------------------+--------------+------+------+------------+-------------+
+|s6/rb2/central_ram_c |              |      |      |            |             |
+|ore/fsm[1]_PWR_142_o |              |      |      |            |             |
+|           _Mux_30_o |         Local|      |    2 |  0.125     |  0.575      |
++---------------------+--------------+------+------+------------+-------------+
+|s6/rb1/central_ram_c |              |      |      |            |             |
+|ore/fsm[1]_PWR_142_o |              |      |      |            |             |
+|           _Mux_30_o |         Local|      |    2 |  0.016     |  0.674      |
++---------------------+--------------+------+------+------------+-------------+
+|s6/rb0/central_ram_c |              |      |      |            |             |
+|ore/fsm[1]_PWR_142_o |              |      |      |            |             |
+|           _Mux_30_o |         Local|      |    2 |  0.001     |  0.592      |
++---------------------+--------------+------+------+------------+-------------+
+|      s4/i8237/adstb |         Local|      |    4 |  0.143     |  1.034      |
++---------------------+--------------+------+------+------------+-------------+
+|    wrt_dma_pg_reg_n |         Local|      |    2 |  0.180     |  1.231      |
++---------------------+--------------+------+------+------------+-------------+
+|s8/i8253/vcs/C2/LOAD |              |      |      |            |             |
+|                 CNT |         Local|      |    3 |  0.000     |  0.610      |
 +---------------------+--------------+------+------+------------+-------------+
 |s1/i8259/recint_eoir |              |      |      |            |             |
-|      [1]_MUX_3328_o |         Local|      |    1 |  0.000     |  0.590      |
+|      [1]_MUX_3329_o |         Local|      |    1 |  0.000     |  0.452      |
 +---------------------+--------------+------+------+------------+-------------+
 |s8/i8253/vcs/C1/OUTC |              |      |      |            |             |
-|             TRL/OUT |         Local|      |   18 |  0.000     |  2.086      |
+|             TRL/OUT |         Local|      |   18 |  0.000     |  1.598      |
 +---------------------+--------------+------+------+------------+-------------+
-|       s1/i8284/pclk |         Local|      |    6 |  0.283     |  0.977      |
+|       s1/i8284/pclk |         Local|      |    6 |  1.058     |  1.975      |
 +---------------------+--------------+------+------+------------+-------------+
-|   icon_control0<13> |         Local|      |    5 |  0.000     |  0.483      |
+|   icon_control0<13> |         Local|      |    5 |  0.000     |  0.831      |
 +---------------------+--------------+------+------+------------+-------------+
 |s9/i8255/cmd[4]_GND_ |              |      |      |            |             |
-| 278_o_equal_8_o<4>1 |         Local|      |   20 |  0.327     |  0.808      |
+| 278_o_equal_8_o<4>1 |         Local|      |   20 |  0.472     |  1.310      |
 +---------------------+--------------+------+------+------------+-------------+
-|             xmemr_n |         Local|      |   21 |  0.356     |  1.868      |
+|             xmemr_n |         Local|      |   21 |  0.386     |  1.431      |
 +---------------------+--------------+------+------+------------+-------------+
 |s8/i8253/vcs/C0/LOAD |              |      |      |            |             |
-|                 CNT |         Local|      |    4 |  0.000     |  1.165      |
+|                 CNT |         Local|      |    4 |  0.000     |  0.753      |
 +---------------------+--------------+------+------+------------+-------------+
 |s9/i8255/cmd[4]_GND_ |              |      |      |            |             |
-|    278_o_equal_13_o |         Local|      |    2 |  0.671     |  1.130      |
-+---------------------+--------------+------+------+------------+-------------+
-|               xa<0> |         Local|      |   74 |  0.000     |  1.707      |
+|    278_o_equal_13_o |         Local|      |    2 |  0.191     |  0.818      |
 +---------------------+--------------+------+------+------------+-------------+
 |s1/i8259/cs_n_wr_n_A |              |      |      |            |             |
-|            ND_618_o |         Local|      |    6 |  0.334     |  0.945      |
+|            ND_618_o |         Local|      |    6 |  0.376     |  0.992      |
++---------------------+--------------+------+------+------------+-------------+
+|       wrt_nmi_reg_n |         Local|      |    1 |  0.000     |  0.595      |
 +---------------------+--------------+------+------+------------+-------------+
 |s1/i8259/inta_n_eoir |              |      |      |            |             |
-|        [4]_OR_888_o |         Local|      |    1 |  0.000     |  0.897      |
+|        [4]_OR_887_o |         Local|      |    1 |  0.000     |  0.613      |
 +---------------------+--------------+------+------+------------+-------------+
-|           s1/inta_n |         Local|      |    6 |  0.472     |  0.963      |
+|           s1/inta_n |         Local|      |    7 |  0.022     |  0.765      |
 +---------------------+--------------+------+------+------------+-------------+
-|      s4/i8237/adstb |         Local|      |    4 |  0.273     |  1.716      |
-+---------------------+--------------+------+------+------------+-------------+
-|       s9/i8255/pb_0 |         Local|      |    7 |  0.000     |  0.888      |
+|       s9/i8255/pb_0 |         Local|      |    7 |  0.000     |  1.133      |
 +---------------------+--------------+------+------+------------+-------------+
 |s8/i8253/vcs/C0/READ |              |      |      |            |             |
 |/MODE[5]_PWR_166_o_M |              |      |      |            |             |
-|              ux_9_o |         Local|      |    3 |  0.146     |  0.612      |
+|              ux_9_o |         Local|      |    3 |  0.048     |  0.659      |
 +---------------------+--------------+------+------+------------+-------------+
 |s8/i8253/vcs/C1/READ |              |      |      |            |             |
 |/MODE[5]_PWR_166_o_M |              |      |      |            |             |
-|              ux_9_o |         Local|      |    3 |  0.033     |  0.514      |
+|              ux_9_o |         Local|      |    3 |  0.739     |  1.228      |
 +---------------------+--------------+------+------+------------+-------------+
 |s8/i8253/vcs/C2/READ |              |      |      |            |             |
 |/MODE[5]_PWR_166_o_M |              |      |      |            |             |
-|              ux_9_o |         Local|      |    3 |  0.652     |  1.112      |
-+---------------------+--------------+------+------+------------+-------------+
-|    wrt_dma_pg_reg_n |         Local|      |    2 |  0.153     |  0.812      |
+|              ux_9_o |         Local|      |    3 |  0.684     |  1.135      |
 +---------------------+--------------+------+------+------------+-------------+
 |s1/i8259/inta_n_reci |              |      |      |            |             |
-|        nt_AND_622_o |         Local|      |    2 |  0.000     |  0.594      |
+|        nt_AND_622_o |         Local|      |    3 |  0.000     |  0.617      |
 +---------------------+--------------+------+------+------------+-------------+
 |s8/i8253/vcs/C1/MODE |              |      |      |            |             |
-|                TRIG |         Local|      |    4 |  0.000     |  0.491      |
+|                TRIG |         Local|      |    4 |  0.000     |  0.510      |
 +---------------------+--------------+------+------+------------+-------------+
 |s8/i8253/vcs/C0/MODE |              |      |      |            |             |
-|                TRIG |         Local|      |    4 |  0.000     |  0.461      |
+|                TRIG |         Local|      |    4 |  0.000     |  0.482      |
 +---------------------+--------------+------+------+------------+-------------+
 |U_icon_pro/U0/iUPDAT |              |      |      |            |             |
 |               E_OUT |         Local|      |    1 |  0.000     |  0.918      |
 +---------------------+--------------+------+------+------------+-------------+
-|s6/rb3/central_ram_c |              |      |      |            |             |
-|ore/fsm[1]_PWR_142_o |              |      |      |            |             |
-|           _Mux_30_o |         Local|      |    2 |  0.001     |  0.965      |
-+---------------------+--------------+------+------+------------+-------------+
 |s8/i8253/vcs/C2/MODE |              |      |      |            |             |
-|                TRIG |         Local|      |    2 |  0.000     |  0.451      |
+|                TRIG |         Local|      |    2 |  0.000     |  0.468      |
 +---------------------+--------------+------+------+------------+-------------+
 |s6/rb0/central_ram_c |              |      |      |            |             |
 |ore/fsm[1]_PWR_149_o |              |      |      |            |             |
-|           _Mux_44_o |         Local|      |    2 |  0.096     |  1.007      |
-+---------------------+--------------+------+------+------------+-------------+
-|s6/rb0/central_ram_c |              |      |      |            |             |
-|ore/fsm[1]_PWR_142_o |              |      |      |            |             |
-|           _Mux_30_o |         Local|      |    2 |  0.173     |  0.629      |
+|           _Mux_44_o |         Local|      |    2 |  0.484     |  1.392      |
 +---------------------+--------------+------+------+------------+-------------+
 |s6/rb1/central_ram_c |              |      |      |            |             |
 |ore/fsm[1]_PWR_149_o |              |      |      |            |             |
-|           _Mux_44_o |         Local|      |    2 |  0.134     |  0.602      |
-+---------------------+--------------+------+------+------------+-------------+
-|s6/rb1/central_ram_c |              |      |      |            |             |
-|ore/fsm[1]_PWR_142_o |              |      |      |            |             |
-|           _Mux_30_o |         Local|      |    2 |  0.010     |  0.469      |
+|           _Mux_44_o |         Local|      |    2 |  0.003     |  0.769      |
 +---------------------+--------------+------+------+------------+-------------+
 |s6/rb2/central_ram_c |              |      |      |            |             |
 |ore/fsm[1]_PWR_149_o |              |      |      |            |             |
-|           _Mux_44_o |         Local|      |    2 |  0.139     |  0.839      |
-+---------------------+--------------+------+------+------------+-------------+
-|s6/rb2/central_ram_c |              |      |      |            |             |
-|ore/fsm[1]_PWR_142_o |              |      |      |            |             |
-|           _Mux_30_o |         Local|      |    2 |  0.012     |  0.467      |
+|           _Mux_44_o |         Local|      |    2 |  0.015     |  0.612      |
 +---------------------+--------------+------+------+------------+-------------+
 |s6/rb3/central_ram_c |              |      |      |            |             |
 |ore/fsm[1]_PWR_149_o |              |      |      |            |             |
-|           _Mux_44_o |         Local|      |    2 |  0.126     |  0.812      |
-+---------------------+--------------+------+------+------------+-------------+
-|s8/i8253/vcs/C1/LOAD |              |      |      |            |             |
-|                 CNT |         Local|      |    4 |  0.000     |  0.870      |
-+---------------------+--------------+------+------+------------+-------------+
-|s8/i8253/vcs/C2/LOAD |              |      |      |            |             |
-|                 CNT |         Local|      |    3 |  0.000     |  0.463      |
-+---------------------+--------------+------+------+------------+-------------+
-|       wrt_nmi_reg_n |         Local|      |    1 |  0.000     |  0.600      |
+|           _Mux_44_o |         Local|      |    2 |  0.011     |  0.713      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -250,26 +248,26 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    12.384ns|     2.616ns|       0|           0
-   TO TIMEGRP "J_CLK" 15 ns                 | HOLD        |     1.827ns|            |       0|           0
+  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    12.381ns|     2.619ns|       0|           0
+   TO TIMEGRP "J_CLK" 15 ns                 | HOLD        |     1.623ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    14.130ns|     0.870ns|       0|           0
-   TO TIMEGRP "U_CLK" 15 ns                 | HOLD        |     0.547ns|            |       0|           0
+  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    14.127ns|     0.873ns|       0|           0
+   TO TIMEGRP "U_CLK" 15 ns                 | HOLD        |     0.550ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    22.607ns|     7.393ns|       0|           0
-  IGH 50%                                   | HOLD        |     0.474ns|            |       0|           0
+  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    23.498ns|     6.502ns|       0|           0
+  IGH 50%                                   | HOLD        |     0.373ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_D2_TO_T2_path" TIG               | SETUP       |         N/A|     2.896ns|     N/A|           0
+  PATH "TS_D2_TO_T2_path" TIG               | SETUP       |         N/A|     3.228ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_J2_TO_D2_path" TIG               | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_J3_TO_D2_path" TIG               | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_J4_TO_D2_path" TIG               | MAXDELAY    |         N/A|     3.499ns|     N/A|           0
+  PATH "TS_J4_TO_D2_path" TIG               | MAXDELAY    |         N/A|     3.842ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_J_TO_D_path" TIG                 | SETUP       |         N/A|     3.550ns|     N/A|           0
+  PATH "TS_J_TO_D_path" TIG                 | SETUP       |         N/A|     3.448ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_D_TO_J_path" TIG                 | SETUP       |         N/A|     3.297ns|     N/A|           0
+  PATH "TS_D_TO_J_path" TIG                 | SETUP       |         N/A|     3.621ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -285,10 +283,10 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-Total REAL time to PAR completion: 38 secs 
-Total CPU time to PAR completion: 38 secs 
+Total REAL time to PAR completion: 36 secs 
+Total CPU time to PAR completion: 36 secs 
 
-Peak Memory Usage:  811 MB
+Peak Memory Usage:  808 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.

@@ -46,7 +46,7 @@ module debounce(
 	end
 	s2: begin
 	   nextstate = s3;
-	   drst = 1'b1;
+	   drst = 1'b0;
 	end
 	s3: begin
 	   nextstate = s0;
