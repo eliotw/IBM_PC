@@ -59,7 +59,8 @@ module test_fdc();
       errors = errors + (d != testMSR); //should be right
       $display(d); // on off chance it isn't testMSR, find out what it is
       @(posedge clk);
-      //Test a read command
+      
+      //Test a read command -> check if I can do tasks
       ior_n = 1'b1;
       iow_n = 1'b0; //writing to data register
       a = 20'h35f; //address of data register (check and see if flipped f and 5)
