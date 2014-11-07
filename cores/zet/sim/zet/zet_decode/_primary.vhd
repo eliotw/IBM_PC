@@ -1,0 +1,41 @@
+library verilog;
+use verilog.vl_types.all;
+entity zet_decode is
+    port(
+        clk             : in     vl_logic;
+        rst             : in     vl_logic;
+        opcode          : in     vl_logic_vector(7 downto 0);
+        modrm           : in     vl_logic_vector(7 downto 0);
+        rep             : in     vl_logic;
+        \block\         : in     vl_logic;
+        exec_st         : in     vl_logic;
+        div_exc         : in     vl_logic;
+        ld_base         : in     vl_logic;
+        div             : in     vl_logic;
+        tfl             : in     vl_logic;
+        tflm            : out    vl_logic;
+        need_modrm      : out    vl_logic;
+        need_off        : out    vl_logic;
+        need_imm        : out    vl_logic;
+        off_size        : out    vl_logic;
+        imm_size        : out    vl_logic;
+        sop_l           : in     vl_logic_vector(2 downto 0);
+        intr            : in     vl_logic;
+        ifl             : in     vl_logic;
+        iflm            : out    vl_logic;
+        inta            : out    vl_logic;
+        ext_int         : out    vl_logic;
+        nmir            : in     vl_logic;
+        nmia            : out    vl_logic;
+        wr_ss           : in     vl_logic;
+        iflss           : out    vl_logic;
+        seq_addr        : out    vl_logic_vector(8 downto 0);
+        src             : out    vl_logic_vector(3 downto 0);
+        dst             : out    vl_logic_vector(3 downto 0);
+        base            : out    vl_logic_vector(3 downto 0);
+        index           : out    vl_logic_vector(3 downto 0);
+        seg             : out    vl_logic_vector(1 downto 0);
+        f               : out    vl_logic_vector(2 downto 0);
+        end_seq         : in     vl_logic
+    );
+end zet_decode;

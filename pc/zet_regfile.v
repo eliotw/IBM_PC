@@ -88,7 +88,7 @@ module zet_regfile (
       r[8]  <= 16'd0; r[9]  <= 16'hf000;
       r[10] <= 16'd0; r[11] <= 16'd0;
       r[12] <= 16'd0; r[13] <= 16'd0;
-      r[14] <= 16'd0; r[15] <= 16'hfff0;
+      r[14] <= 16'd0; r[15] <= 16'hfff0; // 16'hfff0
       flags <= 9'd0;
     end else
       begin

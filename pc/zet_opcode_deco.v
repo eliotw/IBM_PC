@@ -904,12 +904,20 @@ module zet_opcode_deco (
 
       8'b1110_1010: // jmp indirect different segment
         begin
-          seq_addr <= `LJMPI;
+          seq_addr <= `LJMPM; // LJMPI
           need_modrm <= 1'b0;
           need_off <= 1'b1;
           need_imm <= 1'b1;
           imm_size <= 1'b1;
-
+/*
+seq_addr   <= b ? `LOGIRB : `LOGIRW;
+          need_modrm <= 1'b0;
+          need_off   <= 1'b0;
+          need_imm   <= 1'b1;
+          imm_size   <= ~b;
+          dst        <= 4'b0;
+          src        <= 4'b0;
+*/
           src <= 4'b0;
           dst <= 4'b0;
         end
@@ -1076,7 +1084,7 @@ module zet_opcode_deco (
             3'b010: seq_addr <= (mod==2'b11) ? `CALLNR : `CALLNM;
             3'b011: seq_addr <= `CALLFM;
             3'b100: seq_addr <= (mod==2'b11) ? `JMPR : `JMPM;
-            3'b101: seq_addr <= `LJMPM;
+            3'b101: seq_addr <= `LJMPI; // LJMPM
             3'b110: seq_addr <= (mod==2'b11) ? `PUSHR : `PUSHM;
             default: seq_addr <= `INVOP;
           endcase
