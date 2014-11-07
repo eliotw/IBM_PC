@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.28xd on Thu Nov 06 17:39:32 2014
+// Written by: Map P.28xd on Thu Nov 06 22:04:08 2014
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -155,6 +155,8 @@ TIMEGRP D_CLK = BEL "s1/i8284/counter_5" BEL "s1/i8284/counter_4" BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/I_INTCAP.F_CAP_ADDR[0].U_CAP_ADDR"
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/I_INTCAP.F_CAP_ADDR[0].U_iCAP_ADDR"
+        BEL
+        "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/G_GAND_DLY1[87].I_IN_RANGE.I_USE_INPUT_REG_NE0.U_GAND_DLY1"
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/G_GAND_DLY1[86].I_IN_RANGE.I_USE_INPUT_REG_NE0.U_GAND_DLY1"
         BEL
@@ -329,6 +331,8 @@ TIMEGRP D_CLK = BEL "s1/i8284/counter_5" BEL "s1/i8284/counter_4" BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/G_GAND_DLY1[1].I_IN_RANGE.I_USE_INPUT_REG_NE0.U_GAND_DLY1"
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/G_GAND_DLY1[0].I_IN_RANGE.I_USE_INPUT_REG_NE0.U_GAND_DLY1"
+        BEL
+        "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/G_GAND_DLY2[87].I_IN_RANGE.U_GAND_DLY2"
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/G_GAND_DLY2[86].I_IN_RANGE.U_GAND_DLY2"
         BEL
@@ -761,6 +765,8 @@ TIMEGRP D_CLK = BEL "s1/i8284/counter_5" BEL "s1/i8284/counter_4" BEL
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/I_DQ.U_DQQ/DLY_9.DLY_9_GEN[86].I_SRLT_NE_0.FF"
         BEL
+        "U_ila_pro_0/U0/I_NO_D.U_ILA/I_DQ.U_DQQ/DLY_9.DLY_9_GEN[87].I_SRLT_NE_0.FF"
+        BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/I_DQ.U_DQQ/DLY_9.DLY_9_GEN[0].I_SRLT_NE_0.DLY9/SRL16E"
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/I_DQ.U_DQQ/DLY_9.DLY_9_GEN[1].I_SRLT_NE_0.DLY9/SRL16E"
@@ -935,6 +941,8 @@ TIMEGRP D_CLK = BEL "s1/i8284/counter_5" BEL "s1/i8284/counter_4" BEL
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/I_DQ.U_DQQ/DLY_9.DLY_9_GEN[86].I_SRLT_NE_0.DLY9/SRL16E"
         BEL
+        "U_ila_pro_0/U0/I_NO_D.U_ILA/I_DQ.U_DQQ/DLY_9.DLY_9_GEN[87].I_SRLT_NE_0.DLY9/SRL16E"
+        BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_OREG.I_YES_OREG.U_OREG"
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/I_MC_NO.U_NO_MC_REG"
@@ -948,6 +956,7 @@ TIMEGRP D_CLK = BEL "s1/i8284/counter_5" BEL "s1/i8284/counter_4" BEL
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TC/I_TSEQ_NEQ2.U_TC_EQUATION/I_SRLT_NE_1.I_NMU_1_TO_4.U_TRIGQ"
         BEL "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/F_NO_TCMC.U_FDR" BEL
+        "U_ila_pro_0/U0/I_TQ0.G_TW[87].U_TQ" BEL
         "U_ila_pro_0/U0/I_TQ0.G_TW[86].U_TQ" BEL
         "U_ila_pro_0/U0/I_TQ0.G_TW[85].U_TQ" BEL
         "U_ila_pro_0/U0/I_TQ0.G_TW[84].U_TQ" BEL
