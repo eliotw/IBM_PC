@@ -7,7 +7,7 @@ module test_fdc();
    // Registers
    reg clk, rst;
    reg dack2_n, tc, ior_n, iow_n, aen;
-   reg [7:0] test_MSR; //check main status register
+   reg [7:0] test_MSR, data; //check main status register, data
    
    // Wires
    wire irq6, drq2;
@@ -60,7 +60,7 @@ module test_fdc();
       $display(d); // on off chance it isn't testMSR, find out what it is
       @(posedge clk);
       
-      //Test a read command -> Make this a Task, as well as other commands
+      //Test a read command -> Make this a Task? as well as other commands?
       ior_n = 1'b1;
       iow_n = 1'b0; //writing to data register
       a = 20'h35f; //address of data register (check and see if flipped f and 5)
@@ -89,6 +89,39 @@ module test_fdc();
       @(posedge clk);
       errors = errors + (d != testMSR); //should be right
       $display(d); // on off chance it isn't testMSR, find out what it is
+      //Check evaluation # of clock cycles
+      @(posedge clk);
+      ior_n = 1'b0;
+      a = 20'h35f;
+      testData = 8'h; //ST0
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is
+      #1 testData = 8'h; //ST1
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is
+      #1 testData = 8'h; //ST2
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is
+      #1 testData = 8'h; //Track #
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is
+      #1 testData = 8'h; //H
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is
+      #1 testData = 8'h; //Sector Number
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is
+      #1 testData = 8'h02; //N
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is
+      //end Read Command
       
       
       
