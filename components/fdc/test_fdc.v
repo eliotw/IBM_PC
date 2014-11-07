@@ -57,8 +57,38 @@ module test_fdc();
       a = 20'h34f;
       @(posedge clk);
       errors = errors + (d != testMSR); //should be right
-      $display(d);
+      $display(d); // on off chance it isn't testMSR, find out what it is
       @(posedge clk);
+      //Test a read command
+      ior_n = 1'b1;
+      iow_n = 1'b0; //writing to data register
+      a = 20'h35f; //address of data register (check and see if flipped f and 5)
+      d = 8'h06; //check SK, need to find my notes
+      @(posedge clk);
+      d = 8'h01; //check HD,US0,US1 again
+      @(posedge clk);
+      d = 8'h; //image check (specific data from SD card) -> track
+      @(posedge clk);
+      d = 8'h; //image check (specific data from SD card) -> head
+      @(posedge clk);
+      d = 8'h; //image check (specific data from SD card) -> Section Number
+      @(posedge clk);
+      d = 8'h02; //image check (specific data from SD card) -> N (Constant)
+      @(posedge clk);
+      d = 8'h; //image check (specific data from SD card) -> EOT (final sector number for track)
+      @(posedge clk);
+      d = 8'h2A; //image check (specific data from SD card) -> GPL (gap length) (check what GPL R/W means)
+      @(posedge clk);
+      d = 8'h; //image check (specific data from SD card) -> DTL (Data length)
+      @(posedge clk);
+      iow_n = 1'b1; // (no more writing to FDC, Execution state)
+      a = 20'h34f; //checking that everything is working (status register)
+      ior_n = 1'b0; //reading
+      testMSR = 8'b00; //need to check what it should be
+      @(posedge clk);
+      errors = errors + (d != testMSR); //should be right
+      $display(d); // on off chance it isn't testMSR, find out what it is
+      
       
       
       // Conclude Simulation
