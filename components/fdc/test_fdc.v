@@ -60,6 +60,8 @@ module test_fdc();
       $display(d); // on off chance it isn't testMSR, find out what it is
       @(posedge clk);
       
+      //commands to test: Read,Write,Seek,Format (:( ) 
+      
       //Test a read command -> Make this a Task? as well as other commands?
       ior_n = 1'b1;
       iow_n = 1'b0; //writing to data register
@@ -68,19 +70,19 @@ module test_fdc();
       @(posedge clk);
       d = 8'h01; //check HD,US0,US1 again
       @(posedge clk);
-      d = 8'h; //image check (specific data from SD card) -> track
+      d = 8'h01; //image check (specific data from SD card) -> track (track 1 exists. track 0 or 40 might not
       @(posedge clk);
-      d = 8'h; //image check (specific data from SD card) -> head
+      d = 8'h00; //image check (specific data from SD card) -> head
       @(posedge clk);
-      d = 8'h; //image check (specific data from SD card) -> Section Number
+      d = 8'h01; //image check (specific data from SD card) -> Section Number
       @(posedge clk);
       d = 8'h02; //image check (specific data from SD card) -> N (Constant)
       @(posedge clk);
-      d = 8'h; //image check (specific data from SD card) -> EOT (final sector number for track)
+      d = 8'h07; //image check (specific data from SD card) -> EOT (final sector number for track)
       @(posedge clk);
       d = 8'h2A; //image check (specific data from SD card) -> GPL (gap length) (check what GPL R/W means)
       @(posedge clk);
-      d = 8'h; //image check (specific data from SD card) -> DTL (Data length)
+      d = 8'h00; //image check (specific data from SD card) -> DTL (Data length)
       @(posedge clk);
       iow_n = 1'b1; // (no more writing to FDC, Execution state)
       a = 20'h34f; //checking that everything is working (status register)
@@ -89,7 +91,8 @@ module test_fdc();
       @(posedge clk);
       errors = errors + (d != testMSR); //should be right
       $display(d); // on off chance it isn't testMSR, find out what it is
-      //Check evaluation # of clock cycles
+      //Check evaluation # of clock cycles should get some sort of sign from floppy drive that done
+      //make a thing that just loops through posedge clk until hits sign
       @(posedge clk);
       ior_n = 1'b0;
       a = 20'h35f;
