@@ -3,6 +3,6 @@
 # to it will be overwritten the next time VCS is run.
 echo "Unified Use model is not supported"
 exit -1
-vcs '-R' '-gui' 'test_8088' "-Xrebuild" "-makedepends=Makefile.Msimdepends"
+vcs 'test_zet' "-Xrebuild" "-makedepends=Makefile.Msimdepends"
 gmake -f Makefile.Msimdepends
-vcs '-R' '-gui' 'test_8088'  -static_dbgen_only -daidir=$1 2>&1
+vcs 'test_zet'  -static_dbgen_only -daidir=$1 2>&1

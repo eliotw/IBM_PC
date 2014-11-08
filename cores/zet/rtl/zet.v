@@ -54,6 +54,8 @@ module zet (
   wire        cpu_we_o;
   wire [15:0] iid_dat_i;
 
+   wire [2:0] state, n_state;
+   
   // Module instantiations
   zet_core core (
     .clk (wb_clk_i),
@@ -74,9 +76,16 @@ module zet (
     .cpu_m_io   (cpu_m_io),
     .cpu_we_o   (cpu_we_o),
 
-    .pc (pc)
+    .pc (pc),
+		 .state(state),
+		 .n_state(n_state)
   );
-
+/*
+    
+    
+    output [2:0] state,
+    output [2:0] n_state
+ */
   zet_wb_master wb_master (
     .cpu_byte_o (cpu_byte_o),
     .cpu_memop  (cpu_mem_op),

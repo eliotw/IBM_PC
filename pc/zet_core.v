@@ -46,6 +46,14 @@ module zet_core (
     output [2:0] n_state
   );
 
+  // Registers, nets and parameters
+  parameter opcod_st = 3'h0;
+  parameter modrm_st = 3'h1;
+  parameter offse_st = 3'h2;
+  parameter immed_st = 3'h3;
+  parameter execu_st = 3'h4;
+  parameter fetch_st = 3'h5;
+  
   // Net declarations
   wire [`IR_SIZE-1:0] ir;
   wire [15:0] off;
@@ -110,7 +118,7 @@ module zet_core (
   wire hlt_op;
   wire hlt_in;
   wire hlt_out;
-
+  wire fetchst;
   reg hlt_op_old;
   reg hlt;
 
@@ -268,7 +276,8 @@ module zet_core (
     .we      (cpu_we_o),
     .m_io    (cpu_m_io),
     .byteop  (byte_exec),
-    .block   (block_or_hlt)
+    .block   (block_or_hlt),
+	 .fetchst (fetchst)
   );
 
   // Assignments
@@ -284,8 +293,9 @@ module zet_core (
   assign hlt_op = ((opcode == `OP_HLT) && exec_st); 
   assign hlt_in = (hlt_op && !hlt_op_old && !hlt_out);
   assign hlt_out = (intr & ifl) | nmir;
-  assign block_or_hlt = cpu_block | hlt | hlt_in;
-
+  assign block_or_hlt = cpu_block | hlt | hlt_in; 
+  assign fetchst = (state == fetch_st); // adding in fetch provision
+  
   // Behaviour
   always @(posedge clk or negedge rst)
     if (~rst)

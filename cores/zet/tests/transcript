@@ -1,0 +1,142 @@
+# //  ModelSim SE 6.0b Dec  1 2004 Linux 2.6.32-431.23.3.el6.x86_64
+# //
+# //  Copyright Mentor Graphics Corporation 2004
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+ls
+# 00_stub.s
+# 01_jmpmov.g
+# 01_jmpmov.o
+# 01_jmpmov.s
+# 01_mov.s
+# 02_datatrnf.s
+# 03_control.s
+# 04_jump1.s
+# 05_jump2.s
+# 06_interrupt.s
+# 07_strings.s
+# 08_bug5.s
+# 08_rep.s
+# 09_vdu.s
+# 10_bitwise.s
+# 11_shifts.s
+# 12_rotate.s
+# 13_bcdcnv.s
+# 14_add.s
+# 15_sub.s
+# 16_cmpneg.s
+# 17_mul.s
+# 18_div1.s
+# 18_div.s
+# 19_segpr.s
+# 20_hdemu.s
+# 21_async.s
+# 22_sysace.s
+# 23_enter.s
+# 24_sdcard.s
+# 25_hpdmc.s
+# Makefile
+# README
+# transcript
+cd ..
+ls
+# bin
+# rtl
+# rtl-syn
+# sim
+# syn
+# tests
+cd sim
+ls
+# 01_jmpmov.o
+# 01_jmpmov.out
+# 01_jmpmov.s
+# AN.DB
+# csrc
+# data.rtlrom
+# defines.v
+# DVEfiles
+# inter.vpd
+# Makefile
+# memory.v
+# micro_rom.dat
+# processor_test.dump
+# rom_def.v
+# simv
+# simv.daidir
+# t.do
+# test_8088.v
+# test_zet.v
+# ucli.key
+# vsim.wlf
+# waves
+# work
+# zet
+do t.do
+# Compiling verilog modules... 
+# vlog -work zet -lint +incdir+../rtl ../rtl/zet.v
+# Model Technology ModelSim SE vlog 6.0b Compiler 2004.12 Dec  1 2004
+# -- Compiling module zet
+# 
+# Top level modules:
+# 	zet
+# vsim -suppress 3009,7 -t ns zet.test_zet 
+# Loading zet.test_zet
+# Loading zet.memory
+# Loading zet.zet
+# Loading zet.zet_core
+#         Region: /test_zet/zet/core
+# Loading zet.zet_fetch
+# Loading zet.zet_next_or_not
+#         Region: /test_zet/zet/core/fetch/next_or_not
+# Loading zet.zet_nstate
+#         Region: /test_zet/zet/core/fetch/nstate
+# Loading zet.zet_decode
+#         Region: /test_zet/zet/core/decode
+# Loading zet.zet_opcode_deco
+#         Region: /test_zet/zet/core/decode/opcode_deco
+# Loading zet.zet_memory_regs
+#         Region: /test_zet/zet/core/decode/opcode_deco/memory_regs
+# Loading zet.zet_micro_data
+#         Region: /test_zet/zet/core/micro_data
+# Loading zet.zet_micro_rom
+#         Region: /test_zet/zet/core/micro_data/micro_rom
+# Loading zet.zet_exec
+# Loading zet.zet_alu
+# Loading zet.zet_addsub
+#         Region: /test_zet/zet/core/exec/alu/addsub
+# Loading zet.zet_fulladd16
+#         Region: /test_zet/zet/core/exec/alu/addsub/fulladd16
+# Loading zet.zet_conv
+#         Region: /test_zet/zet/core/exec/alu/conv
+# Loading zet.zet_mux8_16
+#         Region: /test_zet/zet/core/exec/alu/conv/mux8_16
+# Loading zet.zet_muldiv
+#         Region: /test_zet/zet/core/exec/alu/muldiv
+# Loading zet.zet_signmul17
+#         Region: /test_zet/zet/core/exec/alu/muldiv/signmul17
+# Loading zet.zet_div_su
+# Loading zet.zet_div_uu
+# Loading zet.zet_bitlog
+#         Region: /test_zet/zet/core/exec/alu/bitlog
+# Loading zet.zet_arlog
+#         Region: /test_zet/zet/core/exec/alu/arlog
+# Loading zet.zet_shrot
+#         Region: /test_zet/zet/core/exec/alu/shrot
+# Loading zet.zet_rxr8
+#         Region: /test_zet/zet/core/exec/alu/shrot/rxr8
+# Loading zet.zet_rxr16
+#         Region: /test_zet/zet/core/exec/alu/shrot/rxr16
+# Loading zet.zet_othop
+#         Region: /test_zet/zet/core/exec/alu/othop
+# Loading zet.zet_mux8_1
+#         Region: /test_zet/zet/core/exec/alu/a1
+# Loading zet.zet_regfile
+# Loading zet.zet_jmp_cond
+# Loading zet.zet_wb_master
+#         Region: /test_zet/zet/wb_master

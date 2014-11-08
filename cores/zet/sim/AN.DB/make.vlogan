@@ -1,7 +1,9 @@
 
 VLOGAN	= vlogan
 
-all :		_VCSgd_K0Jhje_1.db \
+all :		_VCSgd_Q13yv_1.db \
+	_VCSgd_vBVHzb_1.db \
+	_VCSgd_K0Jhje_1.db \
 	_VCSgd_5jk5fb_1.db \
 	_VCSgd_MF9OH_1.db \
 	_VCSgd_awEzdd_1.db \
@@ -36,6 +38,14 @@ all :		_VCSgd_K0Jhje_1.db \
 	_VCSgd_2OPeyc_1.db \
 	_VCSgd_sStAhe_1.db \
 
+
+
+_VCSgd_Q13yv_1.db :	test_zet.v 
+		${VLOGAN}  +v2k -work work test_zet.v
+
+
+_VCSgd_vBVHzb_1.db :	memory.v 
+		${VLOGAN}  +v2k -work work memory.v
 
 
 _VCSgd_K0Jhje_1.db :	../rtl/8088.v 

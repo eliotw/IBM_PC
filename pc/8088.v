@@ -74,7 +74,7 @@ module processor_8088
     
 	 always @(posedge clk or negedge rst) begin
 		if(~rst) begin
-			cpu_adr_o2 <= 20'b0;
+			cpu_adr_o2 <= 20'hffff0;
 		end
 		else begin
 			cpu_adr_o2 <= cpu_adr_o;
@@ -134,7 +134,7 @@ module processor_8088
     wire write_bus;
 	 
 	 /* prefetch wires */
-	 assign addr_offset = cpu_adr_o2 - addr_reg;
+	 assign addr_offset = cpu_adr_o - addr_reg;
     assign ad_bus = ad;
 	 always @(*) begin
 		if((addr_offset >= 0) && (addr_offset < 9)) begin
@@ -238,12 +238,18 @@ module processor_8088
 	 end
 	 
 	 // Assign
-	 //assign ld_msb_i = (ld_in == 4'b0010); // !!!
-	 //assign ld_lsb_i = (ld_in == 4'b0001); // !!!
+	 /*
+	 opcod_st = 3'h0;
+  parameter modrm_st = 3'h1;
+  parameter offse_st = 3'h2;
+  parameter immed_st = 3'h3;
+  parameter execu_st = 3'h4;
+	 */
     
     assign start = (read | write);
-    assign write = (zet_state == execu_st)? cpu_we_o : 1'b0; //   || ((zet_state == execu_st) && memalu)  || ((zet_state == execu_st) && memalu)
-    assign read =  (zet_state == fetch_st); //|| ((zet_state == offse_st) && memalu) || ((zet_state == immed_st) && memalu);
+    assign write = (zet_state == execu_st)? cpu_we_o : 1'b0;
+    assign read = (zet_state == fetch_st) || ((zet_state == execu_st) && ~memalu) || (zet_state == modrm_st) || (zet_state == offse_st) || (zet_state == immed_st);
+	 //assign read =  ((zet_state == execu_st) && ~memalu) || (zet_state == modrm_st) || (zet_state == offse_st) || (zet_state == immed_st) || (zet_state == opcod_st);
     assign ad = (write_bus)? ((ale)? calculated_addr[7:0] : ((ctrl_fsm_state == addr)? ((bytes_transferred == 0)? lsb_o_q : ((bytes_transferred == 1)? msb_o_q : 8'bz)) : 8'bz )) : 8'bz;
      
     
@@ -325,7 +331,7 @@ module control_fsm
                       .count(bytes_transferred)
                      );
     
-    assign data_tran_done = (bytes_transferred == 4'b1010);
+    assign data_tran_done = (bytes_transferred == 4'b0010);
     assign inc = inc_count;
     assign clr = clr_count;
 

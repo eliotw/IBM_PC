@@ -45,7 +45,7 @@ module zet_exec
     input         block,
     output        div_exc,
     input         wrip0,
-
+	 input         fetchst, // adding in fetch provision
     output        ifl,
     output        tfl,
     output        wr_ss
@@ -110,7 +110,7 @@ module zet_exec
 
   assign addr = aluout[19:0];
   assign wr_data = c;
-  assign wr_reg  = (wr | (jmp & wr_cnd)) && !block && !div_exc;
+  assign wr_reg  = (wr | (jmp & wr_cnd)) && !block && !div_exc && !fetchst; // add fetch provision
   assign wr_high = high && !block && !div_exc;
   assign of  = flags[8];
   assign ifl = flags[6];

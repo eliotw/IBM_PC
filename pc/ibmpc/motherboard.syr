@@ -305,6 +305,7 @@ WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/82
 WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8284a.v" Line 44: Result of 4-bit expression is truncated to fit in 3-bit target.
 
 Elaborating module <processor_8088>.
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 75: Assignment to cpu_adr_o2 ignored, since the identifier is never used
 
 Elaborating module <zet_core>.
 
@@ -367,7 +368,6 @@ WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8
 WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 89: Assignment to nmia ignored, since the identifier is never used
 WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 94: Assignment to cpu_byte_o ignored, since the identifier is never used
 WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 96: Assignment to cpu_mem_op ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 99: Assignment to memalu ignored, since the identifier is never used
 WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 100: Assignment to pc ignored, since the identifier is never used
 WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 102: Assignment to zet_next_state ignored, since the identifier is never used
 
@@ -376,16 +376,16 @@ Elaborating module <register>.
 Elaborating module <control_fsm>.
 
 Elaborating module <counter(width=4)>.
-WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 605: Result of 5-bit expression is truncated to fit in 4-bit target.
-WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 384: Result of 32-bit expression is truncated to fit in 1-bit target.
-WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 385: Result of 32-bit expression is truncated to fit in 1-bit target.
-WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 409: Result of 5-bit expression is truncated to fit in 4-bit target.
+WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 611: Result of 5-bit expression is truncated to fit in 4-bit target.
+WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 390: Result of 32-bit expression is truncated to fit in 1-bit target.
+WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 391: Result of 32-bit expression is truncated to fit in 1-bit target.
+WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 415: Result of 5-bit expression is truncated to fit in 4-bit target.
 
 Elaborating module <interrupt_fsm>.
 
 Elaborating module <counter(width=2)>.
-WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 605: Result of 3-bit expression is truncated to fit in 2-bit target.
-WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 276: Assignment to ld_intr ignored, since the identifier is never used
+WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 611: Result of 3-bit expression is truncated to fit in 2-bit target.
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" Line 282: Assignment to ld_intr ignored, since the identifier is never used
 
 Elaborating module <hold_fsm>.
 WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/motherboard.v" Line 464: Assignment to rqgti_n ignored, since the identifier is never used
@@ -688,28 +688,26 @@ INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" line
 INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" line 84: Output port <nmia> of the instance <core> is unconnected or connected to loadless signal.
 INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" line 84: Output port <cpu_byte_o> of the instance <core> is unconnected or connected to loadless signal.
 INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" line 84: Output port <cpu_mem_op> of the instance <core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" line 84: Output port <memalu> of the instance <core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" line 273: Output port <ld_intr> of the instance <intr_fsm> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v" line 279: Output port <ld_intr> of the instance <intr_fsm> is unconnected or connected to loadless signal.
 WARNING:Xst:653 - Signal <sso> is used but never assigned. This sourceless signal will be automatically connected to value GND.
-    Found 20-bit register for signal <cpu_adr_o2>.
     Found 20-bit register for signal <addr_reg>.
     Found 20-bit subtractor for signal <addr_offset> created at line 137.
     Found 20-bit adder for signal <calculated_addr> created at line 72.
-    Found 20-bit adder for signal <n0071> created at line 141.
+    Found 20-bit adder for signal <n0078> created at line 141.
     Found 8-bit 10-to-1 multiplexer for signal <addr_offset[19]_X_6_o_wide_mux_7_OUT> created at line 141.
     Found 8-bit 10-to-1 multiplexer for signal <addr_offset[3]_X_6_o_wide_mux_8_OUT> created at line 141.
-    Found 1-bit tristate buffer for signal <ad<7>> created at line 247
-    Found 1-bit tristate buffer for signal <ad<6>> created at line 247
-    Found 1-bit tristate buffer for signal <ad<5>> created at line 247
-    Found 1-bit tristate buffer for signal <ad<4>> created at line 247
-    Found 1-bit tristate buffer for signal <ad<3>> created at line 247
-    Found 1-bit tristate buffer for signal <ad<2>> created at line 247
-    Found 1-bit tristate buffer for signal <ad<1>> created at line 247
-    Found 1-bit tristate buffer for signal <ad<0>> created at line 247
+    Found 1-bit tristate buffer for signal <ad<7>> created at line 253
+    Found 1-bit tristate buffer for signal <ad<6>> created at line 253
+    Found 1-bit tristate buffer for signal <ad<5>> created at line 253
+    Found 1-bit tristate buffer for signal <ad<4>> created at line 253
+    Found 1-bit tristate buffer for signal <ad<3>> created at line 253
+    Found 1-bit tristate buffer for signal <ad<2>> created at line 253
+    Found 1-bit tristate buffer for signal <ad<1>> created at line 253
+    Found 1-bit tristate buffer for signal <ad<0>> created at line 253
     Found 20-bit comparator greater for signal <addr_offset[19]_GND_8_o_LessThan_6_o> created at line 140
     Summary:
 	inferred   3 Adder/Subtractor(s).
-	inferred  40 D-type flip-flop(s).
+	inferred  20 D-type flip-flop(s).
 	inferred   1 Comparator(s).
 	inferred   6 Multiplexer(s).
 	inferred   8 Tristate(s).
@@ -717,6 +715,12 @@ Unit <processor_8088> synthesized.
 
 Synthesizing Unit <zet_core>.
     Related source file is "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/zet_core.v".
+        opcod_st = 3'b000
+        modrm_st = 3'b001
+        offse_st = 3'b010
+        immed_st = 3'b011
+        execu_st = 3'b100
+        fetch_st = 3'b101
     Found 1-bit register for signal <hlt>.
     Found 1-bit register for signal <nmir>.
     Found 1-bit register for signal <nmi_old>.
@@ -2460,9 +2464,9 @@ Synthesizing Unit <control_fsm>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 4-bit adder for signal <bytes_transferred[3]_GND_57_o_add_15_OUT> created at line 409.
-    Found 1-bit 4-to-1 multiplexer for signal <dtr> created at line 306.
-    Found 1-bit 4-to-1 multiplexer for signal <rd_n> created at line 304.
+    Found 4-bit adder for signal <bytes_transferred[3]_GND_57_o_add_15_OUT> created at line 415.
+    Found 1-bit 4-to-1 multiplexer for signal <dtr> created at line 312.
+    Found 1-bit 4-to-1 multiplexer for signal <rd_n> created at line 310.
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred  12 Multiplexer(s).
@@ -2473,7 +2477,7 @@ Synthesizing Unit <counter_1>.
     Related source file is "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v".
         width = 4
     Found 4-bit register for signal <count>.
-    Found 4-bit adder for signal <count[3]_GND_58_o_add_0_OUT> created at line 605.
+    Found 4-bit adder for signal <count[3]_GND_58_o_add_0_OUT> created at line 611.
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred   4 D-type flip-flop(s).
@@ -2492,7 +2496,7 @@ Synthesizing Unit <counter_2>.
     Related source file is "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8088.v".
         width = 2
     Found 2-bit register for signal <count>.
-    Found 2-bit adder for signal <count[1]_GND_60_o_add_0_OUT> created at line 605.
+    Found 2-bit adder for signal <count[1]_GND_60_o_add_0_OUT> created at line 611.
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred   2 D-type flip-flop(s).
@@ -3339,7 +3343,7 @@ Macro Statistics
  8-bit subtractor                                      : 2
  9-bit adder                                           : 4
  9-bit subtractor                                      : 2
-# Registers                                            : 1231
+# Registers                                            : 1230
  1-bit register                                        : 1134
  10-bit register                                       : 2
  11-bit register                                       : 4
@@ -3348,7 +3352,7 @@ Macro Statistics
  18-bit register                                       : 2
  19-bit register                                       : 2
  2-bit register                                        : 7
- 20-bit register                                       : 2
+ 20-bit register                                       : 1
  23-bit register                                       : 1
  256-bit register                                      : 1
  3-bit register                                        : 5
@@ -3706,8 +3710,8 @@ Macro Statistics
  3-bit up counter                                      : 1
  4-bit up counter                                      : 1
  6-bit up counter                                      : 1
-# Registers                                            : 2244
- Flip-Flops                                            : 2244
+# Registers                                            : 2224
+ Flip-Flops                                            : 2224
 # Comparators                                          : 44
  1-bit comparator not equal                            : 2
  10-bit comparator lessequal                           : 1
@@ -3928,18 +3932,18 @@ WARNING:Xst:2677 - Node <s4/ls6700/q2_2> of sequential type is unconnected in bl
 WARNING:Xst:2677 - Node <s4/ls6700/q1_1> of sequential type is unconnected in block <motherboard>.
 WARNING:Xst:2677 - Node <s4/ls6700/q1_2> of sequential type is unconnected in block <motherboard>.
 WARNING:Xst:2677 - Node <s4/ls6700/q1_3> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_3> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_2> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_4> is unconnected in block <motherboard>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_6> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_5> is unconnected in block <motherboard>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_6> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_7> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_3> is unconnected in block <motherboard>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_2> is unconnected in block <motherboard>.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -3950,18 +3954,18 @@ WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_5> has a constant value of 0 in block 
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_3> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_3> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_2> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_4> is unconnected in block <motherboard>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_6> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_5> is unconnected in block <motherboard>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_6> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_7> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_3> is unconnected in block <motherboard>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_2> is unconnected in block <motherboard>.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4106,7 +4110,6 @@ WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<9>_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<9>_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<9>_8> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<12>_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<12>_8> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<12>_9> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<12>_10> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4124,23 +4127,23 @@ WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<11>_10> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<10>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<10>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<3>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<6>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<6>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<6>_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<6>_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<6>_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<6>_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<3>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<4>_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<5>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<5>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<5>_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<5>_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<5>_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<4>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<4>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<4>_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<4>_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<3>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<3>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<3>_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<2>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<2>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<4>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<4>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<8>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<8>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<8>_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4149,6 +4152,8 @@ WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<8>_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<8>_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<8>_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<2>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<2>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<7>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<7>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<7>_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4156,10 +4161,8 @@ WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<7>_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<7>_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<7>_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<6>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<6>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<6>_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/id_16> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<3>_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_14> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_15> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4167,7 +4170,6 @@ WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8288/iorc> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_8> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4176,25 +4178,24 @@ WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_11> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_12> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_13> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_14> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/id_16> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/iz_33> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/iz_32> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_8> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/iz_32> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/iz_33> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_10> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_11> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_9> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_12> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_13> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<16>_14> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<13>_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<13>_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<13>_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<13>_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<13>_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4211,6 +4212,8 @@ WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<12>_4> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<12>_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<12>_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<12>_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<14>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<14>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<14>_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<14>_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4218,7 +4221,6 @@ WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<14>_5> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<14>_6> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<14>_7> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<14>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<14>_8> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<14>_9> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<14>_10> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4227,7 +4229,8 @@ WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<14>_13> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<13>_0> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<13>_1> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<15>_14> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<13>_2> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pipe<13>_3> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/d_pipe<1>_33> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <s1/i8284/counter2_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/d_pipe<2>_33> (without init value) has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4255,13 +4258,15 @@ INFO:Xst:2261 - The FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pip
 Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block motherboard, actual ratio is 8.
+FlipFlop s1/i8088/core/fetch/state_1 has been replicated 2 time(s)
+FlipFlop s1/i8088/core/fetch/state_2 has been replicated 2 time(s)
 
 Final Macro Processing ...
 
 Processing Unit <motherboard> :
 	Found 19-bit shift register for signal <s1/i8088/core/exec/alu/muldiv/div_su/ovf>.
 	Found 19-bit shift register for signal <s1/i8088/core/exec/alu/muldiv/div_su/sdpipe_18>.
-	Found 19-bit shift register for signal <s1/i8088/core/exec/alu/muldiv/div_su/szpipe_18>.
+	Found 18-bit shift register for signal <s1/i8088/core/exec/alu/muldiv/div_su/szpipe_18>.
 	Found 16-bit shift register for signal <s1/i8088/core/exec/alu/muldiv/div_su/divider/q_16>.
 	Found 15-bit shift register for signal <s1/i8088/core/exec/alu/muldiv/div_su/divider/q_15>.
 	Found 14-bit shift register for signal <s1/i8088/core/exec/alu/muldiv/div_su/divider/q_14>.
@@ -4285,8 +4290,8 @@ Unit <motherboard> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 1847
- Flip-Flops                                            : 1847
+# Registers                                            : 1833
+ Flip-Flops                                            : 1833
 # Shift Registers                                      : 20
  10-bit shift register                                 : 1
  11-bit shift register                                 : 1
@@ -4295,7 +4300,8 @@ Macro Statistics
  14-bit shift register                                 : 1
  15-bit shift register                                 : 1
  16-bit shift register                                 : 1
- 19-bit shift register                                 : 3
+ 18-bit shift register                                 : 1
+ 19-bit shift register                                 : 2
  2-bit shift register                                  : 1
  3-bit shift register                                  : 1
  4-bit shift register                                  : 1
@@ -4326,34 +4332,34 @@ Top Level Output File Name         : motherboard.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 7962
+# BELS                             : 7896
 #      GND                         : 9
-#      INV                         : 339
+#      INV                         : 364
 #      LUT1                        : 64
-#      LUT2                        : 373
-#      LUT3                        : 705
-#      LUT4                        : 550
-#      LUT5                        : 885
-#      LUT6                        : 2442
+#      LUT2                        : 451
+#      LUT3                        : 808
+#      LUT4                        : 473
+#      LUT5                        : 715
+#      LUT6                        : 2441
 #      MUXCY                       : 1075
-#      MUXF7                       : 405
-#      MUXF8                       : 157
+#      MUXF7                       : 383
+#      MUXF8                       : 155
 #      VCC                         : 9
 #      XORCY                       : 949
-# FlipFlops/Latches                : 2026
-#      FD                          : 852
+# FlipFlops/Latches                : 2012
+#      FD                          : 847
 #      FD_1                        : 9
-#      FDC                         : 274
+#      FDC                         : 255
 #      FDC_1                       : 1
-#      FDCE                        : 192
+#      FDCE                        : 193
 #      FDCE_1                      : 4
 #      FDCP                        : 6
-#      FDE                         : 176
+#      FDE                         : 177
 #      FDP                         : 16
-#      FDPE                        : 20
-#      FDR                         : 143
+#      FDPE                        : 22
+#      FDR                         : 144
 #      FDR_1                       : 16
-#      FDRE                        : 152
+#      FDRE                        : 157
 #      FDRS                        : 5
 #      FDRS_1                      : 1
 #      FDRSE                       : 4
@@ -4391,17 +4397,17 @@ Selected Device : 5vlx110tff1136-1
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:            2026  out of  69120     2%  
- Number of Slice LUTs:                 5378  out of  69120     7%  
-    Number used as Logic:              5358  out of  69120     7%  
+ Number of Slice Registers:            2012  out of  69120     2%  
+ Number of Slice LUTs:                 5336  out of  69120     7%  
+    Number used as Logic:              5316  out of  69120     7%  
     Number used as Memory:               20  out of  17920     0%  
        Number used as SRL:               20
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   5859
-   Number with an unused Flip Flop:    3833  out of   5859    65%  
-   Number with an unused LUT:           481  out of   5859     8%  
-   Number of fully used LUT-FF pairs:  1545  out of   5859    26%  
+ Number of LUT Flip Flop pairs used:   5803
+   Number with an unused Flip Flop:    3791  out of   5803    65%  
+   Number with an unused LUT:           467  out of   5803     8%  
+   Number of fully used LUT-FF pairs:  1545  out of   5803    26%  
    Number of unique control sets:       165
 
 IO Utilization: 
@@ -4435,16 +4441,16 @@ Clock Information:
 -------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Clock Signal                                                                                                 | Clock buffer(FF name)                                                                                                                                               | Load  |
 -------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-s1/i8284/clk                                                                                                 | BUFG                                                                                                                                                                | 1472  |
+s1/i8284/clk                                                                                                 | BUFG                                                                                                                                                                | 1458  |
 s8/i8253/vcs/C1/OUTCTRL/OUT                                                                                  | NONE(s8/drq0)                                                                                                                                                       | 1     |
 s1/i8284/pclk                                                                                                | NONE(s8/pclka)                                                                                                                                                      | 13    |
-s1/i8259/inta_n_eoir[4]_OR_887_o(s1/i8259/inta_n_eoir[4]_OR_887_o1:O)                                        | NONE(*)(s1/i8259/dout_0)                                                                                                                                            | 3     |
+s1/i8259/inta_n_eoir[4]_OR_891_o(s1/i8259/inta_n_eoir[4]_OR_891_o1:O)                                        | NONE(*)(s1/i8259/dout_0)                                                                                                                                            | 3     |
 s1/i8259/recint_eoir[1]_MUX_3347_o(s1/i8259/Mmux_recint_eoir[1]_MUX_3347_o11:O)                              | NONE(*)(s1/i8259/dout_3)                                                                                                                                            | 1     |
 s1/inta_n(s1/i8288/Mmux_inta_n11:O)                                                                          | NONE(*)(s1/i8259/isr_1)                                                                                                                                             | 5     |
-s1/i8259/cs_n_wr_n_AND_617_o(s1/i8259/cs_n_wr_n_AND_617_o1:O)                                                | NONE(*)(s1/i8259/imr_0)                                                                                                                                             | 10    |
+s1/i8259/cs_n_wr_n_AND_619_o(s1/i8259/cs_n_wr_n_AND_619_o1:O)                                                | NONE(*)(s1/i8259/imr_0)                                                                                                                                             | 10    |
 xa<0>(xa<0>LogicTrst1:O)                                                                                     | NONE(*)(s1/i8259/eoir_0)                                                                                                                                            | 4     |
 s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8                                      | NONE(s1/i8259/irr_1)                                                                                                                                                | 5     |
-s1/i8259/inta_n_recint_AND_621_o(s1/i8259/inta_n_recint_AND_621_o1:O)                                        | NONE(*)(s1/i8259/clrisr)                                                                                                                                            | 1     |
+s1/i8259/inta_n_recint_AND_623_o(s1/i8259/inta_n_recint_AND_623_o1:O)                                        | NONE(*)(s1/i8259/clrisr)                                                                                                                                            | 1     |
 s1/ale(s1/i8288/Mmux_ale11:O)                                                                                | BUFG(*)(s1/u7/rq_7)                                                                                                                                                 | 20    |
 s4/i8237/adstb                                                                                               | NONE(s4/ls3730/rq_7)                                                                                                                                                | 8     |
 s9/i8255/cmd[4]_GND_280_o_equal_13_o(s9/i8255/cmd[4]_GND_280_o_equal_13_o<4>1:O)                             | NONE(*)(s9/i8255/pb_0)                                                                                                                                              | 6     |
@@ -4495,20 +4501,20 @@ Asynchronous Control Signals Information:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Control Signal                                                                                                                                                                                                                                                                    | Buffer(FF name)                                                                                                                                                     | Load  |
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                          | NONE(s1/i8088/core/exec/regfile/r_0_193)                                                                                                                            | 480   |
-s6/rb0/central_ram_core/central_ram_core/N1(s6/rb0/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
-s6/rb1/central_ram_core/central_ram_core/N1(s6/rb1/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb1/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
-s6/rb2/central_ram_core/central_ram_core/N1(s6/rb2/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb2/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
-s6/rb3/central_ram_core/central_ram_core/N1(s6/rb3/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[13].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
-s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                         | 64    |
+deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                          | NONE(s1/i8088/core/exec/regfile/r_0_119)                                                                                                                            | 464   |
+s6/rb0/central_ram_core/central_ram_core/N1(s6/rb0/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[14].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s6/rb1/central_ram_core/central_ram_core/N1(s6/rb1/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb1/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[8].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
+s6/rb2/central_ram_core/central_ram_core/N1(s6/rb2/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb2/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[9].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
+s6/rb3/central_ram_core/central_ram_core/N1(s6/rb3/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                         | 64    |
 s8/i8253/vcs/C0/MODEWRITE(s8/i8253/vcs/C0/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                             | NONE(s8/i8253/vcs/C0/READ/READLSB)                                                                                                                                  | 18    |
 s8/i8253/vcs/C1/MODEWRITE(s8/i8253/vcs/C1/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                             | NONE(s8/i8253/vcs/C1/READ/READLSB)                                                                                                                                  | 18    |
 s8/i8253/vcs/C2/MODEWRITE(s8/i8253/vcs/C2/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                             | NONE(s8/i8253/vcs/C2/READ/READLSB)                                                                                                                                  | 18    |
-s8/i8253/vcs/C0/READ/SEL_WR__AND_828_o_inv(s8/i8253/vcs/C0/READ/SEL_WR__AND_828_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C0/READ/DREG_1)                                                                                                                                   | 9     |
-s8/i8253/vcs/C1/READ/SEL_WR__AND_828_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_828_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C1/READ/DREG_5)                                                                                                                                   | 9     |
-s8/i8253/vcs/C2/READ/SEL_WR__AND_828_o_inv(s8/i8253/vcs/C2/READ/SEL_WR__AND_828_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C2/READ/DREG_4)                                                                                                                                   | 9     |
+s8/i8253/vcs/C0/READ/SEL_WR__AND_830_o_inv(s8/i8253/vcs/C0/READ/SEL_WR__AND_830_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C0/READ/DREG_2)                                                                                                                                   | 9     |
+s8/i8253/vcs/C1/READ/SEL_WR__AND_830_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_830_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C1/READ/DREG_1)                                                                                                                                   | 9     |
+s8/i8253/vcs/C2/READ/SEL_WR__AND_830_o_inv(s8/i8253/vcs/C2/READ/SEL_WR__AND_830_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C2/READ/DREG_1)                                                                                                                                   | 9     |
 s0/vgamod/char_rom/N1(s0/vgamod/char_rom/XST_GND:G)                                                                                                                                                                                                                               | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                         | 8     |
-s1/i8259/rst_clrisr_OR_865_o(s1/i8259/rst_clrisr_OR_865_o1:O)                                                                                                                                                                                                                     | NONE(s1/i8259/eoir_1)                                                                                                                                               | 4     |
+s1/i8259/rst_clrisr_OR_869_o(s1/i8259/rst_clrisr_OR_869_o1:O)                                                                                                                                                                                                                     | NONE(s1/i8259/eoir_3)                                                                                                                                               | 4     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
@@ -4542,36 +4548,36 @@ s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
 s8/i8253/vcs/C2/DOWNCNTR/LOAD(s8/i8253/vcs/C2/DOWNCNTR/LOAD:Q)                                                                                                                                                                                                                    | NONE(s8/i8253/vcs/C2/DOWNCNTR/VGATE)                                                                                                                                | 2     |
-s1/i8259/rst_GND_65_o_AND_656_o(s1/i8259/rst_GND_65_o_AND_656_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/dout_3)                                                                                                                                               | 1     |
-s1/i8259/rst_GND_65_o_AND_657_o(s1/i8259/rst_GND_65_o_AND_657_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/dout_3)                                                                                                                                               | 1     |
-s1/i8259/rst_PWR_58_o_AND_658_o(s1/i8259/rst_PWR_58_o_AND_658_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_0)                                                                                                                                                | 1     |
-s1/i8259/rst_PWR_58_o_AND_659_o(s1/i8259/rst_PWR_58_o_AND_659_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_0)                                                                                                                                                | 1     |
-s1/i8259/rst_PWR_58_o_AND_660_o(s1/i8259/rst_PWR_58_o_AND_660_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_1)                                                                                                                                                | 1     |
-s1/i8259/rst_PWR_58_o_AND_661_o(s1/i8259/rst_PWR_58_o_AND_661_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_1)                                                                                                                                                | 1     |
-s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_866_o(s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_866_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C0/CNTREG/LOAD)                                                                                                                                   | 1     |
-s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_867_o(s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_867_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C0/CNTREG/LOAD)                                                                                                                                   | 1     |
+s1/i8259/rst_GND_65_o_AND_658_o(s1/i8259/rst_GND_65_o_AND_658_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/dout_3)                                                                                                                                               | 1     |
+s1/i8259/rst_GND_65_o_AND_659_o(s1/i8259/rst_GND_65_o_AND_659_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/dout_3)                                                                                                                                               | 1     |
+s1/i8259/rst_PWR_58_o_AND_660_o(s1/i8259/rst_PWR_58_o_AND_660_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_0)                                                                                                                                                | 1     |
+s1/i8259/rst_PWR_58_o_AND_661_o(s1/i8259/rst_PWR_58_o_AND_661_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_0)                                                                                                                                                | 1     |
+s1/i8259/rst_PWR_58_o_AND_662_o(s1/i8259/rst_PWR_58_o_AND_662_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_1)                                                                                                                                                | 1     |
+s1/i8259/rst_PWR_58_o_AND_663_o(s1/i8259/rst_PWR_58_o_AND_663_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_1)                                                                                                                                                | 1     |
+s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_868_o(s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_868_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C0/CNTREG/LOAD)                                                                                                                                   | 1     |
+s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_869_o(s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_869_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C0/CNTREG/LOAD)                                                                                                                                   | 1     |
 s8/i8253/vcs/C0/DOWNCNTR/LOAD(s8/i8253/vcs/C0/DOWNCNTR/LOAD:Q)                                                                                                                                                                                                                    | NONE(s8/i8253/vcs/C0/DOWNCNTR/VLOADCNT)                                                                                                                             | 1     |
-s8/i8253/vcs/C0/OUTCTRL/GATE_TRIG_AND_877_o(s8/i8253/vcs/C0/OUTCTRL/GATE_TRIG_AND_877_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C0/OUTCTRL/TRIG)                                                                                                                                  | 1     |
+s8/i8253/vcs/C0/OUTCTRL/GATE_TRIG_AND_879_o(s8/i8253/vcs/C0/OUTCTRL/GATE_TRIG_AND_879_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C0/OUTCTRL/TRIG)                                                                                                                                  | 1     |
 s8/i8253/vcs/C0/OUTCTRL/TRIG_GND_275_o_MUX_3623_o(s8/i8253/vcs/C0/OUTCTRL/Mmux_TRIG_GND_275_o_MUX_3623_o11:O)                                                                                                                                                                     | NONE(s8/i8253/vcs/C0/OUTCTRL/TRIG)                                                                                                                                  | 1     |
-s8/i8253/vcs/C0/READ/MODEWRITE_GND_250_o_AND_830_o(s8/i8253/vcs/C0/READ/MODEWRITE_GND_250_o_AND_830_o1:O)                                                                                                                                                                         | NONE(s8/i8253/vcs/C0/READ/READLSB)                                                                                                                                  | 1     |
-s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_866_o(s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_866_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/CNTREG/LOAD)                                                                                                                                   | 1     |
-s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_867_o(s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_867_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/CNTREG/LOAD)                                                                                                                                   | 1     |
+s8/i8253/vcs/C0/READ/MODEWRITE_GND_250_o_AND_832_o(s8/i8253/vcs/C0/READ/MODEWRITE_GND_250_o_AND_832_o1:O)                                                                                                                                                                         | NONE(s8/i8253/vcs/C0/READ/READLSB)                                                                                                                                  | 1     |
+s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_868_o(s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_868_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/CNTREG/LOAD)                                                                                                                                   | 1     |
+s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_869_o(s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_869_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/CNTREG/LOAD)                                                                                                                                   | 1     |
 s8/i8253/vcs/C1/DOWNCNTR/LOAD(s8/i8253/vcs/C1/DOWNCNTR/LOAD:Q)                                                                                                                                                                                                                    | NONE(s8/i8253/vcs/C1/DOWNCNTR/VLOADCNT)                                                                                                                             | 1     |
-s8/i8253/vcs/C1/OUTCTRL/GATE_TRIG_AND_877_o(s8/i8253/vcs/C1/OUTCTRL/GATE_TRIG_AND_877_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C1/OUTCTRL/TRIG)                                                                                                                                  | 1     |
+s8/i8253/vcs/C1/OUTCTRL/GATE_TRIG_AND_879_o(s8/i8253/vcs/C1/OUTCTRL/GATE_TRIG_AND_879_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C1/OUTCTRL/TRIG)                                                                                                                                  | 1     |
 s8/i8253/vcs/C1/OUTCTRL/TRIG_GND_275_o_MUX_3623_o(s8/i8253/vcs/C1/OUTCTRL/Mmux_TRIG_GND_275_o_MUX_3623_o11:O)                                                                                                                                                                     | NONE(s8/i8253/vcs/C1/OUTCTRL/TRIG)                                                                                                                                  | 1     |
-s8/i8253/vcs/C1/READ/MODEWRITE_GND_250_o_AND_830_o(s8/i8253/vcs/C1/READ/MODEWRITE_GND_250_o_AND_830_o1:O)                                                                                                                                                                         | NONE(s8/i8253/vcs/C1/READ/READLSB)                                                                                                                                  | 1     |
-s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_866_o(s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_866_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C2/CNTREG/LOAD)                                                                                                                                   | 1     |
-s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_867_o(s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_867_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C2/CNTREG/LOAD)                                                                                                                                   | 1     |
-s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_876_o(s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_876_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C2/OUTCTRL/TRIG)                                                                                                                                  | 1     |
-s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_877_o(s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_877_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C2/OUTCTRL/TRIG)                                                                                                                                  | 1     |
-s8/i8253/vcs/C2/READ/MODEWRITE_GND_250_o_AND_830_o(s8/i8253/vcs/C2/READ/MODEWRITE_GND_250_o_AND_830_o1:O)                                                                                                                                                                         | NONE(s8/i8253/vcs/C2/READ/READLSB)                                                                                                                                  | 1     |
+s8/i8253/vcs/C1/READ/MODEWRITE_GND_250_o_AND_832_o(s8/i8253/vcs/C1/READ/MODEWRITE_GND_250_o_AND_832_o1:O)                                                                                                                                                                         | NONE(s8/i8253/vcs/C1/READ/READLSB)                                                                                                                                  | 1     |
+s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_868_o(s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_868_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C2/CNTREG/LOAD)                                                                                                                                   | 1     |
+s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_869_o(s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_869_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C2/CNTREG/LOAD)                                                                                                                                   | 1     |
+s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_878_o(s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_878_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C2/OUTCTRL/TRIG)                                                                                                                                  | 1     |
+s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_879_o(s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_879_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C2/OUTCTRL/TRIG)                                                                                                                                  | 1     |
+s8/i8253/vcs/C2/READ/MODEWRITE_GND_250_o_AND_832_o(s8/i8253/vcs/C2/READ/MODEWRITE_GND_250_o_AND_832_o1:O)                                                                                                                                                                         | NONE(s8/i8253/vcs/C2/READ/READLSB)                                                                                                                                  | 1     |
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -1
 
-   Minimum period: 26.111ns (Maximum Frequency: 38.298MHz)
+   Minimum period: 74.416ns (Maximum Frequency: 13.438MHz)
    Minimum input arrival time before clock: 2.118ns
    Maximum output required time after clock: 4.098ns
    Maximum combinational path delay: No path found
@@ -4582,85 +4588,135 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/clk'
-  Clock period: 26.111ns (frequency: 38.298MHz)
-  Total number of paths / destination ports: 270255477817510816 / 3209
+  Clock period: 74.416ns (frequency: 13.438MHz)
+  Total number of paths / destination ports: 3422686306683468313001984 / 3210
 -------------------------------------------------------------------------
-Delay:               26.111ns (Levels of Logic = 61)
-  Source:            s1/i8088/cpu_adr_o2_0 (FF)
-  Destination:       s1/i8088/core/fetch/modrm_l_6 (FF)
+Delay:               74.416ns (Levels of Logic = 111)
+  Source:            s1/i8088/addr_reg_1 (FF)
+  Destination:       s1/i8088/core/exec/regfile/r_0_47 (FF)
   Source Clock:      s1/i8284/clk rising
   Destination Clock: s1/i8284/clk rising
 
-  Data Path: s1/i8088/cpu_adr_o2_0 to s1/i8088/core/fetch/modrm_l_6
+  Data Path: s1/i8088/addr_reg_1 to s1/i8088/core/exec/regfile/r_0_47
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q              1   0.471   0.576  s1/i8088/cpu_adr_o2_0 (s1/i8088/cpu_adr_o2_0)
-     LUT2:I0->O            1   0.094   0.000  s1/i8088/Msub_addr_offset_lut<0> (s1/i8088/Msub_addr_offset_lut<0>)
-     MUXCY:S->O            1   0.372   0.000  s1/i8088/Msub_addr_offset_cy<0> (s1/i8088/Msub_addr_offset_cy<0>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/Msub_addr_offset_cy<1> (s1/i8088/Msub_addr_offset_cy<1>)
+     FDCE:C->Q             1   0.471   0.480  s1/i8088/addr_reg_1 (s1/i8088/addr_reg_1)
+     LUT2:I1->O            1   0.094   0.000  s1/i8088/Msub_addr_offset_lut<1> (s1/i8088/Msub_addr_offset_lut<1>)
+     XORCY:LI->O          26   0.177   1.195  s1/i8088/Msub_addr_offset_xor<1> (s1/i8088/Madd_n0078_Madd_lut<1>)
+     LUT6:I0->O            1   0.094   0.000  s1/i8088/Mmux_addr_offset[3]_X_6_o_wide_mux_8_OUT_64 (s1/i8088/Mmux_addr_offset[3]_X_6_o_wide_mux_8_OUT_64)
+     MUXF7:I1->O           1   0.254   0.480  s1/i8088/Mmux_addr_offset[3]_X_6_o_wide_mux_8_OUT_5_f7_3 (s1/i8088/Mmux_addr_offset[3]_X_6_o_wide_mux_8_OUT_5_f74)
+     LUT6:I5->O           11   0.094   0.535  s1/i8088/Mmux_cpu_dat_i111 (s1/i8088/cpu_dat_i<4>)
+     LUT3:I2->O           49   0.094   0.706  s1/i8088/core/fetch/Mmux_opcode51 (s1/i8088/core/opcode<4>)
+     LUT3:I1->O            8   0.094   0.518  s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_185_o<7>11 (s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_185_o<7>1)
+     LUT3:I2->O           10   0.094   0.625  s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_190_o<7>11 (s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_190_o<7>1)
+     LUT2:I0->O            3   0.094   0.491  s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_190_o<7>3 (s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_190_o)
+     LUT4:I3->O            1   0.094   1.069  s1/i8088/core/decode/opcode_deco/need_imm2_SW0 (N306)
+     LUT6:I0->O            2   0.094   0.715  s1/i8088/core/decode/opcode_deco/need_imm2 (s1/i8088/core/decode/opcode_deco/need_imm2)
+     LUT6:I3->O            2   0.094   0.978  s1/i8088/core/decode/opcode_deco/seq_addr<2>75 (s1/i8088/core/decode/opcode_deco/seq_addr<2>7)
+     LUT5:I0->O            1   0.094   0.480  s1/i8088/core/decode/n0089<3>9 (s1/i8088/core/decode/n0089<3>9)
+     LUT5:I4->O            1   0.094   0.710  s1/i8088/core/decode/n0089<3>10 (s1/i8088/core/decode/n0089<3>10)
+     LUT6:I3->O            1   0.094   0.576  s1/i8088/core/decode/n0089<3>11 (s1/i8088/core/decode/n0089<3>)
+     LUT2:I0->O            1   0.094   0.000  s1/i8088/core/decode/Madd_seq_addr_lut<3> (s1/i8088/core/decode/Madd_seq_addr_lut<3>)
+     XORCY:LI->O         293   0.177   0.965  s1/i8088/core/decode/Madd_seq_addr_xor<3> (s1/i8088/core/seq_addr<3>)
+     LUT5:I1->O            1   0.094   0.480  s1/i8088/core/micro_data_micro_rom/Mram_rom146111 (s1/i8088/core/micro_data_micro_rom/Mram_rom14611)
+     LUT4:I3->O            1   0.094   0.480  s1/i8088/core/micro_data_micro_rom/Mram_rom146112 (s1/i8088/core/micro_data_micro_rom/Mram_rom146111)
+     LUT6:I5->O            1   0.094   0.710  s1/i8088/core/micro_data_micro_rom/Mram_rom146113 (s1/i8088/core/micro_data_micro_rom/Mram_rom146112)
+     LUT6:I3->O           21   0.094   0.588  s1/i8088/core/micro_data_micro_rom/Mram_rom1461111 (s1/i8088/core/micro_data/micro_o<39>)
+     LUT6:I5->O          101   0.094   0.716  s1/i8088/core/Mmux_ir33 (s1/i8088/core/ir<6>)
+     LUT6:I4->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f7_02 (s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f7_01)
+     MUXF7:I1->O           1   0.254   0.000  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f7_0 (s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f71)
+     MUXF8:I0->O           3   0.182   1.080  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_2_f8_0 (s1/i8088/core/exec/regfile/addr_b[3]_r[15][7]_wide_mux_11_OUT<1>)
+     LUT6:I0->O           97   0.094   0.849  s1/i8088/core/exec/Mmux_bus_b84 (s1/i8088/core/exec/bus_b<1>)
+     LUT6:I3->O            5   0.094   0.502  s1/i8088/core/exec/alu/shrot/y[4]_PWR_35_o_LessThan_7_o1 (s1/i8088/core/exec/alu/shrot/y[4]_PWR_35_o_LessThan_7_o)
+     LUT6:I5->O           17   0.094   1.061  s1/i8088/core/exec/alu/shrot/Mmux_rot1611 (s1/i8088/core/exec/alu/shrot/rot16<0>)
+     LUT6:I1->O           17   0.094   1.157  s1/i8088/core/exec/alu/shrot/rxr16/y[4]_GND_34_o_equal_1_o<4>1 (s1/i8088/core/exec/alu/shrot/rxr16/y[4]_GND_34_o_equal_1_o)
+     LUT6:I0->O            1   0.094   0.973  s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42211 (s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42210)
+     LUT5:I0->O            1   0.094   0.710  s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42212 (s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42211)
+     LUT6:I3->O            1   0.094   0.789  s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42216 (s1/i8088/core/exec/alu/rot<2>)
+     LUT6:I2->O            1   0.094   0.000  s1/i8088/core/exec/alu/m0/Mmux_out_32 (s1/i8088/core/exec/alu/m0/Mmux_out_32)
+     MUXF7:I1->O           5   0.254   0.502  s1/i8088/core/exec/alu/m0/Mmux_out_2_f7_1 (s1/i8088/core/addr_exec<2>)
+     LUT5:I4->O            2   0.094   0.581  s1/i8088/core/Mmux_cpu_adr_o131 (s1/i8088/cpu_adr_o<2>)
+     LUT2:I0->O            1   0.094   0.000  s1/i8088/Msub_addr_offset_lut<2> (s1/i8088/Msub_addr_offset_lut<2>)
+     XORCY:LI->O          26   0.177   0.462  s1/i8088/Msub_addr_offset_xor<2> (s1/i8088/Madd_n0078_Madd_lut<2>)
+     MUXF7:S->O            1   0.329   0.480  s1/i8088/Mmux_addr_offset[3]_X_6_o_wide_mux_8_OUT_5_f7_6 (s1/i8088/Mmux_addr_offset[3]_X_6_o_wide_mux_8_OUT_5_f77)
+     LUT6:I5->O           11   0.094   0.535  s1/i8088/Mmux_cpu_dat_i141 (s1/i8088/cpu_dat_i<7>)
+     LUT5:I4->O            7   0.094   0.609  s1/i8088/core/fetch/Mmux_modrm81 (s1/i8088/core/modrm<7>)
+     LUT2:I0->O           28   0.094   0.607  s1/i8088/core/decode/opcode_deco/n0005<1>1 (s1/i8088/core/decode/opcode_deco/n0005)
+     LUT2:I1->O            3   0.094   0.587  s1/i8088/core/decode/opcode_deco/sm1 (s1/i8088/core/decode/opcode_deco/sm)
+     LUT6:I4->O            1   0.094   0.789  s1/i8088/core/decode/opcode_deco/seq_addr<2>82 (s1/i8088/core/decode/opcode_deco/seq_addr<2>82)
+     LUT6:I2->O            2   0.094   0.485  s1/i8088/core/decode/opcode_deco/seq_addr<2>86 (s1/i8088/core/decode/opcode_deco/seq_addr<2>8)
+     LUT6:I5->O            1   0.094   0.789  s1/i8088/core/decode/n0089<2>4 (s1/i8088/core/decode/n0089<2>4)
+     LUT6:I2->O            1   0.094   0.576  s1/i8088/core/decode/n0089<2>15 (s1/i8088/core/decode/n0089<2>)
+     LUT2:I0->O            1   0.094   0.000  s1/i8088/core/decode/Madd_seq_addr_lut<2> (s1/i8088/core/decode/Madd_seq_addr_lut<2>)
+     XORCY:LI->O         290   0.177   1.148  s1/i8088/core/decode/Madd_seq_addr_xor<2> (s1/i8088/core/seq_addr<2>)
+     LUT6:I1->O            1   0.094   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom802 (s1/i8088/core/micro_data_micro_rom/Mram_rom802)
+     MUXF7:I1->O           1   0.254   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom80_f7_0 (s1/i8088/core/micro_data_micro_rom/Mram_rom80_f71)
+     MUXF8:I0->O           1   0.182   0.576  s1/i8088/core/micro_data_micro_rom/Mram_rom80_f8 (s1/i8088/core/micro_data_micro_rom/Mram_rom80_f8)
+     LUT3:I1->O            6   0.094   0.507  s1/i8088/core/micro_data_micro_rom/Mram_rom8211 (s1/i8088/core/rom_ir<24>)
+     LUT2:I1->O          106   0.094   1.210  s1/i8088/core/Mmux_ir171 (s1/i8088/core/ir<24>)
+     LUT6:I0->O            1   0.094   0.000  s1/i8088/core/exec/alu/m0/Mmux_out_31 (s1/i8088/core/exec/alu/m0/Mmux_out_31)
+     MUXF7:I1->O           5   0.254   0.502  s1/i8088/core/exec/alu/m0/Mmux_out_2_f7_0 (s1/i8088/core/addr_exec<1>)
+     LUT5:I4->O            2   0.094   0.341  s1/i8088/core/Mmux_cpu_adr_o121 (s1/i8088/cpu_adr_o<1>)
+     MUXCY:DI->O           1   0.362   0.000  s1/i8088/Msub_addr_offset_cy<1> (s1/i8088/Msub_addr_offset_cy<1>)
      MUXCY:CI->O           1   0.026   0.000  s1/i8088/Msub_addr_offset_cy<2> (s1/i8088/Msub_addr_offset_cy<2>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/Msub_addr_offset_cy<3> (s1/i8088/Msub_addr_offset_cy<3>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/Msub_addr_offset_cy<4> (s1/i8088/Msub_addr_offset_cy<4>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/Msub_addr_offset_cy<5> (s1/i8088/Msub_addr_offset_cy<5>)
-     XORCY:CI->O           3   0.357   1.080  s1/i8088/Msub_addr_offset_xor<6> (s1/i8088/addr_offset<6>)
-     LUT6:I0->O           12   0.094   0.636  s1/i8088/addr_offset[19]_GND_8_o_LessThan_6_o31 (s1/i8088/addr_offset[19]_GND_8_o_LessThan_6_o3)
-     LUT6:I4->O           46   0.094   0.610  s1/i8088/addr_offset[19]_GND_8_o_LessThan_6_o35 (s1/i8088/addr_offset[19]_GND_8_o_LessThan_6_o)
-     LUT6:I5->O           26   0.094   0.836  s1/i8088/Mmux_cpu_dat_i131 (s1/i8088/cpu_dat_i<6>)
-     LUT6:I3->O           23   0.094   0.597  s1/i8088/core/decode/opcode_deco/_n064721 (s1/i8088/core/decode/opcode_deco/_n06472)
-     LUT6:I5->O            2   0.094   0.978  s1/i8088/core/decode/n0089<0>8 (s1/i8088/core/decode/n0089<0>8)
-     LUT6:I1->O            1   0.094   0.000  s1/i8088/core/decode/n0089<0>14_SW0_F (N1604)
-     MUXF7:I0->O           1   0.251   0.480  s1/i8088/core/decode/n0089<0>14_SW0 (N1275)
-     LUT6:I5->O            1   0.094   0.480  s1/i8088/core/decode/n0089<0>15_SW0 (N353)
-     LUT6:I5->O            1   0.094   0.000  s1/i8088/core/decode/Madd_seq_addr_lut<0> (s1/i8088/core/decode/Madd_seq_addr_lut<0>)
-     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<0> (s1/i8088/core/decode/Madd_seq_addr_cy<0>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<1> (s1/i8088/core/decode/Madd_seq_addr_cy<1>)
+     XORCY:CI->O          10   0.357   1.022  s1/i8088/Msub_addr_offset_xor<3> (s1/i8088/Madd_n0078_Madd_lut<3>)
+     LUT6:I1->O           11   0.094   0.535  s1/i8088/Mmux_cpu_dat_i131 (s1/i8088/cpu_dat_i<6>)
+     LUT3:I2->O           34   0.094   0.838  s1/i8088/core/fetch/Mmux_opcode71 (s1/i8088/core/opcode<6>)
+     LUT3:I0->O            4   0.094   0.726  s1/i8088/core/decode/opcode_deco/op[7]_GND_15_o_equal_149_o11 (s1/i8088/core/decode/opcode_deco/op[7]_GND_15_o_equal_149_o1)
+     LUT3:I0->O            3   0.094   0.984  s1/i8088/core/decode/opcode_deco/op[7]_GND_15_o_equal_149_o2 (s1/i8088/core/decode/opcode_deco/op[7]_GND_15_o_equal_149_o)
+     LUT6:I1->O            1   0.094   0.576  s1/i8088/core/decode/n0089<1>13 (s1/i8088/core/decode/n0089<1>)
+     LUT2:I0->O            1   0.094   0.000  s1/i8088/core/decode/Madd_seq_addr_lut<1> (s1/i8088/core/decode/Madd_seq_addr_lut<1>)
+     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<1> (s1/i8088/core/decode/Madd_seq_addr_cy<1>)
      MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<2> (s1/i8088/core/decode/Madd_seq_addr_cy<2>)
      MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<3> (s1/i8088/core/decode/Madd_seq_addr_cy<3>)
      MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<4> (s1/i8088/core/decode/Madd_seq_addr_cy<4>)
-     XORCY:CI->O         278   0.357   1.242  s1/i8088/core/decode/Madd_seq_addr_xor<5> (s1/i8088/core/seq_addr<5>)
-     LUT6:I0->O            1   0.094   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom1461110_SW0_G (s1/i8088/core/micro_data_N104)
-     MUXF7:I1->O           1   0.254   0.480  s1/i8088/core/micro_data_micro_rom/Mram_rom1461110_SW0 (s1/i8088/core/micro_data_N34)
-     LUT5:I4->O            1   0.094   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom1461110_F (s1/i8088/core/micro_data_N89)
-     MUXF7:I0->O          21   0.251   0.588  s1/i8088/core/micro_data_micro_rom/Mram_rom1461110 (s1/i8088/core/micro_data/micro_o<39>)
-     LUT6:I5->O          100   0.094   0.716  s1/i8088/core/Mmux_ir33 (s1/i8088/core/ir<6>)
-     LUT6:I4->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f7_02 (s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f7_01)
-     MUXF7:I1->O           1   0.254   0.000  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f7_0 (s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f71)
-     MUXF8:I0->O           1   0.182   0.576  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_2_f8_0 (s1/i8088/core/exec/regfile/addr_b[3]_r[15][7]_wide_mux_11_OUT<1>)
-     LUT5:I3->O           17   0.094   0.568  s1/i8088/core/exec/Mmux_bus_b83 (s1/i8088/core/exec/Mmux_bus_b82)
-     LUT5:I4->O            1   0.094   0.480  s1/i8088/core/exec/regfile/Mmux_a11_SW0 (N1357)
-     LUT6:I5->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_lut<1> (s1/i8088/core/exec/alu/othop/Madd_n0083_lut<1>)
-     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<1> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<1>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<2> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<2>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<3> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<3>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<4> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<4>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<5> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<5>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<6> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<6>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<7> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<7>)
-     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<8> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<8>)
-     XORCY:CI->O           1   0.357   0.480  s1/i8088/core/exec/alu/othop/Madd_n0083_xor<9> (s1/i8088/core/exec/alu/othop/n0083<9>)
-     LUT3:I2->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_deff_lut<9> (s1/i8088/core/exec/alu/othop/Madd_deff_lut<9>)
-     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/exec/alu/othop/Madd_deff_cy<9> (s1/i8088/core/exec/alu/othop/Madd_deff_cy<9>)
-     XORCY:CI->O           4   0.357   0.496  s1/i8088/core/exec/alu/othop/Madd_deff_xor<10> (s1/i8088/core/exec/alu/othop/deff<10>)
-     LUT1:I0->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_deff2_cy<10>_rt (s1/i8088/core/exec/alu/othop/Madd_deff2_cy<10>_rt)
-     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/exec/alu/othop/Madd_deff2_cy<10> (s1/i8088/core/exec/alu/othop/Madd_deff2_cy<10>)
-     XORCY:CI->O           1   0.357   0.480  s1/i8088/core/exec/alu/othop/Madd_deff2_xor<11> (s1/i8088/core/exec/alu/othop/deff2<11>)
-     LUT2:I1->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_dcmp2_lut<11> (s1/i8088/core/exec/alu/othop/Madd_dcmp2_lut<11>)
-     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/exec/alu/othop/Madd_dcmp2_cy<11> (s1/i8088/core/exec/alu/othop/Madd_dcmp2_cy<11>)
-     XORCY:CI->O           1   0.357   0.480  s1/i8088/core/exec/alu/othop/Madd_dcmp2_xor<12> (s1/i8088/core/exec/alu/othop/dcmp2<12>)
-     LUT6:I5->O            1   0.094   0.480  s1/i8088/core/exec/alu/m0/Mmux_out322 (s1/i8088/core/exec/alu/m0/Mmux_out321)
-     LUT6:I5->O            6   0.094   0.816  s1/i8088/core/exec/alu/m0/Mmux_out325 (s1/i8088/core/addr_exec<12>)
-     LUT6:I2->O            6   0.094   0.507  s1/i8088/core/exec/regfile/Mmux_cx_zero112 (s1/i8088/core/exec/regfile/Mmux_cx_zero111)
-     LUT6:I5->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_cx_zero113_SW1_F (N1552)
-     MUXF7:I0->O           5   0.251   0.502  s1/i8088/core/exec/regfile/Mmux_cx_zero113_SW1 (N621)
-     LUT6:I5->O           31   0.094   0.607  s1/i8088/core/fetch/nstate/Mmux_n_state411 (s1/i8088/core/fetch/nstate/Mmux_n_state41)
-     LUT6:I5->O           31   0.094   0.607  s1/i8088/core/fetch/nstate/Mmux_n_state61 (s1/i8088/core/n_state<2>)
-     LUT5:I4->O            3   0.094   0.491  s1/i8088/core/fetch/_n0282_inv1_rstpot1 (s1/i8088/core/fetch/_n0282_inv1_rstpot1)
-     LUT3:I2->O            1   0.094   0.000  s1/i8088/core/fetch/modrm_l_3_dpot (s1/i8088/core/fetch/modrm_l_3_dpot)
-     FDE:D                    -0.018          s1/i8088/core/fetch/modrm_l_3
+     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<5> (s1/i8088/core/decode/Madd_seq_addr_cy<5>)
+     MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<6> (s1/i8088/core/decode/Madd_seq_addr_cy<6>)
+     MUXCY:CI->O           0   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<7> (s1/i8088/core/decode/Madd_seq_addr_cy<7>)
+     XORCY:CI->O          62   0.357   0.843  s1/i8088/core/decode/Madd_seq_addr_xor<8> (s1/i8088/core/seq_addr<8>)
+     LUT3:I0->O           12   0.094   0.540  s1/i8088/core/micro_data_micro_rom/Mram_rom11211 (s1/i8088/core/rom_ir<33>)
+     LUT4:I3->O           48   0.094   1.103  s1/i8088/core/Mmux_ir271 (s1/i8088/core/ir<33>)
+     LUT5:I0->O           94   0.094   0.849  s1/i8088/core/exec/Mmux_bus_b110 (s1/i8088/core/exec/bus_b<0>)
+     LUT5:I2->O            4   0.094   0.805  s1/i8088/core/exec/alu/shrot/Sh1072 (s1/i8088/core/exec/alu/shrot/Sh107)
+     LUT5:I1->O            1   0.094   0.973  s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42814 (s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42813)
+     LUT5:I0->O            1   0.094   0.480  s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42817_SW0 (N1710)
+     LUT6:I5->O            1   0.094   0.710  s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42817 (s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42816)
+     LUT6:I3->O            5   0.094   0.598  s1/i8088/core/exec/alu/shrot/Mmux_cfor_cfo_sal_MUX_2717_o42819 (s1/i8088/core/exec/alu/rot<4>)
+     LUT6:I4->O            2   0.094   0.715  s1/i8088/core/exec/alu/m0/Mmux_out_2_f7_3_SW3_SW2 (N1415)
+     LUT6:I3->O            1   0.094   0.710  s1/i8088/core/exec/alu/m0/Mmux_out_2_f7_3_SW4 (N1261)
+     LUT6:I3->O            1   0.094   0.336  s1/i8088/core/Mmux_cpu_adr_o151 (s1/i8088/cpu_adr_o<4>)
+     MUXCY:DI->O           1   0.362   0.000  s1/i8088/Msub_addr_offset_cy<4> (s1/i8088/Msub_addr_offset_cy<4>)
+     XORCY:CI->O           1   0.357   0.973  s1/i8088/Msub_addr_offset_xor<5> (s1/i8088/addr_offset<5>)
+     LUT6:I1->O            1   0.094   1.069  s1/i8088/addr_offset[19]_GND_8_o_LessThan_6_o33 (s1/i8088/addr_offset[19]_GND_8_o_LessThan_6_o32)
+     LUT6:I0->O           16   0.094   1.151  s1/i8088/addr_offset[19]_GND_8_o_LessThan_6_o34 (s1/i8088/addr_offset[19]_GND_8_o_LessThan_6_o)
+     LUT6:I0->O           12   0.094   0.540  s1/i8088/Mmux_cpu_dat_i17 (s1/i8088/cpu_dat_i<0>)
+     LUT3:I2->O           87   0.094   0.847  s1/i8088/core/fetch/Mmux_opcode11 (s1/i8088/core/opcode<0>)
+     LUT3:I0->O            8   0.094   1.011  s1/i8088/core/decode/opcode_deco/op[7]_GND_15_o_equal_145_o111 (s1/i8088/core/decode/opcode_deco/op[7]_GND_15_o_equal_145_o11)
+     LUT6:I1->O            1   0.094   0.973  s1/i8088/core/decode/n0089<0>14_SW0_SW0 (N883)
+     LUT6:I1->O            1   0.094   0.576  s1/i8088/core/decode/n0089<0>15 (s1/i8088/core/decode/n0089<0>)
+     LUT2:I0->O            1   0.094   0.000  s1/i8088/core/decode/Madd_seq_addr_lut<0> (s1/i8088/core/decode/Madd_seq_addr_lut<0>)
+     MUXCY:S->O            1   0.372   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<0> (s1/i8088/core/decode/Madd_seq_addr_cy<0>)
+     XORCY:CI->O         294   0.357   1.245  s1/i8088/core/decode/Madd_seq_addr_xor<1> (s1/i8088/core/seq_addr<1>)
+     LUT6:I0->O            1   0.094   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom31_f7_02 (s1/i8088/core/micro_data_micro_rom/Mram_rom31_f7_01)
+     MUXF7:I1->O           1   0.254   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom31_f7_0 (s1/i8088/core/micro_data_micro_rom/Mram_rom31_f71)
+     MUXF8:I0->O           1   0.182   0.710  s1/i8088/core/micro_data_micro_rom/Mram_rom31_f8 (s1/i8088/core/micro_data_micro_rom/Mram_rom31_f8)
+     LUT3:I0->O            1   0.094   0.710  s1/i8088/core/micro_data_micro_rom/Mram_rom331 (s1/i8088/core/micro_data/micro_o<10>)
+     LUT6:I3->O           97   0.094   0.715  s1/i8088/core/Mmux_ir25 (s1/i8088/core/ir<10>)
+     LUT6:I4->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_addr_c[3]_r[15][15]_wide_mux_13_OUT_59 (s1/i8088/core/exec/regfile/Mmux_addr_c[3]_r[15][15]_wide_mux_13_OUT_59)
+     MUXF7:I1->O           1   0.254   0.000  s1/i8088/core/exec/regfile/Mmux_addr_c[3]_r[15][15]_wide_mux_13_OUT_4_f7_3 (s1/i8088/core/exec/regfile/Mmux_addr_c[3]_r[15][15]_wide_mux_13_OUT_4_f74)
+     MUXF8:I0->O           5   0.182   1.091  s1/i8088/core/exec/regfile/Mmux_addr_c[3]_r[15][15]_wide_mux_13_OUT_2_f8_3 (s1/i8088/core/exec/regfile/addr_c[3]_r[15][15]_wide_mux_13_OUT<13>)
+     LUT6:I0->O            1   0.094   0.000  s1/i8088/core/exec/alu/muldiv/exc215_F (N1608)
+     MUXF7:I0->O           1   0.251   0.336  s1/i8088/core/exec/alu/muldiv/exc215 (s1/i8088/core/exec/alu/muldiv/exc215)
+     MUXF7:S->O            2   0.329   0.485  s1/i8088/core/exec/alu/muldiv/exc216_SW1 (N1197)
+     LUT6:I5->O           41   0.094   0.609  s1/i8088/core/exec/alu/div_exc12 (s1/i8088/core/exec/dive)
+     LUT6:I5->O          224   0.094   0.643  s1/i8088/core/exec/wr_reg5 (s1/i8088/core/exec/wr_reg)
+     LUT6:I5->O            1   0.094   0.480  s1/i8088/core/exec/regfile/Mmux_r[15][15]_d[31]_MUX_3181_o1_SW0 (N262)
+     LUT5:I4->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_r[15][15]_d[31]_MUX_3181_o1 (s1/i8088/core/exec/regfile/r[15][15]_d[31]_MUX_3181_o)
+     FDC:D                    -0.018          s1/i8088/core/exec/regfile/r_0_47
     ----------------------------------------
-    Total                     26.111ns (9.242ns logic, 16.869ns route)
-                                       (35.4% logic, 64.6% route)
+    Total                     74.416ns (15.004ns logic, 59.412ns route)
+                                       (20.2% logic, 79.8% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/pclk'
@@ -4709,36 +4765,35 @@ Delay:               2.154ns (Levels of Logic = 1)
                                        (35.9% logic, 64.1% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 's1/i8259/cs_n_wr_n_AND_617_o'
-  Clock period: 3.670ns (frequency: 272.480MHz)
+Timing constraint: Default period analysis for Clock 's1/i8259/cs_n_wr_n_AND_619_o'
+  Clock period: 3.343ns (frequency: 299.133MHz)
   Total number of paths / destination ports: 28 / 10
 -------------------------------------------------------------------------
-Delay:               3.670ns (Levels of Logic = 4)
-  Source:            s1/i8259/imr_0 (LATCH)
-  Destination:       s1/i8259/imr_0 (LATCH)
-  Source Clock:      s1/i8259/cs_n_wr_n_AND_617_o falling
-  Destination Clock: s1/i8259/cs_n_wr_n_AND_617_o falling
+Delay:               3.343ns (Levels of Logic = 3)
+  Source:            s1/i8259/imr_4 (LATCH)
+  Destination:       s1/i8259/imr_4 (LATCH)
+  Source Clock:      s1/i8259/cs_n_wr_n_AND_619_o falling
+  Destination Clock: s1/i8259/cs_n_wr_n_AND_619_o falling
 
-  Data Path: s1/i8259/imr_0 to s1/i8259/imr_0
+  Data Path: s1/i8259/imr_4 to s1/i8259/imr_4
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     LDCE:G->Q             7   0.736   0.513  s1/i8259/imr_0 (s1/i8259/imr_0)
-     LUT3:I2->O            1   0.094   0.789  s1/adp<0>LogicTrst1 (s1/adp<0>LogicTrst)
-     LUT5:I1->O            1   0.094   0.480  s1/adp<0>LogicTrst2 (s1/adp<0>LogicTrst1)
-     LUT5:I4->O           13   0.094   0.776  s1/adp<0>LogicTrst4 (s1/adp<0>)
-     LUT3:I0->O            1   0.094   0.000  s1/i8259/Mmux_GND_65_o_din[7]_mux_15_OUT<0>11 (s1/i8259/GND_65_o_din[7]_mux_15_OUT<0>)
-     LDCE:D                   -0.071          s1/i8259/imr_0
+     LDCE:G->Q             1   0.736   0.576  s1/i8259/imr_4 (s1/i8259/imr_4)
+     LUT5:I3->O            1   0.094   0.973  s1/adp<4>LogicTrst1 (s1/adp<4>LogicTrst)
+     LUT5:I0->O           13   0.094   0.776  s1/adp<4>LogicTrst3 (s1/adp<4>)
+     LUT3:I0->O            1   0.094   0.000  s1/i8259/Mmux_GND_65_o_din[7]_mux_15_OUT<4>11 (s1/i8259/GND_65_o_din[7]_mux_15_OUT<4>)
+     LDCE:D                   -0.071          s1/i8259/imr_4
     ----------------------------------------
-    Total                      3.670ns (1.112ns logic, 2.558ns route)
-                                       (30.3% logic, 69.7% route)
+    Total                      3.343ns (1.018ns logic, 2.325ns route)
+                                       (30.5% logic, 69.5% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's4/i8237/adstb'
-  Clock period: 5.121ns (frequency: 195.274MHz)
+  Clock period: 5.082ns (frequency: 196.773MHz)
   Total number of paths / destination ports: 416 / 8
 -------------------------------------------------------------------------
-Delay:               5.121ns (Levels of Logic = 5)
+Delay:               5.082ns (Levels of Logic = 5)
   Source:            s4/ls3730/rq_6 (FF)
   Destination:       s4/ls3730/rq_7 (FF)
   Source Clock:      s4/i8237/adstb rising
@@ -4748,16 +4803,16 @@ Delay:               5.121ns (Levels of Logic = 5)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              1   0.471   0.576  s4/ls3730/rq_6 (s4/ls3730/rq_6)
-     LUT4:I2->O           16   0.094   1.151  a<14>LogicTrst1 (a<14>)
+     FDE:C->Q              2   0.471   0.581  s4/ls3730/rq_6 (s4/ls3730/rq_6)
+     LUT4:I2->O            8   0.094   1.107  a<14>LogicTrst1 (a<14>)
      LUT6:I0->O            4   0.094   1.085  s3/ls4/Mmux_y31 (cs_n<2>)
      LUT6:I0->O            9   0.094   0.620  s5/rommod/csv_inv1 (s5/rommod/csv_inv)
      LUT6:I4->O            8   0.094   0.748  xd<0>LogicTrst1 (xd<0>LogicTrst1)
      LUT5:I2->O           23   0.094   0.000  xd<7>LogicTrst4 (xd<7>)
      FDE:D                    -0.018          s4/ls3730/rq_7
     ----------------------------------------
-    Total                      5.121ns (0.941ns logic, 4.180ns route)
-                                       (18.4% logic, 81.6% route)
+    Total                      5.082ns (0.941ns logic, 4.141ns route)
+                                       (18.5% logic, 81.5% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/vclk'
@@ -4826,7 +4881,7 @@ Delay:               2.301ns (Levels of Logic = 1)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDRS:C->Q             8   0.471   0.827  s8/i8253/vcs/C2/CNTREG/lsbflag (s8/i8253/vcs/C2/CNTREG/lsbflag)
-     LUT4:I0->O            1   0.094   0.336  s8/i8253/vcs/C2/CNTREG/SEL_lsbflag_AND_854_o1 (s8/i8253/vcs/C2/CNTREG/SEL_lsbflag_AND_854_o)
+     LUT4:I0->O            1   0.094   0.336  s8/i8253/vcs/C2/CNTREG/SEL_lsbflag_AND_856_o1 (s8/i8253/vcs/C2/CNTREG/SEL_lsbflag_AND_856_o)
      FDRS:S                    0.573          s8/i8253/vcs/C2/CNTREG/lsbflag
     ----------------------------------------
     Total                      2.301ns (1.138ns logic, 1.163ns route)
@@ -4901,7 +4956,7 @@ Delay:               1.067ns (Levels of Logic = 1)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'dclk'
   Clock period: 7.741ns (frequency: 129.188MHz)
-  Total number of paths / destination ports: 23445 / 182
+  Total number of paths / destination ports: 25685 / 182
 -------------------------------------------------------------------------
 Delay:               7.741ns (Levels of Logic = 7)
   Source:            s4/i8237/dack_1 (FF)
@@ -4914,8 +4969,8 @@ Delay:               7.741ns (Levels of Logic = 7)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDS:C->Q              4   0.471   1.085  s4/i8237/dack_1 (s4/i8237/dack_1)
-     LUT6:I0->O           13   0.094   0.855  a<16>LogicTrst1 (a<16>)
-     LUT4:I0->O            7   0.094   1.006  s3/rom_addr_sel_n1 (rom_addr_sel_n)
+     LUT6:I0->O           11   0.094   0.844  a<16>LogicTrst1 (a<16>)
+     LUT4:I0->O            9   0.094   1.017  s3/rom_addr_sel_n1 (rom_addr_sel_n)
      LUT6:I1->O            4   0.094   0.805  s3/ls4/Mmux_y61 (cs_n<5>)
      LUT6:I2->O            9   0.094   0.620  s5/rommod/csv_inv1 (s5/rommod/csv_inv)
      LUT6:I4->O            8   0.094   0.748  xd<0>LogicTrst1 (xd<0>LogicTrst1)
@@ -4942,8 +4997,8 @@ Delay:               6.307ns (Levels of Logic = 6)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      LDE:G->Q              1   0.736   0.973  s4/ls6700/q0_0 (s4/ls6700/q0_0)
-     LUT6:I1->O           13   0.094   0.855  a<16>LogicTrst1 (a<16>)
-     LUT4:I0->O            7   0.094   1.006  s3/rom_addr_sel_n1 (rom_addr_sel_n)
+     LUT6:I1->O           11   0.094   0.844  a<16>LogicTrst1 (a<16>)
+     LUT4:I0->O            9   0.094   1.017  s3/rom_addr_sel_n1 (rom_addr_sel_n)
      LUT6:I1->O            4   0.094   0.805  s3/ls4/Mmux_y61 (cs_n<5>)
      LUT6:I2->O            9   0.094   0.620  s5/rommod/csv_inv1 (s5/rommod/csv_inv)
      LUT6:I4->O            8   0.094   0.748  xd<0>LogicTrst1 (xd<0>LogicTrst1)
@@ -4969,7 +5024,7 @@ Delay:               2.088ns (Levels of Logic = 1)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDRS:C->Q             7   0.471   0.609  s6/pck_n (s6/pck_n)
-     LUT2:I0->O            2   0.094   0.341  s6/pck_n_enb_ram_pck_AND_803_o1 (s6/pck_n_enb_ram_pck_AND_803_o)
+     LUT2:I0->O            2   0.094   0.341  s6/pck_n_enb_ram_pck_AND_805_o1 (s6/pck_n_enb_ram_pck_AND_805_o)
      FDRS:R                    0.573          s6/pck_n
     ----------------------------------------
     Total                      2.088ns (1.138ns logic, 0.950ns route)
@@ -5075,7 +5130,7 @@ Offset:              4.024ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDRSE_1:C->Q         19   0.467   0.675  s8/i8253/vcs/C2/OUTCTRL/OUT (s8/i8253/vcs/C2/OUTCTRL/OUT)
-     LUT2:I0->O            1   0.094   0.336  s8/out2_spkr_data_AND_806_o1 (PIEZO_SPEAKER_OBUF)
+     LUT2:I0->O            1   0.094   0.336  s8/out2_spkr_data_AND_808_o1 (PIEZO_SPEAKER_OBUF)
      OBUF:I->O                 2.452          PIEZO_SPEAKER_OBUF (PIEZO_SPEAKER)
     ----------------------------------------
     Total                      4.024ns (3.013ns logic, 1.011ns route)
@@ -5095,7 +5150,7 @@ Offset:              4.098ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      LDC:G->Q              1   0.736   0.480  s9/i8255/pb_1 (s9/i8255/pb_1)
-     LUT2:I1->O            1   0.094   0.336  s8/out2_spkr_data_AND_806_o1 (PIEZO_SPEAKER_OBUF)
+     LUT2:I1->O            1   0.094   0.336  s8/out2_spkr_data_AND_808_o1 (PIEZO_SPEAKER_OBUF)
      OBUF:I->O                 2.452          PIEZO_SPEAKER_OBUF (PIEZO_SPEAKER)
     ----------------------------------------
     Total                      4.098ns (3.282ns logic, 0.816ns route)
@@ -5140,7 +5195,7 @@ Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
 USER_CLK       |    2.592|         |         |         |
 dclk           |    1.716|         |         |         |
-s1/i8284/clk   |    2.686|         |         |         |
+s1/i8284/clk   |    2.720|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock dclk
@@ -5150,8 +5205,8 @@ Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Des
 ----------------------------------------------+---------+---------+---------+---------+
 dclk                                          |    7.741|         |         |         |
 s1/ale                                        |    7.366|         |         |         |
-s1/i8284/clk                                  |    7.577|    4.426|         |         |
-s4/i8237/adstb                                |    6.708|         |         |         |
+s1/i8284/clk                                  |    7.579|    4.426|         |         |
+s4/i8237/adstb                                |    6.669|         |         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    3.471|         |         |
 s8/i8253/vcs/C1/OUTCTRL/OUT                   |    4.274|         |         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    3.663|         |         |
@@ -5165,42 +5220,42 @@ Clock to Setup on destination clock s1/ale
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-s1/i8284/clk   |   23.825|         |         |         |
+s1/i8284/clk   |   70.257|         |         |         |
 ---------------+---------+---------+---------+---------+
 
-Clock to Setup on destination clock s1/i8259/cs_n_wr_n_AND_617_o
+Clock to Setup on destination clock s1/i8259/cs_n_wr_n_AND_619_o
 ----------------------------------------------+---------+---------+---------+---------+
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |         |         |    7.914|         |
-dclk                                          |         |         |    9.933|         |
-s1/ale                                        |         |         |    9.558|         |
-s1/i8259/cs_n_wr_n_AND_617_o                  |         |         |    3.670|         |
-s1/i8259/inta_n_eoir[4]_OR_887_o              |         |         |    3.733|         |
-s1/i8259/recint_eoir[1]_MUX_3347_o            |         |         |    3.733|         |
-s1/i8284/clk                                  |         |         |   24.878|         |
-s1/i8284/vclk                                 |         |         |    7.086|         |
-s4/i8237/adstb                                |         |         |    9.250|         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    5.622|         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    5.814|         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    5.931|         |
-s9/i8255/cmd[4]_GND_280_o_equal_8_o<4>1       |         |         |    6.027|         |
-wrt_dma_pg_reg_n                              |         |         |   10.086|         |
+USER_CLK                                      |         |         |    8.311|         |
+dclk                                          |         |         |   10.385|         |
+s1/ale                                        |         |         |   10.010|         |
+s1/i8259/cs_n_wr_n_AND_619_o                  |         |         |    3.343|         |
+s1/i8259/inta_n_eoir[4]_OR_891_o              |         |         |    3.080|         |
+s1/i8259/recint_eoir[1]_MUX_3347_o            |         |         |    3.080|         |
+s1/i8284/clk                                  |         |         |   71.752|         |
+s1/i8284/vclk                                 |         |         |    7.579|         |
+s4/i8237/adstb                                |         |         |    9.383|         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    6.115|         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    6.307|         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    6.424|         |
+s9/i8255/cmd[4]_GND_280_o_equal_8_o<4>1       |         |         |    6.520|         |
+wrt_dma_pg_reg_n                              |         |         |   10.538|         |
 ----------------------------------------------+---------+---------+---------+---------+
 
-Clock to Setup on destination clock s1/i8259/inta_n_eoir[4]_OR_887_o
+Clock to Setup on destination clock s1/i8259/inta_n_eoir[4]_OR_891_o
 -----------------------------------------------------------------------+---------+---------+---------+---------+
                                                                        | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                                           |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -----------------------------------------------------------------------+---------+---------+---------+---------+
 s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8|         |         |    1.439|         |
-s1/i8284/clk                                                           |         |         |    3.078|         |
+s1/i8284/clk                                                           |         |         |    3.084|         |
 s1/inta_n                                                              |         |         |    2.573|         |
 xa<0>                                                                  |         |         |    3.102|         |
 -----------------------------------------------------------------------+---------+---------+---------+---------+
 
-Clock to Setup on destination clock s1/i8259/inta_n_recint_AND_621_o
+Clock to Setup on destination clock s1/i8259/inta_n_recint_AND_623_o
 ---------------+---------+---------+---------+---------+
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
@@ -5222,17 +5277,17 @@ Clock to Setup on destination clock s1/i8284/clk
                                                                        | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                                           |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -----------------------------------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                                               |    7.209|         |         |         |
-dclk                                                                   |    9.228|         |    1.959|         |
-s1/ale                                                                 |    8.853|         |         |         |
-s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8|         |    8.612|         |         |
-s1/i8259/cs_n_wr_n_AND_617_o                                           |         |    8.428|         |         |
-s1/i8259/inta_n_eoir[4]_OR_887_o                                       |         |    2.863|         |         |
-s1/i8259/recint_eoir[1]_MUX_3347_o                                     |         |    2.863|         |         |
-s1/i8284/clk                                                           |   26.111|    0.863|    2.106|         |
-s1/i8284/vclk                                                          |    6.216|         |         |         |
-s1/inta_n                                                              |         |    8.107|         |         |
-s4/i8237/adstb                                                         |    8.386|         |         |         |
+USER_CLK                                                               |    7.441|         |         |         |
+dclk                                                                   |    9.515|         |    1.959|         |
+s1/ale                                                                 |    9.140|         |         |         |
+s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8|         |    6.716|         |         |
+s1/i8259/cs_n_wr_n_AND_619_o                                           |         |    6.532|         |         |
+s1/i8259/inta_n_eoir[4]_OR_891_o                                       |         |    2.210|         |         |
+s1/i8259/recint_eoir[1]_MUX_3347_o                                     |         |    2.210|         |         |
+s1/i8284/clk                                                           |   74.416|    0.863|    2.106|         |
+s1/i8284/vclk                                                          |    6.709|         |         |         |
+s1/inta_n                                                              |         |    6.211|         |         |
+s4/i8237/adstb                                                         |    8.519|         |         |         |
 s6/rb0/central_ram_core/fsm[1]_PWR_144_o_Mux_30_o                      |         |    2.462|         |         |
 s6/rb0/central_ram_core/fsm[1]_PWR_151_o_Mux_44_o                      |         |    1.546|         |         |
 s6/rb1/central_ram_core/fsm[1]_PWR_144_o_Mux_30_o                      |         |    2.462|         |         |
@@ -5241,14 +5296,14 @@ s6/rb2/central_ram_core/fsm[1]_PWR_144_o_Mux_30_o                      |        
 s6/rb2/central_ram_core/fsm[1]_PWR_151_o_Mux_44_o                      |         |    1.546|         |         |
 s6/rb3/central_ram_core/fsm[1]_PWR_144_o_Mux_30_o                      |         |    2.462|         |         |
 s6/rb3/central_ram_core/fsm[1]_PWR_151_o_Mux_44_o                      |         |    1.546|         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o                         |         |    4.752|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o                         |         |    4.944|         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o                         |         |    5.061|         |         |
-s9/i8255/cmd[4]_GND_280_o_equal_13_o                                   |         |    2.551|         |         |
-s9/i8255/cmd[4]_GND_280_o_equal_8_o<4>1                                |         |    5.157|         |         |
-wrt_dma_pg_reg_n                                                       |         |    9.381|         |         |
-wrt_nmi_reg_n                                                          |    1.914|         |         |         |
-xmemr_n                                                                |    1.857|         |         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o                         |         |    5.245|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o                         |         |    5.437|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o                         |         |    5.554|         |         |
+s9/i8255/cmd[4]_GND_280_o_equal_13_o                                   |         |    2.685|         |         |
+s9/i8255/cmd[4]_GND_280_o_equal_8_o<4>1                                |         |    5.650|         |         |
+wrt_dma_pg_reg_n                                                       |         |    9.668|         |         |
+wrt_nmi_reg_n                                                          |    2.098|         |         |         |
+xmemr_n                                                                |    1.723|         |         |         |
 -----------------------------------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/i8284/pclk
@@ -5257,7 +5312,7 @@ Clock to Setup on destination clock s1/i8284/pclk
 Source Clock                        |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ------------------------------------+---------+---------+---------+---------+
 KEYBOARD_CLK                        |         |    5.752|         |         |
-s1/i8284/clk                        |    1.859|         |         |         |
+s1/i8284/clk                        |    1.858|         |         |         |
 s1/i8284/pclk                       |    2.820|         |         |         |
 s9/i8255/cmd[4]_GND_280_o_equal_13_o|         |    2.974|         |         |
 ------------------------------------+---------+---------+---------+---------+
@@ -5267,17 +5322,17 @@ Clock to Setup on destination clock s1/i8284/vclk
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |    6.097|         |         |         |
-dclk                                          |    8.116|         |         |         |
-s1/ale                                        |    7.741|         |         |         |
-s1/i8284/clk                                  |    7.952|         |         |         |
+USER_CLK                                      |    6.001|         |         |         |
+dclk                                          |    8.075|         |         |         |
+s1/ale                                        |    7.700|         |         |         |
+s1/i8284/clk                                  |    7.949|         |         |         |
 s1/i8284/vclk                                 |    5.269|         |         |         |
-s4/i8237/adstb                                |    7.423|         |         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    3.806|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    3.998|         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    4.115|         |         |
-s9/i8255/cmd[4]_GND_280_o_equal_8_o<4>1       |         |    4.211|         |         |
-wrt_dma_pg_reg_n                              |         |    8.269|         |         |
+s4/i8237/adstb                                |    7.063|         |         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    3.805|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    3.997|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    4.114|         |         |
+s9/i8255/cmd[4]_GND_280_o_equal_8_o<4>1       |         |    4.210|         |         |
+wrt_dma_pg_reg_n                              |         |    8.228|         |         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/inta_n
@@ -5286,8 +5341,8 @@ Clock to Setup on destination clock s1/inta_n
 Source Clock                                                           |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -----------------------------------------------------------------------+---------+---------+---------+---------+
 s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8|         |         |    2.412|         |
-s1/i8259/cs_n_wr_n_AND_617_o                                           |         |         |    2.228|         |
-s1/i8259/inta_n_recint_AND_621_o                                       |         |         |    1.413|         |
+s1/i8259/cs_n_wr_n_AND_619_o                                           |         |         |    2.228|         |
+s1/i8259/inta_n_recint_AND_623_o                                       |         |         |    1.413|         |
 s1/inta_n                                                              |         |         |    2.154|         |
 -----------------------------------------------------------------------+---------+---------+---------+---------+
 
@@ -5298,8 +5353,8 @@ Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Des
 ----------------------------------------------+---------+---------+---------+---------+
 dclk                                          |    6.154|         |         |         |
 s1/ale                                        |    5.779|         |         |         |
-s1/i8284/clk                                  |    5.991|         |         |         |
-s4/i8237/adstb                                |    5.121|         |         |         |
+s1/i8284/clk                                  |    5.992|         |         |         |
+s4/i8237/adstb                                |    5.082|         |         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    1.884|         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    2.076|         |         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    2.193|         |         |
@@ -5312,11 +5367,11 @@ Clock to Setup on destination clock s6/rb0/central_ram_core/fsm[1]_PWR_144_o_Mux
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-USER_CLK       |         |         |    1.408|         |
-dclk           |         |         |    2.847|         |
-s1/ale         |         |         |    2.075|         |
-s1/i8284/clk   |         |         |    2.757|         |
-s4/i8237/adstb |         |         |    1.850|         |
+USER_CLK       |         |         |    2.514|         |
+dclk           |         |         |    3.555|         |
+s1/ale         |         |         |    2.819|         |
+s1/i8284/clk   |         |         |    3.515|         |
+s4/i8237/adstb |         |         |    2.122|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s6/rb0/central_ram_core/fsm[1]_PWR_151_o_Mux_44_o
@@ -5324,11 +5379,11 @@ Clock to Setup on destination clock s6/rb0/central_ram_core/fsm[1]_PWR_151_o_Mux
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-USER_CLK       |         |         |    1.408|         |
-dclk           |         |         |    2.847|         |
-s1/ale         |         |         |    2.075|         |
-s1/i8284/clk   |         |         |    2.757|         |
-s4/i8237/adstb |         |         |    1.850|         |
+USER_CLK       |         |         |    2.284|         |
+dclk           |         |         |    3.325|         |
+s1/ale         |         |         |    2.589|         |
+s1/i8284/clk   |         |         |    3.285|         |
+s4/i8237/adstb |         |         |    1.892|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s6/rb1/central_ram_core/fsm[1]_PWR_144_o_Mux_30_o
@@ -5336,11 +5391,11 @@ Clock to Setup on destination clock s6/rb1/central_ram_core/fsm[1]_PWR_144_o_Mux
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-USER_CLK       |         |         |    1.408|         |
-dclk           |         |         |    2.847|         |
-s1/ale         |         |         |    2.075|         |
-s1/i8284/clk   |         |         |    2.757|         |
-s4/i8237/adstb |         |         |    1.850|         |
+USER_CLK       |         |         |    2.514|         |
+dclk           |         |         |    3.555|         |
+s1/ale         |         |         |    2.819|         |
+s1/i8284/clk   |         |         |    3.515|         |
+s4/i8237/adstb |         |         |    2.122|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s6/rb1/central_ram_core/fsm[1]_PWR_151_o_Mux_44_o
@@ -5348,11 +5403,11 @@ Clock to Setup on destination clock s6/rb1/central_ram_core/fsm[1]_PWR_151_o_Mux
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-USER_CLK       |         |         |    1.408|         |
-dclk           |         |         |    2.847|         |
-s1/ale         |         |         |    2.075|         |
-s1/i8284/clk   |         |         |    2.757|         |
-s4/i8237/adstb |         |         |    1.850|         |
+USER_CLK       |         |         |    2.284|         |
+dclk           |         |         |    3.325|         |
+s1/ale         |         |         |    2.589|         |
+s1/i8284/clk   |         |         |    3.285|         |
+s4/i8237/adstb |         |         |    1.892|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s6/rb2/central_ram_core/fsm[1]_PWR_144_o_Mux_30_o
@@ -5360,11 +5415,11 @@ Clock to Setup on destination clock s6/rb2/central_ram_core/fsm[1]_PWR_144_o_Mux
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-USER_CLK       |         |         |    1.408|         |
-dclk           |         |         |    2.847|         |
-s1/ale         |         |         |    2.075|         |
-s1/i8284/clk   |         |         |    2.757|         |
-s4/i8237/adstb |         |         |    1.850|         |
+USER_CLK       |         |         |    2.514|         |
+dclk           |         |         |    3.555|         |
+s1/ale         |         |         |    2.819|         |
+s1/i8284/clk   |         |         |    3.515|         |
+s4/i8237/adstb |         |         |    2.122|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s6/rb2/central_ram_core/fsm[1]_PWR_151_o_Mux_44_o
@@ -5372,11 +5427,11 @@ Clock to Setup on destination clock s6/rb2/central_ram_core/fsm[1]_PWR_151_o_Mux
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-USER_CLK       |         |         |    1.408|         |
-dclk           |         |         |    2.847|         |
-s1/ale         |         |         |    2.075|         |
-s1/i8284/clk   |         |         |    2.757|         |
-s4/i8237/adstb |         |         |    1.850|         |
+USER_CLK       |         |         |    2.284|         |
+dclk           |         |         |    3.325|         |
+s1/ale         |         |         |    2.589|         |
+s1/i8284/clk   |         |         |    3.285|         |
+s4/i8237/adstb |         |         |    1.892|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s6/rb3/central_ram_core/fsm[1]_PWR_144_o_Mux_30_o
@@ -5384,11 +5439,11 @@ Clock to Setup on destination clock s6/rb3/central_ram_core/fsm[1]_PWR_144_o_Mux
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-USER_CLK       |         |         |    1.408|         |
-dclk           |         |         |    2.847|         |
-s1/ale         |         |         |    2.075|         |
-s1/i8284/clk   |         |         |    2.757|         |
-s4/i8237/adstb |         |         |    1.850|         |
+USER_CLK       |         |         |    2.514|         |
+dclk           |         |         |    3.555|         |
+s1/ale         |         |         |    2.819|         |
+s1/i8284/clk   |         |         |    3.515|         |
+s4/i8237/adstb |         |         |    2.122|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s6/rb3/central_ram_core/fsm[1]_PWR_151_o_Mux_44_o
@@ -5396,11 +5451,11 @@ Clock to Setup on destination clock s6/rb3/central_ram_core/fsm[1]_PWR_151_o_Mux
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-USER_CLK       |         |         |    1.408|         |
-dclk           |         |         |    2.847|         |
-s1/ale         |         |         |    2.075|         |
-s1/i8284/clk   |         |         |    2.757|         |
-s4/i8237/adstb |         |         |    1.850|         |
+USER_CLK       |         |         |    2.284|         |
+dclk           |         |         |    3.325|         |
+s1/ale         |         |         |    2.589|         |
+s1/i8284/clk   |         |         |    3.285|         |
+s4/i8237/adstb |         |         |    1.892|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s8/i8253/vcs/C0/LOADCNT
@@ -5418,8 +5473,8 @@ Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Des
 ----------------------------------------------+---------+---------+---------+---------+
 dclk                                          |    8.850|         |         |         |
 s1/ale                                        |    8.475|         |         |         |
-s1/i8284/clk                                  |    8.687|         |         |         |
-s4/i8237/adstb                                |    7.817|         |         |         |
+s1/i8284/clk                                  |    8.688|         |         |         |
+s4/i8237/adstb                                |    7.778|         |         |         |
 s8/i8253/vcs/C0/MODETRIG                      |    1.067|         |         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    4.580|         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    4.772|         |         |
@@ -5453,8 +5508,8 @@ Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Des
 ----------------------------------------------+---------+---------+---------+---------+
 dclk                                          |    8.561|         |         |         |
 s1/ale                                        |    8.186|         |         |         |
-s1/i8284/clk                                  |    8.398|         |         |         |
-s4/i8237/adstb                                |    7.528|         |         |         |
+s1/i8284/clk                                  |    8.399|         |         |         |
+s4/i8237/adstb                                |    7.489|         |         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    4.291|         |         |
 s8/i8253/vcs/C1/MODETRIG                      |    1.067|         |         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    4.483|         |         |
@@ -5496,8 +5551,8 @@ Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Des
 ----------------------------------------------+---------+---------+---------+---------+
 dclk                                          |    8.734|         |         |         |
 s1/ale                                        |    8.359|         |         |         |
-s1/i8284/clk                                  |    8.571|         |         |         |
-s4/i8237/adstb                                |    7.701|         |         |         |
+s1/i8284/clk                                  |    8.572|         |         |         |
+s4/i8237/adstb                                |    7.662|         |         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    4.464|         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    4.656|         |         |
 s8/i8253/vcs/C2/MODETRIG                      |    1.056|         |         |         |
@@ -5523,9 +5578,9 @@ Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Des
 ----------------------------------------------+---------+---------+---------+---------+
 dclk                                          |         |         |   10.105|         |
 s1/ale                                        |         |         |    9.730|         |
-s1/i8284/clk                                  |         |         |    9.942|         |
+s1/i8284/clk                                  |         |         |    9.943|         |
 s1/i8284/pclk                                 |    1.061|         |         |         |
-s4/i8237/adstb                                |         |         |    9.072|         |
+s4/i8237/adstb                                |         |         |    9.033|         |
 s8/i8253/vcs/C0/LOADCNT                       |    1.380|         |         |         |
 s8/i8253/vcs/C0/MODETRIG                      |         |         |    2.499|         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    5.835|         |
@@ -5540,7 +5595,7 @@ s9/i8255/cmd[4]_GND_280_o_equal_13_o          |         |    2.210|    3.093|   
 s9/i8255/cmd[4]_GND_280_o_equal_8_o<4>1       |         |         |    6.240|         |
 s9/i8255/pb_0                                 |    1.354|         |         |         |
 wrt_dma_pg_reg_n                              |         |         |   10.258|         |
-xiow_n                                        |    2.880|         |    3.478|         |
+xiow_n                                        |    2.886|         |    3.478|         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s9/i8255/cmd[4]_GND_280_o_equal_13_o
@@ -5550,8 +5605,8 @@ Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Des
 ----------------------------------------------+---------+---------+---------+---------+
 dclk                                          |         |         |    6.154|         |
 s1/ale                                        |         |         |    5.779|         |
-s1/i8284/clk                                  |         |         |    5.991|         |
-s4/i8237/adstb                                |         |         |    5.121|         |
+s1/i8284/clk                                  |         |         |    5.992|         |
+s4/i8237/adstb                                |         |         |    5.082|         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    1.884|         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    2.076|         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    2.193|         |
@@ -5564,11 +5619,11 @@ Clock to Setup on destination clock s9/i8255/cmd[4]_GND_280_o_equal_8_o<4>1
                                     | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                        |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ------------------------------------+---------+---------+---------+---------+
-dclk                                |         |         |    4.341|         |
-s1/ale                              |         |         |    4.112|         |
-s1/i8284/clk                        |         |         |    4.840|         |
+dclk                                |         |         |    4.303|         |
+s1/ale                              |         |         |    4.111|         |
+s1/i8284/clk                        |         |         |    4.846|         |
 s1/i8284/pclk                       |         |         |    1.359|         |
-s4/i8237/adstb                      |         |         |    4.110|         |
+s4/i8237/adstb                      |         |         |    4.114|         |
 s8/pclka                            |         |         |    1.633|         |
 s9/i8255/cmd[4]_GND_280_o_equal_13_o|         |         |    1.906|         |
 xmemr_n                             |         |         |    1.045|         |
@@ -5589,8 +5644,8 @@ Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Des
 ----------------------------------------------+---------+---------+---------+---------+
 dclk                                          |         |         |    6.154|         |
 s1/ale                                        |         |         |    5.779|         |
-s1/i8284/clk                                  |         |         |    5.991|         |
-s4/i8237/adstb                                |         |         |    5.121|         |
+s1/i8284/clk                                  |         |         |    5.992|         |
+s4/i8237/adstb                                |         |         |    5.082|         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    1.884|         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    2.076|         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o|         |         |    2.193|         |
@@ -5605,8 +5660,8 @@ Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Des
 ----------------------------------------------+---------+---------+---------+---------+
 dclk                                          |    6.154|         |         |         |
 s1/ale                                        |    5.779|         |         |         |
-s1/i8284/clk                                  |    5.991|         |         |         |
-s4/i8237/adstb                                |    5.121|         |         |         |
+s1/i8284/clk                                  |    5.992|         |         |         |
+s4/i8237/adstb                                |    5.082|         |         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    1.884|         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    2.076|         |         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    2.193|         |         |
@@ -5619,20 +5674,20 @@ Clock to Setup on destination clock xa<0>
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------+---------+---------+---------+---------+
-USER_CLK                                      |    7.044|         |         |         |
-dclk                                          |    9.063|         |         |         |
-s1/ale                                        |    8.688|         |         |         |
-s1/i8259/cs_n_wr_n_AND_617_o                  |         |    2.800|         |         |
-s1/i8259/inta_n_eoir[4]_OR_887_o              |         |    2.863|         |         |
-s1/i8259/recint_eoir[1]_MUX_3347_o            |         |    2.863|         |         |
-s1/i8284/clk                                  |   23.497|         |         |         |
-s1/i8284/vclk                                 |    6.216|         |         |         |
-s4/i8237/adstb                                |    8.038|         |         |         |
-s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    4.752|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    4.944|         |         |
-s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    5.061|         |         |
-s9/i8255/cmd[4]_GND_280_o_equal_8_o<4>1       |         |    5.157|         |         |
-wrt_dma_pg_reg_n                              |         |    9.216|         |         |
+USER_CLK                                      |    7.441|         |         |         |
+dclk                                          |    9.515|         |         |         |
+s1/ale                                        |    9.140|         |         |         |
+s1/i8259/cs_n_wr_n_AND_619_o                  |         |    2.473|         |         |
+s1/i8259/inta_n_eoir[4]_OR_891_o              |         |    2.210|         |         |
+s1/i8259/recint_eoir[1]_MUX_3347_o            |         |    2.210|         |         |
+s1/i8284/clk                                  |   70.882|         |         |         |
+s1/i8284/vclk                                 |    6.709|         |         |         |
+s4/i8237/adstb                                |    8.443|         |         |         |
+s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    5.245|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    5.437|         |         |
+s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    5.554|         |         |
+s9/i8255/cmd[4]_GND_280_o_equal_8_o<4>1       |         |    5.650|         |         |
+wrt_dma_pg_reg_n                              |         |    9.668|         |         |
 ----------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock xiow_n
@@ -5642,8 +5697,8 @@ Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Des
 ----------------------------------------------+---------+---------+---------+---------+
 dclk                                          |    8.043|         |         |         |
 s1/ale                                        |    7.668|         |         |         |
-s1/i8284/clk                                  |    7.880|         |         |         |
-s4/i8237/adstb                                |    7.010|         |         |         |
+s1/i8284/clk                                  |    7.881|         |         |         |
+s4/i8237/adstb                                |    6.971|         |         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    3.773|         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    3.965|         |         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_168_o_Mux_9_o|         |    4.082|         |         |
@@ -5657,20 +5712,20 @@ Clock to Setup on destination clock xmemr_n
                                     | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                        |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ------------------------------------+---------+---------+---------+---------+
-USER_CLK                            |    8.509|         |         |         |
-dclk                                |   10.528|         |         |         |
-s1/ale                              |   10.153|         |         |         |
-s1/i8284/clk                        |   10.365|         |         |         |
+USER_CLK                            |    8.413|         |         |         |
+dclk                                |    9.551|         |         |         |
+s1/ale                              |    9.176|         |         |         |
+s1/i8284/clk                        |    9.503|         |         |         |
 s9/i8255/cmd[4]_GND_280_o_equal_13_o|         |    2.240|         |         |
-wrt_dma_pg_reg_n                    |         |   10.681|         |         |
+wrt_dma_pg_reg_n                    |         |    9.704|         |         |
 xmemr_n                             |    2.088|         |         |         |
 ------------------------------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 74.00 secs
-Total CPU time to Xst completion: 71.94 secs
+Total REAL time to Xst completion: 52.00 secs
+Total CPU time to Xst completion: 50.13 secs
  
 WARNING:Xst:3152 - You have chosen to run a version of XST which is not the default solution
    for the specified device family. You are free to use it in order to take
@@ -5683,9 +5738,9 @@ WARNING:Xst:3152 - You have chosen to run a version of XST which is not the defa
 --> 
 
 
-Total memory usage is 581208 kilobytes
+Total memory usage is 563316 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  922 (   0 filtered)
-Number of infos    :   44 (   0 filtered)
+Number of warnings :  921 (   0 filtered)
+Number of infos    :   43 (   0 filtered)
 
