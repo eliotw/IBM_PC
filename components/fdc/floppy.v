@@ -88,6 +88,9 @@ module floppy(
     input       [31:0]  mgmt_writedata
 );
 
+// for places where we may need to change management values, I have *CHANGE written, so finding them should be
+// relatively easy
+
    // Local Parameters
    localparam [4:0] S_IDLE                         = 5'd0;
    localparam [4:0] S_PREPARE_COUNT                = 5'd1;
@@ -295,7 +298,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 always @(posedge clk or negedge rst_n) begin
-    if(rst_n == 1'b0)                           media_heads <= 2'd2;
+    if(rst_n == 1'b0)                           media_heads <= 2'd2; // possibly need to change *CHANGE
     else if(mgmt_write && mgmt_address == 4'd5) media_heads <= mgmt_writedata[1:0];
 end
 
@@ -309,13 +312,16 @@ always @(posedge clk or negedge rst_n) begin
     else if(mgmt_write && mgmt_address == 4'd7) media_wait_cycles <= mgmt_writedata[15:0];
 end
 
+//What the hell is going on here??? Possibly we want to change the reset values...maybe? *CHANGE
+//Darn management!
 always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_0 <= 16'd1000; else if(mgmt_write && mgmt_address == 4'h8) media_wait_rate_0 <= mgmt_writedata[15:0]; end
 always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_1 <= 16'd1666; else if(mgmt_write && mgmt_address == 4'h9) media_wait_rate_1 <= mgmt_writedata[15:0]; end
 always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_2 <= 16'd2000; else if(mgmt_write && mgmt_address == 4'hA) media_wait_rate_2 <= mgmt_writedata[15:0]; end
 always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_3 <= 16'd500;  else if(mgmt_write && mgmt_address == 4'hB) media_wait_rate_3 <= mgmt_writedata[15:0]; end
 
+//And possibly change this *CHANGE
 always @(posedge clk or negedge rst_n) begin
-    if(rst_n == 1'b0)                           media_type <= 8'h20;
+    if(rst_n == 1'b0)                           media_type <= 8'h20; //up says this means media type none...do we not want that?
     else if(mgmt_write && mgmt_address == 4'hC) media_type <= mgmt_writedata[7:0];
 end
 
