@@ -1,11 +1,12 @@
 /*
  * fdc:
  * The wrapper for the floppy disk controller and sd card
+ * FDC SHOULD DIE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
 module fdc(
 	   input clk, // system clock
 	   input rst, // system reset
-	   output irq6, // irq number 6
+	   output irq6, // irq number 6 
 	   output drq2, // drq number 2
 	   input dack2_n, // drq acknowledge 2
 	   input tc, // terminal count
