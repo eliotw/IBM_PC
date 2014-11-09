@@ -1,17 +1,17 @@
 /*
- * test_ls373:
- * Tests the ls373 module by checking its output
+ * test_ls374:
+ * Tests the ls374 module by checking its output
  */
-module test_ls373;
+module test_ls374;
 
    // signals
-   reg [7:0] d;
-   wire [7:0] q;
+   reg [3:0] d;
+   wire [3:0] q;
    reg 	      g, oe_n;
    integer   i, errors;
    
    // ls373 under test
-   ls373 billy(
+   ls374 billy(
                .d(d),
 	       .q(q),
 	       .g(g),
@@ -25,7 +25,7 @@ module test_ls373;
       $display ("Setting Up Test");
       $display ("***************");
       #1;
-      d = 8'b00000000;
+      d = 4'b0;
       g = 1'b0;
       oe_n = 1'b0;
       i = 0;
@@ -39,7 +39,7 @@ module test_ls373;
       #1;
       oe_n = 1'b1;
       #1;
-      if(q !== 8'bzzzzzzzz) begin
+      if(q !== 4'bzzzz) begin
 	 $display("FAILURE: %b %b",d,q);
 	 errors = errors + 1;
       end
@@ -54,7 +54,7 @@ module test_ls373;
       $display ("**************");
       $display ("Run Load Tests");
       $display ("**************");
-      for(i=0; i<256; i=i+1) begin
+      for(i=0; i<16; i=i+1) begin
 	 #1;
 	 d = i;
 	 #1;
@@ -77,10 +77,10 @@ module test_ls373;
       $display ("Finished Running Tests");
       $display ("**********************");
       if(errors > 0) begin
-	 $display("LS373 TEST FAILURE WITH %d ERRORS",errors);
+	 $display("LS374 TEST FAILURE WITH %d ERRORS",errors);
       end
       else begin
-	 $display("LS373 TEST SUCCESS");
+	 $display("LS374 TEST SUCCESS");
       end
       $finish();
    end // initial begin

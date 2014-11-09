@@ -1,24 +1,24 @@
 /*
- * ls373:
- * Octal d-type transparent latches
+ * ls374:
+ * d-type transparent latch
  */
-module ls373(
+module ls374(
 	     d,
 	     q,
 	     g,
 	     oe_n
 	     );
 
-   input [7:0]  d;
-   inout tri [7:0] 	q;
+   input [3:0]  d;
+   inout tri [3:0] 	q;
    input 	g;
    input 	oe_n;
 
    wire 	oe;
-   reg [7:0] 	rq;
+   reg [3:0] 	rq;
    
    assign oe = ~oe_n;
-   assign q = (oe) ? rq : 8'bzzzzzzzz;
+   assign q = (oe) ? rq : 4'bzzzz;
    
    // D-Latch
    always @(posedge g) begin
@@ -30,4 +30,5 @@ module ls373(
       end
    end
 
-endmodule // ls373
+endmodule // ls374
+

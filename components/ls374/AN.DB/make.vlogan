@@ -1,0 +1,16 @@
+
+VLOGAN	= vlogan
+
+all :		_VCSgd_kEiDEb_1.db \
+	_VCSgd_tQA4Y_1.db \
+
+
+
+_VCSgd_kEiDEb_1.db :	test_ls374.v 
+		${VLOGAN}  +v2k -work work test_ls374.v
+
+
+_VCSgd_tQA4Y_1.db :	ls374.v 
+		${VLOGAN}  +v2k -work work ls374.v
+
+
