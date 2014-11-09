@@ -427,7 +427,7 @@ module sheet1(
    wire 	     u84;
    wire 	     dtr;
    wire [3:0] 	     xrd; // extra data
-	wire iom;
+   wire 	     iom;
    
    // Assign powergood to reset
    assign reset = pwr_good;
