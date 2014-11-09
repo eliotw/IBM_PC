@@ -90,7 +90,7 @@ module processor_8088
                   .cpu_byte_o(cpu_byte_o),
                   .cpu_block(cpu_block),
                   .cpu_mem_op(cpu_mem_op),
-                  .cpu_m_io(iom),
+                  .cpu_m_io(cpu_m_io),
                   .cpu_we_o(cpu_we_o),
                   .memalu(memalu),
                   .pc(pc),
@@ -251,7 +251,7 @@ module processor_8088
    assign start = (read | write);
    assign write = (zet_state == execu_st)? cpu_we_o : 1'b0;
    assign read = (zet_state == fetch_st) 
-     || ((zet_state == execu_st) && ~memalu) 
+     || ((zet_state == execu_st) && ~memalu && ~cpu_we_o) 
        || (zet_state == modrm_st) 
 	 || (zet_state == offse_st) 
 	   || (zet_state == immed_st);
@@ -262,10 +262,12 @@ module processor_8088
                          .start(start),
                          .read(read),
                          .write(write),
+								 .cpu_m_io(cpu_m_io),
+								 .iom(iom),
                          .bytes_transferred(bytes_transferred),
                          .write_bus(write_bus),
                          .ld_out_regs(ld_out_regs),
-			 .ld_in(ld_in),
+								 .ld_in(ld_in),
                          .ale(ale),
                          .den_n(den_n),
                          .wr_n(wr_n),
@@ -299,6 +301,8 @@ module control_fsm
      input start,
      input read,
      input write,
+	  input cpu_m_io,
+	  output reg iom,
      output [3:0] bytes_transferred,
      output reg write_bus,
      output reg ld_out_regs,
@@ -357,7 +361,7 @@ module control_fsm
                 if (read == 1)
                     next_state = interm;
                 else if (write == 1)
-                    next_state = data;
+                    next_state = interm;
             end
             interm: next_state = data;
             data: begin
@@ -375,6 +379,7 @@ module control_fsm
         rd_n = 1; 
         wr_n = 1;
         den_n = 1; 
+		  iom = 1;
         inc_count = 0;
         clr_count = 0; 
         ld_out_regs = 0;
@@ -388,7 +393,9 @@ module control_fsm
                 if (start) begin
                     cpu_block = 1;
                     ale = 1;
+						  iom = ~cpu_m_io;
                     dtr = (write)? 1 : 0;
+						  den_n = (read | (cpu_m_io & ~write))? 1 : 0;
                     ld_out_regs = (write)? 1 : 0;
                     write_bus = 1;
                 end
@@ -396,29 +403,38 @@ module control_fsm
             addr: begin
                 cpu_block = 1;
                 den_n = 0;
-                if (read) begin
+					 iom = ~cpu_m_io;
+                if (read | (cpu_m_io & ~write)) begin
                     dtr = 0;
                     rd_n = 0;
                 end
                 else if (write) begin
                     wr_n = 0;
                     dtr = 1;
-                    inc_count = 1;
+                    //inc_count = 1;
                     write_bus = 1;
                 end
             end
             interm: begin
+					cpu_block = 1;
+               den_n = 0;
+					iom = ~cpu_m_io;
+					inc_count = 1;
+					if(read) begin
                 rd_n = 0;
                 dtr = 0;
-                den_n = 0;
-                cpu_block = 1;
-                inc_count = 1;
 					 ld_in = bytes_transferred + 1;
+					end
+					else begin
+					 wr_n = 1'b0;
+					 dtr = 1;
+					end
                 //ld_lsb_i = (bytes_transferred == 0);
                 //ld_msb_i = (bytes_transferred == 1);
             end
             data: begin
                 if (~data_tran_done) begin
+						  iom = ~cpu_m_io;
                     cpu_block = 1;
                     //ale = 1;
                     den_n = 0;

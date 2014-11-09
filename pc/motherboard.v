@@ -427,7 +427,6 @@ module sheet1(
    wire 	     u84;
    wire 	     dtr;
    wire [3:0] 	     xrd; // extra data
-   wire 	     iom;
    
    // Assign powergood to reset
    assign reset = pwr_good;
@@ -436,7 +435,6 @@ module sheet1(
    assign rqgti_n = 1'b1;
    assign test_n = 1'b1;
    assign npnpi = 1'b0;
-   assign s2_n = ~iom;
 	
    // 8284 clock generation
    intel8284a i8284(
@@ -468,7 +466,7 @@ module sheet1(
 		.dtr(s1_n),               // indicates direction of data transfer. low-> to 8088, high-> from 8088
 		.wr_n(lock_n),               // indicates that the processor is writing to mem or I/O device
 		.rd_n(),               // indicates that the processor is reading from mem or I/O device (not connect)
-		.iom(iom),               // indicates that processor is accessing mem or I/O. low-> mem, high-> I/O
+		.iom(s2_n),               // indicates that processor is accessing mem or I/O. low-> mem, high-> I/O
 		.sso(),                // status output (not connect)
 		.ad(adp)           // address/data bus
 	);
@@ -925,10 +923,10 @@ module sheet4(
 		.q(a[19:16]),
 		.ra(dack3_n),
 		.rb(dack2_n),
-		.read(dma_aen_n),
+		.read(~dma_aen_n),
 		.wa(xa[0]),
 		.wb(xa[1]),
-		.write(wrt_dma_pg_reg_n)
+		.write(~wrt_dma_pg_reg_n)
 		);
 
    // LS373 Unit
