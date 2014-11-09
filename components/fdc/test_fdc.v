@@ -19,7 +19,7 @@ module test_fdc();
    
    // FDC Module
    fdc fzero(
-             .clk(clk), // system clock
+             .clk(clk), // system clock 
              .rst(rst), // system reset
              .irq6(irq6), // irq number 6
              .drq2(drq2), // drq number 2
@@ -90,7 +90,8 @@ module test_fdc();
       testMSR = 8'b00; //need to check what it should be
       @(posedge clk);
       errors = errors + (d != testMSR); //should be right
-      $display(d); // on off chance it isn't testMSR, find out what it is
+      $display(d); // on off chance it isn't testMSR, find out what it is *REMOVE BEFORE TURNING IN*
+      
       //Check evaluation # of clock cycles should get some sort of sign from floppy drive that done
       //make a thing that just loops through posedge clk until hits sign
       @(posedge clk);
@@ -99,31 +100,31 @@ module test_fdc();
       testData = 8'h; //ST0
       @(posedge clk);
       errors = errors + (d != testData); //should be right
-      $display(d); // on off chance it isn't testData, find out what it is
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
       #1 testData = 8'h; //ST1
       @(posedge clk);
       errors = errors + (d != testData); //should be right
-      $display(d); // on off chance it isn't testData, find out what it is
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
       #1 testData = 8'h; //ST2
       @(posedge clk);
       errors = errors + (d != testData); //should be right
-      $display(d); // on off chance it isn't testData, find out what it is
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
       #1 testData = 8'h; //Track #
       @(posedge clk);
       errors = errors + (d != testData); //should be right
-      $display(d); // on off chance it isn't testData, find out what it is
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
       #1 testData = 8'h; //H
       @(posedge clk);
       errors = errors + (d != testData); //should be right
-      $display(d); // on off chance it isn't testData, find out what it is
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
       #1 testData = 8'h; //Sector Number
       @(posedge clk);
       errors = errors + (d != testData); //should be right
-      $display(d); // on off chance it isn't testData, find out what it is
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
       #1 testData = 8'h02; //N
       @(posedge clk);
       errors = errors + (d != testData); //should be right
-      $display(d); // on off chance it isn't testData, find out what it is
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
       //end Read Command
       
       
