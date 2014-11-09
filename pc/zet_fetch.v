@@ -118,73 +118,8 @@ module zet_fetch (
   assign ld_base = (next_state == execu_st);
   assign rep     = pref_l[1];
 
-	// Behaviour
-	/*
-	always @(posedge clk or negedge rst)
-		if (~rst)
-			begin
-				state <= execu_st;
-				opcode_l <= `OP_NOP;
-			end
-		else if (!block)
-			case (next_state)
-				default: // opcode or prefix
-					begin
-						case (state)
-							opcod_st:
-								begin // There has been a prefix
-									pref_l <= repz_pr ? { 1'b1, opcode[0] }
-									// clear prefixes on next instr
-									: next_in_opco ? 2'b0 : pref_l;
-									sop_l <= sovr_pr ? { 1'b1, opcode[4:3] }
-									// clear prefixes on next instr
-									: next_in_opco ? 3'b0 : sop_l;
-									lock_l <= lock_pr ? 1'b1
-									// clear prefixes on next instr
-									: next_in_opco ? 1'b0 : lock_l;
-								end
-							default: begin pref_l <= 2'b0; sop_l <= 3'b0; lock_l <= 1'b0; end
-						endcase
-						state <= opcod_st;
-						off_l <= 16'd0;
-						modrm_l <= 8'b0000_0110;
-					end
-				modrm_st: // modrm
-					begin
-						opcode_l <= data[7:0];
-						state <= modrm_st;
-					end
-				offse_st: // offset
-					begin
-						case (state)
-							opcod_st: opcode_l <= data[7:0];
-							default: modrm_l <= data[7:0];
-						endcase
-						state <= offse_st;
-					end
-				immed_st: // immediate
-					begin
-						case (state)
-							opcod_st: opcode_l <= data[7:0];
-							modrm_st: modrm_l <= data[7:0];
-							default: off_l <= data;
-						endcase
-					state <= immed_st;
-					end
-				execu_st: // execute
-					begin
-						case (state)
-							opcod_st: opcode_l <= data[7:0];
-							modrm_st: modrm_l <= data[7:0];
-							offse_st: off_l <= data;
-							immed_st: imm_l <= data;
-						endcase
-						state <= execu_st;
-					end
-			endcase
-			*/
-  
-  always @(posedge clk or negedge rst)
+   // Behaviour
+   always @(posedge clk or negedge rst)
     if (~rst)
       begin
         state <= fetch_st;
@@ -256,4 +191,5 @@ module zet_fetch (
       endcase
 		
 		
-endmodule
+endmodule // zet_fetch
+

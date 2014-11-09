@@ -2,296 +2,297 @@
  * RTL for the Intel 8088 microprocessor. This is a wrapper system for the Zet
  * processor which describes the Intel 8086.
  */
- 
-
-//`default_nettype none
 
 `timescale 1ns/10ps
 
 `include "defines.v"
 
 module processor_8088
-(
-	input         clk,
-	input         rst,
+  (
+   input         clk,
+   input         rst,
     
-    // input
-    input         mnmx,		         // minimum and maximum mode. high-> min, low-> max
-    input         ready,              // inform processor that mem or I/0 is ready for data transfer
-    input         hold,               // suspends the processor
-    input         nmi,                // causes non-maskable type-2 interrupt
-    input         intr,               // maskable interrupt request
+   // input
+   input         mnmx, // minimum and maximum mode. high-> min, low-> max
+   input         ready, // inform processor that mem or I/0 is ready for data transfer
+   input         hold,               // suspends the processor
+   input         nmi,                // causes non-maskable type-2 interrupt
+   input         intr,               // maskable interrupt request 
+   input         test_n,             // examined by processor testing instructions
     
-    input         test_n,             // examined by processor testing instructions
+   // output
+   output [19:0] a,               // address bus
+   output        hlda,               // acknowledges that the processor is suspended
+   output        inta_n,             // indicates that an intr request has been received
+   output        ale,                // indicates that current data on address/data bus are address
+   output        den_n,              // disconents data bus connection
+   output        dtr,               // indicates direction of data transfer. low-> to 8088, high-> from 8088
+   output        wr_n,               // indicates that the processor is writing to mem or I/O device
+   output        rd_n,               // indicates that the processor is reading from mem or I/O device
+   output        iom,               // indicates that processor is accessing mem or I/O. low-> mem, high-> I/O
+   output        sso,                // status output
     
-    // output
-    output [19:0] a,               // address bus
-    output        hlda,               // acknowledges that the processor is suspended
-    output        inta_n,             // indicates that an intr request has been received
-    output        ale,                // indicates that current data on address/data bus are address
-    output        den_n,              // disconents data bus connection
-    output        dtr,               // indicates direction of data transfer. low-> to 8088, high-> from 8088
-    output        wr_n,               // indicates that the processor is writing to mem or I/O device
-    output        rd_n,               // indicates that the processor is reading from mem or I/O device
-    output        iom,               // indicates that processor is accessing mem or I/O. low-> mem, high-> I/O
-    output        sso,                // status output
-    
-    // inout
-    inout [7:0]   ad           // address/data bus
-);
+   // inout
+   inout [7:0]   ad           // address/data bus
+   );
 
-    /* for zet core */
-    wire inta, nmia;
-    wire [19:0] cpu_adr_o;
-	 reg [19:0] cpu_adr_o2;
-    wire [15:0] iid_dat_i;
-    reg [15:0] cpu_dat_i;
-    wire [15:0] cpu_dat_o;
-    wire        cpu_byte_o;
-    wire        cpu_block;
-    wire        cpu_mem_op;
-    wire        cpu_m_io;
-    wire        cpu_we_o;
-    wire        memalu;
-    wire [19:0] pc;  // for debugging purposes
-    wire [2:0] zet_state, zet_next_state;
-    
-    /* zet states */
-    localparam opcod_st = 3'h0;
-    localparam modrm_st = 3'h1;
-    localparam offse_st = 3'h2;
-    localparam immed_st = 3'h3;
-    localparam execu_st = 3'h4;
-    localparam fetch_st = 3'h5;
-    
-    wire [19:0] calculated_addr;
-    wire [3:0] bytes_transferred;
-
-	 assign a = calculated_addr;
-	 //assign a[7:0] = 8'b0;
-    assign calculated_addr = cpu_adr_o + (bytes_transferred);
-    //assign a[19:8] = calculated_addr[19:8];
-    
-	 always @(posedge clk or negedge rst) begin
-		if(~rst) begin
-			cpu_adr_o2 <= 20'hffff0;
-		end
-		else begin
-			cpu_adr_o2 <= cpu_adr_o;
-		end
-	 end
-    
-    zet_core core (.clk(clk),
-                     .rst(rst),
-                     .intr(intr),
-                     .inta(inta),
-                     .nmi(nmi),
-                     .nmia(nmia),
-                     .cpu_adr_o(cpu_adr_o),
-                     .iid_dat_i(iid_dat_i),
-                     .cpu_dat_i(cpu_dat_i),
-                     .cpu_dat_o(cpu_dat_o),
-                     .cpu_byte_o(cpu_byte_o),
-                     .cpu_block(cpu_block),
-                     .cpu_mem_op(cpu_mem_op),
-                     .cpu_m_io(iom),
-                     .cpu_we_o(cpu_we_o),
-                     .memalu(memalu),
-                     .pc(pc),
-                     .state(zet_state),
-                     .n_state(zet_next_state));
-
-    /* output registers */
-    wire ld_out_regs;
-    wire [7:0] msb_o_q;
-    wire [7:0] lsb_o_q;
-    
-    register msb_o (.clk(clk),
-                    .rst(rst),
-                    .d(cpu_dat_o[15:8]),
-                    .q(msb_o_q),
-                    .ld(ld_out_regs)
-                    );
-    
-    register lsb_o (.clk(clk),
-                    .rst(rst),
-                    .d(cpu_dat_o[7:0]),
-                    .q(lsb_o_q),
-                    .ld(ld_out_regs)
-                    );
-                  
-    /* input registers */
-    wire ld_msb_i;
-    wire [7:0] msb_i_q;
-    wire ld_lsb_i;
-    wire [7:0] lsb_i_q;
-    wire [7:0] ad_bus;
-    wire [3:0] ld_in;
-	 reg [19:0] addr_reg;
-	 wire [19:0] addr_offset;
-	 wire [7:0] i_q [0:9];
-	 wire start, read, write;
-    wire write_bus;
-	 
-	 /* prefetch wires */
-	 assign addr_offset = cpu_adr_o - addr_reg;
-    assign ad_bus = ad;
-	 always @(*) begin
-		if((addr_offset >= 0) && (addr_offset < 9)) begin
-			cpu_dat_i = {i_q[addr_offset+1],i_q[addr_offset]};
-		end
-		else begin
-			cpu_dat_i = 16'b0;
-		end
-	 end
-	 
-	 register i00 (.clk(clk),
-						.rst(rst),
-						.d(ad_bus),
-						.q(i_q[0]),
-						.ld((ld_in == 4'b0001))
-						);
-						
-	 register i01 (.clk(clk),
-						.rst(rst),
-						.d(ad_bus),
-						.q(i_q[1]),
-						.ld((ld_in == 4'b0010))
-						);	
-						
-	 register i02 (.clk(clk),
-						.rst(rst),
-						.d(ad_bus),
-						.q(i_q[2]),
-						.ld((ld_in == 4'b0011))
-						);
-						
-	 register i03 (.clk(clk),
-						.rst(rst),
-						.d(ad_bus),
-						.q(i_q[3]),
-						.ld((ld_in == 4'b0100))
-						);	
-						
-    register i04 (.clk(clk),
-						.rst(rst),
-						.d(ad_bus),
-						.q(i_q[4]),
-						.ld((ld_in == 4'b0101))
-						);
-	 
-	 register i05 (.clk(clk),
-						.rst(rst),
-						.d(ad_bus),
-						.q(i_q[5]),
-						.ld((ld_in == 4'b0110))
-						);
-	 
-	 register i06 (.clk(clk),
-						.rst(rst),
-						.d(ad_bus),
-						.q(i_q[6]),
-						.ld((ld_in == 4'b0111))
-						);
-	 
-	 register i07 (.clk(clk),
-						.rst(rst),
-						.d(ad_bus),
-						.q(i_q[7]),
-						.ld((ld_in == 4'b1000))
-						);
-	 
-	 register i08 (.clk(clk),
-						.rst(rst),
-						.d(ad_bus),
-						.q(i_q[8]),
-						.ld((ld_in == 4'b1001))
-						);
-	 
-	 register i09 (.clk(clk),
-						.rst(rst),
-						.d(ad_bus),
-						.q(i_q[9]),
-						.ld((ld_in == 4'b1010))
-						);
-	 
-	 assign iid_dat_i = cpu_dat_i;
-    
-    /* control fsm state */
-    wire [2:0] ctrl_fsm_state;
-    localparam idle = 3'b000;
-    localparam addr = 3'b001;
-    localparam interm = 3'b010;
-    localparam data = 3'b011;
-
-	 // Latch address reference
-	 always @(posedge clk or negedge rst) begin
-		if(~rst) begin
-			addr_reg <= 20'hffff0;
-		end
-		else if(read) begin
-			addr_reg <= cpu_adr_o;
-		end
-		else begin
-			addr_reg <= addr_reg;
-		end
-	 end
-	 
-	 // Assign
-	 /*
-	 opcod_st = 3'h0;
-  parameter modrm_st = 3'h1;
-  parameter offse_st = 3'h2;
-  parameter immed_st = 3'h3;
-  parameter execu_st = 3'h4;
-	 */
-    
-    assign start = (read | write);
-    assign write = (zet_state == execu_st)? cpu_we_o : 1'b0;
-    assign read = (zet_state == fetch_st) || ((zet_state == execu_st) && ~memalu) || (zet_state == modrm_st) || (zet_state == offse_st) || (zet_state == immed_st);
-	 //assign read =  ((zet_state == execu_st) && ~memalu) || (zet_state == modrm_st) || (zet_state == offse_st) || (zet_state == immed_st) || (zet_state == opcod_st);
-    assign ad = (write_bus)? ((ale)? calculated_addr[7:0] : ((ctrl_fsm_state == addr)? ((bytes_transferred == 0)? lsb_o_q : ((bytes_transferred == 1)? msb_o_q : 8'bz)) : 8'bz )) : 8'bz;
-     
-    
-    control_fsm ctrl_fsm (.clk(clk),
-                          .rst(rst),
-                          .start(start),
-                          .read(read),
-                          .write(write),
-                          .bytes_transferred(bytes_transferred),
-                          .write_bus(write_bus),
-                          .ld_out_regs(ld_out_regs),
-								  .ld_in(ld_in),
-                          //.ld_msb_i(ld_msb_i),
-                          //.ld_lsb_i(ld_lsb_i),
-                          .ale(ale),
-                          .den_n(den_n),
-                          .wr_n(wr_n),
-                          .rd_n(rd_n),
-                          .dtr(dtr),
-                          .cpu_block(cpu_block),
-                          .state(ctrl_fsm_state)
-                          );
-    
-    /* interrupt fsm */                     
-    wire ld_intr; 
+   /* for zet core */
+   wire 	 inta, nmia;
+   wire [19:0] 	 cpu_adr_o;
+   reg [19:0] 	 cpu_adr_o2;
+   wire [15:0] 	 iid_dat_i;
+   reg [15:0] 	 cpu_dat_i;
+   wire [15:0] 	 cpu_dat_o;
+   wire 	 cpu_byte_o;
+   wire 	 cpu_block;
+   wire 	 cpu_mem_op;
+   wire 	 cpu_m_io;
+   wire 	 cpu_we_o;
+   wire 	 memalu;
+   wire [19:0] 	 pc;  // for debugging purposes
+   wire [2:0] 	 zet_state, zet_next_state;
    
-    interrupt_fsm intr_fsm (.clk(clk),
-                            .rst(rst),
-                            .intr(intr),
-                            .ld_intr(ld_intr),
-                            .inta_n(inta_n)
+   /* zet states */
+   localparam opcod_st = 3'h0;
+   localparam modrm_st = 3'h1;
+   localparam offse_st = 3'h2;
+   localparam immed_st = 3'h3;
+   localparam execu_st = 3'h4;
+   localparam fetch_st = 3'h5;
+    
+   wire [19:0] 	 calculated_addr;
+   wire [3:0] 	 bytes_transferred;
+
+   assign a = calculated_addr;
+   assign calculated_addr = cpu_adr_o + (bytes_transferred);
+   
+   /*
+   always @(posedge clk or negedge rst) begin
+      if(~rst) begin
+	 cpu_adr_o2 <= 20'hffff0;
+      end
+      else begin
+	 cpu_adr_o2 <= cpu_adr_o;
+      end
+   end
+   */
+   
+   zet_core core (.clk(clk),
+                  .rst(rst),
+                  .intr(intr),
+                  .inta(inta),
+                  .nmi(nmi),
+                  .nmia(nmia),
+                  .cpu_adr_o(cpu_adr_o),
+                  .iid_dat_i(iid_dat_i),
+                  .cpu_dat_i(cpu_dat_i),
+                  .cpu_dat_o(cpu_dat_o),
+                  .cpu_byte_o(cpu_byte_o),
+                  .cpu_block(cpu_block),
+                  .cpu_mem_op(cpu_mem_op),
+                  .cpu_m_io(iom),
+                  .cpu_we_o(cpu_we_o),
+                  .memalu(memalu),
+                  .pc(pc),
+                  .state(zet_state),
+                  .n_state(zet_next_state)
+		  );
+
+   /* output registers */
+   wire ld_out_regs;
+   wire [7:0] msb_o_q;
+   wire [7:0] lsb_o_q;
+    
+   register msb_o (.clk(clk),
+                   .rst(rst),
+                   .d(cpu_dat_o[15:8]),
+                   .q(msb_o_q),
+                   .ld(ld_out_regs)
+                   );
+    
+   register lsb_o (.clk(clk),
+                   .rst(rst),
+                   .d(cpu_dat_o[7:0]),
+                   .q(lsb_o_q),
+                   .ld(ld_out_regs)
+                   );
+                  
+   /* input registers */
+   wire       ld_msb_i;
+   wire [7:0] msb_i_q;
+   wire       ld_lsb_i;
+   wire [7:0] lsb_i_q;
+   wire [7:0] ad_bus;
+   wire [3:0] ld_in;
+   reg [19:0] addr_reg;
+   wire [19:0] addr_offset;
+   wire [7:0]  i_q [0:9];
+   wire        start, read, write;
+   wire        write_bus;
+	 
+   /* prefetch wires */
+   assign addr_offset = cpu_adr_o - addr_reg;
+   assign ad_bus = ad;
+   always @(*) begin
+      if((addr_offset >= 0) && (addr_offset < 9)) begin
+	 if(cpu_byte_o == 1'b1) begin
+	    cpu_dat_i = {i_q[addr_offset][7],
+			 i_q[addr_offset][7],
+			 i_q[addr_offset][7],
+			 i_q[addr_offset][7],
+			 i_q[addr_offset][7],
+			 i_q[addr_offset][7],
+			 i_q[addr_offset][7],
+			 i_q[addr_offset][7],
+			 i_q[addr_offset]};
+	 end // if (cpu_byte_o == 1'b1)
+	 else begin
+	    cpu_dat_i = {i_q[addr_offset+1],i_q[addr_offset]};
+	 end // else: !if(cpu_byte_o == 1'b1)
+      end
+      else begin
+	 cpu_dat_i = 16'b0;
+      end
+   end
+	 
+   register i00 (.clk(clk),
+		 .rst(rst),
+		 .d(ad_bus),
+		 .q(i_q[0]),
+		 .ld((ld_in == 4'b0001))
+		 );
+						
+   register i01 (.clk(clk),
+		 .rst(rst),
+		 .d(ad_bus),
+		 .q(i_q[1]),
+		 .ld((ld_in == 4'b0010))
+		 );	
+						
+   register i02 (.clk(clk),
+		 .rst(rst),
+		 .d(ad_bus),
+		 .q(i_q[2]),
+		 .ld((ld_in == 4'b0011))
+		 );
+						
+   register i03 (.clk(clk),
+		 .rst(rst),
+		 .d(ad_bus),
+		 .q(i_q[3]),
+		 .ld((ld_in == 4'b0100))
+		 );	
+						
+   register i04 (.clk(clk),
+		 .rst(rst),
+		 .d(ad_bus),
+		 .q(i_q[4]),
+		 .ld((ld_in == 4'b0101))
+		 );
+	 
+   register i05 (.clk(clk),
+		 .rst(rst),
+		 .d(ad_bus),
+		 .q(i_q[5]),
+		 .ld((ld_in == 4'b0110))
+		 );
+   
+   register i06 (.clk(clk),
+		 .rst(rst),
+		 .d(ad_bus),
+		 .q(i_q[6]),
+		 .ld((ld_in == 4'b0111))
+		 );
+   
+   register i07 (.clk(clk),
+		 .rst(rst),
+		 .d(ad_bus),
+		 .q(i_q[7]),
+		 .ld((ld_in == 4'b1000))
+		 );
+   
+   register i08 (.clk(clk),
+		 .rst(rst),
+		 .d(ad_bus),
+		 .q(i_q[8]),
+		 .ld((ld_in == 4'b1001))
+		 );
+   
+   register i09 (.clk(clk),
+		 .rst(rst),
+		 .d(ad_bus),
+		 .q(i_q[9]),
+		 .ld((ld_in == 4'b1010))
+		 );
+	 
+   assign iid_dat_i = cpu_dat_i;
+    
+   /* control fsm state */
+   wire [2:0] ctrl_fsm_state;
+   localparam idle = 3'b000;
+   localparam addr = 3'b001;
+   localparam interm = 3'b010;
+   localparam data = 3'b011;
+
+   // Latch address reference
+   always @(posedge clk or negedge rst) begin
+      if(~rst) begin
+	 addr_reg <= 20'hffff0;
+      end
+      else if(read) begin
+	 addr_reg <= cpu_adr_o;
+      end
+      else begin
+	 addr_reg <= addr_reg;
+      end
+   end
+	 
+   // Assign
+   assign start = (read | write);
+   assign write = (zet_state == execu_st)? cpu_we_o : 1'b0;
+   assign read = (zet_state == fetch_st) 
+     || ((zet_state == execu_st) && ~memalu) 
+       || (zet_state == modrm_st) 
+	 || (zet_state == offse_st) 
+	   || (zet_state == immed_st);
+   assign ad = (write_bus)? ((ale)? calculated_addr[7:0] : ((ctrl_fsm_state == addr)? ((bytes_transferred == 0)? lsb_o_q : ((bytes_transferred == 1)? msb_o_q : 8'bz)) : 8'bz )) : 8'bz;  
+    
+   control_fsm ctrl_fsm (.clk(clk),
+                         .rst(rst),
+                         .start(start),
+                         .read(read),
+                         .write(write),
+                         .bytes_transferred(bytes_transferred),
+                         .write_bus(write_bus),
+                         .ld_out_regs(ld_out_regs),
+			 .ld_in(ld_in),
+                         .ale(ale),
+                         .den_n(den_n),
+                         .wr_n(wr_n),
+                         .rd_n(rd_n),
+                         .dtr(dtr),
+                         .cpu_block(cpu_block),
+                         .state(ctrl_fsm_state)
+                         );
+    
+   /* interrupt fsm */                     
+   wire ld_intr; 
+   
+   interrupt_fsm intr_fsm (.clk(clk),
+                           .rst(rst),
+                           .intr(intr),
+                           .ld_intr(ld_intr),
+                           .inta_n(inta_n)
                            );
     
-    /* hold fsm */
-    hold_fsm hld_fsm (.clk(clk),
-                      .rst(rst),
-                      .hold(hold),
-                      .hlda(hlda)
+   /* hold fsm */
+   hold_fsm hld_fsm (.clk(clk),
+                     .rst(rst),
+                     .hold(hold),
+                     .hlda(hlda)
                      );
     
-endmodule
-
+endmodule // processor_8088
 
 module control_fsm
     (input clk, rst,
