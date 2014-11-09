@@ -512,10 +512,10 @@ module sheet1(
    // NAND gate U84
    assign u84 = ~(spen_n & den);
    
-   // LS 373 Units
-   ls373 u10(
-	     .d({ap[19:16],ap[19:16]}),
-	     .q({a[19:16],xrd}),
+   // LS 373 and LS 374 Units
+   ls374 u10(
+	     .d(ap[19:16]),
+	     .q(a[19:16]),
 	     .g(ale),
 	     .oe_n(aen_br0)
 	     );
