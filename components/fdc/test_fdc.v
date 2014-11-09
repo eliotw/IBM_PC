@@ -62,6 +62,8 @@ module test_fdc();
       
       //commands to test: Read,Write,Seek,Format (:( ) 
       
+      //Test Seek 
+      
       //Test a read command -> Make this a Task? as well as other commands?
       ior_n = 1'b1;
       iow_n = 1'b0; //writing to data register
@@ -94,6 +96,7 @@ module test_fdc();
       
       //Check evaluation # of clock cycles should get some sort of sign from floppy drive that done
       //make a thing that just loops through posedge clk until hits sign
+      //Will have to do manually :(
       @(posedge clk);
       ior_n = 1'b0;
       a = 20'h35f;
