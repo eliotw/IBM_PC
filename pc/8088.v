@@ -248,7 +248,7 @@ module processor_8088
    end
 	 
    // Assign
-   assign start = (read | write);
+   assign start = (read | write | inta);
    assign write = (zet_state == execu_st)? cpu_we_o : 1'b0;
    assign read = (zet_state == fetch_st) 
      || ((zet_state == execu_st) && ~memalu && ~cpu_we_o) 
@@ -262,12 +262,12 @@ module processor_8088
                          .start(start),
                          .read(read),
                          .write(write),
-								 .cpu_m_io(cpu_m_io),
-								 .iom(iom),
+			 .cpu_m_io(cpu_m_io),
+			 .iom(iom),
                          .bytes_transferred(bytes_transferred),
                          .write_bus(write_bus),
                          .ld_out_regs(ld_out_regs),
-								 .ld_in(ld_in),
+			 .ld_in(ld_in),
                          .ale(ale),
                          .den_n(den_n),
                          .wr_n(wr_n),
@@ -301,14 +301,14 @@ module control_fsm
      input start,
      input read,
      input write,
-	  input cpu_m_io,
-	  output reg iom,
+     input cpu_m_io,
+     output reg iom,
      output [3:0] bytes_transferred,
      output reg write_bus,
      output reg ld_out_regs,
      //output reg ld_msb_i,
      //output reg ld_lsb_i,
-	  output reg [3:0] ld_in,
+     output reg [3:0] ld_in,
      output reg ale,
      output reg den_n,
      output reg wr_n,
@@ -340,7 +340,6 @@ module control_fsm
     assign inc = inc_count;
     assign clr = clr_count;
 
-    
     always @(posedge clk or negedge rst) begin
         if (~rst)
             state <= idle;
@@ -358,105 +357,98 @@ module control_fsm
                     next_state = idle;
             end
             addr: begin
-                if (read == 1)
-                    next_state = interm;
-                else if (write == 1)
-                    next_state = interm;
+	       next_state = interm;
             end
-            interm: next_state = data;
+            interm: begin
+	       next_state = data;
+	    end
             data: begin
-                if (~data_tran_done)
-                    next_state = idle;
-                else
-                    next_state = idle;
+               next_state = idle;
             end
         endcase
     end
     
-    always @( * ) begin
-        ale = 0;
-        dtr = 1'b1;
-        rd_n = 1; 
-        wr_n = 1;
-        den_n = 1; 
-		  iom = 1;
-        inc_count = 0;
-        clr_count = 0; 
-        ld_out_regs = 0;
-        //ld_lsb_i = 0; 
-        //ld_msb_i = 0;
-		  ld_in = 4'b0;
-        write_bus = 0;
-        cpu_block = 0;
-        case(state)
-            idle: begin
-                if (start) begin
-                    cpu_block = 1;
-                    ale = 1;
-						  iom = ~cpu_m_io;
-                    dtr = (write)? 1 : 0;
-						  den_n = (read | (cpu_m_io & ~write))? 1 : 0;
-                    ld_out_regs = (write)? 1 : 0;
-                    write_bus = 1;
-                end
-            end
-            addr: begin
-                cpu_block = 1;
-                den_n = 0;
-					 iom = ~cpu_m_io;
-                if (read | (cpu_m_io & ~write)) begin
-                    dtr = 0;
-                    rd_n = 0;
-                end
-                else if (write) begin
-                    wr_n = 0;
-                    dtr = 1;
-                    //inc_count = 1;
-                    write_bus = 1;
-                end
-            end
-            interm: begin
-					cpu_block = 1;
-               den_n = 0;
-					iom = ~cpu_m_io;
-					inc_count = 1;
-					if(read) begin
-                rd_n = 0;
-                dtr = 0;
-					 ld_in = bytes_transferred + 1;
-					end
-					else begin
-					 wr_n = 1'b0;
-					 dtr = 1;
-					end
-                //ld_lsb_i = (bytes_transferred == 0);
-                //ld_msb_i = (bytes_transferred == 1);
-            end
-            data: begin
-                if (~data_tran_done) begin
-						  iom = ~cpu_m_io;
-                    cpu_block = 1;
-                    //ale = 1;
-                    den_n = 0;
-                    //write_bus = 1;
-                    if (read) begin
-                        rd_n = 0;
-                        dtr = 0;
-                    end
-                    else if (write) begin
-                        wr_n = 0;
-                        dtr = 1;
-                    end
-                end
-                else begin
-                    cpu_block = 0;
-                    dtr = 1'b1;
-                    wr_n = 1;
-                    clr_count = 1;
-                end
-            end
-        endcase
-    end
+   always @( * ) begin
+      ale = 1'b0;
+      dtr = 1'b1;
+      rd_n = 1'b1; 
+      wr_n = 1'b1;
+      den_n = 1'b1; 
+      iom = 1'b1;
+      inc_count = 1'b0;
+      clr_count = 1'b0; 
+      ld_out_regs = 1'b0;
+      ld_in = 4'b0;
+      write_bus = 1'b0;
+      cpu_block = 1'b0;
+      case(state)
+        idle: begin
+           if (start) begin
+              cpu_block = 1;
+              ale = 1;
+	      iom = ~cpu_m_io;
+              dtr = write;
+	      den_n = read;
+              ld_out_regs = write;
+              write_bus = 1;
+           end
+        end
+        addr: begin
+           cpu_block = 1;
+           iom = ~cpu_m_io;
+	   dtr = write;
+	   den_n = read;
+           if (read | (cpu_m_io & ~write)) begin
+              //dtr = 0;
+              rd_n = 0;
+           end
+           else if (write) begin
+              wr_n = 0;
+              //dtr = 1;
+              write_bus = 1;
+           end
+        end
+        interm: begin
+	   cpu_block = 1;
+           iom = ~cpu_m_io;
+	   dtr = write;
+	   den_n = read;
+	   inc_count = 1;
+	   if(read) begin
+              rd_n = 0;
+              //dtr = 0;
+	      ld_in = bytes_transferred + 1;
+	   end
+	   else begin
+	      wr_n = 1'b0;
+	      //dtr = 1;
+	   end
+        end
+        data: begin
+	   iom = ~cpu_m_io;
+	   dtr = write;
+	   den_n = read;
+           if (~data_tran_done) begin
+              cpu_block = 1;
+              //write_bus = 1;
+              if (read) begin
+                 rd_n = 0;
+                 //dtr = 0;
+              end
+              else if (write) begin
+                 wr_n = 0;
+                 //dtr = 1;
+              end
+           end
+           else begin
+              cpu_block = 0;
+              //dtr = 1'b1;
+              wr_n = 1;
+              clr_count = 1;
+           end
+        end
+      endcase
+   end
      
 endmodule
 
