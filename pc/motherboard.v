@@ -512,6 +512,8 @@ module sheet1(
    
    // LS 373 and LS 374 Units
    ls374 u10(
+		  .clk(clk_100),
+		  .rst_n(~reset),
 	     .d(ap[19:16]),
 	     .q(a[19:16]),
 	     .g(ale),
@@ -519,6 +521,8 @@ module sheet1(
 	     );
 
    ls373 u9(
+	    .clk(clk_100),
+		 .rst_n(~reset),
 	    .d(ap[15:8]),
 	    .q(a[15:8]),
 	    .g(ale),
@@ -526,6 +530,8 @@ module sheet1(
 	    );
 
    ls373 u7(
+	    .clk(clk_100),
+		 .rst_n(~reset),
 	    .d(ap[7:0]),
 	    .q(a[7:0]),
 	    .g(ale),
@@ -689,7 +695,7 @@ module sheet2(
       end
    end // always @ (posedge clk_n)
 
-   always @(posedge wrt_nmi_reg_n) begin
+   always @(posedge wrt_nmi_reg_n or negedge reset_n) begin
       if(reset_n == 1'b0) begin
 	 allow_nmi <= 1'b0;
       end
@@ -931,6 +937,8 @@ module sheet4(
 
    // LS373 Unit
    ls373 ls3730(
+	   .clk(dclk),
+		.rst_n(~reset),
 		.d(xd),
 		.q(a[15:8]),
 		.g(adstb),

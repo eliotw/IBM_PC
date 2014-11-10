@@ -255,7 +255,9 @@ module processor_8088
        || (zet_state == modrm_st) 
 	 || (zet_state == offse_st) 
 	   || (zet_state == immed_st);
-   assign ad = (write_bus)? ((ale)? calculated_addr[7:0] : ((ctrl_fsm_state == addr)? ((bytes_transferred == 0)? lsb_o_q : ((bytes_transferred == 1)? msb_o_q : 8'bz)) : 8'bz )) : 8'bz;  
+   assign ad = (write_bus)? 
+		((ale)? 
+		calculated_addr[7:0] : (( (ctrl_fsm_state == addr) | (ctrl_fsm_state == interm) )? ((bytes_transferred == 0)? lsb_o_q : ((bytes_transferred == 1)? msb_o_q : 8'bz)) : 8'bz )) : 8'bz;  
     
    control_fsm ctrl_fsm (.clk(clk),
                          .rst(rst),
@@ -419,9 +421,10 @@ module control_fsm
               //dtr = 0;
 	      ld_in = bytes_transferred + 1;
 	   end
-	   else begin
+	   else if(write) begin
 	      wr_n = 1'b0;
 	      //dtr = 1;
+			write_bus = 1;
 	   end
         end
         data: begin
