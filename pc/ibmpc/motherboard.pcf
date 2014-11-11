@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.28xd on Mon Nov 10 17:46:07 2014
+// Written by: Map P.28xd on Mon Nov 10 22:20:18 2014
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -928,11 +928,9 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         "s4/i8237/mode_2" BEL "s4/i8237/mode_1" BEL "s4/i8237/mode_0" BEL
         "s4/i8237/mast_clr" BEL "s4/i8237/reset_clk_DFF_1983" BEL
         "s4/i8237/reset_clk_DFF_1980" BEL "s4/i8237/reset_clk_DFF_1978" BEL
-        "s4/i8237/reset_clk_DFF_1969" BEL "s1/i8088/core/nmia_old" BEL
-        "s1/i8088/core/nmir" BEL "s1/i8088/core/hlt_op_old" BEL
-        "s1/i8088/core/hlt" BEL "s1/i8088/core/nmi_old" BEL
-        "s1/i8088/core/exec/alu/muldiv/div_su/s_15" BEL
-        "s1/i8088/core/exec/alu/muldiv/div_su/s_14" BEL
+        "s4/i8237/reset_clk_DFF_1969" BEL "s1/i8088/core/hlt_op_old" BEL
+        "s1/i8088/core/hlt" BEL "s1/i8088/core/exec/alu/muldiv/div_su/s_15"
+        BEL "s1/i8088/core/exec/alu/muldiv/div_su/s_14" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/s_13" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/s_12" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/s_11" BEL
@@ -2066,40 +2064,40 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         "s1/i8088/core/decode/div_cnt_0" BEL "s1/i8088/core/decode/ext_int"
         BEL "s1/i8088/core/decode/tfle" BEL "s1/i8088/core/decode/dive" BEL
         "s1/i8088/core/decode/ifld" BEL "s1/i8088/core/decode/tfld" BEL
-        "s1/i8088/core/decode/nmia" BEL "s1/i8088/core/decode/inta" BEL
-        "s1/i8088/i09/q_7" BEL "s1/i8088/i09/q_6" BEL "s1/i8088/i09/q_5" BEL
-        "s1/i8088/i09/q_4" BEL "s1/i8088/i09/q_3" BEL "s1/i8088/i09/q_2" BEL
-        "s1/i8088/i09/q_1" BEL "s1/i8088/i09/q_0" BEL "s1/i8088/i08/q_7" BEL
-        "s1/i8088/i08/q_6" BEL "s1/i8088/i08/q_5" BEL "s1/i8088/i08/q_4" BEL
-        "s1/i8088/i08/q_3" BEL "s1/i8088/i08/q_2" BEL "s1/i8088/i08/q_1" BEL
-        "s1/i8088/i08/q_0" BEL "s1/i8088/i07/q_7" BEL "s1/i8088/i07/q_6" BEL
-        "s1/i8088/i07/q_5" BEL "s1/i8088/i07/q_4" BEL "s1/i8088/i07/q_3" BEL
-        "s1/i8088/i07/q_2" BEL "s1/i8088/i07/q_1" BEL "s1/i8088/i07/q_0" BEL
-        "s1/i8088/i06/q_7" BEL "s1/i8088/i06/q_6" BEL "s1/i8088/i06/q_5" BEL
-        "s1/i8088/i06/q_4" BEL "s1/i8088/i06/q_3" BEL "s1/i8088/i06/q_2" BEL
-        "s1/i8088/i06/q_1" BEL "s1/i8088/i06/q_0" BEL "s1/i8088/i05/q_7" BEL
-        "s1/i8088/i05/q_6" BEL "s1/i8088/i05/q_5" BEL "s1/i8088/i05/q_4" BEL
-        "s1/i8088/i05/q_3" BEL "s1/i8088/i05/q_2" BEL "s1/i8088/i05/q_1" BEL
-        "s1/i8088/i05/q_0" BEL "s1/i8088/i04/q_7" BEL "s1/i8088/i04/q_6" BEL
-        "s1/i8088/i04/q_5" BEL "s1/i8088/i04/q_4" BEL "s1/i8088/i04/q_3" BEL
-        "s1/i8088/i04/q_2" BEL "s1/i8088/i04/q_1" BEL "s1/i8088/i04/q_0" BEL
-        "s1/i8088/i03/q_7" BEL "s1/i8088/i03/q_6" BEL "s1/i8088/i03/q_5" BEL
-        "s1/i8088/i03/q_4" BEL "s1/i8088/i03/q_3" BEL "s1/i8088/i03/q_2" BEL
-        "s1/i8088/i03/q_1" BEL "s1/i8088/i03/q_0" BEL "s1/i8088/i02/q_7" BEL
-        "s1/i8088/i02/q_6" BEL "s1/i8088/i02/q_5" BEL "s1/i8088/i02/q_4" BEL
-        "s1/i8088/i02/q_3" BEL "s1/i8088/i02/q_2" BEL "s1/i8088/i02/q_1" BEL
-        "s1/i8088/i02/q_0" BEL "s1/i8088/i01/q_7" BEL "s1/i8088/i01/q_6" BEL
-        "s1/i8088/i01/q_5" BEL "s1/i8088/i01/q_4" BEL "s1/i8088/i01/q_3" BEL
-        "s1/i8088/i01/q_2" BEL "s1/i8088/i01/q_1" BEL "s1/i8088/i01/q_0" BEL
-        "s1/i8088/i00/q_7" BEL "s1/i8088/i00/q_6" BEL "s1/i8088/i00/q_5" BEL
-        "s1/i8088/i00/q_4" BEL "s1/i8088/i00/q_3" BEL "s1/i8088/i00/q_2" BEL
-        "s1/i8088/i00/q_1" BEL "s1/i8088/i00/q_0" BEL "s1/i8088/lsb_o/q_7" BEL
-        "s1/i8088/lsb_o/q_6" BEL "s1/i8088/lsb_o/q_5" BEL "s1/i8088/lsb_o/q_4"
-        BEL "s1/i8088/lsb_o/q_3" BEL "s1/i8088/lsb_o/q_2" BEL
-        "s1/i8088/lsb_o/q_1" BEL "s1/i8088/lsb_o/q_0" BEL "s1/i8088/msb_o/q_7"
-        BEL "s1/i8088/msb_o/q_6" BEL "s1/i8088/msb_o/q_5" BEL
-        "s1/i8088/msb_o/q_4" BEL "s1/i8088/msb_o/q_3" BEL "s1/i8088/msb_o/q_2"
-        BEL "s1/i8088/msb_o/q_1" BEL "s1/i8088/msb_o/q_0" BEL
+        "s1/i8088/core/decode/inta" BEL "s1/i8088/i09/q_7" BEL
+        "s1/i8088/i09/q_6" BEL "s1/i8088/i09/q_5" BEL "s1/i8088/i09/q_4" BEL
+        "s1/i8088/i09/q_3" BEL "s1/i8088/i09/q_2" BEL "s1/i8088/i09/q_1" BEL
+        "s1/i8088/i09/q_0" BEL "s1/i8088/i08/q_7" BEL "s1/i8088/i08/q_6" BEL
+        "s1/i8088/i08/q_5" BEL "s1/i8088/i08/q_4" BEL "s1/i8088/i08/q_3" BEL
+        "s1/i8088/i08/q_2" BEL "s1/i8088/i08/q_1" BEL "s1/i8088/i08/q_0" BEL
+        "s1/i8088/i07/q_7" BEL "s1/i8088/i07/q_6" BEL "s1/i8088/i07/q_5" BEL
+        "s1/i8088/i07/q_4" BEL "s1/i8088/i07/q_3" BEL "s1/i8088/i07/q_2" BEL
+        "s1/i8088/i07/q_1" BEL "s1/i8088/i07/q_0" BEL "s1/i8088/i06/q_7" BEL
+        "s1/i8088/i06/q_6" BEL "s1/i8088/i06/q_5" BEL "s1/i8088/i06/q_4" BEL
+        "s1/i8088/i06/q_3" BEL "s1/i8088/i06/q_2" BEL "s1/i8088/i06/q_1" BEL
+        "s1/i8088/i06/q_0" BEL "s1/i8088/i05/q_7" BEL "s1/i8088/i05/q_6" BEL
+        "s1/i8088/i05/q_5" BEL "s1/i8088/i05/q_4" BEL "s1/i8088/i05/q_3" BEL
+        "s1/i8088/i05/q_2" BEL "s1/i8088/i05/q_1" BEL "s1/i8088/i05/q_0" BEL
+        "s1/i8088/i04/q_7" BEL "s1/i8088/i04/q_6" BEL "s1/i8088/i04/q_5" BEL
+        "s1/i8088/i04/q_4" BEL "s1/i8088/i04/q_3" BEL "s1/i8088/i04/q_2" BEL
+        "s1/i8088/i04/q_1" BEL "s1/i8088/i04/q_0" BEL "s1/i8088/i03/q_7" BEL
+        "s1/i8088/i03/q_6" BEL "s1/i8088/i03/q_5" BEL "s1/i8088/i03/q_4" BEL
+        "s1/i8088/i03/q_3" BEL "s1/i8088/i03/q_2" BEL "s1/i8088/i03/q_1" BEL
+        "s1/i8088/i03/q_0" BEL "s1/i8088/i02/q_7" BEL "s1/i8088/i02/q_6" BEL
+        "s1/i8088/i02/q_5" BEL "s1/i8088/i02/q_4" BEL "s1/i8088/i02/q_3" BEL
+        "s1/i8088/i02/q_2" BEL "s1/i8088/i02/q_1" BEL "s1/i8088/i02/q_0" BEL
+        "s1/i8088/i01/q_7" BEL "s1/i8088/i01/q_6" BEL "s1/i8088/i01/q_5" BEL
+        "s1/i8088/i01/q_4" BEL "s1/i8088/i01/q_3" BEL "s1/i8088/i01/q_2" BEL
+        "s1/i8088/i01/q_1" BEL "s1/i8088/i01/q_0" BEL "s1/i8088/i00/q_7" BEL
+        "s1/i8088/i00/q_6" BEL "s1/i8088/i00/q_5" BEL "s1/i8088/i00/q_4" BEL
+        "s1/i8088/i00/q_3" BEL "s1/i8088/i00/q_2" BEL "s1/i8088/i00/q_1" BEL
+        "s1/i8088/i00/q_0" BEL "s1/i8088/lsb_o/q_7" BEL "s1/i8088/lsb_o/q_6"
+        BEL "s1/i8088/lsb_o/q_5" BEL "s1/i8088/lsb_o/q_4" BEL
+        "s1/i8088/lsb_o/q_3" BEL "s1/i8088/lsb_o/q_2" BEL "s1/i8088/lsb_o/q_1"
+        BEL "s1/i8088/lsb_o/q_0" BEL "s1/i8088/msb_o/q_7" BEL
+        "s1/i8088/msb_o/q_6" BEL "s1/i8088/msb_o/q_5" BEL "s1/i8088/msb_o/q_4"
+        BEL "s1/i8088/msb_o/q_3" BEL "s1/i8088/msb_o/q_2" BEL
+        "s1/i8088/msb_o/q_1" BEL "s1/i8088/msb_o/q_0" BEL
         "s1/i8088/ctrl_fsm/state_FSM_FFd1" BEL
         "s1/i8088/ctrl_fsm/state_FSM_FFd2" BEL "s1/i8088/ctrl_fsm/cnt/count_3"
         BEL "s1/i8088/ctrl_fsm/cnt/count_2" BEL
@@ -2118,8 +2116,8 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         "s1/i8088/core/decode/iflssd" BEL "s1/i8088/core/fetch/lock_l" BEL
         "s1/i8088/core/fetch/state_1_1" BEL "s1/i8088/core/fetch/state_2_1"
         BEL "s1/i8088/core/fetch/state_1_2" BEL
-        "s1/i8088/core/fetch/state_2_2" BEL "s1/i8284/clk_BUFG" BEL
-        "dclk_BUFG" BEL
+        "s1/i8088/core/fetch/state_2_2" BEL "s1/i8088/core/fetch/state_2_3"
+        BEL "s1/i8284/clk_BUFG" BEL "dclk_BUFG" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/Mshreg_szpipe_18" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/szpipe_18" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/Mshreg_ovf" BEL
@@ -2280,6 +2278,8 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/I_INTCAP.F_CAP_ADDR[0].U_CAP_ADDR"
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_G2_SQ.U_CAPCTRL/U_CAP_ADDRGEN/I_INTCAP.F_CAP_ADDR[0].U_iCAP_ADDR"
+        BEL
+        "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/G_GAND_DLY1[163].I_IN_RANGE.I_USE_INPUT_REG_NE0.U_GAND_DLY1"
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/G_GAND_DLY1[162].I_IN_RANGE.I_USE_INPUT_REG_NE0.U_GAND_DLY1"
         BEL
@@ -2606,6 +2606,8 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/G_GAND_DLY1[1].I_IN_RANGE.I_USE_INPUT_REG_NE0.U_GAND_DLY1"
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/G_GAND_DLY1[0].I_IN_RANGE.I_USE_INPUT_REG_NE0.U_GAND_DLY1"
+        BEL
+        "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/G_GAND_DLY2[163].I_IN_RANGE.U_GAND_DLY2"
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_MUT_GANDX.U_match/I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/G_GAND_DLY2[162].I_IN_RANGE.U_GAND_DLY2"
         BEL
@@ -3342,6 +3344,8 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/I_DQ.U_DQQ/DLY_9.DLY_9_GEN[162].I_SRLT_NE_0.FF"
         BEL
+        "U_ila_pro_0/U0/I_NO_D.U_ILA/I_DQ.U_DQQ/DLY_9.DLY_9_GEN[163].I_SRLT_NE_0.FF"
+        BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/I_DQ.U_DQQ/DLY_9.DLY_9_GEN[0].I_SRLT_NE_0.DLY9/SRL16E"
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/I_DQ.U_DQQ/DLY_9.DLY_9_GEN[1].I_SRLT_NE_0.DLY9/SRL16E"
@@ -3668,6 +3672,8 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/I_DQ.U_DQQ/DLY_9.DLY_9_GEN[162].I_SRLT_NE_0.DLY9/SRL16E"
         BEL
+        "U_ila_pro_0/U0/I_NO_D.U_ILA/I_DQ.U_DQQ/DLY_9.DLY_9_GEN[163].I_SRLT_NE_0.DLY9/SRL16E"
+        BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/U_MU/I_OREG.I_YES_OREG.U_OREG"
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TM/G_NMU[0].U_M/I_MC_NO.U_NO_MC_REG"
@@ -3681,6 +3687,7 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/U_TC/I_TSEQ_NEQ2.U_TC_EQUATION/I_SRLT_NE_1.I_NMU_1_TO_4.U_TRIGQ"
         BEL "U_ila_pro_0/U0/I_NO_D.U_ILA/U_TRIG/F_NO_TCMC.U_FDR" BEL
+        "U_ila_pro_0/U0/I_TQ0.G_TW[163].U_TQ" BEL
         "U_ila_pro_0/U0/I_TQ0.G_TW[162].U_TQ" BEL
         "U_ila_pro_0/U0/I_TQ0.G_TW[161].U_TQ" BEL
         "U_ila_pro_0/U0/I_TQ0.G_TW[160].U_TQ" BEL

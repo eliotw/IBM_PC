@@ -79,7 +79,7 @@ module intel8259(
    always @(cs_n or wr_n or a0 or din or imr or rst) begin
       if(rst == 1'b1) begin
 	 icws <= 2'b10;
-	 imr <= 8'b0;
+	 imr <= 8'b11111111;
       end
       else if((cs_n == 1'b0) & (wr_n == 1'b0) & (a0 == 1'b1)) begin
 	 if(icws == 2'b00) begin

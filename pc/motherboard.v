@@ -600,12 +600,15 @@ module sheet2(
    wire 	     b12;
    
    // Registers
-   //reg 		     rdy_wait;
-   //reg 		     aen_brd;
-   reg 		     b3, b5, b7;
-   //reg 		     holda;
-   reg 		     allow_nmi;
+   reg 		     b3, b5, b7, allow_nmi;
    
+	// Initialize
+	initial begin
+		holda = 1'b0;
+		aen_brd = 1'b0;
+		rdy_wait = 1'b0; // never used?
+	end
+	
    // Components
    assign xmemr = ~xmemr_n;
    assign u84 = ~(xmemr & dack_0_brd_n & b0);
@@ -653,7 +656,7 @@ module sheet2(
    end
 
    // LS175 Q1
-   always @(posedge clk) begin
+   always @(posedge clk or negedge reset_n) begin
       if(reset_n == 1'b0) begin
 	 aen_brd <= 1'b0;
       end
@@ -663,7 +666,7 @@ module sheet2(
    end
    
    // LS175 Q2
-   always @(posedge clk) begin
+   always @(posedge clk or negedge reset_n) begin
       if(reset_n == 1'b0) begin
 	 b5 <= 1'b0;
       end
@@ -673,7 +676,7 @@ module sheet2(
    end
    
    // LS175 Q3
-   always @(posedge clk) begin
+   always @(posedge clk or negedge reset_n) begin
       if(reset_n == 1'b0) begin
 	 b7 <= 1'b0;
       end
@@ -683,27 +686,42 @@ module sheet2(
    end
 
    // U87
-   always @(posedge clk_n) begin
-      if(b8 == 1'b0) begin
-	 holda <= 1'b1;
+   always @(posedge clk_n or negedge reset_n) begin
+		if(reset_n == 1'b0) begin
+			holda <= 1'b0;
+		end
+      else if(b8 == 1'b0) begin
+			holda <= 1'b1;
       end
       else if(hrq_dma == 1'b0) begin
-	 holda <= 1'b0;
+			holda <= 1'b0;
       end
       else begin
-	 holda <= b7;
+			holda <= b7;
       end
    end // always @ (posedge clk_n)
 
+	// Okay, so NMI is creating a problem for some reason and I don't know why
+	// I'm going to disable this and hold out hope that nothing breaks
+	// In theory all NMI is ever used for is for the floating point unit, so #yolo
    always @(posedge wrt_nmi_reg_n or negedge reset_n) begin
-      if(reset_n == 1'b0) begin
-	 allow_nmi <= 1'b0;
-      end
-      else begin
-	 allow_nmi <= xd7;
-      end
-   end
-
+		if(reset_n == 1'b0) begin
+			allow_nmi <= 1'b0;
+		end
+		else begin
+			allow_nmi <= 1'b0;
+		end
+	end
+/*
+   always @(posedge wrt_nmi_reg_n or negedge reset_n) begin
+		if(reset_n == 1'b0) begin
+			allow_nmi <= 1'b0;
+		end
+		else begin
+			allow_nmi <= xd7;
+		end
+	end
+*/
    // Time delay function
    // TODO: See if this works
    timedelay td2(
@@ -1240,7 +1258,7 @@ module sheet8(
 	 drq0 <= 1'b0;
       end
       else begin
-	 drq0 <= 1'b1;
+	 drq0 <= 1'b0; // KEYWORD: disabling for now
       end
    end
 
