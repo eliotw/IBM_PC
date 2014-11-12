@@ -264,12 +264,13 @@ module processor_8088
                          .start(start),
                          .read(read),
                          .write(write),
-			 .cpu_m_io(cpu_m_io),
-			 .iom(iom),
+								 .cpu_m_io(cpu_m_io),
+								 .cpu_byte_o(cpu_byte_o),
+								 .iom(iom),
                          .bytes_transferred(bytes_transferred),
                          .write_bus(write_bus),
                          .ld_out_regs(ld_out_regs),
-			 .ld_in(ld_in),
+								 .ld_in(ld_in),
                          .ale(ale),
                          .den_n(den_n),
                          .wr_n(wr_n),
@@ -304,6 +305,7 @@ module control_fsm
      input read,
      input write,
      input cpu_m_io,
+	  input cpu_byte_o,
      output reg iom,
      output [3:0] bytes_transferred,
      output reg write_bus,
@@ -330,7 +332,8 @@ module control_fsm
     
     wire data_tran_done;
     wire inc, clr;
-    
+    wire [3:0] byte_level;
+	 
     counter #(4) cnt (.clk(clk),
                       .rst(rst),
                       .inc(inc),
@@ -338,7 +341,8 @@ module control_fsm
                       .count(bytes_transferred)
                      );
     
-    assign data_tran_done = (bytes_transferred == 4'b0010);
+	 assign byte_level = (cpu_byte_o & write) ? 4'b0001 : 4'b0010;
+    assign data_tran_done = (bytes_transferred == byte_level);
     assign inc = inc_count;
     assign clr = clr_count;
 

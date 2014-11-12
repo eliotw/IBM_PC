@@ -377,7 +377,13 @@ module COUNT(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT);
     MODEREG(`D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCNT);
 
   outlatch
-    OUTLATCH(COUNT,LATCHLSB,LATCHMSB,LATCHCNT);
+    OUTLATCH(
+		.COUNT(COUNT),
+		.lsb(LATCHLSB),
+		.msb(LATCHMSB),
+		.LATCHCNT(LATCHCNT),
+		.CLK(CLK)
+		);
 
   downcntr
     DOWNCNTR(COUNT,MODE[3:0],COUNTMSB,COUNTLSB,LOADCNT,CLK,GATE,OUT);
@@ -399,29 +405,20 @@ module modereg(D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCN
 
   input  [7:0] D;
 
-  output       SETOUT_,
-               CLROUT_,
-               MODETRIG,
-               LATCHCNT,
-               MODEWRITE;
+  output reg   	SETOUT_,
+						CLROUT_,
+						MODETRIG,
+						LATCHCNT,
+						MODEWRITE;
 
-  output [5:0] MODE;
-
-  reg          SETOUT_,
-               CLROUT_,
-               MODETRIG,
-               LATCHCNT,
-               MODEWRITE;
-
-  reg    [5:0] MODE; 
+  output reg [5:0] MODE;
  
   // Mode Register
-
-  always @(posedge WR_)
+  always @(posedge WR_) // was originally posedge
     if (SELMODE & RD_)
       begin
         // Write Mode Register
-        MODE = D;
+        MODE <= D[5:0];
       end
 
   always @(SELMODE or RD_ or WR_)
@@ -430,6 +427,7 @@ module modereg(D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCN
       CLROUT_ = 'b1;
       MODETRIG = 'b0;
       MODEWRITE = 'b0;
+		LATCHCNT = 1'b0;
       if (SELMODE & RD_ & ~WR_)
         if (D[5:4])
            begin
@@ -574,19 +572,44 @@ module outctrl(COUNT,MODE,CLK,GATE,OUTENABLE,MODETRIG,LOAD,SETOUT_,CLROUT_,
 endmodule // outctrl
 
 /*
- * outlatch:
+ * outlatchCOUNT,LATCHLSB,LATCHMSB,LATCHCNT,CLK);
  * Output latch for intel 8253
  */
-module outlatch(COUNT, LATCHLSB, LATCHMSB, LATCHCNT);
+module outlatch(COUNT, lsb, msb, LATCHCNT, CLK);
 
+	input [15:0] COUNT;
+	output [7:0] lsb;
+	output [7:0] msb;
    input         LATCHCNT;
-   input [15:0]  COUNT;
+	input CLK;
+   
+	reg [7:0] lsb, msb;
+	wire rst;
+	wire [7:0] nlsb, nmsb;
+	
+	assign rst = 1'b1;
+	assign nlsb = LATCHCNT ? COUNT[7:0] : lsb;
+	assign nmsb = LATCHCNT ? COUNT[15:8] : msb;
+	
+	initial begin
+		lsb = 8'b0;
+		msb = 8'b0;
+	end
 
-   output [ 7:0] LATCHLSB,
-                 LATCHMSB;
-  
-   assign {LATCHMSB,LATCHLSB} = COUNT;
-    
+	always @(posedge CLK or negedge rst) begin
+		if(~rst) begin
+			lsb <= 8'b0;
+			msb <= 8'b0;
+		end
+		else begin
+			lsb <= nlsb;
+			msb <= nmsb;
+		end
+	end
+   
+	//assign LATCHMSB = msb;
+	//assign LATCHLSB = lsb;
+	
 endmodule
 
 /*

@@ -74,7 +74,8 @@ module intel8288(
    assign ale_s = (state == s0) & ~aen_n & activate;
    assign dtr_s = ~((state != s0) & readint);
    assign den_s = ((state == s2) & readint) | ((state != s0) & write);
-   
+   //assign den_s = ((state == s2) & readint) | (((state == s1) | (state == s2)) & write);
+	
    // Finite State Machine Next State Logic
    always @(state or aen_n or activate or mrdc or amwc or iorc or aiowc or inta) begin
       case(state)
@@ -104,7 +105,7 @@ module intel8288(
 				mrdc_n_s = ~mrdc;
 				amwc_n_s = ~amwc;
 				iorc_n_s = ~iorc;
-				aiowc_n_s = ~aiowc;
+				aiowc_n_s = 1'b1; // changing for now
 				inta_n_s = ~inta;
 			end
 			s3: begin
