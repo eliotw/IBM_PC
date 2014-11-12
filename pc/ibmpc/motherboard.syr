@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.07 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.07 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 WARNING:Xst:1583 - You are using an internal switch '-use_new_parser'.
@@ -409,6 +409,7 @@ WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/825
 WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 268: Signal <irr> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
 WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 274: Signal <irr> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
 WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 280: Signal <irr> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/motherboard.v" Line 486: Assignment to spen_n ignored, since the identifier is never used
 
 Elaborating module <intel8288>.
 
@@ -599,6 +600,7 @@ INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/motherboard.
 INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/motherboard.v" line 452: Output port <ale> of the instance <i8088> is unconnected or connected to loadless signal.
 INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/motherboard.v" line 452: Output port <rd_n> of the instance <i8088> is unconnected or connected to loadless signal.
 INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/motherboard.v" line 452: Output port <sso> of the instance <i8088> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/motherboard.v" line 475: Output port <spen_n> of the instance <i8259> is unconnected or connected to loadless signal.
 INFO:Xst:3210 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/motherboard.v" line 490: Output port <mce> of the instance <i8288> is unconnected or connected to loadless signal.
     Summary:
 	no macro.
@@ -2586,7 +2588,7 @@ WARNING:Xst:647 - Input <iob> is never used. This port will be preserved and lef
     | States             | 4                                              |
     | Transitions        | 6                                              |
     | Inputs             | 2                                              |
-    | Outputs            | 4                                              |
+    | Outputs            | 6                                              |
     | Clock              | clk (rising_edge)                              |
     | Reset              | rst (positive)                                 |
     | Reset type         | asynchronous                                   |
@@ -2601,7 +2603,7 @@ WARNING:Xst:647 - Input <iob> is never used. This port will be preserved and lef
     Found 1-bit tristate buffer for signal <aiowc_n> created at line 60
     Summary:
 	inferred   5 D-type flip-flop(s).
-	inferred  17 Multiplexer(s).
+	inferred  19 Multiplexer(s).
 	inferred   4 Tristate(s).
 	inferred   1 Finite State Machine(s).
 Unit <intel8288> synthesized.
@@ -3407,10 +3409,10 @@ Macro Statistics
  8-bit comparator greater                              : 5
  8-bit comparator lessequal                            : 2
  9-bit comparator lessequal                            : 2
-# Multiplexers                                         : 1404
+# Multiplexers                                         : 1406
  1-bit 10-to-1 multiplexer                             : 1
  1-bit 16-to-1 multiplexer                             : 1
- 1-bit 2-to-1 multiplexer                              : 1080
+ 1-bit 2-to-1 multiplexer                              : 1082
  1-bit 3-to-1 multiplexer                              : 25
  1-bit 4-to-1 multiplexer                              : 20
  1-bit 8-to-1 multiplexer                              : 3
@@ -3754,10 +3756,10 @@ Macro Statistics
  8-bit comparator greater                              : 5
  8-bit comparator lessequal                            : 2
  9-bit comparator lessequal                            : 2
-# Multiplexers                                         : 1434
+# Multiplexers                                         : 1436
  1-bit 10-to-1 multiplexer                             : 1
  1-bit 16-to-1 multiplexer                             : 1
- 1-bit 2-to-1 multiplexer                              : 1121
+ 1-bit 2-to-1 multiplexer                              : 1123
  1-bit 3-to-1 multiplexer                              : 25
  1-bit 4-to-1 multiplexer                              : 20
  1-bit 8-to-1 multiplexer                              : 3
@@ -3972,6 +3974,8 @@ WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_5> has a constant value of 0 in block 
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_3> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/irr_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -3984,12 +3988,10 @@ WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_4> is unc
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_3> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_2> is unconnected in block <motherboard>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <s1/i8259/irr_clr_5> is unconnected in block <motherboard>.
+INFO:Xst:2261 - The FF/Latch <s1/i8259/dout_6> in Unit <motherboard> is equivalent to the following FF/Latch, which will be removed : <s1/i8259/dout_5> 
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_3> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4279,8 +4281,8 @@ INFO:Xst:2261 - The FF/Latch <s1/i8088/core/exec/alu/muldiv/div_su/divider/s_pip
 Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block motherboard, actual ratio is 8.
-FlipFlop s1/i8088/core/fetch/state_1 has been replicated 1 time(s)
-FlipFlop s1/i8088/core/fetch/state_2 has been replicated 1 time(s)
+FlipFlop s1/i8088/core/fetch/state_1 has been replicated 2 time(s)
+FlipFlop s1/i8088/core/fetch/state_2 has been replicated 3 time(s)
 
 Final Macro Processing ...
 
@@ -4311,8 +4313,8 @@ Unit <motherboard> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 1879
- Flip-Flops                                            : 1879
+# Registers                                            : 1882
+ Flip-Flops                                            : 1882
 # Shift Registers                                      : 20
  10-bit shift register                                 : 1
  11-bit shift register                                 : 1
@@ -4353,31 +4355,31 @@ Top Level Output File Name         : motherboard.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 7821
+# BELS                             : 7825
 #      GND                         : 9
 #      INV                         : 365
 #      LUT1                        : 64
-#      LUT2                        : 451
-#      LUT3                        : 757
-#      LUT4                        : 488
-#      LUT5                        : 704
-#      LUT6                        : 2429
+#      LUT2                        : 410
+#      LUT3                        : 765
+#      LUT4                        : 470
+#      LUT5                        : 742
+#      LUT6                        : 2440
 #      MUXCY                       : 1075
-#      MUXF7                       : 366
+#      MUXF7                       : 372
 #      MUXF8                       : 155
 #      VCC                         : 9
 #      XORCY                       : 949
-# FlipFlops/Latches                : 2058
+# FlipFlops/Latches                : 2061
 #      FD                          : 852
 #      FD_1                        : 37
 #      FDC                         : 257
 #      FDC_1                       : 2
-#      FDCE                        : 191
+#      FDCE                        : 192
 #      FDCE_1                      : 4
 #      FDCP                        : 6
 #      FDE                         : 197
 #      FDP                         : 17
-#      FDPE                        : 21
+#      FDPE                        : 23
 #      FDR                         : 142
 #      FDR_1                       : 16
 #      FDRE                        : 152
@@ -4417,17 +4419,17 @@ Selected Device : 5vlx110tff1136-1
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:            2058  out of  69120     2%  
- Number of Slice LUTs:                 5278  out of  69120     7%  
-    Number used as Logic:              5258  out of  69120     7%  
+ Number of Slice Registers:            2061  out of  69120     2%  
+ Number of Slice LUTs:                 5276  out of  69120     7%  
+    Number used as Logic:              5256  out of  69120     7%  
     Number used as Memory:               20  out of  17920     0%  
        Number used as SRL:               20
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   5796
-   Number with an unused Flip Flop:    3738  out of   5796    64%  
-   Number with an unused LUT:           518  out of   5796     8%  
-   Number of fully used LUT-FF pairs:  1540  out of   5796    26%  
+ Number of LUT Flip Flop pairs used:   5798
+   Number with an unused Flip Flop:    3737  out of   5798    64%  
+   Number with an unused LUT:           522  out of   5798     9%  
+   Number of fully used LUT-FF pairs:  1539  out of   5798    26%  
    Number of unique control sets:       164
 
 IO Utilization: 
@@ -4461,7 +4463,7 @@ Clock Information:
 -------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Clock Signal                                                                                                 | Clock buffer(FF name)                                                                                                                                               | Load  |
 -------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-s1/i8284/clk                                                                                                 | BUFG                                                                                                                                                                | 1455  |
+s1/i8284/clk                                                                                                 | BUFG                                                                                                                                                                | 1458  |
 s1/i8284/pclk                                                                                                | NONE(s8/pclka)                                                                                                                                                      | 13    |
 s1/i8259/inta_n_eoir[4]_OR_894_o(s1/i8259/inta_n_eoir[4]_OR_894_o1:O)                                        | NONE(*)(s1/i8259/dout_0)                                                                                                                                            | 3     |
 s1/i8259/recint_eoir[1]_MUX_3349_o(s1/i8259/Mmux_recint_eoir[1]_MUX_3349_o11:O)                              | NONE(*)(s1/i8259/dout_3)                                                                                                                                            | 1     |
@@ -4488,7 +4490,7 @@ s9/i8255/pb_0                                                                   
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_169_o_Mux_9_o(s8/i8253/vcs/C2/READ/MODE[5]_PWR_169_o_Mux_9_o1:O)            | NONE(*)(s8/i8253/vcs/C2/READ/CLRREADLSB)                                                                                                                            | 9     |
 s4/i8237/adstb                                                                                               | NONE(s4/ls3730/rq_0)                                                                                                                                                | 8     |
 dclk(s2/dclk1:O)                                                                                             | BUFG(*)(s4/i8237/state_FSM_FFd2)                                                                                                                                    | 105   |
-s4/wrt_dma_pg_reg_n_INV_717_o(s4/wrt_dma_pg_reg_n_INV_717_o1:O)                                              | NONE(*)(s4/ls6700/q0_3)                                                                                                                                             | 8     |
+s4/wrt_dma_pg_reg_n_INV_718_o(s4/wrt_dma_pg_reg_n_INV_718_o1:O)                                              | NONE(*)(s4/ls6700/q0_3)                                                                                                                                             | 8     |
 xmemr_n(xmemr_nLogicTrst1:O)                                                                                 | NONE(*)(s6/pck)                                                                                                                                                     | 2     |
 USER_CLK                                                                                                     | BUFGP                                                                                                                                                               | 22    |
 KEYBOARD_CLK                                                                                                 | BUFGP                                                                                                                                                               | 21    |
@@ -4516,86 +4518,86 @@ INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered
 
 Asynchronous Control Signals Information:
 ----------------------------------------
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-Control Signal                                                                                                                                                                                                                                                                    | Buffer(FF name)                                                                                                                                                     | Load  |
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                          | NONE(s1/i8088/i00/q_4)                                                                                                                                              | 465   |
-s6/rb0/central_ram_core/central_ram_core/N1(s6/rb0/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[14].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
-s6/rb1/central_ram_core/central_ram_core/N1(s6/rb1/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb1/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
-s6/rb2/central_ram_core/central_ram_core/N1(s6/rb2/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb2/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[9].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP) | 128   |
-s6/rb3/central_ram_core/central_ram_core/N1(s6/rb3/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[14].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
-s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                         | 64    |
-s8/i8253/vcs/C0/MODEWRITE(s8/i8253/vcs/C0/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                             | NONE(s8/i8253/vcs/C0/READ/READLSB)                                                                                                                                  | 18    |
-s8/i8253/vcs/C1/MODEWRITE(s8/i8253/vcs/C1/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                             | NONE(s8/i8253/vcs/C1/READ/READLSB)                                                                                                                                  | 18    |
-s8/i8253/vcs/C2/MODEWRITE(s8/i8253/vcs/C2/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                             | NONE(s8/i8253/vcs/C2/READ/READLSB)                                                                                                                                  | 18    |
-s8/i8253/vcs/C0/READ/SEL_WR__AND_833_o_inv(s8/i8253/vcs/C0/READ/SEL_WR__AND_833_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C0/READ/DREG_3)                                                                                                                                   | 9     |
-s8/i8253/vcs/C1/READ/SEL_WR__AND_833_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_833_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C1/READ/DREG_3)                                                                                                                                   | 9     |
-s8/i8253/vcs/C2/READ/SEL_WR__AND_833_o_inv(s8/i8253/vcs/C2/READ/SEL_WR__AND_833_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C2/READ/DREG_5)                                                                                                                                   | 9     |
-s0/vgamod/char_rom/N1(s0/vgamod/char_rom/XST_GND:G)                                                                                                                                                                                                                               | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                         | 8     |
-s1/i8259/rst_clrisr_OR_872_o(s1/i8259/rst_clrisr_OR_872_o1:O)                                                                                                                                                                                                                     | NONE(s1/i8259/eoir_3)                                                                                                                                               | 4     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                         | 2     |
-s8/i8253/vcs/C2/DOWNCNTR/LOAD(s8/i8253/vcs/C2/DOWNCNTR/LOAD:Q)                                                                                                                                                                                                                    | NONE(s8/i8253/vcs/C2/DOWNCNTR/VLOADCNT)                                                                                                                             | 2     |
-s1/i8259/rst_GND_65_o_AND_661_o(s1/i8259/rst_GND_65_o_AND_661_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/dout_3)                                                                                                                                               | 1     |
-s1/i8259/rst_GND_65_o_AND_662_o(s1/i8259/rst_GND_65_o_AND_662_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/dout_3)                                                                                                                                               | 1     |
-s1/i8259/rst_PWR_58_o_AND_663_o(s1/i8259/rst_PWR_58_o_AND_663_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_0)                                                                                                                                                | 1     |
-s1/i8259/rst_PWR_58_o_AND_664_o(s1/i8259/rst_PWR_58_o_AND_664_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_0)                                                                                                                                                | 1     |
-s1/i8259/rst_PWR_58_o_AND_665_o(s1/i8259/rst_PWR_58_o_AND_665_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_1)                                                                                                                                                | 1     |
-s1/i8259/rst_PWR_58_o_AND_666_o(s1/i8259/rst_PWR_58_o_AND_666_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_1)                                                                                                                                                | 1     |
-s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_871_o(s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_871_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C0/CNTREG/LOAD)                                                                                                                                   | 1     |
-s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_872_o(s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_872_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C0/CNTREG/LOAD)                                                                                                                                   | 1     |
-s8/i8253/vcs/C0/DOWNCNTR/LOAD(s8/i8253/vcs/C0/DOWNCNTR/LOAD:Q)                                                                                                                                                                                                                    | NONE(s8/i8253/vcs/C0/DOWNCNTR/VLOADCNT)                                                                                                                             | 1     |
-s8/i8253/vcs/C0/OUTCTRL/GATE_TRIG_AND_881_o(s8/i8253/vcs/C0/OUTCTRL/GATE_TRIG_AND_881_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C0/OUTCTRL/TRIG)                                                                                                                                  | 1     |
-s8/i8253/vcs/C0/OUTCTRL/TRIG_GND_278_o_MUX_3618_o(s8/i8253/vcs/C0/OUTCTRL/Mmux_TRIG_GND_278_o_MUX_3618_o11:O)                                                                                                                                                                     | NONE(s8/i8253/vcs/C0/OUTCTRL/TRIG)                                                                                                                                  | 1     |
-s8/i8253/vcs/C0/READ/MODEWRITE_GND_255_o_AND_835_o(s8/i8253/vcs/C0/READ/MODEWRITE_GND_255_o_AND_835_o1:O)                                                                                                                                                                         | NONE(s8/i8253/vcs/C0/READ/READLSB)                                                                                                                                  | 1     |
-s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_871_o(s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_871_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/CNTREG/LOAD)                                                                                                                                   | 1     |
-s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_872_o(s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_872_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/CNTREG/LOAD)                                                                                                                                   | 1     |
-s8/i8253/vcs/C1/DOWNCNTR/LOAD(s8/i8253/vcs/C1/DOWNCNTR/LOAD:Q)                                                                                                                                                                                                                    | NONE(s8/i8253/vcs/C1/DOWNCNTR/VLOADCNT)                                                                                                                             | 1     |
-s8/i8253/vcs/C1/OUTCTRL/GATE_TRIG_AND_881_o(s8/i8253/vcs/C1/OUTCTRL/GATE_TRIG_AND_881_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C1/OUTCTRL/TRIG)                                                                                                                                  | 1     |
-s8/i8253/vcs/C1/OUTCTRL/TRIG_GND_278_o_MUX_3618_o(s8/i8253/vcs/C1/OUTCTRL/Mmux_TRIG_GND_278_o_MUX_3618_o11:O)                                                                                                                                                                     | NONE(s8/i8253/vcs/C1/OUTCTRL/TRIG)                                                                                                                                  | 1     |
-s8/i8253/vcs/C1/READ/MODEWRITE_GND_255_o_AND_835_o(s8/i8253/vcs/C1/READ/MODEWRITE_GND_255_o_AND_835_o1:O)                                                                                                                                                                         | NONE(s8/i8253/vcs/C1/READ/READLSB)                                                                                                                                  | 1     |
-s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_871_o(s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_871_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C2/CNTREG/LOAD)                                                                                                                                   | 1     |
-s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_872_o(s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_872_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C2/CNTREG/LOAD)                                                                                                                                   | 1     |
-s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_880_o(s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_880_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C2/OUTCTRL/TRIG)                                                                                                                                  | 1     |
-s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_881_o(s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_881_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C2/OUTCTRL/TRIG)                                                                                                                                  | 1     |
-s8/i8253/vcs/C2/READ/MODEWRITE_GND_255_o_AND_835_o(s8/i8253/vcs/C2/READ/MODEWRITE_GND_255_o_AND_835_o1:O)                                                                                                                                                                         | NONE(s8/i8253/vcs/C2/READ/READLSB)                                                                                                                                  | 1     |
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+Control Signal                                                                                                                                                                                                                                                                    | Buffer(FF name)                                                                                                                                                    | Load  |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                          | NONE(s1/i8088/core/exec/regfile/r_0_135)                                                                                                                           | 468   |
+s6/rb0/central_ram_core/central_ram_core/N1(s6/rb0/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb0/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s6/rb1/central_ram_core/central_ram_core/N1(s6/rb1/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb1/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[9].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s6/rb2/central_ram_core/central_ram_core/N1(s6/rb2/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb2/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s6/rb3/central_ram_core/central_ram_core/N1(s6/rb3/central_ram_core/central_ram_core/XST_GND:G)                                                                                                                                                                                   | NONE(s6/rb3/central_ram_core/central_ram_core/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_noinit.ram/SP.SINGLE_PRIM36.SP)| 128   |
+s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                        | 64    |
+s8/i8253/vcs/C0/MODEWRITE(s8/i8253/vcs/C0/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                             | NONE(s8/i8253/vcs/C0/READ/READLSB)                                                                                                                                 | 18    |
+s8/i8253/vcs/C1/MODEWRITE(s8/i8253/vcs/C1/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                             | NONE(s8/i8253/vcs/C1/READ/READLSB)                                                                                                                                 | 18    |
+s8/i8253/vcs/C2/MODEWRITE(s8/i8253/vcs/C2/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                             | NONE(s8/i8253/vcs/C2/READ/READLSB)                                                                                                                                 | 18    |
+s8/i8253/vcs/C0/READ/SEL_WR__AND_832_o_inv(s8/i8253/vcs/C0/READ/SEL_WR__AND_832_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C0/READ/DREG_2)                                                                                                                                  | 9     |
+s8/i8253/vcs/C1/READ/SEL_WR__AND_832_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_832_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C1/READ/DREG_7)                                                                                                                                  | 9     |
+s8/i8253/vcs/C2/READ/SEL_WR__AND_832_o_inv(s8/i8253/vcs/C2/READ/SEL_WR__AND_832_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C2/READ/DREG_2)                                                                                                                                  | 9     |
+s0/vgamod/char_rom/N1(s0/vgamod/char_rom/XST_GND:G)                                                                                                                                                                                                                               | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                        | 8     |
+s1/i8259/rst_clrisr_OR_872_o(s1/i8259/rst_clrisr_OR_872_o1:O)                                                                                                                                                                                                                     | NONE(s1/i8259/eoir_0)                                                                                                                                              | 4     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascaderegb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                        | 2     |
+s8/i8253/vcs/C2/DOWNCNTR/LOAD(s8/i8253/vcs/C2/DOWNCNTR/LOAD:Q)                                                                                                                                                                                                                    | NONE(s8/i8253/vcs/C2/DOWNCNTR/VLOADCNT)                                                                                                                            | 2     |
+s1/i8259/rst_GND_65_o_AND_661_o(s1/i8259/rst_GND_65_o_AND_661_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/dout_3)                                                                                                                                              | 1     |
+s1/i8259/rst_GND_65_o_AND_662_o(s1/i8259/rst_GND_65_o_AND_662_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/dout_3)                                                                                                                                              | 1     |
+s1/i8259/rst_PWR_58_o_AND_663_o(s1/i8259/rst_PWR_58_o_AND_663_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_0)                                                                                                                                               | 1     |
+s1/i8259/rst_PWR_58_o_AND_664_o(s1/i8259/rst_PWR_58_o_AND_664_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_0)                                                                                                                                               | 1     |
+s1/i8259/rst_PWR_58_o_AND_665_o(s1/i8259/rst_PWR_58_o_AND_665_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_1)                                                                                                                                               | 1     |
+s1/i8259/rst_PWR_58_o_AND_666_o(s1/i8259/rst_PWR_58_o_AND_666_o1:O)                                                                                                                                                                                                               | NONE(s1/i8259/irr_1)                                                                                                                                               | 1     |
+s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_870_o(s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_870_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C0/CNTREG/LOAD)                                                                                                                                  | 1     |
+s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_871_o(s8/i8253/vcs/C0/CNTREG/WR__LOAD_AND_871_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C0/CNTREG/LOAD)                                                                                                                                  | 1     |
+s8/i8253/vcs/C0/DOWNCNTR/LOAD(s8/i8253/vcs/C0/DOWNCNTR/LOAD:Q)                                                                                                                                                                                                                    | NONE(s8/i8253/vcs/C0/DOWNCNTR/VLOADCNT)                                                                                                                            | 1     |
+s8/i8253/vcs/C0/OUTCTRL/GATE_TRIG_AND_880_o(s8/i8253/vcs/C0/OUTCTRL/GATE_TRIG_AND_880_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C0/OUTCTRL/TRIG)                                                                                                                                 | 1     |
+s8/i8253/vcs/C0/OUTCTRL/TRIG_GND_278_o_MUX_3618_o(s8/i8253/vcs/C0/OUTCTRL/Mmux_TRIG_GND_278_o_MUX_3618_o11:O)                                                                                                                                                                     | NONE(s8/i8253/vcs/C0/OUTCTRL/TRIG)                                                                                                                                 | 1     |
+s8/i8253/vcs/C0/READ/MODEWRITE_GND_255_o_AND_834_o(s8/i8253/vcs/C0/READ/MODEWRITE_GND_255_o_AND_834_o1:O)                                                                                                                                                                         | NONE(s8/i8253/vcs/C0/READ/READLSB)                                                                                                                                 | 1     |
+s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_870_o(s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_870_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/CNTREG/LOAD)                                                                                                                                  | 1     |
+s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_871_o(s8/i8253/vcs/C1/CNTREG/WR__LOAD_AND_871_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/CNTREG/LOAD)                                                                                                                                  | 1     |
+s8/i8253/vcs/C1/DOWNCNTR/LOAD(s8/i8253/vcs/C1/DOWNCNTR/LOAD:Q)                                                                                                                                                                                                                    | NONE(s8/i8253/vcs/C1/DOWNCNTR/VLOADCNT)                                                                                                                            | 1     |
+s8/i8253/vcs/C1/OUTCTRL/GATE_TRIG_AND_880_o(s8/i8253/vcs/C1/OUTCTRL/GATE_TRIG_AND_880_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C1/OUTCTRL/TRIG)                                                                                                                                 | 1     |
+s8/i8253/vcs/C1/OUTCTRL/TRIG_GND_278_o_MUX_3618_o(s8/i8253/vcs/C1/OUTCTRL/Mmux_TRIG_GND_278_o_MUX_3618_o11:O)                                                                                                                                                                     | NONE(s8/i8253/vcs/C1/OUTCTRL/TRIG)                                                                                                                                 | 1     |
+s8/i8253/vcs/C1/READ/MODEWRITE_GND_255_o_AND_834_o(s8/i8253/vcs/C1/READ/MODEWRITE_GND_255_o_AND_834_o1:O)                                                                                                                                                                         | NONE(s8/i8253/vcs/C1/READ/READLSB)                                                                                                                                 | 1     |
+s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_870_o(s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_870_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C2/CNTREG/LOAD)                                                                                                                                  | 1     |
+s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_871_o(s8/i8253/vcs/C2/CNTREG/WR__LOAD_AND_871_o1:O)                                                                                                                                                                                           | NONE(s8/i8253/vcs/C2/CNTREG/LOAD)                                                                                                                                  | 1     |
+s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_879_o(s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_879_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C2/OUTCTRL/TRIG)                                                                                                                                 | 1     |
+s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_880_o(s8/i8253/vcs/C2/OUTCTRL/GATE_TRIG_AND_880_o1:O)                                                                                                                                                                                       | NONE(s8/i8253/vcs/C2/OUTCTRL/TRIG)                                                                                                                                 | 1     |
+s8/i8253/vcs/C2/READ/MODEWRITE_GND_255_o_AND_834_o(s8/i8253/vcs/C2/READ/MODEWRITE_GND_255_o_AND_834_o1:O)                                                                                                                                                                         | NONE(s8/i8253/vcs/C2/READ/READLSB)                                                                                                                                 | 1     |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -1
 
-   Minimum period: 74.719ns (Maximum Frequency: 13.383MHz)
+   Minimum period: 77.115ns (Maximum Frequency: 12.968MHz)
    Minimum input arrival time before clock: 2.118ns
    Maximum output required time after clock: 4.098ns
    Maximum combinational path delay: No path found
@@ -4606,10 +4608,10 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/clk'
-  Clock period: 74.719ns (frequency: 13.383MHz)
-  Total number of paths / destination ports: 2612630511895821984727040 / 3189
+  Clock period: 77.115ns (frequency: 12.968MHz)
+  Total number of paths / destination ports: 4025057941978138191855616 / 3195
 -------------------------------------------------------------------------
-Delay:               74.719ns (Levels of Logic = 119)
+Delay:               77.115ns (Levels of Logic = 121)
   Source:            s1/i8088/addr_reg_1 (FF)
   Destination:       s1/i8088/core/fetch/pref_l_1 (FF)
   Source Clock:      s1/i8284/clk rising
@@ -4629,12 +4631,13 @@ Delay:               74.719ns (Levels of Logic = 119)
      LUT3:I0->O            8   0.094   0.518  s1/i8088/core/decode/opcode_deco/_n064421 (s1/i8088/core/decode/opcode_deco/_n06442)
      LUT3:I2->O            5   0.094   0.811  s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_199_o<7>11 (s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_199_o<7>1)
      LUT4:I0->O            3   0.094   0.491  s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_199_o<7>2 (s1/i8088/core/decode/opcode_deco/op[7]_PWR_14_o_equal_199_o)
-     LUT4:I3->O            1   0.094   1.069  s1/i8088/core/decode/opcode_deco/need_imm2_SW0 (N324)
+     LUT4:I3->O            1   0.094   1.069  s1/i8088/core/decode/opcode_deco/need_imm2_SW0 (N322)
      LUT6:I0->O            2   0.094   1.074  s1/i8088/core/decode/opcode_deco/need_imm2 (s1/i8088/core/decode/opcode_deco/need_imm2)
-     LUT6:I0->O            2   0.094   0.978  s1/i8088/core/decode/opcode_deco/seq_addr<2>76 (s1/i8088/core/decode/opcode_deco/seq_addr<2>7)
-     LUT6:I1->O            1   0.094   0.480  s1/i8088/core/decode/n0089<3>10 (s1/i8088/core/decode/n0089<3>10)
-     LUT6:I5->O            1   0.094   0.710  s1/i8088/core/decode/n0089<3>11 (s1/i8088/core/decode/n0089<3>11)
-     LUT5:I2->O            1   0.094   0.576  s1/i8088/core/decode/n0089<3>12 (s1/i8088/core/decode/n0089<3>)
+     LUT6:I0->O            2   0.094   0.715  s1/i8088/core/decode/opcode_deco/seq_addr<2>77 (s1/i8088/core/decode/opcode_deco/seq_addr<2>7)
+     LUT6:I3->O            1   0.094   0.480  s1/i8088/core/decode/n0089<3>7 (s1/i8088/core/decode/n0089<3>7)
+     LUT6:I5->O            1   0.094   0.480  s1/i8088/core/decode/n0089<3>8 (s1/i8088/core/decode/n0089<3>8)
+     LUT6:I5->O            1   0.094   0.710  s1/i8088/core/decode/n0089<3>9 (s1/i8088/core/decode/n0089<3>9)
+     LUT5:I2->O            1   0.094   0.576  s1/i8088/core/decode/n0089<3>10 (s1/i8088/core/decode/n0089<3>)
      LUT2:I0->O            1   0.094   0.000  s1/i8088/core/decode/Madd_seq_addr_lut<3> (s1/i8088/core/decode/Madd_seq_addr_lut<3>)
      XORCY:LI->O         287   0.177   0.964  s1/i8088/core/decode/Madd_seq_addr_xor<3> (s1/i8088/core/seq_addr<3>)
      LUT5:I1->O            1   0.094   0.480  s1/i8088/core/micro_data_micro_rom/Mram_rom146111 (s1/i8088/core/micro_data_micro_rom/Mram_rom14611)
@@ -4645,7 +4648,7 @@ Delay:               74.719ns (Levels of Logic = 119)
      LUT6:I4->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_59 (s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][15]_wide_mux_8_OUT_521)
      MUXF7:I1->O           1   0.254   0.000  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][15]_wide_mux_8_OUT_4_f7_9 (s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][15]_wide_mux_8_OUT_4_f710)
      MUXF8:I0->O           1   0.182   0.576  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][15]_wide_mux_8_OUT_2_f8_9 (s1/i8088/core/exec/regfile/addr_b[3]_r[15][15]_wide_mux_8_OUT<4>)
-     LUT6:I4->O           22   0.094   0.593  s1/i8088/core/exec/Mmux_bus_b112 (s1/i8088/core/exec/Mmux_bus_b112)
+     LUT6:I4->O           23   0.094   0.597  s1/i8088/core/exec/Mmux_bus_b112 (s1/i8088/core/exec/Mmux_bus_b112)
      LUT2:I1->O            2   0.094   0.794  s1/i8088/core/exec/Mmux_bus_b115_1 (s1/i8088/core/exec/Mmux_bus_b115)
      LUT6:I2->O            5   0.094   0.502  s1/i8088/core/exec/alu/shrot/y[4]_PWR_35_o_LessThan_7_o1 (s1/i8088/core/exec/alu/shrot/y[4]_PWR_35_o_LessThan_7_o)
      LUT6:I5->O           17   0.094   1.061  s1/i8088/core/exec/alu/shrot/Mmux_rot1641 (s1/i8088/core/exec/alu/shrot/Mmux_rot1641)
@@ -4658,18 +4661,19 @@ Delay:               74.719ns (Levels of Logic = 119)
      LUT5:I4->O            2   0.094   0.581  s1/i8088/core/Mmux_cpu_adr_o131 (s1/i8088/cpu_adr_o<2>)
      LUT2:I0->O            1   0.094   0.000  s1/i8088/Msub_addr_offset_lut<2> (s1/i8088/Msub_addr_offset_lut<2>)
      XORCY:LI->O          27   0.177   0.462  s1/i8088/Msub_addr_offset_xor<2> (s1/i8088/Madd_n0086_Madd_lut<2>)
-     MUXF7:S->O            1   0.329   0.480  s1/i8088/Mmux_addr_offset[3]_X_6_o_wide_mux_17_OUT_5_f7_4 (s1/i8088/Mmux_addr_offset[3]_X_6_o_wide_mux_17_OUT_5_f75)
-     LUT6:I5->O           10   0.094   0.529  s1/i8088/Mmux_cpu_dat_i121 (s1/i8088/cpu_dat_i<5>)
-     LUT3:I2->O           45   0.094   0.919  s1/i8088/core/fetch/Mmux_opcode61 (s1/i8088/core/opcode<5>)
-     LUT4:I0->O            5   0.094   0.732  s1/i8088/core/decode/opcode_deco/op[7]_GND_15_o_equal_144_o1 (s1/i8088/core/decode/opcode_deco/op[7]_GND_15_o_equal_144_o)
-     LUT6:I3->O            1   0.094   0.576  s1/i8088/core/decode/Mmux_n008967 (s1/i8088/core/decode/n0089<5>)
+     MUXF7:S->O            1   0.329   0.480  s1/i8088/Mmux_addr_offset[3]_X_6_o_wide_mux_17_OUT_5_f7_0 (s1/i8088/Mmux_addr_offset[3]_X_6_o_wide_mux_17_OUT_5_f71)
+     LUT6:I5->O            9   0.094   0.524  s1/i8088/Mmux_cpu_dat_i81 (s1/i8088/cpu_dat_i<1>)
+     LUT3:I2->O           99   0.094   0.716  s1/i8088/core/fetch/Mmux_opcode21 (s1/i8088/core/opcode<1>)
+     LUT3:I1->O            8   0.094   0.827  s1/i8088/core/decode/opcode_deco/op[7]_GND_15_o_equal_145_o111 (s1/i8088/core/decode/opcode_deco/op[7]_GND_15_o_equal_145_o11)
+     LUT4:I0->O            5   0.094   0.811  s1/i8088/core/decode/opcode_deco/op[7]_GND_15_o_equal_144_o1 (s1/i8088/core/decode/opcode_deco/op[7]_GND_15_o_equal_144_o)
+     LUT6:I2->O            1   0.094   0.576  s1/i8088/core/decode/Mmux_n008968 (s1/i8088/core/decode/n0089<5>)
      LUT2:I0->O            1   0.094   0.000  s1/i8088/core/decode/Madd_seq_addr_lut<5> (s1/i8088/core/decode/Madd_seq_addr_lut<5>)
      XORCY:LI->O         286   0.177   1.147  s1/i8088/core/decode/Madd_seq_addr_xor<5> (s1/i8088/core/seq_addr<5>)
      LUT6:I1->O            1   0.094   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom80_f7_01 (s1/i8088/core/micro_data_micro_rom/Mram_rom80_f7_0)
      MUXF7:I0->O           1   0.251   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom80_f7_0 (s1/i8088/core/micro_data_micro_rom/Mram_rom80_f71)
      MUXF8:I0->O           1   0.182   0.576  s1/i8088/core/micro_data_micro_rom/Mram_rom80_f8 (s1/i8088/core/micro_data_micro_rom/Mram_rom80_f8)
      LUT3:I1->O            6   0.094   0.507  s1/i8088/core/micro_data_micro_rom/Mram_rom8211 (s1/i8088/core/rom_ir<24>)
-     LUT2:I1->O          104   0.094   1.210  s1/i8088/core/Mmux_ir171 (s1/i8088/core/ir<24>)
+     LUT2:I1->O          105   0.094   1.210  s1/i8088/core/Mmux_ir171 (s1/i8088/core/ir<24>)
      LUT6:I0->O            1   0.094   0.000  s1/i8088/core/exec/alu/m0/Mmux_out_31 (s1/i8088/core/exec/alu/m0/Mmux_out_31)
      MUXF7:I1->O           5   0.254   0.502  s1/i8088/core/exec/alu/m0/Mmux_out_2_f7_0 (s1/i8088/core/addr_exec<1>)
      LUT5:I4->O            2   0.094   0.341  s1/i8088/core/Mmux_cpu_adr_o121 (s1/i8088/cpu_adr_o<1>)
@@ -4677,11 +4681,10 @@ Delay:               74.719ns (Levels of Logic = 119)
      MUXCY:CI->O           1   0.026   0.000  s1/i8088/Msub_addr_offset_cy<2> (s1/i8088/Msub_addr_offset_cy<2>)
      XORCY:CI->O          11   0.357   1.028  s1/i8088/Msub_addr_offset_xor<3> (s1/i8088/Madd_n0086_Madd_lut<3>)
      LUT6:I1->O           11   0.094   0.535  s1/i8088/Mmux_cpu_dat_i17 (s1/i8088/cpu_dat_i<0>)
-     LUT3:I2->O           88   0.094   0.848  s1/i8088/core/fetch/Mmux_opcode11 (s1/i8088/core/opcode<0>)
-     LUT6:I3->O            1   0.094   0.973  s1/i8088/core/decode/n0089<1>2 (s1/i8088/core/decode/n0089<1>2)
-     LUT6:I1->O            1   0.094   0.576  s1/i8088/core/decode/n0089<1>5 (s1/i8088/core/decode/n0089<1>5)
-     LUT6:I4->O            1   0.094   0.480  s1/i8088/core/decode/n0089<1>12 (s1/i8088/core/decode/n0089<1>12)
-     LUT2:I1->O            1   0.094   0.710  s1/i8088/core/decode/n0089<1>13 (s1/i8088/core/decode/n0089<1>13)
+     LUT3:I2->O           88   0.094   1.207  s1/i8088/core/fetch/Mmux_opcode11 (s1/i8088/core/opcode<0>)
+     LUT6:I0->O            1   0.094   0.789  s1/i8088/core/decode/n0089<1>8 (s1/i8088/core/decode/n0089<1>8)
+     LUT6:I2->O            1   0.094   0.973  s1/i8088/core/decode/n0089<1>12 (s1/i8088/core/decode/n0089<1>12)
+     LUT6:I1->O            1   0.094   0.710  s1/i8088/core/decode/n0089<1>13 (s1/i8088/core/decode/n0089<1>13)
      LUT6:I3->O            1   0.094   0.576  s1/i8088/core/decode/n0089<1>14 (s1/i8088/core/decode/n0089<1>)
      LUT2:I0->O            1   0.094   0.000  s1/i8088/core/decode/Madd_seq_addr_lut<1> (s1/i8088/core/decode/Madd_seq_addr_lut<1>)
      MUXCY:S->O            1   0.372   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<1> (s1/i8088/core/decode/Madd_seq_addr_cy<1>)
@@ -4692,13 +4695,13 @@ Delay:               74.719ns (Levels of Logic = 119)
      MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<6> (s1/i8088/core/decode/Madd_seq_addr_cy<6>)
      MUXCY:CI->O           0   0.026   0.000  s1/i8088/core/decode/Madd_seq_addr_cy<7> (s1/i8088/core/decode/Madd_seq_addr_cy<7>)
      XORCY:CI->O          62   0.357   0.843  s1/i8088/core/decode/Madd_seq_addr_xor<8> (s1/i8088/core/seq_addr<8>)
-     LUT3:I0->O            9   0.094   0.524  s1/i8088/core/micro_data_micro_rom/Mram_rom11211 (s1/i8088/core/rom_ir<33>)
-     LUT4:I3->O           30   0.094   1.196  s1/i8088/core/Mmux_ir271 (s1/i8088/core/ir<33>)
+     LUT3:I0->O           10   0.094   0.529  s1/i8088/core/micro_data_micro_rom/Mram_rom11211 (s1/i8088/core/rom_ir<33>)
+     LUT4:I3->O           31   0.094   1.196  s1/i8088/core/Mmux_ir271 (s1/i8088/core/ir<33>)
      LUT6:I0->O           12   0.094   0.540  s1/i8088/core/exec/Mmux_bus_b15 (s1/i8088/core/exec/bus_b<8>)
      LUT2:I1->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_lut<8> (s1/i8088/core/exec/alu/othop/Madd_n0083_lut<8>)
      MUXCY:S->O            1   0.372   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<8> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<8>)
-     XORCY:CI->O           1   0.357   0.576  s1/i8088/core/exec/alu/othop/Madd_n0083_xor<9> (s1/i8088/core/exec/alu/othop/n0083<9>)
-     LUT2:I0->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_deff_lut<9> (s1/i8088/core/exec/alu/othop/Madd_deff_lut<9>)
+     XORCY:CI->O           1   0.357   0.710  s1/i8088/core/exec/alu/othop/Madd_n0083_xor<9> (s1/i8088/core/exec/alu/othop/n0083<9>)
+     LUT3:I0->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_deff_lut<9> (s1/i8088/core/exec/alu/othop/Madd_deff_lut<9>)
      MUXCY:S->O            1   0.372   0.000  s1/i8088/core/exec/alu/othop/Madd_deff_cy<9> (s1/i8088/core/exec/alu/othop/Madd_deff_cy<9>)
      XORCY:CI->O           3   0.357   0.491  s1/i8088/core/exec/alu/othop/Madd_deff_xor<10> (s1/i8088/core/exec/alu/othop/deff<10>)
      LUT1:I0->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_deff2_cy<10>_rt (s1/i8088/core/exec/alu/othop/Madd_deff2_cy<10>_rt)
@@ -4715,10 +4718,11 @@ Delay:               74.719ns (Levels of Logic = 119)
      LUT6:I2->O            1   0.094   0.710  s1/i8088/addr_offset[19]_GND_8_o_LessThan_5_o31 (s1/i8088/addr_offset[19]_GND_8_o_LessThan_5_o3)
      LUT6:I3->O           17   0.094   1.157  s1/i8088/addr_offset[19]_GND_8_o_LessThan_5_o34 (s1/i8088/addr_offset[19]_GND_8_o_LessThan_5_o)
      LUT6:I0->O           10   0.094   0.529  s1/i8088/Mmux_cpu_dat_i111 (s1/i8088/cpu_dat_i<4>)
-     LUT5:I4->O           34   0.094   0.838  s1/i8088/core/fetch/Mmux_modrm51 (s1/i8088/core/modrm<4>)
-     LUT4:I1->O            1   0.094   0.576  s1/i8088/core/decode/n0089<0>4 (s1/i8088/core/decode/n0089<0>4)
-     LUT5:I3->O            1   0.094   0.576  s1/i8088/core/decode/n0089<0>5 (s1/i8088/core/decode/n0089<0>5)
-     LUT5:I3->O            1   0.094   0.710  s1/i8088/core/decode/n0089<0>6 (s1/i8088/core/decode/n0089<0>6)
+     LUT5:I4->O           37   0.094   0.704  s1/i8088/core/fetch/Mmux_modrm51 (s1/i8088/core/modrm<4>)
+     LUT4:I2->O            1   0.094   0.789  s1/i8088/core/decode/n0089<0>1 (s1/i8088/core/decode/n0089<0>1)
+     LUT5:I1->O            1   0.094   0.973  s1/i8088/core/decode/n0089<0>2 (s1/i8088/core/decode/n0089<0>2)
+     LUT6:I1->O            1   0.094   0.576  s1/i8088/core/decode/n0089<0>5 (s1/i8088/core/decode/n0089<0>5)
+     LUT6:I4->O            1   0.094   0.710  s1/i8088/core/decode/n0089<0>6 (s1/i8088/core/decode/n0089<0>6)
      LUT6:I3->O            1   0.094   0.576  s1/i8088/core/decode/n0089<0>10 (s1/i8088/core/decode/n0089<0>10)
      LUT6:I4->O            1   0.094   0.576  s1/i8088/core/decode/n0089<0>13 (s1/i8088/core/decode/n0089<0>)
      LUT2:I0->O            1   0.094   0.000  s1/i8088/core/decode/Madd_seq_addr_lut<0> (s1/i8088/core/decode/Madd_seq_addr_lut<0>)
@@ -4729,19 +4733,19 @@ Delay:               74.719ns (Levels of Logic = 119)
      MUXF8:I0->O           1   0.182   0.710  s1/i8088/core/micro_data_micro_rom/Mram_rom41_f8 (s1/i8088/core/micro_data_micro_rom/Mram_rom41_f8)
      LUT3:I0->O            1   0.094   0.710  s1/i8088/core/micro_data_micro_rom/Mram_rom431 (s1/i8088/core/micro_data/micro_o<12>)
      LUT6:I3->O           70   0.094   0.710  s1/i8088/core/Mmux_ir41 (s1/i8088/core/ir<12>)
-     LUT6:I4->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_addr_c[3]_r[15][7]_wide_mux_16_OUT_3_f7_6_G (N1534)
+     LUT6:I4->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_addr_c[3]_r[15][7]_wide_mux_16_OUT_3_f7_6_G (N1540)
      MUXF7:I1->O           3   0.254   0.587  s1/i8088/core/exec/regfile/Mmux_addr_c[3]_r[15][7]_wide_mux_16_OUT_3_f7_6 (s1/i8088/core/exec/regfile/Mmux_addr_c[3]_r[15][7]_wide_mux_16_OUT_3_f77)
-     LUT5:I3->O           13   0.094   0.546  s1/i8088/core/exec/regfile/addr_c<2> (s1/i8088/core/exec/regfile/addr_c<2>_mmx_out)
+     LUT5:I3->O           14   0.094   0.551  s1/i8088/core/exec/regfile/addr_c<2> (s1/i8088/core/exec/regfile/addr_c<2>_mmx_out)
      LUT6:I5->O            5   0.094   0.502  s1/i8088/core/exec/alu/div_exc11_SW3 (N1157)
-     LUT6:I5->O            1   0.094   0.480  s1/i8088/core/exec/alu/muldiv/exc216_SW3_G (N1682)
-     LUT3:I2->O            1   0.094   0.480  s1/i8088/core/exec/alu/muldiv/exc216_SW31 (N1407)
+     LUT6:I5->O            1   0.094   0.480  s1/i8088/core/exec/alu/muldiv/exc216_SW3_G (N1690)
+     LUT3:I2->O            1   0.094   0.480  s1/i8088/core/exec/alu/muldiv/exc216_SW31 (N1400)
      LUT6:I5->O            6   0.094   0.507  s1/i8088/core/exec/div_exc1 (s1/i8088/core/div_exc)
      LUT6:I5->O           18   0.094   0.573  s1/i8088/core/fetch/nstate/Mmux_n_state28 (s1/i8088/core/n_state<0>)
      LUT6:I5->O            8   0.094   0.374  s1/i8088/core/fetch/_n0282_inv1 (s1/i8088/core/fetch/_n0282_inv)
      FDE:CE                    0.213          s1/i8088/core/fetch/modrm_l_0
     ----------------------------------------
-    Total                     74.705ns (17.098ns logic, 57.607ns route)
-                                       (22.9% logic, 77.1% route)
+    Total                     77.101ns (17.286ns logic, 59.815ns route)
+                                       (22.4% logic, 77.6% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/pclk'
@@ -4867,16 +4871,16 @@ Timing constraint: Default period analysis for Clock 's8/pclka'
   Total number of paths / destination ports: 1747 / 159
 -------------------------------------------------------------------------
 Delay:               4.790ns (Levels of Logic = 4)
-  Source:            s8/i8253/vcs/C2/DOWNCNTR/COUNT_12 (FF)
+  Source:            s8/i8253/vcs/C2/DOWNCNTR/COUNT_14 (FF)
   Destination:       s8/i8253/vcs/C2/OUTCTRL/OUT (FF)
   Source Clock:      s8/pclka rising
   Destination Clock: s8/pclka falling
 
-  Data Path: s8/i8253/vcs/C2/DOWNCNTR/COUNT_12 to s8/i8253/vcs/C2/OUTCTRL/OUT
+  Data Path: s8/i8253/vcs/C2/DOWNCNTR/COUNT_14 to s8/i8253/vcs/C2/OUTCTRL/OUT
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              6   0.471   1.096  s8/i8253/vcs/C2/DOWNCNTR/COUNT_12 (s8/i8253/vcs/C2/DOWNCNTR/COUNT_12)
+     FDE:C->Q              6   0.471   1.096  s8/i8253/vcs/C2/DOWNCNTR/COUNT_14 (s8/i8253/vcs/C2/DOWNCNTR/COUNT_14)
      LUT6:I0->O            2   0.094   0.794  s8/i8253/vcs/C2/OUTCTRL/COUNT[15]_GND_278_o_equal_6_o<15>12 (s8/i8253/vcs/C2/OUTCTRL/COUNT[15]_GND_278_o_equal_6_o<15>12)
      LUT4:I0->O            2   0.094   0.794  s8/i8253/vcs/C2/OUTCTRL/COUNT[15]_GND_278_o_equal_6_o<15>13 (s8/i8253/vcs/C2/OUTCTRL/COUNT[15]_GND_278_o_equal_6_o<15>1)
      LUT5:I1->O            1   0.094   0.710  s8/i8253/vcs/C2/OUTCTRL/_n0106_inv2 (s8/i8253/vcs/C2/OUTCTRL/_n0106_inv2)
@@ -4902,7 +4906,7 @@ Delay:               2.301ns (Levels of Logic = 1)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDRS:C->Q             8   0.471   0.827  s8/i8253/vcs/C0/CNTREG/lsbflag (s8/i8253/vcs/C0/CNTREG/lsbflag)
-     LUT4:I0->O            1   0.094   0.336  s8/i8253/vcs/C0/CNTREG/SEL_lsbflag_AND_859_o1 (s8/i8253/vcs/C0/CNTREG/SEL_lsbflag_AND_859_o)
+     LUT4:I0->O            1   0.094   0.336  s8/i8253/vcs/C0/CNTREG/SEL_lsbflag_AND_858_o1 (s8/i8253/vcs/C0/CNTREG/SEL_lsbflag_AND_858_o)
      FDRS:S                    0.573          s8/i8253/vcs/C0/CNTREG/lsbflag
     ----------------------------------------
     Total                      2.301ns (1.138ns logic, 1.163ns route)
@@ -4981,7 +4985,7 @@ Delay:               5.358ns (Levels of Logic = 5)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'dclk'
   Clock period: 8.187ns (frequency: 122.143MHz)
-  Total number of paths / destination ports: 25671 / 182
+  Total number of paths / destination ports: 23767 / 182
 -------------------------------------------------------------------------
 Delay:               8.187ns (Levels of Logic = 7)
   Source:            s4/i8237/dack_1 (FF)
@@ -5007,15 +5011,15 @@ Delay:               8.187ns (Levels of Logic = 7)
                                        (16.4% logic, 83.6% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 's4/wrt_dma_pg_reg_n_INV_717_o'
+Timing constraint: Default period analysis for Clock 's4/wrt_dma_pg_reg_n_INV_718_o'
   Clock period: 6.666ns (frequency: 150.015MHz)
   Total number of paths / destination ports: 896 / 8
 -------------------------------------------------------------------------
 Delay:               6.666ns (Levels of Logic = 6)
   Source:            s4/ls6700/q3_0 (LATCH)
   Destination:       s4/ls6700/q0_3 (LATCH)
-  Source Clock:      s4/wrt_dma_pg_reg_n_INV_717_o falling
-  Destination Clock: s4/wrt_dma_pg_reg_n_INV_717_o falling
+  Source Clock:      s4/wrt_dma_pg_reg_n_INV_718_o falling
+  Destination Clock: s4/wrt_dma_pg_reg_n_INV_718_o falling
 
   Data Path: s4/ls6700/q3_0 to s4/ls6700/q0_3
                                 Gate     Net
@@ -5049,7 +5053,7 @@ Delay:               2.071ns (Levels of Logic = 1)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDRS:C->Q             4   0.471   0.592  s6/pck_n (s6/pck_n)
-     LUT2:I0->O            2   0.094   0.341  s6/pck_n_enb_ram_pck_AND_808_o1 (s6/pck_n_enb_ram_pck_AND_808_o)
+     LUT2:I0->O            2   0.094   0.341  s6/pck_n_enb_ram_pck_AND_807_o1 (s6/pck_n_enb_ram_pck_AND_807_o)
      FDRS:R                    0.573          s6/pck_n
     ----------------------------------------
     Total                      2.071ns (1.138ns logic, 0.933ns route)
@@ -5155,7 +5159,7 @@ Offset:              4.024ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDRSE_1:C->Q         19   0.467   0.675  s8/i8253/vcs/C2/OUTCTRL/OUT (s8/i8253/vcs/C2/OUTCTRL/OUT)
-     LUT2:I0->O            1   0.094   0.336  s8/out2_spkr_data_AND_811_o1 (PIEZO_SPEAKER_OBUF)
+     LUT2:I0->O            1   0.094   0.336  s8/out2_spkr_data_AND_810_o1 (PIEZO_SPEAKER_OBUF)
      OBUF:I->O                 2.452          PIEZO_SPEAKER_OBUF (PIEZO_SPEAKER)
     ----------------------------------------
     Total                      4.024ns (3.013ns logic, 1.011ns route)
@@ -5175,7 +5179,7 @@ Offset:              4.098ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      LDC:G->Q              1   0.736   0.480  s9/i8255/pb_1 (s9/i8255/pb_1)
-     LUT2:I1->O            1   0.094   0.336  s8/out2_spkr_data_AND_811_o1 (PIEZO_SPEAKER_OBUF)
+     LUT2:I1->O            1   0.094   0.336  s8/out2_spkr_data_AND_810_o1 (PIEZO_SPEAKER_OBUF)
      OBUF:I->O                 2.452          PIEZO_SPEAKER_OBUF (PIEZO_SPEAKER)
     ----------------------------------------
     Total                      4.098ns (3.282ns logic, 0.816ns route)
@@ -5220,7 +5224,7 @@ Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
 USER_CLK       |    2.592|         |         |         |
 dclk           |    1.716|         |         |         |
-s1/i8284/clk   |    2.725|         |         |         |
+s1/i8284/clk   |    2.720|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock dclk
@@ -5232,7 +5236,7 @@ dclk                                          |    8.187|         |         |   
 s1/ale                                        |         |    7.674|         |         |
 s1/i8284/clk                                  |    8.401|    4.003|         |         |
 s4/i8237/adstb                                |         |    6.944|         |         |
-s4/wrt_dma_pg_reg_n_INV_717_o                 |         |    8.252|         |         |
+s4/wrt_dma_pg_reg_n_INV_718_o                 |         |    8.252|         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    3.700|         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    3.875|         |         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.009|         |         |
@@ -5244,7 +5248,7 @@ Clock to Setup on destination clock s1/ale
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-s1/i8284/clk   |         |         |   57.079|         |
+s1/i8284/clk   |         |         |   58.324|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/i8259/cs_n_wr_n_AND_622_o
@@ -5258,10 +5262,10 @@ s1/ale                                        |         |         |   10.089|   
 s1/i8259/cs_n_wr_n_AND_622_o                  |         |         |    3.113|         |
 s1/i8259/inta_n_eoir[4]_OR_894_o              |         |         |    2.850|         |
 s1/i8259/recint_eoir[1]_MUX_3349_o            |         |         |    2.850|         |
-s1/i8284/clk                                  |         |         |   71.253|         |
+s1/i8284/clk                                  |         |         |   73.644|         |
 s1/i8284/vclk                                 |         |         |    7.349|         |
 s4/i8237/adstb                                |         |         |    9.359|         |
-s4/wrt_dma_pg_reg_n_INV_717_o                 |         |         |   10.667|         |
+s4/wrt_dma_pg_reg_n_INV_718_o                 |         |         |   10.667|         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_169_o_Mux_9_o|         |         |    6.115|         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_169_o_Mux_9_o|         |         |    6.290|         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_169_o_Mux_9_o|         |         |    6.424|         |
@@ -5274,7 +5278,7 @@ Clock to Setup on destination clock s1/i8259/inta_n_eoir[4]_OR_894_o
 Source Clock                                                           |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -----------------------------------------------------------------------+---------+---------+---------+---------+
 s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8|         |         |    1.439|         |
-s1/i8284/clk                                                           |         |         |    3.083|         |
+s1/i8284/clk                                                           |         |         |    3.084|         |
 s1/inta_n                                                              |         |         |    2.573|         |
 xa<0>                                                                  |         |         |    3.102|         |
 -----------------------------------------------------------------------+---------+---------+---------+---------+
@@ -5308,11 +5312,11 @@ s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8|        
 s1/i8259/cs_n_wr_n_AND_622_o                                           |         |    8.067|         |         |
 s1/i8259/inta_n_eoir[4]_OR_894_o                                       |         |    2.210|         |         |
 s1/i8259/recint_eoir[1]_MUX_3349_o                                     |         |    2.210|         |         |
-s1/i8284/clk                                                           |   74.719|    0.858|    1.326|         |
+s1/i8284/clk                                                           |   77.115|    0.858|    1.326|         |
 s1/i8284/vclk                                                          |    6.709|         |         |         |
 s1/inta_n                                                              |         |    7.746|         |         |
 s4/i8237/adstb                                                         |         |    8.719|         |         |
-s4/wrt_dma_pg_reg_n_INV_717_o                                          |         |   10.027|         |         |
+s4/wrt_dma_pg_reg_n_INV_718_o                                          |         |   10.027|         |         |
 s6/rb0/central_ram_core/fsm[1]_PWR_145_o_Mux_30_o                      |         |    2.462|         |         |
 s6/rb0/central_ram_core/fsm[1]_PWR_152_o_Mux_44_o                      |         |    1.546|         |         |
 s6/rb1/central_ram_core/fsm[1]_PWR_145_o_Mux_30_o                      |         |    2.462|         |         |
@@ -5349,7 +5353,7 @@ s1/ale                                        |         |    8.009|         |   
 s1/i8284/clk                                  |    8.736|         |         |         |
 s1/i8284/vclk                                 |    5.269|         |         |         |
 s4/i8237/adstb                                |         |    7.279|         |         |
-s4/wrt_dma_pg_reg_n_INV_717_o                 |         |    8.587|         |         |
+s4/wrt_dma_pg_reg_n_INV_718_o                 |         |    8.587|         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.035|         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.210|         |         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.344|         |         |
@@ -5376,14 +5380,14 @@ dclk                                          |         |         |    6.601|   
 s1/ale                                        |         |         |    6.088|         |
 s1/i8284/clk                                  |         |         |    6.815|         |
 s4/i8237/adstb                                |         |         |    5.358|         |
-s4/wrt_dma_pg_reg_n_INV_717_o                 |         |         |    6.666|         |
+s4/wrt_dma_pg_reg_n_INV_718_o                 |         |         |    6.666|         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_169_o_Mux_9_o|         |         |    2.114|         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_169_o_Mux_9_o|         |         |    2.289|         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_169_o_Mux_9_o|         |         |    2.423|         |
 s9/i8255/cmd[4]_GND_283_o_equal_8_o<4>1       |         |         |    2.502|         |
 ----------------------------------------------+---------+---------+---------+---------+
 
-Clock to Setup on destination clock s4/wrt_dma_pg_reg_n_INV_717_o
+Clock to Setup on destination clock s4/wrt_dma_pg_reg_n_INV_718_o
 ----------------------------------------------+---------+---------+---------+---------+
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
@@ -5392,7 +5396,7 @@ dclk                                          |         |         |    6.601|   
 s1/ale                                        |         |         |    6.088|         |
 s1/i8284/clk                                  |         |         |    6.815|         |
 s4/i8237/adstb                                |         |         |    5.358|         |
-s4/wrt_dma_pg_reg_n_INV_717_o                 |         |         |    6.666|         |
+s4/wrt_dma_pg_reg_n_INV_718_o                 |         |         |    6.666|         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_169_o_Mux_9_o|         |         |    2.114|         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_169_o_Mux_9_o|         |         |    2.289|         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_169_o_Mux_9_o|         |         |    2.423|         |
@@ -5492,7 +5496,7 @@ USER_CLK       |         |         |    1.404|         |
 dclk           |         |         |    2.831|         |
 s1/ale         |         |         |    2.070|         |
 s1/i8284/clk   |         |         |    2.770|         |
-s4/i8237/adstb |         |         |    1.846|         |
+s4/i8237/adstb |         |         |    1.845|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s8/i8253/vcs/C0/LOADCNT
@@ -5512,7 +5516,7 @@ dclk                                          |    9.299|         |         |   
 s1/ale                                        |         |    8.786|         |         |
 s1/i8284/clk                                  |    9.513|         |         |         |
 s4/i8237/adstb                                |         |    8.056|         |         |
-s4/wrt_dma_pg_reg_n_INV_717_o                 |         |    9.364|         |         |
+s4/wrt_dma_pg_reg_n_INV_718_o                 |         |    9.364|         |         |
 s8/i8253/vcs/C0/MODETRIG                      |    1.067|         |         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.812|         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.987|         |         |
@@ -5547,7 +5551,7 @@ dclk                                          |    9.014|         |         |   
 s1/ale                                        |         |    8.501|         |         |
 s1/i8284/clk                                  |    9.228|         |         |         |
 s4/i8237/adstb                                |         |    7.771|         |         |
-s4/wrt_dma_pg_reg_n_INV_717_o                 |         |    9.079|         |         |
+s4/wrt_dma_pg_reg_n_INV_718_o                 |         |    9.079|         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.527|         |         |
 s8/i8253/vcs/C1/MODETRIG                      |    1.067|         |         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.702|         |         |
@@ -5582,7 +5586,7 @@ dclk                                          |    9.187|         |         |   
 s1/ale                                        |         |    8.674|         |         |
 s1/i8284/clk                                  |    9.401|         |         |         |
 s4/i8237/adstb                                |         |    7.944|         |         |
-s4/wrt_dma_pg_reg_n_INV_717_o                 |         |    9.252|         |         |
+s4/wrt_dma_pg_reg_n_INV_718_o                 |         |    9.252|         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.700|         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.875|         |         |
 s8/i8253/vcs/C2/MODETRIG                      |    1.056|         |         |         |
@@ -5610,7 +5614,7 @@ s1/ale                                        |         |    9.009|   10.045|   
 s1/i8284/clk                                  |    9.736|         |   10.772|         |
 s1/i8284/pclk                                 |    1.061|         |         |         |
 s4/i8237/adstb                                |         |    8.279|    9.315|         |
-s4/wrt_dma_pg_reg_n_INV_717_o                 |         |    9.587|   10.623|         |
+s4/wrt_dma_pg_reg_n_INV_718_o                 |         |    9.587|   10.623|         |
 s8/i8253/vcs/C0/LOADCNT                       |    1.380|         |         |         |
 s8/i8253/vcs/C0/MODETRIG                      |         |         |    2.499|         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    5.035|    6.071|         |
@@ -5620,7 +5624,7 @@ s8/i8253/vcs/C1/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    5.210|    6.246|   
 s8/i8253/vcs/C2/LOADCNT                       |    1.380|         |         |         |
 s8/i8253/vcs/C2/MODETRIG                      |         |         |    2.488|         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    5.344|    6.380|         |
-s8/pclka                                      |    4.084|    2.437|    4.790|         |
+s8/pclka                                      |    4.088|    2.437|    4.790|         |
 s9/i8255/cmd[4]_GND_283_o_equal_13_o          |         |    2.210|    3.093|         |
 s9/i8255/cmd[4]_GND_283_o_equal_8_o<4>1       |         |    5.423|    6.459|         |
 s9/i8255/pb_0                                 |    1.354|         |         |         |
@@ -5636,7 +5640,7 @@ dclk                                          |         |         |    6.601|   
 s1/ale                                        |         |         |    6.088|         |
 s1/i8284/clk                                  |         |         |    6.815|         |
 s4/i8237/adstb                                |         |         |    5.358|         |
-s4/wrt_dma_pg_reg_n_INV_717_o                 |         |         |    6.666|         |
+s4/wrt_dma_pg_reg_n_INV_718_o                 |         |         |    6.666|         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_169_o_Mux_9_o|         |         |    2.114|         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_169_o_Mux_9_o|         |         |    2.289|         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_169_o_Mux_9_o|         |         |    2.423|         |
@@ -5649,8 +5653,8 @@ Clock to Setup on destination clock s9/i8255/cmd[4]_GND_283_o_equal_8_o<4>1
 Source Clock                        |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ------------------------------------+---------+---------+---------+---------+
 dclk                                |         |         |    4.325|         |
-s1/ale                              |         |         |    4.187|         |
-s1/i8284/clk                        |         |         |    4.886|         |
+s1/ale                              |         |         |    4.108|         |
+s1/i8284/clk                        |         |         |    4.846|         |
 s1/i8284/pclk                       |         |         |    1.359|         |
 s4/i8237/adstb                      |         |         |    4.111|         |
 s8/pclka                            |         |         |    1.633|         |
@@ -5677,10 +5681,10 @@ s1/ale                                        |         |    9.449|         |   
 s1/i8259/cs_n_wr_n_AND_622_o                  |         |    2.473|         |         |
 s1/i8259/inta_n_eoir[4]_OR_894_o              |         |    2.210|         |         |
 s1/i8259/recint_eoir[1]_MUX_3349_o            |         |    2.210|         |         |
-s1/i8284/clk                                  |   70.613|         |         |         |
+s1/i8284/clk                                  |   73.004|         |         |         |
 s1/i8284/vclk                                 |    6.709|         |         |         |
 s4/i8237/adstb                                |         |    8.719|         |         |
-s4/wrt_dma_pg_reg_n_INV_717_o                 |         |   10.027|         |         |
+s4/wrt_dma_pg_reg_n_INV_718_o                 |         |   10.027|         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    5.475|         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    5.650|         |         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    5.784|         |         |
@@ -5696,7 +5700,7 @@ dclk                                          |    8.492|         |         |   
 s1/ale                                        |         |    7.979|         |         |
 s1/i8284/clk                                  |    8.706|         |         |         |
 s4/i8237/adstb                                |         |    7.249|         |         |
-s4/wrt_dma_pg_reg_n_INV_717_o                 |         |    8.557|         |         |
+s4/wrt_dma_pg_reg_n_INV_718_o                 |         |    8.557|         |         |
 s8/i8253/vcs/C0/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.005|         |         |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.180|         |         |
 s8/i8253/vcs/C2/READ/MODE[5]_PWR_169_o_Mux_9_o|         |    4.314|         |         |
@@ -5713,7 +5717,7 @@ USER_CLK                            |    8.413|         |         |         |
 dclk                                |    9.455|         |         |         |
 s1/ale                              |         |    8.942|         |         |
 s1/i8284/clk                        |    9.669|         |         |         |
-s4/wrt_dma_pg_reg_n_INV_717_o       |         |    9.520|         |         |
+s4/wrt_dma_pg_reg_n_INV_718_o       |         |    9.520|         |         |
 s9/i8255/cmd[4]_GND_283_o_equal_13_o|         |    2.240|         |         |
 xmemr_n                             |    2.071|         |         |         |
 ------------------------------------+---------+---------+---------+---------+
@@ -5721,8 +5725,8 @@ xmemr_n                             |    2.071|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 52.00 secs
-Total CPU time to Xst completion: 50.40 secs
+Total REAL time to Xst completion: 54.00 secs
+Total CPU time to Xst completion: 50.96 secs
  
 WARNING:Xst:3152 - You have chosen to run a version of XST which is not the default solution
    for the specified device family. You are free to use it in order to take
@@ -5735,9 +5739,9 @@ WARNING:Xst:3152 - You have chosen to run a version of XST which is not the defa
 --> 
 
 
-Total memory usage is 563120 kilobytes
+Total memory usage is 563308 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  923 (   0 filtered)
-Number of infos    :   41 (   0 filtered)
+Number of infos    :   43 (   0 filtered)
 

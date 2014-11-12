@@ -10,40 +10,40 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Tue Nov 11 21:09:15 2014
+Mapped Date    : Wed Nov 12 13:08:54 2014
 
 Design Summary
 --------------
 Number of errors:      0
 Number of warnings:  213
 Slice Logic Utilization:
-  Number of Slice Registers:                 3,171 out of  69,120    4%
-    Number used as Flip Flops:               3,033
+  Number of Slice Registers:                 3,174 out of  69,120    4%
+    Number used as Flip Flops:               3,036
     Number used as Latches:                    138
   Number of Slice LUTs:                      5,824 out of  69,120    8%
-    Number used as logic:                    5,408 out of  69,120    7%
-      Number using O6 output only:           4,876
-      Number using O5 output only:             111
-      Number using O5 and O6:                  421
+    Number used as logic:                    5,406 out of  69,120    7%
+      Number using O6 output only:           4,858
+      Number using O5 output only:             112
+      Number using O5 and O6:                  436
     Number used as Memory:                     404 out of  17,920    2%
       Number used as Shift Register:           404
         Number using O6 output only:           402
         Number using O5 output only:             1
         Number using O5 and O6:                  1
-    Number used as exclusive route-thru:        12
-  Number of route-thrus:                       134
-    Number using O6 output only:               123
-    Number using O5 output only:                11
+    Number used as exclusive route-thru:        14
+  Number of route-thrus:                       132
+    Number using O6 output only:               125
+    Number using O5 output only:                 7
 
 Slice Logic Distribution:
-  Number of occupied Slices:                 2,461 out of  17,280   14%
-  Number of LUT Flip Flop pairs used:        7,089
-    Number with an unused Flip Flop:         3,918 out of   7,089   55%
-    Number with an unused LUT:               1,265 out of   7,089   17%
-    Number of fully used LUT-FF pairs:       1,906 out of   7,089   26%
+  Number of occupied Slices:                 2,488 out of  17,280   14%
+  Number of LUT Flip Flop pairs used:        7,160
+    Number with an unused Flip Flop:         3,986 out of   7,160   55%
+    Number with an unused LUT:               1,336 out of   7,160   18%
+    Number of fully used LUT-FF pairs:       1,838 out of   7,160   25%
     Number of unique control sets:             212
     Number of slice register sites lost
-      to control set restrictions:             392 out of  69,120    1%
+      to control set restrictions:             393 out of  69,120    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -70,11 +70,11 @@ Specific Feature Utilization:
   Number of DSP48Es:                             1 out of      64    1%
 
   Number of RPM macros:            9
-Average Fanout of Non-Clock Nets:                4.41
+Average Fanout of Non-Clock Nets:                4.42
 
 Peak Memory Usage:  1129 MB
-Total REAL time to MAP completion:  1 mins 
-Total CPU time to MAP completion:   58 secs 
+Total REAL time to MAP completion:  55 secs 
+Total CPU time to MAP completion:   53 secs 
 
 Table of Contents
 -----------------
@@ -101,7 +101,7 @@ WARNING:Security:43 - No license file was found in the standard Xilinx license
 directory.
 WARNING:Security:44 - Since no license file was found,
 WARNING:Security:42 - Your license support version '2014.11' for ISE expires in
-19 days after which you will not qualify for Xilinx software updates or new
+18 days after which you will not qualify for Xilinx software updates or new
 releases.
 WARNING:Pack:2874 - Trimming timing constraints from pin
    s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cs
@@ -1521,6 +1521,9 @@ WARNING:Place:644 - A clock IOB clock component is not placed at an optimal
    this override is highly discouraged as it may lead to very poor timing
    results. It is recommended that this error condition be corrected in the
    design.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net xa<0> is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net xmemr_n is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
@@ -1528,9 +1531,6 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s9/i8255/cmd[4]_GND_283_o_equal_8_o<4>1 is sourced by a combinatorial pin.
    This is not good design practice. Use the CE pin to control the loading of
    data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net xa<0> is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C1/LOADCNT is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
@@ -1573,7 +1573,7 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
    is not good design practice. Use the CE pin to control the loading of data
    into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s4/wrt_dma_pg_reg_n_INV_717_o is sourced by a combinatorial pin. This is not
+   s4/wrt_dma_pg_reg_n_INV_718_o is sourced by a combinatorial pin. This is not
    good design practice. Use the CE pin to control the loading of data into the
    flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C1/MODETRIG is

@@ -72,7 +72,7 @@ module intel8288(
 
    // Assign signal wires
    assign ale_s = (state == s0) & ~aen_n & activate;
-   assign dtr_s = ~((state != s0) & readint);
+   assign dtr_s = (((state == s1) | (state == s2) | (state == s3)) & readint) ? 1'b0 : 1'b1;
    assign den_s = ((state == s2) & readint) | ((state != s0) & write);
    //assign den_s = ((state == s2) & readint) | (((state == s1) | (state == s2)) & write);
 	
@@ -105,7 +105,7 @@ module intel8288(
 				mrdc_n_s = ~mrdc;
 				amwc_n_s = ~amwc;
 				iorc_n_s = ~iorc;
-				aiowc_n_s = 1'b1; // changing for now
+				aiowc_n_s = ~aiowc; // changing for now
 				inta_n_s = ~inta;
 			end
 			s3: begin

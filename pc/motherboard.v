@@ -508,7 +508,7 @@ module sheet1(
 		   );
    
    // NAND gate U84
-   assign u84 = ~(spen_n & den);
+   assign u84 = ~(den); // taking out spen_n, not quite sure what it is doing here
    
    // LS 373 and LS 374 Units
    ls374 u10(
