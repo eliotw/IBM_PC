@@ -64,6 +64,8 @@ module test_fdc();
       
       //Test Seek 
       
+      //Format
+      
       //Test a read command -> Make this a Task? as well as other commands?
       ior_n = 1'b1;
       iow_n = 1'b0; //writing to data register
@@ -93,13 +95,12 @@ module test_fdc();
       @(posedge clk);
       errors = errors + (d != testMSR); //should be right
       $display(d); // on off chance it isn't testMSR, find out what it is *REMOVE BEFORE TURNING IN*
-      
-      //Check evaluation # of clock cycles should get some sort of sign from floppy drive that done
-      //make a thing that just loops through posedge clk until hits sign
-      //Will have to do manually :(
-      @(posedge clk);
-      ior_n = 1'b0;
       a = 20'h35f;
+      st0 = 8'hxx; //figure this out
+      while (d != st0) begin //should be a loop until the data is what st0 should be (only works if data is only st0
+      	@(possedge clk); //when st0 is put out on dataline
+      end
+      ior_n = 1'b0;
       testData = 8'h; //ST0
       @(posedge clk);
       errors = errors + (d != testData); //should be right
@@ -130,7 +131,71 @@ module test_fdc();
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
       //end Read Command
       
-      
+      //LAST command because we're writing over data (and that might fuck with us)
+       //Test a write command *CHANGE VALUES FOR A WRITE COMMAND*
+      ior_n = 1'b1;
+      iow_n = 1'b0; //writing to data register
+      a = 20'h35f; //address of data register (check and see if flipped f and 5)
+      d = 8'h06; //check SK, need to find my notes
+      @(posedge clk);
+      d = 8'h01; //check HD,US0,US1 again
+      @(posedge clk);
+      d = 8'h01; //image check (specific data from SD card) -> track (track 1 exists. track 0 or 40 might not
+      @(posedge clk);
+      d = 8'h00; //image check (specific data from SD card) -> head
+      @(posedge clk);
+      d = 8'h01; //image check (specific data from SD card) -> Section Number
+      @(posedge clk);
+      d = 8'h02; //image check (specific data from SD card) -> N (Constant)
+      @(posedge clk);
+      d = 8'h07; //image check (specific data from SD card) -> EOT (final sector number for track)
+      @(posedge clk);
+      d = 8'h2A; //image check (specific data from SD card) -> GPL (gap length) (check what GPL R/W means)
+      @(posedge clk);
+      d = 8'h00; //image check (specific data from SD card) -> DTL (Data length)
+      @(posedge clk);
+      iow_n = 1'b1; // (no more writing to FDC, Execution state)
+      a = 20'h34f; //checking that everything is working (status register)
+      ior_n = 1'b0; //reading
+      testMSR = 8'b00; //need to check what it should be
+      @(posedge clk);
+      errors = errors + (d != testMSR); //should be right
+      $display(d); // on off chance it isn't testMSR, find out what it is *REMOVE BEFORE TURNING IN*
+      a = 20'h35f;
+      st0 = 8'hxx; //figure this out
+      while (d != st0) begin //should be a loop until the data is what st0 should be (only works if data is only st0
+      	@(possedge clk); //when st0 is put out on dataline
+      end
+      ior_n = 1'b0;
+      testData = 8'h; //ST0
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
+      #1 testData = 8'h; //ST1
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
+      #1 testData = 8'h; //ST2
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
+      #1 testData = 8'h; //Track #
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
+      #1 testData = 8'h; //H
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
+      #1 testData = 8'h; //Sector Number
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
+      #1 testData = 8'h02; //N
+      @(posedge clk);
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
+      //end Read Command
       
       // Conclude Simulation
       @(posedge clk);
