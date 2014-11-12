@@ -10,7 +10,7 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Tue Nov 11 19:30:28 2014
+Mapped Date    : Tue Nov 11 21:09:15 2014
 
 Design Summary
 --------------
@@ -20,30 +20,30 @@ Slice Logic Utilization:
   Number of Slice Registers:                 3,171 out of  69,120    4%
     Number used as Flip Flops:               3,033
     Number used as Latches:                    138
-  Number of Slice LUTs:                      5,822 out of  69,120    8%
-    Number used as logic:                    5,406 out of  69,120    7%
-      Number using O6 output only:           4,859
-      Number using O5 output only:             112
-      Number using O5 and O6:                  435
+  Number of Slice LUTs:                      5,824 out of  69,120    8%
+    Number used as logic:                    5,408 out of  69,120    7%
+      Number using O6 output only:           4,876
+      Number using O5 output only:             111
+      Number using O5 and O6:                  421
     Number used as Memory:                     404 out of  17,920    2%
       Number used as Shift Register:           404
         Number using O6 output only:           402
         Number using O5 output only:             1
         Number using O5 and O6:                  1
     Number used as exclusive route-thru:        12
-  Number of route-thrus:                       145
+  Number of route-thrus:                       134
     Number using O6 output only:               123
-    Number using O5 output only:                22
+    Number using O5 output only:                11
 
 Slice Logic Distribution:
-  Number of occupied Slices:                 2,641 out of  17,280   15%
-  Number of LUT Flip Flop pairs used:        7,138
-    Number with an unused Flip Flop:         3,967 out of   7,138   55%
-    Number with an unused LUT:               1,316 out of   7,138   18%
-    Number of fully used LUT-FF pairs:       1,855 out of   7,138   25%
-    Number of unique control sets:             209
+  Number of occupied Slices:                 2,461 out of  17,280   14%
+  Number of LUT Flip Flop pairs used:        7,089
+    Number with an unused Flip Flop:         3,918 out of   7,089   55%
+    Number with an unused LUT:               1,265 out of   7,089   17%
+    Number of fully used LUT-FF pairs:       1,906 out of   7,089   26%
+    Number of unique control sets:             212
     Number of slice register sites lost
-      to control set restrictions:             384 out of  69,120    1%
+      to control set restrictions:             392 out of  69,120    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -58,8 +58,8 @@ IO Utilization:
     Number of LOCed IOBs:                       13 out of      13  100%
 
 Specific Feature Utilization:
-  Number of BlockRAM/FIFO:                      91 out of     148   61%
-    Number using BlockRAM only:                 91
+  Number of BlockRAM/FIFO:                      90 out of     148   60%
+    Number using BlockRAM only:                 90
     Total primitives used:
       Number of 36k BlockRAM used:              87
       Number of 18k BlockRAM used:               4
@@ -70,11 +70,11 @@ Specific Feature Utilization:
   Number of DSP48Es:                             1 out of      64    1%
 
   Number of RPM macros:            9
-Average Fanout of Non-Clock Nets:                4.42
+Average Fanout of Non-Clock Nets:                4.41
 
 Peak Memory Usage:  1129 MB
-Total REAL time to MAP completion:  55 secs 
-Total CPU time to MAP completion:   54 secs 
+Total REAL time to MAP completion:  1 mins 
+Total CPU time to MAP completion:   58 secs 
 
 Table of Contents
 -----------------
@@ -1525,25 +1525,21 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net xmemr_n is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s9/i8255/cmd[4]_GND_284_o_equal_8_o<4>1 is sourced by a combinatorial pin.
+   s9/i8255/cmd[4]_GND_283_o_equal_8_o<4>1 is sourced by a combinatorial pin.
    This is not good design practice. Use the CE pin to control the loading of
    data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net xa<0> is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C2/MODETRIG is
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C1/LOADCNT is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C1/LOADCNT is
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C2/MODETRIG is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s9/i8255/cmd[4]_GND_284_o_equal_13_o is sourced by a combinatorial pin. This
-   is not good design practice. Use the CE pin to control the loading of data
-   into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s1/i8259/cs_n_wr_n_AND_622_o is sourced by a combinatorial pin. This is not
    good design practice. Use the CE pin to control the loading of data into the
@@ -1572,6 +1568,10 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s1/inta_n is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s9/i8255/cmd[4]_GND_283_o_equal_13_o is sourced by a combinatorial pin. This
+   is not good design practice. Use the CE pin to control the loading of data
+   into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s4/wrt_dma_pg_reg_n_INV_717_o is sourced by a combinatorial pin. This is not
    good design practice. Use the CE pin to control the loading of data into the
@@ -1728,15 +1728,15 @@ The signal "icon_control0<28>" is sourceless and has been removed.
 The signal "icon_control0<34>" is sourceless and has been removed.
 The signal "icon_control0<29>" is sourceless and has been removed.
 The signal "icon_control0<35>" is sourceless and has been removed.
-The signal "s8/i8253/vcs/C2/CNTREG/LOAD/VCC" is sourceless and has been removed.
-The signal "s8/i8253/vcs/C2/OUTCTRL/TRIG/VCC" is sourceless and has been
-removed.
-The signal "s8/i8253/vcs/C1/CNTREG/LOAD/VCC" is sourceless and has been removed.
-The signal "s8/i8253/vcs/C1/OUTCTRL/TRIG/VCC" is sourceless and has been
-removed.
 The signal "s8/i8253/vcs/C0/OUTCTRL/TRIG/VCC" is sourceless and has been
 removed.
 The signal "s8/i8253/vcs/C0/CNTREG/LOAD/VCC" is sourceless and has been removed.
+The signal "s8/i8253/vcs/C1/OUTCTRL/TRIG/VCC" is sourceless and has been
+removed.
+The signal "s8/i8253/vcs/C1/CNTREG/LOAD/VCC" is sourceless and has been removed.
+The signal "s8/i8253/vcs/C2/OUTCTRL/TRIG/VCC" is sourceless and has been
+removed.
+The signal "s8/i8253/vcs/C2/CNTREG/LOAD/VCC" is sourceless and has been removed.
 The signal "s6/rb3/central_ram_core/central_ram_core/N0" is sourceless and has
 been removed.
 The signal "s6/rb2/central_ram_core/central_ram_core/N0" is sourceless and has

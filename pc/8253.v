@@ -359,24 +359,23 @@ module COUNT(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT);
   wire [ 5:0] MODE;
 
   wire [ 7:0] COUNTLSB,
-              COUNTMSB,
-              LATCHLSB,
+              COUNTMSB;
+				  
+				  
+  reg [7:0]	  LATCHLSB,
               LATCHMSB;
 
   wire [15:0] COUNT;
 
   wire LOADCNT = LOAD | RELOAD;
    
-  read
-    READ(`D,LATCHLSB,LATCHMSB,MODE[5:4],SEL,RD_,WR_,MODEWRITE,CLRLATCH);
+	read READ(`D,LATCHLSB,LATCHMSB,MODE[5:4],SEL,RD_,WR_,MODEWRITE,CLRLATCH);
 
-  cntreg
-    CNTREG(`D,MODE[5:1],SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
+	cntreg CNTREG(`D,MODE[5:1],SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN);
 
-  modereg
-    MODEREG(`D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCNT);
-
-  outlatch
+	modereg MODEREG(`D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCNT,CLK);		
+/*
+	outlatch
     OUTLATCH(
 		.COUNT(COUNT),
 		.lsb(LATCHLSB),
@@ -384,12 +383,16 @@ module COUNT(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT);
 		.LATCHCNT(LATCHCNT),
 		.CLK(CLK)
 		);
+*/
 
-  downcntr
-    DOWNCNTR(COUNT,MODE[3:0],COUNTMSB,COUNTLSB,LOADCNT,CLK,GATE,OUT);
+	always @(posedge CLK) begin
+		LATCHLSB <= (LATCHCNT ? COUNT[7:0] : LATCHLSB);
+		LATCHMSB <= (LATCHCNT ? COUNT[15:8]: LATCHMSB);
+	end
+	
+  downcntr DOWNCNTR(COUNT,MODE[3:0],COUNTMSB,COUNTLSB,LOADCNT,CLK,GATE,OUT);
 
-  outctrl
-    OUTCTRL(COUNT,MODE[3:1],CLK,GATE,OUTEN,MODETRIG,LOADCNT,SETOUT_,CLROUT_,RELOAD,OUT);
+  outctrl OUTCTRL(COUNT,MODE[3:1],CLK,GATE,OUTEN,MODETRIG,LOADCNT,SETOUT_,CLROUT_,RELOAD,OUT);
 
 endmodule
 
@@ -397,7 +400,7 @@ endmodule
  * modereg:
  * Module for the 8253 mode register
  */
-module modereg(D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCNT);
+module modereg(D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCNT,CLK);
 
   input        RD_,
                WR_,
@@ -412,8 +415,14 @@ module modereg(D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCN
 						MODEWRITE;
 
   output reg [5:0] MODE;
- 
+  input CLK;
+  reg ltch;
+  
   // Mode Register
+  always @(posedge CLK) begin
+	LATCHCNT <= ltch;
+  end
+  
   always @(posedge WR_) // was originally posedge
     if (SELMODE & RD_)
       begin
@@ -427,7 +436,7 @@ module modereg(D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCN
       CLROUT_ = 'b1;
       MODETRIG = 'b0;
       MODEWRITE = 'b0;
-		LATCHCNT = 1'b0;
+		ltch = 1'b0;
       if (SELMODE & RD_ & ~WR_)
         if (D[5:4])
            begin
@@ -442,7 +451,7 @@ module modereg(D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCN
              MODEWRITE = 'b1;
            end
          else 
-           LATCHCNT = 'b1;                      // Counter Latch Command
+           ltch = 'b1;                      // Counter Latch Command
     end
 
 endmodule
@@ -583,32 +592,8 @@ module outlatch(COUNT, lsb, msb, LATCHCNT, CLK);
    input         LATCHCNT;
 	input CLK;
    
-	reg [7:0] lsb, msb;
-	wire rst;
-	wire [7:0] nlsb, nmsb;
-	
-	assign rst = 1'b1;
-	assign nlsb = LATCHCNT ? COUNT[7:0] : lsb;
-	assign nmsb = LATCHCNT ? COUNT[15:8] : msb;
-	
-	initial begin
-		lsb = 8'b0;
-		msb = 8'b0;
-	end
-
-	always @(posedge CLK or negedge rst) begin
-		if(~rst) begin
-			lsb <= 8'b0;
-			msb <= 8'b0;
-		end
-		else begin
-			lsb <= nlsb;
-			msb <= nmsb;
-		end
-	end
-   
-	//assign LATCHMSB = msb;
-	//assign LATCHLSB = lsb;
+	assign lsb = COUNT[7:0];
+	assign msb = COUNT[15:8];
 	
 endmodule
 
