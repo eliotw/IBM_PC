@@ -42,7 +42,7 @@ module test_fdc();
       // Set Up Systems
       clk = 1'b0;
       rst = 1'b0;
-      testMSR = 8'hE0; //Testing initial Main status register (hypothetically should be this)
+      testMSR = 8'hA0; //Testing initial Main status register (hypothetically should be this)
       dack2_n = 1'b1;
       tc = 1'b0;
       ior_n = 1'b1;
@@ -86,37 +86,38 @@ module test_fdc();
       iow_n = 1'b1; // (no more writing to FDC, Execution state)
       a = 20'h34f; //checking that everything is working (status register)
       ior_n = 1'b0; //reading
-      testMSR = 8'b00; //need to check what it should be *
+      testMSR = 8'h31; //need to check what it should be *(hypothetically)
       @(posedge clk);
       errors = errors + (d != testMSR); //should be right
       $display(d); // on off chance it isn't testMSR, find out what it is *REMOVE BEFORE TURNING IN*
       a = 20'h35f;
-      st0 = 8'hxx; //figure this out
+      st0 = 8'h20; //figure this out
       while (d != st0) begin //should be a loop until the data is what st0 should be (only works if data is only st0
       	@(possedge clk); //when st0 is put out on dataline
       end
       ior_n = 1'b0;
-      testData = 8'h; //ST0
+      errors = errors + (d != st0); //should be right
+      testData = 8'h00; //st1
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //ST1
+      #1 testData = 8'h00; //ST2
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //ST2
+      #1 testData = 8'h00; //ST3
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //Track #
+      #1 testData = 8'h01; //Track #
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //H
+      #1 testData = 8'h00; //H
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //Sector Number
+      #1 testData = 8'h01; //Sector Number
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
@@ -141,32 +142,31 @@ module test_fdc();
       errors = errors + (d != testMSR); //should be right
       $display(d); // on off chance it isn't testMSR, find out what it is *REMOVE BEFORE TURNING IN*
       a = 20'h35f;
-      st0 = 8'hxx; //figure this out
+      st0 = 8'h20; //figure this out
       while (d != st0) begin //should be a loop until the data is what st0 should be (only works if data is only st0
       	@(possedge clk); //when st0 is put out on dataline
       end
       ior_n = 1'b0;
-      testData = 8'h; //ST0
+      testData = 8'h20; //ST0
+      #1 errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
+      #1 testData = 8'h00; //ST1
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //ST1
+      #1 testData = 8'h00; //ST2
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //ST2
+      #1 testData = 8'h01; //Track #
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //Track #
+      #1 testData = 8'h00; //H
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //H
-      @(posedge clk);
-      errors = errors + (d != testData); //should be right
-      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //Sector Number
+      #1 testData = 8'h07; //Sector Number
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
@@ -184,7 +184,7 @@ module test_fdc();
       d = 8'h01; //check HD,US0,US1 again
       @(posedge clk);
       ior_n = 1'b0;
-      testData = 8'h; //ST3
+      testData = 8'h00; //ST3
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
@@ -197,7 +197,7 @@ module test_fdc();
       d = 8'h08; //check SK, need to find my notes
       @(posedge clk);
       ior_n = 1'b0;
-      testData = 8'h; //ST0
+      testData = 8'h20; //ST0
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
@@ -239,32 +239,31 @@ module test_fdc();
       errors = errors + (d != testMSR); //should be right
       $display(d); // on off chance it isn't testMSR, find out what it is *REMOVE BEFORE TURNING IN*
       a = 20'h35f;
-      st0 = 8'hxx; //figure this out
+      st0 = 8'h20; //figure this out
       while (d != st0) begin //should be a loop until the data is what st0 should be (only works if data is only st0
       	@(possedge clk); //when st0 is put out on dataline
       end
       ior_n = 1'b0;
-      testData = 8'h; //ST0
+      #1 testData = 8'h20; //ST0
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
+      #1 testData = 8'h00; //ST1
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //ST1
+      #1 testData = 8'h00; //ST2
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //ST2
+      #1 testData = 8'h01; //Track #
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //Track #
+      #1 testData = 8'h00; //H
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //H
-      @(posedge clk);
-      errors = errors + (d != testData); //should be right
-      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //Sector Number
+      #1 testData = 8'h07; //Sector Number
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
@@ -303,32 +302,31 @@ module test_fdc();
       errors = errors + (d != testMSR); //should be right
       $display(d); // on off chance it isn't testMSR, find out what it is *REMOVE BEFORE TURNING IN*
       a = 20'h35f;
-      st0 = 8'hxx; //figure this out
+      st0 = 8'h20; //figure this out
       while (d != st0) begin //should be a loop until the data is what st0 should be (only works if data is only st0
       	@(possedge clk); //when st0 is put out on dataline
       end
       ior_n = 1'b0;
-      testData = 8'h; //ST0
+      #1 testData = 8'h20; //ST0
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
+      #1 testData = 8'h00; //ST1
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //ST1
+      #1 testData = 8'h00; //ST2
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //ST2
+      #1 testData = 8'h01; //Track #
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //Track #
+      #1 testData = 8'h00; //H
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //H
-      @(posedge clk);
-      errors = errors + (d != testData); //should be right
-      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //Sector Number
+      #1 testData = 8'h07; //Sector Number
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
@@ -369,32 +367,31 @@ module test_fdc();
       errors = errors + (d != testMSR); //should be right
       $display(d); // on off chance it isn't testMSR, find out what it is *REMOVE BEFORE TURNING IN*
       a = 20'h35f;
-      st0 = 8'hxx; //figure this out
+      st0 = 8'h20; //figure this out
       while (d != st0) begin //should be a loop until the data is what st0 should be (only works if data is only st0
       	@(possedge clk); //when st0 is put out on dataline
       end
       ior_n = 1'b0;
-      testData = 8'h; //ST0
+      #1 testData = 8'h20; //ST0
+      errors = errors + (d != testData); //should be right
+      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
+      #1 testData = 8'h00; //ST1
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //ST1
+      #1 testData = 8'h00; //ST2
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //ST2
+      #1 testData = 8'h01; //Track #
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //Track #
+      #1 testData = 8'h00; //H
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //H
-      @(posedge clk);
-      errors = errors + (d != testData); //should be right
-      $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
-      #1 testData = 8'h; //Sector Number
+      #1 testData = 8'h07; //Sector Number
       @(posedge clk);
       errors = errors + (d != testData); //should be right
       $display(d); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
