@@ -341,7 +341,7 @@ module control_fsm
                       .count(bytes_transferred)
                      );
     
-	 assign byte_level = (cpu_byte_o & write) ? 4'b0001 : 4'b0010;
+	 assign byte_level = (cpu_byte_o) ? 4'b0001 : 4'b0010;
     assign data_tran_done = (bytes_transferred == byte_level);
     assign inc = inc_count;
     assign clr = clr_count;

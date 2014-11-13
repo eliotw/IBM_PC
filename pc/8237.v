@@ -51,6 +51,14 @@ reg ior, iow, eopp;
 reg [3:0] a3_0, a7_4;
 
 reg [15:0] curr_addr, curr_word, base_addr, base_word;
+reg [15:0] curr_addr0, curr_word0, base_addr0, base_word0;
+reg [15:0] curr_addr1, curr_word1, base_addr1, base_word1;
+reg [15:0] curr_addr2, curr_word2, base_addr2, base_word2;
+reg [15:0] curr_addr3, curr_word3, base_addr3, base_word3;
+reg [1:0] ca0, cw0, ba0, bw0;
+reg [1:0] ca1, cw1, ba1, bw1;
+reg [1:0] ca2, cw2, ba2, bw2;
+reg [1:0] ca3, cw3, ba3, bw3;
 reg [7:0] command;
 reg [5:0] mode;
 reg [3:0] request, mask;
@@ -69,16 +77,6 @@ assign drequest[1] = ((command[6] ^ dreq[1]) & ~mask[1]) | request[1];
 assign drequest[2] = ((command[6] ^ dreq[2]) & ~mask[2]) | request[2];
 assign drequest[3] = ((command[6] ^ dreq[3]) & ~mask[3]) | request[3];
 
-
-/*assign dreq_io = (state == 3'b0) ? 4'bZZZZ : dreq;
-assign db_io = (state == 3'b0) ? 8'bZZZZZZZ : db;
-assign ior_io = (state == 3'b0) ? 1'bZ : ior;
-assign iow_io = (state == 3'b0) ? 1'bZ : iow;
-assign eopp_io = (state == 3'b0) ? 1'bZ : eopp;
-assign a3_0_io = (state == 3'b0) ? 4'bZZZZ : a3_0;
-assign a7_4_io = (state == 3'b0) ? 4'bZZZZ : a7_4;
-*/
-
 assign db_io = db;
 assign ior_io = ior;
 assign iow_io = iow;
@@ -87,14 +85,6 @@ assign a3_0_io = a3_0;
 assign a7_4_io = a7_4;
 assign memr_io = (memr == 1'b1) ? 1'b1 : 1'bz;
 assign memw_io = (memw == 1'b1) ? 1'b1 : 1'bz;
-/*assign dreq_io = (state == 3'b0) ? dreq : 4'bZ;
-assign db_io = (state == 3'b0) ? db : 8'bZ;
-assign ior_io = (state == 3'b0) ? ior : 1'bZ;
-assign iow_io = (state == 3'b0) ? iow : 1'bZ;
-assign eopp_io = (state == 3'b0) ? eopp : 1'bZ;
-assign a3_0_io = (state == 3'b0) ? a3_0 : 4'bZ;
-assign a7_4_io = (state == 3'b0) ? a7_4 : 4'bZ;*/
-
 
 always @(posedge clk) begin
 // , reset, mast_clr, drequest <-- These were here, but ISE can't even
@@ -108,6 +98,23 @@ always @(posedge clk) begin
         a3_0 <= Z_4;
         a7_4 <= Z_4;
        
+		  ca0 <= 2'b00; 
+		  cw0 <= 2'b00;
+		  ba0 <= 2'b00;
+		  bw0 <= 2'b00;
+		  ca1 <= 2'b00;
+		  cw1 <= 2'b00;
+		  ba1 <= 2'b00;
+		  bw1 <= 2'b00;
+		  ca2 <= 2'b00;
+		  cw2 <= 2'b00;
+		  ba2 <= 2'b00;
+		  bw2 <= 2'b00;
+		  ca3 <= 2'b00;
+		  cw3 <= 2'b00;
+		  ba3 <= 2'b00;
+		  bw3 <= 2'b00;
+		 
         hrq <= 1'b0;
         dack <= 4'b1111;
         aen <= 1'b0;
@@ -119,6 +126,27 @@ always @(posedge clk) begin
         curr_word <= C0_16;
         base_addr <= C0_16;
         base_word <= C0_16;
+		  
+		  curr_addr0 <= C0_16;
+        curr_word0 <= C0_16;
+        base_addr0 <= C0_16;
+        base_word0 <= C0_16;
+		  
+		  curr_addr1 <= C0_16;
+        curr_word1 <= C0_16;
+        base_addr1 <= C0_16;
+        base_word1 <= C0_16;
+		  
+		  curr_addr2 <= C0_16;
+        curr_word2 <= C0_16;
+        base_addr2 <= C0_16;
+        base_word2 <= C0_16;
+		  
+		  curr_addr3 <= C0_16;
+        curr_word3 <= C0_16;
+        base_addr3 <= C0_16;
+        base_word3 <= C0_16;
+		  
         command <= C0_8;
         mode <= C0_6;
         request <= C0_4;
@@ -187,7 +215,7 @@ always @(posedge clk) begin
                     hrq <= 1'b1;
                 end else if (hlda == 1'b0 && cs == 1'b0) begin
                     // Program Condition
-
+						  // Write to DMA Registers
                     if (ior_io == 1'b1 && iow_io == 1'b0) begin
                         
                         case(a3_0_io)
@@ -202,56 +230,112 @@ always @(posedge clk) begin
                             4'b1101: begin
                                 mast_clr <= 1'b1;
                             end
+									 // CA 0
                             4'b0000: begin
-
-                                if(ff == 1'b0) begin
-                                    curr_addr[7:0] <= db_io;
-                                    base_addr[7:0] <= db_io;
-                                    ff <= 1'b1;
-                                end else begin
-                                    curr_addr[15:8] <= db_io;
-                                    base_addr[15:8] <= db_io;
-                                    ff <= 1'b0;
+                                if(ca0 == 2'b00) begin
+                                    curr_addr0[7:0] <= db_io;
+                                    base_addr0[7:0] <= db_io;
+                                    ca0 <= 2'b01;
+                                end 
+										  else if (ca0 == 2'b10) begin
+                                    curr_addr0[15:8] <= db_io;
+                                    base_addr0[15:8] <= db_io;
+                                    ca0 <= 2'b11;
                                 end
-
                             end
+									 // CW 0
                             4'b0001: begin
-                                if(ff == 1'b0) begin
-                                    curr_word[7:0] <= db_io;
-                                    base_word[7:0] <= db_io;
-                                    ff <= 1'b1;
-                                end else begin
-                                    curr_word[15:8] <= db_io;
-                                    base_word[15:8] <= db_io;
-                                    ff <= 1'b0;
+                                if(cw0 == 2'b00) begin
+                                    curr_word0[7:0] <= db_io;
+                                    base_word0[7:0] <= db_io;
+                                    cw0 <= 2'b01;
+                                end 
+										  else if (cw0 == 2'b10) begin
+                                    curr_word0[15:8] <= db_io;
+                                    base_word0[15:8] <= db_io;
+                                    cw0 <= 2'b11;
                                 end
                             end
+									 
                         endcase
-                    end else if (ior_io == 1'b0 && iow_io == 1'b1) begin
-
+                    end 
+						  else if (ior_io == 1'b0 && iow_io == 1'b1) begin
+								// Read from DMA Registers
                         case (a3_0_io)
-                            4'b0000: begin
-
-                                if (ff == 1'b0) begin
-                                    db <= curr_addr[7:0];
-                                    ff <= 1'b1;
-                                end else begin
-                                    db <= curr_addr[15:8];
-                                    ff <= 1'b0;
+									// BA 0
+									4'b0000: begin
+                                if(ba0 == 2'b00) begin
+                                    db <= curr_addr0[7:0];
+                                    ba0 <= 2'b01;
+                                end 
+										  else if (ba0 == 2'b01) begin
+												db <= curr_addr0[7:0];
+										  end
+										  else if (ba0 == 2'b10) begin
+                                    db <= curr_addr0[15:8];
+                                    ba0 <= 2'b11;
                                 end
+										  else begin
+												db <= curr_addr0[15:8];
+										  end
                             end
-                            4'b0001: begin
-
-                                if (ff == 1'b0) begin
-                                    db <= curr_word[7:0];
-                                    ff <= 1'b1;
-                                end else begin
-                                    db <= curr_word[15:8];
-                                    ff <= 1'b0;
+									// BW 0
+									4'b0001: begin
+                                if(bw0 == 2'b00) begin
+                                    db <= curr_word0[7:0];
+                                    bw0 <= 2'b01;
+                                end 
+										  else if(bw0 == 2'b01) begin
+                                    db <= curr_word0[7:0];
+                                end 
+										  else if (bw0 == 2'b10) begin
+                                    db <= curr_word0[15:8];
+                                    bw0 <= 2'b11;
+                                end
+										  else begin
+                                    db <= curr_word0[15:8];
                                 end
                             end
                         endcase
                     end
+						  else begin
+								// Reg0
+								if(ca0 == 2'b01) ca0 <= 2'b10;
+								else if (ca0 == 2'b11) ca0 <= 2'b00;
+								if(cw0 == 2'b01) cw0 <= 2'b10;
+								else if (cw0 == 2'b11) cw0 <= 2'b00;
+								if(ba0 == 2'b01) ba0 <= 2'b10;
+								else if (ba0 == 2'b11) ba0 <= 2'b00;
+								if(bw0 == 2'b01) bw0 <= 2'b10;
+								else if (bw0 == 2'b11) bw0 <= 2'b00;
+								// Reg1
+								if(ca1 == 2'b01) ca1 <= 2'b10;
+								else if (ca1 == 2'b11) ca1 <= 2'b00;
+								if(cw1 == 2'b01) cw1 <= 2'b10;
+								else if (cw1 == 2'b11) cw1 <= 2'b00;
+								if(ba1 == 2'b01) ba1 <= 2'b10;
+								else if (ba1 == 2'b11) ba1 <= 2'b00;
+								if(bw1 == 2'b01) bw1 <= 2'b10;
+								else if (bw1 == 2'b11) bw1 <= 2'b00;
+								// Reg2
+								if(ca2 == 2'b01) ca2 <= 2'b10;
+								else if (ca2 == 2'b11) ca3 <= 2'b00;
+								if(cw2 == 2'b01) cw2 <= 2'b10;
+								else if (cw2 == 2'b11) cw3 <= 2'b00;
+								if(ba2 == 2'b01) ba2 <= 2'b10;
+								else if (ba2 == 2'b11) ba3 <= 2'b00;
+								if(bw2 == 2'b01) bw2 <= 2'b10;
+								else if (bw2 == 2'b11) bw3 <= 2'b00;
+								// Reg3
+								if(ca3 == 2'b01) ca3 <= 2'b10;
+								else if (ca3 == 2'b11) ca3 <= 2'b00;
+								if(cw3 == 2'b01) cw3 <= 2'b10;
+								else if (cw3 == 2'b11) cw3 <= 2'b00;
+								if(ba3 == 2'b01) ba3 <= 2'b10;
+								else if (ba3 == 2'b11) ba3 <= 2'b00;
+								if(bw3 == 2'b01) bw3 <= 2'b10;
+								else if (bw3 == 2'b11) bw3 <= 2'b00;
+						  end
                 end
             end
 
