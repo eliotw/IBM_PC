@@ -237,11 +237,19 @@ always @(posedge clk) begin
                                     base_addr0[7:0] <= db_io;
                                     ca0 <= 2'b01;
                                 end 
+										  else if(ca0 == 2'b01) begin
+                                    curr_addr0[7:0] <= db_io;
+                                    base_addr0[7:0] <= db_io;
+                                end 
 										  else if (ca0 == 2'b10) begin
                                     curr_addr0[15:8] <= db_io;
                                     base_addr0[15:8] <= db_io;
                                     ca0 <= 2'b11;
                                 end
+										  else begin
+												curr_addr0[15:8] <= db_io;
+                                    base_addr0[15:8] <= db_io;
+										  end
                             end
 									 // CW 0
                             4'b0001: begin
@@ -249,14 +257,147 @@ always @(posedge clk) begin
                                     curr_word0[7:0] <= db_io;
                                     base_word0[7:0] <= db_io;
                                     cw0 <= 2'b01;
-                                end 
+                                end
+										  else if (cw0 == 2'b01) begin
+												curr_word0[7:0] <= db_io;
+                                    base_word0[7:0] <= db_io;
+										  end
 										  else if (cw0 == 2'b10) begin
                                     curr_word0[15:8] <= db_io;
                                     base_word0[15:8] <= db_io;
                                     cw0 <= 2'b11;
                                 end
+										  else begin
+												curr_word0[15:8] <= db_io;
+                                    base_word0[15:8] <= db_io;
+										  end
                             end
-									 
+									 // CA 1
+                            4'b0010: begin
+                                if(ca1 == 2'b00) begin
+                                    curr_addr1[7:0] <= db_io;
+                                    base_addr1[7:0] <= db_io;
+                                    ca1 <= 2'b01;
+                                end 
+										  else if(ca1 == 2'b01) begin
+                                    curr_addr1[7:0] <= db_io;
+                                    base_addr1[7:0] <= db_io;
+                                end 
+										  else if (ca1 == 2'b10) begin
+                                    curr_addr1[15:8] <= db_io;
+                                    base_addr1[15:8] <= db_io;
+                                    ca1 <= 2'b11;
+                                end
+										  else begin
+                                    curr_addr1[15:8] <= db_io;
+                                    base_addr1[15:8] <= db_io;
+                                end 
+                            end
+									 // CW 1
+                            4'b0011: begin
+                                if(cw1 == 2'b00) begin
+                                    curr_word1[7:0] <= db_io;
+                                    base_word1[7:0] <= db_io;
+                                    cw1 <= 2'b01;
+                                end 
+										  else if(cw1 == 2'b01) begin
+                                    curr_word1[7:0] <= db_io;
+                                    base_word1[7:0] <= db_io;
+                                end
+										  else if (cw1 == 2'b10) begin
+                                    curr_word1[15:8] <= db_io;
+                                    base_word1[15:8] <= db_io;
+                                    cw1 <= 2'b11;
+                                end
+										  else begin
+                                    curr_word1[15:8] <= db_io;
+                                    base_word1[15:8] <= db_io;
+                                end
+                            end
+									 // CA 2
+                            4'b0100: begin
+                                if(ca2 == 2'b00) begin
+                                    curr_addr2[7:0] <= db_io;
+                                    base_addr2[7:0] <= db_io;
+                                    ca2 <= 2'b01;
+                                end 
+										  else if(ca2 == 2'b01) begin
+                                    curr_addr2[7:0] <= db_io;
+                                    base_addr2[7:0] <= db_io;
+                                end 
+										  else if (ca2 == 2'b10) begin
+                                    curr_addr2[15:8] <= db_io;
+                                    base_addr2[15:8] <= db_io;
+                                    ca2 <= 2'b11;
+                                end
+										  else begin
+                                    curr_addr2[15:8] <= db_io;
+                                    base_addr2[15:8] <= db_io;
+                                end
+                            end
+									 // CW 2
+                            4'b0101: begin
+                                if(cw2 == 2'b00) begin
+                                    curr_word2[7:0] <= db_io;
+                                    base_word2[7:0] <= db_io;
+                                    cw2 <= 2'b01;
+                                end 
+										  else if(cw2 == 2'b01) begin
+                                    curr_word2[7:0] <= db_io;
+                                    base_word2[7:0] <= db_io;
+                                end 
+										  else if (cw2 == 2'b10) begin
+                                    curr_word2[15:8] <= db_io;
+                                    base_word2[15:8] <= db_io;
+                                    cw2 <= 2'b11;
+                                end
+										  else begin
+                                    curr_word2[15:8] <= db_io;
+                                    base_word2[15:8] <= db_io;
+                                end
+                            end
+									 // CA 3
+                            4'b0110: begin
+                                if(ca3 == 2'b00) begin
+                                    curr_addr3[7:0] <= db_io;
+                                    base_addr3[7:0] <= db_io;
+                                    ca3 <= 2'b01;
+                                end 
+										  else if(ca3 == 2'b01) begin
+                                    curr_addr3[7:0] <= db_io;
+                                    base_addr3[7:0] <= db_io;
+                                end
+										  else if (ca3 == 2'b10) begin
+                                    curr_addr3[15:8] <= db_io;
+                                    base_addr3[15:8] <= db_io;
+                                    ca3 <= 2'b11;
+                                end
+										  else begin
+                                    curr_addr3[15:8] <= db_io;
+                                    base_addr3[15:8] <= db_io;
+                                end
+                            end
+									 // CW 3
+                            4'b0111: begin
+                                if(cw3 == 2'b00) begin
+                                    curr_word3[7:0] <= db_io;
+                                    base_word3[7:0] <= db_io;
+                                    cw3 <= 2'b01;
+                                end 
+										  else if(cw3 == 2'b01) begin
+                                    curr_word3[7:0] <= db_io;
+                                    base_word3[7:0] <= db_io;
+                                end 
+										  else if (cw3 == 2'b10) begin
+                                    curr_word3[15:8] <= db_io;
+                                    base_word3[15:8] <= db_io;
+                                    cw3 <= 2'b11;
+                                end
+										  else begin
+                                    curr_word3[15:8] <= db_io;
+                                    base_word3[15:8] <= db_io;
+                                end
+                            end									 
                         endcase
                     end 
 						  else if (ior_io == 1'b0 && iow_io == 1'b1) begin
@@ -296,6 +437,108 @@ always @(posedge clk) begin
                                     db <= curr_word0[15:8];
                                 end
                             end
+									// BA 1
+									4'b0010: begin
+                                if(ba1 == 2'b00) begin
+                                    db <= curr_addr1[7:0];
+                                    ba1 <= 2'b01;
+                                end 
+										  else if (ba1 == 2'b01) begin
+												db <= curr_addr1[7:0];
+										  end
+										  else if (ba1 == 2'b10) begin
+                                    db <= curr_addr1[15:8];
+                                    ba1 <= 2'b11;
+                                end
+										  else begin
+												db <= curr_addr1[15:8];
+										  end
+                            end
+									// BW 1
+									4'b0011: begin
+                                if(bw1 == 2'b00) begin
+                                    db <= curr_word1[7:0];
+                                    bw1 <= 2'b01;
+                                end 
+										  else if(bw1 == 2'b01) begin
+                                    db <= curr_word1[7:0];
+                                end 
+										  else if (bw1 == 2'b10) begin
+                                    db <= curr_word1[15:8];
+                                    bw1 <= 2'b11;
+                                end
+										  else begin
+                                    db <= curr_word1[15:8];
+                                end
+                            end
+									// BA 2
+									4'b0100: begin
+                                if(ba2 == 2'b00) begin
+                                    db <= curr_addr2[7:0];
+                                    ba2 <= 2'b01;
+                                end 
+										  else if (ba2 == 2'b01) begin
+												db <= curr_addr2[7:0];
+										  end
+										  else if (ba2 == 2'b10) begin
+                                    db <= curr_addr2[15:8];
+                                    ba2 <= 2'b11;
+                                end
+										  else begin
+												db <= curr_addr2[15:8];
+										  end
+                            end
+									// BW 2
+									4'b0101: begin
+                                if(bw2 == 2'b00) begin
+                                    db <= curr_word2[7:0];
+                                    bw2 <= 2'b01;
+                                end 
+										  else if(bw0 == 2'b01) begin
+                                    db <= curr_word2[7:0];
+                                end 
+										  else if (bw0 == 2'b10) begin
+                                    db <= curr_word2[15:8];
+                                    bw2 <= 2'b11;
+                                end
+										  else begin
+                                    db <= curr_word2[15:8];
+                                end
+                            end
+									// BA 3
+									4'b0110: begin
+                                if(ba3 == 2'b00) begin
+                                    db <= curr_addr3[7:0];
+                                    ba3 <= 2'b01;
+                                end 
+										  else if (ba3 == 2'b01) begin
+												db <= curr_addr3[7:0];
+										  end
+										  else if (ba3 == 2'b10) begin
+                                    db <= curr_addr3[15:8];
+                                    ba3 <= 2'b11;
+                                end
+										  else begin
+												db <= curr_addr3[15:8];
+										  end
+                            end
+									// BW 3
+									4'b0111: begin
+                                if(bw3 == 2'b00) begin
+                                    db <= curr_word3[7:0];
+                                    bw3 <= 2'b01;
+                                end 
+										  else if(bw3 == 2'b01) begin
+                                    db <= curr_word3[7:0];
+                                end 
+										  else if (bw3 == 2'b10) begin
+                                    db <= curr_word3[15:8];
+                                    bw3 <= 2'b11;
+                                end
+										  else begin
+                                    db <= curr_word3[15:8];
+                                end
+                            end									 
                         endcase
                     end
 						  else begin
@@ -319,13 +562,13 @@ always @(posedge clk) begin
 								else if (bw1 == 2'b11) bw1 <= 2'b00;
 								// Reg2
 								if(ca2 == 2'b01) ca2 <= 2'b10;
-								else if (ca2 == 2'b11) ca3 <= 2'b00;
+								else if (ca2 == 2'b11) ca2 <= 2'b00;
 								if(cw2 == 2'b01) cw2 <= 2'b10;
-								else if (cw2 == 2'b11) cw3 <= 2'b00;
+								else if (cw2 == 2'b11) cw2 <= 2'b00;
 								if(ba2 == 2'b01) ba2 <= 2'b10;
-								else if (ba2 == 2'b11) ba3 <= 2'b00;
+								else if (ba2 == 2'b11) ba2 <= 2'b00;
 								if(bw2 == 2'b01) bw2 <= 2'b10;
-								else if (bw2 == 2'b11) bw3 <= 2'b00;
+								else if (bw2 == 2'b11) bw2 <= 2'b00;
 								// Reg3
 								if(ca3 == 2'b01) ca3 <= 2'b10;
 								else if (ca3 == 2'b11) ca3 <= 2'b00;

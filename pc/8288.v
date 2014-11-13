@@ -73,7 +73,7 @@ module intel8288(
    // Assign signal wires
    assign ale_s = (state == s0) & ~aen_n & activate;
    assign dtr_s = (((state == s1) | (state == s2) | (state == s3)) & readint) ? 1'b0 : 1'b1;
-   assign den_s = (((state == s2) | (state == s3)) & readint) | ((state != s0) & write);
+   assign den_s = (((state == s1) | (state == s2) | (state == s3)) & readint) | ((state != s0) & write);
    //assign den_s = ((state == s2) & readint) | (((state == s1) | (state == s2)) & write);
 	
    // Finite State Machine Next State Logic

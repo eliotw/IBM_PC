@@ -275,7 +275,8 @@ module motherboard(
 	     .xmemw_n(xmemw_n)
 	     );
 
-   // Sheet 6 (and 7)
+   // Sheet 6 (removed)
+	/*
    sheet6 s6(
 	     .d(d),
 	     .xmemr_n(xmemr_n),
@@ -290,6 +291,16 @@ module motherboard(
 	     .pck(pck),
 	     .pck_n(pck_n)
 	     );
+*/
+
+	// Sheet 7 
+	sheet7 s7(
+				.d(d),
+				.xmemr_n(xmemr_n),
+				.xmemw_n(xmemw_n),
+				.a(a),
+				.clk88(clk88)
+				);
 
    // Sheet 8
    sheet8 s8(
@@ -859,9 +870,9 @@ module sheet3(
 		 .in(rasc),
 		 .clk(clk_100),
 		 .rst(),
-		 .t5(),
-		 .t25(cas_nc), // was cas0
-		 .t50(addr_sel),
+		 .t5(cas_nc),
+		 .t25(addr_sel),
+		 .t50(),
 		 .t75(), // was addr_sel
 		 .t100(),
 		 .t125() // was cas1
@@ -1191,6 +1202,43 @@ module sheet6(
    end // always @ (posedge xmemr_n)
 
 endmodule // sheet6
+
+/*
+ * sheet7:
+ * The seventh sheet of the motherboard
+ */
+module sheet7(
+	inout [7:0] d,
+	inout xmemr_n,
+	inout xmemw_n,
+	inout [19:0] a,
+	input clk88
+	);
+	
+	// Wires
+	wire ram_sel_n;
+	wire we;
+	wire re;
+	wire [7:0] dout, din;
+	wire [17:0] addr;
+	
+	// Assignment
+	assign ram_sel_n = a[19] | a[18];
+	assign we = ~ram_sel_n & ~xmemw_n;
+	assign re = ~ram_sel_n & ~xmemr_n;
+	assign din = (we == 1'b1) ? d : 8'b00000000;
+	assign d = (re == 1'b1) ? dout : 8'bzzzzzzzz;
+	assign addr = a[17:0];
+	
+	newram nero(
+		.clka(clk88),
+		.wea(we),
+		.addra(addr),
+		.dina(din),
+		.douta(dout)
+	);
+
+endmodule
 
 /*
  * sheet8:

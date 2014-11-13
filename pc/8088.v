@@ -388,73 +388,73 @@ module control_fsm
       write_bus = 1'b0;
       cpu_block = 1'b0;
       case(state)
-        idle: begin
-           if (start) begin
-              cpu_block = 1;
-              ale = 1;
-	      iom = ~cpu_m_io;
-              dtr = write;
-	      den_n = read;
-              ld_out_regs = write;
-              write_bus = 1;
-           end
-        end
-        addr: begin
-           cpu_block = 1;
-           iom = ~cpu_m_io;
-	   dtr = write;
-	   den_n = read;
-           if (read | (cpu_m_io & ~write)) begin
-              //dtr = 0;
-              rd_n = 0;
-           end
-           else if (write) begin
-              wr_n = 0;
-              //dtr = 1;
-              write_bus = 1;
-           end
-        end
-        interm: begin
-	   cpu_block = 1;
-           iom = ~cpu_m_io;
-	   dtr = write;
-	   den_n = read;
-	   inc_count = 1;
-	   if(read) begin
-              rd_n = 0;
-              //dtr = 0;
-	      ld_in = bytes_transferred + 1;
-	   end
-	   else if(write) begin
-	      wr_n = 1'b0;
-	      //dtr = 1;
-			write_bus = 1;
-	   end
-        end
-        data: begin
-	   iom = ~cpu_m_io;
-	   dtr = write;
-	   den_n = read;
-           if (~data_tran_done) begin
-              cpu_block = 1;
-              //write_bus = 1;
-              if (read) begin
-                 rd_n = 0;
-                 //dtr = 0;
-              end
-              else if (write) begin
-                 wr_n = 0;
-                 //dtr = 1;
-              end
-           end
-           else begin
-              cpu_block = 0;
-              //dtr = 1'b1;
-              wr_n = 1;
-              clr_count = 1;
-           end
-        end
-      endcase
+			idle: begin
+				if (start) begin
+					cpu_block = 1;
+					ale = 1;
+					iom = ~cpu_m_io;
+					dtr = write;
+					den_n = read;
+					ld_out_regs = write;
+					write_bus = 1;
+				end
+			end
+			addr: begin
+				cpu_block = 1;
+				iom = ~cpu_m_io;
+				dtr = write;
+				den_n = read;
+				if (read | (cpu_m_io & ~write)) begin
+					//dtr = 0;
+					rd_n = 0;
+				end
+				else if (write) begin
+					wr_n = 0;
+					//dtr = 1;
+					write_bus = 1;
+				end
+			end
+			interm: begin
+				cpu_block = 1;
+				iom = ~cpu_m_io;
+				dtr = write;
+				den_n = read;
+				inc_count = 1;
+				if(read) begin
+					rd_n = 0;
+					//dtr = 0;
+					ld_in = bytes_transferred + 1;
+				end
+				else if(write) begin
+					wr_n = 1'b0;
+					//dtr = 1;
+					write_bus = 1;
+				end
+			end
+			data: begin
+				iom = ~cpu_m_io;
+				dtr = write;
+				den_n = read;
+				if (~data_tran_done) begin
+					cpu_block = 1;
+					//write_bus = 1;
+					if (read) begin
+						rd_n = 0;
+						ld_in = bytes_transferred + 1;
+					end
+					else if (write) begin
+						wr_n = 0;
+						//dtr = 1;
+					end
+				end
+				else begin
+					cpu_block = 0;
+					//dtr = 1'b1;
+					wr_n = 1;
+					clr_count = 1;
+				end
+			end
+		endcase
    end
      
 endmodule
