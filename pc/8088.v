@@ -181,6 +181,7 @@ module processor_8088
      || ((zet_state == execu_st) && ~memalu && ~cpu_we_o) 
        || (zet_state == modrm_st) 
 	 || (zet_state == offse_st) 
+	 || ((zet_next_state == opcod_st) & (zet_state == opcod_st))
 	   || (zet_state == immed_st);
    assign ad = (write_bus)? 
 		((ale)? 

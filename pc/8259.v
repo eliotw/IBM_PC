@@ -4,6 +4,7 @@
  * interrupt controller
  */
 module intel8259(
+		 clk,
 		 cs_n,
 		 wr_n,
 		 rd_n,
@@ -18,6 +19,7 @@ module intel8259(
 		 );
 
    // Inputs, Outputs, and Inouts
+	input clk;
    input cs_n, wr_n, rd_n;
    inout [7:0] d;
    input [2:0] cas; // not connected
@@ -30,8 +32,11 @@ module intel8259(
 
    // Wires
    wire        inta; // Interrupt
-   wire [7:0]  din; // Data in
-   
+   wire rst_n; // Reset low
+	
+	// Input register
+	reg [7:0]  din; // Data in
+	
    // Top interrupt register
    reg [2:0]   topint;
    
@@ -55,7 +60,8 @@ module intel8259(
    
    // Assign Spen
    assign spen_n = rd_n;
-   
+   assign rst_n = ~rst;
+	
    // Initialization
    initial begin
       icws = 2'b10;
@@ -73,8 +79,22 @@ module intel8259(
    
    // Assign line D
    assign d = ((rd_n == 1'b0) & (cs_n == 1'b0)) ? ((a0 == 1'b1) ? imr : dout) : 8'bzzzzzzzz;
-   assign din = d;
-
+   
+	// Assign data in
+	/*
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			din <= 8'b0;
+		end
+		else if(cs_n == 1'b0) begin
+			din <= d;
+		end
+	end
+*/
+	always @(negedge cs_n) begin
+		din <= d;
+	end
+	
    // IMR Loading
    always @(cs_n or wr_n or a0 or din or imr or rst) begin
       if(rst == 1'b1) begin

@@ -16,7 +16,8 @@ module motherboard(
 		   output HDR1_10, // vga blue o 0
 		   output HDR1_12, // vga blue o 1
 		   output HDR1_14, // vga horizontal sync
-		   output HDR1_16 // vga vertical sync
+		   output HDR1_16, // vga vertical sync
+			output GPIO_LED_0
 		   );
 
    // Internal signals
@@ -101,7 +102,8 @@ module motherboard(
    // Some assignments
    assign clk_100 = USER_CLK; // user clock is 100 MHz clock
    assign xa0_n = xa[0]; // not sure if needs to be inverted or not
-   assign PIEZO_SPEAKER = spkr_data_out;
+   assign PIEZO_SPEAKER = 1'b0; // speaker is darn annoying
+	assign GPIO_LED_0 = spkr_data_out; // assign to led instead
    assign HDR1_2 = vga_red_o[0]; // vga red o 0
    assign HDR1_4 = vga_red_o[1]; // vga red o 1
    assign HDR1_6 = vga_green_o[0]; // vga green o 0
@@ -327,6 +329,7 @@ module motherboard(
 
    // Sheet 9
    sheet9 s9(
+		  .clk88(clk88),
 	     .xior_n(xior_n),
 	     .xiow_n(xiow_n),
 	     .ppics_n(ppi_cs_n),
@@ -486,6 +489,7 @@ module sheet1(
 	
    // Intel 8259 Programmable Interrupt Controller
    intel8259 i8259(
+			.clk(clk88),
 		   .cs_n(intr_cs_n),
 		   .wr_n(xiow_n),
 		   .rd_n(xior_n),
@@ -1234,7 +1238,7 @@ module sheet7(
 	assign d = (re == 1'b1) ? dout : 8'bzzzzzzzz;
 	assign addr = a[17:0];
 	assign pck_n = ~pck;
-	assign pck = 1'b1;
+	assign pck = 1'b0;
 	
 	// New RAM Module
 	newram nero(
@@ -1333,6 +1337,7 @@ endmodule // sheet8
  * The ninth sheet of the motherboard
  */
 module sheet9(
+			input clk88,
 	      input xior_n,
 	      input xiow_n,
 	      input ppics_n,
@@ -1387,6 +1392,7 @@ module sheet9(
    
    // Intel 8255
    intel8255 i8255(
+				  .clk(clk88),
 	           .rd_n(xior_n),
 	           .wr_n(xiow_n),
 	           .cs_n(ppics_n),

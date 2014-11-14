@@ -4,6 +4,7 @@
  * Automatically configured to control word 10011001
  */
 module intel8255(
+			clk,
 	      rd_n,
 	      wr_n,
 	      cs_n,
@@ -15,6 +16,7 @@ module intel8255(
 	      pa
 	      );
 
+	input clk;
    input rd_n, wr_n, cs_n;
    input [1:0] a;
    input       reset;
@@ -24,17 +26,40 @@ module intel8255(
 
    // Registers
    reg [7:0] 	pb, pdo;
-
+	reg [7:0]   pdi;
+	reg [1:0] flag;
+	
    // Wires
-   wire [7:0] 	pdi;
    wire 	pds;
    wire [4:0] 	cmd;
    
    // Line assign
    assign d = (pds == 1'b1) ? pdo : 8'bzzzzzzzz;
-   assign pdi = d;
    assign cmd = {a[1],a[0],rd_n,wr_n,cs_n};
    assign pds = ((cmd == 5'b00010) | (cmd == 5'b10010));
+	
+	always @(posedge clk) begin
+		if(cs_n == 1'b1) begin
+			flag <= 2'b00;
+			pdi <= pdi;
+		end
+		else if(flag == 2'b00) begin
+			flag <= 2'b01;
+			pdi <= pdi;
+		end
+		else if(flag == 2'b01) begin
+			flag <= 2'b10;
+			pdi <= d;
+		end
+		else if(flag == 2'b10) begin
+			flag <= 2'b11;
+			pdi <= pdi;
+		end
+		else begin
+			flag <= flag;
+			pdi <= pdi;
+		end
+	end
 
    // pdo assign
    always @(cmd or reset) begin
