@@ -51,10 +51,12 @@ reg ior, iow, eopp;
 reg [3:0] a3_0, a7_4;
 
 reg [15:0] curr_addr, curr_word, base_addr, base_word;
+/*
 reg [15:0] curr_addr0, curr_word0, base_addr0, base_word0;
 reg [15:0] curr_addr1, curr_word1, base_addr1, base_word1;
 reg [15:0] curr_addr2, curr_word2, base_addr2, base_word2;
 reg [15:0] curr_addr3, curr_word3, base_addr3, base_word3;
+*/
 reg [1:0] ca0, cw0, ba0, bw0;
 reg [1:0] ca1, cw1, ba1, bw1;
 reg [1:0] ca2, cw2, ba2, bw2;
@@ -126,7 +128,7 @@ always @(posedge clk) begin
         curr_word <= C0_16;
         base_addr <= C0_16;
         base_word <= C0_16;
-		  
+		  /*
 		  curr_addr0 <= C0_16;
         curr_word0 <= C0_16;
         base_addr0 <= C0_16;
@@ -146,7 +148,7 @@ always @(posedge clk) begin
         curr_word3 <= C0_16;
         base_addr3 <= C0_16;
         base_word3 <= C0_16;
-		  
+		  */
         command <= C0_8;
         mode <= C0_6;
         request <= C0_4;
@@ -410,7 +412,7 @@ always @(posedge clk) begin
                                     ba0 <= 2'b01;
                                 end 
 										  else if (ba0 == 2'b01) begin
-												db <= curr_addr0[7:0];
+												db <= curr_addr[7:0];
 										  end
 										  else if (ba0 == 2'b10) begin
                                     db <= curr_addr[15:8];

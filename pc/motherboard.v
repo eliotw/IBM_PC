@@ -110,7 +110,7 @@ module motherboard(
    assign HDR1_12 = vga_blue_o[1]; // vga blue o 1
    assign HDR1_14 = horiz_sync; // vga horizontal sync
    assign HDR1_16 = vert_sync; // vga vertical sync
-
+	
    // Debounce Module
    debounce deb(
 		.clk(clk88), // clock signal
@@ -299,7 +299,9 @@ module motherboard(
 				.xmemr_n(xmemr_n),
 				.xmemw_n(xmemw_n),
 				.a(a),
-				.clk88(clk88)
+				.clk88(clk88),
+				.pck(pck),
+				.pck_n(pck_n)
 				);
 
    // Sheet 8
@@ -1212,7 +1214,9 @@ module sheet7(
 	inout xmemr_n,
 	inout xmemw_n,
 	inout [19:0] a,
-	input clk88
+	input clk88,
+	output pck,
+	output pck_n
 	);
 	
 	// Wires
@@ -1229,7 +1233,10 @@ module sheet7(
 	assign din = (we == 1'b1) ? d : 8'b00000000;
 	assign d = (re == 1'b1) ? dout : 8'bzzzzzzzz;
 	assign addr = a[17:0];
+	assign pck_n = ~pck;
+	assign pck = 1'b1;
 	
+	// New RAM Module
 	newram nero(
 		.clka(clk88),
 		.wea(we),
@@ -1237,6 +1244,8 @@ module sheet7(
 		.dina(din),
 		.douta(dout)
 	);
+	
+	
 
 endmodule
 

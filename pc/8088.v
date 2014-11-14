@@ -440,7 +440,7 @@ module control_fsm
 					//write_bus = 1;
 					if (read) begin
 						rd_n = 0;
-						ld_in = bytes_transferred + 1;
+						//ld_in = bytes_transferred + 1;
 					end
 					else if (write) begin
 						wr_n = 0;
