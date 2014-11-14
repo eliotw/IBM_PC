@@ -41,7 +41,7 @@ module processor_8088
    wire [19:0] 	 cpu_adr_o;
    reg [19:0] 	 cpu_adr_o2;
    wire [15:0] 	 iid_dat_i;
-   reg [15:0] 	 cpu_dat_i;
+   wire [15:0] 	 cpu_dat_i;
    wire [15:0] 	 cpu_dat_o;
    wire 	 cpu_byte_o;
    wire 	 cpu_block;
@@ -133,27 +133,10 @@ module processor_8088
    /* prefetch wires */
    assign addr_offset = cpu_adr_o - addr_reg;
    assign ad_bus = ad;
-   always @(*) begin
-      if((addr_offset >= 0) && (addr_offset < 9)) begin
-	 if(cpu_byte_o == 1'b1) begin
-	    cpu_dat_i = {i_q[addr_offset][7],
-			 i_q[addr_offset][7],
-			 i_q[addr_offset][7],
-			 i_q[addr_offset][7],
-			 i_q[addr_offset][7],
-			 i_q[addr_offset][7],
-			 i_q[addr_offset][7],
-			 i_q[addr_offset][7],
-			 i_q[addr_offset]};
-	 end // if (cpu_byte_o == 1'b1)
-	 else begin
-	    cpu_dat_i = {i_q[addr_offset+1],i_q[addr_offset]};
-	 end // else: !if(cpu_byte_o == 1'b1)
-      end
-      else begin
-	 cpu_dat_i = 16'b0;
-      end
-   end
+   assign cpu_dat_i[7:0] = i_q[0];
+   assign cpu_dat_i[15:8] = cpu_byte_o 
+   	? {i_q[0][7],i_q[0][7],i_q[0][7],i_q[0][7],i_q[0][7],i_q[0][7],i_q[0][7],i_q[0][7]}
+   	: i_q[1];
 	 
    register i00 (.clk(clk),
 		 .rst(rst),
@@ -168,63 +151,7 @@ module processor_8088
 		 .q(i_q[1]),
 		 .ld((ld_in == 4'b0010))
 		 );	
-						
-   register i02 (.clk(clk),
-		 .rst(rst),
-		 .d(ad_bus),
-		 .q(i_q[2]),
-		 .ld((ld_in == 4'b0011))
-		 );
-						
-   register i03 (.clk(clk),
-		 .rst(rst),
-		 .d(ad_bus),
-		 .q(i_q[3]),
-		 .ld((ld_in == 4'b0100))
-		 );	
-						
-   register i04 (.clk(clk),
-		 .rst(rst),
-		 .d(ad_bus),
-		 .q(i_q[4]),
-		 .ld((ld_in == 4'b0101))
-		 );
-	 
-   register i05 (.clk(clk),
-		 .rst(rst),
-		 .d(ad_bus),
-		 .q(i_q[5]),
-		 .ld((ld_in == 4'b0110))
-		 );
-   
-   register i06 (.clk(clk),
-		 .rst(rst),
-		 .d(ad_bus),
-		 .q(i_q[6]),
-		 .ld((ld_in == 4'b0111))
-		 );
-   
-   register i07 (.clk(clk),
-		 .rst(rst),
-		 .d(ad_bus),
-		 .q(i_q[7]),
-		 .ld((ld_in == 4'b1000))
-		 );
-   
-   register i08 (.clk(clk),
-		 .rst(rst),
-		 .d(ad_bus),
-		 .q(i_q[8]),
-		 .ld((ld_in == 4'b1001))
-		 );
-   
-   register i09 (.clk(clk),
-		 .rst(rst),
-		 .d(ad_bus),
-		 .q(i_q[9]),
-		 .ld((ld_in == 4'b1010))
-		 );
-	 
+
    assign iid_dat_i = cpu_dat_i;
     
    /* control fsm state */
@@ -260,35 +187,35 @@ module processor_8088
 		calculated_addr[7:0] : (( (ctrl_fsm_state == addr) | (ctrl_fsm_state == interm) )? ((bytes_transferred == 0)? lsb_o_q : ((bytes_transferred == 1)? msb_o_q : 8'bz)) : 8'bz )) : 8'bz;  
     
    control_fsm ctrl_fsm (.clk(clk),
-                         .rst(rst),
-                         .start(start),
-                         .read(read),
-                         .write(write),
-								 .cpu_m_io(cpu_m_io),
-								 .cpu_byte_o(cpu_byte_o),
-								 .iom(iom),
-                         .bytes_transferred(bytes_transferred),
-                         .write_bus(write_bus),
-                         .ld_out_regs(ld_out_regs),
-								 .ld_in(ld_in),
-                         .ale(ale),
-                         .den_n(den_n),
-                         .wr_n(wr_n),
-                         .rd_n(rd_n),
-                         .dtr(dtr),
-                         .cpu_block(cpu_block),
-                         .state(ctrl_fsm_state)
-                         );
+                        .rst(rst),
+                        .start(start),
+                        .read(read),
+                        .write(write),
+			.cpu_m_io(cpu_m_io),
+			.cpu_byte_o(cpu_byte_o),
+			.iom(iom),
+                        .bytes_transferred(bytes_transferred),
+                        .write_bus(write_bus),
+                        .ld_out_regs(ld_out_regs),
+			.ld_in(ld_in),
+                        .ale(ale),
+                        .den_n(den_n),
+                        .wr_n(wr_n),
+                        .rd_n(rd_n),
+                        .dtr(dtr),
+                        .cpu_block(cpu_block),
+                        .state(ctrl_fsm_state)
+                        );
     
    /* interrupt fsm */                     
    wire ld_intr; 
    
    interrupt_fsm intr_fsm (.clk(clk),
-                           .rst(rst),
-                           .intr(intr),
-                           .ld_intr(ld_intr),
-                           .inta_n(inta_n)
-                           );
+                        .rst(rst),
+                        .intr(intr),
+                        .ld_intr(ld_intr),
+                        .inta_n(inta_n)
+                        );
     
    /* hold fsm */
    hold_fsm hld_fsm (.clk(clk),
@@ -305,13 +232,11 @@ module control_fsm
      input read,
      input write,
      input cpu_m_io,
-	  input cpu_byte_o,
+     input cpu_byte_o,
      output reg iom,
      output [3:0] bytes_transferred,
      output reg write_bus,
      output reg ld_out_regs,
-     //output reg ld_msb_i,
-     //output reg ld_lsb_i,
      output reg [3:0] ld_in,
      output reg ale,
      output reg den_n,
@@ -341,17 +266,17 @@ module control_fsm
                       .count(bytes_transferred)
                      );
     
-	 assign byte_level = (cpu_byte_o) ? 4'b0001 : 4'b0010;
-    assign data_tran_done = (bytes_transferred == byte_level);
-    assign inc = inc_count;
-    assign clr = clr_count;
+	assign byte_level = (cpu_byte_o) ? 4'b0001 : 4'b0010;
+    	assign data_tran_done = (bytes_transferred == byte_level);
+    	assign inc = inc_count;
+    	assign clr = clr_count;
 
-    always @(posedge clk or negedge rst) begin
-        if (~rst)
-            state <= idle;
-        else 
-            state <= next_state;
-    end
+    	always @(posedge clk or negedge rst) begin
+        	if (~rst)
+            		state <= idle;
+        	else 
+            		state <= next_state;
+    	end
     
     always @( * ) begin
         next_state = idle;
