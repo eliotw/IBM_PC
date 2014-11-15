@@ -107,7 +107,7 @@ module processor_8088
                    );
                   
 	/* interrupt wire */
-	assign inta_n = ~intr;
+	assign inta_n = ~inta;
 	
    /* input registers */
    wire       ld_msb_i;
@@ -145,7 +145,7 @@ module processor_8088
 		 );	
 
    //assign iid_dat_i = {8'h0,iid};
-   assign iid_dat_i = cpu_dat_i;
+   assign iid_dat_i = inta ? {8'h0,iid} : cpu_dat_i;
 	
    /* control fsm state */
    wire [2:0] ctrl_fsm_state;
@@ -201,7 +201,7 @@ module processor_8088
                         .state(ctrl_fsm_state)
                         );
     
-   /* interrupt fsm                     
+   /* interrupt fsm                   
    wire ld_intr; 
    
    interrupt_fsm intr_fsm (.clk(clk),
@@ -210,7 +210,7 @@ module processor_8088
                         .ld_intr(ld_intr),
                         .inta_n(inta_n)
                         );
-    */
+   */
    /* hold fsm */
    hold_fsm hld_fsm (.clk(clk),
                      .rst(rst),

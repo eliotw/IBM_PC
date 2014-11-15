@@ -30,7 +30,7 @@ module intel8259(
    input       rst;
    output      inta;
    output      spen_n;
-	output [7:0] iid;
+	output reg [7:0] iid;
 
    // Wires
    wire        inta; // Interrupt
@@ -59,126 +59,208 @@ module intel8259(
    reg 	       clrisr; // Clear the ISR
    reg [7:0]   mrw; // Mask result wire
    reg [1:0]   icws; // icws handles ignoring the first two control words
-   
+   reg ic_rst; // reset control word sequence
+	reg ic_dec; // ic decrement
+	reg [1:0] cs_n_buf; // buffer for cs_n
+	reg ic_rst_n; // Reset IC
+	reg [1:0] state; // reset state
+	
    // Assign Spen
    assign spen_n = rd_n;
    assign rst_n = ~rst;
+	//assign ic_rst_n = ~ic_rst;
 	
    // Initialization
    initial begin
-      icws = 2'b10;
+      icws = 2'b00;
       topint = 3'b0;
       irr = 8'b0;
       irr_clr = 8'b0;
       imr = 8'b00000000;
       isr = 8'b0;
-      eoir = 8'b11111111;
+      eoir = 8'b00001000;
       dout = 8'b0;
       recint = 1'b0;
       clrisr = 1'b0;
       mrw = 8'b0;
+		ic_rst = 1'b0;
+		ic_rst_n = 1'b1;
+		ic_dec = 1'b0;
+		state = 2'b00;
    end
    
    // Assign line D
-   assign d = ((rd_n == 1'b0) & (cs_n == 1'b0)) ? ((a0 == 1'b1) ? imr : dout) : 8'bzzzzzzzz;
+   assign d = ((rd_n == 1'b0) & (cs_n_buf[1] == 1'b0)) ? ((a0 == 1'b1) ? imr : dout) : 8'bzzzzzzzz;
    
 	// Assign Data In
-	always @(negedge cs_n) begin
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			cs_n_buf[0] <= 1'b1;
+			cs_n_buf[1] <= 1'b1;
+		end
+		else if(cs_n == 1'b1) begin
+			cs_n_buf[0] <= 1'b1;
+			cs_n_buf[1] <= 1'b1;
+		end 
+		else begin
+			cs_n_buf[1] <= cs_n_buf[0];
+			cs_n_buf[0] <= 1'b0;
+		end
+	end
+	
+	always @(negedge cs_n_buf[1]) begin
 		din <= d;
 	end
 	
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			state <= 2'b00;
+			ic_rst_n <= 1'b1;
+		end
+		else if(state == 2'b00) begin
+			if(ic_rst) state <= 2'b01;
+			else state <= 2'b00;
+			ic_rst_n <= 1'b1;
+		end
+		else if(state == 2'b01) begin
+			if(ic_rst) state <= 2'b10;
+			else state <= 2'b00;
+			ic_rst_n <= 1'b0;
+		end
+		else if(state == 2'b10) begin
+			if(ic_rst) state <= 2'b10;
+			else state <= 2'b00;
+			ic_rst_n <= 1'b1;
+		end
+		else begin
+			state <= 2'b00;
+			ic_rst_n <= 1'b1;
+		end
+	end
+	
 	// Assign iid
-	assign iid = {5'b00001,topint};
+	always @(mrw) begin
+		if(mrw[0]) iid = 8'b00001_000;
+		else if(mrw[1]) iid = 8'b00001_001;
+		else if(mrw[2]) iid = 8'b00001_010;
+		else if(mrw[3]) iid = 8'b00001_011;
+		else if(mrw[4]) iid = 8'b00001_100;
+		else if(mrw[5]) iid = 8'b00001_101;
+		else if(mrw[6]) iid = 8'b00001_110;
+		else if(mrw[7]) iid = 8'b00001_111;
+		else iid = 8'b00000_000;
+	end
+	
+	// ICWS Loading
+	always @(posedge ic_dec or negedge ic_rst_n) begin
+		if(~ic_rst_n) begin
+			icws <= 2'b10;
+		end
+		else if(ic_dec) begin
+			if(icws == 2'b10) icws <= 2'b01;
+			else if(icws == 2'b01) icws <= 2'b00;
+			else icws <= 2'b00;
+		end
+		else begin
+			icws <= icws;
+		end
+	end
 	
    // IMR Loading
-   always @(cs_n or wr_n or a0 or din or imr or rst) begin
+   always @(cs_n_buf[1] or wr_n or a0 or din or imr or rst) begin
+		ic_dec <= 1'b0;
       if(rst == 1'b1) begin
-	 icws <= 2'b10;
-	 imr <= 8'b11111111;
+			ic_dec <= 1'b0;
+			imr <= 8'b11111111;
       end
-      else if((cs_n == 1'b0) & (wr_n == 1'b0) & (a0 == 1'b1)) begin
-	 if(icws == 2'b00) begin
-	    icws <= 2'b00;
-	    imr <= din;
-	 end
-	 else if(icws == 2'b01) begin
-	    icws <= 2'b00;
-	    imr <= 8'b0;
-	 end
-	 else if(icws == 2'b10) begin
-	    icws <= 2'b01;
-	    imr <= 8'b0;
-	 end
-	 else begin
-	    // This should not happen, but plan for what to do
-	    icws <= 2'b10;
-	    imr <= 8'b0;
-	 end
+      else if((cs_n_buf[1] == 1'b0) & (wr_n == 1'b0) & (a0 == 1'b1)) begin
+			if(icws == 2'b00) begin
+				ic_dec <= 1'b0;
+				imr <= din;
+			end
+			else if(icws == 2'b01) begin
+				ic_dec <= 1'b1;
+				imr <= 8'b0;
+			end
+			else if(icws == 2'b10) begin
+				ic_dec <= 1'b1;
+				imr <= 8'b0;
+			end
+			else begin
+				// This should not happen, but plan for what to do
+				ic_dec <= 1'b0;
+				imr <= 8'b0;
+			end
       end
       else begin
-	 icws <= icws;
-	 imr <= imr;
+			ic_dec <= 1'b0;
+			imr <= imr;
       end
    end
 
    // EOI Loading
-   always @(cs_n or wr_n or a0 or din or clrisr or inta_n or rst) begin
+   always @(cs_n_buf[1] or wr_n or a0 or din or clrisr or inta_n or rst) begin
       if(rst == 1'b1) begin
-	 eoir <= 8'b11111111;
+			eoir <= 8'b00001000;
       end
       else if((clrisr == 1'b1) | (inta_n == 1'b0)) begin
-	 eoir <= 8'b11111111;
+			eoir <= 8'b00001000;
       end
-      else if((cs_n == 1'b0) & (wr_n == 1'b0) & (a0 == 1'b0)) begin
-	 eoir <= din;
+      else if((cs_n_buf[1] == 1'b0) & (wr_n == 1'b0) & (a0 == 1'b0)) begin
+			eoir <= din;
       end
       else begin
-	 eoir <= eoir;
+			eoir <= eoir;
       end
    end
 
    // EOI interpretation
    always @(eoir or recint or clrisr or inta_n or rst) begin
+		ic_rst <= 1'b0;
       if(rst == 1'b1) begin
-	 dout <= 8'b0;
-	 clrisr <= 1'b0;
+			dout <= 8'b0;
+			clrisr <= 1'b0;
       end
       else if((inta_n == 1'b0) & (recint == 1'b1)) begin
-	 dout <= {5'b00001,topint};
-	 clrisr <= clrisr;
+			dout <= {5'b00001,topint};
+			clrisr <= clrisr;
       end
       // Check for OCW2
       else if(eoir[4:3] == 2'b00) begin
-	 // EOI stuff
-	 dout <= 8'b00000000;
-	 clrisr <= 1'b1;
+			// EOI stuff
+			dout <= 8'b00000000;
+			clrisr <= 1'b1;
       end
       // Check for OCW3
       else if(eoir[4:3] == 2'b01) begin
-	 if(eoir[1:0] == 2'b10) begin
-	    //$display("10");
-	    dout <= irr;
-	 end
-	 else if(eoir[1:0] == 2'b11) begin
-	    //$display("11");
-	    dout <= isr;
-	 end
-	 else begin
-	    //$display("??");
-	    dout <= dout;
-	 end
-	 clrisr <= clrisr;
+			if(eoir[1:0] == 2'b10) begin
+				//$display("10");
+				dout <= irr;
+			end
+			else if(eoir[1:0] == 2'b11) begin
+				//$display("11");
+				dout <= isr;
+			end
+			else begin
+				//$display("??");
+				dout <= dout;
+			end
+			clrisr <= clrisr;
       end
+		else if(eoir[4] == 1'b1) begin
+			// Initialize command word sequence
+			ic_rst <= 1'b1;
+		end
       // Act upon recint
       else if(recint == 1'b1) begin
-	 dout <= {5'b00001,topint};
-	 clrisr <= 1'b0;
+			dout <= {5'b00001,topint};
+			clrisr <= 1'b0;
       end
       // Other stuff is happening
       else begin
-	 // Ignore
-	 clrisr <= clrisr;
-	 dout <= dout;
+			// Ignore
+			clrisr <= clrisr;
+			dout <= dout;
       end
    end // always @ (eoir or recint)
 
