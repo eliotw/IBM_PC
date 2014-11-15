@@ -19,7 +19,7 @@ module processor_8088
    input         nmi,                // causes non-maskable type-2 interrupt
    input         intr,               // maskable interrupt request 
    input         test_n,             // examined by processor testing instructions
-    
+   input [7:0]   iid, // interrupt vector
    // output
    output [19:0] a,               // address bus
    output        hlda,               // acknowledges that the processor is suspended
@@ -66,17 +66,6 @@ module processor_8088
    assign a = calculated_addr;
    assign calculated_addr = cpu_adr_o + (bytes_transferred);
    
-   /*
-   always @(posedge clk or negedge rst) begin
-      if(~rst) begin
-	 cpu_adr_o2 <= 20'hffff0;
-      end
-      else begin
-	 cpu_adr_o2 <= cpu_adr_o;
-      end
-   end
-   */
-   
    zet_core core (.clk(clk),
                   .rst(rst),
                   .intr(intr),
@@ -117,6 +106,9 @@ module processor_8088
                    .ld(ld_out_regs)
                    );
                   
+	/* interrupt wire */
+	assign inta_n = ~intr;
+	
    /* input registers */
    wire       ld_msb_i;
    wire [7:0] msb_i_q;
@@ -152,8 +144,9 @@ module processor_8088
 		 .ld((ld_in == 4'b0010))
 		 );	
 
+   //assign iid_dat_i = {8'h0,iid};
    assign iid_dat_i = cpu_dat_i;
-    
+	
    /* control fsm state */
    wire [2:0] ctrl_fsm_state;
    localparam idle = 3'b000;
@@ -175,7 +168,7 @@ module processor_8088
    end
 	 
    // Assign
-   assign start = (read | write | inta);
+   assign start = (read | write);
    assign write = (zet_state == execu_st)? cpu_we_o : 1'b0;
    assign read = (zet_state == fetch_st) 
      || ((zet_state == execu_st) && ~memalu && ~cpu_we_o) 
@@ -208,7 +201,7 @@ module processor_8088
                         .state(ctrl_fsm_state)
                         );
     
-   /* interrupt fsm */                     
+   /* interrupt fsm                     
    wire ld_intr; 
    
    interrupt_fsm intr_fsm (.clk(clk),
@@ -217,7 +210,7 @@ module processor_8088
                         .ld_intr(ld_intr),
                         .inta_n(inta_n)
                         );
-    
+    */
    /* hold fsm */
    hold_fsm hld_fsm (.clk(clk),
                      .rst(rst),

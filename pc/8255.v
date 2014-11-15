@@ -32,14 +32,20 @@ module intel8255(
    // Wires
    wire 	pds;
    wire [4:0] 	cmd;
-   
+   wire rst_n;
+	
    // Line assign
    assign d = (pds == 1'b1) ? pdo : 8'bzzzzzzzz;
    assign cmd = {a[1],a[0],rd_n,wr_n,cs_n};
    assign pds = ((cmd == 5'b00010) | (cmd == 5'b10010));
+	assign rst_n = ~reset;
 	
-	always @(posedge clk) begin
-		if(cs_n == 1'b1) begin
+	always @(posedge clk or negedge rst_n) begin
+		if (~rst_n) begin
+			flag <= 2'b00;
+			pdi <= 8'b11111111;
+		end
+		else if(cs_n == 1'b1) begin
 			flag <= 2'b00;
 			pdi <= pdi;
 		end

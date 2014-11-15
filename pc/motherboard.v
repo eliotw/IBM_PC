@@ -432,7 +432,7 @@ module sheet1(
    // Wires
    wire 	     ready;
    wire 	     intr;
-   wire [7:0] 	     adp;
+   wire [7:0] 	     adp, iid;
    wire 	     rqgti_n;
    wire [1:0] 	     qs;
    wire 	     test_n;
@@ -474,6 +474,7 @@ module sheet1(
 		.nmi(nmi),                // causes non-maskable type-2 interrupt
 		.intr(intr),               // maskable interrupt request
 		.test_n(test_n),             // examined by processor testing instructions
+		.iid(iid),
 		.a(ap),               // address bus
 		.hlda(rqgti_n),               // acknowledges that the processor is suspended
 		.inta_n(qs[1]),             // indicates that an intr request has been received
@@ -496,11 +497,12 @@ module sheet1(
 		   .d(adp),
 		   .cas(3'b000), // not connected
 		   .a0(xa0_n),
-		   .inta_n(inta_n),
+		   .inta_n(qs[1]), // changing from inta_n because interrupts behaving badly
 		   .ir(irq),
 		   .rst(reset),
 		   .inta(intr), // int
-		   .spen_n(spen_n)
+		   .spen_n(spen_n),
+			.iid(iid)
 		   );
 
    // Intel 8288 Bus Controller

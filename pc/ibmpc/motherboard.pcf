@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.28xd on Fri Nov 14 18:10:25 2014
+// Written by: Map P.28xd on Fri Nov 14 20:32:43 2014
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -965,10 +965,10 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         "s4/i8237/command_7" BEL "s4/i8237/command_6" BEL "s4/i8237/mode_5"
         BEL "s4/i8237/mode_4" BEL "s4/i8237/mode_3" BEL "s4/i8237/mode_2" BEL
         "s4/i8237/mode_1" BEL "s4/i8237/mode_0" BEL "s4/i8237/mast_clr" BEL
-        "s4/i8237/reset_clk_DFF_1983" BEL "s4/i8237/a3_0_3" BEL
+        "s4/i8237/reset_clk_DFF_1982" BEL "s4/i8237/a3_0_3" BEL
         "s4/i8237/a3_0_2" BEL "s4/i8237/a3_0_1" BEL "s4/i8237/a3_0_0" BEL
-        "s4/i8237/reset_clk_DFF_1980" BEL "s4/i8237/reset_clk_DFF_1978" BEL
-        "s4/i8237/reset_clk_DFF_1969" BEL "s1/i8088/core/hlt_op_old" BEL
+        "s4/i8237/reset_clk_DFF_1979" BEL "s4/i8237/reset_clk_DFF_1977" BEL
+        "s4/i8237/reset_clk_DFF_1968" BEL "s1/i8088/core/hlt_op_old" BEL
         "s1/i8088/core/hlt" BEL "s1/i8088/core/exec/alu/muldiv/div_su/s_15"
         BEL "s1/i8088/core/exec/alu/muldiv/div_su/s_14" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/s_13" BEL
@@ -2094,45 +2094,43 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         "s1/i8088/core/decode/seq_6" BEL "s1/i8088/core/decode/seq_5" BEL
         "s1/i8088/core/decode/seq_4" BEL "s1/i8088/core/decode/seq_3" BEL
         "s1/i8088/core/decode/seq_2" BEL "s1/i8088/core/decode/seq_1" BEL
-        "s1/i8088/core/decode/seq_0" BEL "s1/i8088/core/decode/old_ext_int"
-        BEL "s1/i8088/core/decode/div_cnt_4" BEL
+        "s1/i8088/core/decode/seq_0" BEL "s1/i8088/core/decode/div_cnt_4" BEL
         "s1/i8088/core/decode/div_cnt_3" BEL "s1/i8088/core/decode/div_cnt_2"
         BEL "s1/i8088/core/decode/div_cnt_1" BEL
         "s1/i8088/core/decode/div_cnt_0" BEL "s1/i8088/core/decode/ext_int"
         BEL "s1/i8088/core/decode/tfle" BEL "s1/i8088/core/decode/ifld" BEL
         "s1/i8088/core/decode/iflssd" BEL "s1/i8088/core/decode/tfld" BEL
-        "s1/i8088/core/decode/inta" BEL "s1/i8088/msb_o/q_7" BEL
-        "s1/i8088/msb_o/q_6" BEL "s1/i8088/msb_o/q_5" BEL "s1/i8088/msb_o/q_4"
-        BEL "s1/i8088/msb_o/q_3" BEL "s1/i8088/msb_o/q_2" BEL
-        "s1/i8088/msb_o/q_1" BEL "s1/i8088/msb_o/q_0" BEL "s1/i8088/lsb_o/q_7"
-        BEL "s1/i8088/lsb_o/q_6" BEL "s1/i8088/lsb_o/q_5" BEL
-        "s1/i8088/lsb_o/q_4" BEL "s1/i8088/lsb_o/q_3" BEL "s1/i8088/lsb_o/q_2"
-        BEL "s1/i8088/lsb_o/q_1" BEL "s1/i8088/lsb_o/q_0" BEL
-        "s1/i8088/i00/q_7" BEL "s1/i8088/i00/q_6" BEL "s1/i8088/i00/q_5" BEL
-        "s1/i8088/i00/q_4" BEL "s1/i8088/i00/q_3" BEL "s1/i8088/i00/q_2" BEL
-        "s1/i8088/i00/q_1" BEL "s1/i8088/i00/q_0" BEL "s1/i8088/i01/q_7" BEL
-        "s1/i8088/i01/q_6" BEL "s1/i8088/i01/q_5" BEL "s1/i8088/i01/q_4" BEL
-        "s1/i8088/i01/q_3" BEL "s1/i8088/i01/q_2" BEL "s1/i8088/i01/q_1" BEL
-        "s1/i8088/i01/q_0" BEL "s1/i8088/ctrl_fsm/state_FSM_FFd1" BEL
+        "s1/i8088/msb_o/q_7" BEL "s1/i8088/msb_o/q_6" BEL "s1/i8088/msb_o/q_5"
+        BEL "s1/i8088/msb_o/q_4" BEL "s1/i8088/msb_o/q_3" BEL
+        "s1/i8088/msb_o/q_2" BEL "s1/i8088/msb_o/q_1" BEL "s1/i8088/msb_o/q_0"
+        BEL "s1/i8088/lsb_o/q_7" BEL "s1/i8088/lsb_o/q_6" BEL
+        "s1/i8088/lsb_o/q_5" BEL "s1/i8088/lsb_o/q_4" BEL "s1/i8088/lsb_o/q_3"
+        BEL "s1/i8088/lsb_o/q_2" BEL "s1/i8088/lsb_o/q_1" BEL
+        "s1/i8088/lsb_o/q_0" BEL "s1/i8088/i00/q_7" BEL "s1/i8088/i00/q_6" BEL
+        "s1/i8088/i00/q_5" BEL "s1/i8088/i00/q_4" BEL "s1/i8088/i00/q_3" BEL
+        "s1/i8088/i00/q_2" BEL "s1/i8088/i00/q_1" BEL "s1/i8088/i00/q_0" BEL
+        "s1/i8088/i01/q_7" BEL "s1/i8088/i01/q_6" BEL "s1/i8088/i01/q_5" BEL
+        "s1/i8088/i01/q_4" BEL "s1/i8088/i01/q_3" BEL "s1/i8088/i01/q_2" BEL
+        "s1/i8088/i01/q_1" BEL "s1/i8088/i01/q_0" BEL
+        "s1/i8088/ctrl_fsm/state_FSM_FFd1" BEL
         "s1/i8088/ctrl_fsm/state_FSM_FFd2" BEL "s1/i8088/ctrl_fsm/cnt/count_3"
         BEL "s1/i8088/ctrl_fsm/cnt/count_2" BEL
         "s1/i8088/ctrl_fsm/cnt/count_1" BEL "s1/i8088/ctrl_fsm/cnt/count_0"
         BEL "s1/i8088/ctrl_fsm/state_FSM_FFd3" BEL
         "s1/i8088/ctrl_fsm/state_FSM_FFd4" BEL "s2/b5" BEL "s2/aen_brd" BEL
         "s2/holda" BEL "s2/b7" BEL "s2/td2/td5/q" BEL
-        "s1/i8088/core/decode/dive" BEL "s1/i8088/core/fetch/lock_l" BEL
-        "s1/i8088/core/fetch/pref_l_1" BEL "s1/i8088/core/fetch/pref_l_0" BEL
-        "s1/i8088/core/fetch/sop_l_2" BEL "s1/i8088/core/fetch/sop_l_1" BEL
-        "s1/i8088/core/fetch/sop_l_0" BEL "s1/i8088/core/fetch/state_1_1" BEL
+        "s1/i8088/core/decode/dive" BEL "s1/i8088/core/fetch/pref_l_1" BEL
+        "s1/i8088/core/fetch/pref_l_0" BEL "s1/i8088/core/fetch/sop_l_2" BEL
+        "s1/i8088/core/fetch/sop_l_1" BEL "s1/i8088/core/fetch/sop_l_0" BEL
+        "s1/i8088/core/fetch/lock_l" BEL "s1/i8088/core/fetch/state_1_1" BEL
         "s1/i8088/core/fetch/state_2_1" BEL "s1/i8088/core/fetch/state_0_1"
         BEL "s1/i8088/core/fetch/opcode_l_1_1" BEL
-        "s1/i8088/core/fetch/state_1_2" BEL "s1/i8088/core/fetch/state_2_2"
-        BEL "s1/i8088/core/fetch/state_0_2" BEL
-        "s1/i8088/core/fetch/state_0_3" BEL "s1/i8088/core/fetch/state_1_3"
-        BEL "s1/i8088/core/fetch/state_2_3" BEL
-        "s1/i8088/core/fetch/state_0_4" BEL "s1/i8088/core/fetch/state_1_4"
-        BEL "s1/i8088/core/fetch/state_2_4" BEL "s1/i8284/clk_BUFG" BEL
-        "dclk_BUFG" BEL
+        "s1/i8088/core/fetch/state_0_2" BEL "s1/i8088/core/fetch/state_1_2"
+        BEL "s1/i8088/core/fetch/state_2_2" BEL
+        "s1/i8088/core/fetch/state_2_3" BEL "s1/i8088/core/fetch/state_1_3"
+        BEL "s1/i8088/core/fetch/state_0_3" BEL
+        "s1/i8088/core/fetch/state_2_4" BEL "s1/i8088/core/fetch/state_1_4"
+        BEL "s1/i8284/clk_BUFG" BEL "dclk_BUFG" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/Mshreg_szpipe_18" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/szpipe_18" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/Mshreg_ovf" BEL

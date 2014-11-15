@@ -15,7 +15,8 @@ module intel8259(
 		 ir,
 		 rst, // reset
 		 inta, // int
-		 spen_n
+		 spen_n,
+		 iid
 		 );
 
    // Inputs, Outputs, and Inouts
@@ -29,6 +30,7 @@ module intel8259(
    input       rst;
    output      inta;
    output      spen_n;
+	output [7:0] iid;
 
    // Wires
    wire        inta; // Interrupt
@@ -80,20 +82,13 @@ module intel8259(
    // Assign line D
    assign d = ((rd_n == 1'b0) & (cs_n == 1'b0)) ? ((a0 == 1'b1) ? imr : dout) : 8'bzzzzzzzz;
    
-	// Assign data in
-	/*
-	always @(posedge clk or negedge rst_n) begin
-		if(~rst_n) begin
-			din <= 8'b0;
-		end
-		else if(cs_n == 1'b0) begin
-			din <= d;
-		end
-	end
-*/
+	// Assign Data In
 	always @(negedge cs_n) begin
 		din <= d;
 	end
+	
+	// Assign iid
+	assign iid = {5'b00001,topint};
 	
    // IMR Loading
    always @(cs_n or wr_n or a0 or din or imr or rst) begin
