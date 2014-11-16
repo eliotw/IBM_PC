@@ -145,7 +145,7 @@ module processor_8088
 		 );	
 
    //assign iid_dat_i = {8'h0,iid};
-   assign iid_dat_i = inta ? {8'h0,iid} : cpu_dat_i;
+   assign iid_dat_i = intr ? {8'h0,iid} : cpu_dat_i;
 	
    /* control fsm state */
    wire [2:0] ctrl_fsm_state;
@@ -168,7 +168,7 @@ module processor_8088
    end
 	 
    // Assign
-   assign start = (read | write);
+   assign start = (read | write) & inta_n;
    assign write = (zet_state == execu_st)? cpu_we_o : 1'b0;
    assign read = (zet_state == fetch_st) 
      || ((zet_state == execu_st) && ~memalu && ~cpu_we_o) 

@@ -34,11 +34,11 @@ module zet_exec
     output        of,
     output        zf,
     output        cx_zero,
-    input [15:0]  memout,
+    input [15:0]  memout, // iid
     output        memalu,
 
     output [15:0] wr_data,
-    output [19:0] addr,
+    output [19:0] addr, // new addr
     output        we,
     output        m_io,
     output        byteop,
