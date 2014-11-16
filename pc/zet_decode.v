@@ -72,7 +72,7 @@ module zet_decode (
   reg  tfld;
   reg  ifld;
   reg  iflssd;
-  reg  old_ext_int;
+  reg  old_ext_int, older_ext_int;
 
   reg [4:0] div_cnt;
 
@@ -143,8 +143,9 @@ module zet_decode (
         : (ext_int ? !end_seq : 1'b0));
 
   // old_ext_int
-  always @(posedge clk or negedge rst) old_ext_int <= ~rst ? 1'b0 : ext_int;
-
+  always @(posedge clk or negedge rst) older_ext_int <= ~rst ? 1'b0 : ext_int;
+  always @(posedge clk or negedge rst) old_ext_int <= ~rst ? 1'b0 : older_ext_int;
+  
   // inta
   always @(posedge clk or negedge rst)
     inta <= ~rst ? 1'b0 : (!nmir & (!old_ext_int & ext_int));
