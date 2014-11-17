@@ -40,7 +40,7 @@ module processor_8088
    wire 	 inta, nmia;
    wire [19:0] 	 cpu_adr_o;
    reg [19:0] 	 cpu_adr_o2;
-   wire [15:0] 	 iid_dat_i;
+   reg [15:0] 	 iid_dat_i;
    wire [15:0] 	 cpu_dat_i;
    wire [15:0] 	 cpu_dat_o;
    wire 	 cpu_byte_o;
@@ -145,7 +145,11 @@ module processor_8088
 		 );	
 
    //assign iid_dat_i = {8'h0,iid};
-   assign iid_dat_i = intr ? {8'h0,iid} : cpu_dat_i;
+	always @(inta) begin
+		if(inta) iid_dat_i = {8'h0,iid};
+		else iid_dat_i = cpu_dat_i;
+	end
+   //assign iid_dat_i = inta ? {8'h0,iid} : cpu_dat_i;
 	
    /* control fsm state */
    wire [2:0] ctrl_fsm_state;

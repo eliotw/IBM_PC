@@ -527,7 +527,7 @@ module sheet1(
 		   );
    
    // NAND gate U84
-   assign u84 = ~(den); // taking out spen_n, not quite sure what it is doing here
+   assign u84 = ~(den & spen_n); // taking out spen_n, not quite sure what it is doing here
    
    // LS 373 and LS 374 Units
    ls374 u10(
@@ -1390,7 +1390,7 @@ module sheet9(
 	assign pc[4] = cass_data_in;
 	
    // Other Assignments
-   assign pa = (pb[7] == 1'b1) ? px : py;
+   assign pa = (pb[7] == 1'b0) ? px : py;
    
    // Intel 8255
    intel8255 i8255(

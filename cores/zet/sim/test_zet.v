@@ -49,7 +49,7 @@ module test_zet;
     .wb_stb_o (stb),
     .wb_cyc_o (cyc),
     .wb_ack_i (ack),
-    .wb_tgc_i (1'b0),
+    .wb_tgc_i (intr),
     .wb_tgc_o (inta),
     .nmi      (1'b0),
     .nmia     (nmia),
@@ -82,9 +82,13 @@ module test_zet;
       #5 rst <= 1'b1;
       #5 rst <= 1'b0;
 
-      #1000 intr <= 1'b1;
-      //@(posedge inta)
-      @(posedge clk) intr <= 1'b0;
+       #1000;
+       intr <= 1'b1;
+       #1000;
+       intr <= 1'b0;
+       #1000;
+       $finish();
+       
     end
 
   initial
