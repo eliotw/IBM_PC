@@ -63,99 +63,97 @@ endmodule // intel8253
  */
 module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN,RST_,ZCLK);
 
-   input        SEL,
-		RD_,
-		WR_,
-		CLK,
-		MODEWRITE;
+   	input        	SEL,
+			RD_,
+			WR_,
+			CLK,
+			MODEWRITE;
 
-   input [5:1] 	MODE;
-   input [7:0] 	D;
+   	input [5:1] 	MODE;
+   	input [7:0] 	D;
 
-   output       LOAD,
-		OUTEN;
+   	output       	LOAD,
+			OUTEN;
 
-   output [7:0] COUNTLSB,
-		COUNTMSB;
+   	output [7:0] 	COUNTLSB,
+			COUNTMSB;
 	
 	input RST_;
 	input ZCLK;
 	
-   //reg          LOAD,
 	reg	OUTEN,
 		LOADLSB,
 		CLRLOADLSB;
  
 	reg loadsync, loadbuf;
  
-   reg [7:0] 	COUNTLSB,
-		COUNTMSB;
+	reg [7:0] 	COUNTLSB, COUNTMSB;
 
-   wire 	clear,wrselrd;
-   reg 		lsbflag;
+	wire 	clear,wrselrd;
+	reg 		lsbflag;
    
-   assign clear = MODEWRITE | ~RST_;
-   assign wrselrd = WR_ & SEL & RD_;
-   assign LOAD = loadsync | loadbuf;
+	assign clear = MODEWRITE | ~RST_;
+	assign wrselrd = WR_ & SEL & RD_;
+	assign LOAD = loadsync | loadbuf;
 	
-   // LSB Flag Initial
-   initial begin
-      lsbflag = 1'b0;
+	// LSB Flag Initial
+	initial begin
+		lsbflag = 1'b0;
 		loadsync = 1'b0;
-   end
+	end
    
-   // LSB Flag
-   always @(posedge WR_) begin
-      if (SEL & RD_ & MODE[5] & MODE[4] & ~lsbflag) begin
-	 lsbflag <= 1'b1;
-      end
-      else if(SEL & RD_ & MODE[5] & MODE[4] & lsbflag) begin
-	 lsbflag <= 1'b0;
-      end
-      else begin
-	 lsbflag <= lsbflag;
-      end
-   end // always @ (posedge WR_)
+	// LSB Flag
+	always @(posedge WR_) begin
+		if (SEL & RD_ & MODE[5] & MODE[4] & ~lsbflag) begin
+			lsbflag <= 1'b1;
+		end
+		else if(SEL & RD_ & MODE[5] & MODE[4] & lsbflag) begin
+			lsbflag <= 1'b0;
+		end
+		else begin
+			lsbflag <= lsbflag;
+		end
+	end // always @ (posedge WR_)
    
-   // MSB Load
-   always @(posedge ZCLK) begin // posedge WR_ or posedge clear
-      if(clear == 1'b1) begin
+	// MSB Load
+	always @(posedge ZCLK) begin // posedge WR_ or posedge clear
+		if(clear == 1'b1) begin
 			COUNTMSB <= 8'b0;
-      end
+		end
 		else if(SEL & RD_ & ~WR_ & ~MODE[5] & MODE[4]) begin
 			COUNTMSB <= 8'b0;
-      end
-      else if(SEL & RD_ & ~WR_ & MODE[5] & ~MODE[4]) begin
+		end
+		else if(SEL & RD_ & ~WR_ & MODE[5] & ~MODE[4]) begin
 			COUNTMSB <= D;
-      end
-      else if(SEL & RD_ & ~WR_ & MODE[5] & MODE[4] & lsbflag) begin
+		end
+		else if(SEL & RD_ & ~WR_ & MODE[5] & MODE[4] & lsbflag) begin
 			COUNTMSB <= D;
-      end
-      else begin
+		end
+		else begin
 			COUNTMSB <= COUNTMSB;
-      end
-   end // always @ (posedge WR_ or posedge clear)
+		end
+	end // always @ (posedge WR_ or posedge clear)
 
-   // LSB Load
-   always @(posedge ZCLK) begin // posedge WR_ or posedge clear
-      if(clear == 1'b1) begin
+	// LSB Load
+	always @(posedge ZCLK) begin // posedge WR_ or posedge clear
+		if(clear == 1'b1) begin
 			COUNTLSB <= 8'b0;
-      end
-      else if(SEL & RD_ & ~WR_ & ~MODE[5] & MODE[4]) begin
+		end
+		else if(SEL & RD_ & ~WR_ & ~MODE[5] & MODE[4]) begin
 			COUNTLSB <= D;
-      end
+		end
 		else if(SEL & RD_ & ~WR_ & MODE[5] & ~MODE[4]) begin
 			COUNTLSB <= 8'b0;
-      end
-      else if(SEL & RD_ & ~WR_ & MODE[5] & MODE[4] & ~lsbflag) begin
+		end
+		else if(SEL & RD_ & ~WR_ & MODE[5] & MODE[4] & ~lsbflag) begin
 			COUNTLSB <= D;
-      end
-      else begin
+		end
+		else begin
 			COUNTLSB <= COUNTLSB;
-      end
-   end // always @ (posedge WR_ or posedge clear)
+		end
+	end // always @ (posedge WR_ or posedge clear)
 
-   // Load Register
+	// Load Register
 	always @(posedge CLK) begin
 		if(loadsync == 1'b1) loadbuf <= 1'b1;
 		else loadbuf <= 1'b0;
@@ -214,39 +212,41 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN,RST_
 			LOAD <= LOAD;
 		end // else: !if(WR_ == 1'b1)
 	end // always @ (posedge CLK or posedge WR_)
-*/
+	*/
 
-   // OUTEN Register
-   always @(posedge ZCLK or negedge RST_) begin
-      if(!RST_) begin 
-          OUTEN <= 1'b0;
-      end 
-      if(clear == 1'b1) begin
+	// OUTEN Register
+	always @(posedge ZCLK or negedge RST_) begin
+		if(!RST_) begin 
 			OUTEN <= 1'b0;
-      end
-      else if(LOAD == 1'b1) begin
+		end 
+		else if(clear == 1'b1) begin
+			OUTEN <= 1'b0;
+		end
+		else if(LOAD == 1'b1) begin
 			OUTEN <= 1'b1;
-      end
-      else begin
+		end
+		else begin
 			OUTEN <= OUTEN;
-      end
-   end // always @ (clear or WR_ or MODE or lsbflag)
+		end
+	end // always @ (clear or WR_ or MODE or lsbflag)
+	
 	/*
-   always @(posedge clear or posedge WR_) begin
-      if(clear == 1'b1) begin
+	always @(posedge clear or posedge WR_) begin
+		if(clear == 1'b1) begin
 			OUTEN <= 1'b0;
-      end
-      else if(SEL & RD_ & WR_ & (MODE[5] ^ MODE[4])) begin
+		end
+		else if(SEL & RD_ & WR_ & (MODE[5] ^ MODE[4])) begin
 			OUTEN <= 1'b1;
-      end
-      else if(SEL & RD_ & WR_ & MODE[5] & MODE[4] & lsbflag) begin
+		end
+		else if(SEL & RD_ & WR_ & MODE[5] & MODE[4] & lsbflag) begin
 			OUTEN <= 1'b1;
-      end
-      else begin
+		end
+		else begin
 			OUTEN <= OUTEN;
-      end
-   end // always @ (clear or WR_ or MODE or lsbflag)
-   */
+		end
+	end // always @ (clear or WR_ or MODE or lsbflag)
+	*/
+	
 endmodule
 
 /*
