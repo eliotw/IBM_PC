@@ -1290,7 +1290,7 @@ module sheet8(
    //reg 		     drq0;
    
    // Assignments
-   assign cass_data_in = out2;
+   assign cass_data_in = ~out2;
    assign tc_2_out = out2;
    assign sdata = ~(out2 & spkr_data);
    
@@ -1381,11 +1381,14 @@ module sheet9(
    assign enable_io_ck_n = pb[5];
    assign np_instl_sw = py[1];
    
-   // SW2 Assignments
-   assign pc[0] = ~pb[2];
-   assign pc[1] = 1'b1;
-   assign pc[2] = 1'b1;
-   assign pc[3] = 1'b1; // 256 k of RAM
+   // SW2 Assignments = 256k of RAM
+   // According to http://selectric.org/ibmpc/switches.jpg, we want the switch pattern to be 0001_1001,
+   // where 1 is on and 0 is off. If a switch is off, the input value is 1. If a switch is on, the input
+   // value is 0. So, if pb[2] is 1, we read sw1-sw4 (0110) and if pb[2] is 0, we read sw5-sw8 (1110). 
+   assign pc[0] = (pb[2] == 1'b1) ? 1'b0: 1'b0;
+   assign pc[1] = (pb[2] == 1'b1) ? 1'b1: 1'b1;
+   assign pc[2] = (pb[2] == 1'b1) ? 1'b1: 1'b1;
+   assign pc[3] = (pb[2] == 1'b1) ? 1'b0: 1'b1;
    
 	// PC assignments
 	assign pc[7] = pck;
@@ -1411,14 +1414,12 @@ module sheet9(
 		   );
 
    // Assign SW1 settings
-   assign py[0] = 1'b1; // No floppy drive for now
-   assign py[1] = 1'b1; // No 8087
-   assign py[2] = 1'b0; // RAM Bank 256 K
-   assign py[3] = 1'b0; // RAM Bank 256 K
-   assign py[4] = 1'b1; // CGA 80x25
-   assign py[5] = 1'b0; // CGA 80x25
-   assign py[6] = 1'b1; // One floppy drive
-   assign py[7] = 1'b1; // One floppy drive
+   // According to http://selectric.org/ibmpc/switches.jpg, we want the switch pattern to be 1101_0011,
+   // where 1 is on and 0 is off. SW78 = 11 indicate 1 floppy drive, SW56 = 10 indicate CGA 80 x 25,
+   // SW34 = 00 indicate banks 0-3 are filled, SW2 = 1 indicates no 8087, SW1 = 1 indicates no floppy drive
+   // If a switch is off, the input value is 1. If a switch is on, the input value is 0.  
+   // This means that our input pattern is 0010_1100
+   assign py = 8'b0010_1100;
    
    // Keyboard Interface
    keyinterface keyboard(
