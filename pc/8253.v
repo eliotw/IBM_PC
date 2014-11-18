@@ -217,11 +217,14 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN,RST_
 */
 
    // OUTEN Register
-   always @(posedge clear or posedge LOAD) begin
+   always @(posedge ZCLK or negedge RST_) begin
+      if(!RST_) begin 
+          OUTEN <= 1'b0;
+      end 
       if(clear == 1'b1) begin
 			OUTEN <= 1'b0;
       end
-      else if(LOAD) begin
+      else if(LOAD == 1'b1) begin
 			OUTEN <= 1'b1;
       end
       else begin
