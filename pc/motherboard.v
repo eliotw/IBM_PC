@@ -320,6 +320,7 @@ module motherboard(
 	     .motor_off(motor_off),
 	     .pclk(pclk),
 	     .reset_drv_n(reset_drv_n),
+		  .zclk(clk88),
 	     .drq0(drq[0]),
 	     .irq0(irq0),
 	     .spkr_data_out(spkr_data_out),
@@ -1188,7 +1189,7 @@ module sheet6(
 		.even(even)
 		);
 
-   // HOLY LIVING SHIT I HAVE NO IDEA WHAT THIS IS TRYING TO ACCOMPLISH
+   // I HAVE NO IDEA WHAT THIS IS TRYING TO ACCOMPLISH
    // Flip-Flop
    always @(posedge xmemr_n) begin
       if((pck_n == 1'b0) && (enb_ram_pck == 1'b1)) begin
@@ -1272,6 +1273,7 @@ module sheet8(
 	      input motor_off,
 	      input pclk,
 	      input reset_drv_n,
+			input zclk,
 	      output reg drq0,
 	      output irq0,
 	      output spkr_data_out,
@@ -1288,7 +1290,7 @@ module sheet8(
    //reg 		     drq0;
    
    // Assignments
-   assign cass_data_in = 1'b0;
+   assign cass_data_in = out2;
    assign tc_2_out = out2;
    assign sdata = ~(out2 & spkr_data);
    
@@ -1302,7 +1304,9 @@ module sheet8(
 	           .a0(xa0),
 	           .a1(xa1),
 	           .d(xd),
-	           .out({out2,out1,irq0})
+	           .out({out2,out1,irq0}),
+				  .rst_n(reset_drv_n),
+				  .zclk(zclk)
 		   );
 
    // PCLK Flip-Flop
@@ -1378,10 +1382,10 @@ module sheet9(
    assign np_instl_sw = py[1];
    
    // SW2 Assignments
-   assign pc[0] = 1'b1;
+   assign pc[0] = ~pb[2];
    assign pc[1] = 1'b1;
    assign pc[2] = 1'b1;
-   assign pc[3] = ~pb[2]; // 256 k of RAM
+   assign pc[3] = 1'b1; // 256 k of RAM
    
 	// PC assignments
 	assign pc[7] = pck;
