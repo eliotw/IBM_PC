@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 WARNING:Xst:1583 - You are using an internal switch '-use_new_parser'.
@@ -3297,7 +3297,7 @@ Synthesizing Unit <keyinterface>.
     Summary:
 	inferred   1 RAM(s).
 	inferred   9 D-type flip-flop(s).
-	inferred  13 Multiplexer(s).
+	inferred  15 Multiplexer(s).
 	inferred   1 Finite State Machine(s).
 Unit <keyinterface> synthesized.
 
@@ -3524,7 +3524,7 @@ Macro Statistics
  8-bit comparator greater                              : 5
  8-bit comparator lessequal                            : 2
  9-bit comparator lessequal                            : 2
-# Multiplexers                                         : 1257
+# Multiplexers                                         : 1259
  1-bit 16-to-1 multiplexer                             : 1
  1-bit 2-to-1 multiplexer                              : 926
  1-bit 3-to-1 multiplexer                              : 25
@@ -3550,7 +3550,7 @@ Macro Statistics
  5-bit 2-to-1 multiplexer                              : 9
  8-bit 11-to-1 multiplexer                             : 1
  8-bit 16-to-1 multiplexer                             : 6
- 8-bit 2-to-1 multiplexer                              : 84
+ 8-bit 2-to-1 multiplexer                              : 86
  8-bit 8-to-1 multiplexer                              : 1
  9-bit 2-to-1 multiplexer                              : 35
  9-bit 8-to-1 multiplexer                              : 2
@@ -3864,7 +3864,7 @@ Macro Statistics
  8-bit comparator greater                              : 5
  8-bit comparator lessequal                            : 2
  9-bit comparator lessequal                            : 2
-# Multiplexers                                         : 1258
+# Multiplexers                                         : 1260
  1-bit 16-to-1 multiplexer                             : 1
  1-bit 2-to-1 multiplexer                              : 935
  1-bit 3-to-1 multiplexer                              : 25
@@ -3889,7 +3889,7 @@ Macro Statistics
  5-bit 2-to-1 multiplexer                              : 9
  8-bit 11-to-1 multiplexer                             : 1
  8-bit 16-to-1 multiplexer                             : 6
- 8-bit 2-to-1 multiplexer                              : 83
+ 8-bit 2-to-1 multiplexer                              : 85
  8-bit 8-to-1 multiplexer                              : 1
  9-bit 2-to-1 multiplexer                              : 35
  9-bit 8-to-1 multiplexer                              : 2
@@ -4615,11 +4615,11 @@ Primitive and Black Box Usage:
 #      GND                         : 6
 #      INV                         : 340
 #      LUT1                        : 64
-#      LUT2                        : 319
+#      LUT2                        : 318
 #      LUT3                        : 679
 #      LUT4                        : 435
 #      LUT5                        : 769
-#      LUT6                        : 2455
+#      LUT6                        : 2456
 #      MUXCY                       : 1056
 #      MUXF7                       : 326
 #      MUXF8                       : 121
@@ -4676,10 +4676,10 @@ Slice Logic Utilization:
        Number used as SRL:               18
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   5492
-   Number with an unused Flip Flop:    3564  out of   5492    64%  
-   Number with an unused LUT:           413  out of   5492     7%  
-   Number of fully used LUT-FF pairs:  1515  out of   5492    27%  
+ Number of LUT Flip Flop pairs used:   5493
+   Number with an unused Flip Flop:    3565  out of   5493    64%  
+   Number with an unused LUT:           414  out of   5493     7%  
+   Number of fully used LUT-FF pairs:  1514  out of   5493    27%  
    Number of unique control sets:       135
 
 IO Utilization: 
@@ -4759,12 +4759,12 @@ FindSrcOfAsyncThruGates : 100 (1)
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Control Signal                                                                                                                                                                                                                                                                    | Buffer(FF name)                                                                                                                            | Load  |
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-------+
-deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                          | NONE(s1/i8088/msb_o/q_1)                                                                                                                   | 474   |
-s7/nero/N1(s7/nero/XST_GND:G)                                                                                                                                                                                                                                                     | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[8].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)      | 256   |
-s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)| 64    |
-s8/i8253/vcs/C0/READ/SEL_WR__AND_817_o_inv(s8/i8253/vcs/C0/READ/SEL_WR__AND_817_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C0/READ/DREG_0)                                                                                                          | 9     |
-s8/i8253/vcs/C1/READ/SEL_WR__AND_817_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_817_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C1/READ/DREG_3)                                                                                                          | 9     |
-s8/i8253/vcs/C2/READ/SEL_WR__AND_817_o_inv(s8/i8253/vcs/C2/READ/SEL_WR__AND_817_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C2/READ/DREG_7)                                                                                                          | 9     |
+deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                          | NONE(s1/i8088/core/exec/regfile/r_0_63)                                                                                                    | 474   |
+s7/nero/N1(s7/nero/XST_GND:G)                                                                                                                                                                                                                                                     | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[13].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)     | 256   |
+s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)| 64    |
+s8/i8253/vcs/C0/READ/SEL_WR__AND_817_o_inv(s8/i8253/vcs/C0/READ/SEL_WR__AND_817_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C0/READ/DREG_3)                                                                                                          | 9     |
+s8/i8253/vcs/C1/READ/SEL_WR__AND_817_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_817_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C1/READ/DREG_6)                                                                                                          | 9     |
+s8/i8253/vcs/C2/READ/SEL_WR__AND_817_o_inv(s8/i8253/vcs/C2/READ/SEL_WR__AND_817_o_inv1:O)                                                                                                                                                                                         | NONE(s8/i8253/vcs/C2/READ/DREG_0)                                                                                                          | 9     |
 s0/vgamod/char_rom/N1(s0/vgamod/char_rom/XST_GND:G)                                                                                                                                                                                                                               | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)| 8     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)| 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)| 2     |
@@ -4959,7 +4959,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/clk'
   Clock period: 22.520ns (frequency: 44.405MHz)
-  Total number of paths / destination ports: 12819709755221568 / 4914
+  Total number of paths / destination ports: 12819709755221516 / 4914
 -------------------------------------------------------------------------
 Delay:               22.520ns (Levels of Logic = 39)
   Source:            s1/i8088/core/fetch/opcode_l_6 (FF)
@@ -4984,7 +4984,7 @@ Delay:               22.520ns (Levels of Logic = 39)
      MUXF7:I1->O           1   0.254   0.000  s1/i8088/core/micro_data_micro_rom/Mram_rom8_f7_0 (s1/i8088/core/micro_data_micro_rom/Mram_rom8_f71)
      MUXF8:I0->O           1   0.182   0.576  s1/i8088/core/micro_data_micro_rom/Mram_rom8_f8 (s1/i8088/core/micro_data_micro_rom/Mram_rom8_f8)
      LUT3:I1->O            1   0.094   0.480  s1/i8088/core/micro_data_micro_rom/Mram_rom101 (s1/i8088/core/micro_data/micro_o<2>)
-     LUT4:I3->O            1   0.094   0.480  s1/i8088/core/Mmux_ir233_SW0 (N1786)
+     LUT4:I3->O            1   0.094   0.480  s1/i8088/core/Mmux_ir233_SW0 (N1784)
      LUT6:I5->O           96   0.094   0.715  s1/i8088/core/Mmux_ir233 (s1/i8088/core/ir<2>)
      LUT6:I4->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_addr_a[3]_r[15][7]_wide_mux_6_OUT_51 (s1/i8088/core/exec/regfile/Mmux_addr_a[3]_r[15][15]_wide_mux_3_OUT_51)
      MUXF7:I1->O           1   0.254   0.000  s1/i8088/core/exec/regfile/Mmux_addr_a[3]_r[15][15]_wide_mux_3_OUT_4_f7 (s1/i8088/core/exec/regfile/Mmux_addr_a[3]_r[15][15]_wide_mux_3_OUT_4_f7)
@@ -5005,8 +5005,8 @@ Delay:               22.520ns (Levels of Logic = 39)
      XORCY:CI->O           1   0.357   0.480  s1/i8088/core/exec/alu/othop/Madd_dcmp2_xor<5> (s1/i8088/core/exec/alu/othop/dcmp2<5>)
      LUT6:I5->O            2   0.094   0.485  s1/i8088/core/exec/alu/othop/mux8_16/Mmux_out112 (s1/i8088/core/exec/alu/oth<5>)
      LUT6:I5->O            4   0.094   0.726  s1/i8088/core/exec/alu/m0/Mmux_out_2_f7_4 (s1/i8088/core/addr_exec<5>)
-     LUT6:I3->O            5   0.094   0.358  s1/i8088/core/exec/regfile/Mmux_cx_zero111_SW0_SW0 (N1289)
-     MUXF7:S->O            1   0.329   0.480  s1/i8088/core/exec/regfile/Mmux_cx_zero111_SW1_SW0_SW0_SW1 (N1441)
+     LUT6:I3->O            5   0.094   0.358  s1/i8088/core/exec/regfile/Mmux_cx_zero111_SW0_SW0 (N1287)
+     MUXF7:S->O            1   0.329   0.480  s1/i8088/core/exec/regfile/Mmux_cx_zero111_SW1_SW0_SW0_SW1 (N1439)
      LUT6:I5->O           58   0.094   0.842  s1/i8088/core/fetch/nstate/Mmux_n_state411 (s1/i8088/core/fetch/nstate/Mmux_n_state41)
      LUT6:I3->O            8   0.094   1.107  s1/i8088/write_bus_ale_AND_607_o_inv3 (s1/i8088/write_bus_ale_AND_607_o_inv)
      LUT6:I0->O            5   0.094   0.502  s1/adp<0>LogicTrst3 (s1/adp<0>)
@@ -5019,21 +5019,21 @@ Delay:               22.520ns (Levels of Logic = 39)
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/pclk'
   Clock period: 2.692ns (frequency: 371.471MHz)
-  Total number of paths / destination ports: 72 / 13
+  Total number of paths / destination ports: 76 / 13
 -------------------------------------------------------------------------
 Delay:               2.692ns (Levels of Logic = 2)
-  Source:            s9/keyboard/state_FSM_FFd3 (FF)
-  Destination:       s9/keyboard/pa_6 (FF)
+  Source:            s9/keyboard/state_FSM_FFd2 (FF)
+  Destination:       s9/keyboard/pa_7 (FF)
   Source Clock:      s1/i8284/pclk rising
   Destination Clock: s1/i8284/pclk rising
 
-  Data Path: s9/keyboard/state_FSM_FFd3 to s9/keyboard/pa_6
+  Data Path: s9/keyboard/state_FSM_FFd2 to s9/keyboard/pa_7
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q             10   0.471   1.022  s9/keyboard/state_FSM_FFd3 (s9/keyboard/state_FSM_FFd3)
-     LUT6:I1->O            8   0.094   1.011  s9/keyboard/state[7]_pa[7]_select_75_OUT<1>11 (s9/keyboard/state[7]_pa[7]_select_75_OUT<1>1)
-     LUT5:I0->O            1   0.094   0.000  s9/keyboard/state[7]_pa[7]_select_75_OUT<0>2 (s9/keyboard/state[7]_pa[7]_select_75_OUT<0>)
+     FDR:C->Q             10   0.471   1.022  s9/keyboard/state_FSM_FFd2 (s9/keyboard/state_FSM_FFd2)
+     LUT6:I1->O            8   0.094   1.011  s9/keyboard/state[7]_GND_258_o_select_76_OUT<7>31 (s9/keyboard/state[7]_GND_258_o_select_76_OUT<7>3)
+     LUT5:I0->O            1   0.094   0.000  s9/keyboard/state[7]_GND_258_o_select_76_OUT<0>2 (s9/keyboard/state[7]_GND_258_o_select_76_OUT<0>)
      FD:D                     -0.018          s9/keyboard/pa_0
     ----------------------------------------
     Total                      2.692ns (0.659ns logic, 2.033ns route)
@@ -5314,8 +5314,8 @@ Delay:               3.734ns (Levels of Logic = 3)
      FDR_1:C->Q            5   0.467   0.995  s9/keyboard/keyinmod/b_FSM_FFd10 (s9/keyboard/keyinmod/b_FSM_FFd10)
      LUT5:I0->O            3   0.094   0.587  s9/keyboard/keyinmod/b[7]_newdata_Select_16_o<7>111 (s9/keyboard/keyinmod/b[7]_newdata_Select_16_o<7>11)
      LUT5:I3->O            2   0.094   0.715  s9/keyboard/keyinmod/Mmux_b[7]_dataout[7]_select_14_OUT<6>111 (s9/keyboard/keyinmod/Mmux_b[7]_dataout[7]_select_14_OUT<6>11)
-     LUT5:I2->O            2   0.094   0.341  s9/keyboard/keyinmod/Mmux_b[7]_dataout[7]_select_14_OUT<6>1 (s9/keyboard/keyinmod/b[7]_dataout[7]_select_14_OUT<6>)
-     RAMB18:ADDRA9             0.347          s9/keyboard_Mram_tdata
+     LUT5:I2->O            2   0.094   0.341  s9/keyboard/keyinmod/Mmux_b[7]_dataout[7]_select_14_OUT<7>1 (s9/keyboard/keyinmod/b[7]_dataout[7]_select_14_OUT<7>)
+     RAMB18:ADDRA10            0.347          s9/keyboard_Mram_tdata
     ----------------------------------------
     Total                      3.734ns (1.096ns logic, 2.638ns route)
                                        (29.4% logic, 70.6% route)
@@ -5354,8 +5354,8 @@ Offset:              2.118ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O             8   0.818   0.518  KEYBOARD_DATA_IBUF (KEYBOARD_DATA_IBUF)
-     LUT5:I4->O            2   0.094   0.341  s9/keyboard/keyinmod/Mmux_b[7]_dataout[7]_select_14_OUT<0>1 (s9/keyboard/keyinmod/b[7]_dataout[7]_select_14_OUT<0>)
-     RAMB18:ADDRA3             0.347          s9/keyboard_Mram_tdata
+     LUT5:I4->O            2   0.094   0.341  s9/keyboard/keyinmod/Mmux_b[7]_dataout[7]_select_14_OUT<7>1 (s9/keyboard/keyinmod/b[7]_dataout[7]_select_14_OUT<7>)
+     RAMB18:ADDRA10            0.347          s9/keyboard_Mram_tdata
     ----------------------------------------
     Total                      2.118ns (1.259ns logic, 0.859ns route)
                                        (59.4% logic, 40.6% route)
@@ -5537,7 +5537,7 @@ Clock to Setup on destination clock s1/i8284/pclk
                                     | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                        |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ------------------------------------+---------+---------+---------+---------+
-KEYBOARD_CLK                        |         |    5.965|         |         |
+KEYBOARD_CLK                        |         |    5.697|         |         |
 s1/i8284/clk                        |    2.680|         |         |         |
 s1/i8284/pclk                       |    2.692|         |         |         |
 s9/i8255/cmd[4]_GND_232_o_equal_25_o|         |    3.059|         |         |
@@ -5789,8 +5789,8 @@ xiow_n                         |    2.469|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 79.00 secs
-Total CPU time to Xst completion: 76.01 secs
+Total REAL time to Xst completion: 75.00 secs
+Total CPU time to Xst completion: 72.45 secs
  
 WARNING:Xst:3152 - You have chosen to run a version of XST which is not the default solution
    for the specified device family. You are free to use it in order to take
@@ -5803,7 +5803,7 @@ WARNING:Xst:3152 - You have chosen to run a version of XST which is not the defa
 --> 
 
 
-Total memory usage is 573804 kilobytes
+Total memory usage is 574108 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  873 (   0 filtered)

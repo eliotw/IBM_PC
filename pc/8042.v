@@ -93,13 +93,13 @@ module keyinterface(
 				end
 				else if(pb6 == 1'b0) begin
 					state<=pb60;
-					pa<=pa;
+					pa<=8'h00;
 					irq1<=1'b0;
 				end
 				else if(newdata == 1'b1) begin
 					if(fdata == 8'hf0) begin
 						state<=f0s0;
-						pa<=pa;
+						pa<=8'h00;
 						irq1<=1'b0;
 					end
 					else begin
@@ -110,7 +110,7 @@ module keyinterface(
 				end
 				else begin
 					state<=idle;
-					pa<=pa;
+					pa<=8'h00;
 					irq1<=1'b0;
 				end
 			end
@@ -149,12 +149,12 @@ module keyinterface(
 				end
 				else if(newdata == 1'b0) begin
 					state<=idle;
-					pa<=pa;
+					pa<=8'h00;
 					irq1<=1'b0;
 				end
 				else begin
 					state<=wclr;
-					pa<=pa;
+					pa<=8'h00;
 					irq1<=1'b0;
 				end
 			end

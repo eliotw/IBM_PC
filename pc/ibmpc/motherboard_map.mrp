@@ -10,7 +10,7 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Tue Nov 18 18:20:29 2014
+Mapped Date    : Tue Nov 18 20:03:14 2014
 
 Design Summary
 --------------
@@ -20,28 +20,28 @@ Slice Logic Utilization:
   Number of Slice Registers:                 3,176 out of  69,120    4%
     Number used as Flip Flops:               3,118
     Number used as Latches:                     58
-  Number of Slice LUTs:                      5,699 out of  69,120    8%
-    Number used as logic:                    5,235 out of  69,120    7%
-      Number using O6 output only:           4,685
-      Number using O5 output only:             114
-      Number using O5 and O6:                  436
+  Number of Slice LUTs:                      5,702 out of  69,120    8%
+    Number used as logic:                    5,239 out of  69,120    7%
+      Number using O6 output only:           4,688
+      Number using O5 output only:             118
+      Number using O5 and O6:                  433
     Number used as Memory:                     451 out of  17,920    2%
       Number used as Shift Register:           451
         Number using O6 output only:           449
         Number using O5 output only:             1
         Number using O5 and O6:                  1
-    Number used as exclusive route-thru:        13
-  Number of route-thrus:                       128
-    Number using O6 output only:               124
+    Number used as exclusive route-thru:        12
+  Number of route-thrus:                       131
+    Number using O6 output only:               127
     Number using O5 output only:                 3
     Number using O5 and O6:                      1
 
 Slice Logic Distribution:
-  Number of occupied Slices:                 2,412 out of  17,280   13%
-  Number of LUT Flip Flop pairs used:        7,013
-    Number with an unused Flip Flop:         3,837 out of   7,013   54%
-    Number with an unused LUT:               1,314 out of   7,013   18%
-    Number of fully used LUT-FF pairs:       1,862 out of   7,013   26%
+  Number of occupied Slices:                 2,401 out of  17,280   13%
+  Number of LUT Flip Flop pairs used:        7,004
+    Number with an unused Flip Flop:         3,828 out of   7,004   54%
+    Number with an unused LUT:               1,302 out of   7,004   18%
+    Number of fully used LUT-FF pairs:       1,874 out of   7,004   26%
     Number of unique control sets:             187
     Number of slice register sites lost
       to control set restrictions:             372 out of  69,120    1%
@@ -73,9 +73,9 @@ Specific Feature Utilization:
   Number of RPM macros:            9
 Average Fanout of Non-Clock Nets:                4.67
 
-Peak Memory Usage:  1128 MB
-Total REAL time to MAP completion:  55 secs 
-Total CPU time to MAP completion:   53 secs 
+Peak Memory Usage:  1102 MB
+Total REAL time to MAP completion:  1 mins 1 secs 
+Total CPU time to MAP completion:   59 secs 
 
 Table of Contents
 -----------------
@@ -1347,9 +1347,6 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s8/i8253/vcs/C1/READ/MODE[5]_PWR_148_o_Mux_9_o is sourced by a combinatorial
    pin. This is not good design practice. Use the CE pin to control the loading
    of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s1/qs<1> is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C0/MODETRIG is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
@@ -1360,6 +1357,9 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C1/MODETRIG is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s1/qs<1> is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
 
 Section 3 - Informational
 -------------------------
