@@ -102,7 +102,7 @@ module motherboard(
    // Some assignments
    assign clk_100 = USER_CLK; // user clock is 100 MHz clock
    assign xa0_n = xa[0]; // not sure if needs to be inverted or not
-   assign PIEZO_SPEAKER = 1'b0; // speaker is darn annoying
+   assign PIEZO_SPEAKER = spkr_data_out; // speaker is darn annoying
 	assign GPIO_LED_0 = spkr_data_out; // assign to led instead
    assign HDR1_2 = vga_red_o[0]; // vga red o 0
    assign HDR1_4 = vga_red_o[1]; // vga red o 1

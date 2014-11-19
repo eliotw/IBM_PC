@@ -37,7 +37,7 @@ module intel8255(
    // Line assign
    assign d = (pds == 1'b1) ? pdo : 8'bzzzzzzzz;
    assign cmd = {a[1],a[0],rd_n,wr_n,cs_n};
-   assign pds = ((cmd == 5'b00010) | (cmd == 5'b10010));
+   assign pds = ((cmd == 5'b00010) | (cmd == 5'b10010) | (cmd == 5'b01010));
 	assign rst_n = ~reset;
 	
 	always @(posedge clk or negedge rst_n) begin
@@ -70,29 +70,32 @@ module intel8255(
    // pdo assign
    always @(cmd or reset) begin
       if(reset == 1'b1) begin
-	 pdo <= 8'b0;
+			pdo <= 8'b0;
       end
       else if(cmd == 5'b00010) begin
-	 pdo <= pa;
+			pdo <= pa;
       end
       else if(cmd == 5'b10010) begin
-	 pdo <= pc;
+			pdo <= pc;
       end
+		else if(cmd == 5'b01010) begin
+			pdo <= pb;
+		end
       else begin
-	 pdo <= pdo;
+			pdo <= pdo;
       end
    end // always @ (cmd)
 
    // pb assign
    always @(cmd or reset) begin
       if(reset) begin
-	 pb <= 8'b0;
+			pb <= 8'b0;
       end
       else if(cmd == 5'b01100) begin
-	 pb <= pdi;
+			pb <= pdi;
       end
       else begin
-	 pb <= pb;
+			pb <= pb;
       end
    end // always @ (cmd or reset)
    

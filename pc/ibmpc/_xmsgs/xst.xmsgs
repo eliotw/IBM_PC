@@ -203,13 +203,16 @@
 <msg type="warning" file="HDLCompiler" num="91" delta="new" >"/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8255.v" Line 79: Signal &lt;<arg fmt="%s" index="1">pc</arg>&gt; missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="91" delta="new" >"/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8255.v" Line 82: Signal &lt;<arg fmt="%s" index="1">pdo</arg>&gt; missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+<msg type="warning" file="HDLCompiler" num="91" delta="new" >"/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8255.v" Line 82: Signal &lt;<arg fmt="%s" index="1">pb</arg>&gt; missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="91" delta="new" >"/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8255.v" Line 92: Signal &lt;<arg fmt="%s" index="1">pdi</arg>&gt; missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+<msg type="warning" file="HDLCompiler" num="91" delta="new" >"/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8255.v" Line 85: Signal &lt;<arg fmt="%s" index="1">pdo</arg>&gt; missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="91" delta="new" >"/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8255.v" Line 95: Signal &lt;<arg fmt="%s" index="1">pb</arg>&gt; missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+<msg type="warning" file="HDLCompiler" num="91" delta="new" >"/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8255.v" Line 95: Signal &lt;<arg fmt="%s" index="1">pdi</arg>&gt; missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="91" delta="new" >"/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8255.v" Line 98: Signal &lt;<arg fmt="%s" index="1">pb</arg>&gt; missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
 </msg>
 
 <msg type="warning" file="HDLCompiler" num="1127" delta="new" >"/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/motherboard.v" Line 350: Assignment to <arg fmt="%s" index="1">enb_ram_pck_n</arg> ignored, since the identifier is never used
@@ -1678,12 +1681,6 @@ It will be removed from the design.
 <msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">s_17</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">div_su</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">pdi_3</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">i8255</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">pdi_4</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">i8255</arg>&gt;.
-</msg>
-
 <msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">modereg_0</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MODEREG</arg>&gt;.
 </msg>
 
@@ -1982,18 +1979,6 @@ It will be removed from the design.
 <msg type="warning" file="Xst" num="2042" delta="new" >Unit <arg fmt="%s" index="1">intel8237A</arg>: <arg fmt="%d" index="2">21</arg> internal tristates are replaced by logic (pull-up <arg fmt="%s" index="3">yes</arg>): </msg>
 
 <msg type="warning" file="Xst" num="2973" delta="new" >All outputs of instance &lt;<arg fmt="%s" index="1">s1/i8088/hld_fsm</arg>&gt; of block &lt;<arg fmt="%s" index="2">hold_fsm</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="3">motherboard</arg>&gt;. Underlying logic will be removed.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">s9/i8255/pb_3</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">motherboard</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">s9/i8255/pb_4</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">motherboard</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">s9/i8255/pdi_4</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">motherboard</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">s9/i8255/pdi_3</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">motherboard</arg>&gt;.
 </msg>
 
 <msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">s4/i8237/aen</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">motherboard</arg>&gt;.
