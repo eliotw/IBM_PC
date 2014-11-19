@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.28xd on Mon Nov 17 22:11:50 2014
+// Written by: Map P.28xd on Tue Nov 18 18:21:22 2014
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -913,8 +913,8 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         "s9/i8255/pdi_2" BEL "s9/i8255/pdi_1" BEL "s9/i8255/pdi_0" BEL
         "s8/i8253/vcs/C0/OUTCTRL/OUT" BEL "s8/i8253/vcs/C0/OUTCTRL/RELOAD" BEL
         "s8/i8253/vcs/C0/OUTCTRL/CLRTRIG" BEL
-        "s8/i8253/vcs/C0/MODEREG/LATCHCNT" BEL
-        "s8/i8253/vcs/C0/CNTREG/COUNTMSB_0" BEL
+        "s8/i8253/vcs/C0/MODEREG/LATCHCNT" BEL "s8/i8253/vcs/C0/CNTREG/OUTEN"
+        BEL "s8/i8253/vcs/C0/CNTREG/COUNTMSB_0" BEL
         "s8/i8253/vcs/C0/CNTREG/COUNTMSB_1" BEL
         "s8/i8253/vcs/C0/CNTREG/COUNTMSB_2" BEL
         "s8/i8253/vcs/C0/CNTREG/COUNTMSB_3" BEL
@@ -941,8 +941,8 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         "s8/i8253/vcs/C0/LATCHLSB_0" BEL "s8/i8253/vcs/C1/OUTCTRL/OUT" BEL
         "s8/i8253/vcs/C1/OUTCTRL/RELOAD" BEL "s8/i8253/vcs/C1/OUTCTRL/CLRTRIG"
         BEL "s8/i8253/vcs/C1/MODEREG/LATCHCNT" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTMSB_0" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTMSB_1" BEL
+        "s8/i8253/vcs/C1/CNTREG/OUTEN" BEL "s8/i8253/vcs/C1/CNTREG/COUNTMSB_0"
+        BEL "s8/i8253/vcs/C1/CNTREG/COUNTMSB_1" BEL
         "s8/i8253/vcs/C1/CNTREG/COUNTMSB_2" BEL
         "s8/i8253/vcs/C1/CNTREG/COUNTMSB_3" BEL
         "s8/i8253/vcs/C1/CNTREG/COUNTMSB_4" BEL
@@ -968,8 +968,8 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         "s8/i8253/vcs/C1/LATCHLSB_0" BEL "s8/i8253/vcs/C2/OUTCTRL/OUT" BEL
         "s8/i8253/vcs/C2/OUTCTRL/RELOAD" BEL "s8/i8253/vcs/C2/OUTCTRL/CLRTRIG"
         BEL "s8/i8253/vcs/C2/MODEREG/LATCHCNT" BEL
-        "s8/i8253/vcs/C2/CNTREG/COUNTMSB_0" BEL
-        "s8/i8253/vcs/C2/CNTREG/COUNTMSB_1" BEL
+        "s8/i8253/vcs/C2/CNTREG/OUTEN" BEL "s8/i8253/vcs/C2/CNTREG/COUNTMSB_0"
+        BEL "s8/i8253/vcs/C2/CNTREG/COUNTMSB_1" BEL
         "s8/i8253/vcs/C2/CNTREG/COUNTMSB_2" BEL
         "s8/i8253/vcs/C2/CNTREG/COUNTMSB_3" BEL
         "s8/i8253/vcs/C2/CNTREG/COUNTMSB_4" BEL
