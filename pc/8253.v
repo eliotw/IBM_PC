@@ -302,7 +302,7 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT, RST_,Z
 				if (MODE[3:1] == 3)
               if (COUNT[0])
                 if (OUT)
-                  COUNT <= COUNT - 1; // was 1
+                  COUNT <= COUNT - 3; // was 1
 					 else
 						COUNT <= COUNT - 3;
 				  else 
@@ -499,14 +499,17 @@ module modereg(D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCN
 		modereg = 6'b0;
   end
   
-  always @(posedge selrdwr or negedge RST_) begin
-	 if(!RST_) begin
+	always @(posedge ZCLK or negedge RST_) begin
+		if(!RST_) begin
 			modereg <= 6'b0;
-	 end
-    else begin
+		end
+		else if(selrdwr) begin
 			modereg <= D[5:0];
-    end
-  end
+		end
+		else begin
+			modereg <= modereg;
+		end
+	end
 	
 
   always @(SELMODE or RD_ or WR_)
@@ -574,7 +577,9 @@ module outctrl(COUNT,MODE,CLK,GATE,OUTENABLE,MODETRIG,LOAD,SETOUT_,CLROUT_,
 		// Clear Trigger Flag
 		CLRTRIG = 'b0;
 		if(!SETOUT_) OUT = 1'b1;
-		else if(LOAD) OUT = 1'b0;
+		else if(LOAD && MODE[3:1] != 3) begin
+			OUT = 1'b0;
+		end
 		else if(!CLROUT_) OUT = 1'b0;
 		else if ((GATE || (MODE[3:1] == 1) || (MODE[3:1] == 5)) && OUTENABLE)
           case (MODE[3:1])
@@ -608,18 +613,18 @@ module outctrl(COUNT,MODE,CLK,GATE,OUTENABLE,MODETRIG,LOAD,SETOUT_,CLROUT_,
                  OUT = 'b1;
               end
             3 : if (COUNT == 16'h4) // was originally 2
-              begin
-		 if(LOAD == 1'b1) begin
-		    OUT = 1'b1;
-		    RELOAD = 1'b0;
-		 end
-		 else begin
-		    // Toggle Out When Counter Reaches 2
-                    OUT = ~OUT;
-                    // Reload New Count
-                    RELOAD = 1'b1;
-		 end   
-              end
+				begin
+					if(LOAD == 1'b1) begin
+						OUT = ~OUT;
+						RELOAD = 1'b0;
+					end
+					else begin
+						// Toggle Out When Counter Reaches 2
+						OUT = ~OUT;
+						// Reload New Count
+						RELOAD = 1'b1;
+					end   
+				end
             4,5 : begin
 	       if (COUNT)
 		 begin

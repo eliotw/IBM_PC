@@ -145,7 +145,8 @@ Whole frame	525
 
    // Added wires
    wire 		      io_range, mem_range;
-   reg [7:0] 		      dataout;
+   reg [7:0] dataout;
+	wire [7:0] buff_out, attr_out;
    wire [10:0] new_buff_addr, new_attr_addr;
 	wire new_buff_we, new_attr_we, new_buff, new_attr;
    // Module instantiation
@@ -157,16 +158,43 @@ Whole frame	525
 	.dina(8'b0),
 	.douta(char_data_out)
 	); 
+/*
+	charram2 ram_2k_char_2 (
+	.clka(clk),
+	.wea(new_buff_we),
+	.addra(a[11:1]),
+	.dina(d),
+	.clkb(clk),
+	.addrb(buff_addr), // input [10 : 0] addrb
+	.doutb(vga_data_out) // output [7 : 0] doutb
+	);
+	*/
 
 	charram ram_2k_char(
 	.clka(clk),
 	.rsta(rst),
-	.wea(new_buff_we), // was buff_we
-	.addra(new_buff_addr), // was buff_addr
-	.dina(d), // was buff_data_in
+	.wea(new_buff_we),
+	.addra(new_buff_addr),
+	.dina(d),
 	.douta(vga_data_out)
 	);
 
+/*
+	charram3 ram_2k_char_3 (
+	.clka(clk),
+	.rsta(rst),
+	.wea(new_buff_we),
+	.addra(a[11:1]),
+	.dina(d),
+	.douta(),
+	.clkb(clk),
+	.rstb(rst),
+	.web(1'b0),
+	.addrb(buff_addr),
+	.dinb(),
+	.doutb(vga_data_out)
+	);
+	*/
 	attrram ram_2k_attr (
 	.clka(clk), 
 	.rsta(rst), 

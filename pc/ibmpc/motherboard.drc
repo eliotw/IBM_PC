@@ -1,29 +1,10 @@
 Release 14.2 Drc P.28xd (lin64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-Wed Nov 19 11:21:14 2014
+Thu Nov 20 15:33:25 2014
 
 drc -z motherboard.ncd motherboard.pcf
 
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s8/i8253/vcs/C2/MODEREG/selrdwr is sourced by a combinatorial pin. This is
-   not good design practice. Use the CE pin to control the loading of data into
-   the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s8/i8253/vcs/C1/MODEREG/selrdwr is sourced by a combinatorial pin. This is
-   not good design practice. Use the CE pin to control the loading of data into
-   the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s8/i8253/vcs/C0/MODEREG/selrdwr is sourced by a combinatorial pin. This is
-   not good design practice. Use the CE pin to control the loading of data into
-   the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net xiow_n is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s9/i8255/cmd[4]_GND_232_o_equal_28_o is sourced by a combinatorial pin. This
-   is not good design practice. Use the CE pin to control the loading of data
-   into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s8/i8253/vcs/C2/READ/MODE[5]_PWR_148_o_Mux_9_o is sourced by a combinatorial
    pin. This is not good design practice. Use the CE pin to control the loading
@@ -36,6 +17,9 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s8/i8253/vcs/C0/READ/MODE[5]_PWR_148_o_Mux_9_o is sourced by a combinatorial
    pin. This is not good design practice. Use the CE pin to control the loading
    of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net xiow_n is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s9/i8255/pds is sourced by
    a combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
@@ -46,25 +30,19 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s1/i8259/inta_n_eoir[4]_OR_885_o is sourced by a combinatorial pin. This is
    not good design practice. Use the CE pin to control the loading of data into
    the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C2/MODETRIG is
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C0/MODETRIG is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s1/i8259/eoir[4]_eoir[1]_MUX_3322_o is sourced by a combinatorial pin. This
+   s1/i8259/eoir[4]_eoir[1]_MUX_3323_o is sourced by a combinatorial pin. This
    is not good design practice. Use the CE pin to control the loading of data
    into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s4/wrt_dma_pg_reg_n_INV_743_o is sourced by a combinatorial pin. This is not
    good design practice. Use the CE pin to control the loading of data into the
    flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C0/MODETRIG is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C1/MODETRIG is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s1/qs<1> is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
-DRC detected 0 errors and 17 warnings.  Please see the previously displayed
+DRC detected 0 errors and 11 warnings.  Please see the previously displayed
 individual error or warning messages for more details.

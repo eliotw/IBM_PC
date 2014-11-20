@@ -10,41 +10,41 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Wed Nov 19 11:19:13 2014
+Mapped Date    : Thu Nov 20 15:31:22 2014
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:  206
+Number of warnings:  200
 Slice Logic Utilization:
-  Number of Slice Registers:                 3,713 out of  69,120    5%
+  Number of Slice Registers:                 3,705 out of  69,120    5%
     Number used as Flip Flops:               3,653
-    Number used as Latches:                     60
-  Number of Slice LUTs:                      5,847 out of  69,120    8%
-    Number used as logic:                    5,255 out of  69,120    7%
-      Number using O6 output only:           4,706
-      Number using O5 output only:             117
-      Number using O5 and O6:                  432
+    Number used as Latches:                     52
+  Number of Slice LUTs:                      5,755 out of  69,120    8%
+    Number used as logic:                    5,156 out of  69,120    7%
+      Number using O6 output only:           4,732
+      Number using O5 output only:             105
+      Number using O5 and O6:                  319
     Number used as Memory:                     579 out of  17,920    3%
       Number used as Shift Register:           579
         Number using O6 output only:           577
         Number using O5 output only:             1
         Number using O5 and O6:                  1
-    Number used as exclusive route-thru:        13
-  Number of route-thrus:                       141
-    Number using O6 output only:               128
-    Number using O5 output only:                12
-    Number using O5 and O6:                      1
+    Number used as exclusive route-thru:        20
+  Number of route-thrus:                       126
+    Number using O6 output only:               120
+    Number using O5 output only:                 1
+    Number using O5 and O6:                      5
 
 Slice Logic Distribution:
-  Number of occupied Slices:                 2,649 out of  17,280   15%
-  Number of LUT Flip Flop pairs used:        7,626
-    Number with an unused Flip Flop:         3,913 out of   7,626   51%
-    Number with an unused LUT:               1,779 out of   7,626   23%
-    Number of fully used LUT-FF pairs:       1,934 out of   7,626   25%
-    Number of unique control sets:             189
+  Number of occupied Slices:                 2,624 out of  17,280   15%
+  Number of LUT Flip Flop pairs used:        7,577
+    Number with an unused Flip Flop:         3,872 out of   7,577   51%
+    Number with an unused LUT:               1,822 out of   7,577   24%
+    Number of fully used LUT-FF pairs:       1,883 out of   7,577   24%
+    Number of unique control sets:             182
     Number of slice register sites lost
-      to control set restrictions:             363 out of  69,120    1%
+      to control set restrictions:             343 out of  69,120    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -55,8 +55,8 @@ Slice Logic Distribution:
   over-mapped for a non-BRAM resource or if placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                        14 out of     640    2%
-    Number of LOCed IOBs:                       14 out of      14  100%
+  Number of bonded IOBs:                        15 out of     640    2%
+    Number of LOCed IOBs:                       15 out of      15  100%
 
 Specific Feature Utilization:
   Number of BlockRAM/FIFO:                      91 out of     148   61%
@@ -71,7 +71,7 @@ Specific Feature Utilization:
   Number of DSP48Es:                             1 out of      64    1%
 
   Number of RPM macros:           10
-Average Fanout of Non-Clock Nets:                4.53
+Average Fanout of Non-Clock Nets:                4.64
 
 Peak Memory Usage:  1107 MB
 Total REAL time to MAP completion:  55 secs 
@@ -102,7 +102,7 @@ WARNING:Security:43 - No license file was found in the standard Xilinx license
 directory.
 WARNING:Security:44 - Since no license file was found,
 WARNING:Security:42 - Your license support version '2014.11' for ISE expires in
-11 days after which you will not qualify for Xilinx software updates or new
+10 days after which you will not qualify for Xilinx software updates or new
 releases.
 WARNING:Pack:2874 - Trimming timing constraints from pin
    s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cs
@@ -1299,25 +1299,6 @@ WARNING:Place:644 - A clock IOB clock component is not placed at an optimal
    results. It is recommended that this error condition be corrected in the
    design.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s8/i8253/vcs/C2/MODEREG/selrdwr is sourced by a combinatorial pin. This is
-   not good design practice. Use the CE pin to control the loading of data into
-   the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s8/i8253/vcs/C1/MODEREG/selrdwr is sourced by a combinatorial pin. This is
-   not good design practice. Use the CE pin to control the loading of data into
-   the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s8/i8253/vcs/C0/MODEREG/selrdwr is sourced by a combinatorial pin. This is
-   not good design practice. Use the CE pin to control the loading of data into
-   the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net xiow_n is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s9/i8255/cmd[4]_GND_232_o_equal_28_o is sourced by a combinatorial pin. This
-   is not good design practice. Use the CE pin to control the loading of data
-   into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s8/i8253/vcs/C2/READ/MODE[5]_PWR_148_o_Mux_9_o is sourced by a combinatorial
    pin. This is not good design practice. Use the CE pin to control the loading
    of data into the flip-flop.
@@ -1329,6 +1310,9 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s8/i8253/vcs/C0/READ/MODE[5]_PWR_148_o_Mux_9_o is sourced by a combinatorial
    pin. This is not good design practice. Use the CE pin to control the loading
    of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net xiow_n is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s9/i8255/pds is sourced by
    a combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
@@ -1339,23 +1323,17 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s1/i8259/inta_n_eoir[4]_OR_885_o is sourced by a combinatorial pin. This is
    not good design practice. Use the CE pin to control the loading of data into
    the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C2/MODETRIG is
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C0/MODETRIG is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s1/i8259/eoir[4]_eoir[1]_MUX_3322_o is sourced by a combinatorial pin. This
+   s1/i8259/eoir[4]_eoir[1]_MUX_3323_o is sourced by a combinatorial pin. This
    is not good design practice. Use the CE pin to control the loading of data
    into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s4/wrt_dma_pg_reg_n_INV_743_o is sourced by a combinatorial pin. This is not
    good design practice. Use the CE pin to control the loading of data into the
    flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C0/MODETRIG is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s8/i8253/vcs/C1/MODETRIG is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s1/qs<1> is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
@@ -1395,8 +1373,8 @@ INFO:Pack:1650 - Map created a placed design.
 Section 4 - Removed Logic Summary
 ---------------------------------
   44 block(s) removed
- 352 block(s) optimized away
-  34 signal(s) removed
+ 350 block(s) optimized away
+  32 signal(s) removed
 
 Section 5 - Removed Logic
 -------------------------
@@ -1464,10 +1442,6 @@ The signal "icon_control0<34>" is sourceless and has been removed.
 The signal "icon_control0<29>" is sourceless and has been removed.
 The signal "icon_control0<35>" is sourceless and has been removed.
 The signal "s8/i8253/vcs/C0/OUTCTRL/TRIG/VCC" is sourceless and has been
-removed.
-The signal "s8/i8253/vcs/C1/OUTCTRL/TRIG/VCC" is sourceless and has been
-removed.
-The signal "s8/i8253/vcs/C2/OUTCTRL/TRIG/VCC" is sourceless and has been
 removed.
 The signal "s7/nero/N0" is sourceless and has been removed.
 The signal "U_icon_pro/U0/U_ICON/iCOMMAND_SEL<3>" is sourceless and has been
@@ -1883,6 +1857,7 @@ Section 6 - IOB Properties
 | IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
 |                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| GPIO_DIP_SW1                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
 | GPIO_LED_0                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
 | GPIO_SW_C                          | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
 | HDR1_2                             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |

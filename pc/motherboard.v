@@ -9,6 +9,7 @@ module motherboard(
 		   inout KEYBOARD_CLK, // keyboard clock
 		   inout KEYBOARD_DATA, // keyboard data
 		   input GPIO_SW_C, // reset trigger
+			input GPIO_DIP_SW1, // select to use audio or not
 		   output HDR1_2, // vga red o 0
 		   output HDR1_4, // vga red o 1
 		   output HDR1_6, // vga green o 0
@@ -102,7 +103,7 @@ module motherboard(
    // Some assignments
    assign clk_100 = USER_CLK; // user clock is 100 MHz clock
    assign xa0_n = xa[0]; // not sure if needs to be inverted or not
-   assign PIEZO_SPEAKER = spkr_data_out; // speaker is darn annoying
+   assign PIEZO_SPEAKER = (GPIO_DIP_SW1) ? spkr_data_out : 1'b1; // speaker assignment 
 	assign GPIO_LED_0 = spkr_data_out; // assign to led instead
    assign HDR1_2 = vga_red_o[0]; // vga red o 0
    assign HDR1_4 = vga_red_o[1]; // vga red o 1
@@ -1282,18 +1283,21 @@ module sheet8(
 	      );
 
    // Wires
-   wire 	     out1, out2;
+   wire 	     out1, out2, out3;
    wire 	     motor_ctrl, sdata;
-   
+   wire 		  spkr_cnt;
+	
    // Registers
-   reg 		     pclka;
-   //reg 		     drq0;
+   reg 		     	pclka;
+   reg [11:0] 		count;
    
    // Assignments
    assign cass_data_in = ~out2;
    assign tc_2_out = out2;
    assign sdata = ~(out2 & spkr_data);
-   
+   assign spkr_cnt = (count >= 12'h299);
+	assign out2 = (tim_2_gate_spk) ? spkr_cnt : 1'b1;
+	
    // 8253 Module
    intel8253 i8253(
 	           .gate({tim_2_gate_spk,1'b1,1'b1}),
@@ -1304,7 +1308,7 @@ module sheet8(
 	           .a0(xa0),
 	           .a1(xa1),
 	           .d(xd),
-	           .out({out2,out1,irq0}),
+	           .out({out3,out1,irq0}),
 				  .rst_n(reset_drv_n),
 				  .zclk(zclk)
 		   );
@@ -1312,13 +1316,26 @@ module sheet8(
    // PCLK Flip-Flop
    always @(posedge pclk) begin
       if(reset_drv_n == 1'b0) begin
-	 pclka <= 1'b0;
+			pclka <= 1'b0;
       end
       else begin
-	 pclka <= ~pclka;
+			pclka <= ~pclka;
       end
    end
    
+	// Timer 2 Flip-Flop
+	always @(posedge pclka or negedge reset_drv_n) begin
+		if(~reset_drv_n) begin
+			count <= 12'h533;
+		end
+		else if(count == 12'h0) begin
+			count <= 12'h533;
+		end
+		else begin
+			count <= count - 1;
+		end
+	end
+	
    // DRQ0 Flip-Flop
    always @(posedge out1) begin
       if(dack0_brd_n == 1'b0) begin

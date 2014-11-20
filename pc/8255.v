@@ -87,6 +87,7 @@ module intel8255(
    end // always @ (cmd)
 
    // pb assign
+	/*
    always @(cmd or reset) begin
       if(reset) begin
 			pb <= 8'b0;
@@ -98,5 +99,18 @@ module intel8255(
 			pb <= pb;
       end
    end // always @ (cmd or reset)
-   
+   */
+	
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			pb <= 8'b1111_1111;
+		end
+		else if(cmd == 5'b01100) begin
+			pb <= d;
+		end
+		else begin
+			pb <= pb;
+		end
+	end
+	
 endmodule // intel8255
