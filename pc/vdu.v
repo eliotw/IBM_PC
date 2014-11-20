@@ -158,43 +158,38 @@ Whole frame	525
 	.dina(8'b0),
 	.douta(char_data_out)
 	); 
-/*
-	charram2 ram_2k_char_2 (
-	.clka(clk),
-	.wea(new_buff_we),
-	.addra(a[11:1]),
-	.dina(d),
-	.clkb(clk),
-	.addrb(buff_addr), // input [10 : 0] addrb
-	.doutb(vga_data_out) // output [7 : 0] doutb
-	);
-	*/
 
-	charram ram_2k_char(
-	.clka(clk),
-	.rsta(rst),
-	.wea(new_buff_we),
-	.addra(new_buff_addr),
-	.dina(d),
-	.douta(vga_data_out)
-	);
-
-/*
 	charram3 ram_2k_char_3 (
 	.clka(clk),
 	.rsta(rst),
 	.wea(new_buff_we),
 	.addra(a[11:1]),
 	.dina(d),
-	.douta(),
+	.douta(buff_out),
 	.clkb(clk),
 	.rstb(rst),
 	.web(1'b0),
 	.addrb(buff_addr),
-	.dinb(),
+	.dinb(buff_out),
 	.doutb(vga_data_out)
 	);
-	*/
+	
+	attrram3 ram_2k_attr_3 (
+	.clka(clk),
+	.rsta(rst),
+	.wea(new_attr_we),
+	.addra(a[11:1]),
+	.dina(d),
+	.douta(attr_out),
+	.clkb(clk),
+	.rstb(rst),
+	.web(1'b0),
+	.addrb(attr_addr),
+	.dinb(attr_out),
+	.doutb(attr_data_out)
+	);
+	
+	/*
 	attrram ram_2k_attr (
 	.clka(clk), 
 	.rsta(rst), 
@@ -203,7 +198,7 @@ Whole frame	525
 	.dina(d), // was attr_data_in
 	.douta(attr_data_out) 
 	);
-	
+	*/
 	// New Assignments
 	assign new_buff = mem_range & ~a[0] & (memw | memr);
 	assign new_attr = mem_range &  a[0] & (memw | memr);
@@ -282,7 +277,8 @@ Whole frame	525
    
    // Output assignment
    assign d = ((memr & mem_range) | (ior & io_range)) ? 
-		((ior & io_range) ? dataout : (a[0] ? attr_data_out : vga_data_out)) : 8'bzzzzzzzz;
+		((ior & io_range) ? dataout : (a[0] ? attr_out : buff_out)) : 8'bzzzzzzzz; 
+		// buff_out was vga_data_out, attr_out was attr_data_out
 
    // CPU read interface
    always @(posedge clk) begin
