@@ -18,7 +18,8 @@ module motherboard(
 		   output HDR1_12, // vga blue o 1
 		   output HDR1_14, // vga horizontal sync
 		   output HDR1_16, // vga vertical sync
-			output GPIO_LED_0
+			output GPIO_LED_0, // same as the speaker output
+			input GPIO_SW_E // keyboard load special
 		   );
 
    // Internal signals
@@ -99,12 +100,13 @@ module motherboard(
    wire [1:0] 		 vga_blue_o; // vga blue output
    wire 		 horiz_sync; // vga horizontal sync
    wire 		 vert_sync; // vga vertical sync
-   
+   wire	    keyboard_load_special; // keyboard load special program
+	
    // Some assignments
    assign clk_100 = USER_CLK; // user clock is 100 MHz clock
    assign xa0_n = xa[0]; // not sure if needs to be inverted or not
    assign PIEZO_SPEAKER = (GPIO_DIP_SW1) ? spkr_data_out : 1'b1; // speaker assignment 
-	assign GPIO_LED_0 = spkr_data_out; // assign to led instead
+	assign GPIO_LED_0 = spkr_data_out; // assign to led as well
    assign HDR1_2 = vga_red_o[0]; // vga red o 0
    assign HDR1_4 = vga_red_o[1]; // vga red o 1
    assign HDR1_6 = vga_green_o[0]; // vga green o 0
@@ -113,6 +115,7 @@ module motherboard(
    assign HDR1_12 = vga_blue_o[1]; // vga blue o 1
    assign HDR1_14 = horiz_sync; // vga horizontal sync
    assign HDR1_16 = vert_sync; // vga vertical sync
+	assign keyboard_load_special = GPIO_SW_E; // keyboard load special program
 	
    // Debounce Module
    debounce deb(
@@ -353,7 +356,8 @@ module motherboard(
 	     .irq1(irq1),
 	     .np_instl_sw(npinstlsw),
 	     .kbd_clk(KEYBOARD_CLK),
-	     .kbd_data(KEYBOARD_DATA)
+	     .kbd_data(KEYBOARD_DATA),
+		  .keyboard_load_special(keyboard_load_special)
 	     );
 
    // Sheet 10
@@ -1382,7 +1386,8 @@ module sheet9(
 	      output irq1,
 	      output np_instl_sw,
 	      inout kbd_clk,
-	      inout kbd_data
+	      inout kbd_data,
+			input keyboard_load_special
 	      );
 
    // Wires
@@ -1447,8 +1452,8 @@ module sheet9(
 			 .pb7(pb[7]),
 			 .irq1(irq1),
 			 .keyboard_clock(kbd_clk),
-			 .keyboard_data(kbd_data)
-			 // There is no keyboard_reset_n
+			 .keyboard_data(kbd_data),
+			 .keyboard_load_special(keyboard_load_special)
 			 );
    
 endmodule // sheet9
