@@ -382,6 +382,7 @@ module intel8259(
 				recint <= 1'b0;
 				isr <= 8'b0;
 				irr_clr <= isr;
+				//irr_clr <= 8'b0; // maybe?
 			end
 			else begin
 				recint <= 1'b0;
