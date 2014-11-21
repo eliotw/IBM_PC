@@ -149,6 +149,7 @@ Whole frame	525
 	wire [7:0] buff_out, attr_out;
    wire [10:0] new_buff_addr, new_attr_addr;
 	wire new_buff_we, new_attr_we, new_buff, new_attr;
+	wire iod;
    // Module instantiation
 
 	charcore char_rom(
@@ -221,8 +222,9 @@ Whole frame	525
    assign brown_bg    = (vga_bg_colour==3'd6);
 
    // Control registers
-   assign wr_reg = iow & (a == 20'h003D5);
-   assign wr_adr = iow & (a == 20'h003D4);
+	assign iod = (a[19:4] == 16'h003D);
+   assign wr_reg = iow & iod & ((a[3:0] == 4'h3) | (a[3:0] == 4'h5) | (a[3:0] == 4'h7)); // 003D5
+   assign wr_adr = iow & iod & ((a[3:0] == 4'h2) | (a[3:0] == 4'h4) | (a[3:0] == 4'h6)); // 003D4
    assign io_range = (a >= 20'h003D0) & (a <= 20'h003DF);
    assign mem_range = (a >= 20'hB8000) & (a < 20'hBC000);
    assign wr_hcursor   = wr_reg & (reg_adr==4'hf);
@@ -284,24 +286,24 @@ Whole frame	525
    always @(posedge clk) begin
       // Reset
       if(rst) begin
-	 dataout <= 8'b0;
+			dataout <= 8'b0;
       end
       // Status Register
       else if(a == 20'h003da) begin
-	 // Status Register
-	 dataout <= { 4'b0, v_retrace, 2'b0, vh_retrace };
+			// Status Register
+			dataout <= { 4'b0, v_retrace, 2'b0, vh_retrace };
       end
       // Read internal registers
-      else if(a == 20'h003d5) begin
-	 if(reg_adr==4'hf) dataout <= reg_hcursor;
-	 else if(reg_adr==4'he) dataout <= reg_vcursor;
-	 else if(reg_adr==4'ha) dataout <= reg_cur_start;
-	 else if(reg_adr==4'hb) dataout <= reg_cur_end;
-	 else dataout <= dataout;
+      else if((a == 20'h003d3) | (a == 20'h003d5) | (a == 20'h003d7)) begin
+			if(reg_adr==4'hf) dataout <= reg_hcursor;
+			else if(reg_adr==4'he) dataout <= reg_vcursor;
+			else if(reg_adr==4'ha) dataout <= reg_cur_start;
+			else if(reg_adr==4'hb) dataout <= reg_cur_end;
+			else dataout <= dataout;
       end
       // Keep at current value
       else begin
-	 dataout <= dataout;
+			dataout <= dataout;
       end
    end
    
