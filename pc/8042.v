@@ -557,7 +557,7 @@ endmodule
 /*
  * keyout:
  * This module outputs some data to the keyboard
- */
+ 
 module keyout(
 	senddata,
 	send,
@@ -995,6 +995,7 @@ module keyout(
 	end
 	
 endmodule
+*/
 
 /*
  * keyin:
@@ -1096,7 +1097,7 @@ endmodule
  * intel8042:
  * This module is not actually an intel 8042 keyboard controller
  * All it does is translate from one keyboard scan code type to another
- */
+
 module intel8042(
 		 KBD_CLK,
 		 KBD_DATA,
@@ -2200,6 +2201,7 @@ module intel8042(
    
    
 endmodule // intel8042
+*/
 
 /*
  Keyboard scan code reference: 

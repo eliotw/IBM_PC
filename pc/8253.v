@@ -761,4 +761,146 @@ module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
    
 endmodule // read
 
+/*
+ * supercounter:
+ * Module for one of the new 8253 counters
+ */
+module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST_,ZCLK);
+	input	WR_,
+			RD_,
+			SEL,
+			CLK,
+			GATE,
+			SELMODE;
+
+	inout	D7,
+			D6,
+			D5,
+			D4,
+			D3,
+			D2,
+			D1,
+			D0;
+
+	output	OUT;
+
+	input		RST_;
+	input		ZCLK;
+	
+	// Parameters
+	parameter CNTVAL = 0;
+	parameter [7:0]
+		idle = 8'b00000001,
+		rlsb = 8'b00000010,
+		rmsb = 8'b00000100,
+		cnt0 = 8'b00001000;
+		
+	// Wires
+	wire wr, rd, sel, pclk, gate, selmode, out, rst_n, clk;
+	wire [7:0] data;
+	wire [15:0] countval;
+	wire mode0, mode1, mode3;
+	wire [15:0] halfcount;
+	wire latchorder;
+	
+	// Registers
+	reg [7:0] control;
+	reg loadmsb, loadlsb;
+	reg [7:0] countmsb, countlsb;
+	reg [15:0] count;
+	reg [15:0] latchcount;
+	reg [7:0] state, nextstate;
+	
+	// Assignments
+	assign wr = ~WR_;
+	assign rd = ~RD_;
+	assign sel = SEL;
+	assign pclk = CLK;
+	assign gate = GATE;
+	assign selmode = SELMODE;
+	assign OUT = out;
+	assign rst_n = RST_;
+	assign clk = ZCLK;
+	assign data = {D7,D6,D5,D4,D3,D2,D1,D0};
+	assign countval = {countmsb, countlsb};
+	assign mode0 = ~control[3] & ~control[2] & ~control[1];
+	assign mode1 = ~control[3] & ~control[2] & control[1];
+	assign mode3 = control[2] & control[1];
+	assign halfcount = {1'b0,countval[15:1]};
+	
+	// Initial conditions
+	initial begin
+		control = 8'b0;
+		loadmsb = 1'b0;
+		loadlsb = 1'b0;
+		countmsb = 8'b0;
+		countlsb = 8'b0;
+		count = 16'b0;
+		latchcount = 16'b0;
+		state = idle;
+		nextstate = idle;
+	end
+	
+	// FSM Register
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			state <= idle;
+		end
+		else begin
+			state <= nextstate;
+		end
+	end
+	
+	// Control Register
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			control <= 8'b0;
+		end
+		else if(selmode & wr) begin
+			control <= data;
+		end
+		else begin
+			control <= control;
+		end
+	end
+	
+	// MSB Register
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			countmsb <= 8'b0;
+		end
+		else if(sel & wr & loadmsb) begin
+			countmsb <= data;
+		end
+		else begin
+			countmsb <= countmsb;
+		end
+	end
+	
+	// LSB Register
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			countlsb <= 8'b0;
+		end
+		else if(sel & wr & loadlsb) begin
+			countlsb <= data;
+		end
+		else begin
+			countlsb <= countlsb;
+		end
+	end
+	
+	// Counter Latch
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			latchcount <= 16'b0;
+		end
+		else if(selmode & wr & ~data[5] & ~data[4]) begin
+			latchcount <= count;
+		end
+		else begin
+			latchcount <= latchcount;
+		end
+	end
+endmodule
 
