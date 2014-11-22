@@ -34,10 +34,11 @@ module intel8259(
 
 	// FSM State Enum
    parameter [7:0]
-		idle = 8'b00000001,
-		issue = 8'b00000010,
+		idle =     8'b00000001,
+		issue =    8'b00000010,
 		waiteoir = 8'b00000100,
-		done = 8'b00001000;
+		done =     8'b00001000,
+		reboot =   8'b00010000;
 		
    // Wires
    wire        inta; // Interrupt
@@ -118,7 +119,10 @@ module intel8259(
 	always @(*) begin
 		case(s)
 			idle: begin
-				if(mrw) begin
+				if(ic_rst) begin
+					nexts <= reboot;
+				end
+				else if(mrw) begin
 					nexts <= issue;
 				end
 				else begin
@@ -126,15 +130,24 @@ module intel8259(
 				end
 			end
 			issue: begin
-				if(inta_n == 1'b0) begin
+				if(ic_rst) begin
+					nexts <= reboot;
+				end
+				else if(inta_n == 1'b0) begin
 					nexts <= waiteoir;
 				end
-				else begin
+				else if(mrw) begin
 					nexts <= issue;
+				end
+				else begin
+					nexts <= idle;
 				end
 			end
 			waiteoir: begin
-				if(clrisr == 1'b1) begin
+				if(ic_rst) begin
+					nexts <= reboot;
+				end
+				else if(clrisr == 1'b1) begin
 					nexts <= done;
 				end
 				else begin
@@ -142,12 +155,18 @@ module intel8259(
 				end
 			end
 			done: begin
-				if(mrw) begin
+				if(ic_rst) begin
+					nexts <= reboot;
+				end
+				else if(mrw) begin
 					nexts <= issue;
 				end
 				else begin
 					nexts <= idle;
 				end
+			end
+			reboot: begin
+				nexts <= idle;
 			end
 			default: begin
 				nexts <= idle;
@@ -187,6 +206,10 @@ module intel8259(
 					end
 				end
 				done: begin
+					irr_clr <= 8'b0000_0000;
+					isr <= 8'b0000_0000;
+				end
+				reboot: begin
 					irr_clr <= 8'b0000_0000;
 					isr <= 8'b0000_0000;
 				end
@@ -347,6 +370,9 @@ module intel8259(
    // EOI Loading
 	always @(posedge clk or negedge rst_n) begin
 		if(~rst_n) begin
+			eoir <= 8'b00001000;
+		end
+		else if(ic_rst == 1'b1) begin
 			eoir <= 8'b00001000;
 		end
 		else if(clrisr == 1'b1) begin
