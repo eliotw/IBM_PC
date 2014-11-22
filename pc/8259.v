@@ -32,6 +32,13 @@ module intel8259(
    output      spen_n;
 	output reg [7:0] iid;
 
+	// FSM State Enum
+   parameter [7:0]
+		idle = 8'b00000001,
+		issue = 8'b00000010,
+		waiteoir = 8'b00000100,
+		done = 8'b00001000;
+		
    // Wires
    wire        inta; // Interrupt
    wire rst_n; // Reset low
@@ -65,6 +72,8 @@ module intel8259(
 	reg [1:0] cs_n_buf; // buffer for cs_n
 	reg ic_rst_n; // Reset IC
 	reg [1:0] state; // reset state
+	reg [7:0] s, nexts; // Control FSM
+	reg [7:0] xisr; // Next isr
 	
    // Assign Spen
    assign spen_n = ~(~rd_n & ~cs_n);
@@ -88,11 +97,107 @@ module intel8259(
 		ic_rst_n = 1'b1;
 		ic_dec = 1'b0;
 		state = 2'b00;
+		s = idle;
+		nexts = idle;
    end
    
    // Assign line D
    assign d = ((rd_n == 1'b0) & (cs_n == 1'b0)) ? ((a0 == 1'b1) ? imr : dout) : 8'bzzzzzzzz;
    
+	// FSM
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			s <= idle;
+		end
+		else begin
+			s <= nexts;
+		end
+	end
+	
+	// Next State Logic
+	always @(*) begin
+		case(s)
+			idle: begin
+				if(mrw) begin
+					nexts <= issue;
+				end
+				else begin
+					nexts <= idle;
+				end
+			end
+			issue: begin
+				if(inta_n == 1'b0) begin
+					nexts <= waiteoir;
+				end
+				else begin
+					nexts <= issue;
+				end
+			end
+			waiteoir: begin
+				if(clrisr == 1'b1) begin
+					nexts <= done;
+				end
+				else begin
+					nexts <= waiteoir;
+				end
+			end
+			done: begin
+				if(mrw) begin
+					nexts <= issue;
+				end
+				else begin
+					nexts <= idle;
+				end
+			end
+			default: begin
+				nexts <= idle;
+			end
+		endcase
+	end
+	
+	// Next State Logic
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			irr_clr <= 8'b0000_0000;
+			isr <= 8'b0000_0000;
+		end
+		else begin
+			case(s)
+				idle: begin
+					irr_clr <= 8'b0000_0000;
+					isr <= 8'b0000_0000;
+				end
+				issue: begin
+					if(inta_n == 1'b0) begin
+						irr_clr <= xisr;
+						isr <= xisr;
+					end
+					else begin
+						irr_clr <= 8'b0000_0000;
+						isr <= 8'b0000_0000;
+					end
+				end
+				waiteoir: begin
+					irr_clr <= 8'b0000_0000;
+					if(clrisr == 1'b1) begin
+						isr <= 8'b0000_0000;
+					end
+					else begin
+						isr <= isr;
+					end
+				end
+				done: begin
+					irr_clr <= 8'b0000_0000;
+					isr <= 8'b0000_0000;
+				end
+				default: begin
+					irr_clr <= 8'b0000_0000;
+					isr <= 8'b0000_0000;
+				end
+			endcase
+		end
+	end
+	
 	// Assign Data In
 	always @(posedge clk or negedge rst_n) begin
 		if(~rst_n) begin
@@ -139,8 +244,20 @@ module intel8259(
 		end
 	end
 	
-	// Assign iid
+	// Assign Next ISR
+	always @(mrw) begin
+		if(mrw[0]) xisr <= 8'b0000_0001;
+		else if(mrw[1]) xisr <= 8'b0000_0010;
+		else if(mrw[2]) xisr <= 8'b0000_0100;
+		else if(mrw[3]) xisr <= 8'b0000_1000;
+		else if(mrw[4]) xisr <= 8'b0001_0000;
+		else if(mrw[5]) xisr <= 8'b0010_0000;
+		else if(mrw[6]) xisr <= 8'b0100_0000;
+		else if(mrw[7]) xisr <= 8'b1000_0000;
+		else xisr <= 8'b0000_0000;
+	end
 	
+	// Assign iid
 	always @(negedge inta_n) begin
 		if(mrw[0]) iid <= 8'b00001_000;
 		else if(mrw[1]) iid <= 8'b00001_001;
@@ -220,25 +337,6 @@ module intel8259(
 			ic_dec <= 1'b0;
 		end
 		else if((cs_n == 1'b0) & (wr_n == 1'b0) & (a0 == 1'b1)) begin
-			/*
-			if(icws == 2'b00) begin
-				ic_dec <= 1'b0;
-				imr <= d;
-			end
-			else if(icws == 2'b01) begin
-				ic_dec <= 1'b1;
-				imr <= d;
-			end
-			else if(icws == 2'b10) begin
-				ic_dec <= 1'b1;
-				imr <= d;
-			end
-			else begin
-				// This should not happen, but plan for what to do
-				ic_dec <= 1'b0;
-				imr <= d;
-			end
-			*/
 			imr <= d;
 		end
 		else begin
@@ -247,22 +345,6 @@ module intel8259(
 	end
 	
    // EOI Loading
-	/*
-   always @(cs_n_buf[1] or wr_n or a0 or din or clrisr or inta_n or rst) begin
-      if(rst == 1'b1) begin
-			eoir <= 8'b00001000;
-      end
-      else if(clrisr == 1'b1) begin
-			eoir <= 8'b00001000;
-      end
-      else if((cs_n_buf[1] == 1'b0) & (wr_n == 1'b0) & (a0 == 1'b0)) begin
-			eoir <= din;
-      end
-      else begin
-			eoir <= eoir;
-      end
-   end
-	*/
 	always @(posedge clk or negedge rst_n) begin
 		if(~rst_n) begin
 			eoir <= 8'b00001000;
@@ -299,18 +381,15 @@ module intel8259(
       // Check for OCW3
       else if(eoir[4:3] == 2'b01) begin
 			if(eoir[1:0] == 2'b10) begin
-				//$display("10");
 				dout <= irr;
 			end
 			else if(eoir[1:0] == 2'b11) begin
-				//$display("11");
 				dout <= isr;
 			end
 			else begin
-				//$display("??");
 				dout <= dout;
 			end
-			clrisr <= clrisr;
+			clrisr <= 1'b0; // was clrisr
       end
 		else if(eoir[4] == 1'b1) begin
 			// Initialize command word sequence
@@ -329,6 +408,7 @@ module intel8259(
       end
    end // always @ (eoir or recint)
 
+	/*
    // Mock FSM
 	always @(posedge clk or negedge rst_n) begin
    //always @(negedge inta_n or posedge rst) begin
@@ -341,7 +421,11 @@ module intel8259(
       else if(recint == 1'b0) begin
 			if(inta_n == 1'b0) begin
 				recint <= 1'b0;
-				if(mrw[0] == 1'b1) begin
+				if(~clrisr) begin
+					isr <= isr;
+					irr_clr <= irr_clr;
+				end
+				else if(mrw[0] == 1'b1) begin
 					isr <= 8'b00000001 | ((clrisr) ? 8'b0 : isr);
 					irr_clr <= 8'b00000001;
 				end
@@ -397,7 +481,8 @@ module intel8259(
 			irr_clr <= 8'b0;
       end
    end
-   
+   */
+	
    // IRRN
 	assign irr_n[0] = rst_n & ~irr_clr[0];
 	assign irr_n[1] = rst_n & ~irr_clr[1];
@@ -449,56 +534,6 @@ module intel8259(
 		else if(ir[7]) irr[7] <= 1'b1;
 		else irr[7] <= irr[7];
 	end
-	/*
-   always @(ir[0] or irr_clr[0] or rst) begin
-      if(rst == 1'b1) irr[0] <= 1'b0;
-      else if(irr_clr[0] == 1'b1) irr[0] <= 1'b0;
-      else if(ir[0] == 1'b1) irr[0] <= 1'b1;
-      else irr[0] <= irr[0];
-   end
-   always @(ir[1] or irr_clr[1] or rst) begin
-      if(rst == 1'b1) irr[1] <= 1'b0;
-      else if(irr_clr[1] == 1'b1) irr[1] <= 1'b0;
-      else if(ir[1] == 1'b1) irr[1] <= 1'b1;
-      else irr[1] <= irr[1];
-   end
-   always @(ir[2] or irr_clr[2] or rst) begin
-      if(rst == 1'b1) irr[2] <= 1'b0;
-      else if(irr_clr[2] == 1'b1) irr[2] <= 1'b0;
-      else if(ir[2] == 1'b1) irr[2] <= 1'b1;
-      else irr[2] <= irr[2];
-   end
-   always @(ir[3] or irr_clr[3] or rst) begin
-      if(rst == 1'b1) irr[3] <= 1'b0;
-      else if(irr_clr[3] == 1'b1) irr[3] <= 1'b0;
-      else if(ir[3] == 1'b1) irr[3] <= 1'b1;
-      else irr[3] <= irr[3];
-   end
-   always @(ir[4] or irr_clr[4] or rst) begin
-      if(rst == 1'b1) irr[4] <= 1'b0;
-      else if(irr_clr[4] == 1'b1) irr[4] <= 1'b0;
-      else if(ir[4] == 1'b1) irr[4] <= 1'b1;
-      else irr[4] <= irr[4];
-   end
-   always @(ir[5] or irr_clr[5] or rst) begin
-      if(rst == 1'b1) irr[5] <= 1'b0;
-      else if(irr_clr[5] == 1'b1) irr[5] <= 1'b0;
-      else if(ir[5] == 1'b1) irr[5] <= 1'b1;
-      else irr[5] <= irr[5];
-   end
-   always @(ir[6] or irr_clr[6] or rst) begin
-      if(rst == 1'b1) irr[6] <= 1'b0;
-      else if(irr_clr[6] == 1'b1) irr[6] <= 1'b0;
-      else if(ir[6] == 1'b1) irr[6] <= 1'b1;
-      else irr[6] <= irr[6];
-   end
-   always @(ir[7] or irr_clr[7] or rst) begin
-      if(rst == 1'b1) irr[7] <= 1'b0;
-      else if(irr_clr[7] == 1'b1) irr[7] <= 1'b0;
-      else if(ir[7] == 1'b1) irr[7] <= 1'b1;
-      else irr[7] <= irr[7];
-   end
-	*/
 	
    // MRW resolution
    always @(irr or imr) begin
@@ -513,9 +548,8 @@ module intel8259(
    end
    
    // Interrupt Assignment
-   assign inta = mrw[0] | mrw[1] | mrw[2] | mrw[3] |
-		 mrw[4] | mrw[5] | mrw[6] | mrw[7] | recint;
- 
+	assign inta = (s == issue);
+	
    // Assign top interrupt
    always @(isr) begin
       if(isr[0] == 1'b1) topint <= 3'b000;

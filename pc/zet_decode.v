@@ -144,7 +144,7 @@ module zet_decode (
 
   // old_ext_int
   always @(posedge clk or negedge rst) older_ext_int <= ~rst ? 1'b0 : ext_int;
-  always @(posedge clk or negedge rst) old_ext_int <= ~rst ? 1'b0 : older_ext_int;
+  always @(posedge clk or negedge rst) old_ext_int <= ~rst ? 1'b0 : ext_int; // ext_int was older_ext_int
   
   // inta
   always @(posedge clk or negedge rst)
