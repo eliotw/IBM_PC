@@ -88,6 +88,7 @@ USE UNISIM.VCOMPONENTS.ALL;
 ENTITY newram_exdes IS
   PORT (
       --Inputs - Port A
+    RSTA           : IN STD_LOGIC;  --opt port
   
     WEA            : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     ADDRA          : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
@@ -115,6 +116,7 @@ ARCHITECTURE xilinx OF newram_exdes IS
   COMPONENT newram IS
   PORT (
       --Port A
+    RSTA       : IN STD_LOGIC;  --opt port
   
     WEA        : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     ADDRA      : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
@@ -147,6 +149,7 @@ BEGIN
   bmg0 : newram
     PORT MAP (
       --Port A
+      RSTA       => RSTA,
   
       WEA        => WEA,
       ADDRA      => ADDRA,

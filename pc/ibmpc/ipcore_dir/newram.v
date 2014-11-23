@@ -38,6 +38,7 @@
 
 module newram(
   clka,
+  rsta,
   wea,
   addra,
   dina,
@@ -45,6 +46,7 @@ module newram(
 );
 
 input clka;
+input rsta;
 input [0 : 0] wea;
 input [17 : 0] addra;
 input [7 : 0] dina;
@@ -76,7 +78,7 @@ output [7 : 0] douta;
     .C_HAS_MUX_OUTPUT_REGS_B(0),
     .C_HAS_REGCEA(0),
     .C_HAS_REGCEB(0),
-    .C_HAS_RSTA(0),
+    .C_HAS_RSTA(1),
     .C_HAS_RSTB(0),
     .C_HAS_SOFTECC_INPUT_REGS_A(0),
     .C_HAS_SOFTECC_OUTPUT_REGS_B(0),
@@ -115,11 +117,11 @@ output [7 : 0] douta;
   )
   inst (
     .CLKA(clka),
+    .RSTA(rsta),
     .WEA(wea),
     .ADDRA(addra),
     .DINA(dina),
     .DOUTA(douta),
-    .RSTA(),
     .ENA(),
     .REGCEA(),
     .CLKB(),

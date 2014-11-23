@@ -153,7 +153,7 @@ module keyinterface(
 					pa<=pa;
 					irq1<=1'b0;
 				end
-				else if(newdata == 1'b0) begin
+				else if((newdata == 1'b0) && (pb7 == 1'b0)) begin // KEYWORD
 					state<=idle;
 					pa<=8'h00;
 					irq1<=1'b0;
@@ -587,16 +587,20 @@ module keyload(
 		idle = 8'b0000_0001,
 		act0 = 8'b0000_0010,
 		act1 = 8'b0000_0100,
-		act2 = 8'b0000_1000;
+		act2 = 8'b0000_1000,
+		act3 = 8'b0001_0000,
+		act4 = 8'b0010_0000;
 	
 	// Terminal Count for Counter
-	parameter [15:0] tc = 16'h000a;
+	//parameter [15:0] tc = 16'd3540;
+	parameter [15:0] tc = 16'd99;
 	
 	// Counter Register
 	reg [15:0] counter;
 	
 	// FSM Registers
 	reg [7:0] state, nextstate;
+	reg [7:0] olddata;
 	
 	// Initial Conditions
 	initial begin
@@ -606,26 +610,35 @@ module keyload(
 	end
 	
 	// This will be replaced with block RAM containing our character set
-	always (*) begin
+	always @(*) begin
 		case(counter)
-			16'h0: dataout = 8'h30;
-			16'h1: dataout = 8'hb0;
-			16'h2: dataout = 8'h12;
-			16'h3: dataout = 8'h92;
-			16'h4: dataout = 8'h12;
-			16'h5: dataout = 8'h92;
-			16'h6: dataout = 8'h19;
-			16'h7: dataout = 8'h99;
-			16'h8: dataout = 8'h1c;
-			16'h9: dataout = 8'h9c;
-			16'ha: dataout = 8'h1e;
-			16'hb: dataout = 8'h9e;
-			default: dataout = 8'h00;
+			16'h0: olddata = 8'h30;
+			16'h1: olddata = 8'hb0;
+			16'h2: olddata = 8'h12;
+			16'h3: olddata = 8'h92;
+			16'h4: olddata = 8'h12;
+			16'h5: olddata = 8'h92;
+			16'h6: olddata = 8'h19;
+			16'h7: olddata = 8'h99;
+			16'h8: olddata = 8'h1c;
+			16'h9: olddata = 8'h9c;
+			16'ha: olddata = 8'h1e;
+			16'hb: olddata = 8'h9e;
+			default: olddata = 8'h00;
 		endcase
 	end
 	
+	// This is block RAM containing our character set
+	game gamerom(
+	.clka(clk),
+	.wea(1'b0),
+	.addra(counter),
+	.dina(8'b0),
+	.douta(dataout)
+	);
+	
 	// Block Signal Assign
-	assign block = (state == act0) | (state == act1) | (state == act2);
+	assign block = (state == act0) | (state == act1) | (state == act2) | (state == act3) | (state == act4);
 	
 	// New Data Assign
 	assign newdata = (state == act1);
@@ -644,7 +657,7 @@ module keyload(
 		else if(state == act0) begin
 			counter <= 16'h0;
 		end
-		else if(state == act2) begin
+		else if(state == act4) begin
 			counter <= counter + 1;
 		end
 		else begin
@@ -655,22 +668,36 @@ module keyload(
 	// Next State Logic
 	always @(*) begin
 		case(state)
+			// idle - wait for key press
 			idle: begin
 				if(activate == 1'b1) nextstate = act0;
 				else nextstate = idle;
 			end
+			// act0 - wait for key press release
 			act0: begin
 				if(activate == 1'b0) nextstate = act1;
 				else nextstate = act0;
 			end
+			// act1 - make data available, wait for irq to go high
 			act1: begin
 				if(irq == 1'b1) nextstate = act2;
 				else nextstate = act1;
 			end
+			// act2 - if counter is terminal count, end process
 			act2: begin
 				if(counter == tc) nextstate = idle;
-				else nextstate = act1;
+				else nextstate = act3;
 			end
+			// act3 - wait for irq to go low
+			act3: begin
+				if(irq == 1'b0) nextstate = act4;
+				else nextstate = act3;
+			end
+			// act4 - intermediate state to allow counter to iterate
+			act4: begin
+				nextstate = act1;
+			end
+			// default: jump back to idle if no data
 			default: begin
 				nextstate = idle;
 			end

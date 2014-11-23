@@ -105,6 +105,7 @@ ARCHITECTURE newram_synth_ARCH OF newram_synth IS
 COMPONENT newram_exdes 
   PORT (
       --Inputs - Port A
+    RSTA           : IN STD_LOGIC;  --opt port
     WEA            : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     ADDRA          : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
     DINA           : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -277,6 +278,7 @@ STATUS(7 DOWNTO 0) <= ISSUE_FLAG_STATUS;
 
     BMG_PORT: newram_exdes PORT MAP ( 
       --Port A
+      RSTA       => RSTA,
       WEA        => WEA_R,
       ADDRA      => ADDRA_R,
       DINA       => DINA_R,

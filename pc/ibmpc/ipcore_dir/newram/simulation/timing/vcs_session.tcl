@@ -73,6 +73,7 @@ gui_sg_create newram_Group
 gui_list_add_group -id Wave.1 {newram_Group}
 
       gui_sg_addsignal -group newram_Group  /newram_tb/status
+      gui_sg_addsignal -group newram_Group  /newram_tb/newram_synth_inst/bmg_port/RSTA
       gui_sg_addsignal -group newram_Group  /newram_tb/newram_synth_inst/bmg_port/CLKA
       gui_sg_addsignal -group newram_Group  /newram_tb/newram_synth_inst/bmg_port/ADDRA
       gui_sg_addsignal -group newram_Group  /newram_tb/newram_synth_inst/bmg_port/DINA

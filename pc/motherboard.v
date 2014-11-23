@@ -306,6 +306,7 @@ module motherboard(
 				.xmemw_n(xmemw_n),
 				.a(a),
 				.clk88(clk88),
+				.reset(reset),
 				.pck(pck),
 				.pck_n(pck_n)
 				);
@@ -1227,6 +1228,7 @@ module sheet7(
 	inout xmemw_n,
 	inout [19:0] a,
 	input clk88,
+	input reset,
 	output pck,
 	output pck_n
 	);
@@ -1251,6 +1253,7 @@ module sheet7(
 	// New RAM Module
 	newram nero(
 		.clka(clk88),
+		.rsta(reset),
 		.wea(we),
 		.addra(addr),
 		.dina(din),

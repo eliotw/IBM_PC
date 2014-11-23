@@ -60,6 +60,7 @@
 
 module newram (
   clka,
+  rsta,
   wea,
   addra,
   dina,
@@ -67,6 +68,7 @@ module newram (
 );
 
   input clka;
+  input rsta;
   input [0 : 0] wea;
   input [17 : 0] addra;
   input [7 : 0] dina;
