@@ -31,6 +31,9 @@ module keyinterface(
 	wire datain; // data that is coming from the keyboard
 	wire reset; // reset wire
 	wire [7:0] fdata; // translated data with f0 check
+	wire [7:0] sdata; // special data
+	wire block; // blocking wire
+	wire ndl, ndi; // new data signals
 	
 	// Registers
 	reg [7:0] pa; // data that is visible to ibm pc
@@ -39,7 +42,7 @@ module keyinterface(
 	reg [7:0] tdata; // translated data
 	
 	// FSM State Enum
-   parameter [7:0]
+	parameter [7:0]
 		idle = 8'b00000001,
 		data = 8'b00000010,
 		wclr = 8'b00000100,
@@ -55,15 +58,26 @@ module keyinterface(
 	// Assignment of reset
 	assign reset = ~reset_n;
 
-	// Assign f0 check
-	assign fdata = tdata;
-   
+	// Assign input data
+	assign fdata = block ? sdata : tdata;
+   	assign newdata = block ? ndl : ndi;
+   	
+   	keyload keyloadmod(
+		.clk(pclk),
+		.irq(pb7),
+		.activate(keyboard_load_special),
+		.rst_n(reset_n),
+		.dataout(sdata),
+		.newdata(ndl),
+		.block(block)
+		);
+   	
 	// Keyboard input module
 	keyin keyinmod(
 		.clk(keyboard_clock),
 		.data(datain),
 		.dataout(datakeyout),
-		.newdata(newdata)
+		.newdata(ndi)
 		);
 		
 	// Initial state
@@ -574,9 +588,41 @@ module keyload(
 		act0 = 8'b0000_0010,
 		act1 = 8'b0000_0100,
 		act2 = 8'b0000_1000;
-		
+	
+	// Terminal Count for Counter
+	parameter [15:0] tc = 16'h000a;
+	
+	// Counter Register
+	reg [15:0] counter;
+	
 	// FSM Registers
 	reg [7:0] state, nextstate;
+	
+	// Initial Conditions
+	initial begin
+		counter = 16'h0;
+		state = idle;
+		nextstate = idle;
+	end
+	
+	// This will be replaced with block RAM containing our character set
+	always (*) begin
+		case(counter)
+			16'h0: dataout = 8'h30;
+			16'h1: dataout = 8'hb0;
+			16'h2: dataout = 8'h12;
+			16'h3: dataout = 8'h92;
+			16'h4: dataout = 8'h12;
+			16'h5: dataout = 8'h92;
+			16'h6: dataout = 8'h19;
+			16'h7: dataout = 8'h99;
+			16'h8: dataout = 8'h1c;
+			16'h9: dataout = 8'h9c;
+			16'ha: dataout = 8'h1e;
+			16'hb: dataout = 8'h9e;
+			default: dataout = 8'h00;
+		endcase
+	end
 	
 	// Block Signal Assign
 	assign block = (state == act0) | (state == act1) | (state == act2);
@@ -588,6 +634,22 @@ module keyload(
 	always @(posedge clk or negedge rst_n) begin
 		if(~rst_n) state <= idle;
 		else state <= nextstate;
+	end
+	
+	// Counter Logic
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			counter <= 16'h0;
+		end
+		else if(state == act0) begin
+			counter <= 16'h0;
+		end
+		else if(state == act2) begin
+			counter <= counter + 1;
+		end
+		else begin
+			counter <= counter;
+		end
 	end
 	
 	// Next State Logic
@@ -602,10 +664,12 @@ module keyload(
 				else nextstate = act0;
 			end
 			act1: begin
-				// ?
+				if(irq == 1'b1) nextstate = act2;
+				else nextstate = act1;
 			end
 			act2: begin
-				// ?
+				if(counter == tc) nextstate = idle;
+				else nextstate = act1;
 			end
 			default: begin
 				nextstate = idle;
