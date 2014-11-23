@@ -1290,17 +1290,22 @@ module sheet8(
    wire 	     out1, out2, out3;
    wire 	     motor_ctrl, sdata;
    wire 		  spkr_cnt;
+	wire       activate_timer;
+	wire       counter_out;
 	
    // Registers
    reg 		     	pclka;
    reg [11:0] 		count;
    
    // Assignments
+	assign activate_timer = 1'b0; // 1 activates the 8253 timer 2 out, 0 activates the conventional oscialltor
    assign cass_data_in = ~out2;
    assign tc_2_out = out2;
    assign sdata = ~(out2 & spkr_data);
    assign spkr_cnt = (count >= 12'h299);
-	assign out2 = (tim_2_gate_spk) ? spkr_cnt : 1'b1;
+	assign counter_out = (tim_2_gate_spk) ? spkr_cnt : 1'b1;
+	//assign out2 = (activate_timer) ? out3 : counter_out;
+	assign out2 = counter_out;
 	
    // 8253 Module
    intel8253 i8253(
