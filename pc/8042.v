@@ -554,6 +554,7 @@ module keyload(
 	clk,
 	irq,
 	activate,
+	rst_n,
 	dataout,
 	newdata,
 	block
@@ -562,9 +563,55 @@ module keyload(
 	input clk; // system clock
 	input irq; // irq acknowledged signal
 	input activate; // activate module signal
-   output [7:0] dataout; // keyboard data received
+	input rst_n; // reset signal
+	output [7:0] dataout; // keyboard data received
 	output newdata; // indicator that there is new data
 	output block; // blocking signal relative to other data
+	
+	// FSM Parameters
+	parameter [7:0]
+		idle = 8'b0000_0001,
+		act0 = 8'b0000_0010,
+		act1 = 8'b0000_0100,
+		act2 = 8'b0000_1000;
+		
+	// FSM Registers
+	reg [7:0] state, nextstate;
+	
+	// Block Signal Assign
+	assign block = (state == act0) | (state == act1) | (state == act2);
+	
+	// New Data Assign
+	assign newdata = (state == act1);
+	
+	// Control FSM
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) state <= idle;
+		else state <= nextstate;
+	end
+	
+	// Next State Logic
+	always @(*) begin
+		case(state)
+			idle: begin
+				if(activate == 1'b1) nextstate = act0;
+				else nextstate = idle;
+			end
+			act0: begin
+				if(activate == 1'b0) nextstate = act1;
+				else nextstate = act0;
+			end
+			act1: begin
+				// ?
+			end
+			act2: begin
+				// ?
+			end
+			default: begin
+				nextstate = idle;
+			end
+		endcase
+	end
 	
 endmodule
 
