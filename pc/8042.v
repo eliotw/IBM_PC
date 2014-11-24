@@ -594,9 +594,8 @@ module keyload(
 		act6 = 8'b1000_0000;
 	
 	// Terminal Count for Counter
-	//parameter [15:0] tc = 16'd3540;
 	parameter [15:0] tc = 16'd3539;
-	parameter [15:0] endcount = 16'h4000;
+	parameter [15:0] endcount = 16'h4000; // Stable at 0x4000
 	
 	// Counter Register
 	reg [15:0] counter;
