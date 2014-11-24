@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 WARNING:Xst:1583 - You are using an internal switch '-use_new_parser'.
@@ -519,11 +519,12 @@ WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/825
 Elaborating module <keyinterface>.
 
 Elaborating module <keyload>.
-WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8042.v" Line 613: Assignment to olddata ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8042.v" Line 618: Assignment to olddata ignored, since the identifier is never used
 
 Elaborating module <game>.
 WARNING:HDLCompiler:1499 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/ibmpc/ipcore_dir/game.v" Line 39: Empty module <game> remains a black box.
-WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8042.v" Line 661: Result of 17-bit expression is truncated to fit in 16-bit target.
+WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8042.v" Line 672: Result of 17-bit expression is truncated to fit in 16-bit target.
+WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8042.v" Line 685: Result of 17-bit expression is truncated to fit in 16-bit target.
 
 Elaborating module <keyin>.
 WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/motherboard.v" Line 355: Assignment to enb_ram_pck_n ignored, since the identifier is never used
@@ -3442,15 +3443,19 @@ Synthesizing Unit <keyload>.
         act2 = 8'b00001000
         act3 = 8'b00010000
         act4 = 8'b00100000
-        tc = 16'b0000000011000111
+        act5 = 8'b01000000
+        act6 = 8'b10000000
+        tc = 16'b0000110111010011
+        endcount = 16'b0100000000000000
+    Found 16-bit register for signal <delaycounter>.
     Found 16-bit register for signal <counter>.
     Found 8-bit register for signal <state>.
     Found finite state machine <FSM_26> for signal <state>.
     -----------------------------------------------------------------------
-    | States             | 6                                              |
-    | Transitions        | 11                                             |
-    | Inputs             | 4                                              |
-    | Outputs            | 6                                              |
+    | States             | 8                                              |
+    | Transitions        | 14                                             |
+    | Inputs             | 5                                              |
+    | Outputs            | 8                                              |
     | Clock              | clk (rising_edge)                              |
     | Reset              | rst_n (negative)                               |
     | Reset type         | asynchronous                                   |
@@ -3459,11 +3464,12 @@ Synthesizing Unit <keyload>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 16-bit adder for signal <counter[15]_GND_268_o_add_23_OUT> created at line 661.
+    Found 16-bit adder for signal <delaycounter[15]_GND_268_o_add_24_OUT> created at line 672.
+    Found 16-bit adder for signal <counter[15]_GND_268_o_add_29_OUT> created at line 685.
     Summary:
-	inferred   1 Adder/Subtractor(s).
-	inferred  16 D-type flip-flop(s).
-	inferred   1 Multiplexer(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred  32 D-type flip-flop(s).
+	inferred   2 Multiplexer(s).
 	inferred   1 Finite State Machine(s).
 Unit <keyload> synthesized.
 
@@ -3504,7 +3510,7 @@ Synthesizing Unit <keyin>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 8-bit 11-to-1 multiplexer for signal <b[7]_dataout[7]_select_14_OUT> created at line 752.
+    Found 8-bit 11-to-1 multiplexer for signal <b[7]_dataout[7]_select_14_OUT> created at line 785.
     Summary:
 	inferred   9 D-type flip-flop(s).
 	inferred   1 Multiplexer(s).
@@ -3618,11 +3624,11 @@ Macro Statistics
  8x4-bit single-port Read Only RAM                     : 1
 # Multipliers                                          : 1
  17x17-bit multiplier                                  : 1
-# Adders/Subtractors                                   : 83
+# Adders/Subtractors                                   : 84
  10-bit adder                                          : 3
  11-bit adder                                          : 2
  12-bit subtractor                                     : 1
- 16-bit adder                                          : 5
+ 16-bit adder                                          : 6
  16-bit addsub                                         : 2
  16-bit subtractor                                     : 5
  17-bit adder                                          : 5
@@ -3645,12 +3651,12 @@ Macro Statistics
  8-bit subtractor                                      : 2
  9-bit adder                                           : 4
  9-bit subtractor                                      : 2
-# Registers                                            : 1213
+# Registers                                            : 1214
  1-bit register                                        : 1115
  10-bit register                                       : 2
  11-bit register                                       : 4
  12-bit register                                       : 1
- 16-bit register                                       : 12
+ 16-bit register                                       : 13
  17-bit register                                       : 3
  18-bit register                                       : 2
  19-bit register                                       : 2
@@ -3694,7 +3700,7 @@ Macro Statistics
  8-bit comparator greater                              : 5
  8-bit comparator lessequal                            : 2
  9-bit comparator lessequal                            : 2
-# Multiplexers                                         : 1169
+# Multiplexers                                         : 1170
  1-bit 16-to-1 multiplexer                             : 1
  1-bit 2-to-1 multiplexer                              : 857
  1-bit 3-to-1 multiplexer                              : 9
@@ -3704,7 +3710,7 @@ Macro Statistics
  11-bit 2-to-1 multiplexer                             : 2
  12-bit 2-to-1 multiplexer                             : 1
  16-bit 16-to-1 multiplexer                            : 4
- 16-bit 2-to-1 multiplexer                             : 79
+ 16-bit 2-to-1 multiplexer                             : 80
  16-bit 8-to-1 multiplexer                             : 4
  17-bit 2-to-1 multiplexer                             : 6
  18-bit 2-to-1 multiplexer                             : 2
@@ -3909,6 +3915,7 @@ INFO:Xst:3226 - The RAM <Mram_tdata> will be implemented as a BLOCK RAM, absorbi
 Unit <keyinterface> synthesized (advanced).
 
 Synthesizing (advanced) Unit <keyload>.
+The following registers are absorbed into counter <delaycounter>: 1 register on signal <delaycounter>.
 The following registers are absorbed into counter <counter>: 1 register on signal <counter>.
 Unit <keyload> synthesized (advanced).
 
@@ -4025,10 +4032,10 @@ Macro Statistics
  8-bit subtractor                                      : 2
  9-bit adder                                           : 2
  9-bit subtractor                                      : 2
-# Counters                                             : 8
+# Counters                                             : 9
  10-bit up counter                                     : 2
  12-bit down counter                                   : 1
- 16-bit up counter                                     : 1
+ 16-bit up counter                                     : 2
  23-bit up counter                                     : 1
  3-bit up counter                                      : 1
  4-bit up counter                                      : 1
@@ -4182,18 +4189,6 @@ Optimizing FSM <s9/keyboard/FSM_27> on signal <b[1:11]> with one-hot encoding.
  00001011 | 10000000000
 -------------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s9/keyboard/FSM_26> on signal <state[1:6]> with one-hot encoding.
-----------------------
- State    | Encoding
-----------------------
- 00000001 | 000001
- 00000010 | 000010
- 00000100 | 000100
- 00001000 | 001000
- 00010000 | 010000
- 00100000 | 100000
-----------------------
-Analyzing FSM <MFsm> for best encoding.
 Optimizing FSM <s9/keyboard/FSM_25> on signal <state[1:3]> with gray encoding.
 ----------------------
  State    | Encoding
@@ -4206,6 +4201,20 @@ Optimizing FSM <s9/keyboard/FSM_25> on signal <state[1:3]> with gray encoding.
  00100000 | 111
  01000000 | 101
  10000000 | 100
+----------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <s9/keyboard/keyloadmod/FSM_26> on signal <state[1:8]> with user encoding.
+----------------------
+ State    | Encoding
+----------------------
+ 00000001 | 00000001
+ 00000010 | 00000010
+ 00000100 | 00000100
+ 00001000 | 00001000
+ 00010000 | 00010000
+ 00100000 | 00100000
+ 01000000 | 01000000
+ 10000000 | 10000000
 ----------------------
 Analyzing FSM <MFsm> for best encoding.
 Optimizing FSM <s8/i8253/vcs/C0/FSM_22> on signal <state[1:11]> with one-hot encoding.
@@ -4461,19 +4470,19 @@ INFO:Xst:2261 - The FF/Latch <iid_1> in Unit <intel8259> is equivalent to the fo
 INFO:Xst:2261 - The FF/Latch <vga_red_o_0> in Unit <vdu> is equivalent to the following FF/Latch, which will be removed : <vga_blue_o_0> 
 INFO:Xst:2261 - The FF/Latch <dack_1> in Unit <intel8237A> is equivalent to the following 2 FFs/Latches, which will be removed : <dack_2> <dack_3> 
 WARNING:Xst:2170 - Unit sheet2 : the following signal(s) form a combinatorial loop: io_ch_ck.
-WARNING:Xst:2042 - Unit intel8255: 8 internal tristates are replaced by logic (pull-up yes): d<0>, d<1>, d<2>, d<3>, d<4>, d<5>, d<6>, d<7>.
-WARNING:Xst:2042 - Unit rom: 8 internal tristates are replaced by logic (pull-up yes): d<0>, d<1>, d<2>, d<3>, d<4>, d<5>, d<6>, d<7>.
 WARNING:Xst:2042 - Unit sheet7: 8 internal tristates are replaced by logic (pull-up yes): d<0>, d<1>, d<2>, d<3>, d<4>, d<5>, d<6>, d<7>.
 WARNING:Xst:2042 - Unit vdu: 8 internal tristates are replaced by logic (pull-up yes): d<0>, d<1>, d<2>, d<3>, d<4>, d<5>, d<6>, d<7>.
-WARNING:Xst:2042 - Unit ls374: 4 internal tristates are replaced by logic (pull-up yes): q<0>, q<1>, q<2>, q<3>.
-WARNING:Xst:2042 - Unit ls373: 8 internal tristates are replaced by logic (pull-up yes): q<0>, q<1>, q<2>, q<3>, q<4>, q<5>, q<6>, q<7>.
+WARNING:Xst:2042 - Unit rom: 8 internal tristates are replaced by logic (pull-up yes): d<0>, d<1>, d<2>, d<3>, d<4>, d<5>, d<6>, d<7>.
+WARNING:Xst:2042 - Unit intel8255: 8 internal tristates are replaced by logic (pull-up yes): d<0>, d<1>, d<2>, d<3>, d<4>, d<5>, d<6>, d<7>.
 WARNING:Xst:2042 - Unit ls245: 16 internal tristates are replaced by logic (pull-up yes): a<0>, a<1>, a<2>, a<3>, a<4>, a<5>, a<6>, a<7>, b<0>, b<1>, b<2>, b<3>, b<4>, b<5>, b<6>, b<7>.
-WARNING:Xst:2042 - Unit ls670: 4 internal tristates are replaced by logic (pull-up yes): q<0>, q<1>, q<2>, q<3>.
-WARNING:Xst:2042 - Unit ls244: 8 internal tristates are replaced by logic (pull-up yes): y1<0>, y1<1>, y1<2>, y1<3>, y2<0>, y2<1>, y2<2>, y2<3>.
-WARNING:Xst:2042 - Unit intel8237A: 21 internal tristates are replaced by logic (pull-up yes): a3_0<0>, a3_0<1>, a3_0<2>, a3_0<3>, a7_4<0>, a7_4<1>, a7_4<2>, a7_4<3>, db<0>, db<1>, db<2>, db<3>, db<4>, db<5>, db<6>, db<7>, eopp, ior, iow, memr_io, memw_io.
+WARNING:Xst:2042 - Unit ls373: 8 internal tristates are replaced by logic (pull-up yes): q<0>, q<1>, q<2>, q<3>, q<4>, q<5>, q<6>, q<7>.
+WARNING:Xst:2042 - Unit ls374: 4 internal tristates are replaced by logic (pull-up yes): q<0>, q<1>, q<2>, q<3>.
 WARNING:Xst:2042 - Unit processor_8088: 8 internal tristates are replaced by logic (pull-up yes): ad<0>, ad<1>, ad<2>, ad<3>, ad<4>, ad<5>, ad<6>, ad<7>.
 WARNING:Xst:2042 - Unit intel8288: 4 internal tristates are replaced by logic (pull-up yes): aiowc_n, amwc_n, iorc_n, mrdc_n.
 WARNING:Xst:2042 - Unit intel8259: 8 internal tristates are replaced by logic (pull-up yes): d<0>, d<1>, d<2>, d<3>, d<4>, d<5>, d<6>, d<7>.
+WARNING:Xst:2042 - Unit ls244: 8 internal tristates are replaced by logic (pull-up yes): y1<0>, y1<1>, y1<2>, y1<3>, y2<0>, y2<1>, y2<2>, y2<3>.
+WARNING:Xst:2042 - Unit ls670: 4 internal tristates are replaced by logic (pull-up yes): q<0>, q<1>, q<2>, q<3>.
+WARNING:Xst:2042 - Unit intel8237A: 21 internal tristates are replaced by logic (pull-up yes): a3_0<0>, a3_0<1>, a3_0<2>, a3_0<3>, a7_4<0>, a7_4<1>, a7_4<2>, a7_4<3>, db<0>, db<1>, db<2>, db<3>, db<4>, db<5>, db<6>, db<7>, eopp, ior, iow, memr_io, memw_io.
 WARNING:Xst:2042 - Unit supercounter_2: 8 internal tristates are replaced by logic (pull-up yes): D0, D1, D2, D3, D4, D5, D6, D7.
 WARNING:Xst:2042 - Unit supercounter_1: 8 internal tristates are replaced by logic (pull-up yes): D0, D1, D2, D3, D4, D5, D6, D7.
 WARNING:Xst:2042 - Unit read: 8 internal tristates are replaced by logic (pull-up yes): D<0>, D<1>, D<2>, D<3>, D<4>, D<5>, D<6>, D<7>.
@@ -4561,6 +4570,8 @@ Optimizing unit <sheet2> ...
 Optimizing unit <sheet3> ...
 
 Optimizing unit <keyinterface> ...
+
+Optimizing unit <keyload> ...
 
 Optimizing unit <cntreg> ...
 
@@ -4854,8 +4865,8 @@ Unit <motherboard> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 1907
- Flip-Flops                                            : 1907
+# Registers                                            : 1925
+ Flip-Flops                                            : 1925
 # Shift Registers                                      : 18
  10-bit shift register                                 : 1
  11-bit shift register                                 : 1
@@ -4895,24 +4906,24 @@ Top Level Output File Name         : motherboard.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 7256
+# BELS                             : 7298
 #      GND                         : 7
-#      INV                         : 252
-#      LUT1                        : 55
-#      LUT2                        : 349
-#      LUT3                        : 712
-#      LUT4                        : 496
-#      LUT5                        : 755
-#      LUT6                        : 2303
-#      MUXCY                       : 1002
+#      INV                         : 253
+#      LUT1                        : 70
+#      LUT2                        : 364
+#      LUT3                        : 707
+#      LUT4                        : 489
+#      LUT5                        : 748
+#      LUT6                        : 2302
+#      MUXCY                       : 1017
 #      MUXF7                       : 333
 #      MUXF8                       : 121
 #      VCC                         : 7
-#      XORCY                       : 864
-# FlipFlops/Latches                : 1956
+#      XORCY                       : 880
+# FlipFlops/Latches                : 1974
 #      FD                          : 852
 #      FD_1                        : 37
-#      FDC                         : 331
+#      FDC                         : 349
 #      FDC_1                       : 1
 #      FDCE                        : 200
 #      FDE                         : 86
@@ -4952,17 +4963,17 @@ Selected Device : 5vlx110tff1136-1
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:            1956  out of  69120     2%  
- Number of Slice LUTs:                 4940  out of  69120     7%  
-    Number used as Logic:              4922  out of  69120     7%  
+ Number of Slice Registers:            1974  out of  69120     2%  
+ Number of Slice LUTs:                 4951  out of  69120     7%  
+    Number used as Logic:              4933  out of  69120     7%  
     Number used as Memory:               18  out of  17920     0%  
        Number used as SRL:               18
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   5337
-   Number with an unused Flip Flop:    3381  out of   5337    63%  
-   Number with an unused LUT:           397  out of   5337     7%  
-   Number of fully used LUT-FF pairs:  1559  out of   5337    29%  
+ Number of LUT Flip Flop pairs used:   5349
+   Number with an unused Flip Flop:    3375  out of   5349    63%  
+   Number with an unused LUT:           398  out of   5349     7%  
+   Number of fully used LUT-FF pairs:  1576  out of   5349    29%  
    Number of unique control sets:       115
 
 IO Utilization: 
@@ -5006,7 +5017,7 @@ s1/ale(s1/i8288/Mmux_ale11:O)                                                   
 s9/i8255/pds(s9/i8255/pds1:O)                                                                    | NONE(*)(s9/i8255/pdo_0)                                                                                                                                     | 8     |
 s1/i8284/vclk                                                                                    | BUFG                                                                                                                                                        | 185   |
 s8/pclka                                                                                         | BUFG                                                                                                                                                        | 62    |
-s1/i8284/pclk                                                                                    | BUFG                                                                                                                                                        | 51    |
+s1/i8284/pclk                                                                                    | BUFG                                                                                                                                                        | 69    |
 s8/i8253/vcs/C1/READ/MODE[5]_PWR_153_o_Mux_9_o(s8/i8253/vcs/C1/READ/MODE[5]_PWR_153_o_Mux_9_o1:O)| NONE(*)(s8/i8253/vcs/C1/READ/DREG_0)                                                                                                                        | 9     |
 s4/i8237/adstb                                                                                   | NONE(s4/ls3730/rq_0)                                                                                                                                        | 8     |
 dclk(s2/dclk1:O)                                                                                 | BUFG(*)(s4/i8237/bw2_FSM_FFd1)                                                                                                                              | 137   |
@@ -5031,11 +5042,11 @@ FindSrcOfAsyncThruGates : 200 (1)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Control Signal                                                                                                                                                                                                                                                                                                      | Buffer(FF name)                                                                                                                                             | Load  |
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                                                            | NONE(s8/i8253/vcs/C2/countlsb_2)                                                                                                                            | 601   |
-s7/nero/N1(s7/nero/XST_GND:G)                                                                                                                                                                                                                                                                                       | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[13].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                      | 256   |
-s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                                                           | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                 | 64    |
-s9/keyboard/keyloadmod/gamerom/N1(s9/keyboard/keyloadmod/gamerom/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)| 64    |
-s8/i8253/vcs/C1/READ/SEL_WR__AND_884_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_884_o_inv1:O)                                                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/READ/DREG_7)                                                                                                                           | 9     |
+deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                                                            | NONE(s8/i8253/vcs/C0/latchcount_15)                                                                                                                         | 619   |
+s7/nero/N1(s7/nero/XST_GND:G)                                                                                                                                                                                                                                                                                       | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[23].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                      | 256   |
+s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                                                           | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                 | 64    |
+s9/keyboard/keyloadmod/gamerom/N1(s9/keyboard/keyloadmod/gamerom/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)| 64    |
+s8/i8253/vcs/C1/READ/SEL_WR__AND_884_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_884_o_inv1:O)                                                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/READ/DREG_6)                                                                                                                           | 9     |
 s0/vgamod/char_rom/N1(s0/vgamod/char_rom/XST_GND:G)                                                                                                                                                                                                                                                                 | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                 | 8     |
 s1/i8259/rst_n_eoir[4]_OR_879_o(s1/i8259/rst_n_eoir[4]_OR_879_o1:O)                                                                                                                                                                                                                                                 | NONE(s1/i8259/dout_0)                                                                                                                                       | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)                                  | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                 | 2     |
@@ -5254,7 +5265,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/clk'
   Clock period: 23.362ns (frequency: 42.805MHz)
-  Total number of paths / destination ports: 13131586372616400 / 5069
+  Total number of paths / destination ports: 13131586372616336 / 5069
 -------------------------------------------------------------------------
 Delay:               23.362ns (Levels of Logic = 43)
   Source:            s1/i8088/core/fetch/opcode_l_6 (FF)
@@ -5287,7 +5298,7 @@ Delay:               23.362ns (Levels of Logic = 43)
      MUXF7:I1->O           1   0.254   0.000  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f7 (s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_4_f7)
      MUXF8:I0->O           1   0.182   0.576  s1/i8088/core/exec/regfile/Mmux_addr_b[3]_r[15][7]_wide_mux_11_OUT_2_f8 (s1/i8088/core/exec/regfile/addr_b[3]_r[15][7]_wide_mux_11_OUT<0>)
      LUT5:I3->O           10   0.094   0.529  s1/i8088/core/exec/Mmux_bus_b19 (s1/i8088/core/exec/Mmux_bus_b12)
-     LUT5:I4->O            1   0.094   0.480  s1/i8088/core/exec/regfile/Mmux_a2_SW0 (N1583)
+     LUT5:I4->O            1   0.094   0.480  s1/i8088/core/exec/regfile/Mmux_a2_SW0 (N1589)
      LUT6:I5->O            1   0.094   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_lut<0> (s1/i8088/core/exec/alu/othop/Madd_n0083_lut<0>)
      MUXCY:S->O            1   0.372   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<0> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<0>)
      MUXCY:CI->O           1   0.026   0.000  s1/i8088/core/exec/alu/othop/Madd_n0083_cy<1> (s1/i8088/core/exec/alu/othop/Madd_n0083_cy<1>)
@@ -5302,7 +5313,7 @@ Delay:               23.362ns (Levels of Logic = 43)
      MUXCY:S->O            1   0.372   0.000  s1/i8088/core/exec/alu/othop/Madd_dcmp2_cy<4> (s1/i8088/core/exec/alu/othop/Madd_dcmp2_cy<4>)
      XORCY:CI->O           1   0.357   0.480  s1/i8088/core/exec/alu/othop/Madd_dcmp2_xor<5> (s1/i8088/core/exec/alu/othop/dcmp2<5>)
      LUT6:I5->O            1   0.094   0.480  s1/i8088/core/exec/alu/othop/mux8_16/Mmux_out112 (s1/i8088/core/exec/alu/oth<5>)
-     LUT6:I5->O            1   0.094   0.000  s1/i8088/core/exec/alu/m0/Mmux_out_2_f7_4_G (N1706)
+     LUT6:I5->O            1   0.094   0.000  s1/i8088/core/exec/alu/m0/Mmux_out_2_f7_4_G (N1712)
      MUXF7:I1->O           4   0.254   0.496  s1/i8088/core/exec/alu/m0/Mmux_out_2_f7_4 (s1/i8088/core/addr_exec<5>)
      LUT5:I4->O           21   0.094   0.588  s1/i8088/core/exec/Mmux_omemalu121 (s1/i8088/core/exec/omemalu<5>)
      LUT6:I5->O           15   0.094   0.787  s1/i8088/core/exec/regfile/Mmux_cx_zero18 (s1/i8088/core/exec/regfile/Mmux_cx_zero17)
@@ -5368,31 +5379,31 @@ Delay:               4.641ns (Levels of Logic = 4)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/pclk'
-  Clock period: 7.255ns (frequency: 137.836MHz)
-  Total number of paths / destination ports: 1268 / 547
+  Clock period: 7.664ns (frequency: 130.480MHz)
+  Total number of paths / destination ports: 2248 / 565
 -------------------------------------------------------------------------
-Delay:               7.255ns (Levels of Logic = 7)
-  Source:            s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B (RAM)
-  Destination:       s9/keyboard/pa_7 (FF)
+Delay:               7.664ns (Levels of Logic = 7)
+  Source:            s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B (RAM)
+  Destination:       s9/keyboard/pa_3 (FF)
   Source Clock:      s1/i8284/pclk rising
   Destination Clock: s1/i8284/pclk rising
 
-  Data Path: s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B to s9/keyboard/pa_7
+  Data Path: s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B to s9/keyboard/pa_3
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     RAMB36_EXP:CLKAL->CASCADEOUTLATA    0   2.570   0.000  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B (U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/cascadelata_tmp)
-     RAMB36_EXP:CASCADEINLATA->DOA0    6   0.369   1.096  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T (douta<1>)
-     end scope: 's9/keyboard/keyloadmod/gamerom:douta<1>'
-     LUT6:I0->O            3   0.094   0.721  s9/keyboard/keyloadmod/state_GND_267_o_fdata[7]_mux_9_OUT<4>211 (s9/keyboard/keyloadmod/state_GND_267_o_fdata[7]_mux_9_OUT<4>21)
-     LUT6:I3->O            1   0.094   0.973  s9/keyboard/state[7]_GND_267_o_select_77_OUT<7>5 (s9/keyboard/state[7]_GND_267_o_select_77_OUT<7>5)
-     LUT6:I1->O            1   0.094   0.480  s9/keyboard/state[7]_GND_267_o_select_77_OUT<7>8 (s9/keyboard/state[7]_GND_267_o_select_77_OUT<7>8)
-     LUT6:I5->O            1   0.094   0.576  s9/keyboard/state[7]_GND_267_o_select_77_OUT<7>9 (s9/keyboard/state[7]_GND_267_o_select_77_OUT<7>9)
-     LUT2:I0->O            1   0.094   0.000  s9/keyboard/state[7]_GND_267_o_select_77_OUT<7>10 (s9/keyboard/state[7]_GND_267_o_select_77_OUT<7>)
-     FD:D                     -0.018          s9/keyboard/pa_7
+     RAMB36_EXP:CLKAL->CASCADEOUTLATA    0   2.570   0.000  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B (U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascadelata_tmp)
+     RAMB36_EXP:CASCADEINLATA->DOA0    2   0.369   1.074  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T (douta<4>)
+     end scope: 's9/keyboard/keyloadmod/gamerom:douta<4>'
+     LUT6:I0->O            2   0.094   0.794  s9/keyboard/fdata[7]_PWR_171_o_equal_6_o<7>3 (s9/keyboard/fdata[7]_PWR_171_o_equal_6_o<7>2)
+     LUT5:I1->O            8   0.094   0.614  s9/keyboard/fdata[7]_PWR_171_o_equal_6_o<7>4 (s9/keyboard/fdata[7]_PWR_171_o_equal_6_o)
+     LUT6:I4->O            3   0.094   0.984  s9/keyboard/state[7]_GND_267_o_select_77_OUT<5>11 (s9/keyboard/state[7]_GND_267_o_select_77_OUT<5>1)
+     LUT6:I1->O            1   0.094   0.789  s9/keyboard/state[7]_GND_267_o_select_77_OUT<3>1 (s9/keyboard/state[7]_GND_267_o_select_77_OUT<3>1)
+     LUT6:I2->O            1   0.094   0.000  s9/keyboard/state[7]_GND_267_o_select_77_OUT<3>2 (s9/keyboard/state[7]_GND_267_o_select_77_OUT<3>)
+     FD:D                     -0.018          s9/keyboard/pa_3
     ----------------------------------------
-    Total                      7.255ns (3.409ns logic, 3.846ns route)
-                                       (47.0% logic, 53.0% route)
+    Total                      7.664ns (3.409ns logic, 4.255ns route)
+                                       (44.5% logic, 55.5% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 's4/i8237/adstb'
@@ -5564,26 +5575,6 @@ Offset:              1.397ns (Levels of Logic = 2)
                                        (65.3% logic, 34.7% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 's1/i8284/pclk'
-  Total number of paths / destination ports: 3 / 3
--------------------------------------------------------------------------
-Offset:              1.712ns (Levels of Logic = 2)
-  Source:            GPIO_SW_E (PAD)
-  Destination:       s9/keyboard/keyloadmod/state_FSM_FFd6 (FF)
-  Destination Clock: s1/i8284/pclk rising
-
-  Data Path: GPIO_SW_E to s9/keyboard/keyloadmod/state_FSM_FFd6
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             3   0.818   0.800  GPIO_SW_E_IBUF (GPIO_SW_E_IBUF)
-     LUT4:I0->O            1   0.094   0.000  s9/keyboard/keyloadmod/state_FSM_FFd6-In1 (s9/keyboard/keyloadmod/state_FSM_FFd6-In)
-     FDP:D                    -0.018          s9/keyboard/keyloadmod/state_FSM_FFd6
-    ----------------------------------------
-    Total                      1.712ns (0.912ns logic, 0.800ns route)
-                                       (53.3% logic, 46.7% route)
-
-=========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'KEYBOARD_CLK'
   Total number of paths / destination ports: 16 / 16
 -------------------------------------------------------------------------
@@ -5602,6 +5593,26 @@ Offset:              2.118ns (Levels of Logic = 2)
     ----------------------------------------
     Total                      2.118ns (1.259ns logic, 0.859ns route)
                                        (59.4% logic, 40.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 's1/i8284/pclk'
+  Total number of paths / destination ports: 3 / 3
+-------------------------------------------------------------------------
+Offset:              1.712ns (Levels of Logic = 2)
+  Source:            GPIO_SW_E (PAD)
+  Destination:       s9/keyboard/keyloadmod/state_FSM_FFd8 (FF)
+  Destination Clock: s1/i8284/pclk rising
+
+  Data Path: GPIO_SW_E to s9/keyboard/keyloadmod/state_FSM_FFd8
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             3   0.818   0.800  GPIO_SW_E_IBUF (GPIO_SW_E_IBUF)
+     LUT4:I0->O            1   0.094   0.000  s9/keyboard/keyloadmod/state_FSM_FFd8-In1 (s9/keyboard/keyloadmod/state_FSM_FFd8-In)
+     FDP:D                    -0.018          s9/keyboard/keyloadmod/state_FSM_FFd8
+    ----------------------------------------
+    Total                      1.712ns (0.912ns logic, 0.800ns route)
+                                       (53.3% logic, 46.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 's1/i8284/clk'
@@ -5782,9 +5793,9 @@ Clock to Setup on destination clock s1/i8284/pclk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-KEYBOARD_CLK   |         |    6.846|         |         |
-s1/i8284/clk   |    3.674|         |         |         |
-s1/i8284/pclk  |    7.255|         |         |         |
+KEYBOARD_CLK   |         |    7.663|         |         |
+s1/i8284/clk   |    3.578|         |         |         |
+s1/i8284/pclk  |    7.664|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/i8284/vclk
@@ -5885,7 +5896,7 @@ xiow_n         |    2.469|         |         |         |
 
 
 Total REAL time to Xst completion: 82.00 secs
-Total CPU time to Xst completion: 79.76 secs
+Total CPU time to Xst completion: 79.80 secs
  
 WARNING:Xst:3152 - You have chosen to run a version of XST which is not the default solution
    for the specified device family. You are free to use it in order to take
@@ -5898,9 +5909,9 @@ WARNING:Xst:3152 - You have chosen to run a version of XST which is not the defa
 --> 
 
 
-Total memory usage is 574972 kilobytes
+Total memory usage is 575844 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  889 (   0 filtered)
+Number of warnings :  890 (   0 filtered)
 Number of infos    :   42 (   0 filtered)
 

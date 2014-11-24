@@ -589,14 +589,18 @@ module keyload(
 		act1 = 8'b0000_0100,
 		act2 = 8'b0000_1000,
 		act3 = 8'b0001_0000,
-		act4 = 8'b0010_0000;
+		act4 = 8'b0010_0000,
+		act5 = 8'b0100_0000,
+		act6 = 8'b1000_0000;
 	
 	// Terminal Count for Counter
 	//parameter [15:0] tc = 16'd3540;
-	parameter [15:0] tc = 16'd199;
+	parameter [15:0] tc = 16'd3539;
+	parameter [15:0] endcount = 16'h4000;
 	
 	// Counter Register
 	reg [15:0] counter;
+	reg [15:0] delaycounter;
 	
 	// FSM Registers
 	reg [7:0] state, nextstate;
@@ -607,6 +611,7 @@ module keyload(
 		counter = 16'h0;
 		state = idle;
 		nextstate = idle;
+		delaycounter = 16'h0;
 	end
 	
 	// This will be replaced with block RAM containing our character set
@@ -638,7 +643,13 @@ module keyload(
 	);
 	
 	// Block Signal Assign
-	assign block = (state == act0) | (state == act1) | (state == act2) | (state == act3) | (state == act4);
+	assign block = (state == act0) 
+	| (state == act1) 
+	| (state == act2) 
+	| (state == act3) 
+	| (state == act4) 
+	| (state == act5) 
+	| (state == act6);
 	
 	// New Data Assign
 	assign newdata = (state == act1);
@@ -647,6 +658,19 @@ module keyload(
 	always @(posedge clk or negedge rst_n) begin
 		if(~rst_n) state <= idle;
 		else state <= nextstate;
+	end
+	
+	// Delay Counter Logic
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) begin
+			delaycounter <= 16'h0;
+		end
+		else if(delaycounter == endcount) begin
+			delaycounter <= 16'h0;
+		end
+		else begin
+			delaycounter <= delaycounter + 1;
+		end
 	end
 	
 	// Counter Logic
@@ -695,6 +719,15 @@ module keyload(
 			end
 			// act4 - intermediate state to allow counter to iterate
 			act4: begin
+				nextstate = act5; // change to act1 to avoid delay functionality
+			end
+			// act5 - wait for counter to be low
+			act5: begin
+				if(delaycounter == 16'h0) nextstate = act6;
+				else nextstate = act5;
+			end
+			// act6 - extra delay state
+			act6: begin
 				nextstate = act1;
 			end
 			// default: jump back to idle if no data

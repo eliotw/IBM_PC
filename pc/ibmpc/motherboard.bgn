@@ -6,7 +6,7 @@ Loading device for application Rf_Device from file '5vlx110t.nph' in environment
 speed -1
 Opened constraints file motherboard.pcf.
 
-Sun Nov 23 20:54:16 2014
+Mon Nov 24 11:47:31 2014
 
 /afs/ece.cmu.edu/support/xilinx/xilinx.release/14.2/ISE_DS/ISE/bin/lin64/unwrapped/bitgen -intstyle ise -w -g DebugBitstream:No -g Binary:no -g CRC:Enable -g ConfigRate:2 -g CclkPin:PullUp -g M0Pin:PullUp -g M1Pin:PullUp -g M2Pin:PullUp -g ProgPin:PullUp -g DonePin:PullUp -g InitPin:Pullup -g CsPin:Pullup -g DinPin:Pullup -g BusyPin:Pullup -g RdWrPin:Pullup -g HswapenPin:PullUp -g TckPin:PullUp -g TdiPin:PullUp -g TdoPin:PullUp -g TmsPin:PullUp -g UnusedPin:PullDown -g UserID:0xFFFFFFFF -g ConfigFallback:Enable -g SelectMAPAbort:Enable -g BPI_page_size:1 -g OverTempPowerDown:Disable -g USR_ACCESS:None -g JTAG_SysMon:Enable -g DCIUpdateMode:AsRequired -g StartUpClk:CClk -g DONE_cycle:4 -g GTS_cycle:5 -g GWE_cycle:6 -g LCK_cycle:NoWait -g Match_cycle:Auto -g Security:None -g DonePipe:No -g DriveDone:No -g Encrypt:No motherboard.ncd 
 
@@ -128,33 +128,33 @@ There were 0 CONFIG constraint(s) processed from motherboard.pcf.
 
 
 Running DRC.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net xiow_n is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s8/i8253/vcs/C1/READ/MODE[5]_PWR_153_o_Mux_9_o is sourced by a combinatorial
-   pin. This is not good design practice. Use the CE pin to control the loading
-   of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s1/qs<1> is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s1/i8259/eoir[4]_GND_64_o_equal_97_o is sourced by a combinatorial pin. This
-   is not good design practice. Use the CE pin to control the loading of data
-   into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net s9/i8255/pds is sourced by
-   a combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net irq0 is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s4/wrt_dma_pg_reg_n_INV_739_o is sourced by a combinatorial pin. This is not
    good design practice. Use the CE pin to control the loading of data into the
    flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net xiow_n is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s9/i8255/pds is sourced by
+   a combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s8/i8253/vcs/C1/READ/MODE[5]_PWR_153_o_Mux_9_o is sourced by a combinatorial
+   pin. This is not good design practice. Use the CE pin to control the loading
+   of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s1/i8259/eoir[4]_GND_64_o_equal_97_o is sourced by a combinatorial pin. This
+   is not good design practice. Use the CE pin to control the loading of data
+   into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net irq0 is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net s1/qs<1> is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
 DRC detected 0 errors and 8 warnings.  Please see the previously displayed
 individual error or warning messages for more details.
 INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable is not set.
@@ -173,7 +173,7 @@ WARNING:Security:44 - Since no license file was found,
        (xlcm or "Manage Xilinx Licenses")
        to assist in obtaining a license.
 WARNING:Security:42 - Your license support version '2014.11' for ISE expires in
-7 days after which you will not qualify for Xilinx software updates or new
+6 days after which you will not qualify for Xilinx software updates or new
 releases.
 
 Creating bit map...
