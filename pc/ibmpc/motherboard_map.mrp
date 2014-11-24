@@ -10,7 +10,7 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Sun Nov 23 20:14:53 2014
+Mapped Date    : Sun Nov 23 20:52:14 2014
 
 Design Summary
 --------------
@@ -20,28 +20,28 @@ Slice Logic Utilization:
   Number of Slice Registers:                 3,735 out of  69,120    5%
     Number used as Flip Flops:               3,705
     Number used as Latches:                     30
-  Number of Slice LUTs:                      5,704 out of  69,120    8%
-    Number used as logic:                    5,111 out of  69,120    7%
-      Number using O6 output only:           4,630
-      Number using O5 output only:             107
-      Number using O5 and O6:                  374
+  Number of Slice LUTs:                      5,701 out of  69,120    8%
+    Number used as logic:                    5,109 out of  69,120    7%
+      Number using O6 output only:           4,626
+      Number using O5 output only:             108
+      Number using O5 and O6:                  375
     Number used as Memory:                     579 out of  17,920    3%
       Number used as Shift Register:           579
         Number using O6 output only:           577
         Number using O5 output only:             1
         Number using O5 and O6:                  1
-    Number used as exclusive route-thru:        14
-  Number of route-thrus:                       132
-    Number using O6 output only:               119
+    Number used as exclusive route-thru:        13
+  Number of route-thrus:                       131
+    Number using O6 output only:               118
     Number using O5 output only:                11
     Number using O5 and O6:                      2
 
 Slice Logic Distribution:
-  Number of occupied Slices:                 2,383 out of  17,280   13%
-  Number of LUT Flip Flop pairs used:        7,336
-    Number with an unused Flip Flop:         3,601 out of   7,336   49%
-    Number with an unused LUT:               1,632 out of   7,336   22%
-    Number of fully used LUT-FF pairs:       2,103 out of   7,336   28%
+  Number of occupied Slices:                 2,405 out of  17,280   13%
+  Number of LUT Flip Flop pairs used:        7,440
+    Number with an unused Flip Flop:         3,705 out of   7,440   49%
+    Number with an unused LUT:               1,739 out of   7,440   23%
+    Number of fully used LUT-FF pairs:       1,996 out of   7,440   26%
     Number of unique control sets:             167
     Number of slice register sites lost
       to control set restrictions:             297 out of  69,120    1%
@@ -74,8 +74,8 @@ Specific Feature Utilization:
 Average Fanout of Non-Clock Nets:                4.61
 
 Peak Memory Usage:  1133 MB
-Total REAL time to MAP completion:  56 secs 
-Total CPU time to MAP completion:   55 secs 
+Total REAL time to MAP completion:  57 secs 
+Total CPU time to MAP completion:   56 secs 
 
 Table of Contents
 -----------------
@@ -1311,6 +1311,10 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s1/qs<1> is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s1/i8259/eoir[4]_GND_64_o_equal_97_o is sourced by a combinatorial pin. This
+   is not good design practice. Use the CE pin to control the loading of data
+   into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s9/i8255/pds is sourced by
    a combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
@@ -1321,10 +1325,6 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s4/wrt_dma_pg_reg_n_INV_739_o is sourced by a combinatorial pin. This is not
    good design practice. Use the CE pin to control the loading of data into the
    flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s1/i8259/eoir[4]_GND_64_o_equal_97_o is sourced by a combinatorial pin. This
-   is not good design practice. Use the CE pin to control the loading of data
-   into the flip-flop.
 
 Section 3 - Informational
 -------------------------

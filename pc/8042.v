@@ -593,7 +593,7 @@ module keyload(
 	
 	// Terminal Count for Counter
 	//parameter [15:0] tc = 16'd3540;
-	parameter [15:0] tc = 16'd99;
+	parameter [15:0] tc = 16'd199;
 	
 	// Counter Register
 	reg [15:0] counter;
