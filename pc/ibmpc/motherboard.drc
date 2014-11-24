@@ -1,7 +1,7 @@
 Release 14.2 Drc P.28xd (lin64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-Sun Nov 23 17:49:46 2014
+Sun Nov 23 20:16:54 2014
 
 drc -z motherboard.ncd motherboard.pcf
 
@@ -18,10 +18,6 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s1/qs<1> is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s1/i8259/eoir[4]_GND_64_o_equal_97_o is sourced by a combinatorial pin. This
-   is not good design practice. Use the CE pin to control the loading of data
-   into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s9/i8255/pds is sourced by
    a combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
@@ -32,5 +28,9 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s4/wrt_dma_pg_reg_n_INV_739_o is sourced by a combinatorial pin. This is not
    good design practice. Use the CE pin to control the loading of data into the
    flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s1/i8259/eoir[4]_GND_64_o_equal_97_o is sourced by a combinatorial pin. This
+   is not good design practice. Use the CE pin to control the loading of data
+   into the flip-flop.
 DRC detected 0 errors and 8 warnings.  Please see the previously displayed
 individual error or warning messages for more details.

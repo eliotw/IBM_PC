@@ -793,16 +793,17 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 	// Parameters
 	parameter CNTVAL = 0;
 	parameter [7:0]
-		idle = 8'b00000001,
-		rlsb = 8'b00000010,
-		rmsb = 8'b00000100,
-		cnt0 = 8'b00001000,
-		halt = 8'b00010000,
-		cnt1 = 8'b00100000,
-		cnt2 = 8'b01000000,
-		cnt3 = 8'b10000000,
-		cnt4 = 8'b00000000,
-		cnt5 = 8'b00000011;
+		idle = 8'b00000000,
+		rlsb = 8'b00000001,
+		rmsb = 8'b00000010,
+		cnt0 = 8'b00000011,
+		halt = 8'b00000100,
+		cnt1 = 8'b00000101,
+		cnt2 = 8'b00000110,
+		cnt3 = 8'b00000111,
+		cnt4 = 8'b00001000,
+		cnt5 = 8'b00001001,
+		cnt6 = 8'b00001010;
 		
 	// Wires
 	wire wr, rd, sel, pclk, gate, selmode, rst_n, clk;
@@ -811,6 +812,7 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 	wire mode0, mode1, mode3;
 	wire [15:0] halfcount;
 	wire countzero;
+	wire lsbzero, msbzero;
 	
 	// Registers
 	reg [7:0] control;
@@ -841,7 +843,9 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 	assign halfcount = {1'b0,countval[15:1]};
 	assign countzero = (count == 16'b0);
 	assign {D7,D6,D5,D4,D3,D2,D1,D0} = (rd & sel) ? dataout : 8'bzzzzzzzz;
-	
+	assign lsbzero = control[5] & ~control[4];
+	assign msbzero = ~control[5] & control[4];
+
 	// Initial conditions
 	initial begin
 		control = 8'b0;
@@ -897,7 +901,7 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 		if(~rst_n) begin
 			count <= 16'h0;
 		end
-		else if((state == cnt0) | (state == cnt1) | (state == cnt2) | (state == cnt3) | (state == cnt4)) begin
+		else if((state == cnt0) | (state == cnt1) | (state == cnt2) | (state == cnt3) | (state == cnt4) | (state == cnt5)) begin
 			if(countval == 16'b0) begin
 				count <= 16'hffff;
 			end
@@ -905,7 +909,7 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 				count <= countval;
 			end
 		end
-		else if(state == cnt5) begin
+		else if(state == cnt6) begin
 			if(countzero) begin
 				if(mode0) begin
 					count <= 16'b0;
@@ -963,6 +967,9 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 		else if(sel & wr & loadmsb) begin
 			countmsb <= data;
 		end
+		else if(sel & wr & loadlsb & msbzero) begin
+			countmsb <= 8'b0;
+		end
 		else begin
 			countmsb <= countmsb;
 		end
@@ -975,6 +982,9 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 		end
 		else if(sel & wr & loadlsb) begin
 			countlsb <= data;
+		end
+		else if(sel & wr & loadmsb & lsbzero) begin
+			countlsb <= 8'b0;
 		end
 		else begin
 			countlsb <= countlsb;
@@ -1125,8 +1135,13 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 				loadmsb = 1'b0;
 				loadlsb = 1'b0;
 			end
-			// Count state
 			cnt5: begin
+				nextstate = cnt6;
+				loadmsb = 1'b0;
+				loadlsb = 1'b0;
+			end
+			// Count state
+			cnt6: begin
 				if(selmode & wr & (data[5] | data[4])) begin
 					nextstate = halt;
 					loadmsb = 1'b0;
@@ -1148,7 +1163,7 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 					loadlsb = 1'b1;
 				end
 				else begin
-					nextstate = cnt5;
+					nextstate = cnt6;
 					loadmsb = 1'b0;
 					loadlsb = 1'b0;
 				end

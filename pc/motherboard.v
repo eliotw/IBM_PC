@@ -1351,10 +1351,10 @@ module sheet8(
    // DRQ0 Flip-Flop
    always @(posedge out1) begin
       if(dack0_brd_n == 1'b0) begin
-	 drq0 <= 1'b0;
+			drq0 <= 1'b0;
       end
       else begin
-	 drq0 <= 1'b0; // KEYWORD: disabling for now
+			drq0 <= 1'b0; // KEYWORD: disabling for now
       end
    end
 

@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.28xd on Sun Nov 23 17:48:39 2014
+// Written by: Map P.28xd on Sun Nov 23 20:15:47 2014
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -917,77 +917,78 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
         "s9/i8255/pb_0" BEL "s8/i8253/vcs/C0/state_FSM_FFd2" BEL
         "s8/i8253/vcs/C0/state_FSM_FFd3" BEL "s8/i8253/vcs/C0/state_FSM_FFd4"
         BEL "s8/i8253/vcs/C0/state_FSM_FFd5" BEL
-        "s8/i8253/vcs/C0/readcontrol_FSM_FFd2" BEL
-        "s8/i8253/vcs/C0/state_FSM_FFd1" BEL
+        "s8/i8253/vcs/C0/state_FSM_FFd6" BEL
         "s8/i8253/vcs/C0/readcontrol_FSM_FFd1" BEL
-        "s8/i8253/vcs/C0/state_FSM_FFd6" BEL "s8/i8253/vcs/C0/state_FSM_FFd7"
+        "s8/i8253/vcs/C0/readcontrol_FSM_FFd2" BEL
+        "s8/i8253/vcs/C0/state_FSM_FFd1" BEL "s8/i8253/vcs/C0/state_FSM_FFd7"
         BEL "s8/i8253/vcs/C0/state_FSM_FFd8" BEL
         "s8/i8253/vcs/C0/state_FSM_FFd9" BEL "s8/i8253/vcs/C0/state_FSM_FFd10"
-        BEL "s8/i8253/vcs/C0/control_5" BEL "s8/i8253/vcs/C0/control_4" BEL
-        "s8/i8253/vcs/C0/control_3" BEL "s8/i8253/vcs/C0/control_2" BEL
-        "s8/i8253/vcs/C0/control_1" BEL "s8/i8253/vcs/C0/dataout_7" BEL
-        "s8/i8253/vcs/C0/dataout_6" BEL "s8/i8253/vcs/C0/dataout_5" BEL
-        "s8/i8253/vcs/C0/dataout_4" BEL "s8/i8253/vcs/C0/dataout_3" BEL
-        "s8/i8253/vcs/C0/dataout_2" BEL "s8/i8253/vcs/C0/dataout_1" BEL
-        "s8/i8253/vcs/C0/dataout_0" BEL "s8/i8253/vcs/C0/latchcount_15" BEL
-        "s8/i8253/vcs/C0/latchcount_14" BEL "s8/i8253/vcs/C0/latchcount_13"
-        BEL "s8/i8253/vcs/C0/latchcount_12" BEL
-        "s8/i8253/vcs/C0/latchcount_11" BEL "s8/i8253/vcs/C0/latchcount_10"
-        BEL "s8/i8253/vcs/C0/latchcount_9" BEL "s8/i8253/vcs/C0/latchcount_8"
-        BEL "s8/i8253/vcs/C0/latchcount_7" BEL "s8/i8253/vcs/C0/latchcount_6"
-        BEL "s8/i8253/vcs/C0/latchcount_5" BEL "s8/i8253/vcs/C0/latchcount_4"
-        BEL "s8/i8253/vcs/C0/latchcount_3" BEL "s8/i8253/vcs/C0/latchcount_2"
-        BEL "s8/i8253/vcs/C0/latchcount_1" BEL "s8/i8253/vcs/C0/latchcount_0"
-        BEL "s8/i8253/vcs/C0/countlsb_7" BEL "s8/i8253/vcs/C0/countlsb_6" BEL
-        "s8/i8253/vcs/C0/countlsb_5" BEL "s8/i8253/vcs/C0/countlsb_4" BEL
-        "s8/i8253/vcs/C0/countlsb_3" BEL "s8/i8253/vcs/C0/countlsb_2" BEL
-        "s8/i8253/vcs/C0/countlsb_1" BEL "s8/i8253/vcs/C0/countlsb_0" BEL
-        "s8/i8253/vcs/C0/countmsb_7" BEL "s8/i8253/vcs/C0/countmsb_6" BEL
-        "s8/i8253/vcs/C0/countmsb_5" BEL "s8/i8253/vcs/C0/countmsb_4" BEL
-        "s8/i8253/vcs/C0/countmsb_3" BEL "s8/i8253/vcs/C0/countmsb_2" BEL
-        "s8/i8253/vcs/C0/countmsb_1" BEL "s8/i8253/vcs/C0/countmsb_0" BEL
-        "s8/i8253/vcs/C1/LATCHMSB_7" BEL "s8/i8253/vcs/C1/LATCHMSB_6" BEL
-        "s8/i8253/vcs/C1/LATCHMSB_5" BEL "s8/i8253/vcs/C1/LATCHMSB_4" BEL
-        "s8/i8253/vcs/C1/LATCHMSB_3" BEL "s8/i8253/vcs/C1/LATCHMSB_2" BEL
-        "s8/i8253/vcs/C1/LATCHMSB_1" BEL "s8/i8253/vcs/C1/LATCHMSB_0" BEL
-        "s8/i8253/vcs/C1/LATCHLSB_7" BEL "s8/i8253/vcs/C1/LATCHLSB_6" BEL
-        "s8/i8253/vcs/C1/LATCHLSB_5" BEL "s8/i8253/vcs/C1/LATCHLSB_4" BEL
-        "s8/i8253/vcs/C1/LATCHLSB_3" BEL "s8/i8253/vcs/C1/LATCHLSB_2" BEL
-        "s8/i8253/vcs/C1/LATCHLSB_1" BEL "s8/i8253/vcs/C1/LATCHLSB_0" BEL
-        "s8/i8253/vcs/C2/state_FSM_FFd2" BEL "s8/i8253/vcs/C2/state_FSM_FFd3"
-        BEL "s8/i8253/vcs/C2/state_FSM_FFd4" BEL
-        "s8/i8253/vcs/C2/state_FSM_FFd5" BEL
-        "s8/i8253/vcs/C2/readcontrol_FSM_FFd2" BEL
-        "s8/i8253/vcs/C2/state_FSM_FFd1" BEL
+        BEL "s8/i8253/vcs/C0/state_FSM_FFd11" BEL "s8/i8253/vcs/C0/control_5"
+        BEL "s8/i8253/vcs/C0/control_4" BEL "s8/i8253/vcs/C0/control_3" BEL
+        "s8/i8253/vcs/C0/control_2" BEL "s8/i8253/vcs/C0/control_1" BEL
+        "s8/i8253/vcs/C0/dataout_7" BEL "s8/i8253/vcs/C0/dataout_6" BEL
+        "s8/i8253/vcs/C0/dataout_5" BEL "s8/i8253/vcs/C0/dataout_4" BEL
+        "s8/i8253/vcs/C0/dataout_3" BEL "s8/i8253/vcs/C0/dataout_2" BEL
+        "s8/i8253/vcs/C0/dataout_1" BEL "s8/i8253/vcs/C0/dataout_0" BEL
+        "s8/i8253/vcs/C0/latchcount_15" BEL "s8/i8253/vcs/C0/latchcount_14"
+        BEL "s8/i8253/vcs/C0/latchcount_13" BEL
+        "s8/i8253/vcs/C0/latchcount_12" BEL "s8/i8253/vcs/C0/latchcount_11"
+        BEL "s8/i8253/vcs/C0/latchcount_10" BEL "s8/i8253/vcs/C0/latchcount_9"
+        BEL "s8/i8253/vcs/C0/latchcount_8" BEL "s8/i8253/vcs/C0/latchcount_7"
+        BEL "s8/i8253/vcs/C0/latchcount_6" BEL "s8/i8253/vcs/C0/latchcount_5"
+        BEL "s8/i8253/vcs/C0/latchcount_4" BEL "s8/i8253/vcs/C0/latchcount_3"
+        BEL "s8/i8253/vcs/C0/latchcount_2" BEL "s8/i8253/vcs/C0/latchcount_1"
+        BEL "s8/i8253/vcs/C0/latchcount_0" BEL "s8/i8253/vcs/C0/countlsb_7"
+        BEL "s8/i8253/vcs/C0/countlsb_6" BEL "s8/i8253/vcs/C0/countlsb_5" BEL
+        "s8/i8253/vcs/C0/countlsb_4" BEL "s8/i8253/vcs/C0/countlsb_3" BEL
+        "s8/i8253/vcs/C0/countlsb_2" BEL "s8/i8253/vcs/C0/countlsb_1" BEL
+        "s8/i8253/vcs/C0/countlsb_0" BEL "s8/i8253/vcs/C0/countmsb_7" BEL
+        "s8/i8253/vcs/C0/countmsb_6" BEL "s8/i8253/vcs/C0/countmsb_5" BEL
+        "s8/i8253/vcs/C0/countmsb_4" BEL "s8/i8253/vcs/C0/countmsb_3" BEL
+        "s8/i8253/vcs/C0/countmsb_2" BEL "s8/i8253/vcs/C0/countmsb_1" BEL
+        "s8/i8253/vcs/C0/countmsb_0" BEL "s8/i8253/vcs/C1/LATCHMSB_7" BEL
+        "s8/i8253/vcs/C1/LATCHMSB_6" BEL "s8/i8253/vcs/C1/LATCHMSB_5" BEL
+        "s8/i8253/vcs/C1/LATCHMSB_4" BEL "s8/i8253/vcs/C1/LATCHMSB_3" BEL
+        "s8/i8253/vcs/C1/LATCHMSB_2" BEL "s8/i8253/vcs/C1/LATCHMSB_1" BEL
+        "s8/i8253/vcs/C1/LATCHMSB_0" BEL "s8/i8253/vcs/C1/LATCHLSB_7" BEL
+        "s8/i8253/vcs/C1/LATCHLSB_6" BEL "s8/i8253/vcs/C1/LATCHLSB_5" BEL
+        "s8/i8253/vcs/C1/LATCHLSB_4" BEL "s8/i8253/vcs/C1/LATCHLSB_3" BEL
+        "s8/i8253/vcs/C1/LATCHLSB_2" BEL "s8/i8253/vcs/C1/LATCHLSB_1" BEL
+        "s8/i8253/vcs/C1/LATCHLSB_0" BEL "s8/i8253/vcs/C2/state_FSM_FFd2" BEL
+        "s8/i8253/vcs/C2/state_FSM_FFd3" BEL "s8/i8253/vcs/C2/state_FSM_FFd4"
+        BEL "s8/i8253/vcs/C2/state_FSM_FFd5" BEL
+        "s8/i8253/vcs/C2/state_FSM_FFd6" BEL
         "s8/i8253/vcs/C2/readcontrol_FSM_FFd1" BEL
-        "s8/i8253/vcs/C2/state_FSM_FFd6" BEL "s8/i8253/vcs/C2/state_FSM_FFd7"
+        "s8/i8253/vcs/C2/readcontrol_FSM_FFd2" BEL
+        "s8/i8253/vcs/C2/state_FSM_FFd1" BEL "s8/i8253/vcs/C2/state_FSM_FFd7"
         BEL "s8/i8253/vcs/C2/state_FSM_FFd8" BEL
         "s8/i8253/vcs/C2/state_FSM_FFd9" BEL "s8/i8253/vcs/C2/state_FSM_FFd10"
-        BEL "s8/i8253/vcs/C2/control_5" BEL "s8/i8253/vcs/C2/control_4" BEL
-        "s8/i8253/vcs/C2/control_2" BEL "s8/i8253/vcs/C2/control_1" BEL
-        "s8/i8253/vcs/C2/dataout_7" BEL "s8/i8253/vcs/C2/dataout_6" BEL
-        "s8/i8253/vcs/C2/dataout_5" BEL "s8/i8253/vcs/C2/dataout_4" BEL
-        "s8/i8253/vcs/C2/dataout_3" BEL "s8/i8253/vcs/C2/dataout_2" BEL
-        "s8/i8253/vcs/C2/dataout_1" BEL "s8/i8253/vcs/C2/dataout_0" BEL
-        "s8/i8253/vcs/C2/latchcount_15" BEL "s8/i8253/vcs/C2/latchcount_14"
-        BEL "s8/i8253/vcs/C2/latchcount_13" BEL
-        "s8/i8253/vcs/C2/latchcount_12" BEL "s8/i8253/vcs/C2/latchcount_11"
-        BEL "s8/i8253/vcs/C2/latchcount_10" BEL "s8/i8253/vcs/C2/latchcount_9"
-        BEL "s8/i8253/vcs/C2/latchcount_8" BEL "s8/i8253/vcs/C2/latchcount_7"
-        BEL "s8/i8253/vcs/C2/latchcount_6" BEL "s8/i8253/vcs/C2/latchcount_5"
-        BEL "s8/i8253/vcs/C2/latchcount_4" BEL "s8/i8253/vcs/C2/latchcount_3"
-        BEL "s8/i8253/vcs/C2/latchcount_2" BEL "s8/i8253/vcs/C2/latchcount_1"
-        BEL "s8/i8253/vcs/C2/latchcount_0" BEL "s8/i8253/vcs/C2/countlsb_7"
-        BEL "s8/i8253/vcs/C2/countlsb_6" BEL "s8/i8253/vcs/C2/countlsb_5" BEL
-        "s8/i8253/vcs/C2/countlsb_4" BEL "s8/i8253/vcs/C2/countlsb_3" BEL
-        "s8/i8253/vcs/C2/countlsb_2" BEL "s8/i8253/vcs/C2/countlsb_1" BEL
-        "s8/i8253/vcs/C2/countlsb_0" BEL "s8/i8253/vcs/C2/countmsb_7" BEL
-        "s8/i8253/vcs/C2/countmsb_6" BEL "s8/i8253/vcs/C2/countmsb_5" BEL
-        "s8/i8253/vcs/C2/countmsb_4" BEL "s8/i8253/vcs/C2/countmsb_3" BEL
-        "s8/i8253/vcs/C2/countmsb_2" BEL "s8/i8253/vcs/C2/countmsb_1" BEL
-        "s8/i8253/vcs/C2/countmsb_0" BEL "s1/i8088/core/hlt_op_old" BEL
-        "s1/i8088/core/hlt" BEL "s1/i8088/core/exec/alu/muldiv/div_su/s_15"
-        BEL "s1/i8088/core/exec/alu/muldiv/div_su/s_14" BEL
+        BEL "s8/i8253/vcs/C2/state_FSM_FFd11" BEL "s8/i8253/vcs/C2/control_5"
+        BEL "s8/i8253/vcs/C2/control_4" BEL "s8/i8253/vcs/C2/control_2" BEL
+        "s8/i8253/vcs/C2/control_1" BEL "s8/i8253/vcs/C2/dataout_7" BEL
+        "s8/i8253/vcs/C2/dataout_6" BEL "s8/i8253/vcs/C2/dataout_5" BEL
+        "s8/i8253/vcs/C2/dataout_4" BEL "s8/i8253/vcs/C2/dataout_3" BEL
+        "s8/i8253/vcs/C2/dataout_2" BEL "s8/i8253/vcs/C2/dataout_1" BEL
+        "s8/i8253/vcs/C2/dataout_0" BEL "s8/i8253/vcs/C2/latchcount_15" BEL
+        "s8/i8253/vcs/C2/latchcount_14" BEL "s8/i8253/vcs/C2/latchcount_13"
+        BEL "s8/i8253/vcs/C2/latchcount_12" BEL
+        "s8/i8253/vcs/C2/latchcount_11" BEL "s8/i8253/vcs/C2/latchcount_10"
+        BEL "s8/i8253/vcs/C2/latchcount_9" BEL "s8/i8253/vcs/C2/latchcount_8"
+        BEL "s8/i8253/vcs/C2/latchcount_7" BEL "s8/i8253/vcs/C2/latchcount_6"
+        BEL "s8/i8253/vcs/C2/latchcount_5" BEL "s8/i8253/vcs/C2/latchcount_4"
+        BEL "s8/i8253/vcs/C2/latchcount_3" BEL "s8/i8253/vcs/C2/latchcount_2"
+        BEL "s8/i8253/vcs/C2/latchcount_1" BEL "s8/i8253/vcs/C2/latchcount_0"
+        BEL "s8/i8253/vcs/C2/countlsb_7" BEL "s8/i8253/vcs/C2/countlsb_6" BEL
+        "s8/i8253/vcs/C2/countlsb_5" BEL "s8/i8253/vcs/C2/countlsb_4" BEL
+        "s8/i8253/vcs/C2/countlsb_3" BEL "s8/i8253/vcs/C2/countlsb_2" BEL
+        "s8/i8253/vcs/C2/countlsb_1" BEL "s8/i8253/vcs/C2/countlsb_0" BEL
+        "s8/i8253/vcs/C2/countmsb_7" BEL "s8/i8253/vcs/C2/countmsb_6" BEL
+        "s8/i8253/vcs/C2/countmsb_5" BEL "s8/i8253/vcs/C2/countmsb_4" BEL
+        "s8/i8253/vcs/C2/countmsb_3" BEL "s8/i8253/vcs/C2/countmsb_2" BEL
+        "s8/i8253/vcs/C2/countmsb_1" BEL "s8/i8253/vcs/C2/countmsb_0" BEL
+        "s1/i8088/core/hlt_op_old" BEL "s1/i8088/core/hlt" BEL
+        "s1/i8088/core/exec/alu/muldiv/div_su/s_15" BEL
+        "s1/i8088/core/exec/alu/muldiv/div_su/s_14" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/s_13" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/s_12" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/s_11" BEL
