@@ -11,6 +11,8 @@
         linktoc=all,
 }
 
+\setcounter{secnumdepth}{4}
+
 \title{TEAM IBM PC}
 \author{Patrick Brown\\
     Aalique Grahame\\
@@ -26,7 +28,7 @@
 \tableofcontents
 \clearpage
 
-\section{Introduction}
+\section{Full Design Specification}
 
     Our IBM PC implementation attempts to follow the original IBM PC’s design as closely as possible. As a result, we have based our design on the original circuitry of the IBM PC. However, we have made some modifications that are detailed in this report. Our design specification consists of four primary sections. Section A details the partition between software and hardware. In particular, it covers information about the BIOS that the PC will boot from and the peripherals that allow it more complex software functionality. Section B details the three primary data buses on the IBM PC, including the data bus, the control bus, and the address bus. Section C is a block diagram from the IBM PC hardware specifications that provides a high-level overview of each subsystem. Section D details the subsystems that comprise the IBM PC. 
 
@@ -34,7 +36,6 @@
 
 The software on the IBM PC is stored in two hardware areas, the Read Only Memory (ROM) and the Floppy Drive. The ROM stores the IBM PC’s BIOS and the Floppy Drive stores the IBM PC’s Operating System. The software stored in each area is executed by the Intel 8088 processor. We have obtained the binary file of the IBM PC’s BIOS and we will be obtaining a binary file of DOS or another operating system. 
 
-\phantomsection
 \subsubsection{ROM and BIOS}
 
     The ROM on the IBM PC consists of 64 kilobytes of memory. It contains two important pieces of software, the IBM PC’s BIOS and a copy of IBM PC BASIC. The IBM PC starts by reading from its BIOS and determining if its floppy or cassette drive contains an operating system. If they do not, the BIOS starts loading IBM PC BASIC. This BASIC interpreter is very similar to BASIC found on other early computers, such as the Commodore 64. 
@@ -64,4 +65,67 @@ The software on the IBM PC is stored in two hardware areas, the Read Only Memory
 \subsubsection{Floppy Drive}
 
 \subsubsection{Direct Memory Access (Intel 8237A)}
+
+\subsubsection{BIOS, RAM, and ROM}
+
+\paragraph{BIOS}
+
+\paragraph{RAM}
+
+\paragraph{BIOS}
+
+\subsubsection{Keyboard and I/O Interface (Intel 8255)}
+
+\paragraph{Keyboard}
+
+\paragraph{I/O Interface (Intel 8255)}
+
+\subsubsection{Programmable Interval Timer (Intel 8253)}
+
+\subsubsection{Video (VGA)}
+
+\subsubsection{Speaker (Piezoelectric Speaker)}
+
+\subsubsection{Programmable Interrupt Controller (Intel 8259}
+
+\subsubsection{Timer (Intel 8284)}
+
+\subsubsection{Bus Controller (Intel 8288)}
+
+\subsubsection{Motherboard}
+
+\paragraph{Motherboard Section 1}
+
+\paragraph{Motherboard Section 2}
+
+\paragraph{Motherboard Section 3}
+
+\paragraph{Motherboard Section 4}
+
+\paragraph{Motherboard Section 5}
+
+\paragraph{Motherboard Section 6 and 7}
+
+\paragraph{Motherboard Section 8}
+
+\paragraph{Motherboard Section 9}
+
+\paragraph{Motherboard Section 10}
+
+\section{Schedule / Management Decisions}
+
+\subsection{Original Schedule Plan}
+
+\subsection{Revisions Made to Schedule}
+
+\subsubsection{CPU (Intel 8088)}
+
+\subsubsection{Floppy Drive}
+
+\subsubsection{Direct Memory Access (Intel 8237A)}
+
+\subsection{Revised Schedule Plan}
+
+
+
 \end{document}
