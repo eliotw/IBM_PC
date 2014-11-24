@@ -251,6 +251,7 @@ Parsing module <intel8284a>.
 Parsing module <dff>.
 Analyzing Verilog file "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" into library work
 Parsing module <intel8259>.
+Parsing module <irrload>.
 Analyzing Verilog file "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8255.v" into library work
 Parsing module <intel8255>.
 Analyzing Verilog file "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" into library work
@@ -394,12 +395,22 @@ WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/m
 
 Elaborating module <intel8259>.
 WARNING:HDLCompiler:872 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 85: Using initial value of recint since it is never assigned
-WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 240: Assignment to din ignored, since the identifier is never used
-WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 393: Signal <rst_n> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
-WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 410: Signal <irr> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
-WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 413: Signal <isr> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
-WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 416: Signal <dout> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
-WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 433: Signal <dout> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 241: Assignment to din ignored, since the identifier is never used
+WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 394: Signal <rst_n> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 411: Signal <irr> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 414: Signal <isr> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 417: Signal <dout> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 434: Signal <dout> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 514: Assignment to irr_n ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 515: Assignment to irr_n ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 516: Assignment to irr_n ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 517: Assignment to irr_n ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 518: Assignment to irr_n ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 519: Assignment to irr_n ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 520: Assignment to irr_n ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v" Line 521: Assignment to irr_n ignored, since the identifier is never used
+
+Elaborating module <irrload>.
 
 Elaborating module <intel8288>.
 
@@ -2506,14 +2517,6 @@ WARNING:Xst:647 - Input <cas> is never used. This port will be preserved and lef
     Found 8-bit register for signal <eoir>.
     Found 8-bit register for signal <s>.
     Found 8-bit register for signal <iid>.
-    Found 1-bit register for signal <irr_0>.
-    Found 1-bit register for signal <irr_1>.
-    Found 1-bit register for signal <irr_2>.
-    Found 1-bit register for signal <irr_3>.
-    Found 1-bit register for signal <irr_4>.
-    Found 1-bit register for signal <irr_5>.
-    Found 1-bit register for signal <irr_6>.
-    Found 1-bit register for signal <irr_7>.
     Found finite state machine <FSM_2> for signal <s>.
     -----------------------------------------------------------------------
     | States             | 5                                              |
@@ -2546,12 +2549,37 @@ WARNING:Xst:737 - Found 1-bit latch for signal <dout<1>>. Latches may be generat
 WARNING:Xst:737 - Found 1-bit latch for signal <dout<0>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 WARNING:Xst:737 - Found 1-bit latch for signal <clrisr>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
     Summary:
-	inferred  48 D-type flip-flop(s).
+	inferred  40 D-type flip-flop(s).
 	inferred   9 Latch(s).
 	inferred  30 Multiplexer(s).
 	inferred   8 Tristate(s).
 	inferred   1 Finite State Machine(s).
 Unit <intel8259> synthesized.
+
+Synthesizing Unit <irrload>.
+    Related source file is "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8259.v".
+        idle = 2'b00
+        active = 2'b01
+        waitz = 2'b10
+        nullz = 2'b11
+    Found 2-bit register for signal <state>.
+    Found finite state machine <FSM_3> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 3                                              |
+    | Transitions        | 6                                              |
+    | Inputs             | 2                                              |
+    | Outputs            | 1                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | rst_n (negative)                               |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | 00                                             |
+    | Power Up State     | 00                                             |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Summary:
+	inferred   1 Finite State Machine(s).
+Unit <irrload> synthesized.
 
 Synthesizing Unit <intel8288>.
     Related source file is "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8288.v".
@@ -2566,7 +2594,7 @@ WARNING:Xst:647 - Input <iob> is never used. This port will be preserved and lef
     Found 1-bit register for signal <aiowc>.
     Found 1-bit register for signal <inta>.
     Found 1-bit register for signal <mrdc>.
-    Found finite state machine <FSM_3> for signal <state>.
+    Found finite state machine <FSM_4> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 6                                              |
@@ -2722,13 +2750,13 @@ Synthesizing Unit <intel8237A>.
         BT = 2'b10
 WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 8-bit register for signal <state[2]_dff_523_OUT>.
-    Found 1-bit register for signal <reset_clk_DFF_1977>.
-    Found 1-bit register for signal <state[2]_clk_DFF_1985_q>.
-    Found 1-bit register for signal <reset_clk_DFF_1986>.
-    Found 1-bit register for signal <reset_clk_DFF_1988>.
-    Found 1-bit register for signal <reset_clk_DFF_1990>.
+    Found 1-bit register for signal <reset_clk_DFF_1969>.
+    Found 1-bit register for signal <state[2]_clk_DFF_1977_q>.
+    Found 1-bit register for signal <reset_clk_DFF_1978>.
+    Found 1-bit register for signal <reset_clk_DFF_1980>.
+    Found 1-bit register for signal <reset_clk_DFF_1982>.
     Found 4-bit register for signal <state[2]_dff_542_OUT>.
-    Found 1-bit register for signal <reset_clk_DFF_1991>.
+    Found 1-bit register for signal <reset_clk_DFF_1983>.
     Found 4-bit register for signal <state[2]_dff_547_OUT>.
     Found 2-bit register for signal <ca0>.
     Found 2-bit register for signal <cw0>.
@@ -2764,7 +2792,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     Found 2-bit register for signal <channel>.
     Found 1-bit register for signal <adstb_needed>.
     Found 3-bit register for signal <state>.
-    Found finite state machine <FSM_4> for signal <ca0>.
+    Found finite state machine <FSM_5> for signal <ca0>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 50                                             |
@@ -2777,7 +2805,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_5> for signal <cw0>.
+    Found finite state machine <FSM_6> for signal <cw0>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 50                                             |
@@ -2790,7 +2818,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_6> for signal <ba0>.
+    Found finite state machine <FSM_7> for signal <ba0>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 44                                             |
@@ -2803,7 +2831,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_7> for signal <bw0>.
+    Found finite state machine <FSM_8> for signal <bw0>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 44                                             |
@@ -2816,7 +2844,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_8> for signal <ca1>.
+    Found finite state machine <FSM_9> for signal <ca1>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 50                                             |
@@ -2829,7 +2857,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_9> for signal <cw1>.
+    Found finite state machine <FSM_10> for signal <cw1>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 50                                             |
@@ -2842,7 +2870,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_10> for signal <ba1>.
+    Found finite state machine <FSM_11> for signal <ba1>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 44                                             |
@@ -2855,7 +2883,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_11> for signal <bw1>.
+    Found finite state machine <FSM_12> for signal <bw1>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 44                                             |
@@ -2868,7 +2896,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_12> for signal <ca2>.
+    Found finite state machine <FSM_13> for signal <ca2>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 50                                             |
@@ -2881,7 +2909,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_13> for signal <cw2>.
+    Found finite state machine <FSM_14> for signal <cw2>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 50                                             |
@@ -2894,7 +2922,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_14> for signal <ba2>.
+    Found finite state machine <FSM_15> for signal <ba2>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 44                                             |
@@ -2907,7 +2935,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_15> for signal <bw2>.
+    Found finite state machine <FSM_16> for signal <bw2>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 49                                             |
@@ -2920,7 +2948,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_16> for signal <ca3>.
+    Found finite state machine <FSM_17> for signal <ca3>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 50                                             |
@@ -2933,7 +2961,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_17> for signal <cw3>.
+    Found finite state machine <FSM_18> for signal <cw3>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 50                                             |
@@ -2946,7 +2974,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_18> for signal <ba3>.
+    Found finite state machine <FSM_19> for signal <ba3>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 44                                             |
@@ -2959,7 +2987,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_19> for signal <bw3>.
+    Found finite state machine <FSM_20> for signal <bw3>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 44                                             |
@@ -2972,7 +3000,7 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_20> for signal <state>.
+    Found finite state machine <FSM_21> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 7                                              |
     | Transitions        | 24                                             |
@@ -2985,11 +3013,11 @@ WARNING:Xst:647 - Input <ready> is never used. This port will be preserved and l
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 16-bit adder for signal <curr_addr[15]_GND_126_o_add_417_OUT> created at line 733.
-    Found 16-bit subtractor for signal <GND_126_o_GND_126_o_sub_408_OUT<15:0>> created at line 724.
-    Found 16-bit subtractor for signal <GND_126_o_GND_126_o_sub_415_OUT<15:0>> created at line 728.
+    Found 16-bit adder for signal <curr_addr[15]_GND_127_o_add_417_OUT> created at line 733.
+    Found 16-bit subtractor for signal <GND_127_o_GND_127_o_sub_408_OUT<15:0>> created at line 724.
+    Found 16-bit subtractor for signal <GND_127_o_GND_127_o_sub_415_OUT<15:0>> created at line 728.
     Found 2 bit to 4 bit decoder compact to one-hot for signal <channel[1]_Decoder_396_OUT> created at line 702
-    Found 8-bit 8-to-1 multiplexer for signal <_n1324> created at line 407.
+    Found 8-bit 8-to-1 multiplexer for signal <_n1321> created at line 407.
     Found 1-bit tristate buffer for signal <memr_io> created at line 88
     Found 1-bit tristate buffer for signal <memw_io> created at line 89
     Found 1-bit tristate buffer for signal <db<7>> created at line 91
@@ -3106,7 +3134,7 @@ Synthesizing Unit <sheet8>.
 WARNING:Xst:647 - Input <dack0_brd_n> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 12-bit register for signal <count>.
     Found 1-bit register for signal <pclka>.
-    Found 12-bit subtractor for signal <GND_199_o_GND_199_o_sub_5_OUT<11:0>> created at line 1350.
+    Found 12-bit subtractor for signal <GND_200_o_GND_200_o_sub_5_OUT<11:0>> created at line 1350.
     Found 12-bit comparator lessequal for signal <n0004> created at line 1311
     WARNING:Xst:2404 -  FFs/Latches <drq0<0:0>> (without init value) have a constant value of 0 in block <sheet8>.
     Summary:
@@ -3150,7 +3178,7 @@ Synthesizing Unit <supercounter_1>.
     Found 8-bit register for signal <countmsb>.
     Found 8-bit register for signal <countlsb>.
     Found 8-bit register for signal <dataout>.
-    Found finite state machine <FSM_21> for signal <readcontrol>.
+    Found finite state machine <FSM_22> for signal <readcontrol>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 19                                             |
@@ -3164,7 +3192,7 @@ Synthesizing Unit <supercounter_1>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_22> for signal <state>.
+    Found finite state machine <FSM_23> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 11                                             |
     | Transitions        | 46                                             |
@@ -3178,7 +3206,7 @@ Synthesizing Unit <supercounter_1>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 16-bit subtractor for signal <GND_202_o_GND_202_o_sub_37_OUT<15:0>> created at line 931.
+    Found 16-bit subtractor for signal <GND_203_o_GND_203_o_sub_37_OUT<15:0>> created at line 931.
     Found 1-bit tristate buffer for signal <D0> created at line 845
     Found 1-bit tristate buffer for signal <D1> created at line 845
     Found 1-bit tristate buffer for signal <D2> created at line 845
@@ -3187,12 +3215,12 @@ Synthesizing Unit <supercounter_1>.
     Found 1-bit tristate buffer for signal <D5> created at line 845
     Found 1-bit tristate buffer for signal <D6> created at line 845
     Found 1-bit tristate buffer for signal <D7> created at line 845
-    Found 16-bit comparator greater for signal <halfcount[15]_count[15]_LessThan_56_o> created at line 1030
+    Found 16-bit comparator greater for signal <halfcount[15]_count[15]_LessThan_57_o> created at line 1033
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred  64 D-type flip-flop(s).
 	inferred   1 Comparator(s).
-	inferred  20 Multiplexer(s).
+	inferred  21 Multiplexer(s).
 	inferred   8 Tristate(s).
 	inferred   2 Finite State Machine(s).
 Unit <supercounter_1> synthesized.
@@ -3272,9 +3300,9 @@ WARNING:Xst:647 - Input <MODE<0:0>> is never used. This port will be preserved a
 WARNING:Xst:647 - Input <ZCLK> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 1-bit register for signal <CLRLOAD>.
     Found 16-bit register for signal <COUNT>.
-    Found 16-bit subtractor for signal <GND_234_o_GND_234_o_sub_8_OUT<15:0>> created at line 307.
-    Found 16-bit subtractor for signal <GND_234_o_GND_234_o_sub_10_OUT<15:0>> created at line 309.
-    Found 16-bit subtractor for signal <GND_234_o_GND_234_o_sub_12_OUT<15:0>> created at line 311.
+    Found 16-bit subtractor for signal <GND_235_o_GND_235_o_sub_8_OUT<15:0>> created at line 307.
+    Found 16-bit subtractor for signal <GND_235_o_GND_235_o_sub_10_OUT<15:0>> created at line 309.
+    Found 16-bit subtractor for signal <GND_235_o_GND_235_o_sub_12_OUT<15:0>> created at line 311.
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred  17 D-type flip-flop(s).
@@ -3315,7 +3343,7 @@ Synthesizing Unit <supercounter_2>.
     Found 8-bit register for signal <countmsb>.
     Found 8-bit register for signal <countlsb>.
     Found 8-bit register for signal <dataout>.
-    Found finite state machine <FSM_23> for signal <readcontrol>.
+    Found finite state machine <FSM_24> for signal <readcontrol>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 19                                             |
@@ -3329,7 +3357,7 @@ Synthesizing Unit <supercounter_2>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_24> for signal <state>.
+    Found finite state machine <FSM_25> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 11                                             |
     | Transitions        | 46                                             |
@@ -3343,7 +3371,7 @@ Synthesizing Unit <supercounter_2>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 16-bit subtractor for signal <GND_237_o_GND_237_o_sub_37_OUT<15:0>> created at line 931.
+    Found 16-bit subtractor for signal <GND_238_o_GND_238_o_sub_37_OUT<15:0>> created at line 931.
     Found 1-bit tristate buffer for signal <D0> created at line 845
     Found 1-bit tristate buffer for signal <D1> created at line 845
     Found 1-bit tristate buffer for signal <D2> created at line 845
@@ -3352,12 +3380,12 @@ Synthesizing Unit <supercounter_2>.
     Found 1-bit tristate buffer for signal <D5> created at line 845
     Found 1-bit tristate buffer for signal <D6> created at line 845
     Found 1-bit tristate buffer for signal <D7> created at line 845
-    Found 16-bit comparator greater for signal <halfcount[15]_count[15]_LessThan_56_o> created at line 1030
+    Found 16-bit comparator greater for signal <halfcount[15]_count[15]_LessThan_57_o> created at line 1033
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred  64 D-type flip-flop(s).
 	inferred   1 Comparator(s).
-	inferred  20 Multiplexer(s).
+	inferred  21 Multiplexer(s).
 	inferred   8 Tristate(s).
 	inferred   2 Finite State Machine(s).
 Unit <supercounter_2> synthesized.
@@ -3413,7 +3441,7 @@ Synthesizing Unit <keyinterface>.
     Found 8-bit register for signal <pa>.
     Found 1-bit register for signal <irq1>.
     Found 8-bit register for signal <state>.
-    Found finite state machine <FSM_25> for signal <state>.
+    Found finite state machine <FSM_26> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 8                                              |
     | Transitions        | 33                                             |
@@ -3445,12 +3473,12 @@ Synthesizing Unit <keyload>.
         act4 = 8'b00100000
         act5 = 8'b01000000
         act6 = 8'b10000000
-        tc = 16'b0000110111010011
-        endcount = 16'b0011000000000000
+        tc = 16'b0100000111001001
+        endcount = 16'b0100000000000000
     Found 16-bit register for signal <delaycounter>.
     Found 16-bit register for signal <counter>.
     Found 8-bit register for signal <state>.
-    Found finite state machine <FSM_26> for signal <state>.
+    Found finite state machine <FSM_27> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 8                                              |
     | Transitions        | 14                                             |
@@ -3464,8 +3492,8 @@ Synthesizing Unit <keyload>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 16-bit adder for signal <delaycounter[15]_GND_268_o_add_24_OUT> created at line 671.
-    Found 16-bit adder for signal <counter[15]_GND_268_o_add_29_OUT> created at line 684.
+    Found 16-bit adder for signal <delaycounter[15]_GND_269_o_add_24_OUT> created at line 671.
+    Found 16-bit adder for signal <counter[15]_GND_269_o_add_29_OUT> created at line 684.
     Summary:
 	inferred   2 Adder/Subtractor(s).
 	inferred  32 D-type flip-flop(s).
@@ -3496,7 +3524,7 @@ Synthesizing Unit <keyin>.
     Found 1-bit register for signal <dataout<0>>.
     Found 1-bit register for signal <newdata>.
     Found 8-bit register for signal <b>.
-    Found finite state machine <FSM_27> for signal <b>.
+    Found finite state machine <FSM_28> for signal <b>.
     -----------------------------------------------------------------------
     | States             | 11                                             |
     | Transitions        | 21                                             |
@@ -3581,12 +3609,12 @@ Synthesizing Unit <vdu>.
     Found 2-bit register for signal <vga_blue_o>.
     Found 1-bit register for signal <intense>.
     Found 11-bit register for signal <attr0_addr>.
-    Found 5-bit subtractor for signal <row_addr[4]_PWR_176_o_sub_116_OUT> created at line 400.
+    Found 5-bit subtractor for signal <row_addr[4]_PWR_177_o_sub_116_OUT> created at line 400.
     Found 11-bit adder for signal <vga_addr> created at line 215.
-    Found 10-bit adder for signal <h_count[9]_GND_273_o_add_83_OUT> created at line 346.
-    Found 10-bit adder for signal <v_count[9]_GND_273_o_add_90_OUT> created at line 348.
-    Found 23-bit adder for signal <blink_count[22]_GND_273_o_add_103_OUT> created at line 354.
-    Found 7-bit adder for signal <GND_273_o_row1_addr[4]_add_117_OUT> created at line 406.
+    Found 10-bit adder for signal <h_count[9]_GND_274_o_add_83_OUT> created at line 346.
+    Found 10-bit adder for signal <v_count[9]_GND_274_o_add_90_OUT> created at line 348.
+    Found 23-bit adder for signal <blink_count[22]_GND_274_o_add_103_OUT> created at line 354.
+    Found 7-bit adder for signal <GND_274_o_row1_addr[4]_add_117_OUT> created at line 406.
     Found 1-bit tristate buffer for signal <d<7>> created at line 281
     Found 1-bit tristate buffer for signal <d<6>> created at line 281
     Found 1-bit tristate buffer for signal <d<5>> created at line 281
@@ -3598,12 +3626,12 @@ Synthesizing Unit <vdu>.
     Found 20-bit comparator lessequal for signal <n0031> created at line 228
     Found 20-bit comparator lessequal for signal <n0033> created at line 228
     Found 20-bit comparator lessequal for signal <n0036> created at line 229
-    Found 20-bit comparator greater for signal <a[19]_PWR_176_o_LessThan_18_o> created at line 229
+    Found 20-bit comparator greater for signal <a[19]_PWR_177_o_LessThan_18_o> created at line 229
     Found 7-bit comparator equal for signal <h_count[9]_reg_hcursor[6]_equal_100_o> created at line 352
     Found 5-bit comparator equal for signal <v_count[8]_reg_vcursor[4]_equal_101_o> created at line 353
     Found 4-bit comparator lessequal for signal <n0129> created at line 353
     Found 4-bit comparator lessequal for signal <n0132> created at line 353
-    Found 5-bit comparator greater for signal <row_addr[4]_PWR_176_o_LessThan_115_o> created at line 400
+    Found 5-bit comparator greater for signal <row_addr[4]_PWR_177_o_LessThan_115_o> created at line 400
     Summary:
 	inferred   6 Adder/Subtractor(s).
 	inferred 189 D-type flip-flop(s).
@@ -3651,8 +3679,8 @@ Macro Statistics
  8-bit subtractor                                      : 2
  9-bit adder                                           : 4
  9-bit subtractor                                      : 2
-# Registers                                            : 1214
- 1-bit register                                        : 1115
+# Registers                                            : 1206
+ 1-bit register                                        : 1107
  10-bit register                                       : 2
  11-bit register                                       : 4
  12-bit register                                       : 1
@@ -3700,9 +3728,9 @@ Macro Statistics
  8-bit comparator greater                              : 5
  8-bit comparator lessequal                            : 2
  9-bit comparator lessequal                            : 2
-# Multiplexers                                         : 1171
+# Multiplexers                                         : 1173
  1-bit 16-to-1 multiplexer                             : 1
- 1-bit 2-to-1 multiplexer                              : 858
+ 1-bit 2-to-1 multiplexer                              : 860
  1-bit 3-to-1 multiplexer                              : 9
  1-bit 4-to-1 multiplexer                              : 4
  1-bit 8-to-1 multiplexer                              : 3
@@ -3741,7 +3769,7 @@ Macro Statistics
  1-of-4 decoder                                        : 2
 # Tristates                                            : 201
  1-bit tristate buffer                                 : 201
-# FSMs                                                 : 28
+# FSMs                                                 : 36
 # Xors                                                 : 25
  1-bit xor2                                            : 23
  1-bit xor8                                            : 1
@@ -3830,12 +3858,6 @@ WARNING:Xst:1290 - Hierarchical block <ls1> is unconnected in block <s3>.
    It will be removed from the design.
 WARNING:Xst:1290 - Hierarchical block <td0> is unconnected in block <s3>.
    It will be removed from the design.
-WARNING:Xst:1293 - FF/Latch <irr_2> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <irr_3> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <irr_4> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <irr_5> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <irr_6> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <irr_7> has a constant value of 0 in block <i8259>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <nmir> (without init value) has a constant value of 0 in block <core>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <eoir_2> of sequential type is unconnected in block <i8259>.
 WARNING:Xst:2677 - Node <eoir_5> of sequential type is unconnected in block <i8259>.
@@ -3860,12 +3882,6 @@ WARNING:Xst:2677 - Node <command_4> of sequential type is unconnected in block <
 WARNING:Xst:2677 - Node <command_5> of sequential type is unconnected in block <i8237>.
 WARNING:Xst:2677 - Node <dack_0> of sequential type is unconnected in block <i8237>.
 WARNING:Xst:2677 - Node <dack_1> of sequential type is unconnected in block <i8237>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_2> is unconnected in block <i8259>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_3> is unconnected in block <i8259>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_4> is unconnected in block <i8259>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_5> is unconnected in block <i8259>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_6> is unconnected in block <i8259>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_7> is unconnected in block <i8259>.
 WARNING:Xst:1898 - Due to constant pushing, FF/Latch <nmia_old> is unconnected in block <core>.
 WARNING:Xst:2677 - Node <nmia> of sequential type is unconnected in block <decode>.
 
@@ -4042,8 +4058,8 @@ Macro Statistics
  6-bit up counter                                      : 1
 # Accumulators                                         : 1
  16-bit down loadable accumulator                      : 1
-# Registers                                            : 2189
- Flip-Flops                                            : 2189
+# Registers                                            : 2181
+ Flip-Flops                                            : 2181
 # Comparators                                          : 47
  1-bit comparator not equal                            : 2
  10-bit comparator lessequal                           : 1
@@ -4070,9 +4086,9 @@ Macro Statistics
  8-bit comparator greater                              : 5
  8-bit comparator lessequal                            : 2
  9-bit comparator lessequal                            : 2
-# Multiplexers                                         : 1166
+# Multiplexers                                         : 1168
  1-bit 16-to-1 multiplexer                             : 1
- 1-bit 2-to-1 multiplexer                              : 865
+ 1-bit 2-to-1 multiplexer                              : 867
  1-bit 3-to-1 multiplexer                              : 9
  1-bit 4-to-1 multiplexer                              : 4
  1-bit 8-to-1 multiplexer                              : 3
@@ -4107,7 +4123,7 @@ Macro Statistics
 # Decoders                                             : 3
  1-of-16 decoder                                       : 1
  1-of-4 decoder                                        : 2
-# FSMs                                                 : 28
+# FSMs                                                 : 36
 # Xors                                                 : 25
  1-bit xor2                                            : 23
  1-bit xor8                                            : 1
@@ -4118,18 +4134,6 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-WARNING:Xst:1293 - FF/Latch <irr_2> has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <irr_3> has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <irr_4> has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <irr_5> has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <irr_6> has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <irr_7> has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_2> is unconnected in block <intel8259>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_3> is unconnected in block <intel8259>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_4> is unconnected in block <intel8259>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_5> is unconnected in block <intel8259>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_6> is unconnected in block <intel8259>.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_7> is unconnected in block <intel8259>.
 Analyzing FSM <MFsm> for best encoding.
 Optimizing FSM <FSM_0> on signal <state[1:2]> with gray encoding.
 -------------------
@@ -4139,6 +4143,22 @@ Optimizing FSM <FSM_0> on signal <state[1:2]> with gray encoding.
  0001  | 01
  0010  | 11
  0011  | 10
+-------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <s1/i8259/FSM_3> on signal <state[1:2]> with user encoding.
+Optimizing FSM <s1/i8259/FSM_3> on signal <state[1:2]> with user encoding.
+Optimizing FSM <s1/i8259/FSM_3> on signal <state[1:2]> with user encoding.
+Optimizing FSM <s1/i8259/FSM_3> on signal <state[1:2]> with user encoding.
+Optimizing FSM <s1/i8259/FSM_3> on signal <state[1:2]> with user encoding.
+Optimizing FSM <s1/i8259/FSM_3> on signal <state[1:2]> with user encoding.
+Optimizing FSM <s1/i8259/FSM_3> on signal <state[1:2]> with user encoding.
+Optimizing FSM <s1/i8259/FSM_3> on signal <state[1:2]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00    | 00
+ 01    | 01
+ 10    | 10
 -------------------
 Analyzing FSM <MFsm> for best encoding.
 Optimizing FSM <s1/i8259/FSM_2> on signal <s[1:3]> with gray encoding.
@@ -4152,7 +4172,7 @@ Optimizing FSM <s1/i8259/FSM_2> on signal <s[1:3]> with gray encoding.
  00010000 | 110
 ----------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s1/i8288/FSM_3> on signal <state[1:2]> with user encoding.
+Optimizing FSM <s1/i8288/FSM_4> on signal <state[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4172,7 +4192,7 @@ Optimizing FSM <s1/i8088/ctrl_fsm/FSM_1> on signal <state[1:4]> with one-hot enc
  011   | 1000
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s9/keyboard/FSM_27> on signal <b[1:11]> with one-hot encoding.
+Optimizing FSM <s9/keyboard/FSM_28> on signal <b[1:11]> with one-hot encoding.
 -------------------------
  State    | Encoding
 -------------------------
@@ -4189,7 +4209,7 @@ Optimizing FSM <s9/keyboard/FSM_27> on signal <b[1:11]> with one-hot encoding.
  00001011 | 10000000000
 -------------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s9/keyboard/FSM_25> on signal <state[1:3]> with gray encoding.
+Optimizing FSM <s9/keyboard/FSM_26> on signal <state[1:3]> with gray encoding.
 ----------------------
  State    | Encoding
 ----------------------
@@ -4203,7 +4223,7 @@ Optimizing FSM <s9/keyboard/FSM_25> on signal <state[1:3]> with gray encoding.
  10000000 | 100
 ----------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s9/keyboard/keyloadmod/FSM_26> on signal <state[1:8]> with user encoding.
+Optimizing FSM <s9/keyboard/keyloadmod/FSM_27> on signal <state[1:8]> with user encoding.
 ----------------------
  State    | Encoding
 ----------------------
@@ -4217,7 +4237,7 @@ Optimizing FSM <s9/keyboard/keyloadmod/FSM_26> on signal <state[1:8]> with user 
  10000000 | 10000000
 ----------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s8/i8253/vcs/C0/FSM_22> on signal <state[1:11]> with one-hot encoding.
+Optimizing FSM <s8/i8253/vcs/C0/FSM_23> on signal <state[1:11]> with one-hot encoding.
 -------------------------
  State    | Encoding
 -------------------------
@@ -4234,7 +4254,7 @@ Optimizing FSM <s8/i8253/vcs/C0/FSM_22> on signal <state[1:11]> with one-hot enc
  00001010 | 10000000000
 -------------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s8/i8253/vcs/C0/FSM_21> on signal <readcontrol[1:2]> with sequential encoding.
+Optimizing FSM <s8/i8253/vcs/C0/FSM_22> on signal <readcontrol[1:2]> with sequential encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4244,7 +4264,7 @@ Optimizing FSM <s8/i8253/vcs/C0/FSM_21> on signal <readcontrol[1:2]> with sequen
  01    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s8/i8253/vcs/C2/FSM_24> on signal <state[1:11]> with one-hot encoding.
+Optimizing FSM <s8/i8253/vcs/C2/FSM_25> on signal <state[1:11]> with one-hot encoding.
 -------------------------
  State    | Encoding
 -------------------------
@@ -4261,7 +4281,7 @@ Optimizing FSM <s8/i8253/vcs/C2/FSM_24> on signal <state[1:11]> with one-hot enc
  00001010 | 10000000000
 -------------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s8/i8253/vcs/C2/FSM_23> on signal <readcontrol[1:2]> with sequential encoding.
+Optimizing FSM <s8/i8253/vcs/C2/FSM_24> on signal <readcontrol[1:2]> with sequential encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4271,7 +4291,7 @@ Optimizing FSM <s8/i8253/vcs/C2/FSM_23> on signal <readcontrol[1:2]> with sequen
  01    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_20> on signal <state[1:3]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_21> on signal <state[1:3]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4284,7 +4304,7 @@ Optimizing FSM <s4/i8237/FSM_20> on signal <state[1:3]> with user encoding.
  011   | 011
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_4> on signal <ca0[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_5> on signal <ca0[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4294,7 +4314,7 @@ Optimizing FSM <s4/i8237/FSM_4> on signal <ca0[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_5> on signal <cw0[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_6> on signal <cw0[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4304,7 +4324,7 @@ Optimizing FSM <s4/i8237/FSM_5> on signal <cw0[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_6> on signal <ba0[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_7> on signal <ba0[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4314,7 +4334,7 @@ Optimizing FSM <s4/i8237/FSM_6> on signal <ba0[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_7> on signal <bw0[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_8> on signal <bw0[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4324,7 +4344,7 @@ Optimizing FSM <s4/i8237/FSM_7> on signal <bw0[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_8> on signal <ca1[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_9> on signal <ca1[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4334,7 +4354,7 @@ Optimizing FSM <s4/i8237/FSM_8> on signal <ca1[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_9> on signal <cw1[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_10> on signal <cw1[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4344,7 +4364,7 @@ Optimizing FSM <s4/i8237/FSM_9> on signal <cw1[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_10> on signal <ba1[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_11> on signal <ba1[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4354,7 +4374,7 @@ Optimizing FSM <s4/i8237/FSM_10> on signal <ba1[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_11> on signal <bw1[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_12> on signal <bw1[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4364,7 +4384,7 @@ Optimizing FSM <s4/i8237/FSM_11> on signal <bw1[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_12> on signal <ca2[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_13> on signal <ca2[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4374,7 +4394,7 @@ Optimizing FSM <s4/i8237/FSM_12> on signal <ca2[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_13> on signal <cw2[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_14> on signal <cw2[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4384,7 +4404,7 @@ Optimizing FSM <s4/i8237/FSM_13> on signal <cw2[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_14> on signal <ba2[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_15> on signal <ba2[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4394,7 +4414,7 @@ Optimizing FSM <s4/i8237/FSM_14> on signal <ba2[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_18> on signal <ba3[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_19> on signal <ba3[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4404,7 +4424,7 @@ Optimizing FSM <s4/i8237/FSM_18> on signal <ba3[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_16> on signal <ca3[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_17> on signal <ca3[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4414,7 +4434,7 @@ Optimizing FSM <s4/i8237/FSM_16> on signal <ca3[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_17> on signal <cw3[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_18> on signal <cw3[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4424,7 +4444,7 @@ Optimizing FSM <s4/i8237/FSM_17> on signal <cw3[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_19> on signal <bw3[1:2]> with user encoding.
+Optimizing FSM <s4/i8237/FSM_20> on signal <bw3[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4434,7 +4454,7 @@ Optimizing FSM <s4/i8237/FSM_19> on signal <bw3[1:2]> with user encoding.
  11    | 11
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <s4/i8237/FSM_15> on signal <bw2[1:4]> with one-hot encoding.
+Optimizing FSM <s4/i8237/FSM_16> on signal <bw2[1:4]> with one-hot encoding.
 -------------------
  State | Encoding
 -------------------
@@ -4447,6 +4467,18 @@ WARNING:Xst:1710 - FF/Latch <iid_4> (without init value) has a constant value of
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <iid_5> (without init value) has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <iid_6> (without init value) has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <iid_7> (without init value) has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <irl5/state_FSM_FFd2> has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <irl2/state_FSM_FFd2> has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <irl7/state_FSM_FFd2> has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <irl6/state_FSM_FFd2> has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <irl4/state_FSM_FFd2> has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <irl3/state_FSM_FFd2> has a constant value of 0 in block <intel8259>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_5> is unconnected in block <intel8259>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_2> is unconnected in block <intel8259>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_7> is unconnected in block <intel8259>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_6> is unconnected in block <intel8259>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_4> is unconnected in block <intel8259>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <irr_clr_3> is unconnected in block <intel8259>.
 WARNING:Xst:1293 - FF/Latch <s_pipe<1>_34> has a constant value of 0 in block <zet_div_uu>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <s_pipe_0> of sequential type is unconnected in block <zet_div_uu>.
 WARNING:Xst:2677 - Node <s_pipe_1> of sequential type is unconnected in block <zet_div_uu>.
@@ -4489,7 +4521,7 @@ WARNING:Xst:2042 - Unit read: 8 internal tristates are replaced by logic (pull-u
 WARNING:Xst:2973 - All outputs of instance <s1/i8088/hld_fsm> of block <hold_fsm> are unconnected in block <motherboard>. Underlying logic will be removed.
 WARNING:Xst:2677 - Node <s8/i8253/vcs/C1/READ/CLRLATCH> of sequential type is unconnected in block <motherboard>.
 WARNING:Xst:2677 - Node <s4/i8237/aen> of sequential type is unconnected in block <motherboard>.
-WARNING:Xst:2677 - Node <s4/i8237/reset_clk_DFF_1990> of sequential type is unconnected in block <motherboard>.
+WARNING:Xst:2677 - Node <s4/i8237/reset_clk_DFF_1982> of sequential type is unconnected in block <motherboard>.
 
 Optimizing unit <timedelay> ...
 
@@ -4505,9 +4537,9 @@ WARNING:Xst:2677 - Node <s4/ls6700/q1_3> of sequential type is unconnected in bl
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_3> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4517,9 +4549,9 @@ WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_2> has a constant value of 0 in block 
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_2> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_3> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_4> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <s1/i8259/dout_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_7> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_6> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <s1/i8259/isr_5> has a constant value of 0 in block <motherboard>. This FF/Latch will be trimmed during the optimization process.
@@ -4865,8 +4897,8 @@ Unit <motherboard> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 1925
- Flip-Flops                                            : 1925
+# Registers                                            : 1927
+ Flip-Flops                                            : 1927
 # Shift Registers                                      : 18
  10-bit shift register                                 : 1
  11-bit shift register                                 : 1
@@ -4906,26 +4938,26 @@ Top Level Output File Name         : motherboard.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 7298
+# BELS                             : 7300
 #      GND                         : 7
 #      INV                         : 253
 #      LUT1                        : 70
-#      LUT2                        : 364
-#      LUT3                        : 706
-#      LUT4                        : 490
-#      LUT5                        : 747
-#      LUT6                        : 2303
+#      LUT2                        : 362
+#      LUT3                        : 707
+#      LUT4                        : 491
+#      LUT5                        : 748
+#      LUT6                        : 2304
 #      MUXCY                       : 1017
 #      MUXF7                       : 333
 #      MUXF8                       : 121
 #      VCC                         : 7
 #      XORCY                       : 880
-# FlipFlops/Latches                : 1974
+# FlipFlops/Latches                : 1976
 #      FD                          : 852
 #      FD_1                        : 37
-#      FDC                         : 349
+#      FDC                         : 353
 #      FDC_1                       : 1
-#      FDCE                        : 200
+#      FDCE                        : 198
 #      FDE                         : 86
 #      FDP                         : 26
 #      FDPE                        : 37
@@ -4963,18 +4995,18 @@ Selected Device : 5vlx110tff1136-1
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:            1974  out of  69120     2%  
- Number of Slice LUTs:                 4951  out of  69120     7%  
-    Number used as Logic:              4933  out of  69120     7%  
+ Number of Slice Registers:            1976  out of  69120     2%  
+ Number of Slice LUTs:                 4953  out of  69120     7%  
+    Number used as Logic:              4935  out of  69120     7%  
     Number used as Memory:               18  out of  17920     0%  
        Number used as SRL:               18
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   5348
-   Number with an unused Flip Flop:    3374  out of   5348    63%  
-   Number with an unused LUT:           397  out of   5348     7%  
-   Number of fully used LUT-FF pairs:  1577  out of   5348    29%  
-   Number of unique control sets:       115
+ Number of LUT Flip Flop pairs used:   5352
+   Number with an unused Flip Flop:    3376  out of   5352    63%  
+   Number with an unused LUT:           399  out of   5352     7%  
+   Number of fully used LUT-FF pairs:  1577  out of   5352    29%  
+   Number of unique control sets:       113
 
 IO Utilization: 
  Number of IOs:                          17
@@ -5007,21 +5039,19 @@ Clock Information:
 -------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Clock Signal                                                                                     | Clock buffer(FF name)                                                                                                                                       | Load  |
 -------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-s1/i8284/clk                                                                                     | BUFG                                                                                                                                                        | 1544  |
+s1/i8284/clk                                                                                     | BUFG                                                                                                                                                        | 1548  |
 s1/i8088/core/decode/inta                                                                        | NONE(s1/i8259/iid_3)                                                                                                                                        | 2     |
 s1/i8259/eoir[4]_GND_64_o_equal_97_o(s1/i8259/eoir[4]_GND_64_o_equal_97_o1:O)                    | NONE(*)(s1/i8259/dout_0)                                                                                                                                    | 2     |
 s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8                          | NONE(s1/i8259/clrisr)                                                                                                                                       | 2     |
-s9/keyboard/irq1                                                                                 | NONE(s1/i8259/irr_1)                                                                                                                                        | 1     |
-irq00(Mmux_irq0011:O)                                                                            | NONE(*)(s1/i8259/irr_0)                                                                                                                                     | 1     |
 s1/ale(s1/i8288/Mmux_ale11:O)                                                                    | BUFG(*)(s1/u10/rq_3)                                                                                                                                        | 20    |
 s9/i8255/pds(s9/i8255/pds1:O)                                                                    | NONE(*)(s9/i8255/pdo_0)                                                                                                                                     | 8     |
 s1/i8284/vclk                                                                                    | BUFG                                                                                                                                                        | 185   |
 s8/pclka                                                                                         | BUFG                                                                                                                                                        | 62    |
 s1/i8284/pclk                                                                                    | BUFG                                                                                                                                                        | 69    |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_153_o_Mux_9_o(s8/i8253/vcs/C1/READ/MODE[5]_PWR_153_o_Mux_9_o1:O)| NONE(*)(s8/i8253/vcs/C1/READ/DREG_0)                                                                                                                        | 9     |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_154_o_Mux_9_o(s8/i8253/vcs/C1/READ/MODE[5]_PWR_154_o_Mux_9_o1:O)| NONE(*)(s8/i8253/vcs/C1/READ/DREG_0)                                                                                                                        | 9     |
 s4/i8237/adstb                                                                                   | NONE(s4/ls3730/rq_0)                                                                                                                                        | 8     |
 dclk(s2/dclk1:O)                                                                                 | BUFG(*)(s4/i8237/bw2_FSM_FFd1)                                                                                                                              | 137   |
-s4/wrt_dma_pg_reg_n_INV_739_o(s4/wrt_dma_pg_reg_n_INV_739_o1:O)                                  | NONE(*)(s4/ls6700/q0_3)                                                                                                                                     | 8     |
+s4/wrt_dma_pg_reg_n_INV_725_o(s4/wrt_dma_pg_reg_n_INV_725_o1:O)                                  | NONE(*)(s4/ls6700/q0_3)                                                                                                                                     | 8     |
 USER_CLK                                                                                         | BUFGP                                                                                                                                                       | 13    |
 KEYBOARD_CLK                                                                                     | BUFGP                                                                                                                                                       | 21    |
 xiow_n(xiow_nLogicTrst1:O)                                                                       | NONE(*)(s8/i8253/vcs/C1/CNTREG/lsbflag)                                                                                                                     | 1     |
@@ -5030,7 +5060,7 @@ s5/rommod/crc/N1                                                                
 s7/nero/N1                                                                                       | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[31].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                      | 64    |
 s0/vgamod/char_rom/N1                                                                            | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                 | 1     |
 -------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-(*) These 8 clock signal(s) are generated by combinatorial logic,
+(*) These 7 clock signal(s) are generated by combinatorial logic,
 and XST is not able to identify which are the primary clock signals.
 Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
@@ -5042,13 +5072,13 @@ FindSrcOfAsyncThruGates : 200 (1)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Control Signal                                                                                                                                                                                                                                                                                                      | Buffer(FF name)                                                                                                                                             | Load  |
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                                                            | NONE(s1/i8088/core/fetch/state_2_3)                                                                                                                         | 619   |
-s7/nero/N1(s7/nero/XST_GND:G)                                                                                                                                                                                                                                                                                       | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                      | 256   |
-s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                                                           | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                 | 64    |
-s9/keyboard/keyloadmod/gamerom/N1(s9/keyboard/keyloadmod/gamerom/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)| 64    |
-s8/i8253/vcs/C1/READ/SEL_WR__AND_884_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_884_o_inv1:O)                                                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/READ/DREG_2)                                                                                                                           | 9     |
+deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                                                            | NONE(s1/i8088/core/decode/seq_2)                                                                                                                            | 623   |
+s7/nero/N1(s7/nero/XST_GND:G)                                                                                                                                                                                                                                                                                       | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[26].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                      | 256   |
+s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                                                           | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                 | 64    |
+s9/keyboard/keyloadmod/gamerom/N1(s9/keyboard/keyloadmod/gamerom/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)| 64    |
+s8/i8253/vcs/C1/READ/SEL_WR__AND_884_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_884_o_inv1:O)                                                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/READ/DREG_4)                                                                                                                           | 9     |
 s0/vgamod/char_rom/N1(s0/vgamod/char_rom/XST_GND:G)                                                                                                                                                                                                                                                                 | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                 | 8     |
-s1/i8259/rst_n_eoir[4]_OR_879_o(s1/i8259/rst_n_eoir[4]_OR_879_o1:O)                                                                                                                                                                                                                                                 | NONE(s1/i8259/dout_1)                                                                                                                                       | 2     |
+s1/i8259/rst_n_eoir[4]_OR_879_o(s1/i8259/rst_n_eoir[4]_OR_879_o1:O)                                                                                                                                                                                                                                                 | NONE(s1/i8259/dout_0)                                                                                                                                       | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)                                  | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                 | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)                                  | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                 | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)                                  | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                 | 2     |
@@ -5241,12 +5271,10 @@ s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_me
 s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascadelatb_tmp(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)| NONE(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)| 2     |
 s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascaderega_tmp(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)| NONE(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)| 2     |
 s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/cascaderegb_tmp(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGB)| NONE(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)| 2     |
-s1/i8259/irr_n<0>_inv(s1/i8259/irr_n<0>_inv1:O)                                                                                                                                                                                                                                                                     | NONE(s1/i8259/irr_0)                                                                                                                                        | 1     |
-s1/i8259/irr_n<1>_inv(s1/i8259/irr_n<1>_inv1:O)                                                                                                                                                                                                                                                                     | NONE(s1/i8259/irr_1)                                                                                                                                        | 1     |
 s1/i8259/rst_n_GND_64_o_AND_669_o(s1/i8259/rst_n_GND_64_o_AND_669_o1:O)                                                                                                                                                                                                                                             | NONE(s1/i8259/clrisr)                                                                                                                                       | 1     |
 s1/i8259/rst_n_GND_64_o_AND_670_o(s1/i8259/rst_n_GND_64_o_AND_670_o1:O)                                                                                                                                                                                                                                             | NONE(s1/i8259/clrisr)                                                                                                                                       | 1     |
 s8/i8253/vcs/C1/MODEWRITE(s8/i8253/vcs/C1/MODEREG/Mmux_MODEWRITE11:O)                                                                                                                                                                                                                                               | NONE(s8/i8253/vcs/C1/READ/READLSB)                                                                                                                          | 1     |
-s8/i8253/vcs/C1/READ/MODEWRITE_GND_212_o_AND_886_o(s8/i8253/vcs/C1/READ/MODEWRITE_GND_212_o_AND_886_o1:O)                                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/READ/READLSB)                                                                                                                          | 1     |
+s8/i8253/vcs/C1/READ/MODEWRITE_GND_213_o_AND_886_o(s8/i8253/vcs/C1/READ/MODEWRITE_GND_213_o_AND_886_o1:O)                                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/READ/READLSB)                                                                                                                          | 1     |
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 
 Timing Summary:
@@ -5254,7 +5282,7 @@ Timing Summary:
 Speed Grade: -1
 
    Minimum period: 23.362ns (Maximum Frequency: 42.805MHz)
-   Minimum input arrival time before clock: 2.535ns
+   Minimum input arrival time before clock: 2.118ns
    Maximum output required time after clock: 6.085ns
    Maximum combinational path delay: 4.180ns
 
@@ -5265,7 +5293,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/clk'
   Clock period: 23.362ns (frequency: 42.805MHz)
-  Total number of paths / destination ports: 13131586372616324 / 5069
+  Total number of paths / destination ports: 13131586372616444 / 5073
 -------------------------------------------------------------------------
 Delay:               23.362ns (Levels of Logic = 43)
   Source:            s1/i8088/core/fetch/opcode_l_6 (FF)
@@ -5370,8 +5398,8 @@ Delay:               4.641ns (Levels of Logic = 4)
      FDC:C->Q              5   0.471   1.091  s8/i8253/vcs/C0/count_7 (s8/i8253/vcs/C0/count_7)
      LUT6:I0->O            1   0.094   1.069  s8/i8253/vcs/C0/countzero<15>2 (s8/i8253/vcs/C0/countzero<15>1)
      LUT6:I0->O           19   0.094   0.579  s8/i8253/vcs/C0/countzero<15>3 (s8/i8253/vcs/C0/countzero)
-     LUT5:I4->O           16   0.094   1.055  s8/i8253/vcs/C0/Mmux_PWR_149_o_countval[15]_mux_39_OUT10111 (s8/i8253/vcs/C0/Mmux_PWR_149_o_countval[15]_mux_39_OUT1011)
-     LUT6:I1->O            1   0.094   0.000  s8/i8253/vcs/C0/Mmux_PWR_149_o_countval[15]_mux_39_OUT1011 (s8/i8253/vcs/C0/PWR_149_o_countval[15]_mux_39_OUT<6>)
+     LUT5:I4->O           16   0.094   1.055  s8/i8253/vcs/C0/Mmux_PWR_150_o_countval[15]_mux_39_OUT10111 (s8/i8253/vcs/C0/Mmux_PWR_150_o_countval[15]_mux_39_OUT1011)
+     LUT6:I1->O            1   0.094   0.000  s8/i8253/vcs/C0/Mmux_PWR_150_o_countval[15]_mux_39_OUT1011 (s8/i8253/vcs/C0/PWR_150_o_countval[15]_mux_39_OUT<6>)
      FDC:D                    -0.018          s8/i8253/vcs/C0/count_6
     ----------------------------------------
     Total                      4.641ns (0.847ns logic, 3.794ns route)
@@ -5395,11 +5423,11 @@ Delay:               7.664ns (Levels of Logic = 7)
      RAMB36_EXP:CLKAL->CASCADEOUTLATA    0   2.570   0.000  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B (U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/cascadelata_tmp)
      RAMB36_EXP:CASCADEINLATA->DOA0    2   0.369   1.074  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T (douta<4>)
      end scope: 's9/keyboard/keyloadmod/gamerom:douta<4>'
-     LUT6:I0->O            2   0.094   0.794  s9/keyboard/fdata[7]_PWR_171_o_equal_6_o<7>3 (s9/keyboard/fdata[7]_PWR_171_o_equal_6_o<7>2)
-     LUT5:I1->O            8   0.094   0.614  s9/keyboard/fdata[7]_PWR_171_o_equal_6_o<7>4 (s9/keyboard/fdata[7]_PWR_171_o_equal_6_o)
-     LUT6:I4->O            3   0.094   0.984  s9/keyboard/state[7]_GND_267_o_select_77_OUT<5>11 (s9/keyboard/state[7]_GND_267_o_select_77_OUT<5>1)
-     LUT6:I1->O            1   0.094   0.789  s9/keyboard/state[7]_GND_267_o_select_77_OUT<3>1 (s9/keyboard/state[7]_GND_267_o_select_77_OUT<3>1)
-     LUT6:I2->O            1   0.094   0.000  s9/keyboard/state[7]_GND_267_o_select_77_OUT<3>2 (s9/keyboard/state[7]_GND_267_o_select_77_OUT<3>)
+     LUT6:I0->O            2   0.094   0.794  s9/keyboard/fdata[7]_PWR_172_o_equal_6_o<7>3 (s9/keyboard/fdata[7]_PWR_172_o_equal_6_o<7>2)
+     LUT5:I1->O            8   0.094   0.614  s9/keyboard/fdata[7]_PWR_172_o_equal_6_o<7>4 (s9/keyboard/fdata[7]_PWR_172_o_equal_6_o)
+     LUT6:I4->O            3   0.094   0.984  s9/keyboard/state[7]_GND_268_o_select_77_OUT<5>11 (s9/keyboard/state[7]_GND_268_o_select_77_OUT<5>1)
+     LUT6:I1->O            1   0.094   0.789  s9/keyboard/state[7]_GND_268_o_select_77_OUT<3>1 (s9/keyboard/state[7]_GND_268_o_select_77_OUT<3>1)
+     LUT6:I2->O            1   0.094   0.000  s9/keyboard/state[7]_GND_268_o_select_77_OUT<3>2 (s9/keyboard/state[7]_GND_268_o_select_77_OUT<3>)
      FD:D                     -0.018          s9/keyboard/pa_3
     ----------------------------------------
     Total                      7.664ns (3.409ns logic, 4.255ns route)
@@ -5460,15 +5488,15 @@ Delay:               7.693ns (Levels of Logic = 7)
                                        (17.4% logic, 82.6% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 's4/wrt_dma_pg_reg_n_INV_739_o'
+Timing constraint: Default period analysis for Clock 's4/wrt_dma_pg_reg_n_INV_725_o'
   Clock period: 6.386ns (frequency: 156.593MHz)
   Total number of paths / destination ports: 896 / 8
 -------------------------------------------------------------------------
 Delay:               6.386ns (Levels of Logic = 6)
   Source:            s4/ls6700/q3_0 (LATCH)
   Destination:       s4/ls6700/q0_3 (LATCH)
-  Source Clock:      s4/wrt_dma_pg_reg_n_INV_739_o falling
-  Destination Clock: s4/wrt_dma_pg_reg_n_INV_739_o falling
+  Source Clock:      s4/wrt_dma_pg_reg_n_INV_725_o falling
+  Destination Clock: s4/wrt_dma_pg_reg_n_INV_725_o falling
 
   Data Path: s4/ls6700/q3_0 to s4/ls6700/q0_3
                                 Gate     Net
@@ -5556,43 +5584,23 @@ Delay:               2.469ns (Levels of Logic = 1)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 's1/i8284/clk'
-  Total number of paths / destination ports: 2 / 2
+  Total number of paths / destination ports: 4 / 4
 -------------------------------------------------------------------------
-Offset:              1.397ns (Levels of Logic = 2)
-  Source:            GPIO_SW_C (PAD)
-  Destination:       deb/state_FSM_FFd1 (FF)
+Offset:              1.493ns (Levels of Logic = 2)
+  Source:            GPIO_DIP_SW2 (PAD)
+  Destination:       s1/i8259/irl0/state_FSM_FFd2 (FF)
   Destination Clock: s1/i8284/clk rising
 
-  Data Path: GPIO_SW_C to deb/state_FSM_FFd1
+  Data Path: GPIO_DIP_SW2 to s1/i8259/irl0/state_FSM_FFd2
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             2   0.818   0.485  GPIO_SW_C_IBUF (GPIO_SW_C_IBUF)
-     LUT2:I1->O            1   0.094   0.000  deb/state_FSM_FFd2-In11 (deb/state_FSM_FFd2-In1)
-     FDR:D                    -0.018          deb/state_FSM_FFd2
+     IBUF:I->O             2   0.818   0.581  GPIO_DIP_SW2_IBUF (GPIO_DIP_SW2_IBUF)
+     LUT6:I4->O            1   0.094   0.000  s1/i8259/irl0/state_FSM_FFd2-In2 (s1/i8259/irl0/state_FSM_FFd2-In)
+     FDC:D                    -0.018          s1/i8259/irl0/state_FSM_FFd2
     ----------------------------------------
-    Total                      1.397ns (0.912ns logic, 0.485ns route)
-                                       (65.3% logic, 34.7% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'irq00'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              2.535ns (Levels of Logic = 2)
-  Source:            GPIO_DIP_SW2 (PAD)
-  Destination:       s1/i8259/irr_0 (FF)
-  Destination Clock: irq00 rising
-
-  Data Path: GPIO_DIP_SW2 to s1/i8259/irr_0
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             1   0.818   1.069  GPIO_DIP_SW2_IBUF (GPIO_DIP_SW2_IBUF)
-     LUT6:I0->O            2   0.094   0.341  Mmux_irq0011 (irq00)
-     FDCE:CE                   0.213          s1/i8259/irr_0
-    ----------------------------------------
-    Total                      2.535ns (1.125ns logic, 1.410ns route)
-                                       (44.4% logic, 55.6% route)
+    Total                      1.493ns (0.912ns logic, 0.581ns route)
+                                       (61.1% logic, 38.9% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'KEYBOARD_CLK'
@@ -5744,19 +5752,10 @@ dclk                                          |    7.693|         |         |   
 s1/ale                                        |         |    7.244|         |         |
 s1/i8284/clk                                  |    7.904|    3.576|         |         |
 s4/i8237/adstb                                |         |    7.067|         |         |
-s4/wrt_dma_pg_reg_n_INV_739_o                 |         |    7.758|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_153_o_Mux_9_o|         |    3.565|         |         |
+s4/wrt_dma_pg_reg_n_INV_725_o                 |         |    7.758|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_154_o_Mux_9_o|         |    3.565|         |         |
 s9/i8255/pds                                  |         |    3.352|         |         |
 ----------------------------------------------+---------+---------+---------+---------+
-
-Clock to Setup on destination clock irq00
----------------+---------+---------+---------+---------+
-               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
-Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
----------------+---------+---------+---------+---------+
-s1/i8284/clk   |    4.048|         |         |         |
-s8/pclka       |    4.064|         |         |         |
----------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/ale
 ---------------+---------+---------+---------+---------+
@@ -5767,44 +5766,39 @@ s1/i8284/clk   |         |         |   20.847|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/i8088/core/decode/inta
-----------------+---------+---------+---------+---------+
-                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
-Source Clock    |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
-----------------+---------+---------+---------+---------+
-irq00           |    1.997|         |         |         |
-s1/i8284/clk    |    2.290|         |         |         |
-s9/keyboard/irq1|    2.211|         |         |         |
-----------------+---------+---------+---------+---------+
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+s1/i8284/clk   |    2.290|         |         |         |
+---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/i8259/eoir[4]_GND_64_o_equal_97_o
-----------------+---------+---------+---------+---------+
-                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
-Source Clock    |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
-----------------+---------+---------+---------+---------+
-irq00           |         |         |    1.083|         |
-s1/i8284/clk    |         |         |    1.359|         |
-s9/keyboard/irq1|         |         |    1.067|         |
-----------------+---------+---------+---------+---------+
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+s1/i8284/clk   |         |         |    1.359|         |
+---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock s1/i8284/clk
 -----------------------------------------------------------------------+---------+---------+---------+---------+
                                                                        | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                                           |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -----------------------------------------------------------------------+---------+---------+---------+---------+
-dclk                                                                   |   10.184|         |    1.146|         |
-irq00                                                                  |    2.866|         |         |         |
-s1/ale                                                                 |         |    9.735|         |         |
+dclk                                                                   |   10.239|         |    1.146|         |
+s1/ale                                                                 |         |    9.790|         |         |
 s1/i8088/core/decode/inta                                              |    6.535|         |         |         |
 s1/i8088/core/exec/alu/muldiv/div_su/divider/Mcompar_ovf_pipe<0>_lutdi8|         |    2.461|         |         |
 s1/i8259/eoir[4]_GND_64_o_equal_97_o                                   |         |    2.806|         |         |
 s1/i8284/clk                                                           |   23.362|    0.858|    1.326|         |
+s1/i8284/pclk                                                          |    1.359|         |         |         |
 s1/i8284/vclk                                                          |    6.342|         |         |         |
-s4/i8237/adstb                                                         |         |    9.558|         |         |
-s4/wrt_dma_pg_reg_n_INV_739_o                                          |         |   10.249|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_153_o_Mux_9_o                         |         |    6.056|         |         |
-s8/pclka                                                               |    4.844|         |         |         |
-s9/i8255/pds                                                           |         |    5.843|         |         |
-s9/keyboard/irq1                                                       |    2.637|         |         |         |
+s4/i8237/adstb                                                         |         |    9.613|         |         |
+s4/wrt_dma_pg_reg_n_INV_725_o                                          |         |   10.304|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_154_o_Mux_9_o                         |         |    6.111|         |         |
+s8/pclka                                                               |    4.873|         |         |         |
+s9/i8255/pds                                                           |         |    5.898|         |         |
 xiow_n                                                                 |    1.756|         |         |         |
 -----------------------------------------------------------------------+---------+---------+---------+---------+
 
@@ -5814,7 +5808,7 @@ Clock to Setup on destination clock s1/i8284/pclk
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
 KEYBOARD_CLK   |         |    7.663|         |         |
-s1/i8284/clk   |    3.578|         |         |         |
+s1/i8284/clk   |    3.579|         |         |         |
 s1/i8284/pclk  |    7.664|         |         |         |
 ---------------+---------+---------+---------+---------+
 
@@ -5828,8 +5822,8 @@ s1/ale                                        |         |    7.630|         |   
 s1/i8284/clk                                  |    8.254|         |         |         |
 s1/i8284/vclk                                 |    5.029|         |         |         |
 s4/i8237/adstb                                |         |    7.477|         |         |
-s4/wrt_dma_pg_reg_n_INV_739_o                 |         |    8.043|         |         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_153_o_Mux_9_o|         |    3.850|         |         |
+s4/wrt_dma_pg_reg_n_INV_725_o                 |         |    8.043|         |         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_154_o_Mux_9_o|         |    3.850|         |         |
 s9/i8255/pds                                  |         |    3.637|         |         |
 ----------------------------------------------+---------+---------+---------+---------+
 
@@ -5842,12 +5836,12 @@ dclk                                          |         |         |    6.321|   
 s1/ale                                        |         |         |    5.872|         |
 s1/i8284/clk                                  |         |         |    6.532|         |
 s4/i8237/adstb                                |         |         |    5.695|         |
-s4/wrt_dma_pg_reg_n_INV_739_o                 |         |         |    6.386|         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_153_o_Mux_9_o|         |         |    2.193|         |
+s4/wrt_dma_pg_reg_n_INV_725_o                 |         |         |    6.386|         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_154_o_Mux_9_o|         |         |    2.193|         |
 s9/i8255/pds                                  |         |         |    1.980|         |
 ----------------------------------------------+---------+---------+---------+---------+
 
-Clock to Setup on destination clock s4/wrt_dma_pg_reg_n_INV_739_o
+Clock to Setup on destination clock s4/wrt_dma_pg_reg_n_INV_725_o
 ----------------------------------------------+---------+---------+---------+---------+
                                               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                  |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
@@ -5856,12 +5850,12 @@ dclk                                          |         |         |    6.321|   
 s1/ale                                        |         |         |    5.872|         |
 s1/i8284/clk                                  |         |         |    6.532|         |
 s4/i8237/adstb                                |         |         |    5.695|         |
-s4/wrt_dma_pg_reg_n_INV_739_o                 |         |         |    6.386|         |
-s8/i8253/vcs/C1/READ/MODE[5]_PWR_153_o_Mux_9_o|         |         |    2.193|         |
+s4/wrt_dma_pg_reg_n_INV_725_o                 |         |         |    6.386|         |
+s8/i8253/vcs/C1/READ/MODE[5]_PWR_154_o_Mux_9_o|         |         |    2.193|         |
 s9/i8255/pds                                  |         |         |    1.980|         |
 ----------------------------------------------+---------+---------+---------+---------+
 
-Clock to Setup on destination clock s8/i8253/vcs/C1/READ/MODE[5]_PWR_153_o_Mux_9_o
+Clock to Setup on destination clock s8/i8253/vcs/C1/READ/MODE[5]_PWR_154_o_Mux_9_o
 -----------------------------------------------------------------------+---------+---------+---------+---------+
                                                                        | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                                           |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
@@ -5892,14 +5886,6 @@ s4/i8237/adstb |         |         |    4.239|         |
 s8/pclka       |         |         |    3.876|         |
 ---------------+---------+---------+---------+---------+
 
-Clock to Setup on destination clock s9/keyboard/irq1
----------------+---------+---------+---------+---------+
-               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
-Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
----------------+---------+---------+---------+---------+
-s1/i8284/pclk  |    1.025|         |         |         |
----------------+---------+---------+---------+---------+
-
 Clock to Setup on destination clock xiow_n
 ---------------+---------+---------+---------+---------+
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
@@ -5915,8 +5901,8 @@ xiow_n         |    2.469|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 82.00 secs
-Total CPU time to Xst completion: 79.35 secs
+Total REAL time to Xst completion: 83.00 secs
+Total CPU time to Xst completion: 80.46 secs
  
 WARNING:Xst:3152 - You have chosen to run a version of XST which is not the default solution
    for the specified device family. You are free to use it in order to take
@@ -5929,9 +5915,9 @@ WARNING:Xst:3152 - You have chosen to run a version of XST which is not the defa
 --> 
 
 
-Total memory usage is 575104 kilobytes
+Total memory usage is 575304 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  890 (   0 filtered)
+Number of warnings :  886 (   0 filtered)
 Number of infos    :   42 (   0 filtered)
 

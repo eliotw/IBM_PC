@@ -1007,7 +1007,10 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 	// Output logic
 	always @(*) begin
 		out = 1'b0;
-		if(mode0) begin
+		if(state != cnt6) begin
+			out = 1'b0;
+		end
+		else if(mode0) begin
 			if(count == 16'b0) begin
 				out = 1'b1;
 			end
@@ -1035,7 +1038,7 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 			end
 		end
 		else begin
-			out = 1'b1;
+			out = 1'b0;
 		end
 	end
 	

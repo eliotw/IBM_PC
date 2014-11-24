@@ -52,7 +52,7 @@ module intel8259(
    reg [2:0]   topint;
    
    // Interrupt request register (irr)
-   reg [7:0]   irr;
+   wire [7:0]   irr;
    reg [7:0]   irr_clr;
 
    // Interrupt mask register (imr)
@@ -85,7 +85,7 @@ module intel8259(
    initial begin
       icws = 2'b00;
       topint = 3'b0;
-      irr = 8'b0;
+      //irr = 8'b0;
       irr_clr = 8'b0;
       imr = 8'b00000000;
       isr = 8'b0;
@@ -198,6 +198,7 @@ module intel8259(
 				end
 				waiteoir: begin
 					irr_clr <= 8'b0000_0000;
+					//irr_clr <= irr_clr;
 					if(clrisr == 1'b1) begin
 						isr <= 8'b0000_0000;
 					end
@@ -520,6 +521,66 @@ module intel8259(
 	assign irr_n[7] = rst_n & ~irr_clr[7];
 	
    // IRR Loading
+	irrload irl0(.clk(clk),.rst_n(rst_n),.ir(ir[0]),.clr(irr_clr[0]),.irr(irr[0]));
+	irrload irl1(.clk(clk),.rst_n(rst_n),.ir(ir[1]),.clr(irr_clr[1]),.irr(irr[1]));
+	irrload irl2(.clk(clk),.rst_n(rst_n),.ir(ir[2]),.clr(irr_clr[2]),.irr(irr[2]));
+	irrload irl3(.clk(clk),.rst_n(rst_n),.ir(ir[3]),.clr(irr_clr[3]),.irr(irr[3]));
+	irrload irl4(.clk(clk),.rst_n(rst_n),.ir(ir[4]),.clr(irr_clr[4]),.irr(irr[4]));
+	irrload irl5(.clk(clk),.rst_n(rst_n),.ir(ir[5]),.clr(irr_clr[5]),.irr(irr[5]));
+	irrload irl6(.clk(clk),.rst_n(rst_n),.ir(ir[6]),.clr(irr_clr[6]),.irr(irr[6]));
+	irrload irl7(.clk(clk),.rst_n(rst_n),.ir(ir[7]),.clr(irr_clr[7]),.irr(irr[7]));
+	
+	/*
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) irr[0] <= 1'b0;
+		else if(~irr_n[0]) irr[0] <= 1'b0;
+		else if(ir[0]) irr[0] <= 1'b1;
+		else irr[0] <= irr[0];
+	end
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) irr[1] <= 1'b0;
+		else if(~irr_n[1]) irr[1] <= 1'b0;
+		else if(ir[1]) irr[1] <= 1'b1;
+		else irr[1] <= irr[1];
+	end
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) irr[2] <= 1'b0;
+		else if(~irr_n[2]) irr[2] <= 1'b0;
+		else if(ir[2]) irr[2] <= 1'b1;
+		else irr[2] <= irr[2];
+	end
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) irr[3] <= 1'b0;
+		else if(~irr_n[3]) irr[3] <= 1'b0;
+		else if(ir[3]) irr[3] <= 1'b1;
+		else irr[3] <= irr[3];
+	end
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) irr[4] <= 1'b0;
+		else if(~irr_n[4]) irr[4] <= 1'b0;
+		else if(ir[4]) irr[4] <= 1'b1;
+		else irr[4] <= irr[4];
+	end
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) irr[5] <= 1'b0;
+		else if(~irr_n[5]) irr[5] <= 1'b0;
+		else if(ir[5]) irr[5] <= 1'b1;
+		else irr[5] <= irr[5];
+	end
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) irr[6] <= 1'b0;
+		else if(~irr_n[6]) irr[6] <= 1'b0;
+		else if(ir[6]) irr[6] <= 1'b1;
+		else irr[6] <= irr[6];
+	end
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) irr[7] <= 1'b0;
+		else if(~irr_n[7]) irr[7] <= 1'b0;
+		else if(ir[7]) irr[7] <= 1'b1;
+		else irr[7] <= irr[7];
+	end
+	*/
+	/*
 	always @(posedge ir[0] or negedge irr_n[0]) begin
 		if(~irr_n[0]) irr[0] <= 1'b0;
 		else if(ir[0]) irr[0] <= 1'b1;
@@ -560,7 +621,7 @@ module intel8259(
 		else if(ir[7]) irr[7] <= 1'b1;
 		else irr[7] <= irr[7];
 	end
-	
+	*/
    // MRW resolution
    always @(irr or imr) begin
       mrw[0] <= irr[0] & ~imr[0];
@@ -589,3 +650,60 @@ module intel8259(
    end
    
 endmodule // intel8259
+
+module irrload(
+	input clk,
+	input rst_n,
+	input ir,
+	input clr,
+	output irr
+	);
+	
+	// Parameters
+	parameter [1:0] idle = 2'b00,
+		active = 2'b01,
+		waitz = 2'b10,
+		nullz = 2'b11;
+		
+	// FSM Registers
+	reg [1:0] state, nextstate;
+
+	// Initial Conditions
+	initial begin
+		state = idle;
+		nextstate = idle;
+	end
+	
+	// Output Assignment
+	assign irr = (state == active);
+
+	// FSM State
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) state <= idle;
+		else state <= nextstate;
+	end
+	
+	// Next State Logic
+	always @(*) begin
+		case(state)
+			idle: begin
+				if(ir == 1'b1) nextstate = active;
+				else nextstate = idle;
+			end
+			active: begin
+				if(clr == 1'b1) nextstate = waitz;
+				else nextstate = active;
+			end
+			waitz: begin
+				if(ir == 1'b0) nextstate = idle;
+				else nextstate = waitz;
+			end
+			nullz: begin
+				nextstate = idle;
+			end
+			default: begin
+				nextstate = idle;
+			end
+		endcase
+	end
+endmodule

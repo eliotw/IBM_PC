@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.28xd on Mon Nov 24 12:56:35 2014
+// Written by: Map P.28xd on Mon Nov 24 18:23:32 2014
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -903,8 +903,10 @@ PIN
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I_V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[6].u_ramb36/U_RAMB36"
         PINNAME CLKBU;
 TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
-        "s1/i8259/s_FSM_FFd1" BEL "s1/i8259/s_FSM_FFd2" BEL
-        "s1/i8259/s_FSM_FFd3" BEL "s1/i8259/irr_clr_1" BEL
+        "s1/i8259/s_FSM_FFd2" BEL "s1/i8259/s_FSM_FFd3" BEL
+        "s1/i8259/s_FSM_FFd1" BEL "s1/i8259/irl0/state_FSM_FFd2" BEL
+        "s1/i8259/irl1/state_FSM_FFd1" BEL "s1/i8259/irl0/state_FSM_FFd1" BEL
+        "s1/i8259/irl1/state_FSM_FFd2" BEL "s1/i8259/irr_clr_1" BEL
         "s1/i8259/irr_clr_0" BEL "s1/i8259/eoir_4" BEL "s1/i8259/eoir_3" BEL
         "s1/i8259/eoir_1" BEL "s1/i8259/eoir_0" BEL "s1/i8259/imr_7" BEL
         "s1/i8259/imr_6" BEL "s1/i8259/imr_5" BEL "s1/i8259/imr_4" BEL
