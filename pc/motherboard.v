@@ -10,6 +10,7 @@ module motherboard(
 		   inout KEYBOARD_DATA, // keyboard data
 		   input GPIO_SW_C, // reset trigger
 			input GPIO_DIP_SW1, // select to use audio or not
+			input GPIO_DIP_SW2, // select to use irq0 or not
 		   output HDR1_2, // vga red o 0
 		   output HDR1_4, // vga red o 1
 		   output HDR1_6, // vga green o 0
@@ -101,6 +102,7 @@ module motherboard(
    wire 		 horiz_sync; // vga horizontal sync
    wire 		 vert_sync; // vga vertical sync
    wire	    keyboard_load_special; // keyboard load special program
+	wire irq00; // special IRQ0 line
 	
    // Some assignments
    assign clk_100 = USER_CLK; // user clock is 100 MHz clock
@@ -116,6 +118,7 @@ module motherboard(
    assign HDR1_14 = horiz_sync; // vga horizontal sync
    assign HDR1_16 = vert_sync; // vga vertical sync
 	assign keyboard_load_special = GPIO_SW_E; // keyboard load special program
+	assign irq00 = (GPIO_DIP_SW2) ? irq0 : 1'b0; // disable irq0
 	
    // Debounce Module
    debounce deb(
@@ -130,7 +133,7 @@ module motherboard(
 	     .dma_wait_n(dma_wait_n),
 	     .rdy_wait_n(rdy_wait_n),
 	     .nmi(nmi),
-	     .irq({irq7,irq6,irq5,irq4,irq3,irq2,irq1,irq0}),
+	     .irq({irq7,irq6,irq5,irq4,irq3,irq2,irq1,irq00}),
 	     .intr_cs_n(intr_cs_n),
 	     .xior_n(xior_n),
 	     .xiow_n(xiow_n),

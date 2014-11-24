@@ -595,7 +595,7 @@ module keyload(
 	
 	// Terminal Count for Counter
 	parameter [15:0] tc = 16'd3539;
-	parameter [15:0] endcount = 16'h4000; // Stable at 0x4000
+	parameter [15:0] endcount = 16'h3000; // Stable at 0x3000 - do not take it below 0x3000!
 	
 	// Counter Register
 	reg [15:0] counter;
