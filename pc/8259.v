@@ -282,6 +282,22 @@ module intel8259(
 	end
 	
 	// Assign iid
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) iid <= 8'b00000_0;
+		else if(s == issue) begin
+			if(mrw[0]) iid <= 8'b00001_000;
+			else if(mrw[1]) iid <= 8'b00001_001;
+			else if(mrw[2]) iid <= 8'b00001_010;
+			else if(mrw[3]) iid <= 8'b00001_011;
+			else if(mrw[4]) iid <= 8'b00001_100;
+			else if(mrw[5]) iid <= 8'b00001_101;
+			else if(mrw[6]) iid <= 8'b00001_110;
+			else if(mrw[7]) iid <= 8'b00001_111;
+			else iid <= 8'b00000_000;
+		end
+		else iid <= iid;
+	end
+	/*
 	always @(negedge inta_n) begin
 		if(mrw[0]) iid <= 8'b00001_000;
 		else if(mrw[1]) iid <= 8'b00001_001;
@@ -293,7 +309,7 @@ module intel8259(
 		else if(mrw[7]) iid <= 8'b00001_111;
 		else iid <= 8'b00000_000;
 	end
-	
+	*/
 	/*
 	always @(isr) begin
 		if(isr[0]) iid <= 8'b00001_000;
