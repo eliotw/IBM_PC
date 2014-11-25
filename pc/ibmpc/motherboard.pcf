@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.28xd on Mon Nov 24 18:49:36 2014
+// Written by: Map P.28xd on Mon Nov 24 19:32:55 2014
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -16,8 +16,10 @@ COMP "PIEZO_SPEAKER" LOCATE = SITE "G30" LEVEL 1;
 COMP "GPIO_DIP_SW1" LOCATE = SITE "U25" LEVEL 1;
 COMP "GPIO_DIP_SW2" LOCATE = SITE "AG27" LEVEL 1;
 COMP "GPIO_LED_0" LOCATE = SITE "H18" LEVEL 1;
+COMP "GPIO_LED_1" LOCATE = SITE "L18" LEVEL 1;
 COMP "GPIO_SW_C" LOCATE = SITE "AJ6" LEVEL 1;
 COMP "GPIO_SW_E" LOCATE = SITE "AK7" LEVEL 1;
+COMP "GPIO_SW_W" LOCATE = SITE "AJ7" LEVEL 1;
 COMP "HDR1_10" LOCATE = SITE "G32" LEVEL 1;
 COMP "HDR1_12" LOCATE = SITE "H32" LEVEL 1;
 COMP "HDR1_14" LOCATE = SITE "J32" LEVEL 1;
@@ -902,7 +904,8 @@ PIN
         = BEL
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I_V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[6].u_ramb36/U_RAMB36"
         PINNAME CLKBU;
-TIMEGRP D_CLK = BEL "deb/state_FSM_FFd1" BEL "deb/state_FSM_FFd2" BEL
+TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
+        "deb/state_FSM_FFd1" BEL "ird/state_FSM_FFd2" BEL
         "s1/i8259/s_FSM_FFd2" BEL "s1/i8259/s_FSM_FFd3" BEL
         "s1/i8259/s_FSM_FFd1" BEL "s1/i8259/irl0/state_FSM_FFd2" BEL
         "s1/i8259/irl1/state_FSM_FFd1" BEL "s1/i8259/irl0/state_FSM_FFd1" BEL

@@ -9,6 +9,8 @@ module motherboard(
 		   inout KEYBOARD_CLK, // keyboard clock
 		   inout KEYBOARD_DATA, // keyboard data
 		   input GPIO_SW_C, // reset trigger
+			input GPIO_SW_W, // enable/disable irq0
+			input GPIO_SW_E, // keyboard load special
 			input GPIO_DIP_SW1, // select to use audio or not
 			input GPIO_DIP_SW2, // select to use irq0 or not
 		   output HDR1_2, // vga red o 0
@@ -20,7 +22,7 @@ module motherboard(
 		   output HDR1_14, // vga horizontal sync
 		   output HDR1_16, // vga vertical sync
 			output GPIO_LED_0, // same as the speaker output
-			input GPIO_SW_E // keyboard load special
+			output GPIO_LED_1 // irq0 enabled/disabled
 		   );
 
    // Internal signals
@@ -103,12 +105,15 @@ module motherboard(
    wire 		 vert_sync; // vga vertical sync
    wire	    keyboard_load_special; // keyboard load special program
 	wire irq00; // special IRQ0 line
+	wire irqbutton; // special IRQ0 button
+	wire irqenable; // enable IRQ0
 	
    // Some assignments
    assign clk_100 = USER_CLK; // user clock is 100 MHz clock
    assign xa0_n = xa[0]; // not sure if needs to be inverted or not
    assign PIEZO_SPEAKER = (GPIO_DIP_SW1) ? spkr_data_out : 1'b1; // speaker assignment 
 	assign GPIO_LED_0 = spkr_data_out; // assign to led as well
+	assign GPIO_LED_1 = irqenable; // tell whether IRQ is enabled or not
    assign HDR1_2 = vga_red_o[0]; // vga red o 0
    assign HDR1_4 = vga_red_o[1]; // vga red o 1
    assign HDR1_6 = vga_green_o[0]; // vga green o 0
@@ -118,7 +123,16 @@ module motherboard(
    assign HDR1_14 = horiz_sync; // vga horizontal sync
    assign HDR1_16 = vert_sync; // vga vertical sync
 	assign keyboard_load_special = GPIO_SW_E; // keyboard load special program
-	assign irq00 = (GPIO_DIP_SW2) ? irq0 : 1'b0; // disable irq0
+	assign irq00 = (irqenable) ? irq0 : 1'b0; // disable irq0 - KEYWORD
+	assign irqbutton = GPIO_SW_W; // button to disable irq0
+	
+	// Disable IRQ Module
+	irqdisable ird(
+						.clk(clk88),
+						.rst_n(~reset),
+						.irqbutton(irqbutton),
+						.irq_en(irqenable)
+						);
 	
    // Debounce Module
    debounce deb(
@@ -1541,3 +1555,63 @@ module sheet10(
    assign irq7 = 1'b0;
 	  
 endmodule // sheet10
+
+// irqdisable:
+// Disable irq signals
+module irqdisable(
+	input clk,
+	input rst_n,
+	input irqbutton,
+	output irq_en
+	);
+	
+	// Parameters
+	parameter [1:0] on = 2'b00,
+		wait0 = 2'b01,
+		off = 2'b10,
+		wait1 = 2'b11;
+		
+	// Registers for FSM
+	reg [1:0] state, nextstate;
+	
+	// Initial Conditions
+	initial begin
+		state = on;
+		nextstate = on;
+	end
+	
+	// Output assignment
+	assign irq_en = (state == on);
+	
+	// FSM 
+	always @(posedge clk or negedge rst_n) begin
+		if(~rst_n) state <= on;
+		else state <= nextstate;
+	end
+	
+	// Next State Logic
+	always @(*) begin
+		case(state)
+			on: begin
+				if(irqbutton == 1'b1) nextstate = wait0;
+				else nextstate = on;
+			end
+			wait0: begin
+				if(irqbutton == 1'b0) nextstate = off;
+				else nextstate = wait0;
+			end
+			off: begin
+				if(irqbutton == 1'b1) nextstate = wait1;
+				else nextstate = off;
+			end
+			wait1: begin
+				if(irqbutton == 1'b0) nextstate = on;
+				else nextstate = wait1;
+			end
+			default: begin
+				nextstate = on;
+			end
+		endcase
+	end
+endmodule
+	
