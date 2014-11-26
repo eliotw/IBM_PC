@@ -62,13 +62,14 @@ module processor_8088
     
    wire [19:0] 	 calculated_addr;
    wire [3:0] 	 bytes_transferred;
-
+	wire intra;
+	
    assign a = calculated_addr;
    assign calculated_addr = cpu_adr_o + (bytes_transferred);
    
    zet_core core (.clk(clk),
                   .rst(rst),
-                  .intr(intr),
+                  .intr(intra),
                   .inta(inta),
                   .nmi(nmi),
                   .nmia(nmia),
@@ -205,16 +206,15 @@ module processor_8088
                         .state(ctrl_fsm_state)
                         );
     
-   /* interrupt fsm                   
-   wire ld_intr; 
+   // interrupt fsm                    
+	interrupt_fsm intr_fsm(
+		.clk(clk),
+		.rst(rst),
+		.intr(intr),
+		.zet_state(zet_state),
+		.intra(intra)
+		);
    
-   interrupt_fsm intr_fsm (.clk(clk),
-                        .rst(rst),
-                        .intr(intr),
-                        .ld_intr(ld_intr),
-                        .inta_n(inta_n)
-                        );
-   */
    /* hold fsm */
    hold_fsm hld_fsm (.clk(clk),
                      .rst(rst),
@@ -382,79 +382,91 @@ module control_fsm
      
 endmodule
 
-
-module interrupt_fsm
-    (input clk, rst,
-     input intr,
-     output reg ld_intr,
-     output reg inta_n);
-     
-    localparam idle = 1'b0;
-    localparam intr_input_trn = 1'b1;
-    
-    reg state, next_state;
-    wire intr_input_trn_done;
-    wire [1:0] count;
-    wire inc_count, clr_count;
-    reg inc, clr;
-    
-    counter #(2) cnt (.clk(clk),
-                      .rst(rst),
-                      .inc(inc_count),
-                      .clr(clr_count),
-                      .count(count));
-    
-    assign intr_input_trn_done = (count == 2'b10);
-    assign inc_count = inc;
-    assign clr_count = clr;
-    
-    always @(posedge clk or negedge rst) begin
-        if (~rst) 
-            state <= idle;
-        else 
-            state <= next_state;
-    end
-    
-    /* next state logic */
-    always @( * ) begin
-        next_state = idle;
-        case(state)
-            idle: begin
-                if (intr) 
-                    next_state = intr_input_trn;
-                else 
-                    next_state = idle;
-            end
-            intr_input_trn: begin
-                if (~intr_input_trn_done) 
-                    next_state = intr_input_trn;
-                else 
-                    next_state = idle;
-            end
-        endcase
-    end
-    
-    /* output logic */
-    always @( * ) begin
-        inta_n = 1;
-        ld_intr = 0;
-        inc = 0;
-        clr = 0;
-        case(state)
-            idle : ;
-            intr_input_trn: begin
-                if (~intr_input_trn_done) begin
-                    inc = 1;
-                    inta_n = 0;
-                    if (count == 1)
-                        ld_intr = 1;
-                end
-                else 
-                    clr = 1;
-            end
-        endcase
-    end
-    
+// Holds an interrupt until the processor can handle it properly
+module interrupt_fsm(
+	input clk,
+	input rst,
+	input intr,
+	input [2:0] zet_state,
+	output intra
+	);
+	
+	// Parameters
+	parameter [1:0] idle = 2'b00, wait4 = 2'b01, wait5 = 2'b10, intout = 2'b11;
+   localparam opcod_st = 3'h0;
+   localparam modrm_st = 3'h1;
+   localparam offse_st = 3'h2;
+   localparam immed_st = 3'h3;
+   localparam execu_st = 3'h4;
+   localparam fetch_st = 3'h5;
+	
+	// Wires
+	wire rst_n;
+	
+	// Registers
+	reg [1:0] state, nextstate;
+	
+	// Initial Conditions
+	initial begin
+		state = idle;
+		nextstate = idle;
+	end
+	
+	// Assignments
+	assign intra = (state == intout);
+	
+	// FSM State
+	always @(posedge clk or negedge rst) begin
+		if(~rst) state <= idle;
+		else state <= nextstate;
+	end
+	
+	// Next State Logic
+	always @(*) begin
+		case(state)
+			// Waiting for interrupt
+			idle: begin
+				if(intr == 1'b1) begin
+					if(zet_state == fetch_st) begin
+						nextstate <= intout;
+					end
+					else begin
+						nextstate <= wait5;
+					end
+				end
+				else begin
+					nextstate <= idle;
+				end
+			end
+			// Return to idle
+			wait4: begin
+				nextstate <= idle;
+			end
+			// Wait for entry to fetch state before passing on interrupt
+			wait5: begin
+				if(zet_state == fetch_st) begin
+					nextstate <= intout;
+				end
+				else begin
+					nextstate <= wait5;
+				end
+			end
+			// Send the interrupt to the processor
+			intout: begin
+				if(intr == 1'b1) begin
+					nextstate <= intout;
+				end
+				else begin
+					nextstate <= idle;
+				end
+			end
+			// Return to idle
+			default: begin
+				nextstate <= idle;
+			end
+		endcase
+	end
+	
 endmodule
 
 

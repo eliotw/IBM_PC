@@ -10,41 +10,41 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Tue Nov 25 22:29:34 2014
+Mapped Date    : Wed Nov 26 15:51:28 2014
 
 Design Summary
 --------------
 Number of errors:      0
 Number of warnings:  195
 Slice Logic Utilization:
-  Number of Slice Registers:                 3,764 out of  69,120    5%
-    Number used as Flip Flops:               3,734
+  Number of Slice Registers:                 3,766 out of  69,120    5%
+    Number used as Flip Flops:               3,736
     Number used as Latches:                     30
-  Number of Slice LUTs:                      5,689 out of  69,120    8%
-    Number used as logic:                    5,094 out of  69,120    7%
-      Number using O6 output only:           4,596
-      Number using O5 output only:             108
-      Number using O5 and O6:                  390
+  Number of Slice LUTs:                      5,698 out of  69,120    8%
+    Number used as logic:                    5,104 out of  69,120    7%
+      Number using O6 output only:           4,603
+      Number using O5 output only:             110
+      Number using O5 and O6:                  391
     Number used as Memory:                     579 out of  17,920    3%
       Number used as Shift Register:           579
         Number using O6 output only:           577
         Number using O5 output only:             1
         Number using O5 and O6:                  1
-    Number used as exclusive route-thru:        16
-  Number of route-thrus:                       140
-    Number using O6 output only:               121
-    Number using O5 output only:                16
+    Number used as exclusive route-thru:        15
+  Number of route-thrus:                       128
+    Number using O6 output only:               120
+    Number using O5 output only:                 5
     Number using O5 and O6:                      3
 
 Slice Logic Distribution:
-  Number of occupied Slices:                 2,495 out of  17,280   14%
-  Number of LUT Flip Flop pairs used:        7,340
-    Number with an unused Flip Flop:         3,576 out of   7,340   48%
-    Number with an unused LUT:               1,651 out of   7,340   22%
-    Number of fully used LUT-FF pairs:       2,113 out of   7,340   28%
+  Number of occupied Slices:                 2,502 out of  17,280   14%
+  Number of LUT Flip Flop pairs used:        7,421
+    Number with an unused Flip Flop:         3,655 out of   7,421   49%
+    Number with an unused LUT:               1,723 out of   7,421   23%
+    Number of fully used LUT-FF pairs:       2,043 out of   7,421   27%
     Number of unique control sets:             170
     Number of slice register sites lost
-      to control set restrictions:             300 out of  69,120    1%
+      to control set restrictions:             302 out of  69,120    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -59,8 +59,8 @@ IO Utilization:
     Number of LOCed IOBs:                       19 out of      19  100%
 
 Specific Feature Utilization:
-  Number of BlockRAM/FIFO:                     108 out of     148   72%
-    Number using BlockRAM only:                108
+  Number of BlockRAM/FIFO:                     107 out of     148   72%
+    Number using BlockRAM only:                107
     Total primitives used:
       Number of 36k BlockRAM used:             104
       Number of 18k BlockRAM used:               4
@@ -71,11 +71,11 @@ Specific Feature Utilization:
   Number of DSP48Es:                             1 out of      64    1%
 
   Number of RPM macros:           10
-Average Fanout of Non-Clock Nets:                4.60
+Average Fanout of Non-Clock Nets:                4.59
 
 Peak Memory Usage:  1134 MB
-Total REAL time to MAP completion:  56 secs 
-Total CPU time to MAP completion:   55 secs 
+Total REAL time to MAP completion:  58 secs 
+Total CPU time to MAP completion:   56 secs 
 
 Table of Contents
 -----------------
@@ -102,7 +102,7 @@ WARNING:Security:43 - No license file was found in the standard Xilinx license
 directory.
 WARNING:Security:44 - Since no license file was found,
 WARNING:Security:42 - Your license support version '2014.11' for ISE expires in
-5 days after which you will not qualify for Xilinx software updates or new
+4 days after which you will not qualify for Xilinx software updates or new
 releases.
 WARNING:Pack:2874 - Trimming timing constraints from pin
    s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cs
@@ -1302,7 +1302,7 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net xiow_n is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s4/wrt_dma_pg_reg_n_INV_729_o is sourced by a combinatorial pin. This is not
+   s4/wrt_dma_pg_reg_n_INV_731_o is sourced by a combinatorial pin. This is not
    good design practice. Use the CE pin to control the loading of data into the
    flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s9/i8255/pds is sourced by
@@ -1312,11 +1312,11 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s8/i8253/vcs/C1/READ/MODE[5]_PWR_155_o_Mux_9_o is sourced by a combinatorial
+   s8/i8253/vcs/C1/READ/MODE[5]_PWR_156_o_Mux_9_o is sourced by a combinatorial
    pin. This is not good design practice. Use the CE pin to control the loading
    of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s1/i8259/eoir[4]_GND_65_o_equal_97_o is sourced by a combinatorial pin. This
+   s1/i8259/eoir[4]_GND_66_o_equal_97_o is sourced by a combinatorial pin. This
    is not good design practice. Use the CE pin to control the loading of data
    into the flip-flop.
 

@@ -594,8 +594,8 @@ module keyload(
 		act6 = 8'b1000_0000;
 	
 	// Terminal Count for Counter
-	parameter [15:0] tc = 16'd6606; // 6608
-	parameter [15:0] endcount = 16'h6000; // Stable at 0x3000 - do not take it below 0x3000!
+	parameter [15:0] tc = 16'd7197; // 7200 lines in file
+	parameter [15:0] endcount = 16'h4000; // Not so great at 6000
 	
 	// Counter Register
 	reg [15:0] counter;
