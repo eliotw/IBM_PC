@@ -1,8 +1,11 @@
 //! **************************************************************************
-// Written by: Map P.28xd on Wed Nov 26 16:30:05 2014
+// Written by: Map P.28xd on Wed Nov 26 17:49:59 2014
 //! **************************************************************************
 
 SCHEMATIC START;
+COMP "HDR1_12" LOCATE = SITE "H32" LEVEL 1;
+COMP "HDR1_14" LOCATE = SITE "J32" LEVEL 1;
+COMP "HDR1_16" LOCATE = SITE "J34" LEVEL 1;
 COMP "USER_CLK" LOCATE = SITE "AH15" LEVEL 1;
 COMP "KEYBOARD_DATA" LOCATE = SITE "T25" LEVEL 1;
 COMP "HDR1_2" LOCATE = SITE "H33" LEVEL 1;
@@ -21,9 +24,6 @@ COMP "GPIO_SW_C" LOCATE = SITE "AJ6" LEVEL 1;
 COMP "GPIO_SW_E" LOCATE = SITE "AK7" LEVEL 1;
 COMP "GPIO_SW_W" LOCATE = SITE "AJ7" LEVEL 1;
 COMP "HDR1_10" LOCATE = SITE "G32" LEVEL 1;
-COMP "HDR1_12" LOCATE = SITE "H32" LEVEL 1;
-COMP "HDR1_14" LOCATE = SITE "J32" LEVEL 1;
-COMP "HDR1_16" LOCATE = SITE "J34" LEVEL 1;
 PIN
         U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I_V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B18KGT0.u_ramb16/U_RAMB16_pins<31>
         = BEL
@@ -35,25 +35,25 @@ PIN
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I_V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B18KGT0.u_ramb16/U_RAMB16"
         PINNAME REGCLKBL;
 PIN
-        s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<24>
+        s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<32>
         = BEL
         "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP"
         PINNAME CLKAL;
 PIN
-        s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<64>
+        s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<110>
         = BEL
         "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP"
         PINNAME REGCLKAL;
 PIN
-        s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<24>
+        s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<30>
         = BEL
         "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP"
-        PINNAME CLKAL;
+        PINNAME CLKAU;
 PIN
-        s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<64>
+        s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<108>
         = BEL
         "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP"
-        PINNAME REGCLKAL;
+        PINNAME REGCLKAU;
 PIN
         s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B_pins<66>
         = BEL
@@ -951,9 +951,9 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
         "s8/i8253/vcs/C0/readcontrol_FSM_FFd2" BEL
         "s8/i8253/vcs/C0/state_FSM_FFd1" BEL "s8/i8253/vcs/C0/state_FSM_FFd7"
         BEL "s8/i8253/vcs/C0/state_FSM_FFd8" BEL
-        "s8/i8253/vcs/C0/state_FSM_FFd9" BEL "s8/i8253/vcs/C0/state_FSM_FFd10"
-        BEL "s8/i8253/vcs/C0/state_FSM_FFd11" BEL
-        "s8/i8253/vcs/C0/state_FSM_FFd12" BEL "s8/i8253/vcs/C0/control_5" BEL
+        "s8/i8253/vcs/C0/state_FSM_FFd9" BEL "s8/i8253/vcs/C0/state_FSM_FFd11"
+        BEL "s8/i8253/vcs/C0/state_FSM_FFd12" BEL
+        "s8/i8253/vcs/C0/state_FSM_FFd10" BEL "s8/i8253/vcs/C0/control_5" BEL
         "s8/i8253/vcs/C0/control_4" BEL "s8/i8253/vcs/C0/control_3" BEL
         "s8/i8253/vcs/C0/control_2" BEL "s8/i8253/vcs/C0/control_1" BEL
         "s8/i8253/vcs/C0/dataout_7" BEL "s8/i8253/vcs/C0/dataout_6" BEL
@@ -976,15 +976,39 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
         "s8/i8253/vcs/C0/countmsb_6" BEL "s8/i8253/vcs/C0/countmsb_5" BEL
         "s8/i8253/vcs/C0/countmsb_4" BEL "s8/i8253/vcs/C0/countmsb_3" BEL
         "s8/i8253/vcs/C0/countmsb_2" BEL "s8/i8253/vcs/C0/countmsb_1" BEL
-        "s8/i8253/vcs/C0/countmsb_0" BEL "s8/i8253/vcs/C1/LATCHMSB_7" BEL
-        "s8/i8253/vcs/C1/LATCHMSB_6" BEL "s8/i8253/vcs/C1/LATCHMSB_5" BEL
-        "s8/i8253/vcs/C1/LATCHMSB_4" BEL "s8/i8253/vcs/C1/LATCHMSB_3" BEL
-        "s8/i8253/vcs/C1/LATCHMSB_2" BEL "s8/i8253/vcs/C1/LATCHMSB_1" BEL
-        "s8/i8253/vcs/C1/LATCHMSB_0" BEL "s8/i8253/vcs/C1/LATCHLSB_7" BEL
-        "s8/i8253/vcs/C1/LATCHLSB_6" BEL "s8/i8253/vcs/C1/LATCHLSB_5" BEL
-        "s8/i8253/vcs/C1/LATCHLSB_4" BEL "s8/i8253/vcs/C1/LATCHLSB_3" BEL
-        "s8/i8253/vcs/C1/LATCHLSB_2" BEL "s8/i8253/vcs/C1/LATCHLSB_1" BEL
-        "s8/i8253/vcs/C1/LATCHLSB_0" BEL "s8/i8253/vcs/C2/state_FSM_FFd2" BEL
+        "s8/i8253/vcs/C0/countmsb_0" BEL "s8/i8253/vcs/C1/state_FSM_FFd2" BEL
+        "s8/i8253/vcs/C1/state_FSM_FFd3" BEL "s8/i8253/vcs/C1/state_FSM_FFd4"
+        BEL "s8/i8253/vcs/C1/state_FSM_FFd5" BEL
+        "s8/i8253/vcs/C1/state_FSM_FFd6" BEL
+        "s8/i8253/vcs/C1/readcontrol_FSM_FFd1" BEL
+        "s8/i8253/vcs/C1/readcontrol_FSM_FFd2" BEL
+        "s8/i8253/vcs/C1/state_FSM_FFd1" BEL "s8/i8253/vcs/C1/state_FSM_FFd7"
+        BEL "s8/i8253/vcs/C1/state_FSM_FFd8" BEL
+        "s8/i8253/vcs/C1/state_FSM_FFd9" BEL "s8/i8253/vcs/C1/state_FSM_FFd11"
+        BEL "s8/i8253/vcs/C1/state_FSM_FFd12" BEL
+        "s8/i8253/vcs/C1/state_FSM_FFd10" BEL "s8/i8253/vcs/C1/control_5" BEL
+        "s8/i8253/vcs/C1/control_4" BEL "s8/i8253/vcs/C1/control_2" BEL
+        "s8/i8253/vcs/C1/dataout_7" BEL "s8/i8253/vcs/C1/dataout_6" BEL
+        "s8/i8253/vcs/C1/dataout_5" BEL "s8/i8253/vcs/C1/dataout_4" BEL
+        "s8/i8253/vcs/C1/dataout_3" BEL "s8/i8253/vcs/C1/dataout_2" BEL
+        "s8/i8253/vcs/C1/dataout_1" BEL "s8/i8253/vcs/C1/dataout_0" BEL
+        "s8/i8253/vcs/C1/latchcount_15" BEL "s8/i8253/vcs/C1/latchcount_14"
+        BEL "s8/i8253/vcs/C1/latchcount_13" BEL
+        "s8/i8253/vcs/C1/latchcount_12" BEL "s8/i8253/vcs/C1/latchcount_11"
+        BEL "s8/i8253/vcs/C1/latchcount_10" BEL "s8/i8253/vcs/C1/latchcount_9"
+        BEL "s8/i8253/vcs/C1/latchcount_8" BEL "s8/i8253/vcs/C1/latchcount_7"
+        BEL "s8/i8253/vcs/C1/latchcount_6" BEL "s8/i8253/vcs/C1/latchcount_5"
+        BEL "s8/i8253/vcs/C1/latchcount_4" BEL "s8/i8253/vcs/C1/latchcount_3"
+        BEL "s8/i8253/vcs/C1/latchcount_2" BEL "s8/i8253/vcs/C1/latchcount_1"
+        BEL "s8/i8253/vcs/C1/latchcount_0" BEL "s8/i8253/vcs/C1/countlsb_7"
+        BEL "s8/i8253/vcs/C1/countlsb_6" BEL "s8/i8253/vcs/C1/countlsb_5" BEL
+        "s8/i8253/vcs/C1/countlsb_4" BEL "s8/i8253/vcs/C1/countlsb_3" BEL
+        "s8/i8253/vcs/C1/countlsb_2" BEL "s8/i8253/vcs/C1/countlsb_1" BEL
+        "s8/i8253/vcs/C1/countlsb_0" BEL "s8/i8253/vcs/C1/countmsb_7" BEL
+        "s8/i8253/vcs/C1/countmsb_6" BEL "s8/i8253/vcs/C1/countmsb_5" BEL
+        "s8/i8253/vcs/C1/countmsb_4" BEL "s8/i8253/vcs/C1/countmsb_3" BEL
+        "s8/i8253/vcs/C1/countmsb_2" BEL "s8/i8253/vcs/C1/countmsb_1" BEL
+        "s8/i8253/vcs/C1/countmsb_0" BEL "s8/i8253/vcs/C2/state_FSM_FFd2" BEL
         "s8/i8253/vcs/C2/state_FSM_FFd3" BEL "s8/i8253/vcs/C2/state_FSM_FFd4"
         BEL "s8/i8253/vcs/C2/state_FSM_FFd5" BEL
         "s8/i8253/vcs/C2/state_FSM_FFd6" BEL
@@ -992,9 +1016,9 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
         "s8/i8253/vcs/C2/readcontrol_FSM_FFd2" BEL
         "s8/i8253/vcs/C2/state_FSM_FFd1" BEL "s8/i8253/vcs/C2/state_FSM_FFd7"
         BEL "s8/i8253/vcs/C2/state_FSM_FFd8" BEL
-        "s8/i8253/vcs/C2/state_FSM_FFd9" BEL "s8/i8253/vcs/C2/state_FSM_FFd10"
-        BEL "s8/i8253/vcs/C2/state_FSM_FFd11" BEL
-        "s8/i8253/vcs/C2/state_FSM_FFd12" BEL "s8/i8253/vcs/C2/control_5" BEL
+        "s8/i8253/vcs/C2/state_FSM_FFd9" BEL "s8/i8253/vcs/C2/state_FSM_FFd11"
+        BEL "s8/i8253/vcs/C2/state_FSM_FFd12" BEL
+        "s8/i8253/vcs/C2/state_FSM_FFd10" BEL "s8/i8253/vcs/C2/control_5" BEL
         "s8/i8253/vcs/C2/control_4" BEL "s8/i8253/vcs/C2/control_3" BEL
         "s8/i8253/vcs/C2/control_2" BEL "s8/i8253/vcs/C2/control_1" BEL
         "s8/i8253/vcs/C2/dataout_7" BEL "s8/i8253/vcs/C2/dataout_6" BEL
@@ -2152,24 +2176,22 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
         BEL "s1/i8088/core/fetch/off_l_5" BEL "s1/i8088/core/fetch/off_l_4"
         BEL "s1/i8088/core/fetch/off_l_3" BEL "s1/i8088/core/fetch/off_l_2"
         BEL "s1/i8088/core/fetch/off_l_1" BEL "s1/i8088/core/fetch/off_l_0"
-        BEL "s1/i8088/core/fetch/pref_l_1" BEL "s1/i8088/core/fetch/pref_l_0"
-        BEL "s1/i8088/core/fetch/sop_l_2" BEL "s1/i8088/core/fetch/sop_l_1"
-        BEL "s1/i8088/core/fetch/sop_l_0" BEL "s1/i8088/core/fetch/opcode_l_7"
-        BEL "s1/i8088/core/fetch/opcode_l_6" BEL
-        "s1/i8088/core/fetch/opcode_l_5" BEL "s1/i8088/core/fetch/opcode_l_4"
-        BEL "s1/i8088/core/fetch/opcode_l_3" BEL
-        "s1/i8088/core/fetch/opcode_l_2" BEL "s1/i8088/core/fetch/opcode_l_1"
-        BEL "s1/i8088/core/fetch/opcode_l_0" BEL "s1/i8088/core/fetch/state_2"
-        BEL "s1/i8088/core/fetch/state_1" BEL "s1/i8088/core/fetch/state_0"
-        BEL "s1/i8088/core/fetch/imm_l_15" BEL "s1/i8088/core/fetch/imm_l_14"
-        BEL "s1/i8088/core/fetch/imm_l_13" BEL "s1/i8088/core/fetch/imm_l_12"
-        BEL "s1/i8088/core/fetch/imm_l_11" BEL "s1/i8088/core/fetch/imm_l_10"
-        BEL "s1/i8088/core/fetch/imm_l_9" BEL "s1/i8088/core/fetch/imm_l_8"
-        BEL "s1/i8088/core/fetch/imm_l_7" BEL "s1/i8088/core/fetch/imm_l_6"
-        BEL "s1/i8088/core/fetch/imm_l_5" BEL "s1/i8088/core/fetch/imm_l_4"
-        BEL "s1/i8088/core/fetch/imm_l_3" BEL "s1/i8088/core/fetch/imm_l_2"
-        BEL "s1/i8088/core/fetch/imm_l_1" BEL "s1/i8088/core/fetch/imm_l_0"
-        BEL "s1/i8088/core/decode/seq_8" BEL "s1/i8088/core/decode/seq_7" BEL
+        BEL "s1/i8088/core/fetch/opcode_l_7" BEL
+        "s1/i8088/core/fetch/opcode_l_6" BEL "s1/i8088/core/fetch/opcode_l_5"
+        BEL "s1/i8088/core/fetch/opcode_l_4" BEL
+        "s1/i8088/core/fetch/opcode_l_3" BEL "s1/i8088/core/fetch/opcode_l_2"
+        BEL "s1/i8088/core/fetch/opcode_l_1" BEL
+        "s1/i8088/core/fetch/opcode_l_0" BEL "s1/i8088/core/fetch/state_2" BEL
+        "s1/i8088/core/fetch/state_1" BEL "s1/i8088/core/fetch/state_0" BEL
+        "s1/i8088/core/fetch/imm_l_15" BEL "s1/i8088/core/fetch/imm_l_14" BEL
+        "s1/i8088/core/fetch/imm_l_13" BEL "s1/i8088/core/fetch/imm_l_12" BEL
+        "s1/i8088/core/fetch/imm_l_11" BEL "s1/i8088/core/fetch/imm_l_10" BEL
+        "s1/i8088/core/fetch/imm_l_9" BEL "s1/i8088/core/fetch/imm_l_8" BEL
+        "s1/i8088/core/fetch/imm_l_7" BEL "s1/i8088/core/fetch/imm_l_6" BEL
+        "s1/i8088/core/fetch/imm_l_5" BEL "s1/i8088/core/fetch/imm_l_4" BEL
+        "s1/i8088/core/fetch/imm_l_3" BEL "s1/i8088/core/fetch/imm_l_2" BEL
+        "s1/i8088/core/fetch/imm_l_1" BEL "s1/i8088/core/fetch/imm_l_0" BEL
+        "s1/i8088/core/decode/seq_8" BEL "s1/i8088/core/decode/seq_7" BEL
         "s1/i8088/core/decode/seq_6" BEL "s1/i8088/core/decode/seq_5" BEL
         "s1/i8088/core/decode/seq_4" BEL "s1/i8088/core/decode/seq_3" BEL
         "s1/i8088/core/decode/seq_2" BEL "s1/i8088/core/decode/seq_1" BEL
@@ -2198,37 +2220,17 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
         "s1/i8088/ctrl_fsm/cnt/count_1" BEL "s1/i8088/ctrl_fsm/cnt/count_0"
         BEL "s1/i8088/ctrl_fsm/state_FSM_FFd3" BEL
         "s1/i8088/ctrl_fsm/state_FSM_FFd4" BEL "s2/b5" BEL "s2/aen_brd" BEL
-        "s2/holda" BEL "s2/b7" BEL "s8/i8253/vcs/C1/CNTREG/loadsync" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTLSB_7" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTLSB_6" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTLSB_5" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTLSB_4" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTLSB_3" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTLSB_2" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTLSB_1" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTLSB_0" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTMSB_7" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTMSB_6" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTMSB_5" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTMSB_4" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTMSB_3" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTMSB_2" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTMSB_1" BEL
-        "s8/i8253/vcs/C1/CNTREG/COUNTMSB_0" BEL "s8/i8253/vcs/C1/CNTREG/OUTEN"
-        BEL "s8/i8253/vcs/C1/MODEREG/LATCHCNT" BEL
-        "s8/i8253/vcs/C1/MODEREG/modereg_5" BEL
-        "s8/i8253/vcs/C1/MODEREG/modereg_4" BEL
-        "s8/i8253/vcs/C1/MODEREG/modereg_3" BEL
-        "s8/i8253/vcs/C1/MODEREG/modereg_2" BEL
-        "s8/i8253/vcs/C1/MODEREG/modereg_1" BEL
-        "s8/i8253/vcs/C1/OUTCTRL/RELOAD" BEL "s1/i8088/core/fetch/lock_l" BEL
-        "s1/i8088/core/decode/dive" BEL "s1/i8088/core/fetch/state_1_1" BEL
-        "s1/i8088/core/fetch/state_2_1" BEL "s1/i8088/core/fetch/state_0_1"
-        BEL "s1/i8088/core/fetch/pref_l_1_1" BEL
-        "s1/i8088/core/fetch/opcode_l_1_1" BEL "s1/i8088/core/fetch/state_2_2"
-        BEL "s1/i8088/core/fetch/state_0_2" BEL
-        "s1/i8088/core/fetch/state_2_3" BEL "s1/i8088/core/fetch/state_2_4"
-        BEL "s1/i8088/core/fetch/state_2_5" BEL
+        "s2/holda" BEL "s2/b7" BEL "s1/i8088/core/fetch/lock_l" BEL
+        "s1/i8088/core/decode/dive" BEL "s1/i8088/core/fetch/pref_l_1" BEL
+        "s1/i8088/core/fetch/pref_l_0" BEL "s1/i8088/core/fetch/sop_l_2" BEL
+        "s1/i8088/core/fetch/sop_l_1" BEL "s1/i8088/core/fetch/sop_l_0" BEL
+        "s1/i8088/core/fetch/state_1_1" BEL "s1/i8088/core/fetch/state_2_1"
+        BEL "s1/i8088/core/fetch/state_0_1" BEL
+        "s1/i8088/core/fetch/pref_l_1_1" BEL "s1/i8088/core/fetch/state_1_2"
+        BEL "s1/i8088/core/fetch/state_2_2" BEL
+        "s1/i8088/core/fetch/state_0_2" BEL "s1/i8088/core/fetch/state_1_3"
+        BEL "s1/i8088/core/fetch/state_2_3" BEL
+        "s1/i8088/core/fetch/state_0_3" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/Mshreg_szpipe_18" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/szpipe_18" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/Mshreg_ovf" BEL
@@ -5798,13 +5800,13 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
         BEL
         "s1/i8088/core/exec/alu/muldiv/signmul17/Mmult_a[16]_b[16]_MuLt_1_OUT"
         PIN
-        "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<24>"
+        "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<32>"
         PIN
-        "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<64>"
+        "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<110>"
         PIN
-        "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<24>"
+        "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<30>"
         PIN
-        "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<64>"
+        "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<108>"
         PIN
         "s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B_pins<66>"
         PIN

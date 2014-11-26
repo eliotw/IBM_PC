@@ -386,14 +386,14 @@ module i8253(A0, A1, RD_, WR_, CS_, D7, D6, D5, D4, D3, D2, D1, D0,
   wire SEL0 = ~CS_ & (~A1 & ~A0);
   wire SEL1 = ~CS_ & (~A1 & A0);
   wire SEL2 = ~CS_ & (A1 & ~A0);
-  
-	//supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST_,ZCLK);
-	//COUNT #0 C0(WR_,RD_,SEL0,SELMODE0,D7,D6,D5,D4,D3,D2,D1,D0,CLK0,GATE0,OUT0,RST_,ZCLK);
-   supercounter #0 C0(WR_,RD_,SEL0,SELMODE0,D7,D6,D5,D4,D3,D2,D1,D0,CLK0,GATE0,OUT0,RST_,ZCLK);
-   COUNT #1 C1(WR_,RD_,SEL1,SELMODE1,D7,D6,D5,D4,D3,D2,D1,D0,CLK1,GATE1,OUT1,RST_,ZCLK);
-	supercounter #2 C2(WR_,RD_,SEL2,SELMODE2,D7,D6,D5,D4,D3,D2,D1,D0,CLK2,GATE2,OUT2,RST_,ZCLK);
-   //COUNT #2 C2(WR_,RD_,SEL2,SELMODE2,D7,D6,D5,D4,D3,D2,D1,D0,CLK2,GATE2,OUT2,RST_,ZCLK);
 
+	//COUNT #0 C0(WR_,RD_,SEL0,SELMODE0,D7,D6,D5,D4,D3,D2,D1,D0,CLK0,GATE0,OUT0,RST_,ZCLK);
+	//COUNT #1 C1(WR_,RD_,SEL1,SELMODE1,D7,D6,D5,D4,D3,D2,D1,D0,CLK1,GATE1,OUT1,RST_,ZCLK);
+	//COUNT #2 C2(WR_,RD_,SEL2,SELMODE2,D7,D6,D5,D4,D3,D2,D1,D0,CLK2,GATE2,OUT2,RST_,ZCLK);
+   supercounter #0 C0(WR_,RD_,SEL0,SELMODE0,D7,D6,D5,D4,D3,D2,D1,D0,CLK0,GATE0,OUT0,RST_,ZCLK);
+	supercounter #1 C1(WR_,RD_,SEL1,SELMODE1,D7,D6,D5,D4,D3,D2,D1,D0,CLK1,GATE1,OUT1,RST_,ZCLK);
+	supercounter #2 C2(WR_,RD_,SEL2,SELMODE2,D7,D6,D5,D4,D3,D2,D1,D0,CLK2,GATE2,OUT2,RST_,ZCLK);
+   
 endmodule
 
 /*
@@ -810,7 +810,7 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 	wire wr, rd, sel, pclk, gate, selmode, rst_n, clk;
 	wire [7:0] data;
 	wire [15:0] countval;
-	wire mode0, mode1, mode3;
+	wire mode0, mode1, mode2, mode3;
 	wire [15:0] halfcount;
 	wire countzero;
 	wire lsbzero, msbzero;
@@ -840,6 +840,7 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 	assign countval = {countmsb, countlsb};
 	assign mode0 = ~control[3] & ~control[2] & ~control[1];
 	assign mode1 = ~control[3] & ~control[2] & control[1];
+	assign mode2 = control[2] & ~control[1];
 	assign mode3 = control[2] & control[1];
 	assign halfcount = {1'b0,countval[15:1]};
 	assign countzero = (count == 16'b0);
@@ -917,6 +918,12 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 				end
 				else if(mode1) begin
 					count <= 16'b0;
+				end
+				else if(mode2 & (countval != 16'b0)) begin
+					count <= countval;
+				end
+				else if(mode2 & (countval == 16'b0)) begin
+					count <= 16'hffff;
 				end
 				else if(mode3 & (countval != 16'b0)) begin
 					count <= countval;
@@ -1025,6 +1032,14 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 			end
 			else begin
 				out = 1'b0;
+			end
+		end
+		else if(mode2) begin
+			if(count == 16'b0) begin
+				out = 1'b0;
+			end
+			else begin
+				out = 1'b1;
 			end
 		end
 		else if(mode3) begin
