@@ -803,7 +803,8 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 		cnt3 = 8'b00000111,
 		cnt4 = 8'b00001000,
 		cnt5 = 8'b00001001,
-		cnt6 = 8'b00001010;
+		cnt6 = 8'b00001010,
+		hmsb = 8'b00001011;
 		
 	// Wires
 	wire wr, rd, sel, pclk, gate, selmode, rst_n, clk;
@@ -1090,12 +1091,25 @@ module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST
 					loadlsb = 1'b1;
 				end
 				else if(control[5] & control[4]) begin
-					nextstate = rmsb;
+					nextstate = hmsb;
 					loadmsb = 1'b1;
 					loadlsb = 1'b0;
 				end
 				else begin
 					nextstate = cnt0;
+					loadmsb = 1'b0;
+					loadlsb = 1'b0;
+				end
+			end
+			// Before loading the MSB, do this
+			hmsb: begin
+				if(sel & wr) begin
+					nextstate = rmsb;
+					loadmsb = 1'b1;
+					loadlsb = 1'b0;
+				end				
+				else begin
+					nextstate = hmsb;
 					loadmsb = 1'b0;
 					loadlsb = 1'b0;
 				end

@@ -293,36 +293,12 @@ module intel8259(
 			else if(mrw[5]) iid <= 8'b00001_101;
 			else if(mrw[6]) iid <= 8'b00001_110;
 			else if(mrw[7]) iid <= 8'b00001_111;
-			else iid <= 8'b00000_000;
+			//else iid <= 8'b00000_000;
+			else iid <= 8'b00001_111; // KEYWORD - interrupt level 7 default
 		end
 		else iid <= iid;
 	end
-	/*
-	always @(negedge inta_n) begin
-		if(mrw[0]) iid <= 8'b00001_000;
-		else if(mrw[1]) iid <= 8'b00001_001;
-		else if(mrw[2]) iid <= 8'b00001_010;
-		else if(mrw[3]) iid <= 8'b00001_011;
-		else if(mrw[4]) iid <= 8'b00001_100;
-		else if(mrw[5]) iid <= 8'b00001_101;
-		else if(mrw[6]) iid <= 8'b00001_110;
-		else if(mrw[7]) iid <= 8'b00001_111;
-		else iid <= 8'b00000_000;
-	end
-	*/
-	/*
-	always @(isr) begin
-		if(isr[0]) iid <= 8'b00001_000;
-		else if(isr[1]) iid <= 8'b00001_001;
-		else if(isr[2]) iid <= 8'b00001_010;
-		else if(isr[3]) iid <= 8'b00001_011;
-		else if(isr[4]) iid <= 8'b00001_100;
-		else if(isr[5]) iid <= 8'b00001_101;
-		else if(isr[6]) iid <= 8'b00001_110;
-		else if(isr[7]) iid <= 8'b00001_111;
-		else iid <= 8'b00000_000;
-	end
-	*/
+
 	// ICWS Loading
 	always @(posedge ic_dec or negedge ic_rst_n) begin
 		if(~ic_rst_n) begin
@@ -339,38 +315,6 @@ module intel8259(
 	end
 	
    // IMR Loading
-	/*
-   always @(cs_n_buf[1] or wr_n or a0 or din or imr or rst) begin
-		ic_dec <= 1'b0;
-      if(rst == 1'b1) begin
-			ic_dec <= 1'b0;
-			imr <= 8'b11111111;
-      end
-      else if((cs_n_buf[1] == 1'b0) & (wr_n == 1'b0) & (a0 == 1'b1)) begin
-			if(icws == 2'b00) begin
-				ic_dec <= 1'b0;
-				imr <= d;
-			end
-			else if(icws == 2'b01) begin
-				ic_dec <= 1'b1;
-				imr <= 8'b0;
-			end
-			else if(icws == 2'b10) begin
-				ic_dec <= 1'b1;
-				imr <= 8'b0;
-			end
-			else begin
-				// This should not happen, but plan for what to do
-				ic_dec <= 1'b0;
-				imr <= 8'b0;
-			end
-      end
-      else begin
-			ic_dec <= 1'b0;
-			imr <= imr;
-      end
-   end
-	*/
 	always @(posedge clk or negedge rst_n) begin
 		if(~rst_n) begin
 			imr <= 8'b00000000;
@@ -450,81 +394,6 @@ module intel8259(
 			dout <= dout;
       end
    end // always @ (eoir or recint)
-
-	/*
-   // Mock FSM
-	always @(posedge clk or negedge rst_n) begin
-   //always @(negedge inta_n or posedge rst) begin
-      // Wait State
-      if(~rst_n) begin
-			recint <= 1'b0;
-			isr <= 8'b0;
-			irr_clr <= 8'b0;
-      end
-      else if(recint == 1'b0) begin
-			if(inta_n == 1'b0) begin
-				recint <= 1'b0;
-				if(~clrisr) begin
-					isr <= isr;
-					irr_clr <= irr_clr;
-				end
-				else if(mrw[0] == 1'b1) begin
-					isr <= 8'b00000001 | ((clrisr) ? 8'b0 : isr);
-					irr_clr <= 8'b00000001;
-				end
-				else if(mrw[1] == 1'b1) begin
-					isr <= 8'b00000010 | ((clrisr) ? 8'b0 : isr);
-					irr_clr <= 8'b00000010;
-				end
-				else if(mrw[2] == 1'b1) begin
-					isr <= 8'b00000100 | ((clrisr) ? 8'b0 : isr);
-					irr_clr <= 8'b00000100;
-				end
-				else if(mrw[3] == 1'b1) begin
-					isr <= 8'b00001000 | ((clrisr) ? 8'b0 : isr);
-					irr_clr <= 8'b00001000;
-				end
-				else if(mrw[4] == 1'b1) begin
-					isr <= 8'b00010000 | ((clrisr) ? 8'b0 : isr);
-					irr_clr <= 8'b00010000;
-				end
-				else if(mrw[5] == 1'b1) begin
-					isr <= 8'b00100000 | ((clrisr) ? 8'b0 : isr);
-					irr_clr <= 8'b00100000;
-				end
-				else if(mrw[6] == 1'b1) begin
-					isr <= 8'b01000000 | ((clrisr) ? 8'b0 : isr);
-					irr_clr <= 8'b01000000;
-				end
-				else if(mrw[7] == 1'b1) begin
-					isr <= 8'b10000000 | ((clrisr) ? 8'b0 : isr);
-					irr_clr <= 8'b10000000;
-				end
-				else begin
-					isr <= 8'b0 | ((clrisr) ? 8'b0 : isr);
-					irr_clr <= 8'b0;
-				end
-			end // if (inta == 1'b1)
-			else if(clrisr) begin
-				recint <= 1'b0;
-				isr <= 8'b0;
-				irr_clr <= isr;
-				//irr_clr <= 8'b0; // maybe?
-			end
-			else begin
-				recint <= 1'b0;
-				isr <= isr;
-				irr_clr <= 8'b0;
-			end // else: !if(inta == 1'b1)
-      end
-      // Receive State
-      else begin
-			recint <= 1'b0;
-			isr <= isr;
-			irr_clr <= 8'b0;
-      end
-   end
-   */
 	
    // IRRN
 	assign irr_n[0] = rst_n & ~irr_clr[0];
@@ -545,99 +414,7 @@ module intel8259(
 	irrload irl5(.clk(clk),.rst_n(rst_n),.ir(ir[5]),.clr(irr_clr[5]),.irr(irr[5]));
 	irrload irl6(.clk(clk),.rst_n(rst_n),.ir(ir[6]),.clr(irr_clr[6]),.irr(irr[6]));
 	irrload irl7(.clk(clk),.rst_n(rst_n),.ir(ir[7]),.clr(irr_clr[7]),.irr(irr[7]));
-	
-	/*
-	always @(posedge clk or negedge rst_n) begin
-		if(~rst_n) irr[0] <= 1'b0;
-		else if(~irr_n[0]) irr[0] <= 1'b0;
-		else if(ir[0]) irr[0] <= 1'b1;
-		else irr[0] <= irr[0];
-	end
-	always @(posedge clk or negedge rst_n) begin
-		if(~rst_n) irr[1] <= 1'b0;
-		else if(~irr_n[1]) irr[1] <= 1'b0;
-		else if(ir[1]) irr[1] <= 1'b1;
-		else irr[1] <= irr[1];
-	end
-	always @(posedge clk or negedge rst_n) begin
-		if(~rst_n) irr[2] <= 1'b0;
-		else if(~irr_n[2]) irr[2] <= 1'b0;
-		else if(ir[2]) irr[2] <= 1'b1;
-		else irr[2] <= irr[2];
-	end
-	always @(posedge clk or negedge rst_n) begin
-		if(~rst_n) irr[3] <= 1'b0;
-		else if(~irr_n[3]) irr[3] <= 1'b0;
-		else if(ir[3]) irr[3] <= 1'b1;
-		else irr[3] <= irr[3];
-	end
-	always @(posedge clk or negedge rst_n) begin
-		if(~rst_n) irr[4] <= 1'b0;
-		else if(~irr_n[4]) irr[4] <= 1'b0;
-		else if(ir[4]) irr[4] <= 1'b1;
-		else irr[4] <= irr[4];
-	end
-	always @(posedge clk or negedge rst_n) begin
-		if(~rst_n) irr[5] <= 1'b0;
-		else if(~irr_n[5]) irr[5] <= 1'b0;
-		else if(ir[5]) irr[5] <= 1'b1;
-		else irr[5] <= irr[5];
-	end
-	always @(posedge clk or negedge rst_n) begin
-		if(~rst_n) irr[6] <= 1'b0;
-		else if(~irr_n[6]) irr[6] <= 1'b0;
-		else if(ir[6]) irr[6] <= 1'b1;
-		else irr[6] <= irr[6];
-	end
-	always @(posedge clk or negedge rst_n) begin
-		if(~rst_n) irr[7] <= 1'b0;
-		else if(~irr_n[7]) irr[7] <= 1'b0;
-		else if(ir[7]) irr[7] <= 1'b1;
-		else irr[7] <= irr[7];
-	end
-	*/
-	/*
-	always @(posedge ir[0] or negedge irr_n[0]) begin
-		if(~irr_n[0]) irr[0] <= 1'b0;
-		else if(ir[0]) irr[0] <= 1'b1;
-		else irr[0] <= irr[0];
-	end
-	always @(posedge ir[1] or negedge irr_n[1]) begin
-		if(~irr_n[1]) irr[1] <= 1'b0;
-		else if(ir[1]) irr[1] <= 1'b1;
-		else irr[1] <= irr[1];
-	end
-	always @(posedge ir[2] or negedge irr_n[2]) begin
-		if(~irr_n[2]) irr[2] <= 1'b0;
-		else if(ir[2]) irr[2] <= 1'b1;
-		else irr[2] <= irr[2];
-	end
-	always @(posedge ir[3] or negedge irr_n[3]) begin
-		if(~irr_n[3]) irr[3] <= 1'b0;
-		else if(ir[3]) irr[3] <= 1'b1;
-		else irr[3] <= irr[3];
-	end
-	always @(posedge ir[4] or negedge irr_n[4]) begin
-		if(~irr_n[4]) irr[4] <= 1'b0;
-		else if(ir[4]) irr[4] <= 1'b1;
-		else irr[4] <= irr[4];
-	end
-	always @(posedge ir[5] or negedge irr_n[5]) begin
-		if(~irr_n[5]) irr[5] <= 1'b0;
-		else if(ir[5]) irr[5] <= 1'b1;
-		else irr[5] <= irr[5];
-	end
-	always @(posedge ir[6] or negedge irr_n[6]) begin
-		if(~irr_n[6]) irr[6] <= 1'b0;
-		else if(ir[6]) irr[6] <= 1'b1;
-		else irr[6] <= irr[6];
-	end
-	always @(posedge ir[7] or negedge irr_n[7]) begin
-		if(~irr_n[7]) irr[7] <= 1'b0;
-		else if(ir[7]) irr[7] <= 1'b1;
-		else irr[7] <= irr[7];
-	end
-	*/
+
    // MRW resolution
    always @(irr or imr) begin
       mrw[0] <= irr[0] & ~imr[0];

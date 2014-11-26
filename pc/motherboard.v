@@ -107,6 +107,7 @@ module motherboard(
 	wire irq00; // special IRQ0 line
 	wire irqbutton; // special IRQ0 button
 	wire irqenable; // enable IRQ0
+	wire activate_timer_2; // activate timer 2
 	
    // Some assignments
    assign clk_100 = USER_CLK; // user clock is 100 MHz clock
@@ -125,6 +126,7 @@ module motherboard(
 	assign keyboard_load_special = GPIO_SW_E; // keyboard load special program
 	assign irq00 = (irqenable) ? irq0 : 1'b0; // disable irq0 - KEYWORD
 	assign irqbutton = GPIO_SW_W; // button to disable irq0
+	assign activate_timer_2 = GPIO_DIP_SW2; // switch to enable timer 2
 	
 	// Disable IRQ Module
 	irqdisable ird(
@@ -343,6 +345,7 @@ module motherboard(
 	     .pclk(pclk),
 	     .reset_drv_n(reset_drv_n),
 		  .zclk(clk88),
+		  .activate_timer_2(activate_timer_2),
 	     .drq0(drq[0]),
 	     .irq0(irq0),
 	     .spkr_data_out(spkr_data_out),
@@ -1254,18 +1257,35 @@ module sheet7(
 	wire ram_sel_n;
 	wire we;
 	wire re;
-	wire [7:0] dout, din;
+	wire [7:0] dout;
 	wire [17:0] addr;
+	wire rst_n;
+	
+	// Registers
+	reg [7:0] din;
 	
 	// Assignment
 	assign ram_sel_n = a[19] | a[18];
 	assign we = ~ram_sel_n & ~xmemw_n;
 	assign re = ~ram_sel_n & ~xmemr_n;
-	assign din = (we == 1'b1) ? d : 8'b00000000;
 	assign d = (re == 1'b1) ? dout : 8'bzzzzzzzz;
 	assign addr = a[17:0];
 	assign pck_n = ~pck;
 	assign pck = 1'b0;
+	assign rst_n = ~reset;
+	
+	// Latch Register
+	always @(posedge clk88 or negedge rst_n) begin
+		if(~rst_n) begin
+			din <= 8'b00000000;
+		end
+		else if(we) begin
+			din <= d;
+		end
+		else begin
+			din <= din;
+		end
+	end
 	
 	// New RAM Module
 	newram nero(
@@ -1299,6 +1319,7 @@ module sheet8(
 	      input pclk,
 	      input reset_drv_n,
 			input zclk,
+			input activate_timer_2,
 	      output reg drq0,
 	      output irq0,
 	      output spkr_data_out,
@@ -1318,14 +1339,13 @@ module sheet8(
    reg [11:0] 		count;
    
    // Assignments
-	assign activate_timer = 1'b0; // 1 activates the 8253 timer 2 out, 0 activates the conventional oscialltor
+	assign activate_timer = activate_timer_2;
    assign cass_data_in = ~out2;
    assign tc_2_out = out2;
    assign sdata = ~(out2 & spkr_data);
    assign spkr_cnt = (count >= 12'h299);
 	assign counter_out = (tim_2_gate_spk) ? spkr_cnt : 1'b1;
-	//assign out2 = (activate_timer) ? out3 : counter_out;
-	assign out2 = counter_out;
+	assign out2 = (activate_timer) ? out3 : counter_out;
 	
    // 8253 Module
    intel8253 i8253(
