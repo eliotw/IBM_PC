@@ -60,7 +60,7 @@ endmodule // intel8253
  * cntreg:
  * This module is a 16-bit count register for the 8253
  * This module has been copied from the VCS installation folder
- */
+ 
 module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN,RST_,ZCLK);
 
    	input        	SEL,
@@ -185,7 +185,7 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN,RST_
 		end
 	end
 	
-	/*
+	//
 	always @(posedge WR_) begin // KEYWORD
 		if(WR_ == 1'b1) begin
 			if(SEL & RD_) begin
@@ -212,7 +212,7 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN,RST_
 			LOAD <= LOAD;
 		end // else: !if(WR_ == 1'b1)
 	end // always @ (posedge CLK or posedge WR_)
-	*/
+	//
 
 	// OUTEN Register
 	always @(posedge ZCLK or negedge RST_) begin
@@ -230,7 +230,7 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN,RST_
 		end
 	end // always @ (clear or WR_ or MODE or lsbflag)
 	
-	/*
+	//
 	always @(posedge clear or posedge WR_) begin
 		if(clear == 1'b1) begin
 			OUTEN <= 1'b0;
@@ -245,15 +245,16 @@ module cntreg(D,MODE,SEL,RD_,WR_,CLK,COUNTLSB,COUNTMSB,MODEWRITE,LOAD,OUTEN,RST_
 			OUTEN <= OUTEN;
 		end
 	end // always @ (clear or WR_ or MODE or lsbflag)
-	*/
+	//
 	
 endmodule
-
+*/
 /*
  * downcntr:
  * A 16-bit down counter for the 8253
  * This module is from the VCS installation folder
  */
+ /*
 module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT, RST_,ZCLK);
 
    input         CLK,
@@ -342,7 +343,7 @@ module downcntr(COUNT, MODE, COUNTMSB, COUNTLSB, LOADCNT, CLK, GATE, OUT, RST_,Z
    end // always @ (posedge CLK)
     
 endmodule
-
+*/
 /*
  * i8253:
  * Module emulating the intel 8253
@@ -399,7 +400,7 @@ endmodule
 /*
  * COUNT:
  * Module for one of the 8253 counters
- */
+ 
 module COUNT(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST_,ZCLK);
 
   input       WR_,
@@ -462,11 +463,11 @@ module COUNT(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST_,ZCLK)
   outctrl OUTCTRL(COUNT,MODE[3:1],CLK,GATE,OUTEN,MODETRIG,LOADCNT,SETOUT_,CLROUT_,RELOAD,OUT,ZCLK);
 
 endmodule
-
+*/
 /*
  * modereg:
  * Module for the 8253 mode register
- */
+ 
 module modereg(D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCNT,CLK,RST_,ZCLK);
 
   input        RD_,
@@ -543,11 +544,11 @@ module modereg(D,MODE,SELMODE,RD_,WR_,MODEWRITE,SETOUT_,CLROUT_,MODETRIG,LATCHCN
     end
 
 endmodule
-
+*/
 /*
  * outctrl:
  * Module for out control for intel 8253
- */
+ 
 module outctrl(COUNT,MODE,CLK,GATE,OUTENABLE,MODETRIG,LOAD,SETOUT_,CLROUT_,
                RELOAD, OUT,ZCLK);
 
@@ -672,11 +673,11 @@ module outctrl(COUNT,MODE,CLK,GATE,OUTENABLE,MODETRIG,LOAD,SETOUT_,CLROUT_,
    end // always @ (posedge GATE or posedge MODETRIG or posedge CLRTRIG)
    
 endmodule // outctrl
-
+*/
 /*
  * outlatchCOUNT,LATCHLSB,LATCHMSB,LATCHCNT,CLK);
  * Output latch for intel 8253
- */
+ 
 module outlatch(COUNT, lsb, msb, LATCHCNT, CLK);
 
 	input [15:0] COUNT;
@@ -689,11 +690,12 @@ module outlatch(COUNT, lsb, msb, LATCHCNT, CLK);
 	assign msb = COUNT[15:8];
 	
 endmodule
-
+*/
 /*
  * read:
  * Read module for intel 8253
  */
+ /*
 module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
 
    input       SEL,
@@ -763,7 +765,7 @@ module read(D, LATCHLSB, LATCHMSB, MODE, SEL, RD_, WR_, MODEWRITE, CLRLATCH);
    end
    
 endmodule // read
-
+*/
 /*
  * supercounter:
  * Module for one of the new 8253 counters
