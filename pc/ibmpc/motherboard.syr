@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 WARNING:Xst:1583 - You are using an internal switch '-use_new_parser'.
@@ -3529,7 +3529,7 @@ Synthesizing Unit <keyload>.
         act4 = 8'b00100000
         act5 = 8'b01000000
         act6 = 8'b10000000
-        tc = 16'b0001110000011101
+        tc = 16'b0001100100111101
         endcount = 16'b0100000000000000
     Found 16-bit register for signal <delaycounter>.
     Found 16-bit register for signal <counter>.
@@ -5141,9 +5141,9 @@ FindSrcOfAsyncThruGates : 200 (1)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Control Signal                                                                                                                                                                                                                                                                                                      | Buffer(FF name)                                                                                                                                             | Load  |
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                                                            | NONE(s8/i8253/vcs/C2/countmsb_6)                                                                                                                            | 635   |
-s7/nero/N1(s7/nero/XST_GND:G)                                                                                                                                                                                                                                                                                       | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                       | 256   |
-s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                                                           | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                 | 64    |
+deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                                                            | NONE(s1/i8088/core/exec/regfile/r_0_10)                                                                                                                     | 635   |
+s7/nero/N1(s7/nero/XST_GND:G)                                                                                                                                                                                                                                                                                       | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                       | 256   |
+s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                                                           | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                 | 64    |
 s9/keyboard/keyloadmod/gamerom/N1(s9/keyboard/keyloadmod/gamerom/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[7].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)| 64    |
 s8/i8253/vcs/C1/READ/SEL_WR__AND_886_o_inv(s8/i8253/vcs/C1/READ/SEL_WR__AND_886_o_inv1:O)                                                                                                                                                                                                                           | NONE(s8/i8253/vcs/C1/READ/DREG_3)                                                                                                                           | 9     |
 s0/vgamod/char_rom/N1(s0/vgamod/char_rom/XST_GND:G)                                                                                                                                                                                                                                                                 | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                 | 8     |
@@ -5362,7 +5362,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/clk'
   Clock period: 24.249ns (frequency: 41.239MHz)
-  Total number of paths / destination ports: 15831205926983740 / 5302
+  Total number of paths / destination ports: 15831205926983696 / 5302
 -------------------------------------------------------------------------
 Delay:               24.249ns (Levels of Logic = 54)
   Source:            s1/i8088/core/fetch/opcode_l_6 (FF)
@@ -5421,7 +5421,7 @@ Delay:               24.249ns (Levels of Logic = 54)
      XORCY:CI->O           1   0.357   0.480  s1/i8088/core/exec/alu/othop/Madd_dcmp2_xor<18> (s1/i8088/core/exec/alu/othop/dcmp2<18>)
      LUT6:I5->O            1   0.094   0.480  s1/i8088/core/exec/alu/m1/Mmux_out32 (s1/i8088/core/exec/alu/m1/Mmux_out31)
      LUT6:I5->O            5   0.094   0.811  s1/i8088/core/exec/alu/m1/Mmux_out33 (s1/i8088/core/addr_exec<18>)
-     LUT6:I2->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_cx_zero113_SW0_SW0_F (N1716)
+     LUT6:I2->O            1   0.094   0.000  s1/i8088/core/exec/regfile/Mmux_cx_zero113_SW0_SW0_F (N1714)
      MUXF7:I0->O           1   0.251   0.576  s1/i8088/core/exec/regfile/Mmux_cx_zero113_SW0_SW0 (N1448)
      LUT6:I4->O            9   0.094   0.754  s1/i8088/core/fetch/next_or_not/next_in_opco1 (s1/i8088/core/fetch/next_in_opco)
      LUT6:I3->O            1   0.094   0.576  s1/i8259/Mmux_eoir[7]_GND_66_o_mux_92_OUT31_SW0 (N26)
@@ -5454,7 +5454,7 @@ Delay:               6.383ns (Levels of Logic = 6)
      LUT6:I0->O           19   0.094   0.809  s8/i8253/vcs/C0/countzero<15>3 (s8/i8253/vcs/C0/countzero)
      LUT6:I3->O           20   0.094   0.814  s8/i8253/vcs/C0/Mmux_PWR_152_o_countval[15]_mux_39_OUT1011 (s8/i8253/vcs/C0/Mmux_PWR_152_o_countval[15]_mux_39_OUT1011)
      LUT6:I3->O            4   0.094   1.085  s8/i8253/vcs/C0/Mmux_PWR_152_o_countval[15]_mux_39_OUT1721 (s8/i8253/vcs/C0/Mmux_PWR_152_o_countval[15]_mux_39_OUT172)
-     LUT6:I0->O            1   0.094   0.480  s8/i8253/vcs/C0/Mmux_PWR_152_o_countval[15]_mux_39_OUT17_SW1 (N1662)
+     LUT6:I0->O            1   0.094   0.480  s8/i8253/vcs/C0/Mmux_PWR_152_o_countval[15]_mux_39_OUT17_SW1 (N1660)
      LUT5:I4->O            1   0.094   0.000  s8/i8253/vcs/C0/Mmux_PWR_152_o_countval[15]_mux_39_OUT17 (s8/i8253/vcs/C0/PWR_152_o_countval[15]_mux_39_OUT<15>)
      FDC:D                    -0.018          s8/i8253/vcs/C0/count_15
     ----------------------------------------
@@ -6014,7 +6014,7 @@ xiow_n         |    2.469|         |         |         |
 
 
 Total REAL time to Xst completion: 80.00 secs
-Total CPU time to Xst completion: 77.88 secs
+Total CPU time to Xst completion: 77.10 secs
  
 WARNING:Xst:3152 - You have chosen to run a version of XST which is not the default solution
    for the specified device family. You are free to use it in order to take
@@ -6027,7 +6027,7 @@ WARNING:Xst:3152 - You have chosen to run a version of XST which is not the defa
 --> 
 
 
-Total memory usage is 575036 kilobytes
+Total memory usage is 575364 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  881 (   0 filtered)
