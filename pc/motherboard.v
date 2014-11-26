@@ -1258,21 +1258,21 @@ module sheet7(
 	wire we;
 	wire re;
 	wire [7:0] dout;
-	wire [17:0] addr;
 	wire rst_n;
 	
 	// Registers
 	reg [7:0] din;
+	wire [17:0] addr;
 	
 	// Assignment
 	assign ram_sel_n = a[19] | a[18];
 	assign we = ~ram_sel_n & ~xmemw_n;
 	assign re = ~ram_sel_n & ~xmemr_n;
 	assign d = (re == 1'b1) ? dout : 8'bzzzzzzzz;
-	assign addr = a[17:0];
 	assign pck_n = ~pck;
 	assign pck = 1'b0;
 	assign rst_n = ~reset;
+	assign addr = a[17:0];
 	
 	// Latch Register
 	always @(posedge clk88 or negedge rst_n) begin
@@ -1546,6 +1546,7 @@ module sheet10(
 
            // Wishbone Replacement Signals
            .clk(vga_clk), // 25 MHz VDU clock
+			  .clk88(clk), // clock 4.77 MHz
            .rst(reset), // Reset Line
            .a(a), // Address bits
            .d(d), // Data bits

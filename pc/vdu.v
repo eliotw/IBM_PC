@@ -7,6 +7,7 @@
 module vdu (
 	    // Wishbone Replacement Signals
 	    input clk, // 25 MHz VDU clock
+		 input clk88, // same clock as pc
 	    input rst, // Reset Line
 	    input [19:0] a, // Address bits
 	    inout [7:0] d, // Data bits
@@ -161,7 +162,7 @@ Whole frame	525
 	); 
 
 	charram3 ram_2k_char_3 (
-	.clka(clk),
+	.clka(clk88), // KEYWORD
 	.rsta(rst),
 	.wea(new_buff_we),
 	.addra(a[11:1]),
@@ -176,7 +177,7 @@ Whole frame	525
 	);
 	
 	attrram3 ram_2k_attr_3 (
-	.clka(clk),
+	.clka(clk88), // KEYWORD
 	.rsta(rst),
 	.wea(new_attr_we),
 	.addra(a[11:1]),
@@ -226,7 +227,8 @@ Whole frame	525
    assign wr_reg = iow & iod & ((a[3:0] == 4'h3) | (a[3:0] == 4'h5) | (a[3:0] == 4'h7)); // 003D5
    assign wr_adr = iow & iod & ((a[3:0] == 4'h2) | (a[3:0] == 4'h4) | (a[3:0] == 4'h6)); // 003D4
    assign io_range = (a >= 20'h003D0) & (a <= 20'h003DF);
-   assign mem_range = (a >= 20'hB8000) & (a < 20'hBC000);
+   //assign mem_range = (a >= 20'hB8000) & (a < 20'hBC000);
+	assign mem_range = a[19] & ~a[18] & a[17] & a[16] & a[15] & ~a[14]; // 1011_10
    assign wr_hcursor   = wr_reg & (reg_adr==4'hf);
    assign wr_vcursor   = wr_reg & (reg_adr==4'he);
    assign wr_cur_start = wr_reg & (reg_adr==4'ha);
@@ -237,7 +239,7 @@ Whole frame	525
    assign status_reg1 = { 11'b0, v_retrace, 3'b0, vh_retrace };
    
    // Behaviour - CPU write interface
-   always @(posedge clk)
+   always @(posedge clk88) // KEYWORD
      if(rst) begin
 	attr0_addr    <= 11'b0;
 	attr0_we      <= 1'b0;
@@ -283,7 +285,7 @@ Whole frame	525
 		// buff_out was vga_data_out, attr_out was attr_data_out
 
    // CPU read interface
-   always @(posedge clk) begin
+   always @(posedge clk88) begin // KEYWORD
       // Reset
       if(rst) begin
 			dataout <= 8'b0;
@@ -308,23 +310,23 @@ Whole frame	525
    end
    
    // Control registers
-   always @(posedge clk)
+   always @(posedge clk88) // KEYWORD
      reg_adr <= rst ? 4'h0
 		: (wr_adr ? d[3:0] : reg_adr);
 
-   always @(posedge clk)
+   always @(posedge clk88) // KEYWORD
      reg_hcursor <= rst ? 7'h0
 		    : (wr_hcursor ? d[6:0] : reg_hcursor);
 
-   always @(posedge clk) 
+   always @(posedge clk88) // KEYWORD
      reg_vcursor <= rst ? 5'h0
 		    : (wr_vcursor ? d[4:0] : reg_vcursor);
 
-   always @(posedge clk)
+   always @(posedge clk88) // KEYWORD
      reg_cur_start <= rst ? 4'he
 		      : (wr_cur_start ? d[3:0] : reg_cur_start);
 
-   always @(posedge clk)
+   always @(posedge clk88) // KEYWORD
      reg_cur_end <= rst ? 4'hf
 		    : (wr_cur_end ? d[3:0] : reg_cur_end);
 

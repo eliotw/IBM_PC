@@ -595,7 +595,7 @@ module keyload(
 	
 	// Terminal Count for Counter
 	parameter [15:0] tc = 16'd6606; // 6608
-	parameter [15:0] endcount = 16'h4000; // Stable at 0x3000 - do not take it below 0x3000!
+	parameter [15:0] endcount = 16'h6000; // Stable at 0x3000 - do not take it below 0x3000!
 	
 	// Counter Register
 	reg [15:0] counter;
@@ -664,12 +664,24 @@ module keyload(
 		if(~rst_n) begin
 			delaycounter <= 16'h0;
 		end
+		/*
 		else if(delaycounter == endcount) begin
 			delaycounter <= 16'h0;
 		end
 		else begin
 			delaycounter <= delaycounter + 1;
 		end
+		*/
+		else if(state == act4) begin
+			delaycounter <= 16'h0;
+		end
+		else if(state == act5) begin
+			delaycounter <= delaycounter + 1;
+		end
+		else begin
+			delaycounter <= delaycounter;
+		end
+		
 	end
 	
 	// Counter Logic
@@ -722,7 +734,8 @@ module keyload(
 			end
 			// act5 - wait for counter to be low
 			act5: begin
-				if(delaycounter == 16'h0) nextstate = act6;
+				//if(delaycounter == 16'h0) nextstate = act6;
+				if(delaycounter == endcount) nextstate = act6;
 				else nextstate = act5;
 			end
 			// act6 - extra delay state
