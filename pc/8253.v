@@ -1,11 +1,8 @@
-// Definition of D from VCS
-`define D {D7,D6,D5,D4,D3,D2,D1,D0}
-
 /*
  * intel8253:
- * This module is a verilog description of the intel 8253
- * programmable interval timer
- * It is essentially a wrapper for the VCS version of the 8253
+ * This module is a Verilog description of the intel 8253 programmable interval timer.
+ * Originally a wrapper for the VCS 8253, we eventually ditched all of the code from VCS
+ * and wrote our own implementation. 
  */
 module intel8253(
 	      gate,
@@ -37,107 +34,19 @@ module intel8253(
 	assign selmode[1] = ~cs_n & (a1 & a0 & ~d[7] & d[6]);
 	assign selmode[2] = ~cs_n & (a1 & a0 & d[7] & ~d[6]);
 	
-	//wire SELMODE0 = ~CS_ & (A1 & A0 & ~D7 & ~D6);
-	//wire SELMODE1 = ~CS_ & (A1 & A0 & ~D7 & D6);
-	//wire SELMODE2 = ~CS_ & (A1 & A0 & D7 & ~D6);
-	
 	assign sel[0] = ~cs_n & (~a1 & ~a0);
 	assign sel[1] = ~cs_n & (~a1 & a0);
 	assign sel[2] = ~cs_n & (a1 & ~a0);
-	
-	//wire SEL0 = ~CS_ & (~A1 & ~A0);
-	//wire SEL1 = ~CS_ & (~A1 & A0);
-	//wire SEL2 = ~CS_ & (A1 & ~A0);
 
 	supercounter #0 C0(wr_n,rd_n,sel[0],selmode[0],d[7],d[6],d[5],d[4],d[3],d[2],d[1],d[0],clk,gate[0],out[0],rst_n,zclk);
 	supercounter #1 C1(wr_n,rd_n,sel[1],selmode[1],d[7],d[6],d[5],d[4],d[3],d[2],d[1],d[0],clk,gate[1],out[1],rst_n,zclk);
 	supercounter #2 C2(wr_n,rd_n,sel[2],selmode[2],d[7],d[6],d[5],d[4],d[3],d[2],d[1],d[0],clk,gate[2],out[2],rst_n,zclk);
-	/*
-   i8253 vcs(
-	     .A0(a0), 
-	     .A1(a1), 
-	     .RD_(rd_n), 
-	     .WR_(wr_n), 
-	     .CS_(cs_n), 
-	     .D7(d[7]), 
-	     .D6(d[6]), 
-	     .D5(d[5]), 
-	     .D4(d[4]), 
-	     .D3(d[3]), 
-	     .D2(d[2]),
-	     .D1(d[1]),
-	     .D0(d[0]),
-	     .CLK0(clk[0]), 
-	     .CLK1(clk[1]), 
-	     .CLK2(clk[2]), 
-	     .GATE0(gate[0]), 
-	     .GATE1(gate[1]), 
-	     .GATE2(gate[2]), 
-	     .OUT0(out[0]), 
-	     .OUT1(out[1]), 
-	     .OUT2(out[2]),
-		  .RST_(rst_n),
-		  .ZCLK(zclk)
-	     );
-   */
+
 endmodule // intel8253
 
 /*
- * i8253:
- * Module emulating the intel 8253
- * Core acquired from VCS installation folder
- */
-module i8253(A0, A1, RD_, WR_, CS_, D7, D6, D5, D4, D3, D2, D1, D0,
-             CLK0, CLK1, CLK2, GATE0, GATE1, GATE2, OUT0, OUT1, OUT2, RST_, ZCLK);
-
-  input  A0,
-         A1,
-         RD_,
-         WR_,
-         CS_,
-         CLK0,
-         CLK1,
-         CLK2,
-         GATE0,
-         GATE1,
-         GATE2;
-
-  inout  D7,
-         D6,
-         D5,
-         D4,
-         D3,
-         D2,
-         D1,
-         D0;
-
-  output OUT0,
-         OUT1,
-         OUT2;
-	
-  input	RST_;
-  input  ZCLK;
-  
-  wire SELMODE0 = ~CS_ & (A1 & A0 & ~D7 & ~D6);
-  wire SELMODE1 = ~CS_ & (A1 & A0 & ~D7 & D6);
-  wire SELMODE2 = ~CS_ & (A1 & A0 & D7 & ~D6);
- 
-  wire SEL0 = ~CS_ & (~A1 & ~A0);
-  wire SEL1 = ~CS_ & (~A1 & A0);
-  wire SEL2 = ~CS_ & (A1 & ~A0);
-
-	//COUNT #0 C0(WR_,RD_,SEL0,SELMODE0,D7,D6,D5,D4,D3,D2,D1,D0,CLK0,GATE0,OUT0,RST_,ZCLK);
-	//COUNT #1 C1(WR_,RD_,SEL1,SELMODE1,D7,D6,D5,D4,D3,D2,D1,D0,CLK1,GATE1,OUT1,RST_,ZCLK);
-	//COUNT #2 C2(WR_,RD_,SEL2,SELMODE2,D7,D6,D5,D4,D3,D2,D1,D0,CLK2,GATE2,OUT2,RST_,ZCLK);
-   supercounter #0 C0(WR_,RD_,SEL0,SELMODE0,D7,D6,D5,D4,D3,D2,D1,D0,CLK0,GATE0,OUT0,RST_,ZCLK);
-	supercounter #1 C1(WR_,RD_,SEL1,SELMODE1,D7,D6,D5,D4,D3,D2,D1,D0,CLK1,GATE1,OUT1,RST_,ZCLK);
-	supercounter #2 C2(WR_,RD_,SEL2,SELMODE2,D7,D6,D5,D4,D3,D2,D1,D0,CLK2,GATE2,OUT2,RST_,ZCLK);
-   
-endmodule
-
-/*
  * supercounter:
- * Module for one of the new 8253 counters
+ * One of the three 8253 counters
  */
 module supercounter(WR_,RD_,SEL,SELMODE,D7,D6,D5,D4,D3,D2,D1,D0,CLK,GATE,OUT,RST_,ZCLK);
 	input	WR_,

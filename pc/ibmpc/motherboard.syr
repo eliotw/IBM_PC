@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 WARNING:Xst:1583 - You are using an internal switch '-use_new_parser'.
@@ -256,7 +256,6 @@ Analyzing Verilog file "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8255.
 Parsing module <intel8255>.
 Analyzing Verilog file "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" into library work
 Parsing module <intel8253>.
-Parsing module <i8253>.
 Parsing module <supercounter>.
 Analyzing Verilog file "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8237.v" into library work
 Parsing module <intel8237A>.
@@ -475,16 +474,16 @@ Elaborating module <sheet8>.
 Elaborating module <intel8253>.
 
 Elaborating module <supercounter(CNTVAL=0)>.
-WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" Line 310: Result of 32-bit expression is truncated to fit in 16-bit target.
-WARNING:HDLCompiler:189 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" Line 52: Size mismatch in connection of port <CLK>. Formal port size is 1-bit while actual signal size is 3-bit.
+WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" Line 219: Result of 32-bit expression is truncated to fit in 16-bit target.
+WARNING:HDLCompiler:189 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" Line 41: Size mismatch in connection of port <CLK>. Formal port size is 1-bit while actual signal size is 3-bit.
 
 Elaborating module <supercounter(CNTVAL=1)>.
-WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" Line 310: Result of 32-bit expression is truncated to fit in 16-bit target.
-WARNING:HDLCompiler:189 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" Line 53: Size mismatch in connection of port <CLK>. Formal port size is 1-bit while actual signal size is 3-bit.
+WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" Line 219: Result of 32-bit expression is truncated to fit in 16-bit target.
+WARNING:HDLCompiler:189 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" Line 42: Size mismatch in connection of port <CLK>. Formal port size is 1-bit while actual signal size is 3-bit.
 
 Elaborating module <supercounter(CNTVAL=2)>.
-WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" Line 310: Result of 32-bit expression is truncated to fit in 16-bit target.
-WARNING:HDLCompiler:189 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" Line 54: Size mismatch in connection of port <CLK>. Formal port size is 1-bit while actual signal size is 3-bit.
+WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" Line 219: Result of 32-bit expression is truncated to fit in 16-bit target.
+WARNING:HDLCompiler:189 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/8253.v" Line 43: Size mismatch in connection of port <CLK>. Formal port size is 1-bit while actual signal size is 3-bit.
 WARNING:HDLCompiler:413 - "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/motherboard.v" Line 1384: Result of 32-bit expression is truncated to fit in 12-bit target.
 
 Elaborating module <sn75477>.
@@ -3224,16 +3223,16 @@ Synthesizing Unit <supercounter_1>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 16-bit subtractor for signal <GND_204_o_GND_204_o_sub_41_OUT<15:0>> created at line 310.
-    Found 1-bit tristate buffer for signal <D0> created at line 218
-    Found 1-bit tristate buffer for signal <D1> created at line 218
-    Found 1-bit tristate buffer for signal <D2> created at line 218
-    Found 1-bit tristate buffer for signal <D3> created at line 218
-    Found 1-bit tristate buffer for signal <D4> created at line 218
-    Found 1-bit tristate buffer for signal <D5> created at line 218
-    Found 1-bit tristate buffer for signal <D6> created at line 218
-    Found 1-bit tristate buffer for signal <D7> created at line 218
-    Found 16-bit comparator greater for signal <halfcount[15]_count[15]_LessThan_62_o> created at line 420
+    Found 16-bit subtractor for signal <GND_204_o_GND_204_o_sub_41_OUT<15:0>> created at line 219.
+    Found 1-bit tristate buffer for signal <D0> created at line 127
+    Found 1-bit tristate buffer for signal <D1> created at line 127
+    Found 1-bit tristate buffer for signal <D2> created at line 127
+    Found 1-bit tristate buffer for signal <D3> created at line 127
+    Found 1-bit tristate buffer for signal <D4> created at line 127
+    Found 1-bit tristate buffer for signal <D5> created at line 127
+    Found 1-bit tristate buffer for signal <D6> created at line 127
+    Found 1-bit tristate buffer for signal <D7> created at line 127
+    Found 16-bit comparator greater for signal <halfcount[15]_count[15]_LessThan_62_o> created at line 329
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred  64 D-type flip-flop(s).
@@ -3294,16 +3293,16 @@ Synthesizing Unit <supercounter_2>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 16-bit subtractor for signal <GND_213_o_GND_213_o_sub_41_OUT<15:0>> created at line 310.
-    Found 1-bit tristate buffer for signal <D0> created at line 218
-    Found 1-bit tristate buffer for signal <D1> created at line 218
-    Found 1-bit tristate buffer for signal <D2> created at line 218
-    Found 1-bit tristate buffer for signal <D3> created at line 218
-    Found 1-bit tristate buffer for signal <D4> created at line 218
-    Found 1-bit tristate buffer for signal <D5> created at line 218
-    Found 1-bit tristate buffer for signal <D6> created at line 218
-    Found 1-bit tristate buffer for signal <D7> created at line 218
-    Found 16-bit comparator greater for signal <halfcount[15]_count[15]_LessThan_62_o> created at line 420
+    Found 16-bit subtractor for signal <GND_213_o_GND_213_o_sub_41_OUT<15:0>> created at line 219.
+    Found 1-bit tristate buffer for signal <D0> created at line 127
+    Found 1-bit tristate buffer for signal <D1> created at line 127
+    Found 1-bit tristate buffer for signal <D2> created at line 127
+    Found 1-bit tristate buffer for signal <D3> created at line 127
+    Found 1-bit tristate buffer for signal <D4> created at line 127
+    Found 1-bit tristate buffer for signal <D5> created at line 127
+    Found 1-bit tristate buffer for signal <D6> created at line 127
+    Found 1-bit tristate buffer for signal <D7> created at line 127
+    Found 16-bit comparator greater for signal <halfcount[15]_count[15]_LessThan_62_o> created at line 329
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred  64 D-type flip-flop(s).
@@ -3364,16 +3363,16 @@ Synthesizing Unit <supercounter_3>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 16-bit subtractor for signal <GND_222_o_GND_222_o_sub_41_OUT<15:0>> created at line 310.
-    Found 1-bit tristate buffer for signal <D0> created at line 218
-    Found 1-bit tristate buffer for signal <D1> created at line 218
-    Found 1-bit tristate buffer for signal <D2> created at line 218
-    Found 1-bit tristate buffer for signal <D3> created at line 218
-    Found 1-bit tristate buffer for signal <D4> created at line 218
-    Found 1-bit tristate buffer for signal <D5> created at line 218
-    Found 1-bit tristate buffer for signal <D6> created at line 218
-    Found 1-bit tristate buffer for signal <D7> created at line 218
-    Found 16-bit comparator greater for signal <halfcount[15]_count[15]_LessThan_62_o> created at line 420
+    Found 16-bit subtractor for signal <GND_222_o_GND_222_o_sub_41_OUT<15:0>> created at line 219.
+    Found 1-bit tristate buffer for signal <D0> created at line 127
+    Found 1-bit tristate buffer for signal <D1> created at line 127
+    Found 1-bit tristate buffer for signal <D2> created at line 127
+    Found 1-bit tristate buffer for signal <D3> created at line 127
+    Found 1-bit tristate buffer for signal <D4> created at line 127
+    Found 1-bit tristate buffer for signal <D5> created at line 127
+    Found 1-bit tristate buffer for signal <D6> created at line 127
+    Found 1-bit tristate buffer for signal <D7> created at line 127
+    Found 16-bit comparator greater for signal <halfcount[15]_count[15]_LessThan_62_o> created at line 329
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred  64 D-type flip-flop(s).
@@ -5089,10 +5088,10 @@ FindSrcOfAsyncThruGates : 200 (1)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Control Signal                                                                                                                                                                                                                                                                                                      | Buffer(FF name)                                                                                                                                             | Load  |
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                                                            | NONE(s8/i8253/C1/latchcount_14)                                                                                                                             | 684   |
-s7/nero/N1(s7/nero/XST_GND:G)                                                                                                                                                                                                                                                                                       | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                      | 256   |
-s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                                                           | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                 | 64    |
-s9/keyboard/keyloadmod/gamerom/N1(s9/keyboard/keyloadmod/gamerom/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)| 64    |
+deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                                                            | NONE(s1/i8088/core/decode/tfld)                                                                                                                             | 684   |
+s7/nero/N1(s7/nero/XST_GND:G)                                                                                                                                                                                                                                                                                       | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                      | 256   |
+s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                                                           | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                 | 64    |
+s9/keyboard/keyloadmod/gamerom/N1(s9/keyboard/keyloadmod/gamerom/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)| 64    |
 s0/vgamod/char_rom/N1(s0/vgamod/char_rom/XST_GND:G)                                                                                                                                                                                                                                                                 | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                 | 8     |
 s1/i8259/rst_n_eoir[4]_OR_879_o(s1/i8259/rst_n_eoir[4]_OR_879_o1:O)                                                                                                                                                                                                                                                 | NONE(s1/i8259/dout_0)                                                                                                                                       | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)                                  | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                 | 2     |
@@ -5307,7 +5306,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 's1/i8284/clk'
   Clock period: 24.622ns (frequency: 40.614MHz)
-  Total number of paths / destination ports: 16601824666558952 / 5292
+  Total number of paths / destination ports: 16601824666558924 / 5292
 -------------------------------------------------------------------------
 Delay:               24.622ns (Levels of Logic = 53)
   Source:            s1/i8088/core/fetch/opcode_l_6 (FF)
@@ -5901,8 +5900,8 @@ s8/pclka       |         |         |    5.463|         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 91.00 secs
-Total CPU time to Xst completion: 87.95 secs
+Total REAL time to Xst completion: 89.00 secs
+Total CPU time to Xst completion: 86.34 secs
  
 WARNING:Xst:3152 - You have chosen to run a version of XST which is not the default solution
    for the specified device family. You are free to use it in order to take
@@ -5915,7 +5914,7 @@ WARNING:Xst:3152 - You have chosen to run a version of XST which is not the defa
 --> 
 
 
-Total memory usage is 580620 kilobytes
+Total memory usage is 580072 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  854 (   0 filtered)
