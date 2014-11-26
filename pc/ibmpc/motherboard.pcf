@@ -1,11 +1,8 @@
 //! **************************************************************************
-// Written by: Map P.28xd on Wed Nov 26 18:00:28 2014
+// Written by: Map P.28xd on Wed Nov 26 18:22:50 2014
 //! **************************************************************************
 
 SCHEMATIC START;
-COMP "HDR1_12" LOCATE = SITE "H32" LEVEL 1;
-COMP "HDR1_14" LOCATE = SITE "J32" LEVEL 1;
-COMP "HDR1_16" LOCATE = SITE "J34" LEVEL 1;
 COMP "USER_CLK" LOCATE = SITE "AH15" LEVEL 1;
 COMP "KEYBOARD_DATA" LOCATE = SITE "T25" LEVEL 1;
 COMP "HDR1_2" LOCATE = SITE "H33" LEVEL 1;
@@ -24,6 +21,9 @@ COMP "GPIO_SW_C" LOCATE = SITE "AJ6" LEVEL 1;
 COMP "GPIO_SW_E" LOCATE = SITE "AK7" LEVEL 1;
 COMP "GPIO_SW_W" LOCATE = SITE "AJ7" LEVEL 1;
 COMP "HDR1_10" LOCATE = SITE "G32" LEVEL 1;
+COMP "HDR1_12" LOCATE = SITE "H32" LEVEL 1;
+COMP "HDR1_14" LOCATE = SITE "J32" LEVEL 1;
+COMP "HDR1_16" LOCATE = SITE "J34" LEVEL 1;
 PIN
         U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I_V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B18KGT0.u_ramb16/U_RAMB16_pins<31>
         = BEL
@@ -943,107 +943,98 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
         "s1/i8088/intr_fsm/state_FSM_FFd1" BEL "s9/i8255/pb_7" BEL
         "s9/i8255/pb_6" BEL "s9/i8255/pb_5" BEL "s9/i8255/pb_4" BEL
         "s9/i8255/pb_3" BEL "s9/i8255/pb_2" BEL "s9/i8255/pb_1" BEL
-        "s9/i8255/pb_0" BEL "s8/i8253/vcs/C0/state_FSM_FFd2" BEL
-        "s8/i8253/vcs/C0/state_FSM_FFd3" BEL "s8/i8253/vcs/C0/state_FSM_FFd4"
-        BEL "s8/i8253/vcs/C0/state_FSM_FFd5" BEL
-        "s8/i8253/vcs/C0/state_FSM_FFd6" BEL
-        "s8/i8253/vcs/C0/readcontrol_FSM_FFd1" BEL
-        "s8/i8253/vcs/C0/readcontrol_FSM_FFd2" BEL
-        "s8/i8253/vcs/C0/state_FSM_FFd1" BEL "s8/i8253/vcs/C0/state_FSM_FFd7"
-        BEL "s8/i8253/vcs/C0/state_FSM_FFd8" BEL
-        "s8/i8253/vcs/C0/state_FSM_FFd9" BEL "s8/i8253/vcs/C0/state_FSM_FFd11"
-        BEL "s8/i8253/vcs/C0/state_FSM_FFd12" BEL
-        "s8/i8253/vcs/C0/state_FSM_FFd10" BEL "s8/i8253/vcs/C0/control_5" BEL
-        "s8/i8253/vcs/C0/control_4" BEL "s8/i8253/vcs/C0/control_3" BEL
-        "s8/i8253/vcs/C0/control_2" BEL "s8/i8253/vcs/C0/control_1" BEL
-        "s8/i8253/vcs/C0/dataout_7" BEL "s8/i8253/vcs/C0/dataout_6" BEL
-        "s8/i8253/vcs/C0/dataout_5" BEL "s8/i8253/vcs/C0/dataout_4" BEL
-        "s8/i8253/vcs/C0/dataout_3" BEL "s8/i8253/vcs/C0/dataout_2" BEL
-        "s8/i8253/vcs/C0/dataout_1" BEL "s8/i8253/vcs/C0/dataout_0" BEL
-        "s8/i8253/vcs/C0/latchcount_15" BEL "s8/i8253/vcs/C0/latchcount_14"
-        BEL "s8/i8253/vcs/C0/latchcount_13" BEL
-        "s8/i8253/vcs/C0/latchcount_12" BEL "s8/i8253/vcs/C0/latchcount_11"
-        BEL "s8/i8253/vcs/C0/latchcount_10" BEL "s8/i8253/vcs/C0/latchcount_9"
-        BEL "s8/i8253/vcs/C0/latchcount_8" BEL "s8/i8253/vcs/C0/latchcount_7"
-        BEL "s8/i8253/vcs/C0/latchcount_6" BEL "s8/i8253/vcs/C0/latchcount_5"
-        BEL "s8/i8253/vcs/C0/latchcount_4" BEL "s8/i8253/vcs/C0/latchcount_3"
-        BEL "s8/i8253/vcs/C0/latchcount_2" BEL "s8/i8253/vcs/C0/latchcount_1"
-        BEL "s8/i8253/vcs/C0/latchcount_0" BEL "s8/i8253/vcs/C0/countlsb_7"
-        BEL "s8/i8253/vcs/C0/countlsb_6" BEL "s8/i8253/vcs/C0/countlsb_5" BEL
-        "s8/i8253/vcs/C0/countlsb_4" BEL "s8/i8253/vcs/C0/countlsb_3" BEL
-        "s8/i8253/vcs/C0/countlsb_2" BEL "s8/i8253/vcs/C0/countlsb_1" BEL
-        "s8/i8253/vcs/C0/countlsb_0" BEL "s8/i8253/vcs/C0/countmsb_7" BEL
-        "s8/i8253/vcs/C0/countmsb_6" BEL "s8/i8253/vcs/C0/countmsb_5" BEL
-        "s8/i8253/vcs/C0/countmsb_4" BEL "s8/i8253/vcs/C0/countmsb_3" BEL
-        "s8/i8253/vcs/C0/countmsb_2" BEL "s8/i8253/vcs/C0/countmsb_1" BEL
-        "s8/i8253/vcs/C0/countmsb_0" BEL "s8/i8253/vcs/C1/state_FSM_FFd2" BEL
-        "s8/i8253/vcs/C1/state_FSM_FFd3" BEL "s8/i8253/vcs/C1/state_FSM_FFd4"
-        BEL "s8/i8253/vcs/C1/state_FSM_FFd5" BEL
-        "s8/i8253/vcs/C1/state_FSM_FFd6" BEL
-        "s8/i8253/vcs/C1/readcontrol_FSM_FFd1" BEL
-        "s8/i8253/vcs/C1/readcontrol_FSM_FFd2" BEL
-        "s8/i8253/vcs/C1/state_FSM_FFd1" BEL "s8/i8253/vcs/C1/state_FSM_FFd7"
-        BEL "s8/i8253/vcs/C1/state_FSM_FFd8" BEL
-        "s8/i8253/vcs/C1/state_FSM_FFd9" BEL "s8/i8253/vcs/C1/state_FSM_FFd11"
-        BEL "s8/i8253/vcs/C1/state_FSM_FFd12" BEL
-        "s8/i8253/vcs/C1/state_FSM_FFd10" BEL "s8/i8253/vcs/C1/control_5" BEL
-        "s8/i8253/vcs/C1/control_4" BEL "s8/i8253/vcs/C1/control_2" BEL
-        "s8/i8253/vcs/C1/dataout_7" BEL "s8/i8253/vcs/C1/dataout_6" BEL
-        "s8/i8253/vcs/C1/dataout_5" BEL "s8/i8253/vcs/C1/dataout_4" BEL
-        "s8/i8253/vcs/C1/dataout_3" BEL "s8/i8253/vcs/C1/dataout_2" BEL
-        "s8/i8253/vcs/C1/dataout_1" BEL "s8/i8253/vcs/C1/dataout_0" BEL
-        "s8/i8253/vcs/C1/latchcount_15" BEL "s8/i8253/vcs/C1/latchcount_14"
-        BEL "s8/i8253/vcs/C1/latchcount_13" BEL
-        "s8/i8253/vcs/C1/latchcount_12" BEL "s8/i8253/vcs/C1/latchcount_11"
-        BEL "s8/i8253/vcs/C1/latchcount_10" BEL "s8/i8253/vcs/C1/latchcount_9"
-        BEL "s8/i8253/vcs/C1/latchcount_8" BEL "s8/i8253/vcs/C1/latchcount_7"
-        BEL "s8/i8253/vcs/C1/latchcount_6" BEL "s8/i8253/vcs/C1/latchcount_5"
-        BEL "s8/i8253/vcs/C1/latchcount_4" BEL "s8/i8253/vcs/C1/latchcount_3"
-        BEL "s8/i8253/vcs/C1/latchcount_2" BEL "s8/i8253/vcs/C1/latchcount_1"
-        BEL "s8/i8253/vcs/C1/latchcount_0" BEL "s8/i8253/vcs/C1/countlsb_7"
-        BEL "s8/i8253/vcs/C1/countlsb_6" BEL "s8/i8253/vcs/C1/countlsb_5" BEL
-        "s8/i8253/vcs/C1/countlsb_4" BEL "s8/i8253/vcs/C1/countlsb_3" BEL
-        "s8/i8253/vcs/C1/countlsb_2" BEL "s8/i8253/vcs/C1/countlsb_1" BEL
-        "s8/i8253/vcs/C1/countlsb_0" BEL "s8/i8253/vcs/C1/countmsb_7" BEL
-        "s8/i8253/vcs/C1/countmsb_6" BEL "s8/i8253/vcs/C1/countmsb_5" BEL
-        "s8/i8253/vcs/C1/countmsb_4" BEL "s8/i8253/vcs/C1/countmsb_3" BEL
-        "s8/i8253/vcs/C1/countmsb_2" BEL "s8/i8253/vcs/C1/countmsb_1" BEL
-        "s8/i8253/vcs/C1/countmsb_0" BEL "s8/i8253/vcs/C2/state_FSM_FFd2" BEL
-        "s8/i8253/vcs/C2/state_FSM_FFd3" BEL "s8/i8253/vcs/C2/state_FSM_FFd4"
-        BEL "s8/i8253/vcs/C2/state_FSM_FFd5" BEL
-        "s8/i8253/vcs/C2/state_FSM_FFd6" BEL
-        "s8/i8253/vcs/C2/readcontrol_FSM_FFd1" BEL
-        "s8/i8253/vcs/C2/readcontrol_FSM_FFd2" BEL
-        "s8/i8253/vcs/C2/state_FSM_FFd1" BEL "s8/i8253/vcs/C2/state_FSM_FFd7"
-        BEL "s8/i8253/vcs/C2/state_FSM_FFd8" BEL
-        "s8/i8253/vcs/C2/state_FSM_FFd9" BEL "s8/i8253/vcs/C2/state_FSM_FFd11"
-        BEL "s8/i8253/vcs/C2/state_FSM_FFd12" BEL
-        "s8/i8253/vcs/C2/state_FSM_FFd10" BEL "s8/i8253/vcs/C2/control_5" BEL
-        "s8/i8253/vcs/C2/control_4" BEL "s8/i8253/vcs/C2/control_3" BEL
-        "s8/i8253/vcs/C2/control_2" BEL "s8/i8253/vcs/C2/control_1" BEL
-        "s8/i8253/vcs/C2/dataout_7" BEL "s8/i8253/vcs/C2/dataout_6" BEL
-        "s8/i8253/vcs/C2/dataout_5" BEL "s8/i8253/vcs/C2/dataout_4" BEL
-        "s8/i8253/vcs/C2/dataout_3" BEL "s8/i8253/vcs/C2/dataout_2" BEL
-        "s8/i8253/vcs/C2/dataout_1" BEL "s8/i8253/vcs/C2/dataout_0" BEL
-        "s8/i8253/vcs/C2/latchcount_15" BEL "s8/i8253/vcs/C2/latchcount_14"
-        BEL "s8/i8253/vcs/C2/latchcount_13" BEL
-        "s8/i8253/vcs/C2/latchcount_12" BEL "s8/i8253/vcs/C2/latchcount_11"
-        BEL "s8/i8253/vcs/C2/latchcount_10" BEL "s8/i8253/vcs/C2/latchcount_9"
-        BEL "s8/i8253/vcs/C2/latchcount_8" BEL "s8/i8253/vcs/C2/latchcount_7"
-        BEL "s8/i8253/vcs/C2/latchcount_6" BEL "s8/i8253/vcs/C2/latchcount_5"
-        BEL "s8/i8253/vcs/C2/latchcount_4" BEL "s8/i8253/vcs/C2/latchcount_3"
-        BEL "s8/i8253/vcs/C2/latchcount_2" BEL "s8/i8253/vcs/C2/latchcount_1"
-        BEL "s8/i8253/vcs/C2/latchcount_0" BEL "s8/i8253/vcs/C2/countlsb_7"
-        BEL "s8/i8253/vcs/C2/countlsb_6" BEL "s8/i8253/vcs/C2/countlsb_5" BEL
-        "s8/i8253/vcs/C2/countlsb_4" BEL "s8/i8253/vcs/C2/countlsb_3" BEL
-        "s8/i8253/vcs/C2/countlsb_2" BEL "s8/i8253/vcs/C2/countlsb_1" BEL
-        "s8/i8253/vcs/C2/countlsb_0" BEL "s8/i8253/vcs/C2/countmsb_7" BEL
-        "s8/i8253/vcs/C2/countmsb_6" BEL "s8/i8253/vcs/C2/countmsb_5" BEL
-        "s8/i8253/vcs/C2/countmsb_4" BEL "s8/i8253/vcs/C2/countmsb_3" BEL
-        "s8/i8253/vcs/C2/countmsb_2" BEL "s8/i8253/vcs/C2/countmsb_1" BEL
-        "s8/i8253/vcs/C2/countmsb_0" BEL "s7/din_7" BEL "s7/din_6" BEL
-        "s7/din_5" BEL "s7/din_4" BEL "s7/din_3" BEL "s7/din_2" BEL "s7/din_1"
-        BEL "s7/din_0" BEL "s0/vgamod/dataout_6" BEL "s0/vgamod/dataout_5" BEL
+        "s9/i8255/pb_0" BEL "s8/i8253/C0/state_FSM_FFd2" BEL
+        "s8/i8253/C0/state_FSM_FFd3" BEL "s8/i8253/C0/state_FSM_FFd4" BEL
+        "s8/i8253/C0/state_FSM_FFd5" BEL "s8/i8253/C0/state_FSM_FFd6" BEL
+        "s8/i8253/C0/readcontrol_FSM_FFd1" BEL
+        "s8/i8253/C0/readcontrol_FSM_FFd2" BEL "s8/i8253/C0/state_FSM_FFd1"
+        BEL "s8/i8253/C0/state_FSM_FFd7" BEL "s8/i8253/C0/state_FSM_FFd8" BEL
+        "s8/i8253/C0/state_FSM_FFd9" BEL "s8/i8253/C0/state_FSM_FFd11" BEL
+        "s8/i8253/C0/state_FSM_FFd12" BEL "s8/i8253/C0/state_FSM_FFd10" BEL
+        "s8/i8253/C0/control_5" BEL "s8/i8253/C0/control_4" BEL
+        "s8/i8253/C0/control_3" BEL "s8/i8253/C0/control_2" BEL
+        "s8/i8253/C0/control_1" BEL "s8/i8253/C0/dataout_7" BEL
+        "s8/i8253/C0/dataout_6" BEL "s8/i8253/C0/dataout_5" BEL
+        "s8/i8253/C0/dataout_4" BEL "s8/i8253/C0/dataout_3" BEL
+        "s8/i8253/C0/dataout_2" BEL "s8/i8253/C0/dataout_1" BEL
+        "s8/i8253/C0/dataout_0" BEL "s8/i8253/C0/latchcount_15" BEL
+        "s8/i8253/C0/latchcount_14" BEL "s8/i8253/C0/latchcount_13" BEL
+        "s8/i8253/C0/latchcount_12" BEL "s8/i8253/C0/latchcount_11" BEL
+        "s8/i8253/C0/latchcount_10" BEL "s8/i8253/C0/latchcount_9" BEL
+        "s8/i8253/C0/latchcount_8" BEL "s8/i8253/C0/latchcount_7" BEL
+        "s8/i8253/C0/latchcount_6" BEL "s8/i8253/C0/latchcount_5" BEL
+        "s8/i8253/C0/latchcount_4" BEL "s8/i8253/C0/latchcount_3" BEL
+        "s8/i8253/C0/latchcount_2" BEL "s8/i8253/C0/latchcount_1" BEL
+        "s8/i8253/C0/latchcount_0" BEL "s8/i8253/C0/countlsb_7" BEL
+        "s8/i8253/C0/countlsb_6" BEL "s8/i8253/C0/countlsb_5" BEL
+        "s8/i8253/C0/countlsb_4" BEL "s8/i8253/C0/countlsb_3" BEL
+        "s8/i8253/C0/countlsb_2" BEL "s8/i8253/C0/countlsb_1" BEL
+        "s8/i8253/C0/countlsb_0" BEL "s8/i8253/C0/countmsb_7" BEL
+        "s8/i8253/C0/countmsb_6" BEL "s8/i8253/C0/countmsb_5" BEL
+        "s8/i8253/C0/countmsb_4" BEL "s8/i8253/C0/countmsb_3" BEL
+        "s8/i8253/C0/countmsb_2" BEL "s8/i8253/C0/countmsb_1" BEL
+        "s8/i8253/C0/countmsb_0" BEL "s8/i8253/C1/state_FSM_FFd2" BEL
+        "s8/i8253/C1/state_FSM_FFd3" BEL "s8/i8253/C1/state_FSM_FFd4" BEL
+        "s8/i8253/C1/state_FSM_FFd5" BEL "s8/i8253/C1/state_FSM_FFd6" BEL
+        "s8/i8253/C1/readcontrol_FSM_FFd1" BEL
+        "s8/i8253/C1/readcontrol_FSM_FFd2" BEL "s8/i8253/C1/state_FSM_FFd1"
+        BEL "s8/i8253/C1/state_FSM_FFd7" BEL "s8/i8253/C1/state_FSM_FFd8" BEL
+        "s8/i8253/C1/state_FSM_FFd9" BEL "s8/i8253/C1/state_FSM_FFd11" BEL
+        "s8/i8253/C1/state_FSM_FFd12" BEL "s8/i8253/C1/state_FSM_FFd10" BEL
+        "s8/i8253/C1/control_5" BEL "s8/i8253/C1/control_4" BEL
+        "s8/i8253/C1/control_2" BEL "s8/i8253/C1/dataout_7" BEL
+        "s8/i8253/C1/dataout_6" BEL "s8/i8253/C1/dataout_5" BEL
+        "s8/i8253/C1/dataout_4" BEL "s8/i8253/C1/dataout_3" BEL
+        "s8/i8253/C1/dataout_2" BEL "s8/i8253/C1/dataout_1" BEL
+        "s8/i8253/C1/dataout_0" BEL "s8/i8253/C1/latchcount_15" BEL
+        "s8/i8253/C1/latchcount_14" BEL "s8/i8253/C1/latchcount_13" BEL
+        "s8/i8253/C1/latchcount_12" BEL "s8/i8253/C1/latchcount_11" BEL
+        "s8/i8253/C1/latchcount_10" BEL "s8/i8253/C1/latchcount_9" BEL
+        "s8/i8253/C1/latchcount_8" BEL "s8/i8253/C1/latchcount_7" BEL
+        "s8/i8253/C1/latchcount_6" BEL "s8/i8253/C1/latchcount_5" BEL
+        "s8/i8253/C1/latchcount_4" BEL "s8/i8253/C1/latchcount_3" BEL
+        "s8/i8253/C1/latchcount_2" BEL "s8/i8253/C1/latchcount_1" BEL
+        "s8/i8253/C1/latchcount_0" BEL "s8/i8253/C1/countlsb_7" BEL
+        "s8/i8253/C1/countlsb_6" BEL "s8/i8253/C1/countlsb_5" BEL
+        "s8/i8253/C1/countlsb_4" BEL "s8/i8253/C1/countlsb_3" BEL
+        "s8/i8253/C1/countlsb_2" BEL "s8/i8253/C1/countlsb_1" BEL
+        "s8/i8253/C1/countlsb_0" BEL "s8/i8253/C1/countmsb_7" BEL
+        "s8/i8253/C1/countmsb_6" BEL "s8/i8253/C1/countmsb_5" BEL
+        "s8/i8253/C1/countmsb_4" BEL "s8/i8253/C1/countmsb_3" BEL
+        "s8/i8253/C1/countmsb_2" BEL "s8/i8253/C1/countmsb_1" BEL
+        "s8/i8253/C1/countmsb_0" BEL "s8/i8253/C2/state_FSM_FFd2" BEL
+        "s8/i8253/C2/state_FSM_FFd3" BEL "s8/i8253/C2/state_FSM_FFd4" BEL
+        "s8/i8253/C2/state_FSM_FFd5" BEL "s8/i8253/C2/state_FSM_FFd6" BEL
+        "s8/i8253/C2/readcontrol_FSM_FFd1" BEL
+        "s8/i8253/C2/readcontrol_FSM_FFd2" BEL "s8/i8253/C2/state_FSM_FFd1"
+        BEL "s8/i8253/C2/state_FSM_FFd7" BEL "s8/i8253/C2/state_FSM_FFd8" BEL
+        "s8/i8253/C2/state_FSM_FFd9" BEL "s8/i8253/C2/state_FSM_FFd11" BEL
+        "s8/i8253/C2/state_FSM_FFd12" BEL "s8/i8253/C2/state_FSM_FFd10" BEL
+        "s8/i8253/C2/control_5" BEL "s8/i8253/C2/control_4" BEL
+        "s8/i8253/C2/control_3" BEL "s8/i8253/C2/control_2" BEL
+        "s8/i8253/C2/control_1" BEL "s8/i8253/C2/dataout_7" BEL
+        "s8/i8253/C2/dataout_6" BEL "s8/i8253/C2/dataout_5" BEL
+        "s8/i8253/C2/dataout_4" BEL "s8/i8253/C2/dataout_3" BEL
+        "s8/i8253/C2/dataout_2" BEL "s8/i8253/C2/dataout_1" BEL
+        "s8/i8253/C2/dataout_0" BEL "s8/i8253/C2/latchcount_15" BEL
+        "s8/i8253/C2/latchcount_14" BEL "s8/i8253/C2/latchcount_13" BEL
+        "s8/i8253/C2/latchcount_12" BEL "s8/i8253/C2/latchcount_11" BEL
+        "s8/i8253/C2/latchcount_10" BEL "s8/i8253/C2/latchcount_9" BEL
+        "s8/i8253/C2/latchcount_8" BEL "s8/i8253/C2/latchcount_7" BEL
+        "s8/i8253/C2/latchcount_6" BEL "s8/i8253/C2/latchcount_5" BEL
+        "s8/i8253/C2/latchcount_4" BEL "s8/i8253/C2/latchcount_3" BEL
+        "s8/i8253/C2/latchcount_2" BEL "s8/i8253/C2/latchcount_1" BEL
+        "s8/i8253/C2/latchcount_0" BEL "s8/i8253/C2/countlsb_7" BEL
+        "s8/i8253/C2/countlsb_6" BEL "s8/i8253/C2/countlsb_5" BEL
+        "s8/i8253/C2/countlsb_4" BEL "s8/i8253/C2/countlsb_3" BEL
+        "s8/i8253/C2/countlsb_2" BEL "s8/i8253/C2/countlsb_1" BEL
+        "s8/i8253/C2/countlsb_0" BEL "s8/i8253/C2/countmsb_7" BEL
+        "s8/i8253/C2/countmsb_6" BEL "s8/i8253/C2/countmsb_5" BEL
+        "s8/i8253/C2/countmsb_4" BEL "s8/i8253/C2/countmsb_3" BEL
+        "s8/i8253/C2/countmsb_2" BEL "s8/i8253/C2/countmsb_1" BEL
+        "s8/i8253/C2/countmsb_0" BEL "s7/din_7" BEL "s7/din_6" BEL "s7/din_5"
+        BEL "s7/din_4" BEL "s7/din_3" BEL "s7/din_2" BEL "s7/din_1" BEL
+        "s7/din_0" BEL "s0/vgamod/dataout_6" BEL "s0/vgamod/dataout_5" BEL
         "s0/vgamod/dataout_4" BEL "s0/vgamod/dataout_3" BEL
         "s0/vgamod/dataout_2" BEL "s0/vgamod/dataout_1" BEL
         "s0/vgamod/dataout_0" BEL "s0/vgamod/reg_cur_start_3" BEL
