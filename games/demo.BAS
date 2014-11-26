@@ -15,11 +15,11 @@
 100 PRINT TAB(32); "Aalique Grahame"
 110 PRINT TAB(33); "Meghan Kaffine"
 120 PRINT TAB(35); "Eliot Wong"
-130 PRINT "                   "
+130 PRINT ""
 140 PRINT TAB(5); "Menu"
-142 PRINT TAB(5); "================================================="
+142 PRINT TAB(5); ""
 150 PRINT TAB(5);"1. Hi-Lo"
-290 PRINT "                   "
+290 PRINT ""
 300 PRINT "Option: ";
 310 INPUT A
 315 IF A = 0 THEN 400
