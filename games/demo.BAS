@@ -1,6 +1,6 @@
 10 LOCATE 2, 1
-11 CLS
-12 COLOR 2,0
+11         CLS
+12     COLOR 2,0
 20 PRINT TAB(20); "  _____  ____   __  __   _____    _____ "
 30 PRINT TAB(20); " |_   _||  _ \ |  \/  | |  __ \  / ____|"
 40 PRINT TAB(20); "   | |  | |_) || \  / | | |__) || |     "
@@ -8,7 +8,7 @@
 60 PRINT TAB(20); "  _| |_ | |_) || |  | | | |     | |____ "
 70 PRINT TAB(20); " |_____||____/ |_|  |_| |_|      \_____|"
 80 PRINT TAB(20); ""
-81 COLOR 15,0
+81     COLOR 15,0
 88 PRINT TAB(34); "Team Members"
 89 PRINT TAB(30); "--------------------"
 90 PRINT TAB(33); "Patrick Brown"
@@ -21,11 +21,11 @@
 150 PRINT TAB(5);"1. Hi-Lo"
 290 PRINT "                   "
 300 PRINT "Option: ";
-310 INPUT A                                      
+310           INPUT A                                      
 315 IF A = 0 THEN 400
 320 IF A = 1 THEN 10010
-390 GOTO 300
-400 END                                                          
+390           GOTO 300
+400           END                                                          
 10010 CLS:PRINT TAB(34); "HI LO"                                  
 10020 PRINT TAB(15); "CREATIVE COMPUTING  MORRISTOWN, NEW JERSEY"
 10030 PRINT: PRINT: PRINT                                          
@@ -35,12 +35,12 @@
 10130 PRINT "GUESS THE AMOUNT, YOU WIN ALL THE MONEY IN THE JACKPOT!"
 10140 PRINT "THEN YOU GET ANOTHER CHANCE TO WIN MORE MONEY.  HOWEVER,"
 10150 PRINT "IF YOU DO NOT GUESS THE AMOUNT, THE GAME ENDS.": PRINT
-10160 R = 0
+10160        R = 0
 10170 B = 0: PRINT
 10180 Y = INT(100 * RND(1))
 10200 PRINT "YOUR GUESS";
-10210 INPUT A
-10220 B = B + 1
+10210      INPUT A
+10220    B = B + 1
 10230 IF A = Y THEN 10300
 10240 IF A > Y THEN 10270
 10250 PRINT "YOUR GUESS IS TOO LOW.": GOTO 10280
@@ -53,9 +53,9 @@
 10300 COLOR 18,0
 10301 PRINT "GOT IT!!!!!!!!!!   YOU WIN"; Y; "DOLLARS."
 10302 COLOR 15,0
-10310 R = R + Y
+10310  R = R + Y
 10320 PRINT "YOUR TOTAL WINNINGS ARE NOW"; R; "DOLLARS."
 10350 PRINT: PRINT "PLAY AGAIN (YES OR NO)";
 10360 INPUT A$: IF A$ = "YES" THEN 10170
 10380 PRINT: PRINT "SO LONG.  HOPE YOU ENJOYED YOURSELF!!!"
-10390 GOTO 10
+10390    GOTO 10
