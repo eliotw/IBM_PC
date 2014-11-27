@@ -86,9 +86,9 @@ Whole frame	525
 
    // Control registers
    reg [3:0] 		      reg_adr;
-   reg [6:0] 		      reg_hcursor;
+   wire [6:0] 		      reg_hcursor; // KEYWORD
    // 80 columns
-   reg [4:0] 		      reg_vcursor;
+   wire [4:0] 		      reg_vcursor; // KEYWORD
    // 25 rows
    reg [3:0] 		      reg_cur_start;
    reg [3:0] 		      reg_cur_end;
@@ -147,8 +147,10 @@ Whole frame	525
    // Added wires
    wire 		      io_range, mem_range;
    reg [7:0] dataout;
+	reg [7:0] cursorh, cursorl;
 	wire [7:0] buff_out, attr_out;
    wire [10:0] new_buff_addr, new_attr_addr;
+	wire [15:0] cursorw,cursorm,cursorp;
 	wire new_buff_we, new_attr_we, new_buff, new_attr;
 	wire iod;
    // Module instantiation
@@ -297,8 +299,10 @@ Whole frame	525
       end
       // Read internal registers
       else if((a == 20'h003d3) | (a == 20'h003d5) | (a == 20'h003d7)) begin
-			if(reg_adr==4'hf) dataout <= reg_hcursor;
-			else if(reg_adr==4'he) dataout <= reg_vcursor;
+			//if(reg_adr==4'hf) dataout <= reg_hcursor;
+			//else if(reg_adr==4'he) dataout <= reg_vcursor;
+			if(reg_adr==4'hf) dataout <= cursorl;
+			else if(reg_adr==4'he) dataout <= cursorh;
 			else if(reg_adr==4'ha) dataout <= reg_cur_start;
 			else if(reg_adr==4'hb) dataout <= reg_cur_end;
 			else dataout <= dataout;
@@ -309,19 +313,36 @@ Whole frame	525
       end
    end
    
+	// HSYNC VSYNC KEYWORD
+	assign cursorw = {cursorh,cursorl};
+	assign cursorp = cursorw % 80;
+	assign cursorm = cursorw / 80;
+	assign reg_hcursor = cursorp[6:0]; // ok
+	assign reg_vcursor = cursorm[4:0]; // ok
+	//assign reg_hcursor = {cursorh[0],cursorl[7:2]};
+	//assign reg_vcursor = {cursorh[5:1]};
+	
    // Control registers
    always @(posedge clk88) // KEYWORD
      reg_adr <= rst ? 4'h0
 		: (wr_adr ? d[3:0] : reg_adr);
-
+/*
    always @(posedge clk88) // KEYWORD
      reg_hcursor <= rst ? 7'h0
 		    : (wr_hcursor ? d[6:0] : reg_hcursor);
 
    always @(posedge clk88) // KEYWORD
      reg_vcursor <= rst ? 5'h0
-		    : (wr_vcursor ? d[4:0] : reg_vcursor);
-
+		    : (wr_vcursor ? d[5:1] : reg_vcursor); // was 4:0
+*/
+	always @(posedge clk88)   // f
+		cursorl <= rst ? 8'h0
+			: (wr_hcursor ? d[7:0] : cursorl);
+			
+	always @(posedge clk88) // e
+		cursorh <= rst ? 8'h0
+			: (wr_vcursor ? d[7:0] : cursorh);
+			
    always @(posedge clk88) // KEYWORD
      reg_cur_start <= rst ? 4'he
 		      : (wr_cur_start ? d[3:0] : reg_cur_start);

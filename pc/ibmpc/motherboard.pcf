@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.28xd on Wed Nov 26 19:13:29 2014
+// Written by: Map P.28xd on Wed Nov 26 21:54:09 2014
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -35,25 +35,25 @@ PIN
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I_V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B18KGT0.u_ramb16/U_RAMB16"
         PINNAME REGCLKBL;
 PIN
-        s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<32>
+        s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<24>
         = BEL
         "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP"
         PINNAME CLKAL;
 PIN
-        s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<110>
+        s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<64>
         = BEL
         "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP"
         PINNAME REGCLKAL;
 PIN
-        s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<30>
+        s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<24>
         = BEL
         "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP"
-        PINNAME CLKAU;
+        PINNAME CLKAL;
 PIN
-        s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<108>
+        s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<64>
         = BEL
         "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP"
-        PINNAME REGCLKAU;
+        PINNAME REGCLKAL;
 PIN
         s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B_pins<66>
         = BEL
@@ -1034,35 +1034,38 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
         "s8/i8253/C2/countmsb_2" BEL "s8/i8253/C2/countmsb_1" BEL
         "s8/i8253/C2/countmsb_0" BEL "s7/din_7" BEL "s7/din_6" BEL "s7/din_5"
         BEL "s7/din_4" BEL "s7/din_3" BEL "s7/din_2" BEL "s7/din_1" BEL
-        "s7/din_0" BEL "s0/vgamod/dataout_6" BEL "s0/vgamod/dataout_5" BEL
-        "s0/vgamod/dataout_4" BEL "s0/vgamod/dataout_3" BEL
-        "s0/vgamod/dataout_2" BEL "s0/vgamod/dataout_1" BEL
-        "s0/vgamod/dataout_0" BEL "s0/vgamod/reg_cur_start_3" BEL
-        "s0/vgamod/reg_cur_start_2" BEL "s0/vgamod/reg_cur_start_1" BEL
-        "s0/vgamod/reg_cur_start_0" BEL "s0/vgamod/reg_cur_end_3" BEL
-        "s0/vgamod/reg_cur_end_2" BEL "s0/vgamod/reg_cur_end_1" BEL
-        "s0/vgamod/reg_cur_end_0" BEL "s0/vgamod/reg_vcursor_4" BEL
-        "s0/vgamod/reg_vcursor_3" BEL "s0/vgamod/reg_vcursor_2" BEL
-        "s0/vgamod/reg_vcursor_1" BEL "s0/vgamod/reg_vcursor_0" BEL
-        "s0/vgamod/reg_hcursor_6" BEL "s0/vgamod/reg_hcursor_5" BEL
-        "s0/vgamod/reg_hcursor_4" BEL "s0/vgamod/reg_hcursor_3" BEL
-        "s0/vgamod/reg_hcursor_2" BEL "s0/vgamod/reg_hcursor_1" BEL
-        "s0/vgamod/reg_hcursor_0" BEL "s0/vgamod/reg_adr_3" BEL
-        "s0/vgamod/reg_adr_2" BEL "s0/vgamod/reg_adr_1" BEL
-        "s0/vgamod/reg_adr_0" BEL "s0/vgamod/attr0_addr_10" BEL
-        "s0/vgamod/attr0_addr_9" BEL "s0/vgamod/attr0_addr_8" BEL
-        "s0/vgamod/attr0_addr_7" BEL "s0/vgamod/attr0_addr_6" BEL
-        "s0/vgamod/attr0_addr_5" BEL "s0/vgamod/attr0_addr_4" BEL
-        "s0/vgamod/attr0_addr_3" BEL "s0/vgamod/attr0_addr_2" BEL
-        "s0/vgamod/attr0_addr_1" BEL "s0/vgamod/attr0_addr_0" BEL
-        "s0/vgamod/buff0_addr_10" BEL "s0/vgamod/buff0_addr_9" BEL
-        "s0/vgamod/buff0_addr_8" BEL "s0/vgamod/buff0_addr_7" BEL
-        "s0/vgamod/buff0_addr_6" BEL "s0/vgamod/buff0_addr_5" BEL
-        "s0/vgamod/buff0_addr_4" BEL "s0/vgamod/buff0_addr_3" BEL
-        "s0/vgamod/buff0_addr_2" BEL "s0/vgamod/buff0_addr_1" BEL
-        "s0/vgamod/buff0_addr_0" BEL "s1/i8088/core/hlt_op_old" BEL
-        "s1/i8088/core/hlt" BEL "s1/i8088/core/exec/alu/muldiv/div_su/s_15"
-        BEL "s1/i8088/core/exec/alu/muldiv/div_su/s_14" BEL
+        "s7/din_0" BEL "s0/vgamod/dataout_7" BEL "s0/vgamod/dataout_6" BEL
+        "s0/vgamod/dataout_5" BEL "s0/vgamod/dataout_4" BEL
+        "s0/vgamod/dataout_3" BEL "s0/vgamod/dataout_2" BEL
+        "s0/vgamod/dataout_1" BEL "s0/vgamod/dataout_0" BEL
+        "s0/vgamod/reg_cur_start_3" BEL "s0/vgamod/reg_cur_start_2" BEL
+        "s0/vgamod/reg_cur_start_1" BEL "s0/vgamod/reg_cur_start_0" BEL
+        "s0/vgamod/reg_cur_end_3" BEL "s0/vgamod/reg_cur_end_2" BEL
+        "s0/vgamod/reg_cur_end_1" BEL "s0/vgamod/reg_cur_end_0" BEL
+        "s0/vgamod/cursorh_7" BEL "s0/vgamod/cursorh_6" BEL
+        "s0/vgamod/cursorh_5" BEL "s0/vgamod/cursorh_4" BEL
+        "s0/vgamod/cursorh_3" BEL "s0/vgamod/cursorh_2" BEL
+        "s0/vgamod/cursorh_1" BEL "s0/vgamod/cursorh_0" BEL
+        "s0/vgamod/cursorl_7" BEL "s0/vgamod/cursorl_6" BEL
+        "s0/vgamod/cursorl_5" BEL "s0/vgamod/cursorl_4" BEL
+        "s0/vgamod/cursorl_3" BEL "s0/vgamod/cursorl_2" BEL
+        "s0/vgamod/cursorl_1" BEL "s0/vgamod/cursorl_0" BEL
+        "s0/vgamod/reg_adr_3" BEL "s0/vgamod/reg_adr_2" BEL
+        "s0/vgamod/reg_adr_1" BEL "s0/vgamod/reg_adr_0" BEL
+        "s0/vgamod/attr0_addr_10" BEL "s0/vgamod/attr0_addr_9" BEL
+        "s0/vgamod/attr0_addr_8" BEL "s0/vgamod/attr0_addr_7" BEL
+        "s0/vgamod/attr0_addr_6" BEL "s0/vgamod/attr0_addr_5" BEL
+        "s0/vgamod/attr0_addr_4" BEL "s0/vgamod/attr0_addr_3" BEL
+        "s0/vgamod/attr0_addr_2" BEL "s0/vgamod/attr0_addr_1" BEL
+        "s0/vgamod/attr0_addr_0" BEL "s0/vgamod/buff0_addr_10" BEL
+        "s0/vgamod/buff0_addr_9" BEL "s0/vgamod/buff0_addr_8" BEL
+        "s0/vgamod/buff0_addr_7" BEL "s0/vgamod/buff0_addr_6" BEL
+        "s0/vgamod/buff0_addr_5" BEL "s0/vgamod/buff0_addr_4" BEL
+        "s0/vgamod/buff0_addr_3" BEL "s0/vgamod/buff0_addr_2" BEL
+        "s0/vgamod/buff0_addr_1" BEL "s0/vgamod/buff0_addr_0" BEL
+        "s1/i8088/core/hlt_op_old" BEL "s1/i8088/core/hlt" BEL
+        "s1/i8088/core/exec/alu/muldiv/div_su/s_15" BEL
+        "s1/i8088/core/exec/alu/muldiv/div_su/s_14" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/s_13" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/s_12" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/s_11" BEL
@@ -2174,8 +2177,7 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
         "s1/i8088/core/fetch/opcode_l_5" BEL "s1/i8088/core/fetch/opcode_l_4"
         BEL "s1/i8088/core/fetch/opcode_l_3" BEL
         "s1/i8088/core/fetch/opcode_l_2" BEL "s1/i8088/core/fetch/opcode_l_1"
-        BEL "s1/i8088/core/fetch/opcode_l_0" BEL "s1/i8088/core/fetch/state_2"
-        BEL "s1/i8088/core/fetch/state_1" BEL "s1/i8088/core/fetch/state_0"
+        BEL "s1/i8088/core/fetch/opcode_l_0" BEL "s1/i8088/core/fetch/state_0"
         BEL "s1/i8088/core/fetch/imm_l_15" BEL "s1/i8088/core/fetch/imm_l_14"
         BEL "s1/i8088/core/fetch/imm_l_13" BEL "s1/i8088/core/fetch/imm_l_12"
         BEL "s1/i8088/core/fetch/imm_l_11" BEL "s1/i8088/core/fetch/imm_l_10"
@@ -2214,16 +2216,21 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
         BEL "s1/i8088/ctrl_fsm/state_FSM_FFd3" BEL
         "s1/i8088/ctrl_fsm/state_FSM_FFd4" BEL "s2/b5" BEL "s2/aen_brd" BEL
         "s2/holda" BEL "s2/b7" BEL "s1/i8088/core/fetch/lock_l" BEL
-        "s1/i8088/core/decode/dive" BEL "s1/i8088/core/fetch/state_1_1" BEL
-        "s1/i8088/core/fetch/state_2_1" BEL "s1/i8088/core/fetch/state_0_1"
-        BEL "s1/i8088/core/fetch/pref_l_1_1" BEL "s1/i8088/i00/q_1_1" BEL
-        "s1/i8088/core/fetch/state_1_2" BEL "s1/i8088/core/fetch/state_2_2"
+        "s1/i8088/core/fetch/state_2" BEL "s1/i8088/core/fetch/state_1" BEL
+        "s1/i8088/core/decode/dive" BEL "s1/i8088/core/fetch/pref_l_1_1" BEL
+        "s1/i8088/i00/q_7_1" BEL "s1/i8088/core/fetch/opcode_l_0_1" BEL
+        "s1/i8088/core/fetch/state_2_1" BEL "s1/i8088/core/fetch/state_1_1"
+        BEL "s1/i8088/core/fetch/state_0_1" BEL "s1/i8088/i00/q_1_1" BEL
+        "s1/i8088/i00/q_7_2" BEL "s1/i8088/core/fetch/pref_l_1_2" BEL
+        "s1/i8088/core/fetch/state_2_2" BEL "s1/i8088/core/fetch/state_1_2"
         BEL "s1/i8088/core/fetch/state_0_2" BEL "s1/i8088/i00/q_1_2" BEL
-        "s1/i8088/core/fetch/state_1_3" BEL "s1/i8088/core/fetch/state_2_3"
-        BEL "s1/i8088/core/fetch/state_0_3" BEL
-        "s1/i8088/core/fetch/state_0_4" BEL "s1/i8088/core/fetch/state_1_4"
-        BEL "s1/i8088/core/fetch/state_2_4" BEL
-        "s1/i8088/core/exec/alu/muldiv/div_su/Mshreg_szpipe_18" BEL
+        "s1/i8088/i00/q_7_3" BEL "s1/i8088/core/fetch/state_2_3" BEL
+        "s1/i8088/core/fetch/state_1_3" BEL "s1/i8088/core/fetch/state_0_3"
+        BEL "s1/i8088/core/fetch/state_1_4" BEL
+        "s1/i8088/core/fetch/state_0_4" BEL "s1/i8088/core/fetch/state_2_4"
+        BEL "s1/i8088/core/fetch/state_2_5" BEL
+        "s1/i8088/core/fetch/state_1_5" BEL "s1/i8088/core/fetch/state_0_5"
+        BEL "s1/i8088/core/exec/alu/muldiv/div_su/Mshreg_szpipe_18" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/szpipe_18" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/Mshreg_ovf" BEL
         "s1/i8088/core/exec/alu/muldiv/div_su/ovf" BEL
@@ -5792,13 +5799,13 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
         BEL
         "s1/i8088/core/exec/alu/muldiv/signmul17/Mmult_a[16]_b[16]_MuLt_1_OUT"
         PIN
-        "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<32>"
+        "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<24>"
         PIN
-        "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<110>"
+        "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<64>"
         PIN
-        "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<30>"
+        "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<24>"
         PIN
-        "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<108>"
+        "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<64>"
         PIN
         "s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B_pins<66>"
         PIN
