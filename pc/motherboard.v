@@ -124,7 +124,6 @@ module motherboard(
    assign HDR1_14 = horiz_sync; // vga horizontal sync
    assign HDR1_16 = vert_sync; // vga vertical sync
 	assign keyboard_load_special = GPIO_SW_E; // keyboard load special program
-	assign irq00 = (irqenable) ? irq0 : 1'b0; // disable irq0 - KEYWORD
 	assign irqbutton = GPIO_SW_W; // button to disable irq0
 	assign activate_timer_2 = GPIO_DIP_SW2; // switch to enable timer 2
 	
@@ -149,7 +148,7 @@ module motherboard(
 	     .dma_wait_n(dma_wait_n),
 	     .rdy_wait_n(rdy_wait_n),
 	     .nmi(nmi),
-	     .irq({irq7,irq6,irq5,irq4,irq3,irq2,irq1,irq00}),
+	     .irq({irq7,irq6,irq5,irq4,irq3,irq2,irq1,irq0}),
 	     .intr_cs_n(intr_cs_n),
 	     .xior_n(xior_n),
 	     .xiow_n(xiow_n),
@@ -1345,7 +1344,7 @@ module sheet8(
    assign sdata = ~(out2 & spkr_data);
    assign spkr_cnt = (count >= 12'h299);
 	assign counter_out = (tim_2_gate_spk) ? spkr_cnt : 1'b1;
-	assign out2 = (activate_timer) ? out3 : counter_out;
+	//assign out2 = (activate_timer) ? out3 : counter_out;
 	
    // 8253 Module
    intel8253 i8253(
@@ -1357,7 +1356,7 @@ module sheet8(
 	           .a0(xa0),
 	           .a1(xa1),
 	           .d(xd),
-	           .out({out3,out1,irq0}),
+	           .out({out2,out1,irq0}),
 				  .rst_n(reset_drv_n),
 				  .zclk(zclk)
 		   );

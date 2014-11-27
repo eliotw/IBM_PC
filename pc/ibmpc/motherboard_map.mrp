@@ -10,41 +10,41 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Wed Nov 26 18:56:42 2014
+Mapped Date    : Wed Nov 26 19:12:34 2014
 
 Design Summary
 --------------
 Number of errors:      0
 Number of warnings:  193
 Slice Logic Utilization:
-  Number of Slice Registers:                 3,769 out of  69,120    5%
-    Number used as Flip Flops:               3,749
+  Number of Slice Registers:                 3,762 out of  69,120    5%
+    Number used as Flip Flops:               3,742
     Number used as Latches:                     20
-  Number of Slice LUTs:                      5,773 out of  69,120    8%
-    Number used as logic:                    5,181 out of  69,120    7%
-      Number using O6 output only:           4,657
-      Number using O5 output only:             110
-      Number using O5 and O6:                  414
+  Number of Slice LUTs:                      5,673 out of  69,120    8%
+    Number used as logic:                    5,080 out of  69,120    7%
+      Number using O6 output only:           4,576
+      Number using O5 output only:             111
+      Number using O5 and O6:                  393
     Number used as Memory:                     579 out of  17,920    3%
       Number used as Shift Register:           579
         Number using O6 output only:           577
         Number using O5 output only:             1
         Number using O5 and O6:                  1
-    Number used as exclusive route-thru:        13
-  Number of route-thrus:                       123
-    Number using O6 output only:               120
-    Number using O5 output only:                 1
-    Number using O5 and O6:                      2
+    Number used as exclusive route-thru:        14
+  Number of route-thrus:                       137
+    Number using O6 output only:               119
+    Number using O5 output only:                15
+    Number using O5 and O6:                      3
 
 Slice Logic Distribution:
-  Number of occupied Slices:                 2,545 out of  17,280   14%
-  Number of LUT Flip Flop pairs used:        7,544
-    Number with an unused Flip Flop:         3,775 out of   7,544   50%
-    Number with an unused LUT:               1,771 out of   7,544   23%
-    Number of fully used LUT-FF pairs:       1,998 out of   7,544   26%
+  Number of occupied Slices:                 2,514 out of  17,280   14%
+  Number of LUT Flip Flop pairs used:        7,412
+    Number with an unused Flip Flop:         3,650 out of   7,412   49%
+    Number with an unused LUT:               1,739 out of   7,412   23%
+    Number of fully used LUT-FF pairs:       2,023 out of   7,412   27%
     Number of unique control sets:             162
     Number of slice register sites lost
-      to control set restrictions:             267 out of  69,120    1%
+      to control set restrictions:             266 out of  69,120    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -59,8 +59,8 @@ IO Utilization:
     Number of LOCed IOBs:                       19 out of      19  100%
 
 Specific Feature Utilization:
-  Number of BlockRAM/FIFO:                     108 out of     148   72%
-    Number using BlockRAM only:                108
+  Number of BlockRAM/FIFO:                     107 out of     148   72%
+    Number using BlockRAM only:                107
     Total primitives used:
       Number of 36k BlockRAM used:             104
       Number of 18k BlockRAM used:               4
@@ -71,10 +71,10 @@ Specific Feature Utilization:
   Number of DSP48Es:                             1 out of      64    1%
 
   Number of RPM macros:           10
-Average Fanout of Non-Clock Nets:                4.62
+Average Fanout of Non-Clock Nets:                4.60
 
-Peak Memory Usage:  1135 MB
-Total REAL time to MAP completion:  56 secs 
+Peak Memory Usage:  1132 MB
+Total REAL time to MAP completion:  57 secs 
 Total CPU time to MAP completion:   55 secs 
 
 Table of Contents
@@ -1301,13 +1301,13 @@ WARNING:Place:644 - A clock IOB clock component is not placed at an optimal
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s9/i8255/pds is sourced by
    a combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s4/wrt_dma_pg_reg_n_INV_731_o is sourced by a combinatorial pin. This is not
    good design practice. Use the CE pin to control the loading of data into the
    flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
-   sourced by a combinatorial pin. This is not good design practice. Use the CE
-   pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    s1/i8259/eoir[4]_GND_66_o_equal_97_o is sourced by a combinatorial pin. This
    is not good design practice. Use the CE pin to control the loading of data
@@ -1325,7 +1325,7 @@ se.dat:/afs/ece.cmu.edu/support/synplicity/sun4_55/image/usr/local/synplcty/lice
 nse.dat'.
 INFO:Security:56 - Part 'xc5vlx110t' is not a WebPack part.
 INFO:LIT:243 - Logical network icon_control0<10> has no load.
-INFO:LIT:395 - The above info message is repeated 22 more times for the
+INFO:LIT:395 - The above info message is repeated 23 more times for the
    following (max. 5 shown):
    icon_control0<11>,
    icon_control0<15>,
