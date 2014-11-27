@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.28xd on Wed Nov 26 18:35:23 2014
+// Written by: Map P.28xd on Wed Nov 26 18:57:36 2014
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -35,25 +35,25 @@ PIN
         "U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I_V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B18KGT0.u_ramb16/U_RAMB16"
         PINNAME REGCLKBL;
 PIN
-        s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<32>
+        s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<24>
         = BEL
         "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP"
         PINNAME CLKAL;
 PIN
-        s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<110>
+        s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<64>
         = BEL
         "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP"
         PINNAME REGCLKAL;
 PIN
-        s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<30>
+        s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<24>
         = BEL
         "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP"
-        PINNAME CLKAU;
+        PINNAME CLKAL;
 PIN
-        s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<108>
+        s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<64>
         = BEL
         "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP"
-        PINNAME REGCLKAU;
+        PINNAME REGCLKAL;
 PIN
         s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B_pins<66>
         = BEL
@@ -5791,13 +5791,13 @@ TIMEGRP D_CLK = BEL "deb/state_FSM_FFd2" BEL "ird/state_FSM_FFd1" BEL
         BEL
         "s1/i8088/core/exec/alu/muldiv/signmul17/Mmult_a[16]_b[16]_MuLt_1_OUT"
         PIN
-        "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<32>"
+        "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<24>"
         PIN
-        "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<110>"
+        "s0/vgamod/ram_2k_attr_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<64>"
         PIN
-        "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<30>"
+        "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<24>"
         PIN
-        "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<108>"
+        "s0/vgamod/ram_2k_char_3/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/TRUE_DP.SINGLE_PRIM18.TDP_pins<64>"
         PIN
         "s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B_pins<66>"
         PIN
