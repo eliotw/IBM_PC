@@ -10,41 +10,41 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Wed Nov 26 21:53:10 2014
+Mapped Date    : Fri Nov 28 12:14:28 2014
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:  193
+Number of warnings:  198
 Slice Logic Utilization:
-  Number of Slice Registers:                 3,775 out of  69,120    5%
-    Number used as Flip Flops:               3,755
+  Number of Slice Registers:                 3,762 out of  69,120    5%
+    Number used as Flip Flops:               3,742
     Number used as Latches:                     20
-  Number of Slice LUTs:                      5,676 out of  69,120    8%
-    Number used as logic:                    5,084 out of  69,120    7%
-      Number using O6 output only:           4,587
-      Number using O5 output only:             110
-      Number using O5 and O6:                  387
+  Number of Slice LUTs:                      5,707 out of  69,120    8%
+    Number used as logic:                    5,055 out of  69,120    7%
+      Number using O6 output only:           4,883
+      Number using O5 output only:              59
+      Number using O5 and O6:                  113
     Number used as Memory:                     579 out of  17,920    3%
       Number used as Shift Register:           579
         Number using O6 output only:           577
         Number using O5 output only:             1
         Number using O5 and O6:                  1
-    Number used as exclusive route-thru:        13
-  Number of route-thrus:                       139
-    Number using O6 output only:               121
-    Number using O5 output only:                17
-    Number using O5 and O6:                      1
+    Number used as exclusive route-thru:        73
+  Number of route-thrus:                       200
+    Number using O6 output only:               126
+    Number using O5 output only:                68
+    Number using O5 and O6:                      6
 
 Slice Logic Distribution:
-  Number of occupied Slices:                 2,458 out of  17,280   14%
-  Number of LUT Flip Flop pairs used:        7,454
-    Number with an unused Flip Flop:         3,679 out of   7,454   49%
-    Number with an unused LUT:               1,778 out of   7,454   23%
-    Number of fully used LUT-FF pairs:       1,997 out of   7,454   26%
+  Number of occupied Slices:                 2,465 out of  17,280   14%
+  Number of LUT Flip Flop pairs used:        7,367
+    Number with an unused Flip Flop:         3,605 out of   7,367   48%
+    Number with an unused LUT:               1,660 out of   7,367   22%
+    Number of fully used LUT-FF pairs:       2,102 out of   7,367   28%
     Number of unique control sets:             163
     Number of slice register sites lost
-      to control set restrictions:             261 out of  69,120    1%
+      to control set restrictions:             262 out of  69,120    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -59,8 +59,8 @@ IO Utilization:
     Number of LOCed IOBs:                       19 out of      19  100%
 
 Specific Feature Utilization:
-  Number of BlockRAM/FIFO:                     108 out of     148   72%
-    Number using BlockRAM only:                108
+  Number of BlockRAM/FIFO:                     107 out of     148   72%
+    Number using BlockRAM only:                107
     Total primitives used:
       Number of 36k BlockRAM used:             104
       Number of 18k BlockRAM used:               4
@@ -73,9 +73,9 @@ Specific Feature Utilization:
   Number of RPM macros:           10
 Average Fanout of Non-Clock Nets:                4.58
 
-Peak Memory Usage:  1133 MB
-Total REAL time to MAP completion:  1 mins 2 secs 
-Total CPU time to MAP completion:   1 mins 1 secs 
+Peak Memory Usage:  1137 MB
+Total REAL time to MAP completion:  59 secs 
+Total CPU time to MAP completion:   55 secs 
 
 Table of Contents
 -----------------
@@ -102,7 +102,7 @@ WARNING:Security:43 - No license file was found in the standard Xilinx license
 directory.
 WARNING:Security:44 - Since no license file was found,
 WARNING:Security:42 - Your license support version '2014.11' for ISE expires in
-4 days after which you will not qualify for Xilinx software updates or new
+2 days after which you will not qualify for Xilinx software updates or new
 releases.
 WARNING:Pack:2874 - Trimming timing constraints from pin
    s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cs
@@ -1288,6 +1288,23 @@ WARNING:Pack:2874 - Trimming timing constraints from pin
    U_ila_pro_0/U0/I_NO_D.U_ILA/U_CAPSTOR/I_CASE1.I_YES_TB.U_TRACE_BUFFER/U_RAM/I
    _V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[6].u_r
    amb36/U_RAMB36_REGCLKBL_tiesig
+WARNING:Pack:2574 - The F7 multiplexer symbol
+   "s1/i8088/core/exec/alu/shrot/Mmux_unchanged113" and its I1 input driver
+   "XST_GND" were implemented suboptimally in the same slice component. The
+   function generator could not be placed directly driving the F7 multiplexer.
+   The design will exhibit suboptimal timing.
+WARNING:Pack:2143 - The function generator "XST_GND" failed to merge with F7
+   multiplexer "s1/i8088/core/micro_data_micro_rom/Mram_rom124_f7".  There are
+   more than two MUXF7 wide function muxes.  The design will exhibit suboptimal
+   timing.
+WARNING:Pack:2143 - The function generator "XST_GND" failed to merge with F7
+   multiplexer "s1/i8088/core/micro_data_micro_rom/Mram_rom172_f7".  There are
+   more than two MUXF7 wide function muxes.  The design will exhibit suboptimal
+   timing.
+WARNING:Pack:2143 - The function generator "XST_GND" failed to merge with F7
+   multiplexer "s1/i8088/core/micro_data_micro_rom/Mram_rom21_f7".  There are
+   more than two MUXF7 wide function muxes.  The design will exhibit suboptimal
+   timing.
 WARNING:Place:644 - A clock IOB clock component is not placed at an optimal
    clock IOB site. The clock IOB component <KEYBOARD_CLK> is placed at site
    <T26>. The clock IO site can use the fast path between the IO and the Clock
@@ -1298,10 +1315,9 @@ WARNING:Place:644 - A clock IOB clock component is not placed at an optimal
    this override is highly discouraged as it may lead to very poor timing
    results. It is recommended that this error condition be corrected in the
    design.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s4/wrt_dma_pg_reg_n_INV_731_o is sourced by a combinatorial pin. This is not
-   good design practice. Use the CE pin to control the loading of data into the
-   flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net GPIO_LED_1_OBUF is sourced
+   by a combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s9/i8255/pds is sourced by
    a combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
@@ -1309,7 +1325,11 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s1/i8259/eoir[4]_GND_66_o_equal_97_o is sourced by a combinatorial pin. This
+   s4/wrt_dma_pg_reg_n_INV_728_o is sourced by a combinatorial pin. This is not
+   good design practice. Use the CE pin to control the loading of data into the
+   flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s1/i8259/eoir[4]_GND_65_o_equal_97_o is sourced by a combinatorial pin. This
    is not good design practice. Use the CE pin to control the loading of data
    into the flip-flop.
 
@@ -1325,7 +1345,7 @@ se.dat:/afs/ece.cmu.edu/support/synplicity/sun4_55/image/usr/local/synplcty/lice
 nse.dat'.
 INFO:Security:56 - Part 'xc5vlx110t' is not a WebPack part.
 INFO:LIT:243 - Logical network icon_control0<10> has no load.
-INFO:LIT:395 - The above info message is repeated 23 more times for the
+INFO:LIT:395 - The above info message is repeated 24 more times for the
    following (max. 5 shown):
    icon_control0<11>,
    icon_control0<15>,
@@ -1348,7 +1368,7 @@ INFO:Pack:1650 - Map created a placed design.
 Section 4 - Removed Logic Summary
 ---------------------------------
   44 block(s) removed
- 351 block(s) optimized away
+ 350 block(s) optimized away
   31 signal(s) removed
 
 Section 5 - Removed Logic
@@ -1807,7 +1827,6 @@ I_CS_GANDX.U_CS_GANDX_SRL/I_V5.U_CS_GANDX_SRL_V5/U_CS_GAND_SRL_V5/I_USE_RPM_NE0.
 U_GAND_SRL_SET/XST_VCC
 GND 		U_ila_pro_0/XST_GND
 VCC 		U_ila_pro_0/XST_VCC
-GND 		XST_GND
 VCC 		XST_VCC
 GND 		s0/vgamod/char_rom/XST_GND
 VCC 		s0/vgamod/char_rom/XST_VCC

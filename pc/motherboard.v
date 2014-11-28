@@ -128,12 +128,14 @@ module motherboard(
 	assign activate_timer_2 = GPIO_DIP_SW2; // switch to enable timer 2
 	
 	// Disable IRQ Module
+	/*
 	irqdisable ird(
 			.clk(clk88),
 			.rst_n(~reset),
 			.irqbutton(irqbutton),
 			.irq_en(irqenable)
 			);
+	*/
 	
 	// Debounce Module
 	debounce deb(

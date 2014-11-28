@@ -10,7 +10,7 @@ Target Device  : xc5vlx110t
 Target Package : ff1136
 Target Speed   : -1
 Mapper Version : virtex5 -- $Revision: 1.55 $
-Mapped Date    : Wed Nov 26 21:53:10 2014
+Mapped Date    : Fri Nov 28 12:14:28 2014
 
 vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable is not set.
@@ -29,7 +29,7 @@ WARNING:Security:44 - Since no license file was found,
        (xlcm or "Manage Xilinx Licenses")
        to assist in obtaining a license.
 WARNING:Security:42 - Your license support version '2014.11' for ISE expires in
-4 days after which you will not qualify for Xilinx software updates or new
+2 days after which you will not qualify for Xilinx software updates or new
 releases.
 ----------------------------------------------------------------------
 Mapping design into LUTs...
@@ -1218,31 +1218,48 @@ WARNING:Pack:2874 - Trimming timing constraints from pin
    _V5.U_CS_BRAM_CASCADE_V5/I_DEPTH_LTEQ_32K.U_SBRAM_0/I_B36KGT0.G_RAMB36[6].u_r
    amb36/U_RAMB36_REGCLKBL_tiesig
 Running directed packing...
+WARNING:Pack:2574 - The F7 multiplexer symbol
+   "s1/i8088/core/exec/alu/shrot/Mmux_unchanged113" and its I1 input driver
+   "XST_GND" were implemented suboptimally in the same slice component. The
+   function generator could not be placed directly driving the F7 multiplexer.
+   The design will exhibit suboptimal timing.
+WARNING:Pack:2143 - The function generator "XST_GND" failed to merge with F7
+   multiplexer "s1/i8088/core/micro_data_micro_rom/Mram_rom124_f7".  There are
+   more than two MUXF7 wide function muxes.  The design will exhibit suboptimal
+   timing.
+WARNING:Pack:2143 - The function generator "XST_GND" failed to merge with F7
+   multiplexer "s1/i8088/core/micro_data_micro_rom/Mram_rom172_f7".  There are
+   more than two MUXF7 wide function muxes.  The design will exhibit suboptimal
+   timing.
+WARNING:Pack:2143 - The function generator "XST_GND" failed to merge with F7
+   multiplexer "s1/i8088/core/micro_data_micro_rom/Mram_rom21_f7".  There are
+   more than two MUXF7 wide function muxes.  The design will exhibit suboptimal
+   timing.
 Running delay-based LUT packing...
 Updating timing models...
 INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
    (.mrp).
 Running timing-driven placement...
 Total REAL time at the beginning of Placer: 29 secs 
-Total CPU  time at the beginning of Placer: 28 secs 
+Total CPU  time at the beginning of Placer: 26 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:55ad6b6f) REAL time: 32 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:6521843a) REAL time: 32 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:55ad6b6f) REAL time: 33 secs 
+Phase 2.7  Design Feasibility Check (Checksum:6521843a) REAL time: 33 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:f977ba5f) REAL time: 33 secs 
+Phase 3.31  Local Placement Optimization (Checksum:48b2864a) REAL time: 33 secs 
 
 Phase 4.37  Local Placement Optimization
-Phase 4.37  Local Placement Optimization (Checksum:f977ba5f) REAL time: 33 secs 
+Phase 4.37  Local Placement Optimization (Checksum:48b2864a) REAL time: 33 secs 
 
 Phase 5.33  Local Placement Optimization
-Phase 5.33  Local Placement Optimization (Checksum:f977ba5f) REAL time: 36 secs 
+Phase 5.33  Local Placement Optimization (Checksum:48b2864a) REAL time: 36 secs 
 
 Phase 6.32  Local Placement Optimization
-Phase 6.32  Local Placement Optimization (Checksum:f977ba5f) REAL time: 37 secs 
+Phase 6.32  Local Placement Optimization (Checksum:48b2864a) REAL time: 36 secs 
 
 Phase 7.2  Initial Clock and IO Placement
 
@@ -1257,48 +1274,47 @@ WARNING:Place:644 - A clock IOB clock component is not placed at an optimal
    this override is highly discouraged as it may lead to very poor timing
    results. It is recommended that this error condition be corrected in the
    design.
-Phase 7.2  Initial Clock and IO Placement (Checksum:854e7003) REAL time: 37 secs 
+Phase 7.2  Initial Clock and IO Placement (Checksum:2b1c722e) REAL time: 37 secs 
 
 Phase 8.36  Local Placement Optimization
-Phase 8.36  Local Placement Optimization (Checksum:854e7003) REAL time: 37 secs 
+Phase 8.36  Local Placement Optimization (Checksum:2b1c722e) REAL time: 37 secs 
 
 Phase 9.30  Global Clock Region Assignment
-Phase 9.30  Global Clock Region Assignment (Checksum:854e7003) REAL time: 37 secs 
+Phase 9.30  Global Clock Region Assignment (Checksum:2b1c722e) REAL time: 37 secs 
 
 Phase 10.3  Local Placement Optimization
-Phase 10.3  Local Placement Optimization (Checksum:854e7003) REAL time: 38 secs 
+Phase 10.3  Local Placement Optimization (Checksum:2b1c722e) REAL time: 37 secs 
 
 Phase 11.5  Local Placement Optimization
-Phase 11.5  Local Placement Optimization (Checksum:854e7003) REAL time: 38 secs 
+Phase 11.5  Local Placement Optimization (Checksum:2b1c722e) REAL time: 37 secs 
 
 Phase 12.8  Global Placement
-......................................................................................................................................................................................
-..................
-Phase 12.8  Global Placement (Checksum:d578458a) REAL time: 44 secs 
+....................................................................................................................................................................
+...............
+Phase 12.8  Global Placement (Checksum:33eacc3d) REAL time: 43 secs 
 
 Phase 13.29  Local Placement Optimization
-Phase 13.29  Local Placement Optimization (Checksum:d578458a) REAL time: 44 secs 
+Phase 13.29  Local Placement Optimization (Checksum:33eacc3d) REAL time: 43 secs 
 
 Phase 14.5  Local Placement Optimization
-Phase 14.5  Local Placement Optimization (Checksum:d578458a) REAL time: 44 secs 
+Phase 14.5  Local Placement Optimization (Checksum:33eacc3d) REAL time: 43 secs 
 
 Phase 15.18  Placement Optimization
-Phase 15.18  Placement Optimization (Checksum:d6a96712) REAL time: 57 secs 
+Phase 15.18  Placement Optimization (Checksum:dbd77f96) REAL time: 54 secs 
 
 Phase 16.5  Local Placement Optimization
-Phase 16.5  Local Placement Optimization (Checksum:d6a96712) REAL time: 57 secs 
+Phase 16.5  Local Placement Optimization (Checksum:dbd77f96) REAL time: 54 secs 
 
 Phase 17.34  Placement Validation
-Phase 17.34  Placement Validation (Checksum:d6a96712) REAL time: 57 secs 
+Phase 17.34  Placement Validation (Checksum:dbd77f96) REAL time: 54 secs 
 
-Total REAL time to Placer completion: 57 secs 
-Total CPU  time to Placer completion: 56 secs 
+Total REAL time to Placer completion: 54 secs 
+Total CPU  time to Placer completion: 51 secs 
 Running post-placement packing...
 Writing output files...
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s4/wrt_dma_pg_reg_n_INV_731_o is sourced by a combinatorial pin. This is not
-   good design practice. Use the CE pin to control the loading of data into the
-   flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net GPIO_LED_1_OBUF is sourced
+   by a combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net s9/i8255/pds is sourced by
    a combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
@@ -1306,7 +1322,11 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
    sourced by a combinatorial pin. This is not good design practice. Use the CE
    pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   s1/i8259/eoir[4]_GND_66_o_equal_97_o is sourced by a combinatorial pin. This
+   s4/wrt_dma_pg_reg_n_INV_728_o is sourced by a combinatorial pin. This is not
+   good design practice. Use the CE pin to control the loading of data into the
+   flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   s1/i8259/eoir[4]_GND_65_o_equal_97_o is sourced by a combinatorial pin. This
    is not good design practice. Use the CE pin to control the loading of data
    into the flip-flop.
 
@@ -1315,36 +1335,36 @@ Design Summary
 
 Design Summary:
 Number of errors:      0
-Number of warnings:  193
+Number of warnings:  198
 Slice Logic Utilization:
-  Number of Slice Registers:                 3,775 out of  69,120    5%
-    Number used as Flip Flops:               3,755
+  Number of Slice Registers:                 3,762 out of  69,120    5%
+    Number used as Flip Flops:               3,742
     Number used as Latches:                     20
-  Number of Slice LUTs:                      5,676 out of  69,120    8%
-    Number used as logic:                    5,084 out of  69,120    7%
-      Number using O6 output only:           4,587
-      Number using O5 output only:             110
-      Number using O5 and O6:                  387
+  Number of Slice LUTs:                      5,707 out of  69,120    8%
+    Number used as logic:                    5,055 out of  69,120    7%
+      Number using O6 output only:           4,883
+      Number using O5 output only:              59
+      Number using O5 and O6:                  113
     Number used as Memory:                     579 out of  17,920    3%
       Number used as Shift Register:           579
         Number using O6 output only:           577
         Number using O5 output only:             1
         Number using O5 and O6:                  1
-    Number used as exclusive route-thru:        13
-  Number of route-thrus:                       139
-    Number using O6 output only:               121
-    Number using O5 output only:                17
-    Number using O5 and O6:                      1
+    Number used as exclusive route-thru:        73
+  Number of route-thrus:                       200
+    Number using O6 output only:               126
+    Number using O5 output only:                68
+    Number using O5 and O6:                      6
 
 Slice Logic Distribution:
-  Number of occupied Slices:                 2,458 out of  17,280   14%
-  Number of LUT Flip Flop pairs used:        7,454
-    Number with an unused Flip Flop:         3,679 out of   7,454   49%
-    Number with an unused LUT:               1,778 out of   7,454   23%
-    Number of fully used LUT-FF pairs:       1,997 out of   7,454   26%
+  Number of occupied Slices:                 2,465 out of  17,280   14%
+  Number of LUT Flip Flop pairs used:        7,367
+    Number with an unused Flip Flop:         3,605 out of   7,367   48%
+    Number with an unused LUT:               1,660 out of   7,367   22%
+    Number of fully used LUT-FF pairs:       2,102 out of   7,367   28%
     Number of unique control sets:             163
     Number of slice register sites lost
-      to control set restrictions:             261 out of  69,120    1%
+      to control set restrictions:             262 out of  69,120    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -1359,8 +1379,8 @@ IO Utilization:
     Number of LOCed IOBs:                       19 out of      19  100%
 
 Specific Feature Utilization:
-  Number of BlockRAM/FIFO:                     108 out of     148   72%
-    Number using BlockRAM only:                108
+  Number of BlockRAM/FIFO:                     107 out of     148   72%
+    Number using BlockRAM only:                107
     Total primitives used:
       Number of 36k BlockRAM used:             104
       Number of 18k BlockRAM used:               4
@@ -1373,9 +1393,9 @@ Specific Feature Utilization:
   Number of RPM macros:           10
 Average Fanout of Non-Clock Nets:                4.58
 
-Peak Memory Usage:  1133 MB
-Total REAL time to MAP completion:  1 mins 2 secs 
-Total CPU time to MAP completion:   1 mins 1 secs 
+Peak Memory Usage:  1137 MB
+Total REAL time to MAP completion:  59 secs 
+Total CPU time to MAP completion:   55 secs 
 
 Mapping completed.
 See MAP report file "motherboard_map.mrp" for details.

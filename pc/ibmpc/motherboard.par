@@ -1,7 +1,7 @@
 Release 14.2 par P.28xd (lin64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-ahtanum.ece.cmu.edu::  Wed Nov 26 21:54:15 2014
+ahtanum.ece.cmu.edu::  Fri Nov 28 12:15:30 2014
 
 par -w -intstyle ise -ol high -mt off motherboard_map.ncd motherboard.ncd
 motherboard.pcf 
@@ -24,7 +24,7 @@ WARNING:Security:44 - Since no license file was found,
        please run the Xilinx License Configuration Manager
        (xlcm or "Manage Xilinx Licenses")
        to assist in obtaining a license.
-WARNING:Security:42 - Your license support version '2014.11' for ISE expires in 4 days after which you will not qualify
+WARNING:Security:42 - Your license support version '2014.11' for ISE expires in 2 days after which you will not qualify
 for Xilinx software updates or new releases.
 
 ----------------------------------------------------------------------
@@ -45,51 +45,52 @@ Device Utilization Summary:
    Number of External IOBs                  19 out of 640     2%
       Number of LOCed IOBs                  19 out of 19    100%
 
-   Number of RAMB18X2s                       4 out of 148     2%
+   Number of RAMB18X2s                       3 out of 148     2%
    Number of RAMB36_EXPs                   104 out of 148    70%
-   Number of Slices                       2458 out of 17280  14%
-   Number of Slice Registers              3775 out of 69120   5%
-      Number used as Flip Flops           3755
-      Number used as Latches                19
-      Number used as LatchThrus              1
+   Number of Slices                       2465 out of 17280  14%
+   Number of Slice Registers              3762 out of 69120   5%
+      Number used as Flip Flops           3742
+      Number used as Latches                20
+      Number used as LatchThrus              0
 
-   Number of Slice LUTS                   5676 out of 69120   8%
-   Number of Slice LUT-Flip Flop pairs    7454 out of 69120  10%
+   Number of Slice LUTS                   5707 out of 69120   8%
+   Number of Slice LUT-Flip Flop pairs    7367 out of 69120  10%
 
 
 Overall effort level (-ol):   High 
 Router effort level (-rl):    High 
 
-Starting initial Timing Analysis.  REAL time: 13 secs 
-Finished initial Timing Analysis.  REAL time: 13 secs 
+Starting initial Timing Analysis.  REAL time: 12 secs 
+Finished initial Timing Analysis.  REAL time: 12 secs 
 
 WARNING:Par:288 - The signal GPIO_DIP_SW2_IBUF has no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal GPIO_SW_W_IBUF has no load.  PAR will not attempt to route this signal.
 Starting Router
 
 
-Phase  1  : 45299 unrouted;      REAL time: 14 secs 
+Phase  1  : 45344 unrouted;      REAL time: 13 secs 
 
-Phase  2  : 33672 unrouted;      REAL time: 16 secs 
+Phase  2  : 34546 unrouted;      REAL time: 15 secs 
 
-Phase  3  : 13876 unrouted;      REAL time: 26 secs 
+Phase  3  : 13924 unrouted;      REAL time: 23 secs 
 
-Phase  4  : 13876 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 31 secs 
+Phase  4  : 13924 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 28 secs 
 
 Updating file: motherboard.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 37 secs 
+Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 35 secs 
 
-Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 37 secs 
+Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 35 secs 
 
-Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 37 secs 
+Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 35 secs 
 
-Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 37 secs 
+Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 35 secs 
 
-Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 37 secs 
+Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 35 secs 
 
-Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 37 secs 
-Total REAL time to Router completion: 37 secs 
-Total CPU time to Router completion: 37 secs 
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 35 secs 
+Total REAL time to Router completion: 35 secs 
+Total CPU time to Router completion: 35 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -107,38 +108,40 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|   s1/i8284/clk_BUFG | BUFGCTRL_X0Y2| No   | 1152 |  0.658     |  2.192      |
+|  s1/i8284/vclk_BUFG |BUFGCTRL_X0Y17| No   |   54 |  0.329     |  2.113      |
 +---------------------+--------------+------+------+------------+-------------+
-|  s1/i8284/vclk_BUFG |BUFGCTRL_X0Y17| No   |   54 |  0.280     |  2.056      |
+|   s1/i8284/clk_BUFG | BUFGCTRL_X0Y2| No   | 1148 |  0.658     |  2.190      |
 +---------------------+--------------+------+------+------------+-------------+
-|           dclk_BUFG |BUFGCTRL_X0Y11| No   |   56 |  0.232     |  1.756      |
+|    icon_control0<0> |BUFGCTRL_X0Y15| No   |  146 |  0.454     |  1.982      |
 +---------------------+--------------+------+------+------------+-------------+
-|    icon_control0<0> |BUFGCTRL_X0Y15| No   |  146 |  0.480     |  2.040      |
+|           dclk_BUFG |BUFGCTRL_X0Y11| No   |   59 |  0.210     |  1.756      |
 +---------------------+--------------+------+------+------------+-------------+
-|  s1/i8284/pclk_BUFG | BUFGCTRL_X0Y9| No   |   50 |  0.552     |  2.202      |
+|       s8/pclka_BUFG |BUFGCTRL_X0Y19| No   |   17 |  0.100     |  1.812      |
 +---------------------+--------------+------+------+------------+-------------+
-|      USER_CLK_BUFGP | BUFGCTRL_X0Y4| No   |    6 |  0.077     |  1.622      |
+|  s1/i8284/pclk_BUFG | BUFGCTRL_X0Y9| No   |   51 |  0.547     |  2.133      |
 +---------------------+--------------+------+------+------------+-------------+
-|  KEYBOARD_CLK_BUFGP |BUFGCTRL_X0Y21| No   |   10 |  0.310     |  2.050      |
+|  KEYBOARD_CLK_BUFGP |BUFGCTRL_X0Y21| No   |   10 |  0.178     |  1.838      |
 +---------------------+--------------+------+------+------------+-------------+
-|       s8/pclka_BUFG |BUFGCTRL_X0Y19| No   |   18 |  0.101     |  1.846      |
+|         s1/ale_BUFG |BUFGCTRL_X0Y24| No   |    5 |  0.011     |  1.678      |
 +---------------------+--------------+------+------+------------+-------------+
-|         s1/ale_BUFG |BUFGCTRL_X0Y24| No   |    5 |  0.004     |  1.633      |
+|      USER_CLK_BUFGP | BUFGCTRL_X0Y4| No   |    6 |  0.035     |  1.659      |
 +---------------------+--------------+------+------+------------+-------------+
-|s4/wrt_dma_pg_reg_n_ |              |      |      |            |             |
-|           INV_731_o |         Local|      |    2 |  0.005     |  0.591      |
+|     GPIO_LED_1_OBUF |         Local|      |  901 |  1.706     |  4.778      |
 +---------------------+--------------+------+------+------------+-------------+
-|        s9/i8255/pds |         Local|      |   12 |  0.377     |  0.999      |
+|        s9/i8255/pds |         Local|      |   16 |  0.415     |  1.038      |
 +---------------------+--------------+------+------+------------+-------------+
-|   icon_control0<13> |         Local|      |    5 |  0.000     |  0.656      |
-+---------------------+--------------+------+------+------------+-------------+
-|      s4/i8237/adstb |         Local|      |    2 |  0.167     |  2.179      |
-+---------------------+--------------+------+------+------------+-------------+
-|s1/i8259/eoir[4]_GND |              |      |      |            |             |
-|    _66_o_equal_97_o |         Local|      |    1 |  0.000     |  0.451      |
+|   icon_control0<13> |         Local|      |    5 |  0.000     |  0.819      |
 +---------------------+--------------+------+------+------------+-------------+
 |U_icon_pro/U0/iUPDAT |              |      |      |            |             |
-|               E_OUT |         Local|      |    1 |  0.000     |  1.631      |
+|               E_OUT |         Local|      |    1 |  0.000     |  1.226      |
++---------------------+--------------+------+------+------------+-------------+
+|      s4/i8237/adstb |         Local|      |    2 |  0.322     |  1.568      |
++---------------------+--------------+------+------+------------+-------------+
+|s4/wrt_dma_pg_reg_n_ |              |      |      |            |             |
+|           INV_728_o |         Local|      |    2 |  0.006     |  0.625      |
++---------------------+--------------+------+------+------------+-------------+
+|s1/i8259/eoir[4]_GND |              |      |      |            |             |
+|    _65_o_equal_97_o |         Local|      |    1 |  0.000     |  0.450      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -160,26 +163,26 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    12.286ns|     2.714ns|       0|           0
-   TO TIMEGRP "J_CLK" 15 ns                 | HOLD        |     1.920ns|            |       0|           0
+  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    12.421ns|     2.579ns|       0|           0
+   TO TIMEGRP "J_CLK" 15 ns                 | HOLD        |     1.848ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    14.110ns|     0.890ns|       0|           0
-   TO TIMEGRP "U_CLK" 15 ns                 | HOLD        |     0.566ns|            |       0|           0
+  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    14.121ns|     0.879ns|       0|           0
+   TO TIMEGRP "U_CLK" 15 ns                 | HOLD        |     0.556ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    19.742ns|    10.258ns|       0|           0
+  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    19.849ns|    10.151ns|       0|           0
   IGH 50%                                   | HOLD        |     0.465ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_D2_TO_T2_path" TIG               | SETUP       |         N/A|     2.266ns|     N/A|           0
+  PATH "TS_D2_TO_T2_path" TIG               | SETUP       |         N/A|     2.749ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_J2_TO_D2_path" TIG               | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_J3_TO_D2_path" TIG               | N/A         |         N/A|         N/A|     N/A|         N/A
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_J4_TO_D2_path" TIG               | MAXDELAY    |         N/A|     3.798ns|     N/A|           0
+  PATH "TS_J4_TO_D2_path" TIG               | MAXDELAY    |         N/A|     3.779ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
   PATH "TS_J_TO_D_path" TIG                 | SETUP       |         N/A|     5.489ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
-  PATH "TS_D_TO_J_path" TIG                 | MAXDELAY    |         N/A|     4.432ns|     N/A|           0
+  PATH "TS_D_TO_J_path" TIG                 | MAXDELAY    |         N/A|     4.025ns|     N/A|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -195,19 +198,19 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-WARNING:Par:283 - There are 1 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
+WARNING:Par:283 - There are 2 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
-Total REAL time to PAR completion: 42 secs 
-Total CPU time to PAR completion: 42 secs 
+Total REAL time to PAR completion: 41 secs 
+Total CPU time to PAR completion: 40 secs 
 
-Peak Memory Usage:  829 MB
+Peak Memory Usage:  830 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.
 Timing: Completed - No errors found.
 
 Number of error messages: 0
-Number of warning messages: 3
+Number of warning messages: 4
 Number of info messages: 0
 
 Writing design to file motherboard.ncd
