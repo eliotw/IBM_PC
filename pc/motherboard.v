@@ -4,176 +4,176 @@
  * Accurate to what is actually in the PC
  */
 module motherboard(
-		   input USER_CLK, // user clock at 100 MHz
-		   output PIEZO_SPEAKER, // speaker
-		   inout KEYBOARD_CLK, // keyboard clock
-		   inout KEYBOARD_DATA, // keyboard data
-		   input GPIO_SW_C, // reset trigger
-			input GPIO_SW_W, // enable/disable irq0
-			input GPIO_SW_E, // keyboard load special
-			input GPIO_DIP_SW1, // select to use audio or not
-			input GPIO_DIP_SW2, // select to use irq0 or not
-		   output HDR1_2, // vga red o 0
-		   output HDR1_4, // vga red o 1
-		   output HDR1_6, // vga green o 0
-		   output HDR1_8, // vga green o 1
-		   output HDR1_10, // vga blue o 0
-		   output HDR1_12, // vga blue o 1
-		   output HDR1_14, // vga horizontal sync
-		   output HDR1_16, // vga vertical sync
-			output GPIO_LED_0, // same as the speaker output
-			output GPIO_LED_1 // irq0 enabled/disabled
-		   );
+	input USER_CLK, // user clock at 100 MHz
+	output PIEZO_SPEAKER, // speaker
+	inout KEYBOARD_CLK, // keyboard clock
+	inout KEYBOARD_DATA, // keyboard data
+	input GPIO_SW_C, // reset trigger
+	input GPIO_SW_W, // enable/disable irq0
+	input GPIO_SW_E, // keyboard load special
+	input GPIO_DIP_SW1, // select to use audio or not
+	input GPIO_DIP_SW2, // select to use irq0 or not
+	output HDR1_2, // vga red o 0
+	output HDR1_4, // vga red o 1
+	output HDR1_6, // vga green o 0
+	output HDR1_8, // vga green o 1
+	output HDR1_10, // vga blue o 0
+	output HDR1_12, // vga blue o 1
+	output HDR1_14, // vga horizontal sync
+	output HDR1_16, // vga vertical sync
+	output GPIO_LED_0, // same as the speaker output
+	output GPIO_LED_1 // irq0 enabled/disabled
+	);
 
-   // Internal signals
-   wire 		 pwr_good; // 10 -> 1
-   wire 		 dma_wait_n; // 2 -> 1
-   wire 		 rdy_wait_n; // 2 -> 1
-   wire 		 nmi; // 2 -> 1
-   wire 		 irq0; // 8 -> 1
-   wire 		 irq1; // 9 -> 1
-   wire 		 irq2, irq3, irq4, irq5, irq6, irq7; // 10 -> 1
-   wire 		 intr_cs_n; // 3 -> 1
-   wire 		 xior_n; // 5 -> 1, 2, 4, 8, 9
-   wire 		 xiow_n; // 5 -> 1, 2, 3, 4, 8, 9
-   wire 		 xa0_n; // 5 -> 1
-   wire 		 aen_br0; // 2 -> 1, 5
-   wire 		 aen_n; // 2 -> 1, 3
-   wire 		 clk_100; // 100 MHz Clock -> 1, 2, 3
-   wire 		 osc; // 1 -> 10
-   wire 		 pclk; // 1 -> 8, 9
-   tri [19:0] 		 a; // 1 -> 3, 4, 5, 6, 10
-   wire [12:0] 		 xa; // 5 -> 3, 4
-   wire 		 lock_n; // 1 -> 2
-   wire 		 reset; // 1 -> 2, 4, 9
-   wire 		 clk88; // 1 -> 2, 5
-   wire [7:0] 		 d; // 1 -> 5, 6, 10
-   wire 		 vga_clk; // 25 MHz Clock -> 1, 10
-   wire 		 s0_n, s1_n, s2_n; // 1 -> 2
-   wire 		 ale; // 1 -> 10
-   wire 		 npnpi; // 1 -> 2
-   wire 		 ior_n, memr_n, iow_n, memw_n; // 1 -> 5, 10
-   wire 		 io_ch_rdy; // 10 -> 2
-   wire 		 dack_0_brd_n; // 4 -> 2, 3, 5, 8
-   wire 		 xmemr_n; // 5 -> 2, 3, 4, 6
-   wire 		 xmemw_n; // 5 -> 3, 4, 6
-   wire 		 clk; // 5 -> 2, 4, 10
-   wire 		 hrq_dma_n; // 4 -> 2
-   wire 		 npinstlsw; // 9 -> 2
-   wire 		 pck_n; // 6 -> 2
-   wire [7:0] 		 xd; // 5 -> 2, 4, 8, 9
-   wire 		 wrt_nmi_reg_n; // 3 -> 2
-   wire 		 io_ch_ck_n; // 10 -> 2
-   wire 		 enable_io_ck_n; // 9 -> 2
-   wire 		 rdy_to_dma; // 2 -> 4
-   wire 		 dma_aen_n; // 2 -> 4, 5
-   wire 		 holda; // 2 -> 4
-   wire 		 reset_drv_n; // 2 -> 3, 8, 9
-   wire 		 reset_drv; // 2 -> 10
-   wire 		 io_ch_ck; // 2 -> 9
-   wire 		 dclk; // 2 -> 4
-   wire 		 dack_0; // 4 -> 3
-   wire 		 dma_cs_n; // 3 -> 4
-   wire 		 tc_cs_n; // 3 -> 8
-   wire 		 ppi_cs_n; // 3 -> 9
-   wire 		 wrt_dma_pg_reg_n; // 3 -> 4
-   wire 		 rom_addr_sel_n; // 3 -> 5
-   wire 		 ram_addr_sel_n; // 3 -> 6
-   wire 		 addr_sel; // 3 -> 6
-   wire [3:0] 		 cas_n; // 3 -> 6, 7
-   wire [3:0] 		 ras_n; // 3 -> 6, 7
-   wire [7:0] 		 cs_n; // 3 -> 5
-   wire [3:0] 		 drq; // 8, 10 -> 4
-   wire 		 tc; // 4 -> 10
-   wire 		 dack_1_n; // 4 -> 10
-   wire 		 dack_2_n; // 4 -> 10
-   wire 		 dack_3_n; // 4 -> 10
-   wire 		 aen; // 5 -> 10
-   wire 		 dack_0_n; // 5 -> 10
-   wire 		 enb_ram_pck_n; // 9 -> 6
-   wire 		 pck; // 6 -> 9
-   wire 		 spkr_data; // 9 -> 8
-   wire 		 tim_2_gate_spk; // 9 -> 8
-   wire 		 motor_off; // 9 -> 8
-   wire 		 spkr_data_out; // 8 -> piezo speaker
-   wire 		 tc_2_out; // 8 -> 9
-   wire 		 cass_data_in; // 8 -> 9
-   wire [1:0] 		 vga_red_o; // vga red output
-   wire [1:0] 		 vga_green_o; // vga green output
-   wire [1:0] 		 vga_blue_o; // vga blue output
-   wire 		 horiz_sync; // vga horizontal sync
-   wire 		 vert_sync; // vga vertical sync
-   wire	    keyboard_load_special; // keyboard load special program
-	wire irq00; // special IRQ0 line
-	wire irqbutton; // special IRQ0 button
-	wire irqenable; // enable IRQ0
-	wire activate_timer_2; // activate timer 2
-	
-   // Some assignments
-   assign clk_100 = USER_CLK; // user clock is 100 MHz clock
-   assign xa0_n = xa[0]; // not sure if needs to be inverted or not
-   assign PIEZO_SPEAKER = (GPIO_DIP_SW1) ? spkr_data_out : 1'b1; // speaker assignment 
+	// Internal signals
+	wire		pwr_good; // 10 -> 1
+	wire		dma_wait_n; // 2 -> 1
+	wire		rdy_wait_n; // 2 -> 1
+	wire		nmi; // 2 -> 1
+	wire		irq0; // 8 -> 1
+	wire		irq1; // 9 -> 1
+	wire		irq2, irq3, irq4, irq5, irq6, irq7; // 10 -> 1
+	wire		intr_cs_n; // 3 -> 1
+	wire		xior_n; // 5 -> 1, 2, 4, 8, 9
+	wire		xiow_n; // 5 -> 1, 2, 3, 4, 8, 9
+	wire		xa0_n; // 5 -> 1
+	wire		aen_br0; // 2 -> 1, 5
+	wire		aen_n; // 2 -> 1, 3
+	wire		clk_100; // 100 MHz Clock -> 1, 2, 3
+	wire		osc; // 1 -> 10
+	wire		pclk; // 1 -> 8, 9
+	tri [19:0]	a; // 1 -> 3, 4, 5, 6, 10
+	wire [12:0]	xa; // 5 -> 3, 4
+	wire		lock_n; // 1 -> 2
+	wire		reset; // 1 -> 2, 4, 9
+	wire		clk88; // 1 -> 2, 5
+	wire [7:0]	d; // 1 -> 5, 6, 10
+	wire		vga_clk; // 25 MHz Clock -> 1, 10
+	wire		s0_n, s1_n, s2_n; // 1 -> 2
+	wire		ale; // 1 -> 10
+	wire		npnpi; // 1 -> 2
+	wire		ior_n, memr_n, iow_n, memw_n; // 1 -> 5, 10
+	wire		io_ch_rdy; // 10 -> 2
+	wire		dack_0_brd_n; // 4 -> 2, 3, 5, 8
+	wire		xmemr_n; // 5 -> 2, 3, 4, 6
+	wire		xmemw_n; // 5 -> 3, 4, 6
+	wire		clk; // 5 -> 2, 4, 10
+	wire		hrq_dma_n; // 4 -> 2
+	wire		npinstlsw; // 9 -> 2
+	wire		pck_n; // 6 -> 2
+	wire [7:0]	xd; // 5 -> 2, 4, 8, 9
+	wire		wrt_nmi_reg_n; // 3 -> 2
+	wire		io_ch_ck_n; // 10 -> 2
+	wire		enable_io_ck_n; // 9 -> 2
+	wire		rdy_to_dma; // 2 -> 4
+	wire		dma_aen_n; // 2 -> 4, 5
+	wire		holda; // 2 -> 4
+	wire		reset_drv_n; // 2 -> 3, 8, 9
+	wire		reset_drv; // 2 -> 10
+	wire		io_ch_ck; // 2 -> 9
+	wire		dclk; // 2 -> 4
+	wire		dack_0; // 4 -> 3
+	wire		dma_cs_n; // 3 -> 4
+	wire		tc_cs_n; // 3 -> 8
+	wire		ppi_cs_n; // 3 -> 9
+	wire		wrt_dma_pg_reg_n; // 3 -> 4
+	wire		rom_addr_sel_n; // 3 -> 5
+	wire		ram_addr_sel_n; // 3 -> 6
+	wire		addr_sel; // 3 -> 6
+	wire [3:0]	cas_n; // 3 -> 6, 7
+	wire [3:0]	ras_n; // 3 -> 6, 7
+	wire [7:0]	cs_n; // 3 -> 5
+	wire [3:0]	drq; // 8, 10 -> 4
+	wire		tc; // 4 -> 10
+	wire		dack_1_n; // 4 -> 10
+	wire		dack_2_n; // 4 -> 10
+	wire		dack_3_n; // 4 -> 10
+	wire		aen; // 5 -> 10
+	wire		dack_0_n; // 5 -> 10
+	wire		enb_ram_pck_n; // 9 -> 6
+	wire		pck; // 6 -> 9
+	wire		spkr_data; // 9 -> 8
+	wire		tim_2_gate_spk; // 9 -> 8
+	wire		motor_off; // 9 -> 8
+	wire		spkr_data_out; // 8 -> piezo speaker
+	wire		tc_2_out; // 8 -> 9
+	wire		cass_data_in; // 8 -> 9
+	wire [1:0]	vga_red_o; // vga red output
+	wire [1:0]	vga_green_o; // vga green output
+	wire [1:0]	vga_blue_o; // vga blue output
+	wire		horiz_sync; // vga horizontal sync
+	wire		vert_sync; // vga vertical sync
+	wire		keyboard_load_special; // keyboard load special program
+	wire		irq00; // special IRQ0 line
+	wire		irqbutton; // special IRQ0 button
+	wire		irqenable; // enable IRQ0
+	wire		activate_timer_2; // activate timer 2
+
+	// Some assignments
+	assign clk_100 = USER_CLK; // user clock is 100 MHz clock
+	assign xa0_n = xa[0]; // not sure if needs to be inverted or not
+	assign PIEZO_SPEAKER = (GPIO_DIP_SW1) ? spkr_data_out : 1'b1; // speaker assignment 
 	assign GPIO_LED_0 = spkr_data_out; // assign to led as well
 	assign GPIO_LED_1 = irqenable; // tell whether IRQ is enabled or not
-   assign HDR1_2 = vga_red_o[0]; // vga red o 0
-   assign HDR1_4 = vga_red_o[1]; // vga red o 1
-   assign HDR1_6 = vga_green_o[0]; // vga green o 0
-   assign HDR1_8 = vga_green_o[1]; // vga green o 1
-   assign HDR1_10 = vga_blue_o[0]; // vga blue o 0
-   assign HDR1_12 = vga_blue_o[1]; // vga blue o 1
-   assign HDR1_14 = horiz_sync; // vga horizontal sync
-   assign HDR1_16 = vert_sync; // vga vertical sync
+	assign HDR1_2 = vga_red_o[0]; // vga red o 0
+	assign HDR1_4 = vga_red_o[1]; // vga red o 1
+	assign HDR1_6 = vga_green_o[0]; // vga green o 0
+	assign HDR1_8 = vga_green_o[1]; // vga green o 1
+	assign HDR1_10 = vga_blue_o[0]; // vga blue o 0
+	assign HDR1_12 = vga_blue_o[1]; // vga blue o 1
+	assign HDR1_14 = horiz_sync; // vga horizontal sync
+	assign HDR1_16 = vert_sync; // vga vertical sync
 	assign keyboard_load_special = GPIO_SW_E; // keyboard load special program
 	assign irqbutton = GPIO_SW_W; // button to disable irq0
 	assign activate_timer_2 = GPIO_DIP_SW2; // switch to enable timer 2
 	
 	// Disable IRQ Module
 	irqdisable ird(
-						.clk(clk88),
-						.rst_n(~reset),
-						.irqbutton(irqbutton),
-						.irq_en(irqenable)
-						);
+			.clk(clk88),
+			.rst_n(~reset),
+			.irqbutton(irqbutton),
+			.irq_en(irqenable)
+			);
 	
-   // Debounce Module
-   debounce deb(
+	// Debounce Module
+	debounce deb(
 		.clk(clk88), // clock signal
 		.rst(GPIO_SW_C), // reset signal from button
 		.drst(pwr_good) // debounced reset signal
 		);
    
-   // Sheet 1
-   sheet1 s1(
-	     .pwr_good(pwr_good),
-	     .dma_wait_n(dma_wait_n),
-	     .rdy_wait_n(rdy_wait_n),
-	     .nmi(nmi),
-	     .irq({irq7,irq6,irq5,irq4,irq3,irq2,irq1,irq0}),
-	     .intr_cs_n(intr_cs_n),
-	     .xior_n(xior_n),
-	     .xiow_n(xiow_n),
-	     .xa0_n(xa0_n),
-	     .aen_br0(aen_br0),
-	     .aen_n(aen_n),
-	     .clk_100(clk_100),
-	     .osc(osc), // oscillator clock
-	     .pclk(pclk), // i/o clock
-	     .a(a), // address bus
-	     .lock_n(lock_n), // lock cpu
-	     .reset(reset), // reset cpu
-	     .clk88(clk88), // 4.77 MHz clock for cpu
-	     .d(d), // data bus
-	     .vga_clk(vga_clk), // clock for VGA
-	     .s0_n(s0_n),
-	     .s1_n(s1_n),
-	     .s2_n(s2_n),
-	     .ale(ale),
-	     .npnpi(npnpi),
-	     .ior_n(ior_n),
-	     .memr_n(memr_n),
-	     .iow_n(iow_n),
-	     .memw_n(memw_n)
-	     );
+	// Sheet 1
+	sheet1 s1(
+		.pwr_good(pwr_good),
+		.dma_wait_n(dma_wait_n),
+		.rdy_wait_n(rdy_wait_n),
+		.nmi(nmi),
+		.irq({irq7,irq6,irq5,irq4,irq3,irq2,irq1,irq0}),
+		.intr_cs_n(intr_cs_n),
+		.xior_n(xior_n),
+		.xiow_n(xiow_n),
+		.xa0_n(xa0_n),
+		.aen_br0(aen_br0),
+		.aen_n(aen_n),
+		.clk_100(clk_100),
+		.osc(osc), // oscillator clock
+		.pclk(pclk), // i/o clock
+		.a(a), // address bus
+		.lock_n(lock_n), // lock cpu
+		.reset(reset), // reset cpu
+		.clk88(clk88), // 4.77 MHz clock for cpu
+		.d(d), // data bus
+		.vga_clk(vga_clk), // clock for VGA
+		.s0_n(s0_n),
+		.s1_n(s1_n),
+		.s2_n(s2_n),
+		.ale(ale),
+		.npnpi(npnpi),
+		.ior_n(ior_n),
+		.memr_n(memr_n),
+		.iow_n(iow_n),
+		.memw_n(memw_n)
+		);
 
    // Sheet 2
    sheet2 s2(
@@ -238,7 +238,7 @@ module motherboard(
 	     .intr_cs_n(intr_cs_n),
 	     .tc_cs_n(tc_cs_n),
 	     .ppi_cs_n(ppi_cs_n),
-		  .wrt_nmi_reg_n(wrt_nmi_reg_n),
+	     .wrt_nmi_reg_n(wrt_nmi_reg_n),
 	     .wrt_dma_pg_reg_n(wrt_dma_pg_reg_n),
 	     .rom_addr_sel_n(rom_addr_sel_n),
 	     .ram_addr_sel_n(ram_addr_sel_n),
@@ -343,8 +343,8 @@ module motherboard(
 	     .motor_off(motor_off),
 	     .pclk(pclk),
 	     .reset_drv_n(reset_drv_n),
-		  .zclk(clk88),
-		  .activate_timer_2(activate_timer_2),
+	     .zclk(clk88),
+	     .activate_timer_2(activate_timer_2),
 	     .drq0(drq[0]),
 	     .irq0(irq0),
 	     .spkr_data_out(spkr_data_out),
@@ -354,7 +354,7 @@ module motherboard(
 
    // Sheet 9
    sheet9 s9(
-		  .clk88(clk88),
+	     .clk88(clk88),
 	     .xior_n(xior_n),
 	     .xiow_n(xiow_n),
 	     .ppics_n(ppi_cs_n),
@@ -377,7 +377,7 @@ module motherboard(
 	     .np_instl_sw(npinstlsw),
 	     .kbd_clk(KEYBOARD_CLK),
 	     .kbd_data(KEYBOARD_DATA),
-		  .keyboard_load_special(keyboard_load_special)
+	     .keyboard_load_special(keyboard_load_special)
 	     );
 
    // Sheet 10
@@ -746,9 +746,7 @@ module sheet2(
       end
    end // always @ (posedge clk_n)
 
-	// Okay, so NMI is creating a problem for some reason and I don't know why
-	// I'm going to disable this and hold out hope that nothing breaks
-	// In theory all NMI is ever used for is for the floating point unit, so #yolo
+	// NMI disabled
    always @(posedge wrt_nmi_reg_n or negedge reset_n) begin
 		if(reset_n == 1'b0) begin
 			allow_nmi <= 1'b0;
@@ -767,8 +765,8 @@ module sheet2(
 		end
 	end
 */
+
    // Time delay function
-   // TODO: See if this works
    timedelay td2(
 		 .in(~clk),
 		 .clk(clk_100),
@@ -899,7 +897,6 @@ module sheet3(
 	     );
    
    // Clock delay units
-   // TODO: See if this works
    timedelay td0(
 		 .in(rasc),
 		 .clk(clk_100),
@@ -1214,7 +1211,6 @@ module sheet6(
 		.even(even)
 		);
 
-   // I HAVE NO IDEA WHAT THIS IS TRYING TO ACCOMPLISH
    // Flip-Flop
    always @(posedge xmemr_n) begin
       if((pck_n == 1'b0) && (enb_ram_pck == 1'b1)) begin
