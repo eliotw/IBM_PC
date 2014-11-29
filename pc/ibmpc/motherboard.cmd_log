@@ -2767,3 +2767,14 @@ map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -regist
 par -w -intstyle ise -ol high -mt off motherboard_map.ncd motherboard.ncd motherboard.pcf 
 trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml motherboard.twx motherboard.ncd -o motherboard.twr motherboard.pcf 
 bitgen -intstyle ise -f motherboard.ut motherboard.ncd 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc /afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/ibmpc.ucf -p xc5vlx110t-ff1136-1 motherboard.ngc motherboard.ngd  
+map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr off -lc off -power off -o motherboard_map.ncd motherboard.ngd motherboard.pcf 
+par -w -intstyle ise -ol high -mt off motherboard_map.ncd motherboard.ncd motherboard.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml motherboard.twx motherboard.ncd -o motherboard.twr motherboard.pcf 
+bitgen -intstyle ise -f motherboard.ut motherboard.ncd 
+xst -intstyle ise -ifn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/ibmpc/motherboard.xst" -ofn "/afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/ibmpc/motherboard.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc /afs/ece.cmu.edu/usr/pmbrown/Private/IBM/IBM_PC/pc/ibmpc.ucf -p xc5vlx110t-ff1136-1 motherboard.ngc motherboard.ngd  
+map -intstyle ise -p xc5vlx110t-ff1136-1 -w -logic_opt off -ol high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr off -lc off -power off -o motherboard_map.ncd motherboard.ngd motherboard.pcf 
+par -w -intstyle ise -ol high -mt off motherboard_map.ncd motherboard.ncd motherboard.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml motherboard.twx motherboard.ncd -o motherboard.twr motherboard.pcf 
+bitgen -intstyle ise -f motherboard.ut motherboard.ncd 
