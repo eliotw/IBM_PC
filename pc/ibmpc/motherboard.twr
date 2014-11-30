@@ -37,7 +37,7 @@ Setup/Hold to clock KEYBOARD_CLK
              |Max Setup to|Max Hold to |                  | Clock  |
 Source       | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
 -------------+------------+------------+------------------+--------+
-KEYBOARD_DATA|    2.436(F)|    2.870(F)|KEYBOARD_CLK_BUFGP|   0.000|
+KEYBOARD_DATA|    1.554(F)|    2.757(F)|KEYBOARD_CLK_BUFGP|   0.000|
 -------------+------------+------------+------------------+--------+
 
 Clock to Setup on destination clock KEYBOARD_CLK
@@ -45,7 +45,7 @@ Clock to Setup on destination clock KEYBOARD_CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-KEYBOARD_CLK   |         |         |         |    4.903|
+KEYBOARD_CLK   |         |         |         |    3.700|
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock USER_CLK
@@ -53,18 +53,18 @@ Clock to Setup on destination clock USER_CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-USER_CLK       |    2.551|         |         |         |
+USER_CLK       |    2.455|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Pad to Pad
 ---------------+---------------+---------+
 Source Pad     |Destination Pad|  Delay  |
 ---------------+---------------+---------+
-GPIO_DIP_SW1   |PIEZO_SPEAKER  |    9.811|
+GPIO_DIP_SW1   |PIEZO_SPEAKER  |    8.308|
 ---------------+---------------+---------+
 
 
-Analysis completed Sun Nov 30 11:10:02 2014 
+Analysis completed Sun Nov 30 12:47:31 2014 
 --------------------------------------------------------------------------------
 
 Trace Settings:
