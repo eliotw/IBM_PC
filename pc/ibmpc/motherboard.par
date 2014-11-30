@@ -1,7 +1,7 @@
 Release 14.2 par P.28xd (lin64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-ahtanum.ece.cmu.edu::  Sun Nov 30 12:45:05 2014
+ahtanum.ece.cmu.edu::  Sun Nov 30 13:32:18 2014
 
 par -w -intstyle ise -ol high -mt off motherboard_map.ncd motherboard.ncd
 motherboard.pcf 
@@ -49,16 +49,16 @@ Device Utilization Summary:
    Number of External IOBs                  19 out of 640     2%
       Number of LOCed IOBs                  19 out of 19    100%
 
-   Number of RAMB18X2s                       2 out of 148     1%
+   Number of RAMB18X2s                       3 out of 148     2%
    Number of RAMB36_EXPs                    97 out of 148    65%
-   Number of Slices                       1737 out of 17280  10%
+   Number of Slices                       1390 out of 17280   8%
    Number of Slice Registers              1983 out of 69120   2%
       Number used as Flip Flops           1964
       Number used as Latches                18
       Number used as LatchThrus              1
 
-   Number of Slice LUTS                   4924 out of 69120   7%
-   Number of Slice LUT-Flip Flop pairs    5319 out of 69120   7%
+   Number of Slice LUTS                   4923 out of 69120   7%
+   Number of Slice LUT-Flip Flop pairs    5198 out of 69120   7%
 
 
 Overall effort level (-ol):   High 
@@ -72,29 +72,29 @@ WARNING:Par:288 - The signal GPIO_SW_W_IBUF has no load.  PAR will not attempt t
 Starting Router
 
 
-Phase  1  : 36833 unrouted;      REAL time: 12 secs 
+Phase  1  : 36803 unrouted;      REAL time: 12 secs 
 
-Phase  2  : 28748 unrouted;      REAL time: 13 secs 
+Phase  2  : 28722 unrouted;      REAL time: 14 secs 
 
-Phase  3  : 7129 unrouted;      REAL time: 34 secs 
+Phase  3  : 8833 unrouted;      REAL time: 33 secs 
 
-Phase  4  : 13474 unrouted; (Par is working to improve performance)     REAL time: 1 mins 29 secs 
+Phase  4  : 15471 unrouted; (Par is working to improve performance)     REAL time: 1 mins 3 secs 
 
 Updating file: motherboard.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 45 secs 
+Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 20 secs 
 
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 45 secs 
+Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 20 secs 
 
-Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 45 secs 
+Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 20 secs 
 
-Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 45 secs 
+Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 20 secs 
 
-Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 45 secs 
+Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 21 secs 
 
-Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 47 secs 
-Total REAL time to Router completion: 1 mins 47 secs 
-Total CPU time to Router completion: 1 mins 49 secs 
+Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 23 secs 
+Total REAL time to Router completion: 1 mins 23 secs 
+Total CPU time to Router completion: 1 mins 24 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -114,32 +114,32 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|    34.009ns|     N/A|           0
-  i8284/clk_BUFG                            | HOLD        |     0.402ns|            |       0|           0
+  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|    34.075ns|     N/A|           0
+  i8284/clk_BUFG                            | HOLD        |     0.329ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|     3.954ns|     N/A|           0
+  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|     5.668ns|     N/A|           0
   i8284/vclk_BUFG                           | HOLD        |     0.425ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net dcl | SETUP       |         N/A|     7.828ns|     N/A|           0
-  k_BUFG                                    | HOLD        |     0.479ns|            |       0|           0
+  Autotimespec constraint for clock net dcl | SETUP       |         N/A|     8.107ns|     N/A|           0
+  k_BUFG                                    | HOLD        |     0.471ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s8/ | SETUP       |         N/A|     5.765ns|     N/A|           0
-  pclka_BUFG                                | HOLD        |     0.860ns|            |       0|           0
+  Autotimespec constraint for clock net s8/ | SETUP       |         N/A|     4.866ns|     N/A|           0
+  pclka_BUFG                                | HOLD        |     0.878ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net USE | SETUP       |         N/A|     2.455ns|     N/A|           0
-  R_CLK_BUFGP                               | HOLD        |     0.528ns|            |       0|           0
+  Autotimespec constraint for clock net USE | SETUP       |         N/A|     2.347ns|     N/A|           0
+  R_CLK_BUFGP                               | HOLD        |     0.502ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|     7.274ns|     N/A|           0
-  i8284/pclk_BUFG                           | HOLD        |     0.280ns|            |       0|           0
+  Autotimespec constraint for clock net s1/ | SETUP       |         N/A|     6.895ns|     N/A|           0
+  i8284/pclk_BUFG                           | HOLD        |     0.423ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net KEY | SETUP       |         N/A|     3.700ns|     N/A|           0
-  BOARD_CLK_BUFGP                           | HOLD        |     0.471ns|            |       0|           0
+  Autotimespec constraint for clock net KEY | SETUP       |         N/A|     4.628ns|     N/A|           0
+  BOARD_CLK_BUFGP                           | HOLD        |     0.483ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s4/ | SETUP       |         N/A|     9.882ns|     N/A|           0
-  i8237/adstb                               | HOLD        |     3.642ns|            |       0|           0
+  Autotimespec constraint for clock net s4/ | SETUP       |         N/A|     9.879ns|     N/A|           0
+  i8237/adstb                               | HOLD        |     3.926ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net s4/ | SETUP       |         N/A|     7.666ns|     N/A|           0
-  wrt_dma_pg_reg_n_INV_728_o                | HOLD        |     3.558ns|            |       0|           0
+  Autotimespec constraint for clock net s4/ | SETUP       |         N/A|     8.778ns|     N/A|           0
+  wrt_dma_pg_reg_n_INV_728_o                | HOLD        |     3.673ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -157,10 +157,10 @@ All signals are completely routed.
 
 WARNING:Par:283 - There are 2 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
-Total REAL time to PAR completion: 1 mins 56 secs 
-Total CPU time to PAR completion: 1 mins 57 secs 
+Total REAL time to PAR completion: 1 mins 31 secs 
+Total CPU time to PAR completion: 1 mins 33 secs 
 
-Peak Memory Usage:  849 MB
+Peak Memory Usage:  843 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.
