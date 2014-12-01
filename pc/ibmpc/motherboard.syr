@@ -3439,7 +3439,7 @@ Synthesizing Unit <keyload>.
         act4 = 8'b00100000
         act5 = 8'b01000000
         act6 = 8'b10000000
-        tc = 16'b0011101000110011
+        tc = 16'b0011111010001011
         endcount = 16'b0100000000000000
     Found 16-bit register for signal <delaycounter>.
     Found 16-bit register for signal <counter>.
@@ -5142,12 +5142,12 @@ FindSrcOfAsyncThruGates : 200 (1)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
 Control Signal                                                                                                                                                                                                                                                                                                      | Buffer(FF name)                                                                                                                                             | Load  |
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                                                            | NONE(s1/i8088/core/exec/regfile/r_0_51)                                                                                                                     | 671   |
-s7/nero/N1(s7/nero/XST_GND:G)                                                                                                                                                                                                                                                                                       | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[28].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                      | 256   |
-s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                                                           | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                 | 64    |
-s9/keyboard/keyloadmod/gamerom/N1(s9/keyboard/keyloadmod/gamerom/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)| 64    |
+deb/state_FSM_FFd1(deb/state_FSM_FFd1:Q)                                                                                                                                                                                                                                                                            | NONE(s1/i8088/core/exec/regfile/r_0_21)                                                                                                                     | 671   |
+s7/nero/N1(s7/nero/XST_GND:G)                                                                                                                                                                                                                                                                                       | NONE(s7/nero/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                       | 256   |
+s5/rommod/crc/N1(s5/rommod/crc/XST_GND:G)                                                                                                                                                                                                                                                                           | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)                 | 64    |
+s9/keyboard/keyloadmod/gamerom/N1(s9/keyboard/keyloadmod/gamerom/XST_GND:G)                                                                                                                                                                                                                                         | NONE(s9/keyboard/keyloadmod/gamerom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B)| 64    |
 s0/vgamod/char_rom/N1(s0/vgamod/char_rom/XST_GND:G)                                                                                                                                                                                                                                                                 | NONE(s0/vgamod/char_rom/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.SINGLE_PRIM36.SP)                 | 8     |
-s1/i8259/rst_n_eoir[4]_OR_879_o(s1/i8259/rst_n_eoir[4]_OR_879_o1:O)                                                                                                                                                                                                                                                 | NONE(s1/i8259/dout_1)                                                                                                                                       | 2     |
+s1/i8259/rst_n_eoir[4]_OR_879_o(s1/i8259/rst_n_eoir[4]_OR_879_o1:O)                                                                                                                                                                                                                                                 | NONE(s1/i8259/dout_0)                                                                                                                                       | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelata_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATA)                                  | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                 | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascadelatb_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTLATB)                                  | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                 | 2     |
 s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/cascaderega_tmp(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_B:CASCADEOUTREGA)                                  | NONE(s5/rommod/crc/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/v5_init.ram/SP.CASCADED_PRIM36.TDP_T)                 | 2     |
@@ -5478,7 +5478,7 @@ Delay:               7.289ns (Levels of Logic = 8)
      LUT4:I1->O            1   0.094   0.480  s8/i8253/C0/Mmux_PWR_150_o_countval[15]_mux_43_OUT171_SW0 (N10)
      LUT6:I5->O            2   0.094   0.485  s8/i8253/C0/Mmux_PWR_150_o_countval[15]_mux_43_OUT171 (s8/i8253/C0/Mmux_PWR_150_o_countval[15]_mux_43_OUT171)
      LUT5:I4->O            4   0.094   1.085  s8/i8253/C0/Mmux_PWR_150_o_countval[15]_mux_43_OUT1721 (s8/i8253/C0/Mmux_PWR_150_o_countval[15]_mux_43_OUT172)
-     LUT6:I0->O            1   0.094   0.480  s8/i8253/C0/Mmux_PWR_150_o_countval[15]_mux_43_OUT17_SW1 (N1449)
+     LUT6:I0->O            1   0.094   0.480  s8/i8253/C0/Mmux_PWR_150_o_countval[15]_mux_43_OUT17_SW1 (N1451)
      LUT5:I4->O            1   0.094   0.000  s8/i8253/C0/Mmux_PWR_150_o_countval[15]_mux_43_OUT17 (s8/i8253/C0/PWR_150_o_countval[15]_mux_43_OUT<15>)
      FDC:D                    -0.018          s8/i8253/C0/count_15
     ----------------------------------------
@@ -5528,7 +5528,7 @@ Delay:               9.986ns (Levels of Logic = 11)
      FD_1:C->Q             1   0.467   0.710  s4/ls3730/rq_1 (s4/ls3730/rq_1)
      LUT4:I1->O          169   0.094   0.942  a<9>LogicTrst1 (a<9>)
      LUT6:I2->O           14   0.094   0.781  s3/ls0/Mmux_y21 (intr_cs_n)
-     LUT3:I0->O            1   0.094   0.789  s1/u8/ba_inv2_SW0 (N1467)
+     LUT3:I0->O            1   0.094   0.789  s1/u8/ba_inv2_SW0 (N1469)
      LUT6:I2->O           15   0.094   0.787  s1/u8/ba_inv2 (s1/u8/ba_inv)
      LUT3:I0->O            2   0.094   0.794  s1/i8088/write_bus_ale_AND_607_o_inv3_SW0 (N813)
      LUT6:I2->O            1   0.094   1.069  s1/adp<4>LogicTrst11_SW0 (N1149)
@@ -5558,7 +5558,7 @@ Delay:               9.324ns (Levels of Logic = 10)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FD:C->Q               4   0.471   0.592  s4/i8237/reset_clk_DFF_1978 (s4/i8237/reset_clk_DFF_1978)
-     LUT3:I1->O            1   0.094   0.789  s1/u8/ba_inv2_SW0 (N1467)
+     LUT3:I1->O            1   0.094   0.789  s1/u8/ba_inv2_SW0 (N1469)
      LUT6:I2->O           15   0.094   0.787  s1/u8/ba_inv2 (s1/u8/ba_inv)
      LUT3:I0->O            2   0.094   0.794  s1/i8088/write_bus_ale_AND_607_o_inv3_SW0 (N813)
      LUT6:I2->O            1   0.094   1.069  s1/adp<4>LogicTrst11_SW0 (N1149)
@@ -5936,7 +5936,7 @@ s8/pclka       |         |         |    5.363|         |
 
 
 Total REAL time to Xst completion: 83.00 secs
-Total CPU time to Xst completion: 80.62 secs
+Total CPU time to Xst completion: 80.23 secs
  
 WARNING:Xst:3152 - You have chosen to run a version of XST which is not the default solution
    for the specified device family. You are free to use it in order to take
@@ -5949,7 +5949,7 @@ WARNING:Xst:3152 - You have chosen to run a version of XST which is not the defa
 --> 
 
 
-Total memory usage is 581184 kilobytes
+Total memory usage is 581104 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  860 (   0 filtered)
