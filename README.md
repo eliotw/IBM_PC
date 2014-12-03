@@ -17,7 +17,40 @@ Guide to Design Repository
 
 Game Description
 ======
-Description goes here!
+* All information refers to "demo4.BAS", the version we used for our demo.
+* Choice 0: Exit
+  * Exits the game.
+  * Click "F2" to re-enter the game.
+* Choice 1: Hi-Lo
+  * This is a relatively simple 1 player game.
+  * You must guess X, where X is between 1 and 100 inclusive.
+  * You have six guesses to guess X.
+  * The game will tell you if you are too low or too high.
+  * If you win, you get X dollars.
+  * If you lose, you lose all of your winnings.
+  * To play again, be sure to type "YES" in all caps.
+  * This game was obtained from: http://www.vintage-basic.net/games.html
+* Choice 2: Arpeggio
+  * This is a demonstration of the sound capabilities of the IBM PC.
+  * It plays a simple arpeggio from 440 Hz to 1000 Hz and from 1000 Hz to 440 Hz.
+  * Once it completes, it returns back to the default screen.
+* Choice 3: Game of Life
+  * This is a relatively complex 2 player game.
+  * There are two players who must ensure the survival of their respective species.
+  * Player 1 gets "*" pieces and Player 2 gets "#" pieces.
+  * The game is played on a 5x5 grid.
+  * The game starts by Player 1 and Player 2 placing their 3 initial pieces on the grid.
+  * There is a random chance of dying associated with each piece placed on the board.
+  * Pieces placed next to each other have a random chance of reproduction.
+  * Every turn, each player gets a chance to place a new piece.
+  * If a player runs out of pieces, the other player wins the game.
+  * This game was obtained from: http://www.vintage-basic.net/games.html
+  * Once the game ends, it will exit our demo program. Press "F2" to reenter the demo program.
+* Choice 4: ???
+  * This is a "secret" sound demo that demonstrates the more advanced sound capabilities of the IBM PC.
+  * It plays "The Imperial March" by John Williams.
+  * Since IBM is sometimes considered the "evil empire" of computer companies, it makes sense to have this as a demo.
+  * Once it completes, it returns back to the default screen.
 
 Implementation Description
 ======
