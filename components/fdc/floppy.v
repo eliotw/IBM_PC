@@ -233,12 +233,12 @@ module floppy(
 
 `define SD_AVALON_BASE_ADDRESS_FOR_FDD 32'h00000800
 
-//TODO: in execute_ndma -- send irq after every byte
+//TODO: in execute_ndma -- send irq after every byte *This is a scary line
 
 //------------------------------------------------------------------------------
 
 always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) io_read_last <= 1'b0; else if(io_read_last) io_read_last <= 1'b0; else io_read_last <= io_read; end 
-assign io_read_valid = io_read && io_read_last == 1'b0;
+assign io_read_valid = (io_read && io_read_last) == 1'b0;
 
 always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) sd_slave_read_last <= 1'b0; else if(sd_slave_read_last) sd_slave_read_last <= 1'b0; else sd_slave_read_last <= sd_slave_read; end 
 assign sd_slave_read_valid = sd_slave_read && sd_slave_read_last == 1'b0;
@@ -273,7 +273,7 @@ end
 //------------------------------------------------------------------------------ media management
 
 always @(posedge clk or negedge rst_n) begin
-    if(rst_n == 1'b0)                           media_present <= 1'b0;
+    if(rst_n == 1'b0)                           media_present <= 1'b1;
     else if(mgmt_write && mgmt_address == 4'd0) media_present <= mgmt_writedata[0];
 end
 
@@ -283,17 +283,17 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 always @(posedge clk or negedge rst_n) begin
-    if(rst_n == 1'b0)                           media_cylinders <= 8'd0;
+    if(rst_n == 1'b0)                           media_cylinders <= 8'd40;
     else if(mgmt_write && mgmt_address == 4'd2) media_cylinders <= mgmt_writedata[7:0];
 end
 
 always @(posedge clk or negedge rst_n) begin
-    if(rst_n == 1'b0)                           media_sectors_per_track <= 8'd0;
+    if(rst_n == 1'b0)                           media_sectors_per_track <= 8'd8;
     else if(mgmt_write && mgmt_address == 4'd3) media_sectors_per_track <= mgmt_writedata[7:0];
 end
 
 always @(posedge clk or negedge rst_n) begin
-    if(rst_n == 1'b0)                           media_sector_count <= 32'd0;
+    if(rst_n == 1'b0)                           media_sector_count <= 32'd08;
     else if(mgmt_write && mgmt_address == 4'd4) media_sector_count <= mgmt_writedata;
 end
 
@@ -314,14 +314,26 @@ end
 
 //What the hell is going on here??? Possibly we want to change the reset values...maybe? *CHANGE
 //Darn management!
-always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_0 <= 16'd1000; else if(mgmt_write && mgmt_address == 4'h8) media_wait_rate_0 <= mgmt_writedata[15:0]; end
-always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_1 <= 16'd1666; else if(mgmt_write && mgmt_address == 4'h9) media_wait_rate_1 <= mgmt_writedata[15:0]; end
-always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_2 <= 16'd2000; else if(mgmt_write && mgmt_address == 4'hA) media_wait_rate_2 <= mgmt_writedata[15:0]; end
-always @(posedge clk or negedge rst_n) begin if(rst_n == 1'b0) media_wait_rate_3 <= 16'd500;  else if(mgmt_write && mgmt_address == 4'hB) media_wait_rate_3 <= mgmt_writedata[15:0]; end
+always @(posedge clk or negedge rst_n) begin 
+	if(rst_n == 1'b0) media_wait_rate_0 <= 16'd1000; 
+	else if(mgmt_write && mgmt_address == 4'h8) media_wait_rate_0 <= mgmt_writedata[15:0]; 
+	end
+always @(posedge clk or negedge rst_n) begin 
+	if(rst_n == 1'b0) media_wait_rate_1 <= 16'd1666; 
+	else if(mgmt_write && mgmt_address == 4'h9) media_wait_rate_1 <= mgmt_writedata[15:0]; 
+		end
+always @(posedge clk or negedge rst_n) begin 
+	if(rst_n == 1'b0) media_wait_rate_2 <= 16'd2000; 
+	else if(mgmt_write && mgmt_address == 4'hA) media_wait_rate_2 <= mgmt_writedata[15:0]; 
+	end
+always @(posedge clk or negedge rst_n) begin 
+	if(rst_n == 1'b0) media_wait_rate_3 <= 16'd500;  
+	else if(mgmt_write && mgmt_address == 4'hB) media_wait_rate_3 <= mgmt_writedata[15:0]; 
+	end
 
 //And possibly change this *CHANGE
 always @(posedge clk or negedge rst_n) begin
-    if(rst_n == 1'b0)                           media_type <= 8'h20; //up says this means media type none...do we not want that?
+    if(rst_n == 1'b0)                           media_type <= 8'h00; //up says this means media type none...do we not want that?
     else if(mgmt_write && mgmt_address == 4'hC) media_type <= mgmt_writedata[7:0];
 end
 
@@ -343,17 +355,17 @@ end
 
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           motor_enable <= 1'b0;
-    else if(io_write && io_address == 3'h2)     motor_enable <= io_writedata[4];
+    else if(io_write && io_address == 3'h5)     motor_enable <= 1'b1; //*CHANGED used to be writedata[]something
 end
 
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           dma_irq_enable <= 1'b1;
-    else if(io_write && io_address == 3'h2)     dma_irq_enable <= io_writedata[3];
+    else if(io_write && io_address == 3'h2)     dma_irq_enable <= io_writedata[3];//*CHANGE
 end
 
 always @(posedge clk or negedge rst_n) begin
     if(rst_n == 1'b0)                           enable <= 1'b1;
-    else if(io_write && io_address == 3'h2)     enable <= io_writedata[2];
+    else if(io_write && io_address == 3'h5)     enable <= io_writedata[2]; //*CHANGED
 end
 
 always @(posedge clk or negedge rst_n) begin
@@ -444,8 +456,8 @@ assign command_at_first =
     (io_writedata == 8'h4D)?                    4'd5 :                      //format track
     ({ 1'b0, io_writedata[6:0] } == 8'h45)?     4'd8 :                      //write normal data
     ({ 1'b0, io_writedata[6], 1'b0, io_writedata[4:0] } ==  8'h46)?  4'd8 : //read normal data
-    (io_writedata == 8'h12)?                    4'd1 :                      //perpendicular mode (Enhanced)
-    (io_writedata == 8'h13)?                    4'd3 :                      //configure command (Enhanced)
+    //(io_writedata == 8'h12)?                    4'd1 :                      //perpendicular mode (Enhanced) DOES NOT EXIST
+    //(io_writedata == 8'h13)?                    4'd3 :                      //configure command (Enhanced) DOES NOT EXIST
                                                 4'd0;
 
 always @(posedge clk or negedge rst_n) begin
@@ -548,7 +560,7 @@ assign cmd_read_write_hang_at_start =
     command[23:16] != 8'h02 ||          //invalid sector size
     command[47:40] >= media_cylinders;  //invalid cylinder
 
-assign cmd_read_write_incorrect_head_at_start   = motor_enable && command[49:48] == 2'b00 && (command[50] != command[32] || (command[32] && media_heads == 2'd1));
+assign cmd_read_write_incorrect_head_at_start   = (motor_enable) && (command[49:48] == 2'b00) && ((command[50] != command[32]) || ((command[32] && (media_heads == 2'd1))));
 assign cmd_read_write_incorrect_sector_at_start = ~(cmd_read_write_hang_at_start) && (command[31:24] > media_sectors_per_track || command[31:24] > command[15:8]);
 assign cmd_write_and_writeprotected_at_start    = ~(cmd_read_write_hang_at_start) && ~(cmd_read_write_incorrect_sector_at_start) && cmd_write_normal_start && media_writeprotected;
     

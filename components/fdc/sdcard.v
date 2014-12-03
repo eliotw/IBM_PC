@@ -16,9 +16,9 @@ module sdcard(
 	      input [31:0] sd_master_writedata, // data to address .
 	      output [8:0] sd_slave_address, // not used .
 	      output reg sd_slave_read, // read from slave .
-	      input [7:0] sd_slave_readdata, // data from slave .
+	      input [7:0] sd_slave_readdata, // data from slave . 
 	      output reg sd_slave_write, // write to fdd .
-	      output [7:0] sd_slave_writedata // data to fdd .
+	      output [7:0] sd_slave_writedata // data to fdd . 
 	      );
 
    // Remember, there are 512 bytes per sector, 2^9

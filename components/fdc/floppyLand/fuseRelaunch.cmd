@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/afs/ece.cmu.edu/usr/mkaffine/Private/ece545/reposit/IBM_PC/components/fdc/floppyLand/test_fdc_isim_beh.exe" -prj "/afs/ece.cmu.edu/usr/mkaffine/Private/ece545/reposit/IBM_PC/components/fdc/floppyLand/test_fdc_beh.prj" "work.test_fdc" "work.glbl" 

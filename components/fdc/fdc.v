@@ -22,6 +22,8 @@ module fdc(
    wire [7:0] 	 dma_floppy_writedata; // floppy to data line dma
    wire 	 ior, iow; // IO read and write
    wire [7:0]	 io_readdata; // floppy to data line
+	wire [7:0] io_writeData;
+	wire 	 validCommand;
    wire 	 ide_3f6_read; // ? - leaving unconnected
    wire 	 ide_3f6_write; // ? - leaving unconnected
    wire [7:0] 	 ide_3f6_writedata; // ? - leaving unconnected
@@ -49,16 +51,22 @@ module fdc(
    
    // Assignments
    assign inrange = (a >= 20'h3f0) & (a <= 20'h3ff);
+	assign validCommand = ((8'h03 === io_writedata) || 8'h04 === io_writedata || 
+							8'h07 === io_writedata || 8'h08 === io_writedata || 8'h0f === io_writedata
+							|| 8'h4A === io_writedata ||8'h4C === io_writedata || 8'h45 === io_writedata ||
+							8'h46 === io_writedata);
    assign rst_n = ~rst;
    assign ior = ~ior_n & inrange;
    assign iow = ~iow_n & inrange;
-   assign io_address = a[2:0];
+   assign io_address = a[2:0]; //Might write to 2, may need corrections later
    assign io_writedata = d;
    assign dma_floppy_readdata = d;
    assign ide_3f6_readdata = d;
    assign mgmt_address = 4'b0000;
    assign mgmt_write  = 1'b0;
-   assign mgmt_writedata = 32'd0;
+   assign mgmt_writedata = 32'd00;
+	assign io_writeData = (validCommand) ? //just changed from valid commands being in iored to iowrite
+						((io_writedata === 8'h4c) ? 8'h4d: io_writedata ): 8'hff;
    assign d = (dack2 | ior) ? ((ior) ? io_readdata : dma_floppy_writedata) 
        : 8'bzzzzzzzz;
    assign dack2 = ~dack2_n;
