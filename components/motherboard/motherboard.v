@@ -1120,7 +1120,7 @@ module sheet6(
 		.even(even)
 		);
 
-   // HOLY LIVING SHIT I HAVE NO IDEA WHAT THIS IS TRYING TO ACCOMPLISH
+   // I HAVE NO IDEA WHAT THIS IS TRYING TO ACCOMPLISH
    // Flip-Flop
    always @(posedge xmemr_n) begin
       if((pck_n == 1'b0) && (enb_ram_pck == 1'b1)) begin
