@@ -1,7 +1,7 @@
 IBM PC
 ======
 
-Guide to Design Repository
+Design Database Information
 ======
 * CF: CompactFlash files for download to FPGA.
 * biosimages: Images of the IBM PC BIOS.
@@ -54,8 +54,10 @@ Game Description
 
 Implementation Description
 ======
-Description goes here!
 
-Design Database Info
+Our implementation of the IBM PC consists of a series of Verilog files that are stored in the directory labeled "pc". All the files needed to synthesize and implement our design are located there. The main module for the IBM PC is the motherboard, which is located in motherboard.v. The design is partitioned into a series of motherboard slices that contain all the components. For a detailed implementation description, please look in the folder labeled "finalreport" for a PDF copy of our Final Report. All the information you require is under "What We Built -> Detailed Hardware Description".
+
+Floppy Disk Information
 ======
-Description goes here!
+
+All the files that we used in our floppy disk implementation are located under "components -> fdc". Feel free to use them as you see fit. We never got floppy disk working, so use them at your own risk!
