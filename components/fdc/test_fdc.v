@@ -278,7 +278,7 @@ module test_fdc();
       iow_n = 1'b1;
       st0 = 8'h80;
 		@(posedge clk);
-      #1 errors = errors + (d !== st0); //error 24 getting 0, shouldn't be. WTF!
+      #1 errors = errors + (d !== st0); //error 24 getting 0, shouldn't be. ???
 		ra = 20'h3f4;
 		$display("24 dataout: %b error:%b",d,(d !== st0)); // on off chance it isn't testData, find out what it is *REMOVE BEFORE TURNING IN*
       @(posedge clk)
@@ -436,7 +436,7 @@ module test_fdc();
       //end Read Command
 		$display("Finished Read");
       
-      /*LAST command because we're writing over data (and that might fuck with us)
+      /*LAST command because we're writing over data (and that might mess with us)
        //Test a write command *CHANGE VALUES FOR A WRITE COMMAND*
       ior_n = 1'b1;
       iow_n = 1'b0; //writing to data register
